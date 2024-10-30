@@ -1,0 +1,179 @@
+.tahzeel-social-icons {
+    position: fixed; /* Fixed position to keep it visible */
+    top: 50%; /* Center vertically */
+    right: 10px; /* Align on the right edge */
+    transform: translateY(-50%); /* Perfect vertical centering */
+    z-index: 9999; /* Stay above all other elements */
+  }
+
+  .tahzeel-social-icons a {
+    margin: 8px 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: transparent; /* Default background color */
+    border-radius: 50%; /* Circle shape */
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Default colorful icons */
+  .tahzeel-social-icons a i {
+    color: inherit; /* Inherit the color set for each social icon */
+  }
+
+  .tahzeel-social-icons a.facebook i {
+    color: #3b5998; /* Facebook default color */
+  }
+  .tahzeel-social-icons a.instagram i {
+    color: #c13584; /* Instagram default color */
+  }
+  .tahzeel-social-icons a.youtube i {
+    color: #ff0000; /* YouTube default color */
+  }
+  .tahzeel-social-icons a.tiktok i {
+    color: #69c9ef; /* TikTok default color */
+  }
+  .tahzeel-social-icons a.whatsapp i {
+    color: #25D366; /* WhatsApp default color */
+  }
+
+  /* Change color on hover */
+  .tahzeel-social-icons a:hover i {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(100%) hue-rotate(200deg) brightness(100%) contrast(100%);
+  }
+
+  /* Hide icons on small screens */
+  @media (max-width: 768px){
+    .tahzeel-social-icons {
+      display: none;
+          }
+    }
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+        body{
+            background-color:#fff;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            
+        }  
+        
+        section header.image-wrapper:not(.mobile) {
+          background-attachment: scroll !important;
+        }
+    
+        section header.image-wrapper,
+        section .navbar {
+          z-index: 2 !important;
+        }
+    
+        section .navbar .hamburger,
+        section .navbar [data-bs-toggle="offcanvas"],
+        section .navbar .btn {
+          pointer-events: none;
+        }
+    
+        section .navbar .container {
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+        }
+
+        .hover-card {
+            transition: transform 0.3s ease;
+             
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px);
+            cursor: pointer;
+            /* background-color: #eee; */
+
+        }
+
+        .counter-box {
+            display: block;
+            background: #f6f6f6;
+            padding: 40px 20px 37px;
+            text-align: center
+        }
+
+        .counter-box p {
+            margin: 5px 0 0;
+            padding: 0;
+            color: #909090;
+            font-size: 18px;
+            font-weight: 500
+        }
+
+        .counter-box i {
+            font-size: 60px;
+            margin: 0 0 15px;
+            color: #d2d2d2
+        }
+
+        .counter { 
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+            color: #666;
+            line-height: 28px
+        }
+
+        .counter-box.colored {
+            background: #3acf87;
+        }
+
+        .counter-box.colored2 {
+            background: #D03838;
+        }
+
+        .counter-box.colored3 {
+            background: #313131;
+        }
+        
+        .counter-box.colored4 {
+            background: #ffd500;
+        }
+
+        .counter-box.colored4 p,
+        .counter-box.colored4 i,
+        .counter-box.colored4 .counter {
+            color: #fff
+        }
+
+        .counter-box.colored3 p,
+        .counter-box.colored3 i,
+        .counter-box.colored3 .counter {
+            color: #fff
+        }
+
+        .counter-box.colored2 p,
+        .counter-box.colored2 i,
+        .counter-box.colored2 .counter {
+            color: #fff
+        }
+
+        .counter-box.colored p,
+        .counter-box.colored i,
+        .counter-box.colored .counter {
+            color: #fff
+        }
+
+        .bg-image {
+          background-size: cover;
+          background-position: center;
+        } 
+
+        /* Move background to the left on small screens */
+          @media (max-width: 768px) {
+            .bg-image {
+              background-position: 60% center; /* Shift background to the left */
+            } 
+          }
+
+          .hover-black:hover {
+              color: black !important;
+          }
