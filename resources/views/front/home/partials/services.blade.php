@@ -26,7 +26,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/amer-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/amer-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -56,7 +56,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100 d-flex">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/tasheel-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/tasheel-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/DED-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/DED-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -110,7 +110,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/legal-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/legal-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -134,7 +134,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/DHA-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/DHA-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -156,7 +156,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/Notary-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/Notary-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>
@@ -181,7 +181,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="pricing card text-center h-100">
                         <div class="card-header">
-                            <img src="{{ asset('front/uploads/static/attest-card.webp') }}"
+                            <img src="{{ asset('front/dev/assets/img/personal/attest-card.webp') }}"
                                 class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
                         </div>

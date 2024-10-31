@@ -2,7 +2,7 @@
 @section('title', 'About Us')
 @section('content')
 
-    <section class="wrapper image-wrapper bg-image bg-overlay-300" data-image-src="{{ asset('front/dev/assets/img/personal/about-bg.png') }}">
+    <section class="wrapper image-wrapper bg-image bg-overlay-300" data-image-src="{{ asset('front/dev/assets/img/personal/about-bg2.webp') }}">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-8 col-xl-9 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">

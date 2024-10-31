@@ -5,13 +5,12 @@
     @endphp
 
     <div class="sidebar pt-0 mt-0">
-        <!-- Sidebar user panel (optional) -->
+        
         <div class="user-panel">
             <a href="{{ route('admin.dashboard') }}" class="name text-dark">
                 <img src="{{ asset('assets/core/logo.png') }}" alt="" width="200px">
             </a>
         </div>
-        <!-- Sidebar Menu -->
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu"
@@ -26,9 +25,9 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.profile.edit' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.profile.edit') }}"
-                        class="nav-link @if (request()->path() == '/admin-profile/edit') active @endif">
+                        class="nav-link {{ Route::currentRouteName() == 'admin.profile.edit' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             {{ __('Profile') }}
@@ -37,7 +36,7 @@
                 </li>
 
                 {{-- users --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">
                     <a href="" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -49,25 +48,25 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.index') }}" class="nav-link">
+                            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.pendingUsers') }}" class="nav-link">
+                            <a href="{{ route('admin.user.pendingUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.pendingUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Pending Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.approvedUsers') }}" class="nav-link">
+                            <a href="{{ route('admin.user.approvedUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.approvedUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Approved Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.blockedUsers') }}" class="nav-link">
+                            <a href="{{ route('admin.user.blockedUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.blockedUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Blocked Users') }}</p>
                             </a>

@@ -42,4 +42,22 @@ class FrontController extends Controller
     {
         return view('front.otherPages.medicalFitnessTest');
     }
+
+    public function residencyVisa()
+    {
+        return view('front.otherPages.residencyVisa');
+    }
+
+    public function openFile()
+    {
+        return view('front.otherPages.openfile');
+    }
+
+    public function entryPermit()
+    {
+        return view('front.otherPages.entryPermits');
+    }
+
+    
+
 }
