@@ -2,7 +2,7 @@
 @section('title', 'Contact Us')
 @section('content')
     <section class="wrapper image-wrapper bg-image bg-overlay bg-overlay-300"
-        data-image-src="{{ asset('front/dev/assets/img/personal/about-bg.png') }}">
+        data-image-src="{{ asset('front/dev/assets/img/personal/about-bg.webp') }}">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 text-center">
             <div class="row">
                 <div class="col-lg-8 col-xl-7 col-xxl-6 mx-auto" data-cues="slideInDown" data-group="page-title">

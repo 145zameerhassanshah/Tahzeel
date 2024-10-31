@@ -12,7 +12,7 @@
         <div class="col-md-6 col-xl-3 ">
             <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/boxes.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/boxes.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                     <h4>Expert Guidance</h4>
                     <p class="mb-2">Our team of seasoned professionals ensures that every step of the visa
@@ -27,7 +27,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-green  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/person-lock.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/person-lock.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                     <h4>Personalized Solutions</h4>
                     <p class="mb-2">We tailor our services to meet your unique requirements, offering solutions
@@ -42,7 +42,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-orange  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/bookmark-check.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/bookmark-check.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-orange mb-3" alt="" />
                     <h4>Hassle-Free Process</h4>
                     <p class="mb-2">From documentation to submission, we handle the complexities, so you can
@@ -57,7 +57,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-blue  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/globe.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/globe.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="" />
                     <h4>Global Reach</h4>
                     <p class="mb-2">We assist with visas to countries worldwide, opening doors to endless
@@ -76,7 +76,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-yellow  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/speedometer.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/speedometer.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                     <h4>Fast Turnaround</h4>
                     <p class="mb-2">Our efficient approach ensures that you receive your visa approvals in the
@@ -91,7 +91,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-green  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/stars.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/stars.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                     <h4>Transparent Fees</h4>
                     <p class="mb-2">We offer clear, upfront pricing with no hidden charges, so you always know
@@ -106,7 +106,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-orange  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/headset.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/headset.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-orange mb-3" alt="" />
                     <h4>Reliable Support</h4>
                     <p class="mb-2">Our dedicated customer service team is available to assist you every step of
@@ -121,7 +121,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-blue  h-100 hover-card">
                 <div class="card-body">
-                    <img src="{{ asset('front/uploads/static/hand-thumbs-up.svg') }}"
+                    <img src="{{ asset('front/dev/assets/img/personal/hand-thumbs-up.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="" />
                     <h4>Trusted by Many</h4>
                     <p class="mb-2">With a track record of successful visa approvals, Tah-zeel is the trusted

@@ -69,6 +69,6 @@ Route::get('/emirate-id', [FrontController::class, 'emirateId'])->name('front.em
 Route::get('/visit-visa', [FrontController::class, 'visitVisa'])->name('front.visit.visa');
 Route::get('/domestic-worker-visa', [FrontController::class, 'domesticWorkerVisa'])->name('front.domestic.worker.visa');
 Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest'])->name('front.medical.fitness.test');
-
 Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('front.residency.visa');
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
+Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');

@@ -41,7 +41,8 @@
                                         <li class="nav-item"><a class="dropdown-item"
                                                 href="{{ route('front.medical.fitness.test') }}">Medical Fitness
                                                 Tests</a></li>
-                                        <li class="nav-item"><a class="dropdown-item" href="#">Entry
+                                        <li class="nav-item"><a class="dropdown-item" 
+                                                href="{{ route('front.entry.permit') }}">Entry
                                                 Permits</a></li>
                                         <li class="nav-item"><a class="dropdown-item" href="#">Change
                                                 Status</a></li>

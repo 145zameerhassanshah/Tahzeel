@@ -52,4 +52,12 @@ class FrontController extends Controller
     {
         return view('front.otherPages.openfile');
     }
+
+    public function entryPermit()
+    {
+        return view('front.otherPages.entryPermits');
+    }
+
+    
+
 }
