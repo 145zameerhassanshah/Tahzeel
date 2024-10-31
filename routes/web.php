@@ -22,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('user.profile.edit');
+Route::post('/update-Profile', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
+Route::post('/update-Password', [ProfileController::class, 'updatePassword'])->name('user.password.update');
+
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'status'])->group(function () {
@@ -54,6 +58,8 @@ Route::middleware(['auth', 'status'])->group(function () {
 
 });
 
+
+
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us');
 Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
@@ -63,3 +69,6 @@ Route::get('/emirate-id', [FrontController::class, 'emirateId'])->name('front.em
 Route::get('/visit-visa', [FrontController::class, 'visitVisa'])->name('front.visit.visa');
 Route::get('/domestic-worker-visa', [FrontController::class, 'domesticWorkerVisa'])->name('front.domestic.worker.visa');
 Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest'])->name('front.medical.fitness.test');
+
+Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('front.residency.visa');
+Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');

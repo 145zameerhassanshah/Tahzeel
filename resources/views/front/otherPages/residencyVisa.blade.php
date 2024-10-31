@@ -1,272 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tah-zeel</title>
-    <link rel="shortcut icon" href="dev/assets/img/personal/logo-tehzeel.png">
-    <link rel="stylesheet" href="dev/assets/css/plugins.css">
-    <link rel="stylesheet" href="dev/assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="customCSS.css">
-    
-
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
-
-        body{
-            background-color:#fff;
-            font-family: "Poppins", sans-serif;
-            font-weight: 300;
-            
-        }  
-        
-        section header.image-wrapper:not(.mobile) {
-          background-attachment: scroll !important;
-        }
-    
-        section header.image-wrapper,
-        section .navbar {
-          z-index: 2 !important;
-        }
-    
-        section .navbar .hamburger,
-        section .navbar [data-bs-toggle="offcanvas"],
-        section .navbar .btn {
-          pointer-events: none;
-        }
-    
-        section .navbar .container {
-          padding-left: 0.75rem;
-          padding-right: 0.75rem;
-        }
-
-        .hover-card {
-            transition: transform 0.3s ease;
-             
-        }
-
-        .hover-card:hover {
-            transform: translateY(-10px);
-            cursor: pointer;
-            /* background-color: #eee; */
-
-        }
-
-        .counter-box {
-            display: block;
-            background: #f6f6f6;
-            padding: 40px 20px 37px;
-            text-align: center
-        }
-
-        .counter-box p {
-            margin: 5px 0 0;
-            padding: 0;
-            color: #909090;
-            font-size: 18px;
-            font-weight: 500
-        }
-
-        .counter-box i {
-            font-size: 60px;
-            margin: 0 0 15px;
-            color: #d2d2d2
-        }
-
-        .counter { 
-            display: block;
-            font-size: 32px;
-            font-weight: 700;
-            color: #666;
-            line-height: 28px
-        }
-
-        .counter-box.colored {
-            background: #3acf87;
-        }
-
-        .counter-box.colored2 {
-            background: #D03838;
-        }
-
-        .counter-box.colored3 {
-            background: #313131;
-        }
-        
-        .counter-box.colored4 {
-            background: #ffd500;
-        }
-
-        .counter-box.colored4 p,
-        .counter-box.colored4 i,
-        .counter-box.colored4 .counter {
-            color: #fff
-        }
-
-        .counter-box.colored3 p,
-        .counter-box.colored3 i,
-        .counter-box.colored3 .counter {
-            color: #fff
-        }
-
-        .counter-box.colored2 p,
-        .counter-box.colored2 i,
-        .counter-box.colored2 .counter {
-            color: #fff
-        }
-
-        .counter-box.colored p,
-        .counter-box.colored i,
-        .counter-box.colored .counter {
-            color: #fff
-        }
-
-        .bg-image {
-          background-size: cover;
-          background-position: center;
-        } 
-
-        
-
-        /* Move background to the left on small screens */
-          @media (max-width: 768px) {
-            .bg-image {
-              background-position: 60% center; /* Shift background to the left */
-            } 
-          }
+@extends('front.layouts.master')
+@section('title', 'Residency Visa')
+@section('content')
 
 
-       
-
-       
-
-        
-
-        
-        
-
-      </style>
-</head>
-<body>
-  <div class="content-wrapper">
-    <header class="wrapper bg-soft-primary">
-      <nav class="navbar navbar-expand-lg fancy navbar-light navbar-bg-light caret-none position-absolute">
-        <div class="container">
-          <div class="navbar-collapse-wrapper bg-white d-flex flex-row flex-nowrap w-100 justify-content-between align-items-center">
-            <div class="navbar-brand w-100">
-              <a href="./index.html">
-                <img src="dev/assets/img/personal/logo-tehzeel.png" srcset="./assets/img/logo@2x.png 2x" alt="" />
-              </a>
-            </div>
-            <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
-              <div class="offcanvas-header d-lg-none">
-                <a href="./index.html"><img src="./assets/img/logo-light.png" srcset="./assets/img/logo-light@2x.png 2x" alt="" /></a>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100 hover">
-                <ul class="navbar-nav">
-                  <li class="nav-item"><a class="nav-link " href="/index.html">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/aboutUs.html">About Us</a></li>
-                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/amerServices.html" data-bs-toggle="dropdown" onclick="window.location='/amerServices.html'; return false;">Amer Services</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item"><a class="dropdown-item" href="/residencyVisaPage.html">Residency Visa Issuance/Renewal</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Open File</a></li>
-
-                      <!-- <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Visa</a>
-                        <ul class="dropdown-menu">
-                          <li class="nav-item"><a class="dropdown-item" href="/visa.html">Visa</a></li>
-                          <li class="nav-item"><a class="dropdown-item" href="#">Employement Visa</a></li>
-                          <li class="nav-item"><a class="dropdown-item" href="#">Family Visa</a></li>
-                          <li class="nav-item"><a class="dropdown-item" href="#">Investor Visa</a></li>
-
-                        </ul>
-                      </li> -->
-                      <li class="nav-item"><a class="dropdown-item" href="#">Visa Cancellations</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="/emirateIdPage.html">Emirates ID Applications</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Medical Fitness Tests</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Entry Permits</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Change Status</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="/visitVisapage.html">Visit Visas</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="/domesticVisaPage.html">Domestic Worker Visa</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Travel History</a></li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Absconding Removal & Overstay Fines</a></li>
-
-
-
-
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tasheel Services</a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                      <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Under Construction</a>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Under Construction</a>
-                            <ul class="dropdown-menu">
-                              <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                              <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                            </ul>
-                          </li>
-                          <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                          <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                        </ul>
-                      </li>
-                      <li class="nav-item"><a class="dropdown-item" href="#">Under Construction</a></li>
-                    </ul>
-                  </li>
-                  
-                  <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/contactUs.html">Contact</a></li>
-
-               
-                </ul>
-                <!-- /.navbar-nav -->
-                <div class="d-lg-none mt-auto pt-6 pb-6 order-4">
-                  <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
-                  <br /> 00 (123) 456 78 90 <br />
-                  <nav class="nav social social-white mt-4">
-                    <a href="#"><i class="uil uil-twitter"></i></a>
-                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                    <a href="#"><i class="uil uil-dribbble"></i></a>
-                    <a href="#"><i class="uil uil-instagram"></i></a>
-                    <a href="#"><i class="uil uil-youtube"></i></a>
-                  </nav>
-                  <!-- /.social -->
-                </div>
-                <!-- /offcanvas-nav-other -->
-              </div>
-              <!-- /.offcanvas-body -->
-            </div>
-            <!-- /.navbar-collapse -->
-            <div class="navbar-other w-100 d-flex ms-auto">
-              <ul class="navbar-nav flex-row align-items-center ms-auto ">
-                <li class="nav-item dropdown language-select text-uppercase me-5">
-                  <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">En</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item"><a class="dropdown-item" href="#">En</a></li>
-                    <li class="nav-item"><a class="dropdown-item" href="#">Ar</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item d-none d-md-block ">
-                  <a href="/contactUs.html" class="btn btn-sm btn-success rounded-pill text-white">Apply Now</a>
-                </li>
-                <li class="nav-item d-lg-none">
-                  <button class="hamburger offcanvas-nav-btn"><span></span></button>
-                </li>
-              </ul>
-              <!-- /.navbar-nav -->
-            </div>
-            <!-- /.navbar-other -->
-          </div>
-          <!-- /.navbar-collapse-wrapper -->
-        </div>
-        <!-- /.container -->
-      </nav>
-      <!-- /.navbar -->
-    </header>
-    <!-- /header -->
-    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="dev/assets/img/personal/residencyVisa-bg.webp">
+    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/dev/assets/img/personal/residencyVisa-bg.webp">
       <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
         <div class="row text-start">
           <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -292,15 +29,15 @@
             <div class="col-lg-6">
               <div class="row gx-md-5 gy-5">
                 <div class="col-12 d-none d-md-block">
-                  <figure class="rounded mx-5 "><img src="dev/assets/img/personal/residency1.webp" srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded mx-5 "><img src="{{ asset('front') }}/dev/assets/img/personal/residency1.webp" srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
                 </div>
                 <!--/column -->
                 <div class="col-md-6">
-                  <figure class="rounded d-none d-md-block"><img src="dev/assets/img/personal/residency2.webp" srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded d-none d-md-block"><img src="{{ asset('front') }}/dev/assets/img/personal/residency2.webp" srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
                 </div>
                 <!--/column -->
                 <div class="col-md-6">
-                  <figure class="rounded "><img src="dev/assets/img/personal/residency3.webp" srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded "><img src="{{ asset('front') }}/dev/assets/img/personal/residency3.webp" srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
                 </div>
                 <!--/column -->
               </div>
@@ -315,7 +52,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="dev/assets/img/personal/lightning-charge.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4" alt="" />
+                      <img src="{{ asset('front') }}/dev/assets/img/personal/lightning-charge.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Comprehensive Support</h4>
@@ -327,7 +64,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="dev/assets/img/personal/journal-check.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4" alt="" />
+                      <img src="{{ asset('front') }}/dev/assets/img/personal/journal-check.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Expertise You Can Trust</h4>
@@ -339,7 +76,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="dev/assets/img/personal/person-check.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4" alt="" />
+                      <img src="{{ asset('front') }}/dev/assets/img/personal/person-check.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Swift Processing</h4>
@@ -351,7 +88,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="dev/assets/img/personal/transparency.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
+                      <img src="{{ asset('front') }}/dev/assets/img/personal/transparency.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Tailored Assistance</h4>
@@ -450,10 +187,6 @@
         </div>
        </div>
 
-
-        
-
-
        <!-- end eligibility section  -->
         <!-- required document seciton  -->
 
@@ -470,7 +203,7 @@
                   <ul class="nav nav-tabs nav-tabs-bg nav-tabs-shadow-lg d-flex justify-content-between nav-justified flex-lg-row flex-column">
                     <li class="nav-item"> 
                       <a class="nav-link d-flex flex-row active" data-bs-toggle="tab" href="#tab2-1">
-                        <div><img src="dev/assets/img/personal/businessman.png" class="svg-inject icon-svg icon-svg-md text-yellow me-4" alt="" /></div>
+                        <div><img src="{{ asset('front') }}/dev/assets/img/personal/businessman.png" class="svg-inject icon-svg icon-svg-md text-yellow me-4" alt="" /></div>
                         <div>
                           <h4 class="mb-1">For Sponsors</h4>
                           <p>Underconstruction</p>
@@ -479,7 +212,7 @@
                     </li>
                     <li class="nav-item"> 
                       <a class="nav-link d-flex flex-row" data-bs-toggle="tab" href="#tab2-2">
-                        <div><img src="dev/assets/img/personal/social-worker.png" class="svg-inject icon-svg icon-svg-md text-green me-4" alt="" /></div>
+                        <div><img src="{{ asset('front') }}/dev/assets/img/personal/social-worker.png" class="svg-inject icon-svg icon-svg-md text-green me-4" alt="" /></div>
                         <div>
                           <h4 class="mb-1">For Applicants</h4>
                           <p>Underconstruction</p>
@@ -519,7 +252,7 @@
             <div class="col-lg-10 col-xl-9 col-xxl-8 mx-auto text-center">
               <h2 class="fs-16 text-uppercase text-white mb-3">Join Our Community</h2>
               <h3 class="display-3 text-white mb-6">We’ve helped thousands of <span class="underline-2 underline-gradient-6"><em>clients</em></span> navigate UAE’s government services efficiently.</h3>
-              <a href="#" class="btn btn-white fw-normal py-0"><img src="dev/assets/img/personal/telephone.svg" alt=""> <p class="ms-2 pt-4">+97-123-456789</p></a>
+              <a href="#" class="btn btn-white fw-normal py-0"><img src="{{ asset('front') }}/dev/assets/img/personal/telephone.svg" alt=""> <p class="ms-2 pt-4">+97-123-456789</p></a>
             </div>
             <!-- /column -->
           </div>
@@ -539,22 +272,22 @@
               <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Your Step-by-Step Guide to a Smooth Domestic Worker Visa Application</h2>
               <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">Streamlined Visa Application Process with <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support</h3>
               <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                <div class="col-md-3"> <img src="dev/assets/img/personal/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                   <h4 class="mb-1">1. Document Preparation</h4>
                   <p class="mb-5 mb-md-0 text-justify">Gather required documents like identification, income proof, and housing information. Tah-zeel assists with document checks to ensure accuracy.</p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="dev/assets/img/personal/box-arrow-in-right.svg" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/box-arrow-in-right.svg" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                   <h4 class="mb-1">2. Application Submission</h4>
                   <p class="mb-5 mb-md-0 text-justify">Submit the application to the relevant authority. Tah-zeel manages the entire submission for faster processing.</p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="dev/assets/img/personal/arrow-repeat.svg" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/arrow-repeat.svg" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                   <h4 class="mb-1">3. Processing and Follow-up</h4>
                   <p class="mb-5 mb-md-0 text-justify" >The application undergoes government review. Tah-zeel monitors progress, handling any additional requests promptly.</p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="dev/assets/img/personal/check2-circle.svg" class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/check2-circle.svg" class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                     <h4 class="mb-1">4. Final Approval and Visa Issuance</h4>
                     <p class="mb-5 mb-md-0 text-justify">After approval, the visa is issued. Tah-zeel ensures smooth collection and guides on next steps, including residency stamping if needed.</p>
                   </div>
@@ -591,7 +324,7 @@
             <div class="shape rounded-circle bg-soft-green rellax w-21 h-21" data-rellax-speed="1" style="top: 6rem; right: 2rem"></div>
             <div class="shape bg-dot green green rellax w-15 h-15" data-rellax-speed="1" style="bottom: 1rem; left: 0.5rem"></div>
 
-            <figure><img src="dev/assets/img/photos/co2.png" srcset="./assets/img/photos/co1@2x.png 2x" alt=""></figure>
+            <figure><img src="{{ asset('front') }}/dev/assets/img/photos/co2.png" srcset="./assets/img/photos/co1@2x.png 2x" alt=""></figure>
           </div>
           <!--/column -->
           <div class="col-lg-6 col-xl-6 col-xxl-5 offset-xl-1">
@@ -668,14 +401,14 @@
           <div class="swiper-container clients mb-0" data-margin="5" data-dots="false" data-loop="true" data-autoplay="true" data-autoplaytime="1" data-drag="false" data-speed="5000" data-items-xxl="5" data-items-xl="4" data-items-lg="4" data-items-md="3" data-items-xs="2">
             <div class="swiper">
               <div class="swiper-wrapper ticker">
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-1.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-2.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-3.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-4.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-1.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-2.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-3.svg" alt="" /></div>
-                <div class="swiper-slide px-5"><img src="dev/assets/img/personal/govrt-4.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-1.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-2.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-3.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-4.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-1.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-2.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-3.svg" alt="" /></div>
+                <div class="swiper-slide px-5"><img src="{{ asset('front') }}/dev/assets/img/personal/govrt-4.svg" alt="" /></div>
                 
               </div>
               <!--/.swiper-wrapper -->
@@ -697,7 +430,7 @@
           <div class="col-lg-10 col-xl-9 col-xxl-8 mx-auto text-center">
             <h2 class="fs-16 text-uppercase text-white mb-3">Join Our Community</h2>
             <h3 class="display-3 text-white mb-6">Let us handle your <span class="underline-2 underline-gradient-9"><em>visa and documentation</em></span> processes smoothly and stress-free.              </h3>
-            <a href="#" class="btn btn-white fw-normal py-0"><img src="dev/assets/img/personal/telephone.svg" alt=""> <p class="ms-2 pt-4">+97-123-456789</p></a>
+            <a href="#" class="btn btn-white fw-normal py-0"><img src="{{ asset('front') }}/dev/assets/img/personal/telephone.svg" alt=""> <p class="ms-2 pt-4">+97-123-456789</p></a>
           </div>
           <!-- /column -->
         </div>
@@ -891,7 +624,7 @@
             <div class="shape rounded bg-soft-fuchsia rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-recidencyVisa.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-recidencyVisa.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -913,7 +646,7 @@
             <div class="shape rounded bg-soft-blue rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-openFile.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-openFile.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -935,7 +668,7 @@
             <div class="shape rounded bg-soft-yellow rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-visaCancel.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-visaCancel.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -957,7 +690,7 @@
             <div class="shape rounded bg-soft-green rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/services-EmiratesID.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/services-EmiratesID.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -979,7 +712,7 @@
             <div class="shape rounded bg-soft-fuchsia rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/services-medical.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/services-medical.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1001,7 +734,7 @@
             <div class="shape rounded bg-soft-blue rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/services-entryPermit.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/services-entryPermit.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1023,7 +756,7 @@
             <div class="shape rounded bg-soft-yellow rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-change.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-change.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1045,7 +778,7 @@
             <div class="shape rounded bg-soft-green rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/services-visitVisa.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/services-visitVisa.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1068,7 +801,7 @@
             <div class="shape rounded bg-soft-fuchsia rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-domestic.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-domestic.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1091,7 +824,7 @@
             <div class="shape rounded bg-soft-blue rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-travel.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-travel.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1113,7 +846,7 @@
             <div class="shape rounded bg-soft-yellow rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0"></div>
             <div class="card shadow-lg hover-card">
               <figure class="card-img-top overlay overlay-1">
-                <a href="#"><img class="img-fluid" src="dev/assets/img/personal/service-fine.webp" alt="" /></a>
+                <a href="#"><img class="img-fluid" src="{{ asset('front') }}/dev/assets/img/personal/service-fine.webp" alt="" /></a>
                 <figcaption>
                   <h5 class="from-top mb-0">See Details</h5>
                 </figcaption>
@@ -1153,122 +886,4 @@
   
   
 
-      
-      
-    
-    
-     
-    
-    <!-- start footer -->
-      <footer class="bg-dark section-frame">
-        <div class="container pb-13 pb-md-15">
-          <div class="card image-wrapper bg-full bg-image bg-overlay mt-n50p mx-md-5" data-image-src="dev/assets/img/personal/contact.webp">
-            <div class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between  text-lg-start">
-              <h3 class="display-4 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-18 text-white">Ready to simplify your visa process? <br>Contact our experts today!</h3>
-              <a href="#" class="btn btn-lg btn-white rounded mb-0 text-nowrap">Contact Us</a>
-            </div>
-            <!--/.card-body -->
-          </div>
-          <!--/.card -->
-          <div class="text-inverse mx-md-5 mt-n15 mt-lg-0">
-            <div class="row gy-6 gy-lg-0">
-              <div class="col-md-4 col-lg-3">
-                <div class="widget">
-                  <img class="mb-4" src="dev/assets/img/personal/logo-tehzeel.png" srcset="./assets/img/logo-light@2x.png 2x" alt="" />
-                  <p class="mb-4">© <script>
-                      document.write(new Date().getUTCFullYear());
-                    </script> Tah-zeel. <br class="d-none d-lg-block" />All rights reserved.</p>
-                  <nav class="nav social social-white">
-                    <a href="#"><i class="uil uil-twitter"></i></a>
-                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                    <a href="#"><i class="uil uil-dribbble"></i></a>
-                    <a href="#"><i class="uil uil-instagram"></i></a>
-                    <a href="#"><i class="uil uil-youtube"></i></a>
-                  </nav>
-                  <!-- /.social -->
-                </div>
-                <!-- /.widget -->
-              </div>
-              <!-- /column -->
-              <div class="col-md-4 col-lg-3">
-                <div class="widget">
-                  <h4 class="widget-title text-white mb-3">Get in Touch</h4>
-                  <address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom</address>
-                  <a href="mailto:#">info@email.com</a><br /> 00 (123) 456 78 90
-                </div>
-                <!-- /.widget -->
-              </div>
-              <!-- /column -->
-              <div class="col-md-4 col-lg-3">
-                <div class="widget">
-                  <h4 class="widget-title text-white mb-3">Learn More</h4>
-                  <ul class="list-unstyled  mb-0">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                  </ul>
-                </div>
-                <!-- /.widget -->
-              </div>
-              <!-- /column -->
-              <div class="col-md-12 col-lg-3">
-                <div class="widget">
-                  <h4 class="widget-title text-white mb-3">Our Newsletter</h4>
-                  <p class="mb-5">Subscribe to our newsletter to get our news & deals delivered to you.</p>
-                  <div class="newsletter-wrapper">
-                    <!-- Begin Mailchimp Signup Form -->
-                    <div id="mc_embed_signup2">
-                      <form action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate dark-fields" target="_blank" novalidate>
-                        <div id="mc_embed_signup_scroll2">
-                          <div class="mc-field-group input-group form-floating">
-                            <input type="email" value="" name="EMAIL" class="required email form-control" placeholder="Email Address" id="mce-EMAIL2">
-                            <label for="mce-EMAIL2">Email Address</label>
-                            <input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe2" class="btn btn-success text-white ">
-                          </div>
-                          <div id="mce-responses2" class="clear">
-                            <div class="response" id="mce-error-response2" style="display:none"></div>
-                            <div class="response" id="mce-success-response2" style="display:none"></div>
-                          </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value=""></div>
-                          <div class="clear"></div>
-                        </div>
-                      </form>
-                    </div>
-                    <!--End mc_embed_signup-->
-                  </div>
-                  <!-- /.newsletter-wrapper -->
-                </div>
-                <!-- /.widget -->
-              </div>
-              <!-- /column -->
-            </div>
-            <!--/.row -->
-          </div>
-        </div>
-        <!-- /.container -->
-         
-      </footer>
-        <!-- Social Media Icons Section -->
-      <div class="tahzeel-social-icons">
-        <a href="https://facebook.com" target="_blank" class="text-decoration-none facebook">
-        <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" class="text-decoration-none instagram">
-        <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://youtube.com" target="_blank" class="text-decoration-none youtube">
-        <i class="bi bi-youtube"></i>
-        </a>
-        <a href="https://tiktok.com" target="_blank" class="text-decoration-none tiktok">
-        <i class="bi bi-tiktok"></i>
-        </a>
-        <a href="https://wa.me/+923157474084" target="_blank" class="text-decoration-none whatsapp">
-        <i class="bi bi-whatsapp"></i>
-      </a>
-    </div>
-      <script src="dist/assets/js/plugins.js"></script>
-      <script src="dist/assets/js/theme.js"></script>
-</body>
-</html>
+@endsection

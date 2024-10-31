@@ -1,4 +1,3 @@
- <link rel="shortcut icon" href="{{ asset('front/dev/assets/img/personal/logo-tehzeel.png') }}">
  <link rel="stylesheet" href="{{ asset('front/dev/assets/css/plugins.css') }}">
  <link rel="stylesheet" href="{{ asset('front/dev/assets/css/style.css') }}">
  {{-- <link rel="stylesheet" href="{{ asset('front/dev/assets/css/bootstrap-icons.css') }}"> --}}

@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/core/fav.png') }}" type="image/png">
+    
     @includeif('admin.partials.styles')
 </head>
 <body @php
@@ -42,15 +43,7 @@ use Illuminate\Support\Facades\Session; @endphp {{ Session::has('notification') 
 
     {{-- @include('sweetalert::alert') --}}
 
-    <script>
-        document.getElementById('refreshBtn').addEventListener('click', function () {
-            // Clear all form inputs
-            document.getElementById('reportForm').reset();
 
-            // Optionally, redirect to clear query parameters
-            window.location.href = "{{ route('report.show') }}";
-        });
-    </script>
 </body>
 
 </html>

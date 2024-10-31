@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') | Tah-zeel</title>
+
+    <link rel="shortcut icon" href="{{ asset('assets/core/fav.png') }}">
+
     @include('front.layouts.partials.styles')
 </head>
 
