@@ -55,14 +55,14 @@
                                             </td>
                                             <td>
                                               <img class="w-80"
-                                                  src="{{ asset('assets/admin/uploads/user/' . $user->icon) }}"
+                                                  src="{{ asset('admin/user/profile/' . $user->icon) }}"
                                                   alt="">
                                             </td>
                                             <td> 
                                                 <a href="#">{{ $user->name }} </a>
                                             </td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
+                                            <td>{{ $user->phone_no }}</td>
                                             <td>
                                                 @if ($user->status == 'approved')
                                                     <span class="badge badge-success">Approved</span>
