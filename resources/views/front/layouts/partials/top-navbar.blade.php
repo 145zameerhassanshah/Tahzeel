@@ -127,7 +127,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item d-none d-md-block">
-                                <a href="./contactUs.html"
+                                <a href="{{ route('front.contact.us') }}"
                                     class="btn btn-sm btn-success rounded-pill text-white">Apply Now</a>
                             </li>
                             @auth

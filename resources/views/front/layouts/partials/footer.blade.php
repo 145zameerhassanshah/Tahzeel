@@ -6,7 +6,7 @@
               class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between  text-lg-start">
               <h3 class="display-4 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-18 text-white">Ready to simplify your
                   visa process? <br>Contact our experts today!</h3>
-              <a href="#" class="btn btn-lg btn-white rounded mb-0 text-nowrap">Contact Us</a>
+              <a href="{{ route('front.contact.us') }}" class="btn btn-lg btn-white rounded mb-0 text-nowrap">Contact Us</a>
           </div>
           <!--/.card-body -->
       </div>
