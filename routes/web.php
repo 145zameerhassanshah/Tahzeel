@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Admin\PartnerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +58,17 @@ Route::middleware(['auth', 'status'])->group(function () {
     }); // end of income routes
 
 });
+
+// Partner Routes
+
+Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner.index');
+Route::get('/partner/add', [PartnerController::class, 'add'])->name('admin.partner.add');
+Route::post('/partner/store', [PartnerController::class, 'store'])->name('admin.partner.store');
+Route::get('/partner/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
+Route::post('/partner/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
+Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name('admin.partner.delete');
+
+// End of Partner Routes
 
 
 
