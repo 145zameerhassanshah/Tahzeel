@@ -58,6 +58,9 @@ class FrontController extends Controller
         return view('front.otherPages.entryPermits');
     }
 
-    
+    public function visaCancellation()
+    {
+        return view('front.otherPages.visaCancellation');
+    }
 
 }

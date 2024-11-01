@@ -34,7 +34,7 @@
                                         </li>
 
 
-                                        <li class="nav-item"><a class="dropdown-item" href="#">Visa
+                                        <li class="nav-item"><a class="dropdown-item" href="{{ route('front.visa.cancellation') }}">Visa
                                                 Cancellations</a></li>
                                         <li class="nav-item"><a class="dropdown-item"
                                                 href="{{ route('front.emirate.id') }}">Emirates ID Applications</a></li>
