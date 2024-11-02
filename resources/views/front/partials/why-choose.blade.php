@@ -14,9 +14,8 @@
                 <div class="card-body">
                     <img src="{{ asset('front/dev/assets/img/personal/boxes.svg') }}"
                         class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                    <h4>Expert Guidance</h4>
-                    <p class="mb-2">Our team of seasoned professionals ensures that every step of the visa
-                        process is clear and straightforward.</p>
+                    <h4>{{__('message.expert-guidance')}}</h4>
+                    <p class="mb-2">{{__("message.our-team")}}</p>
                     <a href="#" class="more hover link-yellow">Learn More</a>
                 </div>
                 <!--/.card-body -->

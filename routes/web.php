@@ -5,9 +5,17 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-
+Route::get('language/{locale}', function ($locale) {
+    if (in_array($locale, config('app.available_locales'))) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+    return redirect()->back();
+})->name('setLanguage');
 
 
 Route::get('/pending-user', [UserController::class, 'pendingUser'])->name('pending.user');
@@ -73,7 +81,7 @@ Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name(
 
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
-Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us');
+Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
 Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/contact-us', [FrontController::class, 'contactUs'])->name('front.contact.us');
