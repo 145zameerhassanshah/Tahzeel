@@ -119,13 +119,19 @@
                     <div class="navbar-other w-100 d-flex ms-auto">
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <li class="nav-item dropdown language-select text-uppercase">
-                                <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">En</a>
+                                <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ session('locale', 'En') }}
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="dropdown-item" href="#">En</a></li>
-                                    <li class="nav-item"><a class="dropdown-item" href="#">Ar</a></li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" href="{{ route('setLanguage', ['locale' => 'en']) }}">En</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" href="{{ route('setLanguage', ['locale' => 'ar']) }}">Ar</a>
+                                    </li>
                                 </ul>
                             </li>
+                            
                             <li class="nav-item d-none d-md-block">
                                 <a href="./contactUs.html"
                                     class="btn btn-sm btn-success rounded-pill text-white">Apply Now</a>
