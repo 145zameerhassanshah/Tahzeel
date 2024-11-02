@@ -5,7 +5,7 @@
     @endphp
 
     <div class="sidebar pt-0 mt-0">
-        
+
         <div class="user-panel">
             <a href="{{ route('admin.dashboard') }}" class="name text-dark">
                 <img src="{{ asset('assets/core/logo.png') }}" alt="" width="200px">
@@ -36,7 +36,8 @@
                 </li>
 
                 {{-- users --}}
-                <li class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">
                     <a href="" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -48,30 +49,60 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.pendingUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.pendingUsers' ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.pendingUsers') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.user.pendingUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Pending Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.approvedUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.approvedUsers' ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.approvedUsers') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.user.approvedUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Approved Users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.blockedUsers') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.blockedUsers' ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.blockedUsers') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.user.blockedUsers' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Blocked Users') }}</p>
                             </a>
                         </li>
                     </ul>
+                </li>
+                {{-- Partner --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.partner.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <p>
+                            {{ __('Partner') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.partner.index') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Partner') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.partner.add') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Partners') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                    {{-- Partner End --}}
                 </li>
                 {{-- users close --}}
             </ul>
