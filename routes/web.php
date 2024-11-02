@@ -80,3 +80,4 @@ Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest
 Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('front.residency.visa');
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
+Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
