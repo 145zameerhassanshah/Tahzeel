@@ -38,11 +38,11 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="title" class="col-sm-12 control-label">{{ __('Partner Title') }}<span
+                                    <label for="title" class="col-sm-12 control-label">{{ __('Title') }}<span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="title" class="form-control" name="title"
-                                            value="{{ old('title') }}" placeholder="{{ __('Partner Title') }}">
+                                            value="{{ old('title') }}" placeholder="{{ __('Enter Title') }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
                                         @endif
