@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -77,6 +78,17 @@ Route::post('/partner/update/{id}', [PartnerController::class, 'update'])->name(
 Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name('admin.partner.delete');
 
 // End of Partner Routes
+
+// Service Routes
+
+Route::get('/service', [ServiceController::class, 'index'])->name('admin.service.index');
+Route::get('/service/add', [ServiceController::class, 'add'])->name('admin.service.add');
+Route::post('/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
+Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.edit');
+Route::post('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
+Route::post('/service/delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
+
+// End of Service Routes
 
 
 
