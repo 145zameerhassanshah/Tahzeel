@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    use HasFactory;
-
-    public function tahseelServices()
+    public function serviceCategories()
     {
-        return $this->hasMany(TahseelService::class);
+        return $this->hasMany(ServiceCategory::class);
+    }
+
+    public function serviceFeatures()
+    {
+        return $this->hasMany(ServiceFeature::class);
     }
 }

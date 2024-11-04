@@ -104,6 +104,32 @@
                     </ul>
                     {{-- Partner End --}}
 
+                    {{-- Services Category --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.service.category.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <p>
+                            {{ __('Service Category') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.service.category.index') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Service Category') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.service.category.add') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Service Category') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                    {{-- Services Category End --}}
+
                     {{-- Services --}}
                 <li class="nav-item">
                     <a href="{{ route('admin.service.index') }}" class="nav-link">
@@ -128,6 +154,9 @@
                             </a>
                         </li>
                     </ul>
+                    {{-- Services End --}}
+
+
                 </li>
                 {{-- Services End --}}
 

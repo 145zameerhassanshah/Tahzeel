@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_category_id')->constrained('id')->on('service_categories');
             $table->string('name');
+            $table->string('slug');
+            $table->string('icon');
+            $table->string('order_no');
             $table->enum('status', ['publish', 'draft']);
+            $table->string('banner_title');
+            $table->string('banner_subtitle');
+            $table->string('banner_image');
+            $table->text('description');
+            $table->text('other_description')->nullable();
             $table->timestamps();
         });
     }

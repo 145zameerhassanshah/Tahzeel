@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tahseel_services', function (Blueprint $table) {
+        Schema::create('service_features', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('service_id')->constrained('id')->on('services');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tahseel_services');
+        Schema::dropIfExists('service_features');
     }
 };
