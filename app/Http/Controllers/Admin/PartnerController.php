@@ -29,6 +29,7 @@ class PartnerController extends Controller
         ]);
 
         $partner = new Partner();
+
         $partner->title = $request->title;
         $partner->order_no = $request->order_no;
         $partner->status = $request->status;
@@ -77,7 +78,9 @@ class PartnerController extends Controller
         $partner->status = $request->status;
 
         if ($request->hasFile('image')) {
+
             @unlink('assets/admin/uploads/partner/' . $partner->image);
+            
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $image = time() . rand() . '.' . $extension;
