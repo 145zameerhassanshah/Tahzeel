@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // End of Partner Routes
 
-        // Service Routes
+        // Service Category Routes
 
         Route::get('/service-category', [ServiceCategoryController::class, 'index'])->name('admin.service.category.index');
         Route::get('/service-category/add', [ServiceCategoryController::class, 'add'])->name('admin.service.category.add');
@@ -86,10 +87,10 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/service-category/update/{id}', [ServiceCategoryController::class, 'update'])->name('admin.service.category.update');
         Route::post('/service-category/delete/{id}', [ServiceCategoryController::class, 'delete'])->name('admin.service.category.delete');
 
-        // End of Service Routes
+        // End of Service Category Routes
 
 
-
+        // Service Routes
 
         Route::get('/service', [ServiceController::class, 'index'])->name('admin.service.index');
         Route::get('/service/add', [ServiceController::class, 'add'])->name('admin.service.add');
@@ -100,11 +101,25 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // End of Service Routes
 
+        // Enquiry Routes
+
+        Route::get('/enquiry', [EnquiryController::class, 'index'])->name('admin.enquiry.index');
+        Route::get('/enquiry/add', [EnquiryController::class, 'add'])->name('admin.enquiry.add');
+        Route::post('/enquiry/store', [EnquiryController::class, 'store'])->name('admin.enquiry.store');
+        Route::get('/enquiry/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiry.edit');
+        Route::post('/enquiry/update/{id}', [EnquiryController::class, 'update'])->name('admin.enquiry.update');
+        Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'delete'])->name('admin.enquiry.delete');
+
+        // End of Enquiry Routes
+
     }); // end of income routes
 
 });
 
 // all admin routes write in admin middleware
+
+
+
 
 
 

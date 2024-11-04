@@ -57,9 +57,12 @@
                                     <div class="col-sm-12">
                                         <select id="status" name="status" class="form-control"
                                             value="{{ old('status', $service->status) }}">
-                                            <option value="" disabled selected>Select Status</option>
-                                            <option value="published">Published</option>
-                                            <option value="draft">Draft</option>
+
+                                            <option value="published"
+                                                {{ $service->status == 'published' ? 'selected' : '' }}>Published
+                                            </option>
+                                            <option value="draft" {{ $service->status == 'draft' ? 'selected' : '' }}>
+                                                Draft</option>
                                         </select>
                                         @if ($errors->has('status'))
                                             <p class="text-danger"> {{ $errors->first('status') }} </p>
@@ -73,7 +76,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <button type="submit"
-                                            class="btn btn-primary btn btn-sm">{{ __('Add') }}</button>
+                                            class="btn btn-primary btn btn-sm">{{ __('Update') }}</button>
                                     </div>
                                 </div>
                         </div>
