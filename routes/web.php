@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -89,6 +90,18 @@ Route::post('/service/update/{id}', [ServiceController::class, 'update'])->name(
 Route::post('/service/delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
 
 // End of Service Routes
+
+// Enquiry Routes
+
+Route::get('/enquiry', [EnquiryController::class, 'index'])->name('admin.enquiry.index');
+Route::get('/enquiry/add', [EnquiryController::class, 'add'])->name('admin.enquiry.add');
+Route::post('/enquiry/store', [EnquiryController::class, 'store'])->name('admin.enquiry.store');
+Route::get('/enquiry/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiry.edit');
+Route::post('/enquiry/update/{id}', [EnquiryController::class, 'update'])->name('admin.enquiry.update');
+Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'delete'])->name('admin.enquiry.delete');
+
+// End of Enquiry Routes
+
 
 
 

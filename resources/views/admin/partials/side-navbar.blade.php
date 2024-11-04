@@ -92,13 +92,13 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.partner.index') }}" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Partner') }}</p>
+                                <p>{{ __('All Partners') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.partner.add') }}" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Partners') }}</p>
+                                <p>{{ __('Add Partner') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -118,13 +118,13 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.service.index') }}" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Service') }}</p>
+                                <p>{{ __('All Services') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.service.add') }}" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Services') }}</p>
+                                <p>{{ __('Add Service') }}</p>
                             </a>
                         </li>
                     </ul>

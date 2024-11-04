@@ -28,7 +28,7 @@
                             <div class="card-tools d-flex">
 
                                 <a href="{{ route('admin.service.add') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> {{ __('Add Services') }}
+                                    <i class="fas fa-plus"></i> {{ __('Add New Services') }}
                                 </a>
                             </div>
                         </div>

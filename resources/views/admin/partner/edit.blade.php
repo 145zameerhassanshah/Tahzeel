@@ -92,9 +92,12 @@
                                     <div class="col-sm-12">
                                         <select id="status" name="status" class="form-control"
                                             value="{{ old('status', $partner->status) }}">
-                                            <option value="" disabled selected>Select Status</option>
-                                            <option value="published">Published</option>
-                                            <option value="draft">Draft</option>
+
+                                            <option value="published"
+                                                {{ $partner->status == 'published' ? 'selected' : '' }}>Published
+                                            </option>
+                                            <option value="draft" {{ $partner->status == 'draft' ? 'selected' : '' }}>
+                                                Draft</option>
                                         </select>
                                         @if ($errors->has('status'))
                                             <p class="text-danger"> {{ $errors->first('status') }} </p>
