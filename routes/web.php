@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -64,31 +65,46 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/pendingUsers', [UserController::class, 'pendingUsers'])->name('admin.user.pendingUsers');
         Route::get('/approvedUsers', [UserController::class, 'approvedUsers'])->name('admin.user.approvedUsers');
         Route::get('/blockedUsers', [UserController::class, 'blockedUsers'])->name('admin.user.blockedUsers');
+
+        // Partner Routes
+
+        Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner.index');
+        Route::get('/partner/add', [PartnerController::class, 'add'])->name('admin.partner.add');
+        Route::post('/partner/store', [PartnerController::class, 'store'])->name('admin.partner.store');
+        Route::get('/partner/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
+        Route::post('/partner/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
+        Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name('admin.partner.delete');
+
+        // End of Partner Routes
+
+        // Service Routes
+
+        Route::get('/service-category', [ServiceCategoryController::class, 'index'])->name('admin.service.category.index');
+        Route::get('/service-category/add', [ServiceCategoryController::class, 'add'])->name('admin.service.category.add');
+        Route::post('/service-category/store', [ServiceCategoryController::class, 'store'])->name('admin.service.category.store');
+        Route::get('/service-category/edit/{id}', [ServiceCategoryController::class, 'edit'])->name('admin.service.category.edit');
+        Route::post('/service-category/update/{id}', [ServiceCategoryController::class, 'update'])->name('admin.service.category.update');
+        Route::post('/service-category/delete/{id}', [ServiceCategoryController::class, 'delete'])->name('admin.service.category.delete');
+
+        // End of Service Routes
+
+
+
+
+        Route::get('/service', [ServiceController::class, 'index'])->name('admin.service.index');
+        Route::get('/service/add', [ServiceController::class, 'add'])->name('admin.service.add');
+        Route::post('/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
+        Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::post('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
+        Route::post('/service/delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
+
+        // End of Service Routes
+
     }); // end of income routes
 
 });
 
-// Partner Routes
-
-Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner.index');
-Route::get('/partner/add', [PartnerController::class, 'add'])->name('admin.partner.add');
-Route::post('/partner/store', [PartnerController::class, 'store'])->name('admin.partner.store');
-Route::get('/partner/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
-Route::post('/partner/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
-Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name('admin.partner.delete');
-
-// End of Partner Routes
-
-// Service Routes
-
-Route::get('/service', [ServiceController::class, 'index'])->name('admin.service.index');
-Route::get('/service/add', [ServiceController::class, 'add'])->name('admin.service.add');
-Route::post('/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
-Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.edit');
-Route::post('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
-Route::post('/service/delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
-
-// End of Service Routes
+// all admin routes write in admin middleware
 
 
 

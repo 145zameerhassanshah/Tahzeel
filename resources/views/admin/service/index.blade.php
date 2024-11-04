@@ -38,10 +38,11 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('#') }}</th>
+                                        <th>{{ __('Icon') }}</th>
                                         <th>{{ __('Name') }}</th>
                                         <th>{{ __('Status') }}</th>
+                                        <th>{{ __('Order No') }}</th>
                                         <th>{{ __('Action') }}</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,9 @@
                                         <tr>
                                             <td>
                                                 {{ ++$id }}
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('assets/admin/uploads/service/icon/'. $service->icon) }}" width="70px" alt="Icon">
                                             </td>
                                             <td>
                                                 {{ $service->name }}
@@ -62,7 +66,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.service.edit', $service->id) }}"
+                                                {{ $service->order_no }}
+                                            </td>
+                                            <td>
+                                                {{-- <a href="{{ route('admin.service.edit', $service->id) }}"
                                                     class="btn btn-info btn-sm"><i
                                                         class="fas fa-pencil-alt"></i>{{ __('Edit') }}</a>
 
@@ -74,7 +81,7 @@
                                                     <button type="submit" class="btn btn-danger btn-sm" id="delete">
                                                         <i class="fas fa-trash"></i>{{ __('Delete') }}
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach
