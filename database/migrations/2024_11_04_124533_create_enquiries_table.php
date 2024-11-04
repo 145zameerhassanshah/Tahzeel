@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone_no');
             $table->string('subject')->nullable();
-            $table->text('message');
-            $table->enum('status', ['Pending', 'Follow-up', 'Completed'])->default('Pending');
-            $table->string('follow_update')->nullable();
-            $table->enum('followup_type', ['Call', 'WhatsApp', 'Message', 'Email', 'Info-required', 'Docs-required'])->nullable();
+            $table->text('enquiry_message');
+            $table->enum('status', ['pending', 'follow-up', 'completed'])->default('pending');
+            $table->string('followup_date')->nullable();
+            $table->enum('followup_type', ['call', 'whatsapp', 'message', 'email', 'info-required', 'docs-required'])->nullable();
             $table->text('remarks')->nullable();
             $table->timestamps();
         });
