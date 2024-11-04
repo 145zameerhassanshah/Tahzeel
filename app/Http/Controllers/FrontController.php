@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -61,6 +62,20 @@ class FrontController extends Controller
     public function visaCancellation()
     {
         return view('front.otherPages.visaCancellation');
+    }
+
+    public function test()
+    {
+        $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
+
+        if(isset($service))
+        {
+            return view('front.otherPages.test', compact('service'));
+            
+        }else{
+            return back();
+        }
+
     }
 
 }

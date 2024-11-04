@@ -55,11 +55,9 @@
                                     <label for="status" class="col-sm-12 control-label">{{ __('Status') }}<span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        <select id="status" name="status" class="form-control"
-                                            value="{{ old('status', $service->status) }}">
-                                            <option value="" disabled selected>Select Status</option>
-                                            <option value="published">Published</option>
-                                            <option value="draft">Draft</option>
+                                        <select id="status" name="status" class="form-control">
+                                            <option value="publish" {{ $service->status == 'publish' ? 'selected' : '' }}>Publish</option>
+                                            <option value="draft" {{ $service->status == 'draft' ? 'selected' : '' }}>Draft</option>
                                         </select>
                                         @if ($errors->has('status'))
                                             <p class="text-danger"> {{ $errors->first('status') }} </p>
@@ -73,7 +71,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <button type="submit"
-                                            class="btn btn-primary btn btn-sm">{{ __('Add') }}</button>
+                                            class="btn btn-primary btn btn-sm">{{ __('Update') }}</button>
                                     </div>
                                 </div>
                         </div>

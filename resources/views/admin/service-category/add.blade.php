@@ -54,9 +54,7 @@
                                     <label for="status" class="col-sm-12 control-label">{{ __('Status') }}<span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        <select id="status" name="status" class="form-control"
-                                            value="{{ old('status') }}">
-                                            <option value="" disabled selected>Select Status</option>
+                                        <select id="status" name="status" class="form-control">
                                             <option value="publish">Published</option>
                                             <option value="draft">Draft</option>
                                         </select>

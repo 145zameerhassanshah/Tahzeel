@@ -27,6 +27,7 @@ class ServiceCategoryController extends Controller
         ]);
 
         $service = new ServiceCategory();
+
         $service->name = $request->name;
         $service->status = $request->status;
 
@@ -52,10 +53,10 @@ class ServiceCategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'status' => 'required',
-
         ]);
 
         $service = ServiceCategory::find($id);
+
         $service->name = $request->name;
         $service->status = $request->status;
 

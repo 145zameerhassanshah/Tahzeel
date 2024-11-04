@@ -119,10 +119,6 @@ Route::middleware(['auth', 'status'])->group(function () {
 // all admin routes write in admin middleware
 
 
-
-
-
-
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
 Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
@@ -136,3 +132,6 @@ Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
+
+
+Route::get('/test', [FrontController::class, 'test'])->name('front.test');
