@@ -9,6 +9,7 @@ use App\Models\ServiceFeature;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -29,21 +30,46 @@ class ServiceController extends Controller
         $request->validate([
             'name' => 'required',
             'service_category_id' => 'required',
-            'slug' => 'required',
-            'icon' => 'required',
+            'slug' => 'required|unique',
+            'icon' => 'required|mimes:jpg,jpeg,png',
             'order_no' => 'required',
             'status' => 'required',
             'banner_title' => 'required',
             'banner_subtitle' => 'required',
-            'banner_image' => 'required',
+            'banner_image' => 'required|mimes:jpg,jpeg,png',
             'description' => 'required',
             'other_description' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_keywords' => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_image' => 'nullable|mimes:jpg,jpeg,png',
         ]);
 
         $service = new Service();
 
+        $isUnique = Service::where('slug', $request->slug)->count() === 0;
+
+        if (!$isUnique) {
+            return redirect()->back()->withInput()->withErrors(['slug' => 'The slug must be unique.'])->with('notification', [
+                'messege' => 'Service could not be added!',
+                'alert' => 'error',
+            ]);
+        }
+
+        $slug = Str::slug($request->title);
+
+        $service->name = $request->name;
+        $service->service_category_id = $request->service_category_id;
+        $service->slug = $slug;
+        $service->order_no = $request->order_no;
+        $service->status = $request->status;
+        $service->banner_title = $request->banner_title;
+        $service->banner_subtitle = $request->banner_subtitle;
+        $service->description = $request->description;
+        $service->other_description = $request->other_description;
+
         if ($request->hasFile('icon')) {
-            
+
             $file = $request->file('icon');
             $extension = $file->getClientOriginalExtension();
             $icon = time() . rand() . '.' . $extension;
@@ -61,7 +87,7 @@ class ServiceController extends Controller
         }
 
         if ($request->hasFile('banner_image')) {
-            
+
             $file = $request->file('banner_image');
             $extension = $file->getClientOriginalExtension();
             $banner_image = time() . rand() . '.' . $extension;
@@ -78,20 +104,9 @@ class ServiceController extends Controller
             $service->banner_image = $banner_image;
         }
 
-        $service->name = $request->name;
-        $service->service_category_id = $request->service_category_id;
-        $service->slug = $request->slug;
-        $service->order_no = $request->order_no;
-        $service->status = $request->status;
-        $service->banner_title = $request->banner_title;
-        $service->banner_subtitle = $request->banner_subtitle;
-        $service->description = $request->description;
-        $service->other_description = $request->other_description;
-
         $service->save();
 
-        foreach($request->feature_names as $name)
-        {
+        foreach ($request->feature_names as $name) {
             ServiceFeature::create([
                 'name' => $name,
                 'service_id' => $service->id,

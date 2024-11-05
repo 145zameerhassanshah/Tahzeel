@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('banner_image');
             $table->text('description');
             $table->text('other_description')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_image')->nullable();
             $table->timestamps();
         });
     }
