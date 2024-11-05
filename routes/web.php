@@ -134,4 +134,4 @@ Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('fron
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
 
 
-Route::get('/test', [FrontController::class, 'test'])->name('front.test');
+Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;

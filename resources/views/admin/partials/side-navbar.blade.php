@@ -158,6 +158,36 @@
 
 
                 </li>
+                {{-- Services End --}}
+
+
+                {{-- Enquiry --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <p>
+                            {{ __('Enquiry') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Enquiries') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.enquiry.add') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Enquiry') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- Enquiry End --}}
+
                 {{-- users close --}}
             </ul>
         </nav>

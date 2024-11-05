@@ -27,22 +27,26 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         $request->validate([
-            'name' => 'required',
-            'service_category_id' => 'required',
-            'slug' => 'required|unique',
-            'icon' => 'required|mimes:jpg,jpeg,png',
-            'order_no' => 'required',
-            'status' => 'required',
-            'banner_title' => 'required',
-            'banner_subtitle' => 'required',
-            'banner_image' => 'required|mimes:jpg,jpeg,png',
-            'description' => 'required',
-            'other_description' => 'nullable',
-            'meta_title' => 'nullable',
-            'meta_keywords' => 'nullable',
-            'meta_description' => 'nullable',
-            'meta_image' => 'nullable|mimes:jpg,jpeg,png',
+            'name.en' => 'required|string|max:255',
+            'name.ar' => 'required|string|max:255',
+            'service_category_id' => 'required|integer|exists:service_categories,id',
+            'slug' => 'required|string|unique:services,slug',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'order_no' => 'required|integer',
+            'status' => 'required|string|in:publish,draft',
+            'banner_title.en' => 'required|string|max:255',
+            'banner_title.ar' => 'required|string|max:255',
+            'banner_subtitle.en' => 'required|string|max:255',
+            'banner_subtitle.ar' => 'required|string|max:255',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'other_description.en' => 'nullable|string',
+            'other_description.ar' => 'nullable|string',
+            'features.*.en' => 'required|string|max:255',
+            'features.*.ar' => 'required|string|max:255',
         ]);
 
         $service = new Service();
@@ -104,14 +108,27 @@ class ServiceController extends Controller
             $service->banner_image = $banner_image;
         }
 
+        // $service->name = json_encode($request->name);
+        // $service->service_category_id = $request->service_category_id;
+        // $service->slug = $request->slug;
+        // $service->order_no = $request->order_no;
+        // $service->status = $request->status;
+        // $service->banner_title = json_encode($request->banner_title);
+        // $service->banner_subtitle = json_encode($request->banner_subtitle);
+        // $service->description = json_encode($request->description);
+        // $service->other_description = json_encode($request->other_description);
+
+        $service->fill($request->except('features'));
         $service->save();
 
-        foreach ($request->feature_names as $name) {
+        // Handle service features
+        foreach ($request->features as $feature) {
             ServiceFeature::create([
-                'name' => $name,
+                'name' => $feature, // This will be stored as a JSON-encoded array
                 'service_id' => $service->id,
             ]);
         }
+
 
         $notification = array(
             'message' => 'Service Added Successfully!',

@@ -58,30 +58,51 @@
                                                 {{ $enquiry->name }}
                                             </td>
                                             <td>
-
+                                                {{ $enquiry->email }}
                                             </td>
+
                                             <td>
-                                                @if ($enquiry->status == 'published')
-                                                    <span class="badge bg-success">Published</span>
-                                                @elseif($enquiry->status == 'draft')
-                                                    <span class="badge bg-info">Draft</span>
+                                                {{ $enquiry->phone_no }}
+                                            </td>
+
+                                            <td>
+                                                @if ($enquiry->status == 'pending')
+                                                    <span class="badge bg-warning">Pending</span>
+                                                @elseif($enquiry->status == 'follow-up')
+                                                    <span class="badge bg-info">Follow Up</span>
+                                                @elseif($enquiry->status == 'completed')
+                                                    <span class="badge bg-success">Completed</span>
                                                 @endif
                                             </td>
+
                                             <td>
-                                                {{ $partner->phone_no }}
+                                                @if ($enquiry->followup_type == 'call')
+                                                    <span class="badge bg-primary">Call</span>
+                                                @elseif($enquiry->followup_type == 'whatsapp')
+                                                    <span class="badge bg-success">WhatsApp</span>
+                                                @elseif($enquiry->followup_type == 'message')
+                                                    <span class="badge bg-secondary">Message</span>
+                                                @elseif($enquiry->followup_type == 'email')
+                                                    <span class="badge bg-info text-dark">Email</span>
+                                                @elseif($enquiry->followup_type == 'info-required')
+                                                    <span class="badge bg-warning text-dark">Info Required</span>
+                                                @elseif($enquiry->followup_type == 'docs-required')
+                                                    <span class="badge bg-danger">Docs Required</span>
+                                                @endif
                                             </td>
+
                                             <td>
-                                                <a href="{{ route('admin.partner.edit', $partner->id) }}"
+                                                <a href="{{ route('admin.enquiry.edit', $enquiry->id) }}"
                                                     class="btn btn-info btn-sm"><i
-                                                        class="fas fa-pencil-alt"></i>{{ __('Edit') }}</a>
+                                                        class="fas fa-pencil-alt"></i>{{ __('') }}</a>
 
 
                                                 <form id="deleteform" class="d-inline-block"
-                                                    action="{{ route('admin.partner.delete', $partner->id) }}"
+                                                    action="{{ route('admin.enquiry.delete', $enquiry->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" id="delete">
-                                                        <i class="fas fa-trash"></i>{{ __('Delete') }}
+                                                        <i class="fas fa-trash"></i>{{ __('') }}
                                                     </button>
                                                 </form>
                                             </td>
