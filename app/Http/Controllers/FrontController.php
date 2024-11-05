@@ -66,8 +66,11 @@ class FrontController extends Controller
 
     public function test()
     {
-        $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
+         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
 
+
+
+        
         if(isset($service))
         {
             return view('front.otherPages.test', compact('service'));
