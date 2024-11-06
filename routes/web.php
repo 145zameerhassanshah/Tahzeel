@@ -133,5 +133,10 @@ Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
 
+Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
+
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
+
+
+

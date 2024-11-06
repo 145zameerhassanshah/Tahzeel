@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enquiry;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -66,19 +68,43 @@ class FrontController extends Controller
 
     public function test()
     {
-         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
+        $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
 
 
 
-        
-        if(isset($service))
-        {
+
+        if (isset($service)) {
             return view('front.otherPages.test', compact('service'));
-            
-        }else{
+        } else {
             return back();
         }
-
     }
+    public function storeInquiry(Request $request)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'message' => 'required|string',
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        $inquiry = new Enquiry();
+        $inquiry->name = $request->name;
+        $inquiry->phone_no = $request->phone;
+        $inquiry->email = $request->email;
+        $inquiry->enquiry_message = $request->message;
+        $inquiry->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Inquiry submitted successfully!'
+        ]);
+    }
 }
