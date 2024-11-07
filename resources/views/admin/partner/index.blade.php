@@ -28,7 +28,7 @@
                             <div class="card-tools d-flex">
 
                                 <a href="{{ route('admin.partner.add') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> {{ __('Add Partner') }}
+                                    <i class="fas fa-plus"></i> {{ __('Add New Partner') }}
                                 </a>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                             </td>
                                             <td>
                                                 <img src="{{ asset('assets/admin/uploads/partner/' . $partner->image) }}"
-                                                    width="80px">
+                                                    width="50px">
                                             </td>
                                             <td>
                                                 {{ $partner->title }}

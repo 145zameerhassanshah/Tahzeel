@@ -29,8 +29,10 @@ class PartnerController extends Controller
         ]);
 
         $partner = new Partner();
+
         $partner->title = $request->title;
         $partner->order_no = $request->order_no;
+        $partner->status = $request->status;
 
 
         if ($request->hasFile('image')) {
@@ -46,7 +48,7 @@ class PartnerController extends Controller
         $partner->save();
 
         $notification = array(
-            'messege' => 'Partner Added Successfully!',
+            'message' => 'Partner Added Successfully!',
             'alert' => 'success',
         );
 
@@ -71,11 +73,14 @@ class PartnerController extends Controller
         ]);
 
         $partner = Partner::find($id);
+        $partner->title = $request->title;
         $partner->order_no = $request->order_no;
         $partner->status = $request->status;
 
         if ($request->hasFile('image')) {
+
             @unlink('assets/admin/uploads/partner/' . $partner->image);
+            
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $image = time() . rand() . '.' . $extension;
@@ -87,7 +92,7 @@ class PartnerController extends Controller
         $partner->save();
 
         $notification = array(
-            'messege' => 'Partner Updated Successfully!',
+            'message' => 'Partner Updated Successfully!',
             'alert' => 'success',
         );
 
@@ -104,7 +109,7 @@ class PartnerController extends Controller
         $partner->delete();
 
         $notification = array(
-            'messege' => 'Partner Deleted Successfully!',
+            'message' => 'Partner Deleted Successfully!',
             'alert' => 'success',
         );
 
