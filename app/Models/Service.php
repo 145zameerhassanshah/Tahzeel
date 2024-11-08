@@ -28,8 +28,6 @@ class Service extends Model
         'banner_subtitle',
         'description',
         'other_description',
-        'icon',
-        'banner_image',
     ];
 
     public $translatable = [

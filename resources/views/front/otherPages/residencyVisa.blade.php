@@ -34,18 +34,18 @@
                         <div class="col-12 d-none d-md-block">
                             <figure class="rounded mx-5 "><img
                                     src="{{ asset('front') }}/dev/assets/img/personal/residency1.webp"
-                                    srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g8@2x.jpg 2x" alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
                             <figure class="rounded d-none d-md-block"><img
                                     src="{{ asset('front') }}/dev/assets/img/personal/residency2.webp"
-                                    srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g9@2x.jpg 2x" alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
                             <figure class="rounded "><img src="{{ asset('front') }}/dev/assets/img/personal/residency3.webp"
-                                    srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g10@2x.jpg 2x" alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>

@@ -136,23 +136,6 @@
                                 <a href="{{ route('front.contact.us') }}"
                                     class="btn btn-sm btn-success rounded-pill text-white">Apply Now</a>
                             </li>
-                            @auth
-                                @if (Auth::user()->user_type == 'admin')
-                                    <li class="nav-item d-none d-md-block">
-                                        <a href="{{ route('admin.dashboard') }}"
-                                            class="btn btn-sm btn-primary text-white">Dashboard</a>
-                                    </li>
-                                @else
-                                    <li class="nav-item d-none d-md-block">
-                                        <a href="{{ route('user.dashboard') }}"
-                                            class="btn btn-sm btn-primary text-white">Dashboard</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item d-none d-md-block">
-                                    <a href="{{ route('login') }}" class="btn btn-sm btn-primary text-white">Login</a>
-                                </li>
-                            @endauth
                             <li class="nav-item d-lg-none">
                                 <button class="hamburger offcanvas-nav-btn"><span></span></button>
                             </li>
