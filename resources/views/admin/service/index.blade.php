@@ -53,7 +53,7 @@
                                                 {{ ++$id }}
                                             </td>
                                             <td>
-                                                <img src="{{ asset('assets/admin/uploads/service/icon/'. $service->icon) }}" width="70px" alt="Icon">
+                                                <img src="{{ asset($service->icon) }}" width="70px" alt="Icon">
                                             </td>
                                             <td>
                                                 {{ $service->name }}
@@ -69,7 +69,7 @@
                                                 {{ $service->order_no }}
                                             </td>
                                             <td>
-                                                {{-- <a href="{{ route('admin.service.edit', $service->id) }}"
+                                                <a href="{{ route('admin.service.edit', $service->id) }}"
                                                     class="btn btn-info btn-sm"><i
                                                         class="fas fa-pencil-alt"></i>{{ __('Edit') }}</a>
 
@@ -81,7 +81,7 @@
                                                     <button type="submit" class="btn btn-danger btn-sm" id="delete">
                                                         <i class="fas fa-trash"></i>{{ __('Delete') }}
                                                     </button>
-                                                </form> --}}
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

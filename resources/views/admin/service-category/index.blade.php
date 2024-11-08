@@ -1,18 +1,18 @@
 @extends('admin.layouts.master')
-@section('title', 'Service')
+@section('title', 'Service Category')
 @section('content')
 
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('Service') }} </h1>
+                    <h1 class="m-0 text-dark">{{ __('Service Category') }} </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                     class="fas fa-home"></i>{{ __('Home') }}</a></li>
-                        <li class="breadcrumb-item">{{ __('Service') }}</li>
+                        <li class="breadcrumb-item">{{ __('Service Category') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -24,11 +24,11 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Service') }}</h3>
+                            <h3 class="card-title mt-1">{{ __('Service Category') }}</h3>
                             <div class="card-tools d-flex">
 
                                 <a href="{{ route('admin.service.category.add') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> {{ __('Add Services') }}
+                                    <i class="fas fa-plus"></i> {{ __('Service Category') }}
                                 </a>
                             </div>
                         </div>
