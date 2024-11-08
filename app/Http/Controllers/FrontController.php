@@ -6,6 +6,9 @@ use App\Models\Enquiry;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Mail\InquiryEmail;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -101,10 +104,13 @@ class FrontController extends Controller
         $inquiry->email = $request->email;
         $inquiry->enquiry_message = $request->message;
         $inquiry->save();
-
+        $users = User::all();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new InquiryEmail($inquiry));
+        }
         return response()->json([
             'success' => true,
-            'message' => 'Inquiry submitted successfully!'
+            'message' => 'Inquiry submitted successfully!',
         ]);
     }
 }
