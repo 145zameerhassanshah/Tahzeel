@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('tahseel_services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_id')->constrained('id')->on('services');
+            $table->string('name');
+            $table->string('icon');
+            $table->integer('order_no');
+            $table->enum('status', ['publish', 'draft']);
+            $table->string('banner_title');
+            $table->string('banner_subtitle');
+            $table->string('banner_image');
+            $table->text('description');
             $table->timestamps();
         });
     }
