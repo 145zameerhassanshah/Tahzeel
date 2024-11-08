@@ -188,7 +188,19 @@
                 </li>
                 {{-- Enquiry End --}}
 
-                {{-- users close --}}
+                {{-- Settings --}}
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.setting.edit') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            {{ __('Settings') }}
+                        </p>
+                    </a>
+                </li>
+
+                {{-- Settings End --}}
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

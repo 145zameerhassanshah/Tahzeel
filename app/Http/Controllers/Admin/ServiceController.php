@@ -8,7 +8,7 @@ use App\Models\ServiceCategory;
 use App\Models\ServiceFeature;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\GD\Driver;
 use Illuminate\Support\Str;
 
 class ServiceController extends Controller

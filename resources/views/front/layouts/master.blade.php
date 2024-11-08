@@ -7,7 +7,7 @@
     <title>@yield('title') | Tah-zeel</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{ asset('assets/core/fav.png') }}">
+    <link rel="shortcut icon" href="{{ asset($setting->fav_icon) }}">
 
     @include('front.layouts.partials.styles')
 </head>

@@ -38,7 +38,7 @@
                             <img src="{{ asset('front/dev/assets/img/personal/map.svg') }}" class="svg-inject icon-svg icon-svg-md text-red mb-3"
                                 alt="" />
                             <h4>Get Directions</h4>
-                            <p class="mb-2">Nad Al Sheba 4 - Dubai</p>
+                            <p class="mb-2">{{ $setting->address }}</p>
                             <a href="#" class=" hover link-red fs-50"> <i
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
@@ -53,7 +53,7 @@
                             <img src="{{ asset('front/dev/assets/img/personal/telephone.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4>Contact Us</h4>
-                            <p class="mb-2">Phone:+971558540883</p>
+                            <p class="mb-2">Phone:{{ $setting->phone_no }}</p>
                             <a href="#" class=" hover link-green fs-50"> <i
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
@@ -68,7 +68,7 @@
                             <img src="{{ asset('front/dev/assets/img/personal/envelope.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4>Email Us</h4>
-                            <p class="mb-2">tehzeelcompany@gmail.com</p>
+                            <p class="mb-2">{{ $setting->email }}</p>
                             <a href="#" class=" hover link-red fs-50"> <i
                                     class="bi bi-arrow-right-circle-fill"></i></a>
                         </div>
