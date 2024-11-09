@@ -8,14 +8,19 @@ class Service extends Model
 {
     use HasTranslations;
 
-    public function serviceCategories()
+    public function serviceCategory()
     {
-        return $this->hasMany(ServiceCategory::class);
+        return $this->belongsTo(ServiceCategory::class);
     }
 
     public function serviceFeatures()
     {
         return $this->hasMany(ServiceFeature::class);
+    }
+
+    public function serviceSections()
+    {
+        return $this->hasMany(ServiceSection::class);
     }
     
     protected $fillable = [

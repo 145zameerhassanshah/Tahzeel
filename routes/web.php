@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceSectionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -102,6 +103,17 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // End of Service Routes
 
+        // Service Section Routes
+
+        Route::get('/service-section/{id}', [ServiceSectionController::class, 'index'])->name('admin.service.section.index');
+        Route::get('/service-section/add/{id}', [ServiceSectionController::class, 'add'])->name('admin.service.section.add');
+        Route::post('/service-section/store', [ServiceSectionController::class, 'store'])->name('admin.service.section.store');
+        Route::get('/service-section/edit/{id}', [ServiceSectionController::class, 'edit'])->name('admin.service.section.edit');
+        Route::post('/service-section/update/{id}', [ServiceSectionController::class, 'update'])->name('admin.service.section.update');
+        Route::post('/service-section/delete/{id}', [ServiceSectionController::class, 'delete'])->name('admin.service.section.delete');
+
+        // End of Service Section Routes
+
         // Enquiry Routes
 
         Route::get('/enquiry', [EnquiryController::class, 'index'])->name('admin.enquiry.index');
@@ -131,6 +143,7 @@ Route::middleware(['auth', 'status'])->group(function () {
 
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
 Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
 Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');

@@ -123,7 +123,7 @@ class ServiceController extends Controller
             $meta_image = time() . rand() . '.' . $extension;
             $file->move('assets/admin/uploads/service/meta/', $meta_image);
 
-            $service->meta_image = 'assets/admin/uploads/service/meta/'. $meta_image;
+            $service->meta_image = 'assets/admin/uploads/service/meta/' . $meta_image;
         }
 
         $service->fill($request->except('features'));
@@ -264,7 +264,7 @@ class ServiceController extends Controller
             $service->meta_image = 'assets/admin/uploads/service/meta/' . $meta_image;
         }
 
-        $service->fill($request->except('features'));
+        // $service->fill($request->except('features'));
         $service->save();
 
         if ($request->has('features') && !empty($request->features)) {
@@ -315,22 +315,32 @@ class ServiceController extends Controller
     public function delete($id)
     {
         $service = Service::find($id);
-        $service_features = ServiceFeature::where('service_id', $id)->get();
 
-        @unlink($service->icon);
-        @unlink($service->banner_image);
-        @unlink($service->meta_image);
+        if ($service->serviceSections->count() === 0) {
+            
+            $service_features = ServiceFeature::where('service_id', $id)->get();
 
-        foreach ($service_features as $feature) {
-            $feature->delete();
+            @unlink($service->icon);
+            @unlink($service->banner_image);
+            @unlink($service->meta_image);
+
+            foreach ($service_features as $feature) {
+                $feature->delete();
+            }
+
+            $service->delete();
+
+            $notification = array(
+                'message' => 'Service Deleted Successfully!',
+                'alert' => 'success',
+            );
+
+        } else {
+            $notification = array(
+                'message' => 'First Delete Service Sections!',
+                'alert' => 'warning',
+            );
         }
-
-        $service->delete();
-
-        $notification = array(
-            'message' => 'Service Deleted Successfully!',
-            'alert' => 'success',
-        );
 
         return back()->with('notification', $notification);
     }

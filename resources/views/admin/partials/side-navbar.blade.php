@@ -79,7 +79,7 @@
                     </ul>
                 </li>
                 {{-- Partner --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-unlock-alt"></i>
                         <p>
@@ -90,13 +90,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.partner.index') }}" class="nav-link">
+                            <a href="{{ route('admin.partner.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.partner.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Partners') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.partner.add') }}" class="nav-link">
+                            <a href="{{ route('admin.partner.add') }}" class="nav-link {{ Route::currentRouteName() == 'admin.partner.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Partner') }}</p>
                             </a>
@@ -105,7 +105,7 @@
                     {{-- Partner End --}}
 
                     {{-- Services Category --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.service.category.index' || Route::currentRouteName() == 'admin.service.category.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-unlock-alt"></i>
                         <p>
@@ -116,13 +116,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.category.index') }}" class="nav-link">
+                            <a href="{{ route('admin.service.category.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.service.category.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Service Category') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.category.add') }}" class="nav-link">
+                            <a href="{{ route('admin.service.category.add') }}" class="nav-link {{ Route::currentRouteName() == 'admin.service.category.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Service Category') }}</p>
                             </a>
@@ -131,7 +131,7 @@
                     {{-- Services Category End --}}
 
                     {{-- Services --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.service.index' || Route::currentRouteName() == 'admin.service.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-unlock-alt"></i>
                         <p>
@@ -142,13 +142,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.index') }}" class="nav-link">
+                            <a href="{{ route('admin.service.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.service.index' ? 'active' : ''}}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Services') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.add') }}" class="nav-link">
+                            <a href="{{ route('admin.service.add') }}" class="nav-link {{ Route::currentRouteName() == 'admin.service.add' ? 'active' : ''}}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Service') }}</p>
                             </a>
@@ -160,9 +160,8 @@
                 </li>
                 {{-- Services End --}}
 
-
                 {{-- Enquiry --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.enquiry.index' || Route::currentRouteName() == 'admin.enquiry.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-unlock-alt"></i>
                         <p>
@@ -173,13 +172,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
+                            <a href="{{ route('admin.enquiry.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.index' ? 'active' : ''}}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Enquiries') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.enquiry.add') }}" class="nav-link">
+                            <a href="{{ route('admin.enquiry.add') }}" class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.add' ? 'active' : ''}}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Enquiry') }}</p>
                             </a>
