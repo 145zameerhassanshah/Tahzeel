@@ -94,7 +94,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-red">Address</h4>
-                                        <p class="mb-0 fw-normal">Ajman, Sharjah, United Arab Emirates.</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->address }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-green">Phone</h4>
-                                        <p class="mb-0 fw-normal">00 (123) 456 78 90</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->phone_no }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-yellow">Email</h4>
-                                        <p class="mb-0 fw-normal">tahzeel@gmail.com</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->email }}</p>
                                     </div>
                                 </div>
                             </div>

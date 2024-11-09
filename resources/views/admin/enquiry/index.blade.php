@@ -96,6 +96,9 @@
                                                     class="btn btn-info btn-sm"><i
                                                         class="fas fa-pencil-alt"></i>{{ __('') }}</a>
 
+                                                <a href="{{ route('admin.enquiry.detail', $enquiry->id) }}"
+                                                    class="btn btn-success btn-sm"><i
+                                                        class="fas fa-eye"></i>{{ __('') }}</a>
 
                                                 <form id="deleteform" class="d-inline-block"
                                                     action="{{ route('admin.enquiry.delete', $enquiry->id) }}"

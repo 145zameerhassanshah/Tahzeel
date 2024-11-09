@@ -6,14 +6,14 @@
                     class="navbar-collapse-wrapper bg-white d-flex flex-row flex-nowrap w-100 justify-content-between align-items-center">
                     <div class="navbar-brand w-100">
                         <a href="{{ route('front.index') }}">
-                            <img src="{{ asset('assets/core/logo.png') }}" width="150px"
-                                srcset="{{ asset('assets/core/logo.png') }}" alt="" />
+                            <img src="{{ asset($setting->logo) }}" width="150px"
+                                srcset="{{ asset($setting->logo) }}" alt="" />
                         </a>
                     </div>
                     <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
                         <div class="offcanvas-header d-lg-none">
-                            <a href="{{ route('front.index') }}"><img src="{{ asset('assets/core/logo.png') }}"
-                                    width="150px" srcset="{{ asset('assets/core/logo.png') }}" alt="" /></a>
+                            <a href="{{ route('front.index') }}"><img src="{{ asset($setting->logo) }}"
+                                    width="150px" srcset="{{ asset($setting->logo) }}" alt="" /></a>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
@@ -136,23 +136,6 @@
                                 <a href="{{ route('front.contact.us') }}"
                                     class="btn btn-sm btn-success rounded-pill text-white">Apply Now</a>
                             </li>
-                            @auth
-                                @if (Auth::user()->user_type == 'admin')
-                                    <li class="nav-item d-none d-md-block">
-                                        <a href="{{ route('admin.dashboard') }}"
-                                            class="btn btn-sm btn-primary text-white">Dashboard</a>
-                                    </li>
-                                @else
-                                    <li class="nav-item d-none d-md-block">
-                                        <a href="{{ route('user.dashboard') }}"
-                                            class="btn btn-sm btn-primary text-white">Dashboard</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item d-none d-md-block">
-                                    <a href="{{ route('login') }}" class="btn btn-sm btn-primary text-white">Login</a>
-                                </li>
-                            @endauth
                             <li class="nav-item d-lg-none">
                                 <button class="hamburger offcanvas-nav-btn"><span></span></button>
                             </li>

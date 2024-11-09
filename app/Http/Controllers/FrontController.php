@@ -15,7 +15,14 @@ class FrontController extends Controller
 {
     public function index()
     {
-        return view('front.home.index');
+        $data['services'] = Service::where('status', 'publish')->orderBy('order_no', 'asc')->get();
+        return view('front.home.index', $data);
+    }
+
+    public function serviceDetail($slug)
+    {
+        $service = Service::where('slug', $slug)->where('status', 'publish')->first();
+        return view('front.service.detail', compact('service'));
     }
     public function aboutUs()
     {
