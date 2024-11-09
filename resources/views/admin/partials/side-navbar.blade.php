@@ -81,7 +81,7 @@
                 {{-- Partner --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-handshake"></i>
                         <p>
                             {{ __('Partner') }}
                             <i class="fas fa-angle-left right"></i>
@@ -107,7 +107,7 @@
                     {{-- Services Category --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.service.category.index' || Route::currentRouteName() == 'admin.service.category.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.category.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-th-large"></i>
                         <p>
                             {{ __('Service Category') }}
                             <i class="fas fa-angle-left right"></i>
@@ -133,7 +133,7 @@
                     {{-- Services --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.service.index' || Route::currentRouteName() == 'admin.service.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             {{ __('Service') }}
                             <i class="fas fa-angle-left right"></i>
@@ -163,7 +163,7 @@
                 {{-- Enquiry --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.enquiry.index' || Route::currentRouteName() == 'admin.enquiry.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-question-circle"></i>
                         <p>
                             {{ __('Enquiry') }}
                             <i class="fas fa-angle-left right"></i>
@@ -190,7 +190,7 @@
                 {{-- Settings --}}
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.setting.edit') }}" class="nav-link">
+                    <a href="{{ route('admin.setting.edit') }}" class="nav-link {{ Route::currentRouteName() == 'admin.setting.edit' ? 'active' : ''}}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             {{ __('Settings') }}
