@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enquiry;
+use App\Models\EnquiryComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class EnquiryController extends Controller
 {
@@ -111,5 +114,61 @@ class EnquiryController extends Controller
         );
 
         return back()->with('notification', $notification);
+    }
+    public function detail($id)
+    {
+        $enquiry = Enquiry::findOrFail($id);
+        $comments = $enquiry->enquiryComments->groupBy(function ($comment) {
+            return Carbon::parse($comment->created_at)->format('Y-m-d');
+        });
+        return view('admin.enquiry.detail', compact('enquiry', 'comments'));
+    }
+    public function comment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|max:500',
+        ], [
+            'comment.required' => 'Please enter a comment.',
+            'comment.max' => 'The comment must not exceed 500 characters.',
+        ]);
+    
+
+        $comment = new EnquiryComment();
+
+        $comment->comment = $request->comment;
+        $comment->enquiry_id = $id;
+        $comment->user_id = Auth::id();
+        $comment->updated_at = NULL;
+
+        $comment->save();
+
+        $notification = array(
+            'message' => 'Comment Added Successfully!',
+            'alert' => 'success',
+        );
+
+        return back()->with('notification', $notification);
+    }
+    public function deleteComment($id)
+    {
+        $comment = EnquiryComment::find($id);
+        if ($comment) {
+            $comment->delete();
+
+            $notification = array(
+                'message' => 'Comment Deleted Successfully!',
+                'alert' => 'success',
+            );
+
+            return back()->with('notification', $notification);
+        } else {
+
+            $notification = array(
+                'message' => 'Comment Not Found!',
+                'alert' => 'warning',
+            );
+
+            return back()->with('notification', $notification);
+        }
     }
 }
