@@ -17,6 +17,11 @@ class Service extends Model
     {
         return $this->hasMany(ServiceFeature::class);
     }
+
+    public function serviceSections()
+    {
+        return $this->hasMany(ServiceSection::class);
+    }
     
     protected $fillable = [
         'name',

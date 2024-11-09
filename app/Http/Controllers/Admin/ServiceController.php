@@ -8,7 +8,7 @@ use App\Models\ServiceCategory;
 use App\Models\ServiceFeature;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\GD\Driver;
 use Illuminate\Support\Str;
 
 class ServiceController extends Controller
@@ -264,7 +264,7 @@ class ServiceController extends Controller
             $service->meta_image = 'assets/admin/uploads/service/meta/' . $meta_image;
         }
 
-        $service->fill($request->except('features'));
+        // $service->fill($request->except('features'));
         $service->save();
 
         if ($request->has('features') && !empty($request->features)) {
