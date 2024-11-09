@@ -71,9 +71,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="button" id="submitButton"
+                                    {{-- <input type="button" id="submitButton"
                                         class="btn btn-success rounded-pill btn-send mb-3 text-white"
-                                        value="Send message">
+                                        value="Send message"> --}}
+                                        <button type="button" id="submitButton" class="btn btn-success rounded-pill btn-send mb-3 text-white">
+                                            Send message
+                                            <span id="spinner" class="spinner-border spinner-border-sm ms-2" role="status" style="display: none;"></span>
+                                        </button>
                                     <p class="text-muted"><strong>*</strong> These fields are required.</p>
                                 </div>
                             </div>

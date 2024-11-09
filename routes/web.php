@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -113,6 +114,12 @@ Route::middleware(['auth', 'status'])->group(function () {
         // End of Enquiry Routes
 
     }); // end of income routes
+
+
+    Route::get('admin-notification', [NotificationController::class, 'adminNotification'])->name('admin.notifications');
+    Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
+    Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
+    Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
 
 });
 

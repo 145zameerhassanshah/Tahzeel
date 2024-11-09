@@ -9,8 +9,14 @@
         // Handle form submission
         $('#submitButton').on('click', function(e) {
             e.preventDefault();
+
+            // Disable button and show spinner
+            $(this).prop('disabled', true);
+            $('#spinner').show();
+
             var formData = $('#contactForm').serialize();
 
+            // Set up CSRF token for AJAX
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -19,7 +25,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/store-inquiry',
+                url: '/store-inquiry', // Adjust to your backend route
                 data: formData,
                 success: function(response) {
                     if (response.success) {
@@ -28,7 +34,11 @@
                             title: 'Thank you!',
                             text: response.message,
                         });
-                        $('#contactForm')[0].reset();
+
+                        // Reset button and spinner
+                        $('#submitButton').prop('disabled', false);
+                        $('#spinner').hide();
+                        $('#contactForm')[0].reset(); // Reset form fields
                     }
                 },
                 error: function(xhr) {
@@ -44,11 +54,14 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        html: errorList, // Using html instead of text to render HTML elements
+                        html: errorList, // Use html to render error list
                     });
+
+                    // Reset button and spinner on error
+                    $('#submitButton').prop('disabled', false);
+                    $('#spinner').hide();
                 }
             });
         });
     });
 </script>
-
