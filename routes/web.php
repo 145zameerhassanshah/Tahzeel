@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -123,6 +124,13 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'delete'])->name('admin.enquiry.delete');
 
         // End of Enquiry Routes
+
+        // Setting Routes
+        
+        Route::get('/setting', [SettingController::class, 'edit'])->name('admin.setting.edit');
+        Route::post('/setting/update', [SettingController::class, 'update'])->name('admin.setting.update');
+
+        // End of Setting Routes
 
     }); // end of income routes
 
