@@ -44,8 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function freights()
+    public function enquiryComments()
     {
-        return $this->hasMany(Freight::class);
+        return $this->hasMany(EnquiryComment::class);
     }
 }
