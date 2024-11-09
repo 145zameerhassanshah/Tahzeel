@@ -8,9 +8,9 @@ class Service extends Model
 {
     use HasTranslations;
 
-    public function serviceCategories()
+    public function serviceCategory()
     {
-        return $this->hasMany(ServiceCategory::class);
+        return $this->belongsTo(ServiceCategory::class);
     }
 
     public function serviceFeatures()
