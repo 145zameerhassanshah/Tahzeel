@@ -2,8 +2,8 @@
     <div class="container py-10 py-md-12 mb-15">
         <div class="row d-flex justify-content-center mt-5 mb-12">
             <div class="col-md-6 text-center">
-                <h2 class="display-5">Get In Touch With <span
-                        class="text-gradient gradient-6 display-1">Tah-zeel</span> </h2>
+                <h2 class="display-5">Get In Touch With <span class="text-gradient gradient-6 display-1">Tah-zeel</span>
+                </h2>
                 <p class="">
                     We're here to assist you with any inquiries or concerns. Reach out to our team, and we'll get
                     back to you promptly to help you with all your visa, business, and legal needs.
@@ -14,39 +14,37 @@
             <div class="col-xl-12 mx-auto">
                 <div class="row gy-10 gx-lg-8 gx-xl-12">
                     <div class="col-lg-6">
-                        <form class="contact-form needs-validation" method="post" action="./assets/php/contact.php"
-                            novalidate>
+                        <form id="contactForm" class="contact-form needs-validation" method="post"
+                            action="./assets/php/contact.php" novalidate>
                             <div class="messages"></div>
                             <div class="row gx-4">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-4">
                                         <input id="form_name" type="text" name="name" class="form-control"
                                             placeholder="Jane" required>
-                                        <label for="form_name">First Name *</label>
+                                        <label for="form_name"> Name *</label>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                         <div class="invalid-feedback">
-                                            Please enter your first name.
+                                            Please enter your Name.
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /column -->
                                 <div class="col-md-6">
                                     <div class="form-floating mb-4">
-                                        <input id="form_lastname" type="text" name="surname" class="form-control"
+                                        <input id="form_phone" type="text" name="phone" class="form-control"
                                             placeholder="Doe" required>
-                                        <label for="form_lastname">Last Name *</label>
+                                        <label for="form_phone">Phone *</label>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                         <div class="invalid-feedback">
-                                            Please enter your last name.
+                                            Please enter your Phone.
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /column -->
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-floating mb-4">
                                         <input id="form_email" type="email" name="email" class="form-control"
                                             placeholder="jane.doe@example.com" required>
@@ -59,24 +57,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /column -->
-                                <div class="col-md-6">
-                                    <div class="form-select-wrapper mb-4">
-                                        <select class="form-select" id="form-select" name="department" required>
-                                            <option selected disabled value="">Select a department</option>
-                                            <option value="Sales">Sales</option>
-                                            <option value="Marketing">Marketing</option>
-                                            <option value="Customer Support">Customer Support</option>
-                                        </select>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Please select a department.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /column -->
                                 <div class="col-12">
                                     <div class="form-floating mb-4">
                                         <textarea id="form_message" name="message" class="form-control" placeholder="Your message" style="height: 200px"
@@ -86,25 +66,22 @@
                                             Looks good!
                                         </div>
                                         <div class="invalid-feedback">
-                                            Please enter your messsage.
+                                            Please enter your message.
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /column -->
-
-
-                                <!-- /column -->
                                 <div class="col-12">
-                                    <input type="submit"
+                                    {{-- <input type="button" id="submitButton"
                                         class="btn btn-success rounded-pill btn-send mb-3 text-white"
-                                        value="Send message">
+                                        value="Send message"> --}}
+                                        <button type="button" id="submitButton" class="btn btn-success rounded-pill btn-send mb-3 text-white">
+                                            Send message
+                                            <span id="spinner" class="spinner-border spinner-border-sm ms-2" role="status" style="display: none;"></span>
+                                        </button>
                                     <p class="text-muted"><strong>*</strong> These fields are required.</p>
                                 </div>
-                                <!-- /column -->
                             </div>
-                            <!-- /.row -->
                         </form>
-                        <!-- /form -->
                     </div>
                     <!--/column -->
                     <div class="col-lg-6 order-lg-2">
@@ -117,7 +94,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-red">Address</h4>
-                                        <p class="mb-0 fw-normal">Ajman, Sharjah, United Arab Emirates.</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->address }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +110,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-green">Phone</h4>
-                                        <p class="mb-0 fw-normal">00 (123) 456 78 90</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->phone_no }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +126,7 @@
                                     </div>
                                     <div>
                                         <h4 class="mb-1 text-yellow">Email</h4>
-                                        <p class="mb-0 fw-normal">tahzeel@gmail.com</p>
+                                        <p class="mb-0 fw-normal">{{ $setting->email }}</p>
                                     </div>
                                 </div>
                             </div>

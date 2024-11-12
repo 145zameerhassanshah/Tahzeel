@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceCategory extends Model
 {
-    public function service()
+    public function services()
     {
-        return $this->belongsTo(Service::class);
+        return $this->hasMany(Service::class);
     }
 }
