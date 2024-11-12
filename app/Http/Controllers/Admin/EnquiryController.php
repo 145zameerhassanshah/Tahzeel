@@ -23,14 +23,14 @@ class EnquiryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'phone_no' => 'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'enquiry_message' => 'required',
             'status' => 'required',
-            'followup_date' => 'required',
+            'followup_date' => 'nullable',
             'followup_type' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
 
         ]);
 
@@ -66,14 +66,14 @@ class EnquiryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'phone_no' => 'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'enquiry_message' => 'required',
             'status' => 'required',
-            'followup_date' => 'required',
+            'followup_date' => 'nullable',
             'followup_type' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
 
         ]);
 
