@@ -9,11 +9,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
-<<<<<<< HEAD
+use App\Http\Controllers\Admin\FaqController;
+
 use App\Http\Controllers\Admin\NotificationController;
-=======
+
 use App\Http\Controllers\Admin\SettingController;
->>>>>>> 224c1a9e9e08518a98d2cb54033c966ae3841fcb
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -133,7 +134,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         // End of Enquiry Routes
 
         // Setting Routes
-        
+
         Route::get('/setting', [SettingController::class, 'edit'])->name('admin.setting.edit');
         Route::post('/setting/update', [SettingController::class, 'update'])->name('admin.setting.update');
 
@@ -146,7 +147,8 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-
+    Route::resource('faqs', FaqController::class);
+    Route::resource('testimonials', TestimonialController::class);
 });
 
 // all admin routes write in admin middleware
@@ -171,6 +173,3 @@ Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('f
 
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
-
-
-
