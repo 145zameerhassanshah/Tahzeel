@@ -195,6 +195,13 @@
                                 <p>{{ __('Add Enquiry') }}</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.enquiry.restore.page') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.restore.page' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Trash Enquiry') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 {{-- Enquiry End --}}
@@ -230,7 +237,7 @@
                             </a>
                         </li>
                     </ul>
-                   
+
 
 
                 </li>

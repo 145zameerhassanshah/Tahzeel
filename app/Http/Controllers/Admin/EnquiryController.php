@@ -131,7 +131,7 @@ class EnquiryController extends Controller
             'comment.required' => 'Please enter a comment.',
             'comment.max' => 'The comment must not exceed 500 characters.',
         ]);
-    
+
 
         $comment = new EnquiryComment();
 
@@ -170,5 +170,26 @@ class EnquiryController extends Controller
 
             return back()->with('notification', $notification);
         }
+    }
+
+
+    public function restorePage()
+    {
+
+        $enquiries = Enquiry::onlyTrashed()->get();
+        return view('admin.enquiry.restore', compact('enquiries'));
+    }
+
+    public function restore($id)
+    {
+        $enquiry = Enquiry::withTrashed()->find($id);
+        $enquiry->restore();
+
+        $notification = array(
+            'message' => 'Enquiry Restored Successfully!',
+            'alert' => 'success',
+        );
+
+        return back()->with('notification', $notification);
     }
 }
