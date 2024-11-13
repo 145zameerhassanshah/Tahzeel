@@ -192,4 +192,18 @@ class EnquiryController extends Controller
 
         return back()->with('notification', $notification);
     }
+
+    public function forceDelete($id)
+    {
+        $enquiry = Enquiry::withTrashed()->find($id);
+
+        $enquiry->forceDelete();
+
+        $notification = array(
+            'message' => 'Enquiry Permanently Deleted Successfully!',
+            'alert' => 'success',
+        );
+
+        return back()->with('notification', $notification);
+    }
 }

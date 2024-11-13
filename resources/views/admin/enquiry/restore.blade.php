@@ -88,6 +88,16 @@
                                                         class="btn btn-info btn-sm"><i class="fas fa-undo"></i>
                                                         {{ __('') }}</a>
 
+
+                                                    <form id="deleteform" class="d-inline-block"
+                                                        action="{{ route('admin.enquiry.force.delete', $enquiry->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm" id="delete">
+                                                            <i class="fas fa-trash"></i>{{ __('') }}
+                                                        </button>
+                                                    </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach
