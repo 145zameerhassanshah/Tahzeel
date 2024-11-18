@@ -31,7 +31,19 @@
                                 <h3 class="card-title">{{ __('Add Testimonial') }}</h3>
                             </div>
                             <div class="card-body">
-                                
+                                <div class="form-group">
+                                    <label for="page_id">{{ __('Page') }}</label>
+                                    <select name="page_id" id="page_id" class="form-control">
+                                        <option value="" disabled selected>{{ __('Select Page') }}</option>
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page->id }}">{{ $page->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('page_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
                                 <!-- Name Field -->
                                 <div class="form-group">
                                     <label for="name">{{ __('Name') }}</label>
@@ -60,23 +72,43 @@
                                     @enderror
                                 </div>
 
-                                <!-- Designation Field -->
+                                <!-- Designation Fields (Multilingual) -->
                                 <div class="form-group">
-                                    <label for="designation">{{ __('Designation') }}</label>
-                                    <input type="text" name="designation" id="designation" class="form-control"
-                                           placeholder="Enter designation" required>
-                                    @error('designation')
+                                    <label for="designation_en">{{ __('Designation (English)') }}</label>
+                                    <input type="text" name="designation[en]" id="designation_en" class="form-control"
+                                           placeholder="Enter designation in English" required>
+                                    @error('designation.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="designation_ar">{{ __('Designation (Arabic)') }}</label>
+                                    <input type="text" name="designation[ar]" id="designation_ar" class="form-control"
+                                           placeholder="Enter designation in Arabic" required>
+                                    @error('designation.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                                 <!-- Image Upload Field -->
-                                <div class="form-group">
-                                    <label for="image">{{ __('Upload Image') }}</label>
-                                    <input type="file" name="image" id="image" class="form-control-file" required>
-                                    @error('image')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
+                                <div class="col-md-12">
+                                    <label for="image">{{ __('Image') }}<span
+                                            class="text-danger">*</span></label>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <input type="file"
+                                                class="custom-file-input up-img form-control" name="image"
+                                                id="image">
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}"
+                                                alt="">
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

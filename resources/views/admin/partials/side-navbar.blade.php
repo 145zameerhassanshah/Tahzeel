@@ -230,13 +230,38 @@
                             </a>
                         </li>
                     </ul>
-
-
-
                 </li>
                 {{-- end Faq --}}
 
+                {{-- testimonila --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'testimonials.index' || Route::currentRouteName() == 'testimonials.create' ? 'menu-open' : '' }}">
+                    <a href="{{ route('testimonials.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            {{ __('Testimonial') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
 
+                        <li class="nav-item">
+                            <a href="{{ route('testimonials.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Testimonial') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('testimonials.create') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'testimonials.create' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Testimonial') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- end --}}
 
 
                 {{-- Settings --}}

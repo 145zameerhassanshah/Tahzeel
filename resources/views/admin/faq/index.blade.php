@@ -54,7 +54,6 @@
                                                 <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-info btn-sm">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-
                                                 <form id="deleteform" class="d-inline-block"
                                                     action="{{ route('faqs.destroy', $faq->id) }}" method="post">
                                                     @csrf
