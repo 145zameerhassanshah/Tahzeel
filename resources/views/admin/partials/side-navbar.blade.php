@@ -195,13 +195,6 @@
                                 <p>{{ __('Add Enquiry') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.enquiry.restore.page') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.restore.page' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Trash Enquiry') }}</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 {{-- Enquiry End --}}
@@ -259,6 +252,30 @@
                 </li>
 
                 {{-- Settings End --}}
+
+                {{-- Trash --}}
+
+                <li class="nav-item {{ Route::currentRouteName() == 'menu-open' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-trash"></i>
+
+                        <p>
+                            {{ __('Trash') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.enquiry.restore.page') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.restore.page' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Enquiries') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- End of Trash --}}
 
             </ul>
         </nav>
