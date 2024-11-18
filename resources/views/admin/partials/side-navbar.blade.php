@@ -79,9 +79,10 @@
                     </ul>
                 </li>
                 {{-- Partner --}}
-                <li class="nav-item">
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-handshake"></i>
                         <p>
                             {{ __('Partner') }}
                             <i class="fas fa-angle-left right"></i>
@@ -90,13 +91,15 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.partner.index') }}" class="nav-link">
+                            <a href="{{ route('admin.partner.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.partner.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Partners') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.partner.add') }}" class="nav-link">
+                            <a href="{{ route('admin.partner.add') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.partner.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Partner') }}</p>
                             </a>
@@ -105,9 +108,10 @@
                     {{-- Partner End --}}
 
                     {{-- Services Category --}}
-                <li class="nav-item">
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.service.category.index' || Route::currentRouteName() == 'admin.service.category.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.category.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-th-large"></i>
                         <p>
                             {{ __('Service Category') }}
                             <i class="fas fa-angle-left right"></i>
@@ -116,13 +120,15 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.category.index') }}" class="nav-link">
+                            <a href="{{ route('admin.service.category.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.service.category.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Service Category') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.category.add') }}" class="nav-link">
+                            <a href="{{ route('admin.service.category.add') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.service.category.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Service Category') }}</p>
                             </a>
@@ -131,9 +137,10 @@
                     {{-- Services Category End --}}
 
                     {{-- Services --}}
-                <li class="nav-item">
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.service.index' || Route::currentRouteName() == 'admin.service.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.service.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             {{ __('Service') }}
                             <i class="fas fa-angle-left right"></i>
@@ -142,13 +149,15 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.index') }}" class="nav-link">
+                            <a href="{{ route('admin.service.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.service.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Services') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.service.add') }}" class="nav-link">
+                            <a href="{{ route('admin.service.add') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.service.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Service') }}</p>
                             </a>
@@ -160,11 +169,11 @@
                 </li>
                 {{-- Services End --}}
 
-
                 {{-- Enquiry --}}
-                <li class="nav-item">
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.enquiry.index' || Route::currentRouteName() == 'admin.enquiry.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
+                        <i class="nav-icon fas fa-question-circle"></i>
                         <p>
                             {{ __('Enquiry') }}
                             <i class="fas fa-angle-left right"></i>
@@ -173,13 +182,15 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.enquiry.index') }}" class="nav-link">
+                            <a href="{{ route('admin.enquiry.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.index' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('All Enquiries') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.enquiry.add') }}" class="nav-link">
+                            <a href="{{ route('admin.enquiry.add') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.add' ? 'active' : '' }}">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>{{ __('Add Enquiry') }}</p>
                             </a>
@@ -188,7 +199,109 @@
                 </li>
                 {{-- Enquiry End --}}
 
-                {{-- users close --}}
+
+
+
+
+                {{-- faq --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'faqs.index' || Route::currentRouteName() == 'faqs.create' ? 'menu-open' : '' }}">
+                    <a href="{{ route('faqs.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            {{ __('Faq') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('faqs.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Faq') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('faqs.create') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'faqs.create' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Faq') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- end Faq --}}
+
+                {{-- testimonila --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'testimonials.index' || Route::currentRouteName() == 'testimonials.create' ? 'menu-open' : '' }}">
+                    <a href="{{ route('testimonials.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            {{ __('Testimonial') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('testimonials.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Testimonial') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('testimonials.create') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'testimonials.create' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Testimonial') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- end --}}
+
+
+                {{-- Settings --}}
+
+                <li class="nav-item">
+                    <a href="{{ route('admin.setting.edit') }}"
+                        class="nav-link {{ Route::currentRouteName() == 'admin.setting.edit' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            {{ __('Settings') }}
+                        </p>
+                    </a>
+                </li>
+
+                {{-- Settings End --}}
+
+                {{-- Trash --}}
+
+                <li class="nav-item {{ Route::currentRouteName() == 'menu-open' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-trash"></i>
+
+                        <p>
+                            {{ __('Trash') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.enquiry.restore.page') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.enquiry.restore.page' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Enquiries') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- End of Trash --}}
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

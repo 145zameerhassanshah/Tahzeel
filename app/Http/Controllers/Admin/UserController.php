@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\GD\Driver;
 
 class UserController extends Controller
 {

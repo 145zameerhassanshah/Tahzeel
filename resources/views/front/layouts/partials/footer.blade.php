@@ -23,11 +23,11 @@
                           </script> Tah-zeel. <br class="d-none d-lg-block" />All rights reserved.
                       </p>
                       <nav class="nav social social-white">
-                          <a href="#"><i class="uil uil-twitter"></i></a>
-                          <a href="#"><i class="uil uil-facebook-f"></i></a>
-                          <a href="#"><i class="uil uil-dribbble"></i></a>
-                          <a href="#"><i class="uil uil-instagram"></i></a>
-                          <a href="#"><i class="uil uil-youtube"></i></a>
+                          <a href="{{ $setting->fb_link }}"><i class="uil uil-facebook-f"></i></a>
+                          <a href="{{ $setting->insta_link }}"><i class="uil uil-instagram"></i></a>
+                          <a href="{{ $setting->yt_link }}"><i class="uil uil-youtube"></i></a>
+                          <a href="{{ $setting->tiktok_link }}"><i class="uil uil-tiktok"></i></a>
+                          <a href="{{ $setting->whatsapp_link }}"><i class="uil uil-whatsapp"></i></a>
                       </nav>
                       <!-- /.social -->
                   </div>
@@ -37,9 +37,9 @@
               <div class="col-md-4 col-lg-3">
                   <div class="widget">
                       <h4 class="widget-title text-white mb-3">Get in Touch</h4>
-                      <address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom
+                      <address class="pe-xl-15 pe-xxl-17">{{ $setting->address }}
                       </address>
-                      <a href="mailto:#">info@email.com</a><br /> 00 (123) 456 78 90
+                      <a href="mailto:#">{{ $setting->email }}</a><br /> {{ $setting->phone_no }}
                   </div>
                   <!-- /.widget -->
               </div>

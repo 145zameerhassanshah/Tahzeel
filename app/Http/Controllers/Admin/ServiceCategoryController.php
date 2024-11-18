@@ -73,14 +73,21 @@ class ServiceCategoryController extends Controller
 
     public function delete($id)
     {
-        $service = ServiceCategory::find($id);
+        $category = ServiceCategory::find($id);
 
-        $service->delete();
-
-        $notification = array(
-            'message' => 'Service Deleted Successfully!',
-            'alert' => 'success',
-        );
+        if($category->services->count() === 0)
+        {
+            $category->delete();
+            $notification = array(
+                'message' => 'Service Deleted Successfully!',
+                'alert' => 'success',
+            );
+        }else{
+            $notification = array(
+                'message' => 'First Delete Services of this Category!',
+                'alert' => 'warning',
+            );
+        }
 
         return back()->with('notification', $notification);
     }

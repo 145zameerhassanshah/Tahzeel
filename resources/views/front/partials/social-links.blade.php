@@ -1,17 +1,17 @@
 <div class="tahzeel-social-icons">
-    <a href="https://facebook.com" target="_blank" class="text-decoration-none facebook">
-        <i class="bi bi-facebook"></i>
+    <a href="{{ $setting->fb_link }}" target="_blank" class="text-decoration-none facebook">
+        <img src="https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000" alt="Whatsapp Icon" width="35px">
     </a>
-    <a href="https://instagram.com" target="_blank" class="text-decoration-none instagram">
-        <i class="bi bi-instagram"></i>
+    <a href="{{ $setting->insta_link }}" target="_blank" class="text-decoration-none instagram">
+        <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Whatsapp Icon" width="35px">
     </a>
-    <a href="https://youtube.com" target="_blank" class="text-decoration-none youtube">
-        <i class="bi bi-youtube"></i>
+    <a href="{{ $setting->yt_link }}" target="_blank" class="text-decoration-none youtube">
+        <img src="https://img.icons8.com/?size=100&id=19318&format=png&color=000000" alt="Whatsapp Icon" width="35px">
     </a>
-    <a href="https://tiktok.com" target="_blank" class="text-decoration-none tiktok">
-        <i class="bi bi-tiktok"></i>
+    <a href="{{ $setting->tiktok_link }}" target="_blank" class="text-decoration-none tiktok">
+        <img src="https://img.icons8.com/?size=100&id=118640&format=png&color=000000" alt="Whatsapp Icon" width="35px">
     </a>
-    <a href="https://wa.me/+923157474084" target="_blank" class="text-decoration-none whatsapp">
-        <i class="bi bi-whatsapp"></i>
+    <a href="{{ $setting->whatsapp_link }}" target="_blank" class="text-decoration-none whatsapp">
+        <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="Whatsapp Icon" width="35px">
         </a>
 </div>
