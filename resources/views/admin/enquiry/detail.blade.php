@@ -159,7 +159,7 @@
                                                                 {{ $comment->created_at->format('h:i A') }}</span>
                                                             <h3 class="timeline-header">
                                                                 <span class="text-info">{{ $comment->user->name ?? 'Unknown User' }}</span>
-                                                                commented
+                                                                
                                                             </h3>
                                                             <div class="timeline-body">
                                                                 {{ $comment->comment }}
@@ -169,7 +169,7 @@
                                                           </div>
                                                             <div class="timeline-footer">
                                                                 <a class="btn btn-danger btn-sm"
-                                                                    href="{{ route('admin.enquiry.comment.delete', $comment->id) }}">Delete</a>
+                                                                    href="{{ route('admin.enquiry.comment.delete', $comment->id) }}"><i class="fas fa-trash"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>

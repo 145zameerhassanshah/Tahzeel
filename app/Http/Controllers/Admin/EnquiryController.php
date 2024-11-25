@@ -123,7 +123,7 @@ class EnquiryController extends Controller
         });
         return view('admin.enquiry.detail', compact('enquiry', 'comments'));
     }
-    public function comment(Request $request, $id)
+    public function comment(Request $request, $id) 
     {
         $request->validate([
             'comment' => 'required|max:500',
