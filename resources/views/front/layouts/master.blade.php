@@ -10,10 +10,21 @@
     <link rel="shortcut icon" href="{{ asset($setting->fav_icon) }}">
 
     @include('front.layouts.partials.styles')
+    <style>
+        #submitButton {
+            position: relative;
+        }
+
+        .spinner-border {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+    </style>
 </head>
 
 <body>
-    
+
     @include('front.layouts.partials.top-navbar')
 
     @yield('content')

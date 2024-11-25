@@ -26,14 +26,14 @@ class EnquiryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'phone_no' => 'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'enquiry_message' => 'required',
             'status' => 'required',
-            'followup_date' => 'required',
+            'followup_date' => 'nullable',
             'followup_type' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
 
         ]);
 
@@ -69,14 +69,14 @@ class EnquiryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'nullable',
             'phone_no' => 'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'enquiry_message' => 'required',
             'status' => 'required',
-            'followup_date' => 'required',
+            'followup_date' => 'nullable',
             'followup_type' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
 
         ]);
 
@@ -131,7 +131,7 @@ class EnquiryController extends Controller
             'comment.required' => 'Please enter a comment.',
             'comment.max' => 'The comment must not exceed 500 characters.',
         ]);
-    
+
 
         $comment = new EnquiryComment();
 
@@ -170,5 +170,40 @@ class EnquiryController extends Controller
 
             return back()->with('notification', $notification);
         }
+    }
+
+
+    public function restorePage()
+    {
+
+        $enquiries = Enquiry::onlyTrashed()->get();
+        return view('admin.enquiry.restore', compact('enquiries'));
+    }
+
+    public function restore($id)
+    {
+        $enquiry = Enquiry::withTrashed()->find($id);
+        $enquiry->restore();
+
+        $notification = array(
+            'message' => 'Enquiry Restored Successfully!',
+            'alert' => 'success',
+        );
+
+        return back()->with('notification', $notification);
+    }
+
+    public function forceDelete($id)
+    {
+        $enquiry = Enquiry::withTrashed()->find($id);
+
+        $enquiry->forceDelete();
+
+        $notification = array(
+            'message' => 'Enquiry Permanently Deleted Successfully!',
+            'alert' => 'success',
+        );
+
+        return back()->with('notification', $notification);
     }
 }

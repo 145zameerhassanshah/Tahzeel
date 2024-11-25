@@ -8,6 +8,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Mail\InquiryEmail;
 use App\Models\User;
+use App\Notifications\InquiryNotification;
 use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
@@ -114,6 +115,9 @@ class FrontController extends Controller
         $users = User::all();
         foreach ($users as $user) {
             Mail::to($user->email)->send(new InquiryEmail($inquiry));
+        }
+        foreach ($users as $user) {
+            $user->notify(new InquiryNotification($inquiry));
         }
         return response()->json([
             'success' => true,

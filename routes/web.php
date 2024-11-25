@@ -9,8 +9,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\FaqController;
+
+use App\Http\Controllers\Admin\NotificationController;
+
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Middleware\Localization;
+use App\Models\Enquiry;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -119,17 +125,20 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/enquiry', [EnquiryController::class, 'index'])->name('admin.enquiry.index');
         Route::get('/enquiry/add', [EnquiryController::class, 'add'])->name('admin.enquiry.add');
         Route::post('/enquiry/store', [EnquiryController::class, 'store'])->name('admin.enquiry.store');
+        Route::get('enquiry/restore', [EnquiryController::class, 'restorePage'])->name('admin.enquiry.restore.page');
         Route::get('/enquiry/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiry.edit');
         Route::post('/enquiry/update/{id}', [EnquiryController::class, 'update'])->name('admin.enquiry.update');
         Route::post('/enquiry/delete/{id}', [EnquiryController::class, 'delete'])->name('admin.enquiry.delete');
         Route::get('/enquiry/detail/{id}', [EnquiryController::class, 'detail'])->name('admin.enquiry.detail');
         Route::post('/enquiry/comment/{id}', [EnquiryController::class, 'comment'])->name('admin.enquiry.comment.store');
         Route::get('/enquiry/comment/delete/{id}', [EnquiryController::class, 'deleteComment'])->name('admin.enquiry.comment.delete');
+        Route::get('enquiry/restore/{id}', [EnquiryController::class, 'restore'])->name('admin.enquiry.restore');
+        Route::post('enquiry/force_delete/{id}', [EnquiryController::class, 'forceDelete'])->name('admin.enquiry.force.delete');
 
         // End of Enquiry Routes
 
         // Setting Routes
-        
+
         Route::get('/setting', [SettingController::class, 'edit'])->name('admin.setting.edit');
         Route::post('/setting/update', [SettingController::class, 'update'])->name('admin.setting.update');
 
@@ -137,6 +146,13 @@ Route::middleware(['auth', 'status'])->group(function () {
 
     }); // end of income routes
 
+
+    Route::get('admin-notification', [NotificationController::class, 'adminNotification'])->name('admin.notifications');
+    Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
+    Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
+    Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
+    Route::resource('faqs', FaqController::class);
+    Route::resource('testimonials', TestimonialController::class);
 });
 
 // all admin routes write in admin middleware
@@ -161,6 +177,3 @@ Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('f
 
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
-
-
-

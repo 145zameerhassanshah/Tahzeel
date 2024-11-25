@@ -51,8 +51,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="email" class="col-sm-12 control-label">{{ __('Email') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="email" class="col-sm-12 control-label">{{ __('Email') }}</label>
                                     <div class="col-sm-12">
                                         <input type="email" id="email" class="form-control" name="email"
                                             value="{{ old('email') }}" placeholder="{{ __('Enter Email') }}">
@@ -68,7 +67,7 @@
                                     <label for="phone_no" class="col-sm-12 control-label">{{ __('Phone Number') }}<span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        <input type="number" id="phone_no" class="form-control" name="phone_no"
+                                        <input type="text" id="phone_no" class="form-control" name="phone_no"
                                             value="{{ old('phone_no') }}" placeholder="{{ __('Enter Phone Number') }}">
                                         @if ($errors->has('phone_no'))
                                             <p class="text-danger"> {{ $errors->first('phone_no') }} </p>
@@ -78,8 +77,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="subject" class="col-sm-12 control-label">{{ __('Subject') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="subject" class="col-sm-12 control-label">{{ __('Subject') }}</label>
                                     <div class="col-sm-12">
                                         <input type="text" id="subject" class="form-control" name="subject"
                                             value="{{ old('subject') }}" placeholder="{{ __('Enter Subject') }}">
