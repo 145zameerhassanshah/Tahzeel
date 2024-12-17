@@ -115,4 +115,5 @@ class PartnerController extends Controller
 
         return back()->with('notification', $notification);
     }
+
 }

@@ -35,6 +35,9 @@
                     </a>
                 </li>
 
+
+
+
                 {{-- users --}}
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">
@@ -79,6 +82,142 @@
                     </ul>
                 </li>
                 {{-- Partner --}}
+
+                {{-- Gallery --}}
+
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.gcategory.index' || Route::currentRouteName() == 'admin.gallery.index' ? 'menu-open' : '' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            {{ __('Gallery') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.gallery.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.gallery.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Galleries') }}</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.gcategory.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.gcategory.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Categories') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Gallery --}}
+
+                {{-- Blog --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.bcategory.index' || Route::currentRouteName() == 'admin.blog.index' ? 'menu-open' : '' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            {{ __('Blog') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.blog.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.blog.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Blogs') }}</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.bcategory.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.bcategory.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Categories') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Blog --}}
+
+
+                {{-- Job --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.job.index' || Route::currentRouteName() == 'admin.jcategory.index' ? 'menu-open' : '' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            {{ __('Job') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.job.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.job.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Jobs') }}</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.jcategory.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.jcategory.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Categories') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Job --}}
+
+
+                 {{-- Feature --}}
+                 <li
+                 class="nav-item {{ Route::currentRouteName() == 'admin.feature.index' || Route::currentRouteName() == 'admin.feature.add' ? 'menu-open' : '' }}">
+                 <a href="" class="nav-link">
+                     <i class="nav-icon fas fa-users"></i>
+                     <p>
+                         {{ __('Feature') }}
+                         <i class="fas fa-angle-left right"></i>
+                     </p>
+                 </a>
+
+                 <ul class="nav nav-treeview">
+
+                     <li class="nav-item">
+                         <a href="{{ route('admin.feature.index') }}"
+                             class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' ? 'active' : '' }}">
+                             <i class="fas fa-circle nav-icon"></i>
+                             <p>{{ __('Features') }}</p>
+                         </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a href="{{ route('admin.feature.add') }}"
+                             class="nav-link {{ Route::currentRouteName() == 'admin.feature.add' ? 'active' : '' }}">
+                             <i class="fas fa-circle nav-icon"></i>
+                             <p>{{ __('Add Feature') }}</p>
+                         </a>
+                     </li>
+                 </ul>
+             </li>
+
+             {{-- Feature --}}
+
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">

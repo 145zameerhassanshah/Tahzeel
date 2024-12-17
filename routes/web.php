@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BcategoryController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BulkDeleteController;
+use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\GcategoryController;
+use App\Http\Controllers\Admin\JcategoryController;
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceSectionController;
@@ -75,16 +83,79 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/approvedUsers', [UserController::class, 'approvedUsers'])->name('admin.user.approvedUsers');
         Route::get('/blockedUsers', [UserController::class, 'blockedUsers'])->name('admin.user.blockedUsers');
 
+
+        // bulk delte Route
+        Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
+
         // Partner Routes
 
-        Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner.index');
+        Route::get('/partners', [PartnerController::class, 'index'])->name('admin.partner.index');
         Route::get('/partner/add', [PartnerController::class, 'add'])->name('admin.partner.add');
         Route::post('/partner/store', [PartnerController::class, 'store'])->name('admin.partner.store');
         Route::get('/partner/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
         Route::post('/partner/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
         Route::post('/partner/delete/{id}', [PartnerController::class, 'delete'])->name('admin.partner.delete');
 
-        // End of Partner Routes
+        // Gallery Category Routes
+        Route::get('/gallery-categories', [GcategoryController::class, 'gcategory'])->name('admin.gcategory.index');
+        Route::get('/gallery-category/add', [GcategoryController::class, 'add'])->name('admin.gcategory.add');
+        Route::post('/gallery-category/store', [GcategoryController::class, 'store'])->name('admin.gcategory.store');
+        Route::get('/gallery-category/edit/{id}', [GcategoryController::class, 'edit'])->name('admin.gcategory.edit');
+        Route::post('/gallery-category/update/{id}', [GcategoryController::class, 'update'])->name('admin.gcategory.update');
+        Route::get('/gallery-category/delete/{id}', action: [GcategoryController::class, 'delete'])->name('admin.gcategory.delete');
+
+
+        // Gallery Routes
+        Route::get('/galleries', [GalleryController::class, 'index'])->name('admin.gallery.index');
+        Route::get('/gallery/add', [GalleryController::class, 'add'])->name('admin.gallery.add');
+        Route::post('/gallery/store', [GalleryController::class, 'store'])->name('admin.gallery.store');
+        Route::get('/gallery/edit/{id}', [GalleryController::class, 'edit'])->name('admin.gallery.edit');
+        Route::post('/gallery/update/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update');
+        Route::get('/gallery/delete/{id}', action: [GalleryController::class, 'delete'])->name('admin.gallery.delete');
+
+
+        // Blog Category Routes
+        Route::get('/blog-categories', [BcategoryController::class, 'bcategory'])->name('admin.bcategory.index');
+        Route::get('/blog-category/add', [BcategoryController::class, 'add'])->name('admin.bcategory.add');
+        Route::post('/blog-category/store', [BcategoryController::class, 'store'])->name('admin.bcategory.store');
+        Route::get('/blog-category/edit/{id}', [BcategoryController::class, 'edit'])->name('admin.bcategory.edit');
+        Route::post('/blog-category/update/{id}', [BcategoryController::class, 'update'])->name('admin.bcategory.update');
+        Route::get('/blog-category/delete/{id}', action: [BcategoryController::class, 'delete'])->name('admin.bcategory.delete');
+
+
+        // Blog Routes
+        Route::get('/blogs', [BlogController::class, 'blog'])->name('admin.blog.index');
+        Route::get('/blog/add', [BlogController::class, 'add'])->name('admin.blog.add');
+        Route::post('/blog/store', [BlogController::class, 'store'])->name('admin.blog.store');
+        Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::post('/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
+        Route::get('/blog/delete/{id}', action: [BlogController::class, 'delete'])->name('admin.blog.delete');
+
+        // Job Routes
+        Route::get('/jobs', [JobController::class, 'jobs'])->name('admin.job.index');
+        Route::get('/job/add', [JobController::class, 'add'])->name('admin.job.add');
+        Route::post('/job/store', [JobController::class, 'store'])->name('admin.job.store');
+        Route::get('/job/edit/{id}', [JobController::class, 'edit'])->name('admin.job.edit');
+        Route::post('/job/update/{id}', [JobController::class, 'update'])->name('admin.job.update');
+        Route::get('/job/delete/{id}', action: [JobController::class, 'delete'])->name('admin.job.delete');
+
+        // Job Category Routes
+        Route::get('/job-categories', [JcategoryController::class, 'jcategory'])->name('admin.jcategory.index');
+        Route::get('/job-category/add', [JcategoryController::class, 'add'])->name('admin.jcategory.add');
+        Route::post('/job-category/store', [JcategoryController::class, 'store'])->name('admin.jcategory.store');
+        Route::get('/job-category/edit/{id}', [JcategoryController::class, 'edit'])->name('admin.jcategory.edit');
+        Route::post('/job-category/update/{id}', [JcategoryController::class, 'update'])->name('admin.jcategory.update');
+        Route::get('/job-category/delete/{id}', action: [JcategoryController::class, 'delete'])->name('admin.jcategory.delete');
+
+
+         // Feature Routes
+         Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
+         Route::get('/feature/add', [FeatureController::class, 'add'])->name('admin.feature.add');
+         Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
+         Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
+         Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
+         Route::get('/feature/delete/{id}', action: [FeatureController::class, 'delete'])->name('admin.feature.delete');
+
 
         // Service Category Routes
 
