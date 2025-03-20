@@ -243,8 +243,11 @@ Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
+Route::get('/vat-business', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
 
 Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
+
+

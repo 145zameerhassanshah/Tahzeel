@@ -77,6 +77,11 @@ class FrontController extends Controller
         return view('front.otherPages.visaCancellation');
     }
 
+    public function vatBusiness()
+    {
+        return view('front.otherPages.vatBusiness');
+    }
+
     public function test()
     {
         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();

@@ -90,7 +90,23 @@
                                                 Construction</a></li>
                                     </ul>
                                 </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Other Services</a>
+                                    <ul class="dropdown-menu">
+                                      <li class="nav-item"><a class="dropdown-item" href="./blog.html">Blog without Sidebar</a></li>
+                                      <li class="nav-item"><a class="dropdown-item" href="./blog2.html">Blog with Sidebar</a></li>
+                                      <li class="nav-item"><a class="dropdown-item" href="./blog3.html">Bank Account Opening Services</a></li>
+                                      <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Vat Services</a>
+                                        <ul class="dropdown-menu">
+                                          <li class="nav-item"><a class="dropdown-item" href="{{ route('front.vat.business') }}">VAT Registration for Businesses</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post2.html">VAT Return Filing</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">VAT Consultation & Compliance</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">VAT Deregistration</a></li>
 
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('front.blog') }}">Blog</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link"
