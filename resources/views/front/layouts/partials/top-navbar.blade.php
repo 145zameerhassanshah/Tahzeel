@@ -105,6 +105,17 @@
 
                                         </ul>
                                       </li>
+                                      <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">DED Services</a>
+                                        <ul class="dropdown-menu">
+                                          <li class="nav-item"><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">Business Setup and Licensing</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post2.html">Trade Name Reservation</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">Initial Approval</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">License Renewal and Amendments</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">Company Deregistration</a></li>
+                                          <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">Commercial Permits</a></li>
+
+                                        </ul>
+                                      </li>
                                     </ul>
                                   </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('front.blog') }}">Blog</a>

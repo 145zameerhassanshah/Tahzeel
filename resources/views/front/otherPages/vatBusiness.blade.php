@@ -1,26 +1,7 @@
 @extends('front.layouts.master')
 @section('title', 'Vat Registration for Business')
 @section('content')
-<style>
-    .service-card img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
-    .service-title {
-        background: white;
-        text-align: center;
-        font-weight: bold;
-        padding: 10px;
-        margin-top: -30px;
-        position: relative;
-    }
-    .more-service-btn {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-</style>
+
 
 <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/dev/assets/img/personal/vatBusinessBg.webp">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">

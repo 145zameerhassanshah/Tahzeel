@@ -82,6 +82,13 @@ class FrontController extends Controller
         return view('front.otherPages.vatBusiness');
     }
 
+   
+
+    public function DEDbusinessLicense()
+    {
+        return view('front.otherPages.DED-businessLicense');
+    }
+
     public function test()
     {
         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
@@ -89,6 +96,7 @@ class FrontController extends Controller
 
 
 
+        
         if (isset($service)) {
             return view('front.otherPages.test', compact('service'));
         } else {
