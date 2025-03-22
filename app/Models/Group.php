@@ -24,4 +24,9 @@ class Group extends Model
     {
         return $this->hasMany(Procedure::class);
     }
+
+    public function callToActions()
+    {
+        return $this->hasMany(CallToAction::class);
+    }
 }

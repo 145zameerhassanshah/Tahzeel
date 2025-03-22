@@ -233,13 +233,23 @@
 
                 {{-- End Feature --}}
 
-
                 {{-- Procedure --}}
                 <li class="nav-item">
                     <a href="{{ route('admin.procedure.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedure.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('Procedures') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Call To Action --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.call-to-action.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.call-to-action.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('CallToActions') }}
                         </p>
                     </a>
 
