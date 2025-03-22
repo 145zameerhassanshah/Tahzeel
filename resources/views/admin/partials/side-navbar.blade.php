@@ -38,6 +38,40 @@
 
 
 
+                {{-- Groups --}}
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.group.index' || Route::currentRouteName() == 'admin.group.create' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>
+                            {{ __('Groups') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        {{-- All Groups --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.group.index') }}"
+                            class="nav-link {{ Route::currentRouteName() == 'admin.group.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Groups') }}</p>
+                            </a>
+                        </li>
+
+                        {{-- Add New Group --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.group.create') }}"
+                            class="nav-link {{ Route::currentRouteName() == 'admin.group.create' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add New Group') }}</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
                 {{-- users --}}
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">

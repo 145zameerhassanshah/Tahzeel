@@ -18,6 +18,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\GroupController;
 
 use App\Http\Controllers\Admin\NotificationController;
 
@@ -86,6 +87,18 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // bulk delte Route
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
+
+
+        // Group Routes
+
+        Route::get('/groups', [GroupController::class, 'index'])->name('admin.group.index');
+        Route::get('/add-group', [GroupController::class, 'create'])->name('admin.group.create');
+        Route::post('/store-group', [GroupController::class, 'store'])->name('admin.group.store');
+        Route::get('/edit-group/{id}', [GroupController::class, 'edit'])->name('admin.group.edit');
+        Route::post('/update-group/{id}', [GroupController::class, 'update'])->name('admin.group.update');
+        Route::post('/delete-group/{id}', [GroupController::class, 'destroy'])->name('admin.group.delete');
+
+
 
         // Partner Routes
 
@@ -206,7 +219,9 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('enquiry/restore/{id}', [EnquiryController::class, 'restore'])->name('admin.enquiry.restore');
         Route::post('enquiry/force_delete/{id}', [EnquiryController::class, 'forceDelete'])->name('admin.enquiry.force.delete');
 
-        // End of Enquiry Routes
+        // End of Enquiry
+
+
 
         // Setting Routes
 
@@ -215,7 +230,7 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // End of Setting Routes
 
-    }); // end of income routes
+    });
 
 
     Route::get('admin-notification', [NotificationController::class, 'adminNotification'])->name('admin.notifications');
