@@ -266,6 +266,17 @@
 
                 </li>
 
+                {{-- Faq --}}
+                <li class="nav-item">
+                    <a href="{{ route('faqs.index') }}" class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Faqs') }}
+                        </p>
+                    </a>
+
+                </li>
+
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">

@@ -34,4 +34,9 @@ class Group extends Model
     {
         return $this->hasMany(Testimonial::class);
     }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
 }
