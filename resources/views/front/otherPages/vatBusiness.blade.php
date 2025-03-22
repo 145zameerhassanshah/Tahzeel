@@ -1,6 +1,26 @@
 @extends('front.layouts.master')
 @section('title', 'Vat Registration for Business')
 @section('content')
+<style>
+    .service-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    .service-title {
+        background: white;
+        text-align: center;
+        font-weight: bold;
+        padding: 10px;
+        margin-top: -30px;
+        position: relative;
+    }
+    .more-service-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+</style>
 
 <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/dev/assets/img/personal/vatBusinessBg.webp">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
@@ -116,6 +136,84 @@
         </div>
         <!-- /.container -->
     </section>
+    
+    <div class="skill-area style-two">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="extra-animation-div">
+                        <div class="consen-section-title white">
+                            <h5>POPULAR SKILLS</h5>
+                            <h2>Expert Tailored Services</h2>
+                            <h2>In <span>Dubai, UAE</span></h2>
+                        </div>
+                        <div class="dreamit-smart-title pt-2">
+                            <p class="slill-text">Shuraa Tax Consultants offer you guidance and solutions for all your
+                                commitments and compliances pertaining to the Federal Tax Authority. Check out the services
+                                that we provide:</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="dreamit-icon-list">
+                                <ul style="display:grid;">
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/accounting-and-bookkeeping-services-cost-in-dubai/">Accounting
+                                                &amp; Book-keeping</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/vat-registration-in-uae/">VAT
+                                                Registration</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">VAT Consultancy &amp;
+                                            Advisory</span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">VAT Reporting</span>
+                                    </li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/uae-corporate-tax-registration/">Corporate
+                                                Tax Registration</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">Corporate Tax
+                                            Filing</span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">Tax Agency</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="dreamit-icon-list">
+                                <ul style="display:grid;">
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/excise-tax-registration-uae/">Excise Tax
+                                                Registration</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/excise-compliance-services-dubai/">Excise
+                                                Compliance</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/uae-economic-substance-regulations-esr/">ESR
+                                                Notification Filing</a></span></li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">ESR Compliance</span>
+                                    </li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white">Payroll Services</span>
+                                    </li>
+                                    <li><i class="bi bi-check2-square"></i> <span class="text-white"><a href="https://www.shuraatax.com/mis-reporting-services-dubai-uae/">MIS
+                                                Reporting &amp; Compliance Review</a></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="consen-button mt-4">
+                        <a href="#" data-toggle="modal" data-target="#staticBackdrop">Contact Us <i class="bi bi-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="slill-single-thumb mt-4 mt-lg-0 pl-50 ml-1">
+                        <img src="https://www.shuraatax.com/public/assets/images/web/expert-tailored-services-dubai.webp" alt="Expert VAT &amp; Tax Services In Dubai, UAE" title="Expert Tailored Services In Dubai, UAE" loading="lazy">
+                        <!-- thumb content -->
+                        <div class="skill-thumb-content">
+                            <div class="skill-title">
+                                <h3 class="counter">8</h3>
+                                <span>+</span>
+                                <h5>YEARS EXPERIENCE</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- /section -->
 
