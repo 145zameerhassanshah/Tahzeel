@@ -1,127 +1,108 @@
 @extends('admin.layouts.master')
-
 @section('content')
-
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-        <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{ __('Feature') }} </h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i>{{ __('Home') }}</a></li>
-            <li class="breadcrumb-item">{{ __('Feature') }}</li>
-            </ol>
-        </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                    <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h3 class="card-title mt-1">{{ __('Edit Feature') }}</h3>
-                                <div class="card-tools">
-                                    <a href="{{ route('admin.feature.index') }}" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-angle-double-left"></i> {{ __('Back') }}
-                                    </a>
-                                </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mt-2 card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title mt-1">{{ __('Edit Features') }}
+                            </h3>
+                            <div class="card-tools">
+                                <a href="{{ route('admin.feature.list', ['id' => $feature->group_id]) }}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-angle-double-left"></i> {{ $feature->group->name }} {{ __('Features') }}
+                                </a>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <form class="form-horizontal" action="{{ route('admin.feature.update',  $feature->id) }}" method="POST">
-                                    @csrf
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 control-label">{{ __('Icon') }}<span class="text-danger">*</span></label>
-        
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="icon" placeholder="{{ __('Icon') }}" value="{{ $feature->icon }}">
-                                            @if ($errors->has('icon'))
-                                                <p class="text-danger"> {{ $errors->first('icon') }} </p>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 control-label">{{ __('Title') }}<span class="text-danger">*</span></label>
-        
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="title" placeholder="{{ __('Title') }}" value="{{ $feature->title }}">
-                                            @if ($errors->has('title'))
-                                                <p class="text-danger"> {{ $errors->first('title') }} </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                          
-                                    <div class="form-group row">
-                                        <label  class="col-sm-2 control-label">{{ __('Text') }}<span class="text-danger">*</span></label>
-        
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="text" placeholder="{{ __('Text') }}" value="{{ $feature->text }}">
-                                            @if ($errors->has('text'))
-                                                <p class="text-danger"> {{ $errors->first('text') }} </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    
-
-                                    <div class="form-group row">
-                                        <label for="bg_color" class="col-sm-2 control-label">{{ __('Background Color') }}</label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group my-colorpicker2">
-                                                <input type="text" class="form-control" value="{{ $feature->bg_color }}"  placeholder="#046875" name="bg_color">
-                                                <div class="input-group-append">
-                                                  <span class="input-group-text" style="color:{{ $feature->bg_color }}"><i class="fas fa-square"></i></span>
-                                                </div>
-                                              </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="form-group row">
-                                        <label  class="col-sm-2 control-label">{{ __('Order') }}<span class="text-danger">*</span></label>
-        
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="serial_number" placeholder="{{ __('Order') }}" value="{{ $feature->serial_number }}">
-                                            @if ($errors->has('serial_number'))
-                                                <p class="text-danger"> {{ $errors->first('serial_number') }} </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                        
-                                    <div class="form-group row">
-                                        <label for="status" class="col-sm-2 control-label">{{ __('Status') }}<span class="text-danger">*</span></label>
-        
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="status">
-                                               <option value="0" {{ $feature->status == '0' ? 'selected' : '' }}>{{ __('Unpublish') }}</option>
-                                               <option value="1" {{ $feature->status == '1' ? 'selected' : '' }}>{{ __('Publish') }}</option>
-                                              </select>
-                                            @if ($errors->has('status'))
-                                                <p class="text-danger"> {{ $errors->first('status') }} </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
-                                        </div>
-                                    </div>
-                                
-                                </form>
-                                
-                            </div>
-                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form class="form-horizontal" action="{{ route('admin.feature.update', $feature->id) }}" method="POST">
+                                @csrf
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="control-label">{{ __('Icon') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <input type="text" class="form-control" name="icon"
+                                            placeholder="{{ __('Icon') }}" value="{{ old('icon') ?? json_decode($feature->icon)->en }}">
+                                        @if ($errors->has('icon'))
+                                            <p class="text-danger"> {{ $errors->first('icon') }} </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 mt-2">
+                                        <label class="control-label">{{ __('Title') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <input type="text" class="form-control" name="title"
+                                            placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($feature->title)->en }}">
+                                        @if ($errors->has('title'))
+                                            <p class="text-danger"> {{ $errors->first('title') }} </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 mt-2">
+                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <input type="text" class="form-control" name="subtitle"
+                                            placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($feature->subtitle)->en }}">
+                                        @if ($errors->has('subtitle'))
+                                            <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 mt-2">
+                                        <label class="control-label">{{ __('Description') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <textarea class="form-control" name="description" placeholder="Description">{{ old('description') ?? json_decode($feature->description)->en }}</textarea>
+                                        @if ($errors->has('description'))
+                                            <p class="text-danger"> {{ $errors->first('description') }} </p>
+                                        @endif
+                                    </div>
+
+
+                                    <div class="col-12 mt-2">
+                                        <label class="control-label">{{ __('Order') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <input type="number" class="form-control" name="order_no"
+                                            placeholder="{{ __('Order') }}" value="{{ old('order_no') ?? $feature->order_no }}">
+                                        @if ($errors->has('order_no'))
+                                            <p class="text-danger"> {{ $errors->first('order_no') }} </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 mt-2">
+                                        <label for="status" class="control-label">{{ __('Status') }}<span
+                                                class="text-danger">*</span></label>
+
+                                        <select class="form-control" name="status">
+                                            <option value="inactive" {{ $feature->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
+                                            <option value="active" {{ $feature->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                        </select>
+                                        @if ($errors->has('status'))
+                                            <p class="text-danger"> {{ $errors->first('status') }} </p>
+                                        @endif
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="submit"
+                                            class="btn btn-sm btn-primary float-right"><i class="bi bi-arrow-clockwise"></i> {{ __('Update') }}</button>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
 
-</section>
+    </section>
 @endsection

@@ -18,6 +18,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\GroupController;
 
 use App\Http\Controllers\Admin\NotificationController;
 
@@ -87,6 +88,18 @@ Route::middleware(['auth', 'status'])->group(function () {
         // bulk delte Route
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
 
+
+        // Group Routes
+
+        Route::get('/groups', [GroupController::class, 'index'])->name('admin.group.index');
+        Route::get('/add-group', [GroupController::class, 'create'])->name('admin.group.create');
+        Route::post('/store-group', [GroupController::class, 'store'])->name('admin.group.store');
+        Route::get('/edit-group/{id}', [GroupController::class, 'edit'])->name('admin.group.edit');
+        Route::post('/update-group/{id}', [GroupController::class, 'update'])->name('admin.group.update');
+        Route::post('/delete-group/{id}', [GroupController::class, 'destroy'])->name('admin.group.delete');
+
+
+
         // Partner Routes
 
         Route::get('/partners', [PartnerController::class, 'index'])->name('admin.partner.index');
@@ -150,11 +163,12 @@ Route::middleware(['auth', 'status'])->group(function () {
 
          // Feature Routes
          Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
-         Route::get('/feature/add', [FeatureController::class, 'add'])->name('admin.feature.add');
+         Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
+         Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
          Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
          Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
          Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
-         Route::get('/feature/delete/{id}', action: [FeatureController::class, 'delete'])->name('admin.feature.delete');
+         Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
 
         // Service Category Routes
@@ -206,7 +220,9 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('enquiry/restore/{id}', [EnquiryController::class, 'restore'])->name('admin.enquiry.restore');
         Route::post('enquiry/force_delete/{id}', [EnquiryController::class, 'forceDelete'])->name('admin.enquiry.force.delete');
 
-        // End of Enquiry Routes
+        // End of Enquiry
+
+
 
         // Setting Routes
 
@@ -215,7 +231,7 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // End of Setting Routes
 
-    }); // end of income routes
+    });
 
 
     Route::get('admin-notification', [NotificationController::class, 'adminNotification'])->name('admin.notifications');
@@ -243,8 +259,11 @@ Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
+Route::get('/vat-business', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
 
 Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
+
+

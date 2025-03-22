@@ -38,6 +38,41 @@
 
 
 
+                {{-- Groups --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.group.index' || Route::currentRouteName() == 'admin.group.create' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>
+                            {{ __('Groups') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        {{-- All Groups --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.group.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.group.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Groups') }}</p>
+                            </a>
+                        </li>
+
+                        {{-- Add New Group --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.group.create') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.group.create' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add New Group') }}</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
                 {{-- users --}}
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.user.index' || Route::currentRouteName() == 'admin.user.pendingUsers' || Route::currentRouteName() == 'admin.user.approvedUsers' || Route::currentRouteName() == 'admin.user.blockedUsers' ? 'menu-open' : '' }}">
@@ -185,38 +220,18 @@
                 {{-- Job --}}
 
 
-                 {{-- Feature --}}
-                 <li
-                 class="nav-item {{ Route::currentRouteName() == 'admin.feature.index' || Route::currentRouteName() == 'admin.feature.add' ? 'menu-open' : '' }}">
-                 <a href="" class="nav-link">
-                     <i class="nav-icon fas fa-users"></i>
-                     <p>
-                         {{ __('Feature') }}
-                         <i class="fas fa-angle-left right"></i>
-                     </p>
-                 </a>
+                {{-- Feature --}}
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.feature.index' ? 'menu-open' : '' }}">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Features') }}
+                        </p>
+                    </a>
 
-                 <ul class="nav nav-treeview">
+                </li>
 
-                     <li class="nav-item">
-                         <a href="{{ route('admin.feature.index') }}"
-                             class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' ? 'active' : '' }}">
-                             <i class="fas fa-circle nav-icon"></i>
-                             <p>{{ __('Features') }}</p>
-                         </a>
-                     </li>
-
-                     <li class="nav-item">
-                         <a href="{{ route('admin.feature.add') }}"
-                             class="nav-link {{ Route::currentRouteName() == 'admin.feature.add' ? 'active' : '' }}">
-                             <i class="fas fa-circle nav-icon"></i>
-                             <p>{{ __('Add Feature') }}</p>
-                         </a>
-                     </li>
-                 </ul>
-             </li>
-
-             {{-- Feature --}}
+                {{-- Feature --}}
 
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
