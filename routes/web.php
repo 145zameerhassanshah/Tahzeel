@@ -163,11 +163,12 @@ Route::middleware(['auth', 'status'])->group(function () {
 
          // Feature Routes
          Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
-         Route::get('/feature/add', [FeatureController::class, 'add'])->name('admin.feature.add');
+         Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
+         Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
          Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
          Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
          Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
-         Route::get('/feature/delete/{id}', action: [FeatureController::class, 'delete'])->name('admin.feature.delete');
+         Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
 
         // Service Category Routes

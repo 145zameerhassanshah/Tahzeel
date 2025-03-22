@@ -14,4 +14,9 @@ class Group extends Model
         'type',
         'description',
     ];
+
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
 }
