@@ -284,6 +284,39 @@
 
                 </li>
 
+                {{-- Call To Action --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.call-to-action.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.call-to-action.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('CallToActions') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Testimonial --}}
+                <li class="nav-item">
+                    <a href="{{ route('testimonials.index') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Testimonials') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Faq --}}
+                <li class="nav-item">
+                    <a href="{{ route('faqs.index') }}" class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Faqs') }}
+                        </p>
+                    </a>
+
+                </li>
+
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">

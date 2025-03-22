@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->integer("page_id")->nullable();
-            $table->json("question")->nullable();
-            $table->json("ans")->nullable();
+            $table->foreignId('group_id')->constrained()->onDelete('cascade');  // Relating to a group
+            $table->json('question');                  // {"en": "What is the process?", "ar": "ما هي العملية؟"}
+            $table->json('answer');                    // {"en": "The process is simple...", "ar": "العملية بسيطة..."}
+            $table->integer('order_no')->default(0);   // Order for sorting FAQs
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

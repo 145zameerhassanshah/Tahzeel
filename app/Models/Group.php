@@ -38,4 +38,18 @@ class Group extends Model
     {
         return $this->hasMany(SectionTitle::class);
     }
+    public function callToActions()
+    {
+        return $this->hasMany(CallToAction::class);
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
 }

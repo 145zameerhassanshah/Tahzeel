@@ -5,65 +5,98 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Group;
 use DB;
 
 class FaqController extends Controller
 {
-    public function index()
+
+    public function list($id)
     {
-        $faqs = Faq::all();
-        return view('admin.faq.index', compact('faqs'));
+        $faqs = Faq::where('group_id', $id)->get();
+        $group = Group::find($id);
+        return view('admin.faq.list', compact('faqs', 'id', 'group'));
     }
 
-    public function create()
+    public function index()
     {
-        $pages = DB::table("pages")->get();
-        return view('admin.faq.add', compact("pages"));
+        $groups = Group::where('type', 'faq')->get();
+        return view('admin.faq.index', compact('groups'));
+    }
+
+    public function create(Request $request)
+    {
+        $group = Group::find($request->id);
+        return view('admin.faq.add', compact("group"));
     }
 
     public function store(Request $request)
     {
-
         $request->validate([
-            'page_id' => 'nullable|integer',
+            'group_id' => 'required|exists:groups,id',
             'question.en' => 'required|string',
             'question.ar' => 'required|string',
-            'ans.en' => 'required|string',
-            'ans.ar' => 'required|string',
+            'answer.en' => 'required|string',
+            'answer.ar' => 'required|string',
+            'status' => 'required',
+            'order_no' => 'required',
         ]);
 
         $faq = new Faq();
-        $faq->page_id = $request->input('page_id');
-        $faq->setTranslations('question', $request->input('question'));
-        $faq->setTranslations('ans', $request->input('ans'));
+        $faq->group_id = $request->group_id;
+
+        $faq->question = json_encode([
+            'en' => $request->question['en'],
+            'ar' => $request->question['ar']
+        ]);
+
+        $faq->answer = json_encode([
+            'en' => $request->answer['en'],
+            'ar' => $request->answer['ar']
+        ]);
+
+        $faq->order_no = $request->order_no;
+        $faq->status = $request->status;
+
         $faq->save();
+
         $notification = array(
             'message' => 'FAQ added successfully',
             'alert' => 'success',
         );
 
-        return redirect()->route('faqs.index')->with('notification', $notification);
+        return redirect()->route('admin.faq.list', $faq->group_id)->with('notification', $notification);
     }
 
     public function edit(Faq $faq)
     {
-        $pages = DB::table("pages")->get();
-        return view('admin.faq.edit', compact('faq', 'pages'));
+        return view('admin.faq.edit', compact('faq'));
     }
 
     public function update(Request $request, Faq $faq)
     {
         $request->validate([
-            'page_id' => 'nullable|integer',
             'question.en' => 'required|string',
             'question.ar' => 'required|string',
-            'ans.en' => 'required|string',
-            'ans.ar' => 'required|string',
+            'answer.en' => 'required|string',
+            'answer.ar' => 'required|string',
+            'status' => 'required',
+            'order_no' => 'required',
         ]);
 
-        $faq->page_id = $request->input('page_id');
-        $faq->setTranslations('question', $request->input('question'));
-        $faq->setTranslations('ans', $request->input('ans'));
+        $faq->question = json_encode([
+            'en' => $request->question['en'],
+            'ar' => $request->question['ar']
+        ]);
+
+        $faq->answer = json_encode([
+            'en' => $request->answer['en'],
+            'ar' => $request->answer['ar']
+        ]);
+
+        $faq->order_no = $request->order_no;
+        $faq->status = $request->status;
+
         $faq->save();
 
 
@@ -72,7 +105,7 @@ class FaqController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('faqs.index')->with('notification', $notification);
+        return redirect()->route('admin.faq.list', $faq->group_id)->with('notification', $notification);
     }
 
     public function destroy(Faq $faq)
@@ -83,6 +116,6 @@ class FaqController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('faqs.index')->with('notification', $notification);
+        return redirect()->back()->with('notification', $notification);
     }
 }

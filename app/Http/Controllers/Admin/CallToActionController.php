@@ -11,14 +11,14 @@ class CallToActionController extends Controller
 {
     public function list($id)
     {
-        $callToActions = CallToAction::where('group_id', $id)->orderBy('order_no', 'asc')->get();
+        $callToActions = CallToAction::where('group_id', $id)->get();
         $group = Group::find($id);
         return view('admin.call-to-action.list', compact('callToActions', 'id', 'group'));
     }
 
     public function index(Request $request)
     {
-        $groups = Group::where('type', 'procedure')->get();
+        $groups = Group::where('type', 'cta')->get();
         return view('admin.call-to-action.index', compact('groups'));
     }
 
@@ -31,13 +31,13 @@ class CallToActionController extends Controller
     // Store CallToAction
     public function store(Request $request)
     {
+
         $request->validate([
             'group_id' => 'required|exists:groups,id',
             'title' => 'required|max:250',
-            'icon' => 'required|max:250',
             'subtitle' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'button_text' => 'required|max:250',
+            'button_link' => 'required|url|max:250',
             'status' => 'required',
         ]);
 
@@ -101,10 +101,9 @@ class CallToActionController extends Controller
 
         $request->validate([
             'title' => 'required|max:250',
-            'icon' => 'required|max:250',
             'subtitle' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'button_text' => 'required|max:250',
+            'button_link' => 'required|url|max:250',
             'status' => 'required',
         ]);
 
