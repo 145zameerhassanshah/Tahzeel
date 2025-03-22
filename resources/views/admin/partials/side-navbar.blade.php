@@ -221,8 +221,8 @@
 
 
                 {{-- Feature --}}
-                <li class="nav-item {{ Route::currentRouteName() == 'admin.feature.index' ? 'menu-open' : '' }}">
-                    <a href="{{ route('admin.feature.index') }}" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route('admin.feature.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('Features') }}
@@ -231,7 +231,19 @@
 
                 </li>
 
-                {{-- Feature --}}
+                {{-- End Feature --}}
+
+
+                {{-- Procedure --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.procedure.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedure.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Procedures') }}
+                        </p>
+                    </a>
+
+                </li>
 
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">

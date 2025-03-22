@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\BcategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BulkDeleteController;
+use App\Http\Controllers\Admin\CallToActionController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GcategoryController;
 use App\Http\Controllers\Admin\JcategoryController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\ProcedureController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceSectionController;
@@ -171,8 +173,27 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
 
-        // Service Category Routes
+        // Procedure Routes
+        Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
+        Route::get('/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedure.list');
+        Route::get('/procedure/{id}/add', [ProcedureController::class, 'add'])->name('admin.procedure.add');
+        Route::post('/procedure/store', [ProcedureController::class, 'store'])->name('admin.procedure.store');
+        Route::get('/procedure/edit/{id}', [ProcedureController::class, 'edit'])->name('admin.procedure.edit');
+        Route::post('/procedure/update/{id}', [ProcedureController::class, 'update'])->name('admin.procedure.update');
+        Route::post('/procedure/delete/{id}', [ProcedureController::class, 'delete'])->name('admin.procedure.delete');
 
+
+        // Call To Action Routes
+        Route::get('/call-to-actions', [CallToActionController::class, 'index'])->name('admin.call-to-action.index');
+        Route::get('/call-to-actions/{id}/list', [CallToActionController::class, 'list'])->name('admin.call-to-action.list');
+        Route::get('/call-to-action/{id}/add', [CallToActionController::class, 'add'])->name('admin.call-to-action.add');
+        Route::post('/call-to-action/store', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
+        Route::get('/call-to-action/edit/{id}', [CallToActionController::class, 'edit'])->name('admin.call-to-action.edit');
+        Route::post('/call-to-action/update/{id}', [CallToActionController::class, 'update'])->name('admin.call-to-action.update');
+        Route::post('/call-to-action/delete/{id}', [CallToActionController::class, 'delete'])->name('admin.call-to-action.delete');
+
+
+        // Service Category Routes
         Route::get('/service-category', [ServiceCategoryController::class, 'index'])->name('admin.service.category.index');
         Route::get('/service-category/add', [ServiceCategoryController::class, 'add'])->name('admin.service.category.add');
         Route::post('/service-category/store', [ServiceCategoryController::class, 'store'])->name('admin.service.category.store');
