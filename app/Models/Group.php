@@ -19,4 +19,9 @@ class Group extends Model
     {
         return $this->hasMany(Feature::class);
     }
+
+    public function procedures()
+    {
+        return $this->hasMany(Procedure::class);
+    }
 }
