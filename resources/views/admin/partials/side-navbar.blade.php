@@ -222,7 +222,7 @@
 
                 {{-- Feature --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.feature.index' ? 'menu-open' : '' }}">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('admin.feature.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('Features') }}
