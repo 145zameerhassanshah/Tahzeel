@@ -26,6 +26,7 @@ class GroupsTableSeeder extends Seeder
             ['name' => 'documents_required_section', 'type' => 'documents_required', 'description' => null],
             ['name' => 'procedure_section', 'type' => 'procedure', 'description' => null],
             ['name' => 'call_to_action', 'type' => 'cta', 'description' => null],
+            ['name' => 'Sec Title', 'type' => 'section_title', 'description' => null],
         ];
 
         foreach ($groups as &$group) {
