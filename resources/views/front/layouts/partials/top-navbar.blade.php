@@ -44,17 +44,17 @@
                                         <li class="nav-item"><a class="dropdown-item" 
                                                 href="{{ route('front.entry.permit') }}">Entry
                                                 Permits</a></li>
-                                        <li class="nav-item"><a class="dropdown-item" href="#">Change
-                                                Status</a></li>
+                                        {{-- <li class="nav-item"><a class="dropdown-item" href="#">Change
+                                                Status</a></li> --}}
                                         <li class="nav-item"><a class="dropdown-item"
                                                 href="{{ route('front.visit.visa') }}">Visit Visas</a></li>
                                         <li class="nav-item"><a class="dropdown-item"
                                                 href="{{ route('front.domestic.worker.visa') }}">Domestic Worker
                                                 Visa</a></li>
-                                        <li class="nav-item"><a class="dropdown-item" href="#">Travel
+                                        {{-- <li class="nav-item"><a class="dropdown-item" href="#">Travel
                                                 History</a></li>
                                         <li class="nav-item"><a class="dropdown-item" href="#">Absconding
-                                                Removal & Overstay Fines</a></li>
+                                                Removal & Overstay Fines</a></li> --}}
 
 
 
