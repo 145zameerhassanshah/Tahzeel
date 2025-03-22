@@ -31,18 +31,7 @@
                                 <h3 class="card-title">{{ __('Add Testimonial') }}</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="page_id">{{ __('Page') }}</label>
-                                    <select name="page_id" id="page_id" class="form-control">
-                                        <option value="" disabled selected>{{ __('Select Page') }}</option>
-                                        @foreach ($pages as $page)
-                                            <option value="{{ $page->id }}">{{ $page->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('page_id')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <input type="hidden" name="group_id" value="{{ $group->id }}">
 
                                 <!-- Name Field -->
                                 <div class="form-group">
@@ -54,20 +43,31 @@
                                     @enderror
                                 </div>
 
-                                <!-- Testimonial Fields (Multilingual) -->
+                                <div class="col-12 mt-2">
+                                    <label class="control-label">{{ __('Order') }}<span
+                                            class="text-danger">*</span></label>
+
+                                    <input type="number" class="form-control" name="order_no"
+                                        placeholder="{{ __('Order') }}" value="{{ old('order_no') }}">
+                                    @if ($errors->has('order_no'))
+                                        <p class="text-danger"> {{ $errors->first('order_no') }} </p>
+                                    @endif
+                                </div>
+
+                                <!-- Feedback Fields (Multilingual) -->
                                 <div class="form-group">
-                                    <label for="testimonial_en">{{ __('Testimonial (English)') }}</label>
-                                    <textarea name="testimonial[en]" id="testimonial_en" class="form-control"
-                                              placeholder="Enter testimonial in English" rows="4" required></textarea>
-                                    @error('testimonial.en')
+                                    <label for="feedback_en">{{ __('Feedback (English)') }}</label>
+                                    <textarea name="feedback[en]" id="feedback_en" class="form-control"
+                                                placeholder="Enter feedback in English" rows="4" required></textarea>
+                                    @error('feedback.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="testimonial_ar">{{ __('Testimonial (Arabic)') }}</label>
-                                    <textarea name="testimonial[ar]" id="testimonial_ar" class="form-control"
-                                              placeholder="Enter testimonial in Arabic" rows="4" required></textarea>
-                                    @error('testimonial.ar')
+                                    <label for="feedback_ar">{{ __('Feedback (Arabic)') }}</label>
+                                    <textarea name="feedback[ar]" id="feedback_ar" class="form-control"
+                                                placeholder="Enter feedback in Arabic" rows="4" required></textarea>
+                                    @error('feedback.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -88,6 +88,19 @@
                                     @error('designation.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
+                                </div>
+
+                                <div class="col-12 mt-2">
+                                    <label for="status" class="control-label">{{ __('Status') }}<span
+                                            class="text-danger">*</span></label>
+
+                                    <select class="form-control" name="status">
+                                        <option value="inactive">{{ __('InActive') }}</option>
+                                        <option value="active">{{ __('Active') }}</option>
+                                    </select>
+                                    @if ($errors->has('status'))
+                                        <p class="text-danger"> {{ $errors->first('status') }} </p>
+                                    @endif
                                 </div>
 
                                 <!-- Image Upload Field -->

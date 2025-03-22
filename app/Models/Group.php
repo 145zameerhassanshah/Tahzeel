@@ -29,4 +29,9 @@ class Group extends Model
     {
         return $this->hasMany(CallToAction::class);
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
+    }
 }

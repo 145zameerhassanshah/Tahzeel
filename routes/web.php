@@ -261,6 +261,7 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
     Route::resource('faqs', FaqController::class);
     Route::resource('testimonials', TestimonialController::class);
+    Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
 });
 
 // all admin routes write in admin middleware

@@ -255,6 +255,17 @@
 
                 </li>
 
+                {{-- Testimonial --}}
+                <li class="nav-item">
+                    <a href="{{ route('testimonials.index') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Testimonials') }}
+                        </p>
+                    </a>
+
+                </li>
+
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">

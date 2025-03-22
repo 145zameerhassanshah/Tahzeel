@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-
-            $table->integer("page_id")->nullable();
+            $table->foreignId('group_id')->constrained()->onDelete('cascade');  // Relating to a group
             $table->json('name');
-            $table->json('testimonial');
+            $table->json('feedback');                      // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->json('designation')->nullable();
-            $table->string('img')->nullable();
+            $table->integer('order_no')->default(0);       // Order for sorting testimonials
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
