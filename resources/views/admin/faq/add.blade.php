@@ -30,18 +30,17 @@
                                 <h3 class="card-title">{{ __('Add FAQ') }}</h3>
                             </div>
                             <div class="card-body">
-                                <!-- Page Selection -->
-                                <div class="form-group">
-                                    <label for="page_id">{{ __('Page') }}</label>
-                                    <select name="page_id" id="page_id" class="form-control">
-                                        <option value="" disabled selected>{{ __('Select Page') }}</option>
-                                        @foreach ($pages as $page)
-                                            <option value="{{ $page->id }}">{{ $page->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('page_id')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
+                                <input type="hidden" name="group_id" value="{{ $group->id }}">
+
+                                <div class="col-12 mt-2">
+                                    <label class="control-label">{{ __('Order') }}<span
+                                            class="text-danger">*</span></label>
+
+                                    <input type="number" class="form-control" name="order_no"
+                                        placeholder="{{ __('Order') }}" value="{{ old('order_no') }}">
+                                    @if ($errors->has('order_no'))
+                                        <p class="text-danger"> {{ $errors->first('order_no') }} </p>
+                                    @endif
                                 </div>
 
                                 <!-- Question Fields -->
@@ -65,7 +64,7 @@
                                 <!-- Answer Fields -->
                                 <div class="form-group">
                                     <label for="ans_en">{{ __('Answer (English)') }}</label>
-                                    <textarea name="ans[en]" id="ans_en" class="form-control" placeholder="Enter answer in English" rows="4"
+                                    <textarea name="answer[en]" id="ans_en" class="form-control" placeholder="Enter answer in English" rows="4"
                                         required></textarea>
                                     @error('ans.en')
                                         <p class="text-danger">{{ $message }}</p>
@@ -73,12 +72,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="ans_ar">{{ __('Answer (Arabic)') }}</label>
-                                    <textarea name="ans[ar]" id="ans_ar" class="form-control" placeholder="Enter answer in Arabic" rows="4"
+                                    <textarea name="answer[ar]" id="ans_ar" class="form-control" placeholder="Enter answer in Arabic" rows="4"
                                         required></textarea>
                                     @error('ans.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+
+                                <div class="col-12 mt-2">
+                                    <label for="status" class="control-label">{{ __('Status') }}<span
+                                            class="text-danger">*</span></label>
+
+                                    <select class="form-control" name="status">
+                                        <option value="inactive">{{ __('InActive') }}</option>
+                                        <option value="active">{{ __('Active') }}</option>
+                                    </select>
+                                    @if ($errors->has('status'))
+                                        <p class="text-danger"> {{ $errors->first('status') }} </p>
+                                    @endif
+                                </div>
+
+
                             </div>
                             <div class="card-footer text-center">
                                 <button type="submit" class="btn btn-success">{{ __('Add FAQ') }}</button>

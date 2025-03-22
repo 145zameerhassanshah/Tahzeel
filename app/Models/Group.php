@@ -20,8 +20,36 @@ class Group extends Model
         return $this->hasMany(Feature::class);
     }
 
+    public function heroSections()
+    {
+        return $this->hasMany(HeroSection::class);
+    }
+
+    public function introductionSections()
+    {
+        return $this->hasMany(IntroductionSection::class);
+    }
+
     public function procedures()
     {
         return $this->hasMany(Procedure::class);
+    }
+    public function sectionTitles()
+    {
+        return $this->hasMany(SectionTitle::class);
+    }
+    public function callToActions()
+    {
+        return $this->hasMany(CallToAction::class);
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
     }
 }

@@ -31,33 +31,29 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <!-- Page Selection -->
-                            <div class="form-group">
-                                <label for="page_id">{{ __('Page') }}</label>
-                                <select name="page_id" id="page_id" class="form-control">
-                                    <option value="" disabled>{{ __('Select Page') }}</option>
-                                    @foreach ($pages as $page)
-                                        <option value="{{ $page->id }}" {{ $faq->page_id == $page->id ? 'selected' : '' }}>
-                                            {{ $page->title }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('page_id')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+
+                            <div class="col-12 mt-2">
+                                <label class="control-label">{{ __('Order') }}<span
+                                        class="text-danger">*</span></label>
+
+                                <input type="number" class="form-control" name="order_no"
+                                    placeholder="{{ __('Order') }}" value="{{ old('order_no') ?? $faq->order_no }}">
+                                @if ($errors->has('order_no'))
+                                    <p class="text-danger"> {{ $errors->first('order_no') }} </p>
+                                @endif
                             </div>
 
                             <!-- Question Fields -->
                             <div class="form-group">
                                 <label for="question_en">{{ __('Question (English)') }}</label>
-                                <input type="text" name="question[en]" id="question_en" class="form-control" value="{{ $faq->getTranslation('question', 'en') }}" required>
+                                <input type="text" name="question[en]" id="question_en" class="form-control" value="{{ json_decode($faq->question)->en }}" required>
                                 @error('question.en')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="question_ar">{{ __('Question (Arabic)') }}</label>
-                                <input type="text" name="question[ar]" id="question_ar" class="form-control" value="{{ $faq->getTranslation('question', 'ar') }}" required>
+                                <input type="text" name="question[ar]" id="question_ar" class="form-control" value="{{ json_decode($faq->question)->ar }}" required>
                                 @error('question.ar')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -66,22 +62,36 @@
                             <!-- Answer Fields -->
                             <div class="form-group">
                                 <label for="ans_en">{{ __('Answer (English)') }}</label>
-                                <textarea name="ans[en]" id="ans_en" class="form-control" rows="4" required>{{ $faq->getTranslation('ans', 'en') }}</textarea>
-                                @error('ans.en')
+                                <textarea name="answer[en]" id="ans_en" class="form-control" rows="4" required>{{ json_decode($faq->answer)->en }}</textarea>
+                                @error('answer.en')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="ans_ar">{{ __('Answer (Arabic)') }}</label>
-                                <textarea name="ans[ar]" id="ans_ar" class="form-control" rows="4" required>{{ $faq->getTranslation('ans', 'ar') }}</textarea>
-                                @error('ans.ar')
+                                <textarea name="answer[ar]" id="ans_ar" class="form-control" rows="4" required>{{ json_decode($faq->answer)->ar }}</textarea>
+                                @error('answer.ar')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+
+                            <div class="col-12 mt-2">
+                                <label for="status" class="control-label">{{ __('Status') }}<span
+                                        class="text-danger">*</span></label>
+
+                                <select class="form-control" name="status">
+                                    <option value="inactive" {{ $faq->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
+                                    <option value="active" {{ $faq->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                </select>
+                                @if ($errors->has('status'))
+                                    <p class="text-danger"> {{ $errors->first('status') }} </p>
+                                @endif
+                            </div>
+
+
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-success">{{ __('Update FAQ') }}</button>
-                            <a href="{{ route('faqs.index') }}" class="btn btn-secondary">{{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

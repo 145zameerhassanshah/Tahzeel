@@ -13,4 +13,9 @@ class Testimonial extends Model
     public $translatable = ['testimonial', 'designation'];
 
     protected $fillable = ['name', 'testimonial', 'designation', 'image'];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

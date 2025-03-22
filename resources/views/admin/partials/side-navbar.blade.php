@@ -233,6 +233,45 @@
 
                 {{-- End Feature --}}
 
+                {{-- Section Title --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.section_title.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.section_title.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Section Titles') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- End Section Title --}}
+                
+                {{-- Introduction Section --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.introduction_section.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.introduction_section.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Introduction Sections') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- End Introduction Section --}}
+
+                {{-- Hero Section --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.hero_section.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.hero_section.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Hero Sections') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- End Hero Section --}}
+
 
                 {{-- Procedure --}}
                 <li class="nav-item">
@@ -240,6 +279,39 @@
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('Procedures') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Call To Action --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.call-to-action.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.call-to-action.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('CallToActions') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Testimonial --}}
+                <li class="nav-item">
+                    <a href="{{ route('testimonials.index') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Testimonials') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Faq --}}
+                <li class="nav-item">
+                    <a href="{{ route('faqs.index') }}" class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Faqs') }}
                         </p>
                     </a>
 

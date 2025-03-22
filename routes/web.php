@@ -13,8 +13,11 @@ use App\Http\Controllers\Admin\ProcedureController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceSectionController;
+use App\Http\Controllers\Admin\IntroductionSectionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SectionTitleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -172,13 +175,39 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
          Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
+         // SectionTitle Routes
+         Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
+         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
+         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
+         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
+         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
+         Route::post('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
+
+         // SectionTitle Routes
+         Route::get('/introduction-sections', [IntroductionSectionController::class, 'index'])->name('admin.introduction_section.index');
+         Route::get('/introduction-sections/{id}/list', [IntroductionSectionController::class, 'list'])->name('admin.introduction_section.list');
+         Route::get('/introduction-section/{id}/add', [IntroductionSectionController::class, 'add'])->name('admin.introduction_section.add');
+         Route::post('/introduction-section/store', [IntroductionSectionController::class, 'store'])->name('admin.introduction_section.store');
+         Route::get('/introduction-section/edit/{id}', [IntroductionSectionController::class, 'edit'])->name('admin.introduction_section.edit');
+         Route::post('/introduction-section/update/{id}', [IntroductionSectionController::class, 'update'])->name('admin.introduction_section.update');
+         Route::post('/introduction-section/delete/{id}', [IntroductionSectionController::class, 'delete'])->name('admin.introduction_section.delete');
+
+         // SectionTitle Routes
+         Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
+         Route::get('/hero-sections/{id}/list', [HeroSectionController::class, 'list'])->name('admin.hero_section.list');
+         Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
+         Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
+         Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
+         Route::post('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
+         Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
 
         // Procedure Routes
         Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
         Route::get('/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedure.list');
         Route::get('/procedure/{id}/add', [ProcedureController::class, 'add'])->name('admin.procedure.add');
         Route::post('/procedure/store', [ProcedureController::class, 'store'])->name('admin.procedure.store');
-        Route::get('/procedure/edit/{id}', [ProcedureController::class, 'edit'])->name('admin.procedure.edit');
+        Route::get('/procedure/edit/{id}', [ProcedureController::class, 'e[ProcedureController::cladit'])->name('admin.procedure.edit');
         Route::post('/procedure/update/{id}', [ProcedureController::class, 'update'])->name('admin.procedure.update');
         Route::post('/procedure/delete/{id}', [ProcedureController::class, 'delete'])->name('admin.procedure.delete');
 
@@ -260,7 +289,9 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
     Route::resource('faqs', FaqController::class);
+    Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
     Route::resource('testimonials', TestimonialController::class);
+    Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
 });
 
 // all admin routes write in admin middleware
