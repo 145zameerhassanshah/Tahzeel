@@ -21,10 +21,10 @@
 
                                 <div class="row">
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span
+                                        <label class="control-label" for="title">{{ __('Title') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="title"
+                                        <input type="text" class="form-control" name="title" id="title"
                                             placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($hero_section->title)->en }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
@@ -32,10 +32,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="subtitle"
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle"
                                             placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($hero_section->subtitle)->en }}">
                                         @if ($errors->has('subtitle'))
                                             <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
@@ -43,10 +43,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Description') }}<span
+                                        <label class="control-label" for="description">{{ __('Description') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <textarea class="form-control" name="description" placeholder="Description">{{ old('description') ?? json_decode($hero_section->description)->en }}</textarea>
+                                        <textarea class="form-control" name="description" id="description" placeholder="Description">{{ old('description') ?? json_decode($hero_section->description)->en }}</textarea>
                                         @if ($errors->has('description'))
                                             <p class="text-danger"> {{ $errors->first('description') }} </p>
                                         @endif
@@ -54,7 +54,7 @@
 
 
                                     <div class="col-12 mt-2">
-                                        <label for="background_image" class="control-label">{{ __('Background Images') }}<span class="text-danger">*</span></label>
+                                        <label for="background_images" class="control-label">{{ __('Background Images') }}<span class="text-danger">*</span></label>
                                         <input type="file" name="background_image" id="background_images" class="form-control">
                                         @if ($errors->has('background_image'))
                                             <p class="text-danger"> {{ $errors->first('background_image') }} </p>
@@ -65,7 +65,7 @@
                                         <label for="status" class="control-label">{{ __('Status') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive" {{ $hero_section->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
                                             <option value="active" {{ $hero_section->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
                                         </select>

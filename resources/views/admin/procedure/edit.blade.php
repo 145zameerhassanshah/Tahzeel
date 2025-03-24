@@ -21,10 +21,10 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <label class="control-label">{{ __('Icon') }}<span
+                                        <label class="control-label" for="icon">{{ __('Icon') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="icon"
+                                        <input type="text" class="form-control" name="icon" id="icon"
                                             placeholder="{{ __('Icon') }}" value="{{ old('icon') ?? json_decode($procedure->icon)->en }}">
                                         @if ($errors->has('icon'))
                                             <p class="text-danger"> {{ $errors->first('icon') }} </p>
@@ -32,10 +32,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span
+                                        <label class="control-label" for="title">{{ __('Title') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="title"
+                                        <input type="text" class="form-control" name="title" id="title"
                                             placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($procedure->title)->en }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
@@ -43,10 +43,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="subtitle"
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle"
                                             placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($procedure->subtitle)->en }}">
                                         @if ($errors->has('subtitle'))
                                             <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
@@ -54,10 +54,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Description') }}<span
+                                        <label class="control-label" for="description">{{ __('Description') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <textarea class="form-control" name="description" placeholder="Description">{{ old('description') ?? json_decode($procedure->description)->en }}</textarea>
+                                        <textarea class="form-control" name="description" id="description" placeholder="Description">{{ old('description') ?? json_decode($procedure->description)->en }}</textarea>
                                         @if ($errors->has('description'))
                                             <p class="text-danger"> {{ $errors->first('description') }} </p>
                                         @endif
@@ -65,10 +65,10 @@
 
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Order') }}<span
+                                        <label class="control-label" for="order_no">{{ __('Order') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="number" class="form-control" name="order_no"
+                                        <input type="number" class="form-control" name="order_no" id="order_no"
                                             placeholder="{{ __('Order') }}" value="{{ old('order_no') ?? $procedure->order_no }}">
                                         @if ($errors->has('order_no'))
                                             <p class="text-danger"> {{ $errors->first('order_no') }} </p>
@@ -79,7 +79,7 @@
                                         <label for="status" class="control-label">{{ __('Status') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive" {{ $procedure->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
                                             <option value="active" {{ $procedure->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
                                         </select>

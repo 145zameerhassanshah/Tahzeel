@@ -21,24 +21,24 @@
                                 <div class="row">
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="title" placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($introduction_section->title)->en }}">
+                                        <label class="control-label" for="title">{{ __('Title') }}<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($introduction_section->title)->en }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
                                         @endif
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="subtitle" placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($introduction_section->subtitle)->en }}">
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($introduction_section->subtitle)->en }}">
                                         @if ($errors->has('subtitle'))
                                             <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
                                         @endif
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Description') }}<span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="description" placeholder="Description">{{ old('description') ?? json_decode($introduction_section->description)->en }}</textarea>
+                                        <label class="control-label" for="description">{{ __('Description') }}<span class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="description" id="description" placeholder="Description">{{ old('description') ?? json_decode($introduction_section->description)->en }}</textarea>
                                         @if ($errors->has('description'))
                                             <p class="text-danger"> {{ $errors->first('description') }} </p>
                                         @endif
@@ -76,7 +76,7 @@
 
                                     <div class="col-12 mt-2">
                                         <label for="status" class="control-label">{{ __('Status') }}<span class="text-danger">*</span></label>
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive" {{ $introduction_section->status == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                                             <option value="active" {{ $introduction_section->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
                                         </select>

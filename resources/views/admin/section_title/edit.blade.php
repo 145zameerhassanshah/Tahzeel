@@ -25,10 +25,10 @@
                                 <div class="row">
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span
+                                        <label class="control-label" for="title">{{ __('Title') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="title"
+                                        <input type="text" class="form-control" name="title" id="title"
                                             placeholder="{{ __('Title') }}"
                                             value="{{ old('title') ?? json_decode($section_title->title)->en }}">
                                         @if ($errors->has('title'))
@@ -37,10 +37,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="subtitle"
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle"
                                             placeholder="{{ __('Subtitle') }}"
                                             value="{{ old('subtitle') ?? json_decode($section_title->subtitle)->en }}">
                                         @if ($errors->has('subtitle'))
@@ -52,7 +52,7 @@
                                         <label for="type" class="control-label">{{ __('Type') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="type">
+                                        <select class="form-control" name="type" id="type">
                                             @foreach ($types as $type)
                                                 <option value="{{ $type }}" {{ $type == $section_title->type ? 'selected' : '' }}>
                                                     {{ ucfirst(str_replace('_', ' ', $type)) }}</option>
@@ -67,7 +67,7 @@
                                         <label for="status" class="control-label">{{ __('Status') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive" {{ $section_title->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
                                             <option value="active" {{ $section_title->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
                                         </select>

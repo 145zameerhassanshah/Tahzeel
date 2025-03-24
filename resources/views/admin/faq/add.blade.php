@@ -32,11 +32,11 @@
                             <div class="card-body">
                                 <input type="hidden" name="group_id" value="{{ $group->id }}">
 
-                                <div class="col-12 mt-2">
-                                    <label class="control-label">{{ __('Order') }}<span
+                                <div class="form-group">
+                                    <label class="control-label" for="order_no">{{ __('Order') }}<span
                                             class="text-danger">*</span></label>
 
-                                    <input type="number" class="form-control" name="order_no"
+                                    <input type="number" class="form-control" name="order_no" id="order_no"
                                         placeholder="{{ __('Order') }}" value="{{ old('order_no') }}">
                                     @if ($errors->has('order_no'))
                                         <p class="text-danger"> {{ $errors->first('order_no') }} </p>
@@ -79,11 +79,11 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-12 mt-2">
+                                <div class="form-group">
                                     <label for="status" class="control-label">{{ __('Status') }}<span
                                             class="text-danger">*</span></label>
 
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" id="status">
                                         <option value="inactive">{{ __('InActive') }}</option>
                                         <option value="active">{{ __('Active') }}</option>
                                     </select>

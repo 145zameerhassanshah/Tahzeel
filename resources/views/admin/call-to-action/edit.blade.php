@@ -22,10 +22,10 @@
                                 <div class="row">
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span
+                                        <label class="control-label" for="title">{{ __('Title') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="title"
+                                        <input type="text" class="form-control" name="title" id="title"
                                             placeholder="{{ __('Title') }}" value="{{ old('title') ?? json_decode($call_to_action->title)->en }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
@@ -33,10 +33,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="subtitle"
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle"
                                             placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') ?? json_decode($call_to_action->subtitle)->en }}">
                                         @if ($errors->has('subtitle'))
                                             <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
@@ -44,10 +44,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Button Text') }}<span
+                                        <label class="control-label" for="button_text">{{ __('Button Text') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="button_text"
+                                        <input type="text" class="form-control" name="button_text" id="button_text"
                                             placeholder="{{ __('Button Text') }}" value="{{ old('button_text') ?? json_decode($call_to_action->button_text)->en }}">
                                         @if ($errors->has('button_text'))
                                             <p class="text-danger"> {{ $errors->first('button_text') }} </p>
@@ -56,10 +56,10 @@
 
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Button Link') }}<span
+                                        <label class="control-label" for="button_link">{{ __('Button Link') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="button_link"
+                                        <input type="text" class="form-control" name="button_link" id="button_link"
                                             placeholder="{{ __('Button Link') }}" value="{{ old('button_link') ?? $call_to_action->button_link }}">
                                         @if ($errors->has('button_link'))
                                             <p class="text-danger"> {{ $errors->first('button_link') }} </p>
@@ -70,7 +70,7 @@
                                         <label for="status" class="control-label">{{ __('Status') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive" {{ $call_to_action->status == 'inactive' ? 'selected' : '' }}>{{ __('InActive') }}</option>
                                             <option value="active" {{ $call_to_action->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
                                         </select>
