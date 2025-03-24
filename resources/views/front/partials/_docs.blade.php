@@ -1,0 +1,47 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="row d-flex justify-content-center mb-10 mt-10">
+            <div class="col-md-8 text-center">
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Essential Documents for a Hassle-Free VAT Process</h2>
+                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">Documents Required for <span class="text-green">
+                    VAT Registration & Compliance </span></h3>
+                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.
+
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="accordion accordion-wrapper" id="accordionIconExample">
+                    @foreach($docs as $index => $doc)
+                        <div class="card accordion-item icon">
+                            <div class="card-header" id="headingIcon{{ $index }}">
+                                <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseIcon{{ $index }}"
+                                        aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-controls="collapseIcon{{ $index }}">
+                                    <span><i class="{{ $icon }}"></i></span>{{ $title }}
+                                </button>
+                            </div>
+                            <!--/.card-header -->
+                            <div id="collapseIcon{{ $index }}"
+                                 class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                 aria-labelledby="headingIcon{{ $index }}"
+                                 data-bs-parent="#accordionIconExample">
+                                <div class="card-body">
+                                    <p>{{ $description }}</p>
+                                </div>
+                                <!--/.card-body -->
+                            </div>
+                            <!--/.accordion-collapse -->
+                        </div>
+                        <!--/.accordion-item -->
+                    @endforeach
+                </div>
+
+                <!--/.accordion -->
+            </div>
+        </div>
+    </div>
+</div>

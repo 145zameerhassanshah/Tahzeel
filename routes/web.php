@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeatureImageController;
 use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\PageController;
 
 use App\Http\Controllers\Admin\NotificationController;
 
@@ -97,7 +98,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         // bulk delte Route
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
 
+        // Page Routes
 
+        Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
+        Route::get('/add-page', [PageController::class, 'create'])->name('admin.page.create');
+        Route::get('/add-groups/{id}', [PageController::class, 'addGroupstoPage'])->name('admin.page.add-groups');
+        Route::post('/store-groups/{id}', [PageController::class, 'storeGroupstoPage'])->name('admin.page.store-groups');
+        Route::get('/edit-page-groups/{id}', [PageController::class, 'edit'])->name('admin.page.edit-groups');
+        Route::post('/update-page-groups/{id}', [PageController::class, 'update'])->name('admin.page.update-groups');
+        Route::post('/delete--page-groups/{id}', [PageController::class, 'deletePageGroup'])->name('admin.page.delete-groups');
         // Group Routes
 
         Route::get('/groups', [GroupController::class, 'index'])->name('admin.group.index');
@@ -355,7 +364,7 @@ Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('
 Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
 Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
 Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
-Route::get('/vat-business', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
+
 Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
 
 Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
@@ -363,4 +372,10 @@ Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('f
 
 Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 
+
+
+
+
+
+Route::get('/vat-registration-for-businesses', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
 

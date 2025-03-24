@@ -61,7 +61,7 @@ class HeroSectionController extends Controller
             $image = $request->file('background_image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads/hero_section'), $filename);
-            $hero_section->background_image = json_encode($filename);
+            $hero_section->background_image = $filename;
         }
 
         $hero_section->save();
@@ -130,7 +130,7 @@ class HeroSectionController extends Controller
             $image = $request->file('background_image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads/hero_section'), $filename);
-            $hero_section->background_image = json_encode($filename);
+            $hero_section->background_image = $filename ;
         }
 
         $hero_section->save();
