@@ -24,6 +24,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\FeatureImageController;
 use App\Http\Controllers\Admin\GroupController;
 
 use App\Http\Controllers\Admin\NotificationController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
+use App\Http\Controllers\Admin\WhyUsImageController;
 use App\Http\Middleware\Localization;
 use App\Models\Enquiry;
 use Illuminate\Support\Facades\Route;
@@ -186,6 +188,26 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
         Route::post('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
+
+
+        // Feature Routes
+        Route::get('/feature-images', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
+        Route::get('/feature-images/{id}/list', [FeatureImageController::class, 'list'])->name('admin.feature-image.list');
+        Route::get('/feature-image/{id}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
+        Route::post('/feature-image/store', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
+        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
+        Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
+        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
+
+
+        // WhyChooseUs Routes
+        Route::get('/why-us-image', [WhyUsImageController::class, 'index'])->name('admin.why-us-image.index');
+        Route::get('/why-us-image/{id}/list', [WhyUsImageController::class, 'list'])->name('admin.why-us-image.list');
+        Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
+        Route::post('/why-us-image/store', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
+        Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
+        Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
+        Route::post('/why-choose-us/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
         // DocumentRequired Routes
         Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');

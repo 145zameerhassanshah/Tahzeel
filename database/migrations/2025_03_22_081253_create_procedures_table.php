@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained()->onDelete('cascade');  // Relating to a group
+            $table->foreignId('group_id')->onDelete('cascade');  // Relating to a group
             $table->json('icon')->nullable();      // 
             $table->json('title');                   // {"en": "jladflaj <span> ", "ar": "عنوان الميزة"}
             $table->json('subtitle')->nullable();    // {"en": "Feature Subtitle", "ar": "العنوان الفرعي للميزة"}

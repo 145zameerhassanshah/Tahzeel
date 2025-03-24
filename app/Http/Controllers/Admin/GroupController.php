@@ -14,7 +14,6 @@ class GroupController extends Controller
         return view('admin.group.index', compact('groups'));
     }
 
-    // Show the form for creating a new group
     public function create()
     {
         $groups = Group::latest()->get();
@@ -26,7 +25,7 @@ class GroupController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:groups',
-            'type' => 'required|in:hero,intro_section,features,faq,why_choose_us,testimonials,documents_required,procedure,cta',
+            'type' => 'required|in:hero,intro_section,features,faq,why_choose_us,why_us_image,feature_image,testimonials,documents_required,procedure,cta',
             'description' => 'nullable|string',
         ]);
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('call_to_actions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained()->onDelete('cascade');  // Relating to a group
+            $table->foreignId('group_id')->onDelete('cascade');  // Relating to a group
             $table->json('title');                     // {"en": "Get in Touch", "ar": "تواصل معنا"}
             $table->json('subtitle')->nullable();      // {"en": "We are here to assist you", "ar": "نحن هنا لمساعدتك"}
             $table->json('button_text');               // {"en": "Contact Us", "ar": "اتصل بنا"}
