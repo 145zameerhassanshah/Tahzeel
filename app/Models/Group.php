@@ -15,6 +15,13 @@ class Group extends Model
         'description',
     ];
 
+    public function pages()
+    {
+        return $this->belongsToMany(Page::class, 'page_groups')
+                    ->withPivot('order_no', 'status')
+                    ->withTimestamps();
+    }
+
     public function features()
     {
         return $this->hasMany(Feature::class);

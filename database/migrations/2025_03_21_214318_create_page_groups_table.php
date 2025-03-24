@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('page_id');
             $table->unsignedBigInteger('group_id');
+            $table->string('group_type');
             $table->integer('order_no')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();

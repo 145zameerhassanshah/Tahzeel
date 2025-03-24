@@ -36,6 +36,30 @@
                 </li>
 
 
+                {{-- Groups --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.page.index' || Route::currentRouteName() == 'admin.page.create' ? 'menu-open' : '' }}">
+                    <a href="{{ route('admin.page.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>
+                            {{ __('Pages') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        {{-- All Pages --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.page.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.page.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Pages') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
                 {{-- Groups --}}
@@ -245,7 +269,7 @@
                 </li>
 
                 {{-- End Section Title --}}
-                
+
                 {{-- Introduction Section --}}
                 <li class="nav-item">
                     <a href="{{ route('admin.introduction_section.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.introduction_section.index' ? 'active' : '' }}">

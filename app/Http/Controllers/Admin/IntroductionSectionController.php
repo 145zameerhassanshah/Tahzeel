@@ -33,9 +33,9 @@ class IntroductionSectionController extends Controller
     {
         $request->validate([
             'group_id'    => 'required|exists:groups,id',
-            'title'       => 'required|max:250',
-            'subtitle'    => 'required|max:250',
-            'description' => 'required|max:250',
+            'title'       => 'required',
+            'subtitle'    => 'required',
+            'description' => 'required',
             'status'      => 'required',
             'type'        => 'required|in:single_image,double_image,tripple_image',
         ]);
@@ -122,9 +122,9 @@ class IntroductionSectionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'       => 'required|max:250',
-            'subtitle'    => 'required|max:250',
-            'description' => 'required|max:250',
+            'title'       => 'required',
+            'subtitle'    => 'required',
+            'description' => 'required',
             'status'      => 'required',
             'type'        => 'required|in:single_image,double_image,tripple_image',
         ]);

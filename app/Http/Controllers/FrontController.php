@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
+
+require_once app_path('helpers/LanguageHelpers.php');
 
 use App\Models\Enquiry;
 use Illuminate\Support\Facades\Validator;
@@ -8,8 +9,21 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Mail\InquiryEmail;
 use App\Models\User;
+use App\Models\Page;
+use App\Models\Group;
+use App\Models\PageGroup;
+use App\Models\CallToAction;
+use App\Models\Faq;
+use App\Models\IntroductionSection;
+use App\Models\Feature;
+use App\Models\HeroSection;
+use App\Models\Testimonial;
+use App\Models\SectionTitle;
 use App\Notifications\InquiryNotification;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
+use App\Helpers\LanguageHelpers;
+
 
 class FrontController extends Controller
 {
@@ -77,12 +91,52 @@ class FrontController extends Controller
         return view('front.otherPages.visaCancellation');
     }
 
-    public function vatBusiness()
-    {
-        return view('front.otherPages.vatBusiness');
-    }
 
-   
+    public function vatBusiness()
+        {
+            // 'hero', 'section_title' , 'intro_section', 'features', 'faq', 'why_choose_us',
+            //'testimonials', 'documents_required', 'procedure', 'cta','img_features'
+
+            app()->setLocale(session('locale', 'en'));
+
+            $locale = app()->getLocale();  // Current language ('en' or 'ar')
+
+            $page = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
+            $pageGroups = PageGroup::where('page_id', $page->id)->get();
+
+            // Get group IDs
+            $hero_ection_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
+            $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
+            $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
+
+
+
+
+              // Fetching only hero_section with localization
+              $hero_section_data = HeroSection::where('group_id', $hero_ection_id)->first();
+              $intro_section_data = IntroductionSection::where('group_id', $intro_section_id)->first();
+              $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
+                                        return localizeSectionTitle($sectionTitle, $locale);
+                                    });
+
+
+
+              // Apply the localization using your helper function
+              $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
+              $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
+              $data['feature_title'] = $section_title_data->where('type', 'feature')->first();
+
+            //  return  $data['feature_title'];
+
+            return view('front.vat.vat-reg-business', $data);
+        }
+
+
+
+
+
+
+
 
     public function DEDbusinessLicense()
     {
@@ -96,7 +150,7 @@ class FrontController extends Controller
 
 
 
-        
+
         if (isset($service)) {
             return view('front.otherPages.test', compact('service'));
         } else {
@@ -137,4 +191,10 @@ class FrontController extends Controller
             'message' => 'Inquiry submitted successfully!',
         ]);
     }
+
+
+
+
+
+
 }
