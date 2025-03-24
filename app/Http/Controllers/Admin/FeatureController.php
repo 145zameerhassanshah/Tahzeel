@@ -38,7 +38,7 @@ class FeatureController extends Controller
             'title' => 'required|max:250',
             'icon' => 'required|max:250',
             'subtitle' => 'required|max:250',
-            'description' => 'required|max:250',
+            'description' => 'required',
             'order_no' => 'required|max:250',
             'status' => 'required',
         ]);
@@ -110,7 +110,7 @@ class FeatureController extends Controller
             'title' => 'required|max:250',
             'icon' => 'required|max:250',
             'subtitle' => 'required|max:250',
-            'description' => 'required|max:250',
+            'description' => 'required',
             'order_no' => 'required|max:250',
             'status' => 'required',
         ]);

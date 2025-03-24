@@ -23,10 +23,10 @@
                                 <div class="row">
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Title') }}<span
+                                        <label class="control-label" for="title">{{ __('Title') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="title"
+                                        <input type="text" class="form-control" name="title" id="title"
                                             placeholder="{{ __('Title') }}" value="{{ old('title') }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger"> {{ $errors->first('title') }} </p>
@@ -34,10 +34,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Subtitle') }}<span
+                                        <label class="control-label" for="subtitle">{{ __('Subtitle') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="subtitle"
+                                        <input type="text" class="form-control" name="subtitle" id="subtitle"
                                             placeholder="{{ __('Subtitle') }}" value="{{ old('subtitle') }}">
                                         @if ($errors->has('subtitle'))
                                             <p class="text-danger"> {{ $errors->first('subtitle') }} </p>
@@ -45,10 +45,10 @@
                                     </div>
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Button Text') }}<span
+                                        <label class="control-label" for="button_text">{{ __('Button Text') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="button_text"
+                                        <input type="text" class="form-control" name="button_text" id="button_text"
                                             placeholder="{{ __('Button Text') }}" value="{{ old('button_text') }}">
                                         @if ($errors->has('button_text'))
                                             <p class="text-danger"> {{ $errors->first('button_text') }} </p>
@@ -57,10 +57,10 @@
 
 
                                     <div class="col-12 mt-2">
-                                        <label class="control-label">{{ __('Button Link') }}<span
+                                        <label class="control-label" for="button_link">{{ __('Button Link') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <input type="text" class="form-control" name="button_link"
+                                        <input type="text" class="form-control" name="button_link" id="button_link"
                                             placeholder="{{ __('Button Link') }}" value="{{ old('button_link') }}">
                                         @if ($errors->has('button_link'))
                                             <p class="text-danger"> {{ $errors->first('button_link') }} </p>
@@ -71,7 +71,7 @@
                                         <label for="status" class="control-label">{{ __('Status') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="inactive">{{ __('InActive') }}</option>
                                             <option value="active">{{ __('Active') }}</option>
                                         </select>
