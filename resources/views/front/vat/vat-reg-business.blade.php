@@ -13,6 +13,10 @@
     @include('front.partials._intro_three_images')
 @endif
 
+@if($docs)
+    @include('front.partials._docs')
+@endif
+
 
     {{-- Key Features --}}
     <div class="container">

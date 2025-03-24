@@ -58,6 +58,22 @@ if (!function_exists('localizeSectionTitle')) {
     }
 }
 
+if (!function_exists('localizeDocumentRequired')) {
+    function localizeDocumentRequired($documentRequired, $locale)
+    {
+        if (!$documentRequired) {
+            return null;
+        }
+
+        // Localize textual fields
+        $documentRequired->title = getLocalizedField($documentRequired->title, $locale);
+        $documentRequired->description = getLocalizedField($documentRequired->description, $locale);
+
+        return $documentRequired;
+    }
+}
+
+
 
 
 

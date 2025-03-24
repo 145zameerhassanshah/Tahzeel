@@ -23,7 +23,7 @@ use App\Notifications\InquiryNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\LanguageHelpers;
-
+use App\Models\DocumentRequired;
 
 class FrontController extends Controller
 {
@@ -107,9 +107,8 @@ class FrontController extends Controller
             // Get group IDs
             $hero_ection_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
             $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
+            $docs_group_id = $pageGroups->where('group_type', 'documents_required')->pluck('group_id')->first();
             $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
-
-
 
 
               // Fetching only hero_section with localization
@@ -118,15 +117,19 @@ class FrontController extends Controller
               $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
                                         return localizeSectionTitle($sectionTitle, $locale);
                                     });
+            $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs) use ($locale) {
+                                        return localizeDocumentRequired($docs, $locale);
+                                    });
 
 
 
               // Apply the localization using your helper function
               $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
               $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
+              $data['docs'] = $docs_data;
               $data['feature_title'] = $section_title_data->where('type', 'feature')->first();
 
-            //  return  $data['feature_title'];
+             return  $docs_data;
 
             return view('front.vat.vat-reg-business', $data);
         }

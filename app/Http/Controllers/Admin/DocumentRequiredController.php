@@ -17,7 +17,7 @@ class DocumentRequiredController extends Controller
 
     public function index(Request $request)
     {
-        $groups = Group::where('type', 'why_choose_us')->get();
+        $groups = Group::where('type', 'document-required')->get();
         return view('admin.document-required.index', compact('groups'));
     }
 
@@ -49,10 +49,7 @@ class DocumentRequiredController extends Controller
             'ar' => $request->title
         ]);
 
-        $documentRequired->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $documentRequired->icon = $request->icon;
 
         $documentRequired->description = json_encode([
             'en' => $request->description,
@@ -81,7 +78,7 @@ class DocumentRequiredController extends Controller
 
         $notification = array(
             'message' => 'DocumentRequired Deleted successfully!',
-            'alert' => 'success'    
+            'alert' => 'success'
         );
         return redirect()->back()->with('notification', $notification);
     }
@@ -113,10 +110,7 @@ class DocumentRequiredController extends Controller
             'ar' => $request->title
         ]);
 
-        $documentRequired->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $documentRequired->icon = $request->icon;
 
         $documentRequired->description = json_encode([
             'en' => $request->description,
