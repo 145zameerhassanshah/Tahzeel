@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BcategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BulkDeleteController;
 use App\Http\Controllers\Admin\CallToActionController;
+use App\Http\Controllers\Admin\DocumentRequiredController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GcategoryController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\NotificationController;
 
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Middleware\Localization;
 use App\Models\Enquiry;
 use Illuminate\Support\Facades\Route;
@@ -174,6 +176,26 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
          Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
          Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
+
+
+        // WhyChooseUs Routes
+        Route::get('/why-choose-us', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
+        Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
+        Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
+        Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
+        Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
+        Route::post('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
+        Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
+
+        // DocumentRequired Routes
+        Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
+        Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
+        Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
+        Route::post('/document-required/store', [DocumentRequiredController::class, 'store'])->name('admin.document-required.store');
+        Route::get('/document-required/edit/{id}', [DocumentRequiredController::class, 'edit'])->name('admin.document-required.edit');
+        Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
+        Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
+
 
          // SectionTitle Routes
          Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');

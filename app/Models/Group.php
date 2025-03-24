@@ -52,4 +52,14 @@ class Group extends Model
     {
         return $this->hasMany(Faq::class);
     }
+
+    public function whyChooseUs()
+    {
+        return $this->hasMany(WhyChooseUs::class);
+    }
+
+    public function documentRequired()
+    {
+        return $this->hasMany(DocumentRequired::class);
+    }
 }

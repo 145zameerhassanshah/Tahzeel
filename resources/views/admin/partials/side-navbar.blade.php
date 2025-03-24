@@ -317,6 +317,28 @@
 
                 </li>
 
+                {{-- WhyChooseUs --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.why-choose-us.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('WhyChooseUs') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- WhyChooseUs --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.document-required.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.document-required.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('DocumentRequired') }}
+                        </p>
+                    </a>
+
+                </li>
+
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">
