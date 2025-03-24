@@ -35,11 +35,11 @@ class FeatureController extends Controller
 
         $request->validate([
             'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'subtitle' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'subtitle' => 'required',
             'description' => 'required',
-            'order_no' => 'required|max:250',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -52,10 +52,7 @@ class FeatureController extends Controller
             'ar' => $request->title
         ]);
 
-        $feature->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $feature->icon = $request->icon;
 
         $feature->subtitle = json_encode([
             'en' => $request->subtitle,
@@ -107,11 +104,11 @@ class FeatureController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'subtitle' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'subtitle' => 'required',
             'description' => 'required',
-            'order_no' => 'required|max:250',
+            'order_no' => 'required',   
             'status' => 'required',
         ]);
 
@@ -122,10 +119,7 @@ class FeatureController extends Controller
             'ar' => $request->title
         ]);
 
-        $feature->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $feature->icon = $request->icon;
 
         $feature->subtitle = json_encode([
             'en' => $request->subtitle,

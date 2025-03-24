@@ -33,10 +33,10 @@ class DocumentRequiredController extends Controller
 
         $request->validate([
             'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'description' => 'required',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -96,10 +96,10 @@ class DocumentRequiredController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'description' => 'required',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
