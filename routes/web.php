@@ -102,6 +102,7 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
         Route::get('/add-page', [PageController::class, 'create'])->name('admin.page.create');
+        Route::get('/page-detail/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
         Route::get('/add-groups/{id}', [PageController::class, 'addGroupstoPage'])->name('admin.page.add-groups');
         Route::post('/store-groups/{id}', [PageController::class, 'storeGroupstoPage'])->name('admin.page.store-groups');
         Route::get('/edit-page-groups/{id}', [PageController::class, 'edit'])->name('admin.page.edit-groups');

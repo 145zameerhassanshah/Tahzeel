@@ -15,6 +15,13 @@ class PageController extends Controller
         $pages = Page::all();
         return view('admin.page.list', compact('pages'));
     }
+
+    public function detail($slug)
+    {
+        $page = Page::where('slug',$slug)->first();
+        return view('admin.page.detail', compact('page'));
+    }
+
     public function addGroupstoPage($id)
     {
         $page = Page::findOrFail($id);

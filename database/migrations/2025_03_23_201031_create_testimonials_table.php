@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');  // Relating to a group
+            $table->foreignId('page_id')->onDelete('cascade');  // Relating to a group
             $table->json('name');
             $table->json('feedback');                      // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->json('designation')->nullable();

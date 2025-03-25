@@ -48,6 +48,9 @@
                                                         <a href="{{ route('admin.page.add-groups', $page->id) }}" class="btn btn-info btn-sm mx-1">
                                                             <i class="fas fa-plus"></i> {{ __('Add Groups') }}
                                                         </a>
+                                                        <a href="{{ route('admin.page.detail', $page->slug) }}" class="btn btn-info btn-sm mx-1">
+                                                            <i class="fas fa-info"></i> {{ __('Detail') }}
+                                                        </a>
 
                                                         <form id="deleteform" class="d-inline-block mx-1"
                                                             action="#" method="post">
