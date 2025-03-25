@@ -20,7 +20,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $groups = Group::all();
 
-        $pagegroups = PageGroup::with('group')->get();
+        $pagegroups = PageGroup::with('group')->where('page_id', $id)->get();
 
 
         return view('admin.page.add-groups', compact('page', 'groups','pagegroups'));

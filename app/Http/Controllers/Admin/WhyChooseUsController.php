@@ -34,10 +34,10 @@ class WhyChooseUsController extends Controller
 
         $request->validate([
             'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'description' => 'required',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -50,10 +50,7 @@ class WhyChooseUsController extends Controller
             'ar' => $request->title
         ]);
 
-        $why_choose_us->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $why_choose_us->icon = $request->icon;
 
         $why_choose_us->description = json_encode([
             'en' => $request->description,
@@ -100,10 +97,10 @@ class WhyChooseUsController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'description' => 'required|max:250',
-            'order_no' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'description' => 'required',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -114,10 +111,7 @@ class WhyChooseUsController extends Controller
             'ar' => $request->title
         ]);
 
-        $why_choose_us->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $why_choose_us->icon = $request->icon;
 
         $why_choose_us->description = json_encode([
             'en' => $request->description,

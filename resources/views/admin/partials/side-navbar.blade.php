@@ -255,6 +255,17 @@
 
                 </li>
 
+                {{-- Feature --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.feature-image.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature-image.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('Feature Images') }}
+                        </p>
+                    </a>
+
+                </li>
+
                 {{-- End Feature --}}
 
                 {{-- Section Title --}}
@@ -347,6 +358,17 @@
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('WhyChooseUs') }}
+                        </p>
+                    </a>
+
+                </li>
+
+                {{-- Feature --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.why-us-image.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.why-us-image.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            {{ __('WhyUs Images') }}
                         </p>
                     </a>
 

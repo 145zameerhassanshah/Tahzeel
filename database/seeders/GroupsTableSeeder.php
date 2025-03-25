@@ -22,6 +22,8 @@ class GroupsTableSeeder extends Seeder
             ['name' => 'feature_list', 'type' => 'features', 'description' => null],
             ['name' => 'faq_list', 'type' => 'faq', 'description' => null],
             ['name' => 'why_choose_us_section', 'type' => 'why_choose_us', 'description' => null],
+            ['name' => 'feature_img', 'type' => 'feature_img', 'description' => null],
+            ['name' => 'why_us_img', 'type' => 'why_us_img', 'description' => null],
             ['name' => 'testimonial_list', 'type' => 'testimonials', 'description' => null],
             ['name' => 'documents_required_section', 'type' => 'documents_required', 'description' => null],
             ['name' => 'procedure_section', 'type' => 'procedure', 'description' => null],

@@ -41,7 +41,7 @@
                                                 {{ ++$key }}
                                             </td>
                                             <td class="text-center">
-                                                {!! json_decode($procedure->icon)->en !!}
+                                                {!! json_decode($procedure->icon) !!}
                                             </td>
                                             <td>
                                                 {!! json_decode($procedure->title)->en !!}

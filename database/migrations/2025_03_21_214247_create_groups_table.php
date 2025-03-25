@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->enum('type', ['hero', 'section_title' , 'intro_section', 'features', 'faq', 'why_choose_us', 'testimonials', 'documents_required', 'procedure', 'cta','img_features']);
+            $table->enum('type', ['hero', 'section_title' , 'intro_section', 'features', 'why_us_img', 'feature_img', 'faq', 'why_choose_us', 'testimonials', 'documents_required', 'procedure', 'cta']);
             $table->longtext('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

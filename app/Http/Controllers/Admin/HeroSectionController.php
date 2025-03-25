@@ -61,7 +61,16 @@ class HeroSectionController extends Controller
             $image = $request->file('background_image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads/hero_section'), $filename);
-            $hero_section->background_image = $filename;
+            
+            $hero_section->background_image = json_encode([
+                'en' => $filename,
+                'ar' => $filename
+            ]);
+        } else {
+            $hero_section->background_image = json_encode([
+                'en' => 'default.jpg',
+                'ar' => 'default.jpg'
+            ]);
         }
 
         $hero_section->save();

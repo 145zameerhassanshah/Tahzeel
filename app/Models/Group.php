@@ -69,4 +69,14 @@ class Group extends Model
     {
         return $this->hasMany(DocumentRequired::class);
     }
+
+    public function featureImages()
+    {
+        return $this->hasMany(FeatureImage::class);
+    }
+
+    public function whyUsImages()
+    {
+        return $this->hasMany(WhyUsImage::class);
+    }
 }

@@ -31,13 +31,14 @@ class ProcedureController extends Controller
     // Store Procedure
     public function store(Request $request)
     {
+
         $request->validate([
             'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'subtitle' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'subtitle' => 'required',
             'description' => 'required',
-            'order_no' => 'required|max:250',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -50,10 +51,7 @@ class ProcedureController extends Controller
             'ar' => $request->title
         ]);
 
-        $procedure->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $procedure->icon = json_encode($request->icon);
 
         $procedure->subtitle = json_encode([
             'en' => $request->subtitle,
@@ -104,12 +102,13 @@ class ProcedureController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $request->validate([
-            'title' => 'required|max:250',
-            'icon' => 'required|max:250',
-            'subtitle' => 'required|max:250',
+            'title' => 'required',
+            'icon' => 'required',
+            'subtitle' => 'required',
             'description' => 'required',
-            'order_no' => 'required|max:250',
+            'order_no' => 'required',
             'status' => 'required',
         ]);
 
@@ -120,10 +119,7 @@ class ProcedureController extends Controller
             'ar' => $request->title
         ]);
 
-        $procedure->icon = json_encode([
-            'en' => $request->icon,
-            'ar' => $request->icon
-        ]);
+        $procedure->icon = $request->icon;
 
         $procedure->subtitle = json_encode([
             'en' => $request->subtitle,

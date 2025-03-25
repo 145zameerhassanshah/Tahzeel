@@ -45,12 +45,15 @@
                                                 <span class="input-group-text"><i class="bi bi-info-circle"></i></span>
                                                 <select name="type" class="form-control select2" id="type" required>
                                                     <option value="" disabled {{ old('type') ? '' : 'selected' }}>Select Group Type</option>
-                                                    @foreach ($groups as $group)
-                                                        <option value="{{ $group->type }}" {{ old('type') == $group->type ? 'selected' : '' }}>
-                                                            {{ ucfirst(str_replace('_', ' ', $group->type)) }}
+                                                    @php
+                                                        $types = ['hero', 'section_title' , 'intro_section', 'features', 'why_us_img', 'feature_img', 'faq', 'why_choose_us', 'testimonials', 'documents_required', 'procedure', 'cta'];
+                                                    @endphp
+                                                    @foreach ($types as $type)
+                                                        <option value="{{ $type }}" {{ old('type') == $type ? 'selected' : '' }}>
+                                                            {{ ucfirst(str_replace('_', ' ', $type)) }}
                                                         </option>
                                                     @endforeach
-                                                </select>
+                                                </select>   
 
                                             </div>
                                             @if ($errors->has('type'))
