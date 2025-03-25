@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Page;
 use App\Models\PageGroup;
+use App\Models\Testimonial;
 
 class PageController extends Controller
 {
@@ -19,7 +20,8 @@ class PageController extends Controller
     public function detail($slug)
     {
         $page = Page::where('slug',$slug)->first();
-        return view('admin.page.detail', compact('page'));
+        $testimonials = Testimonial::where('page_id', $page->id)->get();
+        return view('admin.page.detail', compact('page','testimonials'));
     }
 
     public function addGroupstoPage($id)
