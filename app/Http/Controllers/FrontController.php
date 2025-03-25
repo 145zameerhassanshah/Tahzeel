@@ -105,21 +105,26 @@ class FrontController extends Controller
             $pageGroups = PageGroup::where('page_id', $page->id)->get();
 
             // Get group IDs
-            $hero_ection_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
+            $hero_section_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
             $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
             $docs_group_id = $pageGroups->where('group_type', 'documents_required')->pluck('group_id')->first();
+            $faq_group_id = $pageGroups->where('group_type', 'faq')->pluck('group_id')->first();
             $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
 
 
               // Fetching only hero_section with localization
-              $hero_section_data = HeroSection::where('group_id', $hero_ection_id)->first();
+              $hero_section_data = HeroSection::where('group_id', $hero_section_id)->first();
               $intro_section_data = IntroductionSection::where('group_id', $intro_section_id)->first();
               $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
                                         return localizeSectionTitle($sectionTitle, $locale);
                                     });
-            $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs) use ($locale) {
-                                        return localizeDocumentRequired($docs, $locale);
+            $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs_data) use ($locale) {
+                                        return localizeDocumentRequired($docs_data, $locale);
                                     });
+
+            $faqs_data = Faq::where('group_id', $faq_group_id)->get()->map(function ($faqs_data) use ($locale) {
+                return localizeFaq($faqs_data, $locale);
+            });
 
 
 
@@ -127,9 +132,10 @@ class FrontController extends Controller
               $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
               $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
               $data['docs'] = $docs_data;
+              $data['faqs'] = $faqs_data;
               $data['feature_title'] = $section_title_data->where('type', 'feature')->first();
 
-             return  $docs_data;
+
 
             return view('front.vat.vat-reg-business', $data);
         }

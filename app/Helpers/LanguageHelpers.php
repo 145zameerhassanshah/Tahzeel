@@ -73,6 +73,21 @@ if (!function_exists('localizeDocumentRequired')) {
     }
 }
 
+    if (!function_exists('localizeFaq')) {
+        function localizeFaq($faq, $locale)
+        {
+            if (!$faq) {
+                return null;
+            }
+
+            // Localize textual fields
+            $faq->question = getLocalizedField($faq->question, $locale);
+            $faq->answer = getLocalizedField($faq->answer, $locale);
+
+            return $faq;
+        }
+    }
+
 
 
 

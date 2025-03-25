@@ -21,7 +21,7 @@
                                         data-bs-target="#collapseIcon{{ $index }}"
                                         aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
                                         aria-controls="collapseIcon{{ $index }}">
-                                    <span><i class="{{ $icon }}"></i></span>{{ $title }}
+                                    <span><i class="{{ $doc->icon }}"></i></span>{{ $doc->title }}
                                 </button>
                             </div>
                             <!--/.card-header -->
@@ -30,7 +30,7 @@
                                  aria-labelledby="headingIcon{{ $index }}"
                                  data-bs-parent="#accordionIconExample">
                                 <div class="card-body">
-                                    <p>{{ $description }}</p>
+                                    <p>{{ $doc->description }}</p>
                                 </div>
                                 <!--/.card-body -->
                             </div>
