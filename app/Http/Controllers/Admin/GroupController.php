@@ -25,7 +25,7 @@ class GroupController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:groups',
-            'type' => 'required|in:hero,intro_section,features,faq,why_choose_us,why_us_image,feature_image,testimonials,documents_required,procedure,cta',
+            'type' => 'required',
             'description' => 'nullable|string',
         ]);
 

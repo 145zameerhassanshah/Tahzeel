@@ -378,4 +378,5 @@ Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middl
 
 
 Route::get('/vat-registration-for-businesses', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
+Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
 

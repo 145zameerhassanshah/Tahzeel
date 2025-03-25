@@ -90,11 +90,9 @@ class DocumentRequiredController extends Controller
         $documentRequired = DocumentRequired::find($id);
         return view('admin.document-required.edit', compact('documentRequired'));
     }
-
-    // Update Feature
+    
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'title' => 'required',
             'icon' => 'required',

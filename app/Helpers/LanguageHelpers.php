@@ -43,6 +43,76 @@ if (!function_exists('localizeIntroductionSection')) {
     }
 }
 
+
+if (!function_exists('localizeFeatureImage')) {
+    function localizeFeatureImage($featureImage, $locale)
+    {
+        if (!$featureImage) {
+            return null;
+        }
+
+        // Localize textual fields
+        $featureImage->title = getLocalizedField($featureImage->title, $locale);
+        $featureImage->subtitle = getLocalizedField($featureImage->subtitle, $locale);
+        $featureImage->description = getLocalizedField($featureImage->description, $locale);
+
+        return $featureImage;
+    }
+}
+
+
+if (!function_exists('localizeProcedure')) {
+    function localizeProcedure($procedure, $locale)
+    {
+        if (!$procedure) {
+            return null;
+        }
+
+        // Localize textual fields
+        $procedure->icon = getLocalizedField($procedure->icon, $locale);
+        $procedure->title = getLocalizedField($procedure->title, $locale);
+        $procedure->subtitle = getLocalizedField($procedure->subtitle, $locale);
+        $procedure->description = getLocalizedField($procedure->description, $locale);
+
+        return $procedure;
+    }
+}
+
+
+if (!function_exists('localizeCTA')) {
+    function localizeCTA($cta, $locale)
+    {
+        if (!$cta) {
+            return null;
+        }
+
+        // Localize textual fields
+        $cta->title = getLocalizedField($cta->title, $locale);
+        $cta->subtitle = getLocalizedField($cta->subtitle, $locale);
+        $cta->button_text = getLocalizedField($cta->button_text, $locale);
+
+        return $cta;
+    }
+}
+
+
+if (!function_exists('localizeTestimonial')) {
+    function localizeTestimonial($testimonial, $locale)
+    {
+        if (!$testimonial) {
+            return null;
+        }
+
+        // Localize textual fields
+        $testimonial->name = getLocalizedField($testimonial->name, $locale);
+        $testimonial->feedback = getLocalizedField($testimonial->feedback, $locale);
+        $testimonial->designation = getLocalizedField($testimonial->designation, $locale);
+
+        return $testimonial;
+    }
+}
+
+
 if (!function_exists('localizeSectionTitle')) {
     function localizeSectionTitle($sectionTitle, $locale)
     {

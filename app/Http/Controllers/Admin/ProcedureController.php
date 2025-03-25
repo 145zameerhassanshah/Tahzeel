@@ -31,6 +31,7 @@ class ProcedureController extends Controller
     // Store Procedure
     public function store(Request $request)
     {
+
         $request->validate([
             'group_id' => 'required|exists:groups,id',
             'title' => 'required',
@@ -50,7 +51,7 @@ class ProcedureController extends Controller
             'ar' => $request->title
         ]);
 
-        $procedure->icon = $request->icon;
+        $procedure->icon = json_encode($request->icon);
 
         $procedure->subtitle = json_encode([
             'en' => $request->subtitle,
@@ -100,6 +101,7 @@ class ProcedureController extends Controller
     // Update Feature
     public function update(Request $request, $id)
     {
+
 
         $request->validate([
             'title' => 'required',
