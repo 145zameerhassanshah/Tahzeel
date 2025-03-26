@@ -344,7 +344,7 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
     Route::resource('faqs', FaqController::class);
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
-    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('admin/testimonials', TestimonialController::class);
     Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
 });
 

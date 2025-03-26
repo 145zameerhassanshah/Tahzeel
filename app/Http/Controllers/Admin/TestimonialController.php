@@ -19,11 +19,18 @@ class TestimonialController extends Controller
         return view('admin.testimonial.list', compact('testimonials', 'id', 'group'));
     }
 
-    public function index()
-    {
-        $groups = Group::where('type', 'testimonials')->get();
-        return view('admin.testimonial.index', compact('groups'));
-    }
+    // public function index()
+    // {
+    //     $groups = Group::where('type', 'testimonials')->get();
+    //     return view('admin.testimonial.index', compact('groups'));
+    // }
+
+
+
+
+
+
+
 
     public function create(Request $request)
     {
@@ -31,69 +38,87 @@ class TestimonialController extends Controller
         return view('admin.testimonial.add', compact("group"));
     }
 
+
+    public function index()
+    {
+        $testimonials = Testimonial::orderBy('order_no')->get();
+        
+        return response()->json([
+            'data' => $testimonials
+        ]);
+    }
+
+
+
+
     public function store(Request $request)
     {
+        // Validate request data
         $request->validate([
-            'name' => 'required|string',
-            'group_id' => 'required|exists:groups,id',
+            'name.en' => 'required|string',
+            'name.ar' => 'required|string',
             'feedback.en' => 'required|string',
             'feedback.ar' => 'required|string',
             'designation.en' => 'required|string',
             'designation.ar' => 'required|string',
-            'status' => 'required',
+            'order_no' => 'nullable|integer|min:0',
+            'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
+        // Create new Testimonial
         $testimonial = new Testimonial();
-
-        $testimonial->group_id = $request->group_id;
-
+        $testimonial->page_id = $request->page_id;
+        
+        // Store multilingual fields correctly
         $testimonial->name = json_encode([
-            'en' => $request->name,
-            'ar' => $request->name
-        ]);
-
+            'en' => $request->input('name.en'),
+            'ar' => $request->input('name.ar')
+        ], JSON_UNESCAPED_UNICODE);
+    
         $testimonial->feedback = json_encode([
-            'en' => $request->feedback['en'],
-            'ar' => $request->feedback['ar']
-        ]);
-
+            'en' => $request->input('feedback.en'),
+            'ar' => $request->input('feedback.ar')
+        ], JSON_UNESCAPED_UNICODE);
+    
         $testimonial->designation = json_encode([
-            'en' => $request->designation['en'],
-            'ar' => $request->designation['ar']
-        ]);
-
+            'en' => $request->input('designation.en'),
+            'ar' => $request->input('designation.ar')
+        ], JSON_UNESCAPED_UNICODE);
+    
+        // Handle Image Upload
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $image = time() . rand() . '.' . $extension;
-            $file->move('assets/admin/uploads/testimonial/', $image);
-            $testimonial->image = $image;
+            $imageName = time() . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path('assets/admin/uploads/testimonial/'), $imageName);
+            $testimonial->image = $imageName;
         }
-
-        $testimonial->order_no = $request->order_no;
+    
+        $testimonial->order_no = $request->order_no ?? 0;
         $testimonial->status = $request->status;
-
         $testimonial->save();
-
-        $notification = array(
-            'message' => 'Testimonial added successfully',
-            'alert' => 'success',
-        );
-        return redirect()->route('admin.testimonial.list', $testimonial->group_id)->with('notification', $notification);
+    
+        // Return JSON response
+        return response()->json([
+            'success' => true,
+            'testimonial' => $testimonial
+        ]);
     }
-
-
+    
+    
     public function edit($id)
     {
         $testimonial = Testimonial::findOrFail($id);
-        return view('admin.testimonial.edit', compact('testimonial'));
+        
+        // Decode JSON fields and return as objects
+        return response()->json([
+            'data' => $testimonial,
+        ]);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required',
             'feedback.en' => 'required|string',
             'feedback.ar' => 'required|string',
             'designation.en' => 'required|string',
@@ -135,11 +160,14 @@ class TestimonialController extends Controller
 
         $testimonial->save();
 
-        $notification = array(
-            'message' => 'Testimonial Updated successfully',
-            'alert' => 'success',
-        );
-        return redirect()->route('admin.testimonial.list', $testimonial->group_id)->with('notification', $notification);
+        return response()->json([
+            'data' => $testimonial,
+        ]);
+        // $notification = array(
+        //     'message' => 'Testimonial Updated successfully',
+        //     'alert' => 'success',
+        // );
+        // return redirect()->route('admin.testimonial.list', $testimonial->group_id)->with('notification', $notification);
     }
 
     // Delete the specified testimonial
