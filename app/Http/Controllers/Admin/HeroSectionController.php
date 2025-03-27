@@ -15,12 +15,19 @@ class HeroSectionController extends Controller
         return view('admin.hero_section.list', compact('hero_sections', 'id'));
     }
 
-    public function index(Request $request)
-    {
-        $groups = Group::where('type', 'hero')->get();
-        return view('admin.hero_section.index', compact('groups'));
-    }
+    // public function index(Request $request)
+    // {
+    //     $groups = Group::where('type', 'hero')->get();
+    //     return view('admin.hero_section.index', compact('groups'));
+    // }
 
+    public function index()
+    {
+        $hero_sections = HeroSection::all();
+        return response()->json([
+            'data' => $hero_sections
+        ]);
+    }
     public function add($id)
     {
         $group = Group::find($id);
@@ -31,57 +38,37 @@ class HeroSectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
+            'page_id' => 'required|exists:groups,id',
+            'title.en' => 'required|max:250',
             'status' => 'required',
         ]);
-
+    
         $hero_section = new HeroSection();
-
-        $hero_section->group_id = $request->group_id;
-
-        $hero_section->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $hero_section->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $hero_section->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
-
+    
+        $hero_section->page_id = $request->page_id;
+    
+        $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
+        $hero_section->subtitle = json_encode($request->subtitle, JSON_UNESCAPED_UNICODE);
+        $hero_section->description = json_encode($request->description, JSON_UNESCAPED_UNICODE);
+    
         $hero_section->status = $request->status;
 
         if ($request->hasFile('background_image')) {
-            $image = $request->file('background_image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/hero_section'), $filename);
-            
-            $hero_section->background_image = json_encode([
-                'en' => $filename,
-                'ar' => $filename
-            ]);
-        } else {
-            $hero_section->background_image = json_encode([
-                'en' => 'default.jpg',
-                'ar' => 'default.jpg'
-            ]);
+            $imageName = time() . '.' . $request->file('background_image')->extension();
+            $request->file('background_image')->move(public_path('uploads/hero_section/'), $imageName);
+            $hero_section->background_image = $imageName;
         }
-
+    
+    
         $hero_section->save();
-
-
-        $notification = array(
-            'message' => 'HeroSection Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.hero_section.list', ['id' => $hero_section->group_id])->with('notification', $notification);
+    
+        return response()->json([
+            'success' => true,
+            'herosection' => $hero_section
+        ]);
     }
+    
+    
 
     // HeroSection Delete
     public function delete($id)
