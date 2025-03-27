@@ -26,12 +26,6 @@ class TestimonialController extends Controller
     // }
 
 
-
-
-
-
-
-
     public function create(Request $request)
     {
         $group = Group::find($request->id);
@@ -48,9 +42,6 @@ class TestimonialController extends Controller
         ]);
     }
 
-
-
-
     public function store(Request $request)
     {
         // Validate request data
@@ -65,7 +56,6 @@ class TestimonialController extends Controller
             'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
         // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
