@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('hero_sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');
+            $table->foreignId('page_id')->onDelete('cascade');
             $table->json('title');                // {"en": "Welcome to Our Website", "ar": "مرحبًا بكم في موقعنا"}
             $table->json('subtitle')->nullable(); // {"en": "We Provide the Best Services", "ar": "نحن نقدم أفضل الخدمات"}
             $table->json('description')->nullable(); // {"en": "Explore our amazing services", "ar": "استكشف خدماتنا الرائعة"}

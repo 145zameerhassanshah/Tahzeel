@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('document_requireds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');
+            $table->foreignId('page_id')->onDelete('cascade');
             $table->string('icon')->nullable();
             $table->json('title');
             $table->json('description');

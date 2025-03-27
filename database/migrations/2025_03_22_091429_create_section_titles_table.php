@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('section_titles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');  // Relating to a group
+            $table->foreignId('page_id')->onDelete('cascade');  // Relating to a group
             $table->enum('type', [
                 'testimonial',
                 'faq',

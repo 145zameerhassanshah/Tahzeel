@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('introduction_sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');
+            $table->foreignId('page_id')->onDelete('cascade');
             $table->enum('type', [
                 'single_image',
                 'double_image',
