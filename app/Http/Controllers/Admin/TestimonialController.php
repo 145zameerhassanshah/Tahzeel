@@ -109,9 +109,13 @@ class TestimonialController extends Controller
     {
         $testimonial = Testimonial::findOrFail($id);
         
-        // Decode JSON fields and return as objects
         return response()->json([
-            'data' => $testimonial,
+            'name' => json_decode($testimonial->name),
+            'designation' => json_decode($testimonial->designation),
+            'feedback' => json_decode($testimonial->feedback),
+            'order_no' => $testimonial->order_no,
+            'status' => $testimonial->status,
+            'image' => $testimonial->image
         ]);
     }
 
@@ -130,19 +134,19 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::find($id);
 
         $testimonial->name = json_encode([
-            'en' => $request->name,
-            'ar' => $request->name
-        ]);
-
+            'en' => $request->input('name.en'),
+            'ar' => $request->input('name.ar')
+        ], JSON_UNESCAPED_UNICODE);
+    
         $testimonial->feedback = json_encode([
-            'en' => $request->feedback['en'],
-            'ar' => $request->feedback['ar']
-        ]);
-
+            'en' => $request->input('feedback.en'),
+            'ar' => $request->input('feedback.ar')
+        ], JSON_UNESCAPED_UNICODE);
+    
         $testimonial->designation = json_encode([
-            'en' => $request->designation['en'],
-            'ar' => $request->designation['ar']
-        ]);
+            'en' => $request->input('designation.en'),
+            'ar' => $request->input('designation.ar')
+        ], JSON_UNESCAPED_UNICODE);
 
         if ($request->hasFile('image')) {
 
@@ -178,10 +182,9 @@ class TestimonialController extends Controller
         @unlink('assets/admin/uploads/testimonial/'. $testimonial->image);
 
         $testimonial->delete();
-        $notification = array(
-            'message' => 'Testimonial Deleted successfully',
-            'alert' => 'success',
-        );
-        return redirect()->back()->with('notification', $notification);
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

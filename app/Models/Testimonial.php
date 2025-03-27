@@ -10,7 +10,7 @@ class Testimonial extends Model
 {
     use HasTranslations;
 
-    public $translatable = ['testimonial', 'designation'];
+    
 
     protected $fillable = ['name', 'testimonial', 'designation', 'image'];
 

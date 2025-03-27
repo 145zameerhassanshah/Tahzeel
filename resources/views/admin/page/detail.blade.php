@@ -87,17 +87,13 @@
             </div>
         </div>
     </div>
-
-
-
-
     <div class="modal fade" id="editTestimonialModal" tabindex="-1" role="dialog"
         aria-labelledby="testimonialModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ __('Update Testimonial') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -175,8 +171,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            data-bs-dismiss="modal">{{ __('Close') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
                     </div>
                 </form>
             </div>
@@ -366,9 +362,9 @@
                     <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm delete-form">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
+                        <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
+    <i class="fas fa-trash"></i> Delete
+</button>
                     </form>
                 </td>
             </tr>`;
@@ -487,39 +483,32 @@
                     success: function(response) {
                         console.log(response);
 
-                        if (!response || !response.data) {
-                            console.error("Error: response.testimonial is undefined");
-                            return;
-                        }
-
-                        let data = response.data;
-
                         // Ensure 'name', 'feedback', and 'designation' exist
-                        let name = data.name || {
+                        let name = response.name || {
                             en: "",
                             ar: ""
                         };
-                        let feedback = data.feedback || {
+                        let feedback = response.feedback || {
                             en: "",
                             ar: ""
                         };
-                        let designation = data.designation || {
+                        let designation = response.designation || {
                             en: "",
                             ar: ""
                         };
-                        $('#update_testimonial_id').val(data.id || '');
+                        $('#update_testimonial_id').val(id);
                         $('#update_name_en').val(name.en);
                         $('#update_name_ar').val(name.ar);
                         $('#update_feedback_en').val(feedback.en);
                         $('#update_feedback_ar').val(feedback.ar);
                         $('#update_designation_en').val(designation.en);
                         $('#update_designation_ar').val(designation.ar);
-                        $('#update_order_no').val(data.order_no || '');
-                        $('#update_status').val(data.status || '');
+                        $('#update_order_no').val(response.order_no || '');
+                        $('#update_status').val(response.status || '');
 
-                        if (data.image) {
+                        if (response.image) {
                             $('#image_preview').attr('src',
-                                `/uploads/testimonials/${data.image}`).show();
+                                `/uploads/testimonials/${response.image}`).show();
                         } else {
                             $('#image_preview').hide();
                         }
@@ -528,6 +517,7 @@
                     }
                 });
             });
+
 
             $('#editTestimonialForm').on('submit', function(e) {
                 e.preventDefault();
@@ -550,8 +540,9 @@
                     },
                     success: function(response) {
                         $('#editTestimonialModal').modal('hide');
+                        toastr.success("Testimonial updated successfully!");
                         refreshTestimonials();
-                        alert('Testimonial updated successfully!');
+
                     },
                     error: function(response) {
                         $('.error').text('');
@@ -562,6 +553,50 @@
                 });
             });
 
+
+
+            $(document).on("click", ".delete-testimonial", function() {
+                let testimonialId = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/admin/testimonials/${testimonialId}`,
+                            type: "POST",
+                            data: {
+                                _method: "DELETE",
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: response.message,
+                                    icon: "success",
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+
+                                refreshTestimonials();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Failed to delete. Please try again.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
 
         });
     </script>
