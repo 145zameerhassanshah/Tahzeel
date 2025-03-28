@@ -24,7 +24,6 @@ class TestimonialController extends Controller
     //     $groups = Group::where('type', 'testimonials')->get();
     //     return view('admin.testimonial.index', compact('groups'));
     // }
-    
 
     public function create(Request $request)
     {
@@ -42,11 +41,10 @@ class TestimonialController extends Controller
         ]);
     }
 
-
-
-
     public function store(Request $request)
     {
+        // Validate request data
+       
         $request->validate([
             'name.en' => 'required|string',
             'name.ar' => 'required|string',
@@ -58,10 +56,14 @@ class TestimonialController extends Controller
             'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+        // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
         
+        $testimonial->name = json_encode([
+            'en' => $request->name,
+            'ar' => $request->name
+        ]);
         // Store multilingual fields correctly
         $testimonial->name = json_encode([
             'en' => $request->input('name.en'),
