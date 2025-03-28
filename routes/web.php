@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeatureImageController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\IntroSectionController;
 
 use App\Http\Controllers\Admin\NotificationController;
 
@@ -255,6 +256,24 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
          Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
          Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+
+         // SectionTitle Routes
+         Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
+         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
+         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
+         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
+         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
+         Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
+
+         // SectionTitle Routes
+         Route::get('/Intro-sections', [IntroSectionController::class, 'index'])->name('admin.intro_section.index');
+         Route::get('/Intro-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.intro_section.list');
+         Route::get('/Intro-section/{id}/add', [IntroSectionController::class, 'add'])->name('admin.intro_section.add');
+         Route::post('/Intro-section/store', [IntroSectionController::class, 'store'])->name('admin.intro_section.store');
+         Route::get('/Intro-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.intro_section.edit');
+         Route::put('/Intro-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.intro_section.update');
+         Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
 
         // Procedure Routes
         Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');

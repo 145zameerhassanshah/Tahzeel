@@ -21,7 +21,17 @@ class PageController extends Controller
     {
         $page = Page::where('slug',$slug)->first();
         $testimonials = Testimonial::where('page_id', $page->id)->get();
-        return view('admin.page.detail', compact('page','testimonials'));
+        $intro_types = ['single_image', 'double_image', 'tripple_image'];
+        $section_types = [
+            'testimonial',
+            'faq',
+            'feature',
+            'procedure',
+            'why_choose_us',
+            'document',
+            'call_to_action'
+        ];
+        return view('admin.page.detail', compact('page','testimonials', 'intro_types', 'section_types'));
     }
 
     public function addGroupstoPage($id)

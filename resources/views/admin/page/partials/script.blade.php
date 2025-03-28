@@ -868,3 +868,577 @@
 
         });
 </script>
+
+
+
+
+{{-- Intro Section --}}
+
+
+
+<script>
+    $(document).ready(function() {
+            
+            loadIntroSections();
+
+            function loadIntroSections() {
+                $.ajax({
+                    url: '/Intro-sections',
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend: function() {
+                        // Show loading indicator
+                        $('#introsectionsTableBody').html(
+                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        );
+                    },
+                    success: function(response) {
+                        if (response.data && response.data.length > 0) {
+                            renderIntroSections(response.data);
+                        } else {
+                            $('#introsectionsTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No introsections found</td></tr>'
+                            );
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#introsectionsTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading introsections</td></tr>'
+                        );
+                        console.error("Error loading introsections:", xhr.responseText);
+                    }
+                });
+            }
+
+            // Function to render introsections in table
+
+            function renderIntroSections(introsections) {
+                let html = '';
+
+                introsections.forEach((introsection, index) => {
+                    let formattedText = introsection.type.replace(/_/g, ' ');
+                    formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
+                    const introtitle = typeof introsection.title === 'string' ? JSON.parse(introsection.title) :
+                        introsection.title;
+                    const introsubtitle = typeof introsection.subtitle === 'string' ? JSON.parse(introsection
+                        .subtitle) : introsection.subtitle;
+
+                    html += `
+            <tr id="introsection-row-${introsection.id}">
+                <td>${index + 1}</td>
+                <td>
+                    ${formattedText}
+                </td>
+                <td>${introtitle.en}</td>
+                <td>${introsubtitle.en}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary editIntroSection" data-id="${introsection.id}">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <form class="d-inline-block" action="/admin/Intro-sections/${introsection.id}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm delete-introsection" data-id="${introsection.id}">
+    <i class="fas fa-trash"></i> Delete
+</button>
+                    </form>
+                </td>
+            </tr>`;
+                });
+
+                $('#introsectionsTableBody').html(html);
+            }
+
+            function refreshIntroSections() {
+                loadIntroSections();
+            }
+
+
+
+            $("#introsectionForm").submit(function(event) {
+                event.preventDefault();
+
+
+                $(".error").text("");
+                let introtitleEn = $("#intro_title_en").val().trim();
+                let introtitleAr = $("#intro_title_ar").val().trim();
+                let introsubtitleEn = $("#intro_subtitle_en").val().trim();
+                let introsubtitleAr = $("#intro_subtitle_ar").val().trim();
+                let introdescriptionEn = $("#intro_description_en").val().trim();
+                let introdescriptionAr = $("#intro_description_ar").val().trim();
+
+                let isValid = true;
+
+                // Frontend validation
+                if (introtitleEn.length < 1) {
+                    $("#error_intro_name_en").text("English name is required.");
+                    isValid = false;
+                }
+                if (introtitleAr.length < 1) {
+                    $("#error_intro_name_ar").text("Arabic name is required.");
+                    isValid = false;
+                }
+                if (introdescriptionEn.length < 1) {
+                    $("#error_intro_designation_en").text("English description is required.");
+                    isValid = false;
+                }
+                if (introdescriptionAr.length < 1) {
+                    $("#error_intro_designation_ar").text("Arabic description is required.");
+                    isValid = false;
+                }
+                if (introsubtitleEn.length < 1) {
+                    // $("#error_feedback_en").text("English feedback is required.");
+                    isValid = true;
+                }
+                if (introsubtitleAr.length < 1) {
+                    // $("#error_feedback_ar").text("Arabic feedback is required.");
+                    isValid = true;
+                }
+
+                if (!isValid) return;
+
+                // Prepare FormData
+                let introformData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ route('admin.intro_section.store') }}",
+                    type: "POST",
+                    data: introformData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success("IntroSection added successfully!");
+
+                            refreshIntroSections();
+
+                            $("#introsectionForm")[0].reset();
+                            $("#introsectionModal").removeClass("show").hide();
+                            $(".modal-backdrop").remove();
+                            $("body").removeClass("modal-open");
+                        } else {
+                            if (response.errors) {
+                                $.each(response.errors, function(key, value) {
+                                    $("#error_intro_" + key.replace('.', '_')).text(value[0]);
+                                });
+                            }
+                            toastr.error("Something went wrong! Please check the errors.");
+                        }
+                    },
+                    error: function() {
+                        toastr.error("Something went wrong!");
+                    }
+                });
+            });
+
+            $(document).on('click', '.editIntroSection', function() {
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('admin.intro_section.edit', ':id') }}".replace(':id', id), 
+                    type: "GET",
+                    success: function(response) {
+
+                        let introtitle = response.title ? response.title : { en: "", ar: "" };
+                        let introsubtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                        let introdescription = response.description ? response.description : { en: "", ar: "" };
+
+                        // Populate form fields
+                        $('#update_introsection_id').val(id);
+                        $('#update_intro_title_en').val(introtitle.en);
+                        $('#update_intro_title_ar').val(introtitle.ar);
+                        $('#update_intro_subtitle_en').val(introsubtitle.en);
+                        $('#update_intro_subtitle_ar').val(introsubtitle.ar);
+                        $('#update_intro_description_en').val(introdescription.en);
+                        $('#update_intro_description_ar').val(introdescription.ar);
+                        $('#update_intro_status').val(response.status);
+                        $('#update_intro_type').val(response.type);
+
+                        // Ensure background image is set
+                        if (response.images) {
+                            let imagePath = `/uploads/introsections/${response.images}`;
+                            $('#image_preview').attr('src', imagePath).show();
+                        } else {
+                            $('#image_preview').hide();
+                        }
+
+                        // Show the modal
+                        $('#editIntroSectionModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        console.log("AJAX Error:", xhr);
+                    }
+                });
+            });
+
+
+
+            $('#editIntroSectionForm').on('submit', function(e) {
+                e.preventDefault();
+
+                let introformData = new FormData(this);
+                let id = $('#update_introsection_id').val();
+                let url = `{{ route('admin.intro_section.update', ':id') }}`.replace(':id', id);
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: introformData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    success: function(response) {
+                        $('#editIntroSectionModal').modal('hide');
+                        toastr.success("Intro Section updated successfully!");
+                        refreshIntroSections();
+                    },
+                    error: function(response) {
+                        $('.error').text('');
+                        $.each(response.responseJSON.errors, function(key, error) {
+                            $('#error_intro_' + key.replace('.', '_')).text(error[0]);
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".delete-introsection", function() {
+                let introsectionId = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/Intro-section/delete/${introsectionId}/`,
+                            type: "POST",
+                            data: {
+                                _method: "POST",
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: response.message,
+                                    icon: "success",
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+
+                                refreshIntroSections();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Failed to delete. Please try again.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const typeSelect = document.getElementById("intro_type");
+        const imageInput = document.getElementById("intro_images");
+
+        typeSelect.addEventListener("change", function () {
+            let maxFiles = 1;
+
+            if (this.value === "double_image") {
+                maxFiles = 2;
+            } else if (this.value === "tripple_image") {
+                maxFiles = 3;
+            }
+
+            imageInput.addEventListener("change", function () {
+                if (this.files.length > maxFiles) {
+                    alert(`You can only select up to ${maxFiles} images.`);
+                    this.value = "";
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+{{-- Section Title --}}
+
+
+
+<script>
+    $(document).ready(function() {
+            
+            loadSectionTitles();
+
+            function loadSectionTitles() {
+                $.ajax({
+                    url: '/section-titles',
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend: function() {
+                        // Show loading indicator
+                        $('#sectiontitlesTableBody').html(
+                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        );
+                    },
+                    success: function(response) {
+                        if (response.data && response.data.length > 0) {
+                            renderSectionTitles(response.data);
+                        } else {
+                            $('#sectiontitlesTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No sectiontitles found</td></tr>'
+                            );
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#sectiontitlesTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading sectiontitles</td></tr>'
+                        );
+                        console.error("Error loading sectiontitles:", xhr.responseText);
+                    }
+                });
+            }
+
+            // Function to render sectiontitles in table
+
+            function renderSectionTitles(sectiontitles) {
+                let html = '';
+
+                sectiontitles.forEach((sectiontitle, index) => {
+                    let formattedText = sectiontitle.type.replace(/_/g, ' ');
+                    formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
+                    const sectionstitle = typeof sectiontitle.title === 'string' ? JSON.parse(sectiontitle.title) :
+                        sectiontitle.title;
+                    const sectionsubtitle = typeof sectiontitle.subtitle === 'string' ? JSON.parse(sectiontitle
+                        .subtitle) : sectiontitle.subtitle;
+
+                    html += `
+            <tr id="sectiontitle-row-${sectiontitle.id}">
+                <td>${index + 1}</td>
+                <td>
+                    ${formattedText}
+                </td>
+                <td>${sectionstitle.en}</td>
+                <td>${sectionsubtitle.en}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary editSectionTitle" data-id="${sectiontitle.id}">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <form class="d-inline-block" action="/admin/section-titles/${sectiontitle.id}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm delete-sectiontitle" data-id="${sectiontitle.id}">
+    <i class="fas fa-trash"></i> Delete
+</button>
+                    </form>
+                </td>
+            </tr>`;
+                });
+
+                $('#sectiontitlesTableBody').html(html);
+            }
+
+            function refreshSectionTitles() {
+                loadSectionTitles();
+            }
+
+
+
+            $("#sectiontitleForm").submit(function(event) {
+                event.preventDefault();
+
+
+                $(".error").text("");
+                let sectiontitleEn = $("#section_title_en").val().trim();
+                let sectiontitleAr = $("#section_title_ar").val().trim();
+                let sectionsubtitleEn = $("#section_subtitle_en").val().trim();
+                let sectionsubtitleAr = $("#section_subtitle_ar").val().trim();
+
+                let isValid = true;
+
+                // Frontend validation
+                if (sectiontitleEn.length < 1) {
+                    $("#error_section_name_en").text("English name is required.");
+                    isValid = false;
+                }
+                if (sectiontitleAr.length < 1) {
+                    $("#error_section_name_ar").text("Arabic name is required.");
+                    isValid = false;
+                }
+                if (sectionsubtitleEn.length < 1) {
+                    // $("#error_feedback_en").text("English feedback is required.");
+                    isValid = true;
+                }
+                if (sectionsubtitleAr.length < 1) {
+                    // $("#error_feedback_ar").text("Arabic feedback is required.");
+                    isValid = true;
+                }
+
+                if (!isValid) return;
+
+                // Prepare FormData
+                let sectionformData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ route('admin.section_title.store') }}",
+                    type: "POST",
+                    data: sectionformData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success("SectionTitle added successfully!");
+
+                            refreshSectionTitles();
+
+                            $("#sectiontitleForm")[0].reset();
+                            $("#sectiontitleModal").removeClass("show").hide();
+                            $(".modal-backdrop").remove();
+                            $("body").removeClass("modal-open");
+                        } else {
+                            if (response.errors) {
+                                $.each(response.errors, function(key, value) {
+                                    $("#error_section_" + key.replace('.', '_')).text(value[0]);
+                                });
+                            }
+                            toastr.error("Something went wrong! Please check the errors.");
+                        }
+                    },
+                    error: function() {
+                        toastr.error("Something went wrong!");
+                    }
+                });
+            });
+
+            $(document).on('click', '.editSectionTitle', function() {
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('admin.section_title.edit', ':id') }}".replace(':id', id), 
+                    type: "GET",
+                    success: function(response) {
+
+                        let sectiontitle = response.title ? response.title : { en: "", ar: "" };
+                        let sectionsubtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                        let sectiondescription = response.description ? response.description : { en: "", ar: "" };
+
+                        // Populate form fields
+                        $('#update_sectiontitle_id').val(id);
+                        $('#update_section_title_en').val(sectiontitle.en);
+                        $('#update_section_title_ar').val(sectiontitle.ar);
+                        $('#update_section_subtitle_en').val(sectionsubtitle.en);
+                        $('#update_section_subtitle_ar').val(sectionsubtitle.ar);
+                        $('#update_section_status').val(response.status);
+                        $('#update_section_type').val(response.type);
+
+                        // Show the modal
+                        $('#editSectionTitleModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        console.log("AJAX Error:", xhr);
+                    }
+                });
+            });
+
+
+
+            $('#editSectionTitleForm').on('submit', function(e) {
+                e.preventDefault();
+
+                let sectionformData = new FormData(this);
+                let id = $('#update_sectiontitle_id').val();
+                let url = `{{ route('admin.section_title.update', ':id') }}`.replace(':id', id);
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: sectionformData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    success: function(response) {
+                        $('#editSectionTitleModal').modal('hide');
+                        toastr.success("SectionTitle updated successfully!");
+                        refreshSectionTitles();
+                    },
+                    error: function(response) {
+                        $('.error').text('');
+                        $.each(response.responseJSON.errors, function(key, error) {
+                            $('#error_section_' + key.replace('.', '_')).text(error[0]);
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".delete-sectiontitle", function() {
+                let sectiontitleId = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/section-title/delete/${sectiontitleId}/`,
+                            type: "POST",
+                            data: {
+                                _method: "POST",
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: response.message,
+                                    icon: "success",
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+
+                                refreshSectionTitles();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Failed to delete. Please try again.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+</script>
