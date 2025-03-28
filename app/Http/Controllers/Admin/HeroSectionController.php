@@ -79,13 +79,6 @@ class HeroSectionController extends Controller
         return response()->json([
             'success' => true
         ]);
-
-
-        // $notification = array(
-        //     'message' => 'HeroSection Deleted successfully!',
-        //     'alert' => 'success'
-        // );
-        // return redirect()->back()->with('notification', $notification);
     }
 
     // HeroSection Edit

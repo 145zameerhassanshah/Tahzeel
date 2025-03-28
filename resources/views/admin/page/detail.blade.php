@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-features" role="tabpanel"
                                     aria-labelledby="custom-tabs-features-tab">
-                                    Features
+                                    @include('admin.page.partials.feature')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whyusimage" role="tabpanel"
                                     aria-labelledby="custom-tabs-whyusimage-tab">
@@ -138,7 +138,280 @@
 
 @include('admin.page.partials.script')
     
+<script>
+    $(document).ready(function() {
+            
+            loadFeatures();
 
+            function loadFeatures() {
+                $.ajax({
+                    url: '/features',
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend: function() {
+                        // Show loading indicator
+                        $('#featuresTableBody').html(
+                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        );
+                    },
+                    success: function(response) {
+                        if (response.data && response.data.length > 0) {
+                            renderFeatures(response.data);
+                        } else {
+                            $('#featuresTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                            );
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#featuresTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
+                        );
+                        console.error("Error loading features:", xhr.responseText);
+                    }
+                });
+            }
+
+            // Function to render features in table
+
+            function renderFeatures(features) {
+                let html = '';
+
+                features.forEach((feature, index) => {
+                    const title = typeof feature.title === 'string' ? JSON.parse(feature.title) :
+                        feature.title;
+                    const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature
+                        .subtitle) : feature.subtitle;
+
+                    const description = typeof feature.description === 'string' ? JSON.parse(feature
+                        .description) : feature.description;
+
+                    html += `
+            <tr id="feature-row-${feature.id}">
+                <td>${index + 1}</td>
+                <td>
+                    ${feature.icon}
+                </td>
+                <td>${title.en}</td>
+                <td>${subtitle.en}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary editFeature" data-id="${feature.id}">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <form class="d-inline-block" action="/feature/delete/${feature.id}" method="post">
+                        @csrf
+                        @method('POST')
+                        <button type="button" class="btn btn-danger btn-sm delete-feature" data-id="${feature.id}">
+    <i class="fas fa-trash"></i> Delete
+</button>
+                    </form>
+                </td>
+            </tr>`;
+                });
+
+                $('#featuresTableBody').html(html);
+            }
+
+            function refreshFeatures() {
+                loadFeatures();
+            }
+
+
+
+            $("#featureForm").submit(function(event) {
+                event.preventDefault();
+
+
+                $(".error").text("");
+                let titleEn = $("#title_en").val().trim();
+                let titleAr = $("#title_ar").val().trim();
+                let subtitleEn = $("#subtitle_en").val().trim();
+                let subtitleAr = $("#subtitle_ar").val().trim();
+                let descriptionEn = $("#description_en").val().trim();
+                let descriptionAr = $("#description_ar").val().trim();
+                let status = $('#status').val().trim();
+                let icon = $("#icon").val().trim();
+
+                let isValid = true;
+
+                // Frontend validation
+                if (titleEn.length < 1) {
+                    $("#error_name_en").text("English name is required.");
+                    isValid = false;
+                }
+                if (titleAr.length < 1) {
+                    $("#error_name_ar").text("Arabic name is required.");
+                    isValid = false;
+                }
+                if (subtitleEn.length < 1) {
+                    $("#error_designation_en").text("English designation is required.");
+                    isValid = false;
+                }
+                if (subtitleAr.length < 1) {
+                    $("#error_designation_ar").text("Arabic designation is required.");
+                    isValid = false;
+                }
+                if (descriptionEn.length < 1) {
+                    isValid = true;
+                }
+                if (descriptionAr.length < 1) {
+                    isValid = true;
+                }
+                if (icon.length < 1) {
+                    $('#error_icon').text("Icon Field is required.");
+                    isValid = false;
+                }
+
+                if (!isValid) return;
+
+                // Prepare FormData
+                let formData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ route('admin.feature.store') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success("Feature added successfully!");
+
+                            refreshFeatures();
+
+                            $("#featureForm")[0].reset();
+                            $("#featureModal").removeClass("show").hide();
+                            $(".modal-backdrop").remove();
+                            $("body").removeClass("modal-open");
+                        } else {
+                            if (response.errors) {
+                                $.each(response.errors, function(key, value) {
+                                    $("#error_" + key.replace('.', '_')).text(value[0]);
+                                });
+                            }
+                            toastr.error("Something went wrong! Please check the errors.");
+                        }
+                    },
+                    error: function() {
+                        toastr.error("Something went wrong!");
+                    }
+                });
+            });
+
+                $(document).on('click', '.editFeature', function() {
+                    let id = $(this).data('id');
+
+                    $.ajax({
+                        url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', id), 
+                        type: "GET",
+                        success: function(response) {
+
+                            let title = response.title ? response.title : { en: "", ar: "" };
+                            let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                            let description = response.description ? response.description : { en: "", ar: "" };
+                            let icon = response.icon ? response.icon : "";
+
+                            $('#update_feature_id').val(id);
+                            $('#update_title_en').val(title.en);
+                            $('#update_title_ar').val(title.ar);
+                            $('#update_subtitle_en').val(subtitle.en);
+                            $('#update_subtitle_ar').val(subtitle.ar);
+                            $('#update_description_en').val(description.en);
+                            $('#update_description_ar').val(description.ar);
+                            $('#update_status').val(response.status);
+                            $('#update_icon').val(icon);
+                            $('#update_order_no').val(response.order_no);
+
+                            // Show the modal
+                            $('#editFeatureModal').modal('show');
+                        },
+                        error: function(xhr) {
+                            console.log("AJAX Error:", xhr);
+                        }
+                    });
+                });
+
+
+
+
+            $('#editFeatureForm').on('submit', function(e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+                let id = $('#update_feature_id').val();
+                let url = `{{ route('admin.feature.update', ':id') }}`.replace(':id', id);
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    success: function(response) {
+                        $('#editFeatureModal').modal('hide');
+                        toastr.success("Hero Section updated successfully!");
+                        refreshFeatures();
+                    },
+                    error: function(response) {
+                        $('.error').text('');
+                        $.each(response.responseJSON.errors, function(key, error) {
+                            $('#error_' + key.replace('.', '_')).text(error[0]);
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".delete-feature", function() {
+                let featureId = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/feature/delete/${featureId}/`,
+                            type: "POST",
+                            data: {
+                                _method: "POST",
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: response.message,
+                                    icon: "success",
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+
+                                refreshFeatures();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Failed to delete. Please try again.",
+                                    icon: "error"
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+</script>
 
 
 @endsection
