@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-hero-section" role="tabpanel"
                                     aria-labelledby="custom-tabs-hero-section-tab">
-                                    Hero Section
+                                    @include('admin.page.partials.hero-section')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-intro-section" role="tabpanel"
                                     aria-labelledby="custom-tabs-intro-section-tab">
@@ -134,3 +134,11 @@
     </section>
 @endsection
 
+@section('js')
+
+@include('admin.page.partials.script')
+    
+
+
+
+@endsection

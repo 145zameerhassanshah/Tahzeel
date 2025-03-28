@@ -253,7 +253,7 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
          Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
          Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
-         Route::post('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
+         Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
          Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
 
         // Procedure Routes

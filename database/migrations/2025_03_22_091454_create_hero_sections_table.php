@@ -17,7 +17,7 @@ return new class extends Migration
             $table->json('title');                // {"en": "Welcome to Our Website", "ar": "مرحبًا بكم في موقعنا"}
             $table->json('subtitle')->nullable(); // {"en": "We Provide the Best Services", "ar": "نحن نقدم أفضل الخدمات"}
             $table->json('description')->nullable(); // {"en": "Explore our amazing services", "ar": "استكشف خدماتنا الرائعة"}
-            $table->json('background_image')->nullable(); // Stores paths to background images, e.g., "image.jpg"
+            $table->string('background_image')->nullable(); // Stores paths to background images, e.g., "image.jpg"
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

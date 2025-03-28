@@ -25,7 +25,6 @@ class TestimonialController extends Controller
     //     return view('admin.testimonial.index', compact('groups'));
     // }
 
-
     public function create(Request $request)
     {
         $group = Group::find($request->id);
