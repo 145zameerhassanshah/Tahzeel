@@ -15,12 +15,6 @@ class HeroSectionController extends Controller
         return view('admin.hero_section.list', compact('hero_sections', 'id'));
     }
 
-    // public function index(Request $request)
-    // {
-    //     $groups = Group::where('type', 'hero')->get();
-    //     return view('admin.hero_section.index', compact('groups'));
-    // }
-
     public function index()
     {
         $hero_sections = HeroSection::all();
@@ -75,24 +69,39 @@ class HeroSectionController extends Controller
     {
 
         $hero_section = HeroSection::find($id);
-        unlink(public_path('uploads/hero_section/' . $hero_section->image));
+        $imagePath = public_path('uploads/hero_section/' . $hero_section->background_image);
+            
+        if (file_exists($imagePath) && is_file($imagePath)) {
+            unlink($imagePath);
+        }
         $hero_section->delete();
 
-        $notification = array(
-            'message' => 'HeroSection Deleted successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success' => true
+        ]);
+
+
+        // $notification = array(
+        //     'message' => 'HeroSection Deleted successfully!',
+        //     'alert' => 'success'
+        // );
+        // return redirect()->back()->with('notification', $notification);
     }
 
     // HeroSection Edit
     public function edit($id)
     {
-
         $hero_section = HeroSection::find($id);
-        return view('admin.hero_section.edit', compact('hero_section'));
+    
+        return response()->json([
+            'title' => json_decode($hero_section->title),
+            'subtitle' => json_decode($hero_section->subtitle),
+            'description' => json_decode($hero_section->description),
+            'status' => $hero_section->status,
+            'background_image' => $hero_section->background_image,
+        ]);
     }
-
+    
     // Update HeroSection
     public function update(Request $request, $id)
     {
@@ -104,38 +113,30 @@ class HeroSectionController extends Controller
 
         $hero_section = HeroSection::find($id);
 
-        $hero_section->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $hero_section->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $hero_section->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $hero_section->title = json_encode($request->title);
+        $hero_section->subtitle = json_encode($request->subtitle);
+        $hero_section->description = json_encode($request->description);
 
         $hero_section->status = $request->status;
 
         if ($request->hasFile('background_image')) {
-            unlink(public_path('uploads/hero_section/' . $hero_section->image));
+            $imagePath = public_path('uploads/hero_section/' . $hero_section->background_image);
+            
+            if (file_exists($imagePath) && is_file($imagePath)) {
+                unlink($imagePath);
+            }
+        
             $image = $request->file('background_image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads/hero_section'), $filename);
-            $hero_section->background_image = $filename ;
+            $hero_section->background_image = $filename;
         }
+        
 
         $hero_section->save();
 
-
-        $notification = array(
-            'message' => 'HeroSection Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.hero_section.list', ['id' => $hero_section->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $hero_section,
+        ]);
     }
 }

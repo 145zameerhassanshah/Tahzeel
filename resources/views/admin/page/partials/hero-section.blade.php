@@ -94,7 +94,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editHeroSectionForm" enctype="multipart/form-data">
+                <form id="editHeroSectionForm" enctype="multipart/form-data" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="herosection_id" id="update_herosection_id">
@@ -102,40 +102,40 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="udpate_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_title_en" name="title[en]">
+                                <label for="update_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_title_en" name="title[en]">
                                 <span class="text-danger error" id="error_title_en"></span>
                             </div>
                             <div class="col-md-6">
-                                <label for="udpate_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_title_ar" name="title[ar]">
+                                <label for="update_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_title_ar" name="title[ar]">
                                 <span class="text-danger error" id="error_title_ar"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="udpate_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_subtitle_en" name="subtitle[en]">
+                                <label for="update_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_subtitle_en" name="subtitle[en]">
                                 <span class="text-danger error" id="error_subtitle_en"></span>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="udpate_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_subtitle_ar" name="subtitle[ar]">
+                                <label for="update_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_subtitle_ar" name="subtitle[ar]">
                                 <span class="text-danger error" id="error_subtitle_ar"></span>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="udpate_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_description_en" name="description[en]">
+                                <label for="update_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_description_en" name="description[en]">
                                 <span class="text-danger error" id="error_description_en"></span>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="udpate_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="udpate_description_ar" name="description[ar]">
+                                <label for="update_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_description_ar" name="description[ar]">
                                 <span class="text-danger error" id="error_description_ar"></span>
                             </div>
                         </div>
@@ -143,16 +143,16 @@
                         <div class="row mt-3">
 
                             <div class="col-md-6">
-                                <label for="udpate_status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                <select class="form-control" id="udpate_status" name="status">
+                                <label for="update_status">{{ __('Status') }} <span class="text-danger">*</span></label>
+                                <select class="form-control" id="update_status" name="status">
                                     <option value="active">{{ __('Active') }}</option>
                                     <option value="inactive">{{ __('Inactive') }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group mt-3">
-                                <label for="udpate_background_image">{{ __('Image') }}</label>
-                                <input type="file" class="form-control" id="udpate_background_image" name="background_image" accept="background_image/*">
+                                <label for="update_background_image">{{ __('Image') }}</label>
+                                <input type="file" class="form-control" id="update_background_image" name="background_image" accept="background_image/*">
                                 <span class="text-danger error" id="error_background_image"></span>
                             </div>
 
