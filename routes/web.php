@@ -186,7 +186,7 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
          Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
          Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
-         Route::post('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
+         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
          Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
 
