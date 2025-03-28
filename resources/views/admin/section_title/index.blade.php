@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('Section Title Groups') }} </h1>
+                    <h1 class="m-0 text-dark">{{ __('Intro Section Groups') }} </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                     class="fas fa-home"></i>{{ __('Home') }}</a></li>
-                        <li class="breadcrumb-item">{{ __('Section Title Groups') }}</li>
+                        <li class="breadcrumb-item">{{ __('Intro Section Groups') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Section Title Group List') }}</h3>
+                            <h3 class="card-title mt-1">{{ __('Intro Section Group List') }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -32,7 +32,7 @@
                                     <tr>
                                         <th>{{ __('#') }}</th>
                                         <th>{{ __('Name') }}</th>
-                                        <th>{{ __('Section Titles') }}</th>
+                                        <th>{{ __('Sections') }}</th>
                                         <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
@@ -47,10 +47,10 @@
                                                 {{ $group->name }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.section_title.list', ['id' => $group->id]) }}">{{ $group->sectionTitles->count() }}</a>
+                                                <a href="{{ route('admin.intro_section.list', ['id' => $group->id]) }}">{{ $group->introSections->count() }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.section_title.add', ['id' => $group->id]) }}" class="btn btn-sm btn-info"><i class="bi bi-plus-lg"></i> Add Section Title</a>
+                                                <a href="{{ route('admin.intro_section.add', ['id' => $group->id]) }}" class="btn btn-sm btn-info"><i class="bi bi-plus-lg"></i> Add Intro Sections</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -15,15 +15,9 @@ class SectionTitleController extends Controller
         return view('admin.section_title.list', compact('section_titles', 'id'));
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $groups = Group::where('type', 'section_title')->get();
-        return view('admin.section_title.index', compact('groups'));
-    }
-
-    public function add($id)
-    {
-        $group = Group::find($id);
+        $section_titles = SectionTitle::all();
         $types = [
             'testimonial',
             'faq',
@@ -33,109 +27,95 @@ class SectionTitleController extends Controller
             'document',
             'call_to_action'
         ];
-        return view('admin.section_title.add', compact('group', 'types'));
+        return response()->json([
+            'data' => $section_titles,
+            'types' => $types
+        ]);
+    }
+    public function add($id)
+    {
+        $group = Group::find($id);
+        return view('admin.section_title.add', compact('group'));
     }
 
     // Store Feature
     public function store(Request $request)
     {
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
-            'title' => 'required|max:250',
-            'subtitle' => 'required|max:250',
-            'status' => 'required',
+            'page_id' => 'required|exists:groups,id',
+            'section_title.en' => 'required|max:250',
+            'section_status' => 'required',
         ]);
-
+    
         $section_title = new SectionTitle();
-
-        $section_title->group_id = $request->group_id;
-
-        $section_title->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $section_title->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $section_title->status = $request->status;
-        $section_title->type = $request->type;
-
+    
+        $section_title->page_id = $request->page_id;
+    
+        $section_title->title = json_encode($request->section_title, JSON_UNESCAPED_UNICODE);
+        $section_title->subtitle = json_encode($request->section_subtitle, JSON_UNESCAPED_UNICODE);
+    
+        $section_title->status = $request->section_status;
+        $section_title->type = $request->section_type;
+    
         $section_title->save();
-
-
-        $notification = array(
-            'message' => 'SectionTitle Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.section_title.list', ['id' => $section_title->group_id])->with('notification', $notification);
+    
+        return response()->json([
+            'success' => true,
+            'section_title' => $section_title
+        ]);
     }
+    
+    
 
     // SectionTitle Delete
     public function delete($id)
     {
 
         $section_title = SectionTitle::find($id);
+            
         $section_title->delete();
 
-        $notification = array(
-            'message' => 'Feature Deleted successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     // SectionTitle Edit
     public function edit($id)
     {
-
         $section_title = SectionTitle::find($id);
-        $types = [
-            'testimonial',
-            'faq',
-            'feature',
-            'procedure',
-            'why_choose_us',
-            'document',
-            'call_to_action'
-        ];
-        return view('admin.section_title.edit', compact('section_title', 'types'));
+    
+        return response()->json([
+            'title' => json_decode($section_title->title),
+            'subtitle' => json_decode($section_title->subtitle),
+            'description' => json_decode($section_title->description),
+            'status' => $section_title->status,
+            'images' => $section_title->images,
+            'type' => $section_title->type,
+        ]);
     }
-
+    
     // Update SectionTitle
     public function update(Request $request, $id)
     {
 
         $request->validate([
-            'title' => 'required|max:250',
-            'subtitle' => 'required|max:250',
-            'status' => 'required',
+            'section_title' => 'required|max:250',
+            'section_status' => 'required',
         ]);
 
         $section_title = SectionTitle::find($id);
 
-        $section_title->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
+        $section_title->title = json_encode($request->section_title);
+        $section_title->subtitle = json_encode($request->section_subtitle);
 
-        $section_title->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $section_title->status = $request->status;
-        $section_title->type = $request->type;
+        $section_title->status = $request->section_status;
+        $section_title->type = $request->section_type;
 
         $section_title->save();
 
-
-        $notification = array(
-            'message' => 'SectionTitle Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.section_title.list', ['id' => $section_title->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $section_title,
+        ]);
     }
 }
