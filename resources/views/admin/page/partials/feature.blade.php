@@ -108,40 +108,40 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="update_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_title_en" name="title[en]">
+                                <label for="update_feature_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_title_en" name="title[en]">
                                 <span class="text-danger error" id="error_title_en"></span>
                             </div>
                             <div class="col-md-6">
-                                <label for="update_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_title_ar" name="title[ar]">
+                                <label for="update_feature_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_title_ar" name="title[ar]">
                                 <span class="text-danger error" id="error_title_ar"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="update_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_subtitle_en" name="subtitle[en]">
+                                <label for="update_feature_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_subtitle_en" name="subtitle[en]">
                                 <span class="text-danger error" id="error_subtitle_en"></span>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="update_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_subtitle_ar" name="subtitle[ar]">
+                                <label for="update_feature_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_subtitle_ar" name="subtitle[ar]">
                                 <span class="text-danger error" id="error_subtitle_ar"></span>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="update_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_description_en" name="description[en]">
+                                <label for="update_feature_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_description_en" name="description[en]">
                                 <span class="text-danger error" id="error_description_en"></span>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="update_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_description_ar" name="description[ar]">
+                                <label for="update_feature_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_description_ar" name="description[ar]">
                                 <span class="text-danger error" id="error_description_ar"></span>
                             </div>
                         </div>
@@ -149,22 +149,22 @@
                         <div class="row mt-3">
 
                             <div class="col-md-6">
-                                <label for="update_status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                <select class="form-control" id="update_status" name="status">
+                                <label for="update_feature_status">{{ __('Status') }} <span class="text-danger">*</span></label>
+                                <select class="form-control" id="update_feature_status" name="status">
                                     <option value="active">{{ __('Active') }}</option>
                                     <option value="inactive">{{ __('Inactive') }}</option>
                                 </select>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="update_order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_order_no" name="order_no">
+                                <label for="update_feature_order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_order_no" name="order_no">
                                 <span class="text-danger error" id="error_order_no"></span>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="update_icon">{{ __('Icon') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_icon" name="icon">
+                                <label for="update_feature_icon">{{ __('Icon') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_feature_icon" name="icon">
                                 <span class="text-danger error" id="error_icon"></span>
                             </div>
 

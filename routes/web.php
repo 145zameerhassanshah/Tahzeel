@@ -196,7 +196,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
         Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
         Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
-        Route::post('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
+        Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
 
 
@@ -217,7 +217,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/why-us-image/store', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
         Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
-        Route::post('/why-choose-us/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
+        Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
         // DocumentRequired Routes
         Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');

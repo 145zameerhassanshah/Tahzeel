@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whychooseus" role="tabpanel"
                                     aria-labelledby="custom-tabs-whychooseus-tab">
-                                    Why Choose Us
+                                    @include('admin.page.partials.why-choose-us')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-features" role="tabpanel"
                                     aria-labelledby="custom-tabs-features-tab">
@@ -141,67 +141,68 @@
 <script>
     $(document).ready(function() {
             
-            loadFeatures();
+            loadWhyUs();
 
-            function loadFeatures() {
+            function loadWhyUs() {
                 $.ajax({
-                    url: '/features',
+                    url: '/why-choose-us',
                     type: 'GET',
                     dataType: 'json',
                     beforeSend: function() {
-                        // Show loading indicator
-                        $('#featuresTableBody').html(
+                        $('#whyusTableBody').html(
                             '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                         );
                     },
                     success: function(response) {
                         if (response.data && response.data.length > 0) {
-                            renderFeatures(response.data);
+                            renderWhyUs(response.data);
                         } else {
-                            $('#featuresTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                            $('#whyusTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No whyus found</td></tr>'
                             );
                         }
                     },
                     error: function(xhr) {
-                        $('#featuresTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
+                        $('#whyusTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus</td></tr>'
                         );
-                        console.error("Error loading features:", xhr.responseText);
+                        console.error("Error loading whyus:", xhr.responseText);
                     }
                 });
             }
 
-            // Function to render features in table
+            // Function to render whyuss in table
 
-            function renderFeatures(features) {
+            function renderWhyUs(whyuses) {
                 let html = '';
 
-                features.forEach((feature, index) => {
-                    const title = typeof feature.title === 'string' ? JSON.parse(feature.title) :
-                        feature.title;
-                    const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature
-                        .subtitle) : feature.subtitle;
+                whyuses.forEach((whyus, index) => {
+                    const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
+                        whyus.title;
+                    const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus
+                        .subtitle) : whyus.subtitle;
 
-                    const description = typeof feature.description === 'string' ? JSON.parse(feature
-                        .description) : feature.description;
+                    const description = typeof whyus.description === 'string' ? JSON.parse(whyus
+                        .description) : whyus.description;
+
+                    const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
 
                     html += `
-            <tr id="feature-row-${feature.id}">
+            <tr id="whyus-row-${whyus.id}">
                 <td>${index + 1}</td>
                 <td>
-                    ${feature.icon}
+                    ${icon}
                 </td>
                 <td>${title.en}</td>
                 <td>${subtitle.en}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editFeature" data-id="${feature.id}">
+                    <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <form class="d-inline-block" action="/feature/delete/${feature.id}" method="post">
+                    <form class="d-inline-block" action="/whyus/delete/${whyus.id}" method="post">
                         @csrf
                         @method('POST')
-                        <button type="button" class="btn btn-danger btn-sm delete-feature" data-id="${feature.id}">
+                        <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
     <i class="fas fa-trash"></i> Delete
 </button>
                     </form>
@@ -209,16 +210,16 @@
             </tr>`;
                 });
 
-                $('#featuresTableBody').html(html);
+                $('#whyusTableBody').html(html);
             }
 
-            function refreshFeatures() {
-                loadFeatures();
+            function refreshWhyUs() {
+                loadWhyUs();
             }
 
 
 
-            $("#featureForm").submit(function(event) {
+            $("#whyusForm").submit(function(event) {
                 event.preventDefault();
 
 
@@ -244,11 +245,11 @@
                     isValid = false;
                 }
                 if (subtitleEn.length < 1) {
-                    $("#error_designation_en").text("English designation is required.");
+                    $("#error_subtitle").text("English subtitle is required.");
                     isValid = false;
                 }
                 if (subtitleAr.length < 1) {
-                    $("#error_designation_ar").text("Arabic designation is required.");
+                    $("#error_subtitle").text("Arabic subtitle is required.");
                     isValid = false;
                 }
                 if (descriptionEn.length < 1) {
@@ -268,7 +269,7 @@
                 let formData = new FormData(this);
 
                 $.ajax({
-                    url: "{{ route('admin.feature.store') }}",
+                    url: "{{ route('admin.why-choose-us.store') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -280,10 +281,10 @@
                         if (response.success) {
                             toastr.success("Feature added successfully!");
 
-                            refreshFeatures();
+                            refreshWhyUs();
 
-                            $("#featureForm")[0].reset();
-                            $("#featureModal").removeClass("show").hide();
+                            $("#whyusForm")[0].reset();
+                            $("#whyusModal").removeClass("show").hide();
                             $(".modal-backdrop").remove();
                             $("body").removeClass("modal-open");
                         } else {
@@ -295,54 +296,53 @@
                             toastr.error("Something went wrong! Please check the errors.");
                         }
                     },
-                    error: function() {
+                    error: function(xhr) {
+                        console.error("AJAX Error:", xhr.responseText);
                         toastr.error("Something went wrong!");
                     }
                 });
             });
 
-                $(document).on('click', '.editFeature', function() {
-                    let id = $(this).data('id');
+            $(document).on('click', '.editFeature', function() {
+                let id = $(this).data('id');
 
-                    $.ajax({
-                        url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', id), 
-                        type: "GET",
-                        success: function(response) {
+                $.ajax({
+                    url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id), 
+                    type: "GET",
+                    success: function(response) {
 
-                            let title = response.title ? response.title : { en: "", ar: "" };
-                            let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                            let description = response.description ? response.description : { en: "", ar: "" };
-                            let icon = response.icon ? response.icon : "";
+                        let title = response.title ? response.title : { en: "", ar: "" };
+                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                        let description = response.description ? response.description : { en: "", ar: "" };
+                        let icon = response.icon ? response.icon : "";
 
-                            $('#update_feature_id').val(id);
-                            $('#update_title_en').val(title.en);
-                            $('#update_title_ar').val(title.ar);
-                            $('#update_subtitle_en').val(subtitle.en);
-                            $('#update_subtitle_ar').val(subtitle.ar);
-                            $('#update_description_en').val(description.en);
-                            $('#update_description_ar').val(description.ar);
-                            $('#update_status').val(response.status);
-                            $('#update_icon').val(icon);
-                            $('#update_order_no').val(response.order_no);
+                        $('#update_whyus_id').val(id);
+                        $('#update_whyus_title_en').val(title.en);
+                        $('#update_whyus_title_ar').val(title.ar);
+                        $('#update_whyus_subtitle_en').val(subtitle.en);
+                        $('#update_whyus_subtitle_ar').val(subtitle.ar);
+                        $('#update_whyus_description_en').val(description.en);
+                        $('#update_whyus_description_ar').val(description.ar);
+                        $('#update_whyus_status').val(response.status);
+                        $('#update_whyus_icon').val(icon);
+                        $('#update_whyus_order_no').val(response.order_no);
 
-                            // Show the modal
-                            $('#editFeatureModal').modal('show');
-                        },
-                        error: function(xhr) {
-                            console.log("AJAX Error:", xhr);
-                        }
-                    });
+                        // Show the modal
+                        $('#editWhyUsModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        console.log("AJAX Error:", xhr);
+                    }
                 });
+            });
 
 
-
-
-            $('#editFeatureForm').on('submit', function(e) {
+            $('#editWhyUsForm').on('submit', function(e) {
                 e.preventDefault();
 
                 let formData = new FormData(this);
-                let id = $('#update_feature_id').val();
-                let url = `{{ route('admin.feature.update', ':id') }}`.replace(':id', id);
+                let id = $('#update_whyus_id').val();
+                let url = `{{ route('admin.why-choose-us.update', ':id') }}`.replace(':id', id);
 
                 $.ajax({
                     url: url,
@@ -354,9 +354,9 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                     },
                     success: function(response) {
-                        $('#editFeatureModal').modal('hide');
+                        $('#editWhyUsModal').modal('hide');
                         toastr.success("Hero Section updated successfully!");
-                        refreshFeatures();
+                        refreshWhyUs();
                     },
                     error: function(response) {
                         $('.error').text('');
@@ -367,8 +367,8 @@
                 });
             });
 
-            $(document).on("click", ".delete-feature", function() {
-                let featureId = $(this).data("id");
+            $(document).on("click", ".delete-whyus", function() {
+                let whyusId = $(this).data("id");
 
                 Swal.fire({
                     title: "Are you sure?",
@@ -381,11 +381,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/feature/delete/${featureId}/`,
+                            url: `/why-choose-us/delete/${whyusId}`,
                             type: "POST",
                             data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
+                                _token: $('meta[name="csrf-token"]').attr('content') // Get CSRF token from meta tag
                             },
                             success: function(response) {
                                 Swal.fire({
@@ -396,7 +395,7 @@
                                     showConfirmButton: false
                                 });
 
-                                refreshFeatures();
+                                refreshWhyUs(); // Function to refresh the list
                             },
                             error: function() {
                                 Swal.fire({
@@ -409,6 +408,9 @@
                     }
                 });
             });
+
+
+
 
         });
 </script>

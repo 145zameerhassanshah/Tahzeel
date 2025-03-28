@@ -15,10 +15,12 @@ class WhyChooseUsController extends Controller
         return view('admin.why-choose-us.list', compact('whyUs', 'id'));
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $groups = Group::where('type', 'why_choose_us')->get();
-        return view('admin.why-choose-us.index', compact('groups'));
+        $whyChooseUs = WhyChooseUs::all();
+        return response()->json([
+            'data' => $whyChooseUs
+        ]);
     }
 
     public function add($id)
@@ -33,7 +35,7 @@ class WhyChooseUsController extends Controller
 
 
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
+            'page_id' => 'required|exists:groups,id',
             'title' => 'required',
             'icon' => 'required',
             'description' => 'required',
@@ -43,19 +45,12 @@ class WhyChooseUsController extends Controller
 
         $why_choose_us = new WhyChooseUs();
 
-        $why_choose_us->group_id = $request->group_id;
+        $why_choose_us->page_id = $request->page_id;
 
-        $why_choose_us->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $why_choose_us->icon = $request->icon;
-
-        $why_choose_us->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $why_choose_us->title = json_encode($request->title);
+        $why_choose_us->subtitle = json_encode($request->subtitle);
+        $why_choose_us->description = json_encode($request->description);
+        $why_choose_us->icon = json_encode($request->icon);
 
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
@@ -63,11 +58,10 @@ class WhyChooseUsController extends Controller
         $why_choose_us->save();
 
 
-        $notification = array(
-            'message' => 'WhyChooseUs Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.why-choose-us.list', ['id' => $why_choose_us->group_id])->with('notification', $notification);
+        return response()->json([
+            'success' => true,
+            'whyus' => $why_choose_us,
+        ]);
     }
 
     // Feature Delete
@@ -77,11 +71,9 @@ class WhyChooseUsController extends Controller
         $why_choose_us = WhyChooseUs::find($id);
         $why_choose_us->delete();
 
-        $notification = array(
-            'message' => 'WhyChooseUs Deleted successfully!',
-            'alert' => 'success'    
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success'=> true,
+        ]);
     }
 
     // Feature Edit
@@ -89,7 +81,14 @@ class WhyChooseUsController extends Controller
     {
 
         $whyUs = WhyChooseUs::find($id);
-        return view('admin.why-choose-us.edit', compact('whyUs'));
+        return response()->json([
+            'title' => json_decode($whyUs->title, true),
+            'subtitle' => json_decode($whyUs->subtitle, true),
+            'description' => json_decode($whyUs->description, true),
+            'icon' => json_decode($whyUs->icon, true), 
+            'order_no' => $whyUs->order_no,
+            'status' => $whyUs->status,
+        ]);
     }
 
     // Update Feature
@@ -106,17 +105,10 @@ class WhyChooseUsController extends Controller
 
         $why_choose_us = WhyChooseUs::find($id);
 
-        $why_choose_us->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $why_choose_us->icon = $request->icon;
-
-        $why_choose_us->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $why_choose_us->title = json_encode($request->title);
+        $why_choose_us->subtitle = json_encode($request->subtitle);
+        $why_choose_us->description = json_encode($request->description);
+        $why_choose_us->icon = json_encode($request->icon);
 
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
@@ -124,10 +116,8 @@ class WhyChooseUsController extends Controller
         $why_choose_us->save();
 
 
-        $notification = array(
-            'message' => 'WhyChooseUs Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.why-choose-us.list', ['id' => $why_choose_us->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $why_choose_us,
+        ]);
     }
 }
