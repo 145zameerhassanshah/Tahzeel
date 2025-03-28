@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-intro-section" role="tabpanel"
                                     aria-labelledby="custom-tabs-intro-section-tab">
-                                    Introduction Section
+                                    @include('admin.page.partials.intro-section')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-section-title" role="tabpanel"
                                     aria-labelledby="custom-tabs-section-title-tab">
