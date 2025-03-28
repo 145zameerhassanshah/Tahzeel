@@ -45,6 +45,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         // Validate request data
+       
         $request->validate([
             'name.en' => 'required|string',
             'name.ar' => 'required|string',
@@ -60,6 +61,10 @@ class TestimonialController extends Controller
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
         
+        $testimonial->name = json_encode([
+            'en' => $request->name,
+            'ar' => $request->name
+        ]);
         // Store multilingual fields correctly
         $testimonial->name = json_encode([
             'en' => $request->input('name.en'),
