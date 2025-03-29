@@ -207,7 +207,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/feature-image/{id}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
         Route::post('/feature-image/store', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
         Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
-        Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
+        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
         Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
 
@@ -217,7 +217,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
         Route::post('/why-us-image/store', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
-        Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
+        Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
         // DocumentRequired Routes

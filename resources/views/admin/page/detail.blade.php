@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-feature-image" role="tabpanel"
                                     aria-labelledby="custom-tabs-feature-image-tab">
-                                    Feature Image
+                                    @include('admin.page.partials.feature-image')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-procedure" role="tabpanel"
                                     aria-labelledby="custom-tabs-procedure-tab">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whyusimage" role="tabpanel"
                                     aria-labelledby="custom-tabs-whyusimage-tab">
-                                    Why Us Images
+                                    @include('admin.page.partials.why-us-image')
                                 </div>
 
                             </div>
@@ -136,73 +136,77 @@
 
 @section('js')
 
-@include('admin.page.partials.script')
-    
+    @include('admin.page.partials.script')
+
+
+{{-- WhyUs Image Section --}}
+
 <script>
     $(document).ready(function() {
             
-            loadWhyUs();
+            loadWhyusImages();
 
-            function loadWhyUs() {
+            function loadWhyusImages() {
                 $.ajax({
-                    url: '/why-choose-us',
+                    url: '/why-us-image',
                     type: 'GET',
                     dataType: 'json',
                     beforeSend: function() {
-                        $('#whyusTableBody').html(
+
+                        $('#whyusimgsTableBody').html(
                             '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                         );
                     },
                     success: function(response) {
                         if (response.data && response.data.length > 0) {
-                            renderWhyUs(response.data);
+                            renderWhyusImages(response.data);
                         } else {
-                            $('#whyusTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No whyus found</td></tr>'
+                            $('#whyusimgsTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No whyuss found</td></tr>'
                             );
                         }
                     },
                     error: function(xhr) {
-                        $('#whyusTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus</td></tr>'
+                        $('#whyusimgsTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus images</td></tr>'
                         );
-                        console.error("Error loading whyus:", xhr.responseText);
+                        console.error("Error loading whyuss:", xhr.responseText);
                     }
                 });
             }
 
             // Function to render whyuss in table
 
-            function renderWhyUs(whyuses) {
+            function renderWhyusImages(whyusimgs) {
                 let html = '';
 
-                whyuses.forEach((whyus, index) => {
-                    const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
-                        whyus.title;
-                    const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus
-                        .subtitle) : whyus.subtitle;
+                whyusimgs.forEach((whyusimg, index) => {
+                    const title = typeof whyusimg.title === 'string' ? JSON.parse(whyusimg.title) :
+                        whyusimg.title;
+                    const subtitle = typeof whyusimg.subtitle === 'string' ? JSON.parse(whyusimg
+                        .subtitle) : whyusimg.subtitle;
 
-                    const description = typeof whyus.description === 'string' ? JSON.parse(whyus
-                        .description) : whyus.description;
-
-                    const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
+                    const description = typeof whyusimg.description === 'string' ? JSON.parse(whyusimg
+                        .description) : whyusimg.description;
 
                     html += `
-            <tr id="whyus-row-${whyus.id}">
+            <tr id="whyusimg-row-${whyusimg.id}">
                 <td>${index + 1}</td>
                 <td>
-                    ${icon}
+                    ${whyusimg.image ? 
+                        `<img src="/assets/admin/uploads/why_us_image/${whyusimg.image}" width="50" height="50px">` : 
+                        ''}
                 </td>
                 <td>${title.en}</td>
                 <td>${subtitle.en}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}">
+                    <button class="btn btn-sm btn-primary editWhyusImage" data-id="${whyusimg.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <form class="d-inline-block" action="/whyus/delete/${whyus.id}" method="post">
+                    <form class="d-inline-block" action="/why-us-image/delete/${whyusimg.id}" method="post">
                         @csrf
                         @method('POST')
-                        <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
+                        <button type="button" class="btn btn-danger btn-sm delete-whyusimg" data-id="${whyusimg.id}">
     <i class="fas fa-trash"></i> Delete
 </button>
                     </form>
@@ -210,18 +214,17 @@
             </tr>`;
                 });
 
-                $('#whyusTableBody').html(html);
+                $('#whyusimgsTableBody').html(html);
             }
 
-            function refreshWhyUs() {
-                loadWhyUs();
+            function refreshWhyusImages() {
+                loadWhyusImages();
             }
 
 
 
-            $("#whyusForm").submit(function(event) {
+            $("#whyusimgForm").submit(function(event) {
                 event.preventDefault();
-
 
                 $(".error").text("");
                 let titleEn = $("#title_en").val().trim();
@@ -231,7 +234,7 @@
                 let descriptionEn = $("#description_en").val().trim();
                 let descriptionAr = $("#description_ar").val().trim();
                 let status = $('#status').val().trim();
-                let icon = $("#icon").val().trim();
+                let image = $("#image")[0].files[0];
 
                 let isValid = true;
 
@@ -245,11 +248,11 @@
                     isValid = false;
                 }
                 if (subtitleEn.length < 1) {
-                    $("#error_subtitle").text("English subtitle is required.");
+                    $("#error_designation_en").text("English designation is required.");
                     isValid = false;
                 }
                 if (subtitleAr.length < 1) {
-                    $("#error_subtitle").text("Arabic subtitle is required.");
+                    $("#error_designation_ar").text("Arabic designation is required.");
                     isValid = false;
                 }
                 if (descriptionEn.length < 1) {
@@ -258,9 +261,13 @@
                 if (descriptionAr.length < 1) {
                     isValid = true;
                 }
-                if (icon.length < 1) {
-                    $('#error_icon').text("Icon Field is required.");
-                    isValid = false;
+                if (image) {
+                    let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
+                    let fileExtension = image.name.split('.').pop().toLowerCase();
+                    if (!allowedExtensions.includes(fileExtension)) {
+                        $("#error_image").text("Only JPG, PNG, WEBP, or GIF allowed.");
+                        isValid = false;
+                    }
                 }
 
                 if (!isValid) return;
@@ -269,7 +276,7 @@
                 let formData = new FormData(this);
 
                 $.ajax({
-                    url: "{{ route('admin.why-choose-us.store') }}",
+                    url: "{{ route('admin.why-us-image.store') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -279,12 +286,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            toastr.success("Feature added successfully!");
+                            toastr.success("WhyusImage added successfully!");
 
-                            refreshWhyUs();
+                            refreshWhyusImages();
 
-                            $("#whyusForm")[0].reset();
-                            $("#whyusModal").removeClass("show").hide();
+                            $("#whyusimgForm")[0].reset();
+                            $("#whyusimgModal").removeClass("show").hide();
                             $(".modal-backdrop").remove();
                             $("body").removeClass("modal-open");
                         } else {
@@ -296,39 +303,44 @@
                             toastr.error("Something went wrong! Please check the errors.");
                         }
                     },
-                    error: function(xhr) {
-                        console.error("AJAX Error:", xhr.responseText);
+                    error: function() {
                         toastr.error("Something went wrong!");
                     }
                 });
             });
 
-            $(document).on('click', '.editFeature', function() {
+
+            $(document).on('click', '.editWhyusImage', function() {
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id), 
+                    url: "{{ route('admin.why-us-image.edit', ':id') }}".replace(':id', id),
                     type: "GET",
                     success: function(response) {
 
                         let title = response.title ? response.title : { en: "", ar: "" };
                         let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
                         let description = response.description ? response.description : { en: "", ar: "" };
-                        let icon = response.icon ? response.icon : "";
 
-                        $('#update_whyus_id').val(id);
-                        $('#update_whyus_title_en').val(title.en);
-                        $('#update_whyus_title_ar').val(title.ar);
-                        $('#update_whyus_subtitle_en').val(subtitle.en);
-                        $('#update_whyus_subtitle_ar').val(subtitle.ar);
-                        $('#update_whyus_description_en').val(description.en);
-                        $('#update_whyus_description_ar').val(description.ar);
-                        $('#update_whyus_status').val(response.status);
-                        $('#update_whyus_icon').val(icon);
-                        $('#update_whyus_order_no').val(response.order_no);
+                        $('#update_whyusimg_id').val(id);
+                        $('#update_whyusimg_title_en').val(title.en);
+                        $('#update_whyusimg_title_ar').val(title.ar);
+                        $('#update_whyusimg_subtitle_en').val(subtitle.en);
+                        $('#update_whyusimg_subtitle_ar').val(subtitle.ar);
+                        $('#update_whyusimg_description_en').val(description.en);
+                        $('#update_whyusimg_description_ar').val(description.ar);
+                        $('#update_whyusimg_status').val(response.status);
+                        $('#update_whyusimg_order_no').val(response.order_no);
+                        
+                        if (response.image) {
+                            $('#image_preview').attr('src',
+                                `/assets/admin/uploads/why_us_image/${response.image}`).show();
+                        } else {
+                            $('#image_preview').hide();
+                        }
 
                         // Show the modal
-                        $('#editWhyUsModal').modal('show');
+                        $('#editWhyusImageModal').modal('show');
                     },
                     error: function(xhr) {
                         console.log("AJAX Error:", xhr);
@@ -337,12 +349,12 @@
             });
 
 
-            $('#editWhyUsForm').on('submit', function(e) {
+            $('#editWhyusImageForm').on('submit', function(e) {
                 e.preventDefault();
 
                 let formData = new FormData(this);
-                let id = $('#update_whyus_id').val();
-                let url = `{{ route('admin.why-choose-us.update', ':id') }}`.replace(':id', id);
+                let id = $('#update_whyusimg_id').val();
+                let url = `{{ route('admin.why-us-image.update', ':id') }}`.replace(':id', id);
 
                 $.ajax({
                     url: url,
@@ -354,20 +366,20 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                     },
                     success: function(response) {
-                        $('#editWhyUsModal').modal('hide');
+                        $('#editWhyusImageModal').modal('hide');
                         toastr.success("Hero Section updated successfully!");
-                        refreshWhyUs();
+                        refreshWhyusImages();
                     },
                     error: function(response) {
                         $('.error').text('');
                         $.each(response.responseJSON.errors, function(key, error) {
                             $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
+                    });
                     }
                 });
             });
 
-            $(document).on("click", ".delete-whyus", function() {
+            $(document).on("click", ".delete-whyusimg", function() {
                 let whyusId = $(this).data("id");
 
                 Swal.fire({
@@ -381,10 +393,11 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/why-choose-us/delete/${whyusId}`,
+                            url: `/why-us-image/delete/${whyusId}/`,
                             type: "POST",
                             data: {
-                                _token: $('meta[name="csrf-token"]').attr('content') // Get CSRF token from meta tag
+                                _method: "POST",
+                                _token: "{{ csrf_token() }}"
                             },
                             success: function(response) {
                                 Swal.fire({
@@ -395,7 +408,7 @@
                                     showConfirmButton: false
                                 });
 
-                                refreshWhyUs(); // Function to refresh the list
+                                refreshWhyusImages();
                             },
                             error: function() {
                                 Swal.fire({
@@ -409,11 +422,7 @@
                 });
             });
 
-
-
-
         });
 </script>
-
 
 @endsection

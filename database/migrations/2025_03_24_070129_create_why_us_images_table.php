@@ -16,6 +16,7 @@ return new class extends Migration
         $table->foreignId('page_id')->onDelete('cascade');
             $table->string('image');
             $table->json('title');
+            $table->json('subtitle')->nullable();
             $table->json('description');
             $table->integer('order_no')->default(0);
             $table->enum('status', ['active', 'inactive'])->default('active');

@@ -161,11 +161,6 @@ class TestimonialController extends Controller
         return response()->json([
             'data' => $testimonial,
         ]);
-        // $notification = array(
-        //     'message' => 'Testimonial Updated successfully',
-        //     'alert' => 'success',
-        // );
-        // return redirect()->route('admin.testimonial.list', $testimonial->group_id)->with('notification', $notification);
     }
 
     // Delete the specified testimonial
