@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CallToAction extends Model
 {
-    public function group()
+    public function page()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Page::class);
     }
 }

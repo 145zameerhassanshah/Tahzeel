@@ -9,10 +9,9 @@ class Faq extends Model
     use HasTranslations;
 
     protected $fillable = ['page_id', 'question', 'answer'];
-    public $translatable = ['question', 'ans'];
 
-    public function group()
+    public function page()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Page::class);
     }
 }
