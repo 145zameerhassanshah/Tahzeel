@@ -406,8 +406,8 @@ Route::middleware(['auth', 'status'])->group(function () {
 
 
 
-
-
+    Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
+    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
 
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
@@ -415,3 +415,10 @@ Route::middleware(['auth', 'status'])->group(function () {
 });
 
 // all admin routes write in admin middleware
+
+
+
+
+
+
+
