@@ -79,6 +79,56 @@ if (!function_exists('localizeProcedure')) {
 }
 
 
+if (!function_exists('localizeFeature')) {
+    function localizeFeature($feature, $locale)
+    {
+        if (!$feature) {
+            return null;
+        }
+
+        $feature->icon = getLocalizedField($feature->icon, $locale);
+        $feature->title = getLocalizedField($feature->title, $locale);
+        $feature->subtitle = getLocalizedField($feature->subtitle, $locale);
+        $feature->description = getLocalizedField($feature->description, $locale);
+
+        return $feature;
+    }
+}
+
+if (!function_exists('localizeWhyChooseUs')) {
+    function localizeWhyChooseUs($whyChooseUs, $locale)
+    {
+        if (!$whyChooseUs) {
+            return null;
+        }
+
+        $whyChooseUs->icon = getLocalizedField($whyChooseUs->icon, $locale);
+        $whyChooseUs->title = getLocalizedField($whyChooseUs->title, $locale);
+        $whyChooseUs->subtitle = getLocalizedField($whyChooseUs->subtitle, $locale);
+        $whyChooseUs->description = getLocalizedField($whyChooseUs->description, $locale);
+
+        return $whyChooseUs;
+    }
+}
+
+if (!function_exists('localizeWhyUsImage')) {
+    function localizeWhyUsImage($whyUsImage, $locale)
+    {
+        if (!$whyUsImage) {
+            return null;
+        }
+
+        $whyUsImage->title = getLocalizedField($whyUsImage->title, $locale);
+        $whyUsImage->subtitle = getLocalizedField($whyUsImage->subtitle, $locale);
+        $whyUsImage->description = getLocalizedField($whyUsImage->description, $locale);
+
+        return $whyUsImage;
+    }
+}
+
+
+
+
 if (!function_exists('localizeCTA')) {
     function localizeCTA($cta, $locale)
     {

@@ -1,295 +1,129 @@
 @extends('admin.layouts.master')
 @section('title', 'Page Detail')
 @section('content')
-    <div class="modal fade" id="testimonialModal" tabindex="-1" role="dialog" aria-labelledby="testimonialModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document"> <!-- Increase width -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Add Testimonial') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="testimonialForm" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="modal-body">
-                        <input type="hidden" name="page_id" value="{{ $page->id }}">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>{{ __('Name (English)') }}</label>
-                                <input type="text" class="form-control" id="name_en" name="name[en]">
-                                <span class="text-danger error" id="error_name_en"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label>{{ __('Name (Arabic)') }}</label>
-                                <input type="text" class="form-control" id="name_ar" name="name[ar]">
-                                <span class="text-danger error" id="error_name_ar"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>{{ __('Designation (English)') }}</label>
-                                <input type="text" class="form-control" id="designation_en" name="designation[en]">
-                                <span class="text-danger error" id="error_designation_en"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label>{{ __('Designation (Arabic)') }}</label>
-                                <input type="text" class="form-control" id="designation_ar" name="designation[ar]">
-                                <span class="text-danger error" id="error_designation_ar"></span>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label>{{ __('Feedback (English)') }}</label>
-                                <textarea class="form-control" id="feedback_en" name="feedback[en]"></textarea>
-                                <span class="text-danger error" id="error_feedback_en"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label>{{ __('Feedback (Arabic)') }}</label>
-                                <textarea class="form-control" id="feedback_ar" name="feedback[ar]"></textarea>
-                                <span class="text-danger error" id="error_feedback_ar"></span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label>{{ __('Order No') }}</label>
-                                <input type="number" class="form-control" id="order_no" name="order_no" value="0">
-                                <span class="text-danger error" id="error_order_no"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label>{{ __('Status') }}</label>
-                                <select class="form-control" id="status" name="status">
-                                    <option value="active">{{ __('Active') }}</option>
-                                    <option value="inactive">{{ __('Inactive') }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label>{{ __('Image') }}</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                            <span class="text-danger error" id="error_image"></span>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="editTestimonialModal" tabindex="-1" role="dialog"
-        aria-labelledby="testimonialModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Update Testimonial') }}</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="editTestimonialForm" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="_method" value="PUT">
-                    <input type="hidden" name="testimonial_id" id="update_testimonial_id">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>{{ __('Name (English)') }}</label>
-                                <input type="text" class="form-control" id="update_name_en" name="name[en]">
-                                <span class="text-danger error" id="error_name_en"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label>{{ __('Name (Arabic)') }}</label>
-                                <input type="text" class="form-control" id="update_name_ar" name="name[ar]">
-                                <span class="text-danger error" id="error_name_ar"></span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>{{ __('Designation (English)') }}</label>
-                                <input type="text" class="form-control" id="update_designation_en"
-                                    name="designation[en]">
-                                <span class="text-danger error" id="error_designation_en"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label>{{ __('Designation (Arabic)') }}</label>
-                                <input type="text" class="form-control" id="update_designation_ar"
-                                    name="designation[ar]">
-                                <span class="text-danger error" id="error_designation_ar"></span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label>{{ __('Feedback (English)') }}</label>
-                                <textarea class="form-control" id="update_feedback_en" name="feedback[en]"></textarea>
-                                <span class="text-danger error" id="error_feedback_en"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label>{{ __('Feedback (Arabic)') }}</label>
-                                <textarea class="form-control" id="update_feedback_ar" name="feedback[ar]"></textarea>
-                                <span class="text-danger error" id="error_feedback_ar"></span>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label>{{ __('Order No') }}</label>
-                                <input type="number" class="form-control" id="update_order_no" name="order_no"
-                                    value="0">
-                                <span class="text-danger error" id="error_order_no"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label>{{ __('Status') }}</label>
-                                <select class="form-control" id="update_status" name="status">
-                                    <option value="active">{{ __('Active') }}</option>
-                                    <option value="inactive">{{ __('Inactive') }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label>{{ __('Image') }}</label>
-                            <input type="file" class="form-control" id="update_image" name="image"
-                                accept="image/*">
-                            <span class="text-danger error" id="error_image"></span>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary card-outline card-tabs">
+                    <div class="card card-tabs mt-2">
                         <div class="card-header p-0 pt-1 border-bottom-0">
-                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-home" role="tab"
-                                        aria-controls="custom-tabs-three-home" aria-selected="true">Home</a>
+                            <ul class="nav nav-tabs mx-3 my-1" id="custom-tabs-three-tab" role="tablist">
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white active" id="custom-tabs-testimonial-tab" data-toggle="pill"
+                                        href="#custom-tabs-testimonial" role="tab"
+                                        aria-controls="custom-tabs-testimonial" aria-selected="true">Testimonials</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-profile" role="tab"
-                                        aria-controls="custom-tabs-three-profile" aria-selected="false">Profile</a>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-hero-section-tab" data-toggle="pill"
+                                        href="#custom-tabs-hero-section" role="tab"
+                                        aria-controls="custom-tabs-hero-section" aria-selected="false">Hero Section</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-messages" role="tab"
-                                        aria-controls="custom-tabs-three-messages" aria-selected="false">Messages</a>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-intro-section-tab" data-toggle="pill"
+                                        href="#custom-tabs-intro-section" role="tab"
+                                        aria-controls="custom-tabs-intro-section" aria-selected="false">Intro Section</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-settings" role="tab"
-                                        aria-controls="custom-tabs-three-settings" aria-selected="false">Settings</a>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-section-title-tab" data-toggle="pill"
+                                        href="#custom-tabs-section-title" role="tab"
+                                        aria-controls="custom-tabs-section-title" aria-selected="false">Section Title</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-feature-image-tab" data-toggle="pill"
+                                        href="#custom-tabs-feature-image" role="tab"
+                                        aria-controls="custom-tabs-feature-image" aria-selected="false">Feature Image</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-procedure-tab" data-toggle="pill"
+                                        href="#custom-tabs-procedure" role="tab"
+                                        aria-controls="custom-tabs-procedure" aria-selected="false">Procedure</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-cta-tab" data-toggle="pill"
+                                        href="#custom-tabs-cta" role="tab"
+                                        aria-controls="custom-tabs-cta" aria-selected="false">CallToAction</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-faq-tab" data-toggle="pill"
+                                        href="#custom-tabs-faq" role="tab"
+                                        aria-controls="custom-tabs-faq" aria-selected="false">FAQs</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-document-required-tab" data-toggle="pill"
+                                        href="#custom-tabs-document-required" role="tab"
+                                        aria-controls="custom-tabs-document-required" aria-selected="false">Document Required</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whychooseus-tab" data-toggle="pill"
+                                        href="#custom-tabs-whychooseus" role="tab"
+                                        aria-controls="custom-tabs-whychooseus" aria-selected="false">WhyChooseUs</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-features-tab" data-toggle="pill"
+                                        href="#custom-tabs-features" role="tab"
+                                        aria-controls="custom-tabs-features" aria-selected="false">Features</a>
+                                </li>
+                                <li class="nav-item mx-1 my-1">
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whyusimage-tab" data-toggle="pill"
+                                        href="#custom-tabs-whyusimage" role="tab"
+                                        aria-controls="custom-tabs-whyusimage" aria-selected="false">WhyUsImage</a>
                                 </li>
                             </ul>
                         </div>
+                        
                         <div class="card-body">
-                            <div class="tab-content" id="custom-tabs-three-tabContent">
-                                <div class="tab-pane fade active show" id="custom-tabs-three-home" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-home-tab">
-                                    <section class="content">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">{{ __('All Testimonials') }}</h3>
-                                                            {{-- <a href="{{ route('testimonials.create', ['id' => $page->id]) }}"
-                                                                class="btn btn-primary btn-sm float-right"><i
-                                                                    class="fas fa-plus"></i> {{ __('Add New') }}</a> --}}
+                            <div class="tab-content" id="custom-tabs-tabContent">
 
-                                                            <button class="btn btn-primary btn-sm float-right"
-                                                                data-toggle="modal" data-target="#testimonialModal">
-                                                                <i class="fas fa-plus"></i> {{ __('Add New') }}
-                                                            </button>
-                                                        </div>
+                                <div class="tab-pane fade active show" id="custom-tabs-testimonial" role="tabpanel"
+                                    aria-labelledby="custom-tabs-testimonial-tab">
+                                    @include('admin.page.partials.testimonial')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-hero-section" role="tabpanel"
+                                    aria-labelledby="custom-tabs-hero-section-tab">
+                                    @include('admin.page.partials.hero-section')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-intro-section" role="tabpanel"
+                                    aria-labelledby="custom-tabs-intro-section-tab">
+                                    @include('admin.page.partials.intro-section')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-section-title" role="tabpanel"
+                                    aria-labelledby="custom-tabs-section-title-tab">
+                                    @include('admin.page.partials.section-title')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-feature-image" role="tabpanel"
+                                    aria-labelledby="custom-tabs-feature-image-tab">
+                                    @include('admin.page.partials.feature-image')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-procedure" role="tabpanel"
+                                    aria-labelledby="custom-tabs-procedure-tab">
+                                    Procedure
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-cta" role="tabpanel"
+                                    aria-labelledby="custom-tabs-cta-tab">
+                                    Call To Action
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-faq" role="tabpanel"
+                                    aria-labelledby="custom-tabs-faq-tab">
+                                    Frequently Asked Questions
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-document-required" role="tabpanel"
+                                    aria-labelledby="custom-tabs-document-required-tab">
+                                    Document Required
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-whychooseus" role="tabpanel"
+                                    aria-labelledby="custom-tabs-whychooseus-tab">
+                                    @include('admin.page.partials.why-choose-us')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-features" role="tabpanel"
+                                    aria-labelledby="custom-tabs-features-tab">
+                                    @include('admin.page.partials.feature')
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-whyusimage" role="tabpanel"
+                                    aria-labelledby="custom-tabs-whyusimage-tab">
+                                    @include('admin.page.partials.why-us-image')
+                                </div>
 
-                                                        <div class="card-body">
-                                                            <table class="table table-bordered table-striped">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>{{ __('Id') }}</th>
-                                                                        <th>{{ __('Image') }}</th>
-                                                                        <th>{{ __('Name') }}</th>
-                                                                        <th>{{ __('Designation') }}</th>
-                                                                        <th>{{ __('Actions') }}</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="testimonialsTableBody">
-                                                                    <!-- Data will be loaded via AJAX -->
-                                                                    <tr>
-                                                                        <td colspan="6" class="text-center">
-                                                                            <i class="fas fa-spinner fa-spin"></i> Loading
-                                                                            testimonials...
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-profile-tab">
-                                    Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus
-                                    ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                                    posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula
-                                    placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet
-                                    ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-messages-tab">
-                                    Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus
-                                    volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce
-                                    nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue
-                                    ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur
-                                    eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur,
-                                    ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex
-                                    vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus.
-                                    Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-settings-tab">
-                                    Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                                    turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis
-                                    vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum
-                                    pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget
-                                    aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac
-                                    habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-                                </div>
                             </div>
                         </div>
                         <!-- /.card -->
@@ -299,70 +133,80 @@
             </div>
     </section>
 @endsection
+
 @section('js')
-    <script>
-        $(document).ready(function() {
 
-            loadTestimonials();
+    @include('admin.page.partials.script')
 
-            function loadTestimonials() {
+
+{{-- WhyUs Image Section --}}
+
+<script>
+    $(document).ready(function() {
+            
+            loadWhyusImages();
+
+            function loadWhyusImages() {
                 $.ajax({
-                    url: '/admin/testimonials',
+                    url: '/why-us-image',
                     type: 'GET',
                     dataType: 'json',
                     beforeSend: function() {
-                        // Show loading indicator
-                        $('#testimonialsTableBody').html(
-                            '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+
+                        $('#whyusimgsTableBody').html(
+                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                         );
                     },
                     success: function(response) {
                         if (response.data && response.data.length > 0) {
-                            renderTestimonials(response.data);
+                            renderWhyusImages(response.data);
                         } else {
-                            $('#testimonialsTableBody').html(
-                                '<tr><td colspan="6" class="text-center">No testimonials found</td></tr>'
+                            $('#whyusimgsTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No whyuss found</td></tr>'
                             );
                         }
                     },
                     error: function(xhr) {
-                        $('#testimonialsTableBody').html(
-                            '<tr><td colspan="6" class="text-center text-danger">Error loading testimonials</td></tr>'
+                        $('#whyusimgsTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus images</td></tr>'
                         );
-                        console.error("Error loading testimonials:", xhr.responseText);
+                        console.error("Error loading whyuss:", xhr.responseText);
                     }
                 });
             }
 
-            // Function to render testimonials in table
-            function renderTestimonials(testimonials) {
+            // Function to render whyuss in table
+
+            function renderWhyusImages(whyusimgs) {
                 let html = '';
 
-                testimonials.forEach((testimonial, index) => {
-                    const name = typeof testimonial.name === 'string' ? JSON.parse(testimonial.name) :
-                        testimonial.name;
-                    const designation = typeof testimonial.designation === 'string' ? JSON.parse(testimonial
-                        .designation) : testimonial.designation;
+                whyusimgs.forEach((whyusimg, index) => {
+                    const title = typeof whyusimg.title === 'string' ? JSON.parse(whyusimg.title) :
+                        whyusimg.title;
+                    const subtitle = typeof whyusimg.subtitle === 'string' ? JSON.parse(whyusimg
+                        .subtitle) : whyusimg.subtitle;
+
+                    const description = typeof whyusimg.description === 'string' ? JSON.parse(whyusimg
+                        .description) : whyusimg.description;
 
                     html += `
-            <tr id="testimonial-row-${testimonial.id}">
+            <tr id="whyusimg-row-${whyusimg.id}">
                 <td>${index + 1}</td>
                 <td>
-                    ${testimonial.image ? 
-                        `<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50">` : 
+                    ${whyusimg.image ? 
+                        `<img src="/assets/admin/uploads/why_us_image/${whyusimg.image}" width="50" height="50px">` : 
                         ''}
                 </td>
-                <td>${name.en}</td>
-                <td>${designation.en}</td>
-                <td>${designation.ar}</td>
+                <td>${title.en}</td>
+                <td>${subtitle.en}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
+                    <button class="btn btn-sm btn-primary editWhyusImage" data-id="${whyusimg.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
+                    <form class="d-inline-block" action="/why-us-image/delete/${whyusimg.id}" method="post">
                         @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
+                        @method('POST')
+                        <button type="button" class="btn btn-danger btn-sm delete-whyusimg" data-id="${whyusimg.id}">
     <i class="fas fa-trash"></i> Delete
 </button>
                     </form>
@@ -370,78 +214,69 @@
             </tr>`;
                 });
 
-                $('#testimonialsTableBody').html(html);
+                $('#whyusimgsTableBody').html(html);
             }
 
-            // Refresh testimonials after CRUD operations
-            function refreshTestimonials() {
-                loadTestimonials();
+            function refreshWhyusImages() {
+                loadWhyusImages();
             }
 
-            // Call refreshTestimonials() after successful add/edit/delete operations
 
 
-
-
-            $("#testimonialForm").submit(function(event) {
+            $("#whyusimgForm").submit(function(event) {
                 event.preventDefault();
+
                 $(".error").text("");
-                let nameEn = $("#name_en").val().trim();
-                let nameAr = $("#name_ar").val().trim();
-                let designationEn = $("#designation_en").val().trim();
-                let designationAr = $("#designation_ar").val().trim();
-                let feedbackEn = $("#feedback_en").val().trim();
-                let feedbackAr = $("#feedback_ar").val().trim();
-                let orderNo = $("#order_no").val().trim();
+                let titleEn = $("#title_en").val().trim();
+                let titleAr = $("#title_ar").val().trim();
+                let subtitleEn = $("#subtitle_en").val().trim();
+                let subtitleAr = $("#subtitle_ar").val().trim();
+                let descriptionEn = $("#description_en").val().trim();
+                let descriptionAr = $("#description_ar").val().trim();
+                let status = $('#status').val().trim();
                 let image = $("#image")[0].files[0];
 
                 let isValid = true;
 
                 // Frontend validation
-                if (nameEn.length < 1) {
+                if (titleEn.length < 1) {
                     $("#error_name_en").text("English name is required.");
                     isValid = false;
                 }
-                if (nameAr.length < 3) {
+                if (titleAr.length < 1) {
                     $("#error_name_ar").text("Arabic name is required.");
                     isValid = false;
                 }
-                if (designationEn.length < 1) {
+                if (subtitleEn.length < 1) {
                     $("#error_designation_en").text("English designation is required.");
                     isValid = false;
                 }
-                if (designationAr.length < 1) {
+                if (subtitleAr.length < 1) {
                     $("#error_designation_ar").text("Arabic designation is required.");
                     isValid = false;
                 }
-                if (feedbackEn.length < 1) {
-                    $("#error_feedback_en").text("English feedback is required.");
-                    isValid = false;
+                if (descriptionEn.length < 1) {
+                    isValid = true;
                 }
-                if (feedbackAr.length < 1) {
-                    $("#error_feedback_ar").text("Arabic feedback is required.");
-                    isValid = false;
-                }
-                if (isNaN(orderNo) || orderNo < 0) {
-                    $("#error_order_no").text("Order number must be a positive number.");
-                    isValid = false;
+                if (descriptionAr.length < 1) {
+                    isValid = true;
                 }
                 if (image) {
-                    let allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+                    let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
                     let fileExtension = image.name.split('.').pop().toLowerCase();
                     if (!allowedExtensions.includes(fileExtension)) {
-                        $("#error_image").text("Only JPG, PNG, or GIF allowed.");
+                        $("#error_image").text("Only JPG, PNG, WEBP, or GIF allowed.");
                         isValid = false;
                     }
                 }
 
-                if (!isValid) return; // Stop if validation fails
+                if (!isValid) return;
 
                 // Prepare FormData
                 let formData = new FormData(this);
 
                 $.ajax({
-                    url: "{{ route('testimonials.store') }}",
+                    url: "{{ route('admin.why-us-image.store') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -451,12 +286,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            toastr.success("Testimonial added successfully!");
+                            toastr.success("WhyusImage added successfully!");
 
-                            refreshTestimonials();
+                            refreshWhyusImages();
 
-                            $("#testimonialForm")[0].reset();
-                            $("#testimonialModal").removeClass("show").hide();
+                            $("#whyusimgForm")[0].reset();
+                            $("#whyusimgModal").removeClass("show").hide();
                             $(".modal-backdrop").remove();
                             $("body").removeClass("modal-open");
                         } else {
@@ -474,64 +309,56 @@
                 });
             });
 
-            $(document).on('click', '.editTestimonial', function() {
+
+            $(document).on('click', '.editWhyusImage', function() {
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: `/admin/testimonials/${id}/edit`,
+                    url: "{{ route('admin.why-us-image.edit', ':id') }}".replace(':id', id),
                     type: "GET",
                     success: function(response) {
-                        console.log(response);
 
-                        // Ensure 'name', 'feedback', and 'designation' exist
-                        let name = response.name || {
-                            en: "",
-                            ar: ""
-                        };
-                        let feedback = response.feedback || {
-                            en: "",
-                            ar: ""
-                        };
-                        let designation = response.designation || {
-                            en: "",
-                            ar: ""
-                        };
-                        $('#update_testimonial_id').val(id);
-                        $('#update_name_en').val(name.en);
-                        $('#update_name_ar').val(name.ar);
-                        $('#update_feedback_en').val(feedback.en);
-                        $('#update_feedback_ar').val(feedback.ar);
-                        $('#update_designation_en').val(designation.en);
-                        $('#update_designation_ar').val(designation.ar);
-                        $('#update_order_no').val(response.order_no || '');
-                        $('#update_status').val(response.status || '');
+                        let title = response.title ? response.title : { en: "", ar: "" };
+                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                        let description = response.description ? response.description : { en: "", ar: "" };
 
+                        $('#update_whyusimg_id').val(id);
+                        $('#update_whyusimg_title_en').val(title.en);
+                        $('#update_whyusimg_title_ar').val(title.ar);
+                        $('#update_whyusimg_subtitle_en').val(subtitle.en);
+                        $('#update_whyusimg_subtitle_ar').val(subtitle.ar);
+                        $('#update_whyusimg_description_en').val(description.en);
+                        $('#update_whyusimg_description_ar').val(description.ar);
+                        $('#update_whyusimg_status').val(response.status);
+                        $('#update_whyusimg_order_no').val(response.order_no);
+                        
                         if (response.image) {
                             $('#image_preview').attr('src',
-                                `/uploads/testimonials/${response.image}`).show();
+                                `/assets/admin/uploads/why_us_image/${response.image}`).show();
                         } else {
                             $('#image_preview').hide();
                         }
 
-                        $('#editTestimonialModal').modal('show');
+                        // Show the modal
+                        $('#editWhyusImageModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        console.log("AJAX Error:", xhr);
                     }
                 });
             });
 
 
-            $('#editTestimonialForm').on('submit', function(e) {
+            $('#editWhyusImageForm').on('submit', function(e) {
                 e.preventDefault();
 
                 let formData = new FormData(this);
-                let id = $('#update_testimonial_id').val();
-                let url = `/admin/testimonials/${id}`;
-
-                // Append `_method` as Laravel does not accept PUT with FormData
-                formData.append('_method', 'PUT');
+                let id = $('#update_whyusimg_id').val();
+                let url = `{{ route('admin.why-us-image.update', ':id') }}`.replace(':id', id);
 
                 $.ajax({
                     url: url,
-                    type: "POST", // Change from PUT to POST
+                    type: "POST",
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -539,24 +366,21 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                     },
                     success: function(response) {
-                        $('#editTestimonialModal').modal('hide');
-                        toastr.success("Testimonial updated successfully!");
-                        refreshTestimonials();
-
+                        $('#editWhyusImageModal').modal('hide');
+                        toastr.success("Hero Section updated successfully!");
+                        refreshWhyusImages();
                     },
                     error: function(response) {
                         $('.error').text('');
                         $.each(response.responseJSON.errors, function(key, error) {
                             $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
+                    });
                     }
                 });
             });
 
-
-
-            $(document).on("click", ".delete-testimonial", function() {
-                let testimonialId = $(this).data("id");
+            $(document).on("click", ".delete-whyusimg", function() {
+                let whyusId = $(this).data("id");
 
                 Swal.fire({
                     title: "Are you sure?",
@@ -569,10 +393,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/admin/testimonials/${testimonialId}`,
+                            url: `/why-us-image/delete/${whyusId}/`,
                             type: "POST",
                             data: {
-                                _method: "DELETE",
+                                _method: "POST",
                                 _token: "{{ csrf_token() }}"
                             },
                             success: function(response) {
@@ -584,7 +408,7 @@
                                     showConfirmButton: false
                                 });
 
-                                refreshTestimonials();
+                                refreshWhyusImages();
                             },
                             error: function() {
                                 Swal.fire({
@@ -599,5 +423,6 @@
             });
 
         });
-    </script>
+</script>
+
 @endsection

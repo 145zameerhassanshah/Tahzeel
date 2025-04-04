@@ -16,10 +16,12 @@ class FeatureController extends Controller
         return view('admin.feature.list', compact('features', 'id'));
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $groups = Group::where('type', 'features')->get();
-        return view('admin.feature.index', compact('groups'));
+        $features = Feature::all();
+        return response()->json([
+            'data' => $features
+        ]);
     }
 
     public function add($id)
@@ -31,10 +33,8 @@ class FeatureController extends Controller
     // Store Feature
     public function store(Request $request)
     {
-
-
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
+            'page_id' => 'required|exists:groups,id',
             'title' => 'required',
             'icon' => 'required',
             'subtitle' => 'required',
@@ -45,36 +45,22 @@ class FeatureController extends Controller
 
         $feature = new Feature();
 
-        $feature->group_id = $request->group_id;
+        $feature->page_id = $request->page_id;
 
-        $feature->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $feature->icon = $request->icon;
-
-        $feature->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $feature->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $feature->title = json_encode($request->title);
+        $feature->subtitle = json_encode($request->subtitle);
+        $feature->description = json_encode($request->description);
+        $feature->icon = json_encode($request->icon);
 
         $feature->order_no = $request->order_no;
         $feature->status = $request->status;
 
         $feature->save();
 
-
-        $notification = array(
-            'message' => 'Feature Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.feature.list', ['id' => $feature->group_id])->with('notification', $notification);
+        return response()->json([
+            'success' => true,
+            'feature' => $feature
+        ]);
     }
 
     // Feature Delete
@@ -84,20 +70,25 @@ class FeatureController extends Controller
         $feature = Feature::find($id);
         $feature->delete();
 
-        $notification = array(
-            'message' => 'Feature Deleted successfully!',
-            'alert' => 'success'    
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success'=> true,
+        ]);
     }
 
-    // Feature Edit
     public function edit($id)
     {
-
         $feature = Feature::find($id);
-        return view('admin.feature.edit', compact('feature'));
+
+        return response()->json([
+            'title' => json_decode($feature->title, true),
+            'subtitle' => json_decode($feature->subtitle, true),
+            'description' => json_decode($feature->description, true),
+            'icon' => json_decode($feature->icon, true), 
+            'order_no' => $feature->order_no,
+            'status' => $feature->status,
+        ]);
     }
+
 
     // Update Feature
     public function update(Request $request, $id)
@@ -114,33 +105,18 @@ class FeatureController extends Controller
 
         $feature = Feature::find($id);
 
-        $feature->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
+        $feature->title = json_encode($request->title);
+        $feature->subtitle = json_encode($request->subtitle);
+        $feature->description = json_encode($request->description);
 
-        $feature->icon = $request->icon;
-
-        $feature->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $feature->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
-
+        $feature->icon = json_encode($request->icon);
         $feature->order_no = $request->order_no;
         $feature->status = $request->status;
 
         $feature->save();
 
-
-        $notification = array(
-            'message' => 'Feature Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.feature.list', ['id' => $feature->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $feature,
+        ]);
     }
 }

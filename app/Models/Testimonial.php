@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Testimonial extends Model
 {
-    use HasTranslations;
-
-    
 
     protected $fillable = ['name', 'testimonial', 'designation', 'image'];
 
-    public function group()
+    public function page()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Page::class);
     }
 }

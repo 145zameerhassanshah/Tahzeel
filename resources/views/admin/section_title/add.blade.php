@@ -6,17 +6,17 @@
                 <div class="col-lg-12">
                     <div class="card mt-2 card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Add') }} {{ $group->name }} {{ __('Section Titles') }}
+                            <h3 class="card-title mt-1">{{ __('Add') }} {{ $group->name }} {{ __('Intro Sections') }}
                             </h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.section_title.index') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-angle-double-left"></i> {{ __('Section Title List') }}
+                                <a href="{{ route('admin.intro_section.index') }}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-angle-double-left"></i> {{ __('Intro Section List') }}
                                 </a>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form class="form-horizontal" action="{{ route('admin.section_title.store') }}" method="POST">
+                            <form class="form-horizontal" action="{{ route('admin.hero_section.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <input type="hidden" name="group_id" value="{{ $group->id }}">
@@ -44,18 +44,21 @@
                                         @endif
                                     </div>
 
-                                    
                                     <div class="col-12 mt-2">
-                                        <label for="type" class="control-label">{{ __('Type') }}<span
+                                        <label class="control-label" for="description">{{ __('Description') }}<span
                                                 class="text-danger">*</span></label>
 
-                                        <select class="form-control" name="type" id="type">
-                                            @foreach ($types as $type)
-                                            <option value="{{ $type }}">{{ ucfirst(str_replace('_', ' ', $type)) }}</option>
-                                            @endforeach
-                                        </select>
-                                        @if ($errors->has('type'))
-                                            <p class="text-danger"> {{ $errors->first('type') }} </p>
+                                        <textarea class="form-control" name="description" id="description" placeholder="Description">{{ old('description') }}</textarea>
+                                        @if ($errors->has('description'))
+                                            <p class="text-danger"> {{ $errors->first('description') }} </p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12 mt-2">
+                                        <label for="background_images" class="control-label">{{ __('Background Images') }}<span class="text-danger">*</span></label>
+                                        <input type="file" name="background_image" id="background_images" class="form-control">
+                                        @if ($errors->has('background_image'))
+                                            <p class="text-danger"> {{ $errors->first('background_image') }} </p>
                                         @endif
                                     </div>
 

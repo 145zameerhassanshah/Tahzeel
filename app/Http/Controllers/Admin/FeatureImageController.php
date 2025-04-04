@@ -17,8 +17,10 @@ class FeatureImageController extends Controller
 
     public function index(Request $request)
     {
-        $groups = Group::where('type', 'feature_img')->get();
-        return view('admin.feature-image.index', compact('groups'));
+        $feature_images = FeatureImage::all();
+        return response()->json([
+            'data' => $feature_images,
+        ]);
     }
 
     public function add($id)
@@ -31,7 +33,7 @@ class FeatureImageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
+            'page_id' => 'required',
             'title' => 'required|max:250',
             'image' => 'required',
             'subtitle' => 'required|max:250',
@@ -42,22 +44,11 @@ class FeatureImageController extends Controller
 
         $feature_image = new FeatureImage();
 
-        $feature_image->group_id = $request->group_id;
+        $feature_image->page_id = $request->page_id;
 
-        $feature_image->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $feature_image->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $feature_image->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $feature_image->title = json_encode($request->title);
+        $feature_image->subtitle = json_encode($request->subtitle);
+        $feature_image->description = json_encode($request->description);
 
         $feature_image->order_no = $request->order_no;
         $feature_image->status = $request->status;
@@ -73,11 +64,9 @@ class FeatureImageController extends Controller
         $feature_image->save();
 
 
-        $notification = array(
-            'message' => 'Feature Image Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.feature-image.list', ['id' => $feature_image->group_id])->with('notification', $notification);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     // Feature Delete
@@ -88,19 +77,23 @@ class FeatureImageController extends Controller
         @unlink('assets/admin/uploads/feature_image/'. $feature_image->image);
         $feature_image->delete();
 
-        $notification = array(
-            'message' => 'Feature Image Deleted successfully!',
-            'alert' => 'success'    
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success'=> true,
+        ]);
     }
 
     // Feature Edit
     public function edit($id)
     {
-
         $feature_image = FeatureImage::find($id);
-        return view('admin.feature-image.edit', compact('feature_image'));
+        return response()->json([
+            'title' => json_decode($feature_image->title, true),
+            'subtitle' => json_decode($feature_image->subtitle, true),
+            'description' => json_decode($feature_image->description, true),
+            'image' => $feature_image->image,
+            'order_no' => $feature_image->order_no,
+            'status' => $feature_image->status,
+        ]);
     }
 
     // Update Feature
@@ -117,20 +110,9 @@ class FeatureImageController extends Controller
 
         $feature_image = FeatureImage::find($id);
 
-        $feature_image->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $feature_image->subtitle = json_encode([
-            'en' => $request->subtitle,
-            'ar' => $request->subtitle
-        ]);
-
-        $feature_image->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $feature_image->title = json_encode($request->title);
+        $feature_image->subtitle = json_encode($request->subtitle);
+        $feature_image->description = json_encode($request->description);
 
         $feature_image->order_no = $request->order_no;
         $feature_image->status = $request->status;
@@ -146,11 +128,8 @@ class FeatureImageController extends Controller
 
         $feature_image->save();
 
-
-        $notification = array(
-            'message' => 'Feature Image Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.feature-image.list', ['id' => $feature_image->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $feature_image
+        ]);
     }
 }

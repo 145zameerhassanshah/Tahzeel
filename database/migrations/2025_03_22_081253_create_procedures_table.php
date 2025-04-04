@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');  // Relating to a group
-            $table->json('icon')->nullable();      // 
+            $table->foreignId('page_id')->onDelete('cascade');  // Relating to a group
+            $table->json('image')->nullable();      // file
             $table->json('title');                   // {"en": "jladflaj <span> ", "ar": "عنوان الميزة"}
             $table->json('subtitle')->nullable();    // {"en": "Feature Subtitle", "ar": "العنوان الفرعي للميزة"}
             $table->json('description')->nullable(); // {"en": "Description about the feature", "ar": "الوصف حول الميزة"}

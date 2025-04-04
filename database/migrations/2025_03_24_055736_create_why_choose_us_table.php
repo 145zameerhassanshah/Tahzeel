@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('why_choose_us', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->onDelete('cascade');
+            $table->foreignId('page_id')->onDelete('cascade');
             $table->json('icon')->nullable();
             $table->json('title');
+            $table->json('subtitle')->nullable();
             $table->json('description');
             $table->integer('order_no')->default(0);
             $table->enum('status', ['active', 'inactive'])->default('active');
