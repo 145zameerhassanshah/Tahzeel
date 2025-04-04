@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Front;
+use App\Http\Controllers\Controller;
 
 require_once app_path('Helpers/LanguageHelpers.php');
 
@@ -94,7 +95,7 @@ class FrontController extends Controller
     }
 
 
-   
+
 
 
     public function DEDbusinessLicense()

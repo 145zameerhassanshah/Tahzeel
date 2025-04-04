@@ -61,8 +61,8 @@ class FrontPageController extends Controller
         return $page_detail;
 
 
-              $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
-              $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
+              $data['hero_section'] = localizeHeroSection($page_detail->heroSections, $locale);
+              $data['intro_section'] = localizeIntroductionSection($page_detail->introductionSections, $locale);
 
             return view('front.vat.vat-reg-business', $data);
         }
