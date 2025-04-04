@@ -3,8 +3,8 @@
     <div class="container py-14 py-md-16">
       <div class="row gx-xl-12 gy-10">
         <div class="col-xl-4">
-          <h2 class="display-4 mt-10 mb-3">Our <span class="text-gradient gradient-6 fw-bolder">Clients</span></h2>
-          <p class="lead fs-lg mb-6">Customer satisfaction is our major goal. See what our clients are saying about our services.</p>
+          <h2 class="display-4 mt-10 mb-3">{{ $testimonial_title->title }}</h2>
+          <p class="lead fs-lg mb-6">{{ $testimonial_title->subtitle }}</p>
           <a href="#" class="btn btn-red rounded-pill text-white">Apply Now</a>
         </div>
         <!-- /column -->

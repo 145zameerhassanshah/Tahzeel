@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('why_us_images', function (Blueprint $table) {
             $table->id();
-        $table->foreignId('page_id')->onDelete('cascade');
+            $table->foreignId('page_id')->onDelete('cascade');
             $table->string('image');
             $table->json('title');
             $table->json('subtitle')->nullable();

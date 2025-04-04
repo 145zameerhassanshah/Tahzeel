@@ -4,23 +4,28 @@
             <div class="col-lg-6">
                 <div class="row gx-md-5 gy-5">
                     <div class="col-12 d-none d-md-block">
-                        <figure class="rounded mx-5 ">
-                            <img src="{{ asset($intro_section->images[0])}}" srcset="{{ asset($intro_section->images[0])}}" alt="">
-                        </figure>
+                        @if(isset($intro_section->images[0]))
+                            <figure class="rounded mx-5 ">
+                                <img src="{{ asset($intro_section->images[0]) }}" srcset="{{ asset($intro_section->images[0]) }}" alt="">
+                            </figure>
+                        @endif
                     </div>
                     <!--/column -->
-                    <div class="col-md-6">
-                        <figure class="rounded d-none d-md-block">
-                            <img src="{{ asset($intro_section->images[1])}}" srcset="{{ asset($intro_section->images[1])}}" alt="">
-                        </figure>
-                    </div>
+                    @if(isset($intro_section->images[1]))
+                        <div class="col-md-6">
+                            <figure class="rounded d-none d-md-block">
+                                <img src="{{ asset($intro_section->images[1]) }}" srcset="{{ asset($intro_section->images[1]) }}" alt="">
+                            </figure>
+                        </div>
+                    @endif
                     <!--/column -->
-                    <div class="col-md-6">
-                        <figure class="rounded ">
-                            <img src="{{ asset($intro_section->images[2])}}" srcset="{{ asset($intro_section->images[2])}}" alt="">
-                        </figure>
-                    </div>
-                    <!--/column -->
+                    @if(isset($intro_section->images[2]))
+                        <div class="col-md-6">
+                            <figure class="rounded">
+                                <img src="{{ asset($intro_section->images[2]) }}" srcset="{{ asset($intro_section->images[2]) }}" alt="">
+                            </figure>
+                        </div>
+                    @endif
                 </div>
                 <!--/.row -->
             </div>
