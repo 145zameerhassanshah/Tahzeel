@@ -368,6 +368,12 @@ Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->
 
 Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
 
+Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
+
+Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
+
+
+
 Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 
 

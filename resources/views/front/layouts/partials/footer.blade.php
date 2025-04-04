@@ -77,7 +77,9 @@
                                               id="mce-EMAIL2">
                                           <label for="mce-EMAIL2">Email Address</label>
                                           <input type="submit" value="Join" name="subscribe"
-                                              id="mc-embedded-subscribe2" class="btn btn-success text-white ">
+                                              id="mc-embedded-subscribe2" class="btn btn-success text-white " style="transition: background-color 0.3s ease-in-out;"
+                                              onmouseover="this.style.backgroundColor='#E2626B';this.style.Color='white' " 
+                                              onmouseout="this.style.backgroundColor='#45C4A0'; this.style.color='white'">
                                       </div>
                                       <div id="mce-responses2" class="clear">
                                           <div class="response" id="mce-error-response2" style="display:none">
