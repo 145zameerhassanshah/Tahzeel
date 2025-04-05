@@ -310,7 +310,7 @@
 
                 {{-- Procedure --}}
                 <li class="nav-item">
-                    <a href="{{ route('admin.procedure.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedure.index' ? 'active' : '' }}">
+                    <a href="{{ route('procedures.index') }}" class="nav-link {{ Route::currentRouteName() == 'procedures.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('Procedures') }}
@@ -321,7 +321,7 @@
 
                 {{-- Call To Action --}}
                 <li class="nav-item">
-                    <a href="{{ route('admin.call-to-action.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.call-to-action.index' ? 'active' : '' }}">
+                    <a href="{{ route('call-to-actions.index') }}" class="nav-link {{ Route::currentRouteName() == 'call-to-actions.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('CallToActions') }}
@@ -376,7 +376,7 @@
 
                 {{-- WhyChooseUs --}}
                 <li class="nav-item">
-                    <a href="{{ route('admin.document-required.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.document-required.index' ? 'active' : '' }}">
+                    <a href="{{ route('document-requireds.index') }}" class="nav-link {{ Route::currentRouteName() == 'document-requireds.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             {{ __('DocumentRequired') }}

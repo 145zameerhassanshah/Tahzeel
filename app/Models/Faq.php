@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    use HasTranslations;
+    
 
     protected $fillable = ['page_id', 'question', 'answer'];
-    public $translatable = ['question', 'ans'];
+   
 
     public function group()
     {
