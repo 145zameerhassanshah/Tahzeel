@@ -379,9 +379,9 @@ Route::middleware(['auth', 'status'])->group(function () {
         }
         return redirect()->back();
     })->name('setLanguage');
-    
-    
-    
+
+
+
     Route::get('/', [FrontController::class, 'index'])->name('front.index');
     Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
     Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
@@ -396,22 +396,29 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
     Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
     Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
-    
+
     Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
-    
+
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
-    
-    
+
+
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
-    
-    
-    
-    
-    
-    
+
+
+
+    Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
+    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
+
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
 
 });
 
 // all admin routes write in admin middleware
+
+
+
+
+
+
+

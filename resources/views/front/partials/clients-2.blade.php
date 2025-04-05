@@ -17,7 +17,7 @@
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <div class="item-inner">
-                      <div class="card">
+                      <div class="card" >
                         <div class="card-body">
                           <blockquote class="icon mb-0">
                             <p>“I had a complicated visa situation, but Tah-zeel made the process effortless. They handled everything quickly and professionally.”</p>
