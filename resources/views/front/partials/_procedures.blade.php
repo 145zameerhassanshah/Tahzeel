@@ -3,9 +3,7 @@
 
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
-                @php
-                $procedure_title = $section_titles->where('type', 'procedure')->first();
-            @endphp
+
                 <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mt-12">{{ $procedure_title->subtitle }}</h3>
                 <p class="lead fs-lg mb-8"><span class="underline green">{{ $procedure_title->title }}</p>
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">

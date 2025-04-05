@@ -3,24 +3,23 @@
 @section('content')
 
 
-
-@if($hero_sections)
+@if(isset($hero_sections))
     @foreach($hero_sections as $hero_section)
         @include('front.partials._hero_section')
     @endforeach
 @endif
 
 
-@if($intro_sections)
+@if(isset($intro_sections))
     @foreach($intro_sections as $intro_section)
         @include('front.partials._intro_three_images')
     @endforeach
 @endif
 
-@if($document_requireds)
-    @php
-        $document_title = $section_titles->where('type', 'document')->first();
-    @endphp
+@php
+    $document_title = $section_titles->where('type', 'document')->first();
+@endphp
+@if(isset($document_requireds) && isset($document_title->title))
     @include('front.partials._docs')
 @endif
 
@@ -28,45 +27,52 @@
     $feature_title = $section_titles->where('type', 'feature')->first();
 @endphp
 
-@if ($feature_images)
+@if (isset($feature_images) && isset($feature_title->title))
     @include('front.partials._feature_image')
 @endif
 
-@if ($procedures)
+@php
+    $procedure_title = $section_titles->where('type', 'procedure')->first();
+@endphp
+
+@if (isset($procedures) && isset($procedure_title))
     @include('front.partials._procedures')
 @endif
     {{-- Key Features --}}
-    <div class="container">
-        <div class="row text-center mt-10 mb-12">
-            <div class="col">
-                <h2 class="display-5">{!! $feature_title->title !!}</h2>
-                <p class="mx-5">
-                    {!! $feature_title->subtitle !!}
-                </p>
-            </div>
-        </div>
-        <div class="row gx-md-5 mb-5 mb-md-5">
 
-            @foreach ($features as $feature)
-                <div class="col-md-6 col-xl-3 ">
-                    <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
-                        <div class="card-body">
-                            <i class="{{ $feature->icon }}"></i>
-                            <h4>{{ $feature->title }}</h4>
-                            <p class="mb-2">{{ $feature->description }}</p>
-
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
+    @if (isset($feature_title->title))
+        <div class="container">
+            <div class="row text-center mt-10 mb-12">
+                <div class="col">
+                    <h2 class="display-5">{!! $feature_title->title !!}</h2>asdfghhhjjkk
+                    <p class="mx-5">
+                        {!! $feature_title->subtitle !!}
+                    </p>
                 </div>
-            @endforeach
+            </div>
+            <div class="row gx-md-5 mb-5 mb-md-5">
 
-            <!--/column -->
+                @foreach ($features as $feature)
+                    <div class="col-md-6 col-xl-3 ">
+                        <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
+                            <div class="card-body">
+                                <i class="{{ $feature->icon }}"></i>
+                                <h4>{{ $feature->title }}</h4>
+                                <p class="mb-2">{{ $feature->description }}</p>
+
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.card -->
+                    </div>
+                @endforeach
+
+                <!--/column -->
+            </div>
+            <!--/.row -->
+
         </div>
-        <!--/.row -->
-
-    </div>
+    @endif
      {{-- end features  --}}
 
      @if($procedures)
@@ -127,9 +133,6 @@
 @endphp
     @include('front.partials._clients')
 @endif
-
-
-
 
 
 @include('front.partials.affiliations')
