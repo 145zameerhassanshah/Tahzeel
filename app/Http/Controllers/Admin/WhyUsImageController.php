@@ -17,8 +17,10 @@ class WhyUsImageController extends Controller
 
     public function index(Request $request)
     {
-        $groups = Group::where('type', 'why_us_img')->get();
-        return view('admin.why-us-image.index', compact('groups'));
+        $whyUs = WhyUsImage::all();
+        return response()->json([
+            'data' => $whyUs,
+        ]);
     }
 
     public function add($id)
@@ -31,7 +33,7 @@ class WhyUsImageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'group_id' => 'required|exists:groups,id',
+            'page_id' => 'required',
             'title' => 'required',
             'image' => 'required',
             'description' => 'required',
@@ -41,17 +43,11 @@ class WhyUsImageController extends Controller
 
         $why_us_image = new WhyUsImage();
 
-        $why_us_image->group_id = $request->group_id;
+        $why_us_image->page_id = $request->page_id;
 
-        $why_us_image->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $why_us_image->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $why_us_image->title = json_encode($request->title);
+        $why_us_image->subtitle = json_encode($request->subtitle);
+        $why_us_image->description = json_encode($request->description);
 
         $why_us_image->order_no = $request->order_no;
         $why_us_image->status = $request->status;
@@ -67,11 +63,9 @@ class WhyUsImageController extends Controller
         $why_us_image->save();
 
 
-        $notification = array(
-            'message' => 'WhyUsImage Added successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.why-us-image.list', ['id' => $why_us_image->group_id])->with('notification', $notification);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     public function delete($id)
@@ -81,11 +75,9 @@ class WhyUsImageController extends Controller
         @unlink('assets/admin/uplaods/why_us_image/'. $why_us_image->image);
         $why_us_image->delete();
 
-        $notification = array(
-            'message' => 'WhyUsImage Deleted successfully!',
-            'alert' => 'success'    
-        );
-        return redirect()->back()->with('notification', $notification);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     // Feature Edit
@@ -93,7 +85,14 @@ class WhyUsImageController extends Controller
     {
 
         $whyUs = WhyUsImage::find($id);
-        return view('admin.why-us-image.edit', compact('whyUs'));
+        return response()->json([
+            'title' => json_decode($whyUs->title, true),
+            'subtitle' => json_decode($whyUs->subtitle, true),
+            'description' => json_decode($whyUs->description, true),
+            'image' => $whyUs->image,
+            'order_no' => $whyUs->order_no,
+            'status' => $whyUs->status,
+        ]);
     }
 
     // Update Feature
@@ -110,15 +109,9 @@ class WhyUsImageController extends Controller
 
         $why_us_image = WhyUsImage::find($id);
 
-        $why_us_image->title = json_encode([
-            'en' => $request->title,
-            'ar' => $request->title
-        ]);
-
-        $why_us_image->description = json_encode([
-            'en' => $request->description,
-            'ar' => $request->description
-        ]);
+        $why_us_image->title = json_encode($request->title);
+        $why_us_image->subtitle = json_encode($request->subtitle);
+        $why_us_image->description = json_encode($request->description);
 
         $why_us_image->order_no = $request->order_no;
         $why_us_image->status = $request->status;
@@ -135,10 +128,8 @@ class WhyUsImageController extends Controller
         $why_us_image->save();
 
 
-        $notification = array(
-            'message' => 'WhyUsImage Updated successfully!',
-            'alert' => 'success'
-        );
-        return redirect()->route('admin.why-us-image.list', ['id' => $why_us_image->group_id])->with('notification', $notification);
+        return response()->json([
+            'data' => $why_us_image,
+        ]);
     }
 }

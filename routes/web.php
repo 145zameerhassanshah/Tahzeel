@@ -20,13 +20,13 @@ use App\Http\Controllers\Admin\SectionTitleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeatureImageController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\IntroSectionController;
 
 use App\Http\Controllers\Admin\NotificationController;
 
@@ -34,18 +34,14 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\Admin\WhyUsImageController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Middleware\Localization;
 use App\Models\Enquiry;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::get('language/{locale}', function ($locale) {
-    if (in_array($locale, config('app.available_locales'))) {
-        session(['locale' => $locale]);
-        app()->setLocale($locale);
-    }
-    return redirect()->back();
-})->name('setLanguage');
+
 
 
 Route::get('/pending-user', [UserController::class, 'pendingUser'])->name('pending.user');
@@ -196,7 +192,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
         Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
         Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
-        Route::post('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
+        Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
 
 
@@ -206,7 +202,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/feature-image/{id}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
         Route::post('/feature-image/store', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
         Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
-        Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
+        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
         Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
 
@@ -216,8 +212,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
         Route::post('/why-us-image/store', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
-        Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
-        Route::post('/why-choose-us/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
+        Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
+        Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
         // // DocumentRequired Routes
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
@@ -255,6 +251,24 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
          Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
          Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+
+         // SectionTitle Routes
+         Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
+         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
+         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
+         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
+         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
+         Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
+
+         // SectionTitle Routes
+         Route::get('/Intro-sections', [IntroSectionController::class, 'index'])->name('admin.intro_section.index');
+         Route::get('/Intro-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.intro_section.list');
+         Route::get('/Intro-section/{id}/add', [IntroSectionController::class, 'add'])->name('admin.intro_section.add');
+         Route::post('/Intro-section/store', [IntroSectionController::class, 'store'])->name('admin.intro_section.store');
+         Route::get('/Intro-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.intro_section.edit');
+         Route::put('/Intro-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.intro_section.update');
+         Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
 
         // Procedure Routes
         // Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
@@ -354,38 +368,65 @@ Route::middleware(['auth', 'status'])->group(function () {
     
 
     Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
+
+
+
+
+
+
+
+
+
+
+
+
+    Route::get('language/{locale}', function ($locale) {
+        if (in_array($locale, config('app.available_locales'))) {
+            session(['locale' => $locale]);
+            app()->setLocale($locale);
+        }
+        return redirect()->back();
+    })->name('setLanguage');
+
+
+
+    Route::get('/', [FrontController::class, 'index'])->name('front.index');
+    Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
+    Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
+    Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
+    Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
+    Route::get('/contact-us', [FrontController::class, 'contactUs'])->name('front.contact.us');
+    Route::get('/emirate-id', [FrontController::class, 'emirateId'])->name('front.emirate.id');
+    Route::get('/visit-visa', [FrontController::class, 'visitVisa'])->name('front.visit.visa');
+    Route::get('/domestic-worker-visa', [FrontController::class, 'domesticWorkerVisa'])->name('front.domestic.worker.visa');
+    Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest'])->name('front.medical.fitness.test');
+    Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('front.residency.visa');
+    Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
+    Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
+    Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
+
+    Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
+
+    Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
+
+
+    Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
+
+
+
+    Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
+    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
+
+    Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
+    Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
+
 });
 
 // all admin routes write in admin middleware
 
 
-Route::get('/', [FrontController::class, 'index'])->name('front.index');
-Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
-Route::get('/about-us', [FrontController::class, 'aboutUs'])->name('front.about.us')->middleware(Localization::class);
-Route::get('/amr-services', [FrontController::class, 'amrServices'])->name('front.amr.services');
-Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
-Route::get('/contact-us', [FrontController::class, 'contactUs'])->name('front.contact.us');
-Route::get('/emirate-id', [FrontController::class, 'emirateId'])->name('front.emirate.id');
-Route::get('/visit-visa', [FrontController::class, 'visitVisa'])->name('front.visit.visa');
-Route::get('/domestic-worker-visa', [FrontController::class, 'domesticWorkerVisa'])->name('front.domestic.worker.visa');
-Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest'])->name('front.medical.fitness.test');
-Route::get('/residency-visa', [FrontController::class, 'residencyVisa'])->name('front.residency.visa');
-Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
-Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
-Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
-
-Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
-
-Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
-
-
-Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 
 
 
 
-
-
-Route::get('/vat-registration-for-businesses', [FrontController::class, 'vatBusiness'])->name('front.vat.business');
-Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
 

@@ -83,7 +83,7 @@ class FeatureController extends Controller
             'title' => json_decode($feature->title, true),
             'subtitle' => json_decode($feature->subtitle, true),
             'description' => json_decode($feature->description, true),
-            'icon' => json_decode($feature->icon, true),
+            'icon' => json_decode($feature->icon, true), 
             'order_no' => $feature->order_no,
             'status' => $feature->status,
         ]);
@@ -109,7 +109,7 @@ class FeatureController extends Controller
         $feature->subtitle = json_encode($request->subtitle);
         $feature->description = json_encode($request->description);
 
-        $feature->icon = $request->icon;
+        $feature->icon = json_encode($request->icon);
         $feature->order_no = $request->order_no;
         $feature->status = $request->status;
 

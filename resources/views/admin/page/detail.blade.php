@@ -10,62 +10,62 @@
                         <div class="card-header p-0 pt-1 border-bottom-0">
                             <ul class="nav nav-tabs mx-3 my-1" id="custom-tabs-three-tab" role="tablist">
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white active" id="custom-tabs-testimonial-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white active" id="custom-tabs-testimonial-tab" data-toggle="pill"
                                         href="#custom-tabs-testimonial" role="tab"
                                         aria-controls="custom-tabs-testimonial" aria-selected="true">Testimonials</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-hero-section-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-hero-section-tab" data-toggle="pill"
                                         href="#custom-tabs-hero-section" role="tab"
                                         aria-controls="custom-tabs-hero-section" aria-selected="false">Hero Section</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-intro-section-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-intro-section-tab" data-toggle="pill"
                                         href="#custom-tabs-intro-section" role="tab"
                                         aria-controls="custom-tabs-intro-section" aria-selected="false">Intro Section</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-section-title-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-section-title-tab" data-toggle="pill"
                                         href="#custom-tabs-section-title" role="tab"
                                         aria-controls="custom-tabs-section-title" aria-selected="false">Section Title</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-feature-image-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-feature-image-tab" data-toggle="pill"
                                         href="#custom-tabs-feature-image" role="tab"
                                         aria-controls="custom-tabs-feature-image" aria-selected="false">Feature Image</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-procedure-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-procedure-tab" data-toggle="pill"
                                         href="#custom-tabs-procedure" role="tab"
                                         aria-controls="custom-tabs-procedure" aria-selected="false">Procedure</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-cta-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-cta-tab" data-toggle="pill"
                                         href="#custom-tabs-cta" role="tab"
                                         aria-controls="custom-tabs-cta" aria-selected="false">CallToAction</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-faq-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-faq-tab" data-toggle="pill"
                                         href="#custom-tabs-faq" role="tab"
                                         aria-controls="custom-tabs-faq" aria-selected="false">FAQs</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-document-required-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-document-required-tab" data-toggle="pill"
                                         href="#custom-tabs-document-required" role="tab"
                                         aria-controls="custom-tabs-document-required" aria-selected="false">Document Required</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-whychooseus-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whychooseus-tab" data-toggle="pill"
                                         href="#custom-tabs-whychooseus" role="tab"
                                         aria-controls="custom-tabs-whychooseus" aria-selected="false">WhyChooseUs</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-features-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-features-tab" data-toggle="pill"
                                         href="#custom-tabs-features" role="tab"
                                         aria-controls="custom-tabs-features" aria-selected="false">Features</a>
                                 </li>
                                 <li class="nav-item mx-1 my-1">
-                                    <a class="nav-link btn btn-success text-white" id="custom-tabs-whyusimage-tab" data-toggle="pill"
+                                    <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whyusimage-tab" data-toggle="pill"
                                         href="#custom-tabs-whyusimage" role="tab"
                                         aria-controls="custom-tabs-whyusimage" aria-selected="false">WhyUsImage</a>
                                 </li>
@@ -89,11 +89,11 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-section-title" role="tabpanel"
                                     aria-labelledby="custom-tabs-section-title-tab">
-                                    Section Title
+                                    @include('admin.page.partials.section-title')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-feature-image" role="tabpanel"
                                     aria-labelledby="custom-tabs-feature-image-tab">
-                                    Feature Image
+                                    @include('admin.page.partials.feature-image')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-procedure" role="tabpanel"
                                     aria-labelledby="custom-tabs-procedure-tab">
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whychooseus" role="tabpanel"
                                     aria-labelledby="custom-tabs-whychooseus-tab">
-                                    Why Choose Us
+                                    @include('admin.page.partials.why-choose-us')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-features" role="tabpanel"
                                     aria-labelledby="custom-tabs-features-tab">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whyusimage" role="tabpanel"
                                     aria-labelledby="custom-tabs-whyusimage-tab">
-                                    Why Us Images
+                                    @include('admin.page.partials.why-us-image')
                                 </div>
 
                             </div>
@@ -136,72 +136,77 @@
 
 @section('js')
 
-@include('admin.page.partials.script')
-    
+    @include('admin.page.partials.script')
+
+
+{{-- WhyUs Image Section --}}
+
 <script>
     $(document).ready(function() {
             
-            loadFeatures();
+            loadWhyusImages();
 
-            function loadFeatures() {
+            function loadWhyusImages() {
                 $.ajax({
-                    url: '/features',
+                    url: '/why-us-image',
                     type: 'GET',
                     dataType: 'json',
                     beforeSend: function() {
-                        // Show loading indicator
-                        $('#featuresTableBody').html(
+
+                        $('#whyusimgsTableBody').html(
                             '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                         );
                     },
                     success: function(response) {
                         if (response.data && response.data.length > 0) {
-                            renderFeatures(response.data);
+                            renderWhyusImages(response.data);
                         } else {
-                            $('#featuresTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                            $('#whyusimgsTableBody').html(
+                                '<tr><td colspan="5" class="text-center">No whyuss found</td></tr>'
                             );
                         }
                     },
                     error: function(xhr) {
-                        $('#featuresTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
+                        $('#whyusimgsTableBody').html(
+                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus images</td></tr>'
                         );
-                        console.error("Error loading features:", xhr.responseText);
+                        console.error("Error loading whyuss:", xhr.responseText);
                     }
                 });
             }
 
-            // Function to render features in table
+            // Function to render whyuss in table
 
-            function renderFeatures(features) {
+            function renderWhyusImages(whyusimgs) {
                 let html = '';
 
-                features.forEach((feature, index) => {
-                    const title = typeof feature.title === 'string' ? JSON.parse(feature.title) :
-                        feature.title;
-                    const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature
-                        .subtitle) : feature.subtitle;
+                whyusimgs.forEach((whyusimg, index) => {
+                    const title = typeof whyusimg.title === 'string' ? JSON.parse(whyusimg.title) :
+                        whyusimg.title;
+                    const subtitle = typeof whyusimg.subtitle === 'string' ? JSON.parse(whyusimg
+                        .subtitle) : whyusimg.subtitle;
 
-                    const description = typeof feature.description === 'string' ? JSON.parse(feature
-                        .description) : feature.description;
+                    const description = typeof whyusimg.description === 'string' ? JSON.parse(whyusimg
+                        .description) : whyusimg.description;
 
                     html += `
-            <tr id="feature-row-${feature.id}">
+            <tr id="whyusimg-row-${whyusimg.id}">
                 <td>${index + 1}</td>
                 <td>
-                    ${feature.icon}
+                    ${whyusimg.image ? 
+                        `<img src="/assets/admin/uploads/why_us_image/${whyusimg.image}" width="50" height="50px">` : 
+                        ''}
                 </td>
                 <td>${title.en}</td>
                 <td>${subtitle.en}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editFeature" data-id="${feature.id}">
+                    <button class="btn btn-sm btn-primary editWhyusImage" data-id="${whyusimg.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <form class="d-inline-block" action="/feature/delete/${feature.id}" method="post">
+                    <form class="d-inline-block" action="/why-us-image/delete/${whyusimg.id}" method="post">
                         @csrf
                         @method('POST')
-                        <button type="button" class="btn btn-danger btn-sm delete-feature" data-id="${feature.id}">
+                        <button type="button" class="btn btn-danger btn-sm delete-whyusimg" data-id="${whyusimg.id}">
     <i class="fas fa-trash"></i> Delete
 </button>
                     </form>
@@ -209,18 +214,17 @@
             </tr>`;
                 });
 
-                $('#featuresTableBody').html(html);
+                $('#whyusimgsTableBody').html(html);
             }
 
-            function refreshFeatures() {
-                loadFeatures();
+            function refreshWhyusImages() {
+                loadWhyusImages();
             }
 
 
 
-            $("#featureForm").submit(function(event) {
+            $("#whyusimgForm").submit(function(event) {
                 event.preventDefault();
-
 
                 $(".error").text("");
                 let titleEn = $("#title_en").val().trim();
@@ -230,7 +234,7 @@
                 let descriptionEn = $("#description_en").val().trim();
                 let descriptionAr = $("#description_ar").val().trim();
                 let status = $('#status').val().trim();
-                let icon = $("#icon").val().trim();
+                let image = $("#image")[0].files[0];
 
                 let isValid = true;
 
@@ -257,9 +261,13 @@
                 if (descriptionAr.length < 1) {
                     isValid = true;
                 }
-                if (icon.length < 1) {
-                    $('#error_icon').text("Icon Field is required.");
-                    isValid = false;
+                if (image) {
+                    let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
+                    let fileExtension = image.name.split('.').pop().toLowerCase();
+                    if (!allowedExtensions.includes(fileExtension)) {
+                        $("#error_image").text("Only JPG, PNG, WEBP, or GIF allowed.");
+                        isValid = false;
+                    }
                 }
 
                 if (!isValid) return;
@@ -268,7 +276,7 @@
                 let formData = new FormData(this);
 
                 $.ajax({
-                    url: "{{ route('admin.feature.store') }}",
+                    url: "{{ route('admin.why-us-image.store') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -278,12 +286,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            toastr.success("Feature added successfully!");
+                            toastr.success("WhyusImage added successfully!");
 
-                            refreshFeatures();
+                            refreshWhyusImages();
 
-                            $("#featureForm")[0].reset();
-                            $("#featureModal").removeClass("show").hide();
+                            $("#whyusimgForm")[0].reset();
+                            $("#whyusimgModal").removeClass("show").hide();
                             $(".modal-backdrop").remove();
                             $("body").removeClass("modal-open");
                         } else {
@@ -301,48 +309,52 @@
                 });
             });
 
-                $(document).on('click', '.editFeature', function() {
-                    let id = $(this).data('id');
 
-                    $.ajax({
-                        url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', id), 
-                        type: "GET",
-                        success: function(response) {
+            $(document).on('click', '.editWhyusImage', function() {
+                let id = $(this).data('id');
 
-                            let title = response.title ? response.title : { en: "", ar: "" };
-                            let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                            let description = response.description ? response.description : { en: "", ar: "" };
-                            let icon = response.icon ? response.icon : "";
+                $.ajax({
+                    url: "{{ route('admin.why-us-image.edit', ':id') }}".replace(':id', id),
+                    type: "GET",
+                    success: function(response) {
 
-                            $('#update_feature_id').val(id);
-                            $('#update_title_en').val(title.en);
-                            $('#update_title_ar').val(title.ar);
-                            $('#update_subtitle_en').val(subtitle.en);
-                            $('#update_subtitle_ar').val(subtitle.ar);
-                            $('#update_description_en').val(description.en);
-                            $('#update_description_ar').val(description.ar);
-                            $('#update_status').val(response.status);
-                            $('#update_icon').val(icon);
-                            $('#update_order_no').val(response.order_no);
+                        let title = response.title ? response.title : { en: "", ar: "" };
+                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+                        let description = response.description ? response.description : { en: "", ar: "" };
 
-                            // Show the modal
-                            $('#editFeatureModal').modal('show');
-                        },
-                        error: function(xhr) {
-                            console.log("AJAX Error:", xhr);
+                        $('#update_whyusimg_id').val(id);
+                        $('#update_whyusimg_title_en').val(title.en);
+                        $('#update_whyusimg_title_ar').val(title.ar);
+                        $('#update_whyusimg_subtitle_en').val(subtitle.en);
+                        $('#update_whyusimg_subtitle_ar').val(subtitle.ar);
+                        $('#update_whyusimg_description_en').val(description.en);
+                        $('#update_whyusimg_description_ar').val(description.ar);
+                        $('#update_whyusimg_status').val(response.status);
+                        $('#update_whyusimg_order_no').val(response.order_no);
+                        
+                        if (response.image) {
+                            $('#image_preview').attr('src',
+                                `/assets/admin/uploads/why_us_image/${response.image}`).show();
+                        } else {
+                            $('#image_preview').hide();
                         }
-                    });
+
+                        // Show the modal
+                        $('#editWhyusImageModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        console.log("AJAX Error:", xhr);
+                    }
                 });
+            });
 
 
-
-
-            $('#editFeatureForm').on('submit', function(e) {
+            $('#editWhyusImageForm').on('submit', function(e) {
                 e.preventDefault();
 
                 let formData = new FormData(this);
-                let id = $('#update_feature_id').val();
-                let url = `{{ route('admin.feature.update', ':id') }}`.replace(':id', id);
+                let id = $('#update_whyusimg_id').val();
+                let url = `{{ route('admin.why-us-image.update', ':id') }}`.replace(':id', id);
 
                 $.ajax({
                     url: url,
@@ -354,21 +366,21 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                     },
                     success: function(response) {
-                        $('#editFeatureModal').modal('hide');
+                        $('#editWhyusImageModal').modal('hide');
                         toastr.success("Hero Section updated successfully!");
-                        refreshFeatures();
+                        refreshWhyusImages();
                     },
                     error: function(response) {
                         $('.error').text('');
                         $.each(response.responseJSON.errors, function(key, error) {
                             $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
+                    });
                     }
                 });
             });
 
-            $(document).on("click", ".delete-feature", function() {
-                let featureId = $(this).data("id");
+            $(document).on("click", ".delete-whyusimg", function() {
+                let whyusId = $(this).data("id");
 
                 Swal.fire({
                     title: "Are you sure?",
@@ -381,7 +393,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/feature/delete/${featureId}/`,
+                            url: `/why-us-image/delete/${whyusId}/`,
                             type: "POST",
                             data: {
                                 _method: "POST",
@@ -396,7 +408,7 @@
                                     showConfirmButton: false
                                 });
 
-                                refreshFeatures();
+                                refreshWhyusImages();
                             },
                             error: function() {
                                 Swal.fire({
@@ -412,6 +424,5 @@
 
         });
 </script>
-
 
 @endsection
