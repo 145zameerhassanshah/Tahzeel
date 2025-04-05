@@ -215,14 +215,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
-        // DocumentRequired Routes
-        Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
-        Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
-        Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
-        Route::post('/document-required/store', [DocumentRequiredController::class, 'store'])->name('admin.document-required.store');
-        Route::get('/document-required/edit/{id}', [DocumentRequiredController::class, 'edit'])->name('admin.document-required.edit');
-        Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
-        Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
+        // // DocumentRequired Routes
+        // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
+        // Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
+        // Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
+        // Route::post('/document-required/store', [DocumentRequiredController::class, 'store'])->name('admin.document-required.store');
+        // Route::get('/document-required/edit/{id}', [DocumentRequiredController::class, 'edit'])->name('admin.document-required.edit');
+        // Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
+        // Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
 
 
          // SectionTitle Routes
@@ -271,23 +271,23 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
 
         // Procedure Routes
-        Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
-        Route::get('/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedure.list');
-        Route::get('/procedure/{id}/add', [ProcedureController::class, 'add'])->name('admin.procedure.add');
-        Route::post('/procedure/store', [ProcedureController::class, 'store'])->name('admin.procedure.store');
-        Route::get('/procedure/edit/{id}', [ProcedureController::class, 'e[ProcedureController::cladit'])->name('admin.procedure.edit');
-        Route::post('/procedure/update/{id}', [ProcedureController::class, 'update'])->name('admin.procedure.update');
-        Route::post('/procedure/delete/{id}', [ProcedureController::class, 'delete'])->name('admin.procedure.delete');
+        // Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
+        // Route::get('/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedure.list');
+        // Route::get('/procedure/{id}/add', [ProcedureController::class, 'add'])->name('admin.procedure.add');
+        // Route::post('/procedure/store', [ProcedureController::class, 'store'])->name('admin.procedure.store');
+        // Route::get('/procedure/edit/{id}', [ProcedureController::class, 'e[ProcedureController::cladit'])->name('admin.procedure.edit');
+        // Route::post('/procedure/update/{id}', [ProcedureController::class, 'update'])->name('admin.procedure.update');
+        // Route::post('/procedure/delete/{id}', [ProcedureController::class, 'delete'])->name('admin.procedure.delete');
 
 
         // Call To Action Routes
-        Route::get('/call-to-actions', [CallToActionController::class, 'index'])->name('admin.call-to-action.index');
-        Route::get('/call-to-actions/{id}/list', [CallToActionController::class, 'list'])->name('admin.call-to-action.list');
-        Route::get('/call-to-action/{id}/add', [CallToActionController::class, 'add'])->name('admin.call-to-action.add');
-        Route::post('/call-to-action/store', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
-        Route::get('/call-to-action/edit/{id}', [CallToActionController::class, 'edit'])->name('admin.call-to-action.edit');
-        Route::post('/call-to-action/update/{id}', [CallToActionController::class, 'update'])->name('admin.call-to-action.update');
-        Route::post('/call-to-action/delete/{id}', [CallToActionController::class, 'delete'])->name('admin.call-to-action.delete');
+        // Route::get('/call-to-actions', [CallToActionController::class, 'index'])->name('admin.call-to-action.index');
+        // Route::get('/call-to-actions/{id}/list', [CallToActionController::class, 'list'])->name('admin.call-to-action.list');
+        // Route::get('/call-to-action/{id}/add', [CallToActionController::class, 'add'])->name('admin.call-to-action.add');
+        // Route::post('/call-to-action/store', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
+        // Route::get('/call-to-action/edit/{id}', [CallToActionController::class, 'edit'])->name('admin.call-to-action.edit');
+        // Route::post('/call-to-action/update/{id}', [CallToActionController::class, 'update'])->name('admin.call-to-action.update');
+        // Route::post('/call-to-action/delete/{id}', [CallToActionController::class, 'delete'])->name('admin.call-to-action.delete');
 
 
         // Service Category Routes
@@ -356,9 +356,17 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::resource('faqs', FaqController::class);
+    Route::resource('admin/testimonials', TestimonialController::class);
+    Route::resource('admin/faqs', FaqController::class);
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
     Route::resource('admin/testimonials', TestimonialController::class);
+
+    Route::resource('admin/procedures', ProcedureController::class);
+    Route::resource('admin/document-requireds', DocumentRequiredController::class);
+    Route::resource('admin/procedures', ProcedureController::class);
+    Route::resource('admin/call-to-actions', CallToActionController::class);
+    
+
     Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
 
 

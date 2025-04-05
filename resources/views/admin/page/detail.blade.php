@@ -97,19 +97,19 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-procedure" role="tabpanel"
                                     aria-labelledby="custom-tabs-procedure-tab">
-                                    Procedure
+                                    @include('admin.page.partials.procedure')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-cta" role="tabpanel"
                                     aria-labelledby="custom-tabs-cta-tab">
-                                    Call To Action
+                                    @include('admin.page.partials.call-to-action')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-faq" role="tabpanel"
                                     aria-labelledby="custom-tabs-faq-tab">
-                                    Frequently Asked Questions
+                                    @include('admin.page.partials.faqs')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-document-required" role="tabpanel"
                                     aria-labelledby="custom-tabs-document-required-tab">
-                                    Document Required
+                                    @include('admin.page.partials.document-required')
                                 </div>
                                 <div class="tab-pane fade" id="custom-tabs-whychooseus" role="tabpanel"
                                     aria-labelledby="custom-tabs-whychooseus-tab">
