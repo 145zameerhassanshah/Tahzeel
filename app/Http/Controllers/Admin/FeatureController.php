@@ -33,35 +33,32 @@ class FeatureController extends Controller
     // Store Feature
     public function store(Request $request)
     {
+        // Simple validation
         $request->validate([
-            'page_id' => 'required|exists:groups,id',
-            'title' => 'required',
-            'icon' => 'required',
-            'subtitle' => 'required',
-            'description' => 'required',
-            'order_no' => 'required',
-            'status' => 'required',
+            'page_id' => 'required',
+            'title.en' => 'required',
+            'title.ar' => 'required',
+            'icon' => 'required', // Make icon required if needed
         ]);
-
-        $feature = new Feature();
-
-        $feature->page_id = $request->page_id;
-
-        $feature->title = json_encode($request->title);
-        $feature->subtitle = json_encode($request->subtitle);
-        $feature->description = json_encode($request->description);
-        $feature->icon = json_encode($request->icon);
-
-        $feature->order_no = $request->order_no;
-        $feature->status = $request->status;
-
-        $feature->save();
-
+    
+        // Simple create
+        $feature = Feature::create([
+            'page_id' => $request->page_id,
+            'icon' => $request->icon, // Directly use the icon value
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'description' => $request->description,
+            'order_no' => $request->order_no ?? 0,
+            'status' => $request->status
+        ]);
+    
         return response()->json([
             'success' => true,
-            'feature' => $feature
+            'message' => 'Feature saved!',
+            'icon' => $feature->icon // Return the saved icon
         ]);
     }
+    
 
     // Feature Delete
     public function delete($id)

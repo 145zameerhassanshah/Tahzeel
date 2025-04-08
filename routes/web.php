@@ -250,7 +250,7 @@ Route::middleware(['auth', 'status'])->group(function () {
          Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
          Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
          Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
-         Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+         Route::delete('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
 
          // SectionTitle Routes
          Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');

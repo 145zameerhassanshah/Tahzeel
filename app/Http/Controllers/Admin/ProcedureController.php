@@ -15,127 +15,7 @@ class ProcedureController extends Controller
         $group = Group::find($id);
         return view('admin.procedure.list', compact('procedures', 'id', 'group'));
     }
-
-    // public function index(Request $request)
-    // {
-    //     $groups = Group::where('type', 'procedure')->get();
-    //     return view('admin.procedure.index', compact('groups'));
-    // }
-
-    // public function add($id)
-    // {
-    //     $group = Group::find($id);
-    //     return view('admin.procedure.add', compact('group'));
-    // }
-    // public function store(Request $request)
-    // {
-
-    //     $request->validate([
-    //         'group_id' => 'required|exists:groups,id',
-    //         'title' => 'required',
-    //         'icon' => 'required',
-    //         'subtitle' => 'required',
-    //         'description' => 'required',
-    //         'order_no' => 'required',
-    //         'status' => 'required',
-    //     ]);
-
-    //     $procedure = new Procedure();
-
-    //     $procedure->group_id = $request->group_id;
-
-    //     $procedure->title = json_encode([
-    //         'en' => $request->title,
-    //         'ar' => $request->title
-    //     ]);
-
-    //     $procedure->icon = json_encode($request->icon);
-
-    //     $procedure->subtitle = json_encode([
-    //         'en' => $request->subtitle,
-    //         'ar' => $request->subtitle
-    //     ]);
-
-    //     $procedure->description = json_encode([
-    //         'en' => $request->description,
-    //         'ar' => $request->description
-    //     ]);
-
-    //     $procedure->order_no = $request->order_no;
-    //     $procedure->status = $request->status;
-
-    //     $procedure->save();
-
-
-    //     $notification = array(
-    //         'message' => 'Procedure Added successfully!',
-    //         'alert' => 'success'
-    //     );
-    //     return redirect()->route('admin.procedure.list', ['id' => $procedure->group_id])->with('notification', $notification);
-    // }
-    // public function delete($id)
-    // {
-
-    //     $procedure = Procedure::find($id);
-    //     $procedure->delete();
-
-    //     $notification = array(
-    //         'message' => 'Procedure Deleted successfully!',
-    //         'alert' => 'success'    
-    //     );
-    //     return redirect()->back()->with('notification', $notification);
-    // }
-
-    // public function edit($id)
-    // {
-
-    //     $procedure = Procedure::find($id);
-    //     return view('admin.procedure.edit', compact('procedure'));
-    // }
-    // public function update(Request $request, $id)
-    // {
-
-
-    //     $request->validate([
-    //         'title' => 'required',
-    //         'icon' => 'required',
-    //         'subtitle' => 'required',
-    //         'description' => 'required',
-    //         'order_no' => 'required',
-    //         'status' => 'required',
-    //     ]);
-
-    //     $procedure = Procedure::find($id);
-
-    //     $procedure->title = json_encode([
-    //         'en' => $request->title,
-    //         'ar' => $request->title
-    //     ]);
-
-    //     $procedure->icon = $request->icon;
-
-    //     $procedure->subtitle = json_encode([
-    //         'en' => $request->subtitle,
-    //         'ar' => $request->subtitle
-    //     ]);
-
-    //     $procedure->description = json_encode([
-    //         'en' => $request->description,
-    //         'ar' => $request->description
-    //     ]);
-
-    //     $procedure->order_no = $request->order_no;
-    //     $procedure->status = $request->status;
-
-    //     $procedure->save();
-
-
-    //     $notification = array(
-    //         'message' => 'Procedure Updated successfully!',
-    //         'alert' => 'success'
-    //     );
-    //     return redirect()->route('admin.procedure.list', ['id' => $procedure->group_id])->with('notification', $notification);
-    // }
+    
     public function index()
 {
     
@@ -166,20 +46,20 @@ public function store(Request $request)
     $procedure->page_id = $request->page_id;
     
     // Store multilingual fields
-    $procedure->title = json_encode([
+    $procedure->title = [
         'en' => $request->input('title.en'),
         'ar' => $request->input('title.ar')
-    ], JSON_UNESCAPED_UNICODE);
+    ];
 
-    $procedure->subtitle = json_encode([
+    $procedure->subtitle = [
         'en' => $request->input('subtitle.en'),
         'ar' => $request->input('subtitle.ar')
-    ], JSON_UNESCAPED_UNICODE);
+    ];
 
-    $procedure->description = json_encode([
+    $procedure->description = [
         'en' => $request->input('description.en'),
         'ar' => $request->input('description.ar')
-    ], JSON_UNESCAPED_UNICODE);
+    ];
 
     // Handle Image Upload
     if ($request->hasFile('image')) {
@@ -204,9 +84,9 @@ public function edit($id)
     $procedure = Procedure::findOrFail($id);
     
     return response()->json([
-        'title' => json_decode($procedure->title),
-        'subtitle' => json_decode($procedure->subtitle),
-        'description' => json_decode($procedure->description),
+        'title' => json_decode($procedure->title, true),
+        'subtitle' => json_decode($procedure->subtitle, true),
+        'description' => json_decode($procedure->description, true),
         'order_no' => $procedure->order_no,
         'status' => $procedure->status,
         'image' => $procedure->image

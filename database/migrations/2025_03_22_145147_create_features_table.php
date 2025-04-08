@@ -16,7 +16,7 @@ class CreateFeaturesTable extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('page_id')->onDelete('cascade');  // Relating to a group
-            $table->json('icon')->nullable();        // 
+            $table->string('icon')->nullable();        // 
             $table->json('title');                   // {"en": "jladflaj <span> ", "ar": "عنوان الميزة"}
             $table->json('subtitle')->nullable();    // {"en": "Feature Subtitle", "ar": "العنوان الفرعي للميزة"}
             $table->json('description')->nullable(); // {"en": "Description about the feature", "ar": "الوصف حول الميزة"}

@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Faq extends Model
 {
     
+    protected $casts = [
+        'question' => 'array',
+        'answer' => 'array'
+    ];
 
     protected $fillable = ['page_id', 'question', 'answer'];
-<<<<<<< HEAD
-   
-=======
->>>>>>> 5622229c3318aa6c5b50d057a0093abb033a8f17
 
     public function page()
     {

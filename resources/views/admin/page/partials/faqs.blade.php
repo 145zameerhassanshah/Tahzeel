@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="faqForm">
+                <form id="faqForm" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" id="faqToken" value="{{ csrf_token() }}">
                     <div class="modal-body">
@@ -78,9 +78,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editFaqForm" method="POST">
+                <form id="editFaqForm" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="_method" id="editFaqMethod" value="PUT">
+                    {{-- <input type="hidden" name="_method" id="editFaqMethod" value="PUT"> --}}
                     <input type="hidden" name="faq_id" id="editFaqId">
 
                     <div class="modal-body">

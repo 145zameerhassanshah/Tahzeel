@@ -818,300 +818,368 @@
 {{-- faqs section --}}
 
 <script>
-    $(document).ready(function() {
-        // Load FAQs on page load
-        loadFAQs();
+$(document).ready(function() {
+    // Load FAQs on page load
+    loadFAQs();
 
-        function loadFAQs() {
-            $.ajax({
-                url: "{{ route('faqs.index') }}",
-                type: 'GET',
-                dataType: 'json',
-                beforeSend: function() {
+    function loadFAQs() {
+        $.ajax({
+            url: "{{ route('faqs.index') }}",
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#faqsTableBody').html(
+                    '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                );
+            },
+            success: function(response) {
+                if (response.data && response.data.length > 0) {
+                    renderFAQs(response.data);
+                } else {
                     $('#faqsTableBody').html(
-                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="6" class="text-center">No FAQs found</td></tr>'
                     );
-                },
-                success: function(response) {
-                    if (response.data && response.data.length > 0) {
-                        renderFAQs(response.data);
-                    } else {
-                        $('#faqsTableBody').html(
-                            '<tr><td colspan="6" class="text-center">No FAQs found</td></tr>'
-                        );
-                    }
-                },
-                error: function(xhr) {
-                    $('#faqsTableBody').html(
-                        '<tr><td colspan="6" class="text-center text-danger">Error loading FAQs</td></tr>'
-                    );
-                    console.error("Error loading FAQs:", xhr.responseText);
                 }
-            });
-        }
-
-        function renderFAQs(faqs) {
-            let html = '';
-            faqs.forEach((faq, index) => {
-                const question = typeof faq.question === 'string' ? JSON.parse(faq.question) : faq.question;
-                const answer = typeof faq.answer === 'string' ? JSON.parse(faq.answer) : faq.answer;
-                
-                // Shorten the answer for display
-                const shortAnswer = answer.en.length > 50 ? answer.en.substring(0, 50) + '...' : answer.en;
-                
-                html += `
-                <tr id="faq-row-${faq.id}">
-                    <td>${index + 1}</td>
-                    <td>${question.en}</td>
-                    <td>${shortAnswer}</td>
-                    <td>${faq.order_no}</td>
-                    <td>
-                        <span class="badge ${faq.status === 'active' ? 'bg-success' : 'bg-secondary'}">
-                            ${faq.status}
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-primary editFaq" data-id="${faq.id}">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-sm btn-danger delete-faq" data-id="${faq.id}">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </td>
-                </tr>`;
-            });
-            $('#faqsTableBody').html(html);
-        }
-
-        // Add new FAQ with validation
-        $("#faqForm").submit(function(e) {
-            e.preventDefault();
-            $(".error").text("");
-            
-            // Get all required field values
-            const questionEn = $("#faqQuestionEn").val().trim();
-            const questionAr = $("#faqQuestionAr").val().trim();
-            const answerEn = $("#faqAnswerEn").val().trim();
-            const answerAr = $("#faqAnswerAr").val().trim();
-            const status = $("#faqStatus").val();
-            
-            // Validate required fields
-            let isValid = true;
-            
-            if (!questionEn) {
-                $("#faqErrorQuestionEn").text("English question is required");
-                isValid = false;
+            },
+            error: function(xhr) {
+                $('#faqsTableBody').html(
+                    '<tr><td colspan="6" class="text-center text-danger">Error loading FAQs</td></tr>'
+                );
+                console.error("Error loading FAQs:", xhr.responseText);
+                toastr.error("Failed to load FAQs");
             }
-            
-            if (!questionAr) {
-                $("#faqErrorQuestionAr").text("Arabic question is required");
-                isValid = false;
-            }
-            
-            if (!answerEn) {
-                $("#faqErrorAnswerEn").text("English answer is required");
-                isValid = false;
-            }
-            
-            if (!answerAr) {
-                $("#faqErrorAnswerAr").text("Arabic answer is required");
-                isValid = false;
-            }
-            
-            if (!status) {
-                $("#faqErrorStatus").text("Status is required");
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                toastr.error("Please fill all required fields");
-                return;
-            }
-
-            let formData = {
-                page_id: $("#faqPageId").val(),
-                question: {
-                    en: questionEn,
-                    ar: questionAr
-                },
-                answer: {
-                    en: answerEn,
-                    ar: answerAr
-                },
-                order_no: $("#faqOrderNo").val() || 0,
-                status: status,
-                _token: "{{ csrf_token() }}"
-            };
-
-            $.ajax({
-                url: "{{ route('faqs.store') }}",
-                type: "POST",
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    toastr.success("FAQ added successfully");
-                    $("#faqForm")[0].reset();
-                    $("#faqModal").modal('hide');
-                    loadFAQs();
-                },
-                error: function(xhr) {
-                    if (xhr.status === 422) {
-                        $.each(xhr.responseJSON.errors, function(key, value) {
-                            $("#faqError" + key.replace('.', '').replace(/\[|\]/g, '')).text(value[0]);
-                        });
-                    } else {
-                        toastr.error("Something went wrong");
-                    }
-                }
-            });
         });
+    }
 
-        // Edit FAQ with validation
-        $(document).on('click', '.editFaq', function() {
-            let id = $(this).data('id');
-            $.ajax({
-                url: `/admin/faqs/${id}/edit`,
-                type: "GET",
-                success: function(response) {
-                    let question = response.question || { en: "", ar: "" };
-                    let answer = response.answer || { en: "", ar: "" };
+    function renderFAQs(faqs) {
+        let html = '';
+        faqs.forEach((faq, index) => {
+            // Safely parse JSON fields
+            const question = typeof faq.question === 'string' ? JSON.parse(faq.question) : faq.question || { en: '', ar: '' };
+            const answer = typeof faq.answer === 'string' ? JSON.parse(faq.answer) : faq.answer || { en: '', ar: '' };
+            
+            // Shorten the answer for display
+            const shortAnswer = answer.en.length > 50 ? 
+                answer.en.substring(0, 50) + '...' : 
+                answer.en || 'No answer';
 
-                    $('#editFaqId').val(id);
-                    $('#editFaqQuestionEn').val(question.en);
-                    $('#editFaqQuestionAr').val(question.ar);
-                    $('#editFaqAnswerEn').val(answer.en);
-                    $('#editFaqAnswerAr').val(answer.ar);
-                    $('#editFaqOrderNo').val(response.order_no || 0);
-                    $('#editFaqStatus').val(response.status || 'active');
-
-                    $('#editFaqModal').modal('show');
-                }
-            });
+            html += `
+            <tr id="faq-row-${faq.id}">
+                <td>${index + 1}</td>
+                <td>${question.en || 'No question'}</td>
+                <td title="${answer.en}">${shortAnswer}</td>
+                <td>${faq.order_no || 0}</td>
+                <td>
+                    <span class="badge ${faq.status === 'active' ? 'bg-success' : 'bg-secondary'}">
+                        ${faq.status}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary editFaq" data-id="${faq.id}">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger delete-faq" data-id="${faq.id}">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </td>
+            </tr>`;
         });
+        $('#faqsTableBody').html(html);
+    }
 
-        // Update FAQ with validation
-        $('#editFaqForm').submit(function(e) {
-            e.preventDefault();
-            $(".error").text("");
 
-            // Get all required field values
-            const questionEn = $("#editFaqQuestionEn").val().trim();
-            const questionAr = $("#editFaqQuestionAr").val().trim();
-            const answerEn = $("#editFaqAnswerEn").val().trim();
-            const answerAr = $("#editFaqAnswerAr").val().trim();
-            const status = $("#editFaqStatus").val();
-            
-            // Validate required fields
-            let isValid = true;
-            
-            if (!questionEn) {
-                $("#editFaqErrorQuestionEn").text("English question is required");
-                isValid = false;
-            }
-            
-            if (!questionAr) {
-                $("#editFaqErrorQuestionAr").text("Arabic question is required");
-                isValid = false;
-            }
-            
-            if (!answerEn) {
-                $("#editFaqErrorAnswerEn").text("English answer is required");
-                isValid = false;
-            }
-            
-            if (!answerAr) {
-                $("#editFaqErrorAnswerAr").text("Arabic answer is required");
-                isValid = false;
-            }
-            
-            if (!status) {
-                $("#editFaqErrorStatus").text("Status is required");
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                toastr.error("Please fill all required fields");
-                return;
-            }
+    // Edit FAQ with validation
+    $(document).on('click', '.editFaq', function() {
+        let id = $(this).data('id');
+        $.ajax({
+            url: `/admin/faqs/${id}/edit`,
+            type: "GET",
+            beforeSend: function() {
+                $(this).prop('disabled', true);
+            },
+            success: function(response) {
+                // Parse JSON fields if needed
+                const question = typeof response.question === 'string' ? 
+                    JSON.parse(response.question) : 
+                    response.question || { en: "", ar: "" };
+                const answer = typeof response.answer === 'string' ? 
+                    JSON.parse(response.answer) : 
+                    response.answer || { en: "", ar: "" };
 
-            let id = $('#editFaqId').val();
-            let formData = {
-                question: {
-                    en: questionEn,
-                    ar: questionAr
-                },
-                answer: {
-                    en: answerEn,
-                    ar: answerAr
-                },
-                order_no: $("#editFaqOrderNo").val(),
-                status: status,
-                _method: "PUT",
-                _token: "{{ csrf_token() }}"
-            };
+                $('#editFaqId').val(id);
+                $('#editFaqQuestionEn').val(question.en);
+                $('#editFaqQuestionAr').val(question.ar);
+                $('#editFaqAnswerEn').val(answer.en);
+                $('#editFaqAnswerAr').val(answer.ar);
+                $('#editFaqOrderNo').val(response.order_no || 0);
+                $('#editFaqStatus').val(response.status || 'active');
 
-            $.ajax({
-                url: `/admin/faqs/${id}`,
-                type: "POST",
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    toastr.success("FAQ updated successfully");
-                    $('#editFaqModal').modal('hide');
-                    loadFAQs();
-                },
-                error: function(xhr) {
-                    if (xhr.status === 422) {
-                        $.each(xhr.responseJSON.errors, function(key, value) {
-                            $("#editFaqError" + key.replace('.', '').replace(/\[|\]/g, '')).text(value[0]);
-                        });
-                    } else {
-                        toastr.error("Something went wrong");
-                    }
-                }
-            });
-        });
-
-        // Delete FAQ
-        $(document).on('click', '.delete-faq', function() {
-            let id = $(this).data('id');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: `/admin/faqs/${id}`,
-                        type: "POST",
-                        data: {
-                            _method: "DELETE",
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire(
-                                'Deleted!',
-                                'FAQ has been deleted.',
-                                'success'
-                            );
-                            loadFAQs();
-                        },
-                        error: function() {
-                            Swal.fire(
-                                'Error!',
-                                'Failed to delete FAQ.',
-                                'error'
-                            );
-                        }
-                    });
-                }
-            });
+                $('#editFaqModal').modal('show');
+            },
+            error: function(xhr) {
+                console.error("Error loading FAQ:", xhr.responseText);
+                toastr.error("Failed to load FAQ data");
+            },
+            complete: function() {
+                $(this).prop('disabled', false);
+            }
         });
     });
+
+    // Update FAQ with validation - FIXED VERSION
+$('#editFaqForm').submit(function(e) {
+    e.preventDefault();
+    $(".error").text("");
+
+    // Get all required field values
+    const questionEn = $("#editFaqQuestionEn").val().trim();
+    const questionAr = $("#editFaqQuestionAr").val().trim();
+    const answerEn = $("#editFaqAnswerEn").val().trim();
+    const answerAr = $("#editFaqAnswerAr").val().trim();
+    const status = $("#editFaqStatus").val();
+    
+    // Validate required fields
+    let isValid = true;
+    
+    if (!questionEn) {
+        $("#editFaqErrorQuestionEn").text("English question is required");
+        isValid = false;
+    }
+    
+    if (!questionAr) {
+        $("#editFaqErrorQuestionAr").text("Arabic question is required");
+        isValid = false;
+    }
+    
+    if (!answerEn) {
+        $("#editFaqErrorAnswerEn").text("English answer is required");
+        isValid = false;
+    }
+    
+    if (!answerAr) {
+        $("#editFaqErrorAnswerAr").text("Arabic answer is required");
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        toastr.error("Please fill all required fields");
+        return;
+    }
+
+    let id = $('#editFaqId').val();
+    
+    // Prepare form data in correct format
+    const formData = new FormData();
+    formData.append('_method', 'PUT'); // This is crucial for resource routes
+    formData.append('question[en]', questionEn);
+    formData.append('question[ar]', questionAr);
+    formData.append('answer[en]', answerEn);
+    formData.append('answer[ar]', answerAr);
+    formData.append('order_no', $("#editFaqOrderNo").val() || 0);
+    formData.append('status', status);
+    formData.append('_token', "{{ csrf_token() }}");
+
+    // Use the resource route URL
+    const url = "{{ route('faqs.update', ':id') }}".replace(':id', id);
+
+    $.ajax({
+        url: url,
+        type: "POST", // Still POST but with _method=PUT
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function() {
+            $("#editFaqSubmitBtn").prop('disabled', true)
+                .html('<i class="fas fa-spinner fa-spin"></i> Updating...');
+        },
+        success: function(response) {
+            toastr.success("FAQ updated successfully");
+            $('#editFaqModal').modal('hide');
+            loadFAQs();
+        },
+        error: function(xhr) {
+            if (xhr.status === 422) {
+                const errors = xhr.responseJSON.errors;
+                // Handle validation errors
+                if (errors['question.en']) {
+                    $("#editFaqErrorQuestionEn").text(errors['question.en'][0]);
+                }
+                if (errors['question.ar']) {
+                    $("#editFaqErrorQuestionAr").text(errors['question.ar'][0]);
+                }
+                if (errors['answer.en']) {
+                    $("#editFaqErrorAnswerEn").text(errors['answer.en'][0]);
+                }
+                if (errors['answer.ar']) {
+                    $("#editFaqErrorAnswerAr").text(errors['answer.ar'][0]);
+                }
+                if (errors['status']) {
+                    $("#editFaqErrorStatus").text(errors['status'][0]);
+                }
+            } else {
+                toastr.error("Something went wrong");
+                console.error("Update error:", xhr.responseText);
+            }
+        },
+        complete: function() {
+            $("#editFaqSubmitBtn").prop('disabled', false).html('Update');
+        }
+    });
+});
+
+    // Update FAQ with validation
+    $(document).ready(function() {
+    // ... (keep your existing loadFAQs and renderFAQs functions)
+
+    // Add new FAQ with validation - UPDATED VERSION
+    $("#faqForm").submit(function(e) {
+        e.preventDefault();
+        $(".error").text("");
+        
+        // Get all required field values
+        const questionEn = $("#faqQuestionEn").val().trim();
+        const questionAr = $("#faqQuestionAr").val().trim();
+        const answerEn = $("#faqAnswerEn").val().trim();
+        const answerAr = $("#faqAnswerAr").val().trim();
+        const status = $("#faqStatus").val();
+        
+        // Validate required fields
+        let isValid = true;
+        
+        if (!questionEn) {
+            $("#faqErrorQuestionEn").text("English question is required");
+            isValid = false;
+        }
+        
+        if (!questionAr) {
+            $("#faqErrorQuestionAr").text("Arabic question is required");
+            isValid = false;
+        }
+        
+        if (!answerEn) {
+            $("#faqErrorAnswerEn").text("English answer is required");
+            isValid = false;
+        }
+        
+        if (!answerAr) {
+            $("#faqErrorAnswerAr").text("Arabic answer is required");
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            toastr.error("Please fill all required fields");
+            return;
+        }
+
+        // Prepare form data in the correct format
+        const formData = new FormData();
+        formData.append('page_id', $("#faqPageId").val());
+        formData.append('question[en]', questionEn);
+        formData.append('question[ar]', questionAr);
+        formData.append('answer[en]', answerEn);
+        formData.append('answer[ar]', answerAr);
+        formData.append('order_no', $("#faqOrderNo").val() || 0);
+        formData.append('status', status);
+        formData.append('_token', "{{ csrf_token() }}");
+
+        $.ajax({
+            url: "{{ route('faqs.store') }}",
+            type: "POST",
+            data: formData,
+            processData: false,  // Important for FormData
+            contentType: false, // Important for FormData
+            beforeSend: function() {
+                $("#faqSubmitBtn").prop('disabled', true)
+                    .html('<i class="fas fa-spinner fa-spin"></i> Saving...');
+            },
+            success: function(response) {
+                toastr.success("FAQ added successfully");
+                $("#faqForm")[0].reset();
+                $("#faqModal").modal('hide');
+                loadFAQs();
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    const errors = xhr.responseJSON.errors;
+                    // Handle validation errors
+                    if (errors['question.en']) {
+                        $("#faqErrorQuestionEn").text(errors['question.en'][0]);
+                    }
+                    if (errors['question.ar']) {
+                        $("#faqErrorQuestionAr").text(errors['question.ar'][0]);
+                    }
+                    if (errors['answer.en']) {
+                        $("#faqErrorAnswerEn").text(errors['answer.en'][0]);
+                    }
+                    if (errors['answer.ar']) {
+                        $("#faqErrorAnswerAr").text(errors['answer.ar'][0]);
+                    }
+                    if (errors['status']) {
+                        $("#faqErrorStatus").text(errors['status'][0]);
+                    }
+                } else {
+                    toastr.error("Something went wrong");
+                    console.error("Error:", xhr.responseText);
+                }
+            },
+            complete: function() {
+                $("#faqSubmitBtn").prop('disabled', false).html('Save');
+            }
+        });
+    });
+
+    // ... (keep your existing edit, update, and delete functions)
+});
+
+    // Delete FAQ with confirmation
+    $(document).on('click', '.delete-faq', function() {
+        let id = $(this).data('id');
+        const $deleteBtn = $(this);
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/admin/faqs/${id}`,
+                    type: "POST",
+                    data: {
+                        _method: "DELETE",
+                        _token: "{{ csrf_token() }}"
+                    },
+                    beforeSend: function() {
+                        $deleteBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            'FAQ has been deleted.',
+                            'success'
+                        );
+                        loadFAQs();
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            xhr.responseJSON.message || 'Failed to delete FAQ.',
+                            'error'
+                        );
+                        console.error("Delete error:", xhr.responseText);
+                    },
+                    complete: function() {
+                        $deleteBtn.prop('disabled', false).html('<i class="fas fa-trash"></i> Delete');
+                    }
+                });
+            }
+        });
+    });
+});
 </script>
 
 
@@ -1441,300 +1509,251 @@
 
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
+    // Load hero sections on page load
+    loadHeroSections();
 
+    function loadHeroSections() {
+        $.ajax({
+            url: '/hero-sections',
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#herosectionsTableBody').html(
+                    '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                );
+            },
+            success: function(response) {
+                if (response.data && response.data.length > 0) {
+                    renderHeroSections(response.data);
+                } else {
+                    $('#herosectionsTableBody').html(
+                        '<tr><td colspan="5" class="text-center">No hero sections found</td></tr>'
+                    );
+                }
+            },
+            error: function(xhr) {
+                $('#herosectionsTableBody').html(
+                    '<tr><td colspan="5" class="text-center text-danger">Error loading hero sections</td></tr>'
+                );
+                console.error("Error loading hero sections:", xhr.responseText);
+            }
+        });
+    }
+
+    function renderHeroSections(herosections) {
+        let html = '';
+
+        herosections.forEach((herosection, index) => {
+            // Safely handle JSON fields
+            const title = typeof herosection.title === 'string' ? 
+                JSON.parse(herosection.title) : 
+                herosection.title || { en: '', ar: '' };
+                
+            const subtitle = typeof herosection.subtitle === 'string' ? 
+                JSON.parse(herosection.subtitle) : 
+                herosection.subtitle || { en: '', ar: '' };
+
+            html += `
+                <tr id="herosection-row-${herosection.id}">
+                    <td>${index + 1}</td>
+                    <td>
+                        ${herosection.background_image ? 
+                            `<img src="/uploads/hero_section/${herosection.background_image}" width="50" height="50" class="img-thumbnail">` : 
+                            'No Image'}
+                    </td>
+                    <td>${title.en || 'No title'}</td>
+                    <td>${subtitle.en || 'No subtitle'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary editHeroSection" data-id="${herosection.id}">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-herosection" data-id="${herosection.id}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>`;
+        });
+
+        $('#herosectionsTableBody').html(html);
+    }
+
+    function refreshHeroSections() {
         loadHeroSections();
+    }
 
-        function loadHeroSections() {
-            $.ajax({
-                url: '/hero-sections',
-                type: 'GET',
-                dataType: 'json',
-                beforeSend: function() {
-                    // Show loading indicator
-                    $('#herosectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
-                    );
-                },
-                success: function(response) {
-                    if (response.data && response.data.length > 0) {
-                        renderHeroSections(response.data);
-                    } else {
-                        $('#herosectionsTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No herosections found</td></tr>'
-                        );
-                    }
-                },
-                error: function(xhr) {
-                    $('#herosectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading herosections</td></tr>'
-                    );
-                    console.error("Error loading herosections:", xhr.responseText);
-                }
-            });
+    // Add Hero Section Form Submission
+    $("#herosectionForm").submit(function(event) {
+        event.preventDefault();
+        $(".error").text("");
+
+        // Basic frontend validation
+        let isValid = true;
+        if (!$("#title_en").val().trim()) {
+            $("#error_title_en").text("English title is required");
+            isValid = false;
         }
-
-        // Function to render herosections in table
-
-        function renderHeroSections(herosections) {
-            let html = '';
-
-            herosections.forEach((herosection, index) => {
-                const title = typeof herosection.title === 'string' ? JSON.parse(herosection.title) :
-                    herosection.title;
-                const subtitle = typeof herosection.subtitle === 'string' ? JSON.parse(herosection
-                    .subtitle) : herosection.subtitle;
-
-                html += `
-            <tr id="herosection-row-${herosection.id}">
-                <td>${index + 1}</td>
-                <td>
-                    ${herosection.background_image ? 
-                        `<img src="/uploads/hero_section/${herosection.background_image}" width="50" height="50px">` : 
-                        ''}
-                </td>
-                <td>${title.en}</td>
-                <td>${subtitle.en}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary editHeroSection" data-id="${herosection.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <form class="d-inline-block" action="/admin/hero-sections/${herosection.id}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm delete-herosection" data-id="${herosection.id}">
-    <i class="fas fa-trash"></i> Delete
-</button>
-                    </form>
-                </td>
-            </tr>`;
-            });
-
-            $('#herosectionsTableBody').html(html);
+        if (!$("#title_ar").val().trim()) {
+            $("#error_title_ar").text("Arabic title is required");
+            isValid = false;
         }
+        if (!isValid) return;
 
-        function refreshHeroSections() {
-            loadHeroSections();
-        }
+        let formData = new FormData(this);
 
-
-
-        $("#herosectionForm").submit(function(event) {
-            event.preventDefault();
-
-
-            $(".error").text("");
-            let titleEn = $("#title_en").val().trim();
-            let titleAr = $("#title_ar").val().trim();
-            let subtitleEn = $("#subtitle_en").val().trim();
-            let subtitleAr = $("#subtitle_ar").val().trim();
-            let descriptionEn = $("#description_en").val().trim();
-            let descriptionAr = $("#description_ar").val().trim();
-            let image = $("#background_image")[0].files[0];
-
-            let isValid = true;
-
-            // Frontend validation
-            if (titleEn.length < 1) {
-                $("#error_name_en").text("English name is required.");
-                isValid = false;
-            }
-            if (titleAr.length < 1) {
-                $("#error_name_ar").text("Arabic name is required.");
-                isValid = false;
-            }
-            if (subtitleEn.length < 1) {
-                $("#error_designation_en").text("English designation is required.");
-                isValid = false;
-            }
-            if (subtitleAr.length < 1) {
-                $("#error_designation_ar").text("Arabic designation is required.");
-                isValid = false;
-            }
-            if (descriptionEn.length < 1) {
-                // $("#error_feedback_en").text("English feedback is required.");
-                isValid = true;
-            }
-            if (descriptionAr.length < 1) {
-                // $("#error_feedback_ar").text("Arabic feedback is required.");
-                isValid = true;
-            }
-            if (image) {
-                let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
-                let fileExtension = image.name.split('.').pop().toLowerCase();
-                if (!allowedExtensions.includes(fileExtension)) {
-                    $("#error_image").text("Only JPG, PNG, Webp, or GIF allowed.");
-                    isValid = false;
-                }
-            }
-
-            if (!isValid) return;
-
-            // Prepare FormData
-            let formData = new FormData(this);
-
-            $.ajax({
-                url: "{{ route('admin.hero_section.store') }}",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                },
-                success: function(response) {
-                    if (response.success) {
-                        toastr.success("HeroSection added successfully!");
-
-                        refreshHeroSections();
-
-                        $("#herosectionForm")[0].reset();
-                        $("#herosectionModal").removeClass("show").hide();
-                        $(".modal-backdrop").remove();
-                        $("body").removeClass("modal-open");
-                    } else {
-                        if (response.errors) {
-                            $.each(response.errors, function(key, value) {
-                                $("#error_" + key.replace('.', '_')).text(value[0]);
-                            });
-                        }
-                        toastr.error("Something went wrong! Please check the errors.");
-                    }
-                },
-                error: function() {
-                    toastr.error("Something went wrong!");
-                }
-            });
-        });
-
-        $(document).on('click', '.editHeroSection', function() {
-            let id = $(this).data('id');
-
-            $.ajax({
-                url: "{{ route('admin.hero_section.edit', ':id') }}".replace(':id', id),
-                type: "GET",
-                success: function(response) {
-
-                    let title = response.title ? response.title : {
-                        en: "",
-                        ar: ""
-                    };
-                    let subtitle = response.subtitle ? response.subtitle : {
-                        en: "",
-                        ar: ""
-                    };
-                    let description = response.description ? response.description : {
-                        en: "",
-                        ar: ""
-                    };
-
-                    // Populate form fields
-                    $('#update_herosection_id').val(id);
-                    $('#update_title_en').val(title.en);
-                    $('#update_title_ar').val(title.ar);
-                    $('#update_subtitle_en').val(subtitle.en);
-                    $('#update_subtitle_ar').val(subtitle.ar);
-                    $('#update_description_en').val(description.en);
-                    $('#update_description_ar').val(description.ar);
-                    $('#update_status').val(response.status);
-
-                    // Ensure background image is set
-                    if (response.background_image) {
-                        let imagePath =
-                            `/uploads/herosections/${response.background_image}`;
-                        $('#image_preview').attr('src', imagePath).show();
-                    } else {
-                        $('#image_preview').hide();
-                    }
-
-                    // Show the modal
-                    $('#editHeroSectionModal').modal('show');
-                },
-                error: function(xhr) {
-                    console.log("AJAX Error:", xhr);
-                }
-            });
-        });
-
-
-
-        $('#editHeroSectionForm').on('submit', function(e) {
-            e.preventDefault();
-
-            let formData = new FormData(this);
-            let id = $('#update_herosection_id').val();
-            let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                },
-                success: function(response) {
-                    $('#editHeroSectionModal').modal('hide');
-                    toastr.success("Hero Section updated successfully!");
+        $.ajax({
+            url: "{{ route('admin.hero_section.store') }}",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                "X-CSRF-TOKEN": $('input[name="_token"]').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                    toastr.success("Hero Section added successfully!");
+                    $("#herosectionForm")[0].reset();
+                    $("#herosectionModal").modal('hide');
                     refreshHeroSections();
-                },
-                error: function(response) {
-                    $('.error').text('');
-                    $.each(response.responseJSON.errors, function(key, error) {
+                } else if (response.errors) {
+                    $.each(response.errors, function(key, value) {
+                        $("#error_" + key.replace('.', '_')).text(value[0]);
+                    });
+                    toastr.error("Please fix the errors");
+                }
+            },
+            error: function(xhr) {
+                toastr.error("Something went wrong!");
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    // Edit Hero Section
+    $(document).on('click', '.editHeroSection', function() {
+        let id = $(this).data('id');
+
+        $.ajax({
+            url: "{{ route('admin.hero_section.edit', ':id') }}".replace(':id', id),
+            type: "GET",
+            success: function(response) {
+                // Handle multilingual fields
+                const title = typeof response.title === 'string' ? 
+                    JSON.parse(response.title) : response.title || { en: '', ar: '' };
+                const subtitle = typeof response.subtitle === 'string' ? 
+                    JSON.parse(response.subtitle) : response.subtitle || { en: '', ar: '' };
+                const description = typeof response.description === 'string' ? 
+                    JSON.parse(response.description) : response.description || { en: '', ar: '' };
+
+                // Populate form
+                $('#update_herosection_id').val(id);
+                $('#update_title_en').val(title.en);
+                $('#update_title_ar').val(title.ar);
+                $('#update_subtitle_en').val(subtitle.en);
+                $('#update_subtitle_ar').val(subtitle.ar);
+                $('#update_description_en').val(description.en);
+                $('#update_description_ar').val(description.ar);
+                $('#update_status').val(response.status);
+
+                // Image preview
+                if (response.background_image) {
+                    $('#editHeroSectionModal').find('.image-preview').html(
+                        `<img src="/uploads/hero_section/${response.background_image}" width="100" class="img-thumbnail">`
+                    );
+                } else {
+                    $('#editHeroSectionModal').find('.image-preview').html('<p>No image</p>');
+                }
+
+                $('#editHeroSectionModal').modal('show');
+            },
+            error: function(xhr) {
+                toastr.error("Failed to load hero section data");
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    // Update Hero Section
+    $('#editHeroSectionForm').on('submit', function(e) {
+        e.preventDefault();
+        $('.error').text('');
+
+        let formData = new FormData(this);
+        let id = $('#update_herosection_id').val();
+        let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            success: function(response) {
+                $('#editHeroSectionModal').modal('hide');
+                toastr.success("Hero Section updated successfully!");
+                refreshHeroSections();
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    $.each(xhr.responseJSON.errors, function(key, error) {
                         $('#error_' + key.replace('.', '_')).text(error[0]);
                     });
+                } else {
+                    toastr.error("Something went wrong!");
                 }
-            });
+            }
         });
-
-        $(document).on("click", ".delete-herosection", function() {
-            let herosectionId = $(this).data("id");
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: `/hero-section/delete/${herosectionId}/`,
-                        type: "POST",
-                        data: {
-                            _method: "POST",
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: response.message,
-                                icon: "success",
-                                timer: 2000,
-                                showConfirmButton: false
-                            });
-
-                            refreshHeroSections();
-                        },
-                        error: function() {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "Failed to delete. Please try again.",
-                                icon: "error"
-                            });
-                        }
-                    });
-                }
-            });
-<<<<<<< HEAD
-        });
-
     });
+
+    // Delete Hero Section
+    $(document).on("click", ".delete-herosection", function() {
+        let herosectionId = $(this).data("id");
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/hero-section/delete/${herosectionId}/`,
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        _method: "DELETE"
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: response.message,
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                        refreshHeroSections();
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Error!",
+                            text: xhr.responseJSON.message || "Failed to delete",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
 </script>
-=======
+{{-- <script>
 
             $(document).on("click", ".editFeature", function () {
                 let id = $(this).data("id");
@@ -1845,287 +1864,248 @@
             });
 
         });
-</script>
+</script> --}}
 
 
 
 
 {{-- Feature Section --}}
 
-
-
 <script>
     $(document).ready(function() {
-            
-            loadFeatures();
-
-            function loadFeatures() {
-                $.ajax({
-                    url: '/features',
-                    type: 'GET',
-                    dataType: 'json',
-                    beforeSend: function() {
-                        // Show loading indicator
-                        $('#featuresTableBody').html(
-                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
-                        );
-                    },
-                    success: function(response) {
-                        if (response.data && response.data.length > 0) {
-                            renderFeatures(response.data);
-                        } else {
-                            $('#featuresTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No features found</td></tr>'
-                            );
-                        }
-                    },
-                    error: function(xhr) {
-                        $('#featuresTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
-                        );
-                        console.error("Error loading features:", xhr.responseText);
-                    }
-                });
+        // Initialize CSRF token for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-
-            // Function to render features in table
-
-            function renderFeatures(features) {
-                let html = '';
-
-                features.forEach((feature, index) => {
-                    const title = typeof feature.title === 'string' ? JSON.parse(feature.title) :
-                        feature.title;
-                    const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature
-                        .subtitle) : feature.subtitle;
-
-                    const description = typeof feature.description === 'string' ? JSON.parse(feature
-                        .description) : feature.description;
-
-                    html += `
-            <tr id="feature-row-${feature.id}">
-                <td>${index + 1}</td>
-                <td>
-                    ${feature.icon}
-                </td>
-                <td>${title.en}</td>
-                <td>${subtitle.en}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary editFeature" data-id="${feature.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <form class="d-inline-block" action="/feature/delete/${feature.id}" method="post">
-                        @csrf
-                        @method('POST')
-                        <button type="button" class="btn btn-danger btn-sm delete-feature" data-id="${feature.id}">
-    <i class="fas fa-trash"></i> Delete
-</button>
-                    </form>
-                </td>
-            </tr>`;
-                });
-
-                $('#featuresTableBody').html(html);
-            }
-
-            function refreshFeatures() {
-                loadFeatures();
-            }
-
-
-
-            $("#featureForm").submit(function(event) {
-                event.preventDefault();
-
-
-                $(".error").text("");
-                let titleEn = $("#title_en").val().trim();
-                let titleAr = $("#title_ar").val().trim();
-                let subtitleEn = $("#subtitle_en").val().trim();
-                let subtitleAr = $("#subtitle_ar").val().trim();
-                let descriptionEn = $("#description_en").val().trim();
-                let descriptionAr = $("#description_ar").val().trim();
-                let status = $('#status').val().trim();
-                let icon = $("#icon").val().trim();
-
-                let isValid = true;
-
-                // Frontend validation
-                if (titleEn.length < 1) {
-                    $("#error_name_en").text("English name is required.");
-                    isValid = false;
-                }
-                if (titleAr.length < 1) {
-                    $("#error_name_ar").text("Arabic name is required.");
-                    isValid = false;
-                }
-                if (subtitleEn.length < 1) {
-                    $("#error_designation_en").text("English designation is required.");
-                    isValid = false;
-                }
-                if (subtitleAr.length < 1) {
-                    $("#error_designation_ar").text("Arabic designation is required.");
-                    isValid = false;
-                }
-                if (descriptionEn.length < 1) {
-                    isValid = true;
-                }
-                if (descriptionAr.length < 1) {
-                    isValid = true;
-                }
-                if (icon.length < 1) {
-                    $('#error_icon').text("Icon Field is required.");
-                    isValid = false;
-                }
-
-                if (!isValid) return;
-
-                // Prepare FormData
-                let formData = new FormData(this);
-
-                $.ajax({
-                    url: "{{ route('admin.feature.store') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success("Feature added successfully!");
-
-                            refreshFeatures();
-
-                            $("#featureForm")[0].reset();
-                            $("#featureModal").removeClass("show").hide();
-                            $(".modal-backdrop").remove();
-                            $("body").removeClass("modal-open");
-                        } else {
-                            if (response.errors) {
-                                $.each(response.errors, function(key, value) {
-                                    $("#error_" + key.replace('.', '_')).text(value[0]);
-                                });
-                            }
-                            toastr.error("Something went wrong! Please check the errors.");
-                        }
-                    },
-                    error: function() {
-                        toastr.error("Something went wrong!");
-                    }
-                });
-            });
-
-            $(document).on('click', '.editFeature', function() {
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', id), 
-                    type: "GET",
-                    success: function(response) {
-
-                        let title = response.title ? response.title : { en: "", ar: "" };
-                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let description = response.description ? response.description : { en: "", ar: "" };
-                        let icon = response.icon ? response.icon : "";
-
-                        $('#update_feature_feature_id').val(id);
-                        $('#update_feature_title_en').val(title.en);
-                        $('#update_feature_title_ar').val(title.ar);
-                        $('#update_feature_subtitle_en').val(subtitle.en);
-                        $('#update_feature_subtitle_ar').val(subtitle.ar);
-                        $('#update_feature_description_en').val(description.en);
-                        $('#update_feature_description_ar').val(description.ar);
-                        $('#update_feature_status').val(response.status);
-                        $('#update_feature_icon').val(icon);
-                        $('#update_feature_order_no').val(response.order_no);
-
-                        // Show the modal
-                        $('#editFeatureModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.log("AJAX Error:", xhr);
-                    }
-                });
-            });
-
-
-            $('#editFeatureForm').on('submit', function(e) {
-                e.preventDefault();
-
-                let formData = new FormData(this);
-                let id = $('#update_feature_id').val();
-                let url = `{{ route('admin.feature.update', ':id') }}`.replace(':id', id);
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editFeatureModal').modal('hide');
-                        toastr.success("Hero Section updated successfully!");
-                        refreshFeatures();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
-                    }
-                });
-            });
-
-            $(document).on("click", ".delete-feature", function() {
-                let featureId = $(this).data("id");
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/feature/delete/${featureId}/`,
-                            type: "POST",
-                            data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
-
-                                refreshFeatures();
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
         });
+
+        // Load features on page load
+        loadFeatures();
+
+        function loadFeatures() {
+            $.ajax({
+                url: "{{ route('admin.feature.index') }}",
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#featuresTableBody').html(
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                    );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderFeatures(response.data);
+                    } else {
+                        $('#featuresTableBody').html(
+                            '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    $('#featuresTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
+                    );
+                    console.error("Error loading features:", xhr.responseText);
+                }
+            });
+        }
+
+        function renderFeatures(features) {
+            let html = '';
+            features.forEach((feature, index) => {
+                // Parse JSON fields if needed
+                const title = typeof feature.title === 'string' ? JSON.parse(feature.title) : feature.title;
+                const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature.subtitle) : feature.subtitle;
+                const description = typeof feature.description === 'string' ? JSON.parse(feature.description) : feature.description;
+                const icon = typeof feature.icon === 'string' ? JSON.parse(feature.icon) : feature.icon;
+
+                html += `
+                <tr id="feature-row-${feature.id}">
+                    <td>${index + 1}</td>
+                    <td>${icon || ''}</td>
+                    <td>${title?.en || ''}</td>
+                    <td>${subtitle?.en || ''}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary edit-feature" data-id="${feature.id}">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-feature" data-id="${feature.id}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>`;
+            });
+            $('#featuresTableBody').html(html);
+        }
+
+        $("#featureForm").submit(function(e) {
+    e.preventDefault();
+    
+    // Simple form data collection
+    let formData = {
+        page_id: $('[name="page_id"]').val(),
+        title: {
+            en: $('[name="title_en"]').val().trim(),
+            ar: $('[name="title_ar"]').val().trim()
+        },
+        subtitle: {
+            en: $('[name="subtitle_en"]').val().trim(),
+            ar: $('[name="subtitle_ar"]').val().trim()
+        },
+        description: {
+            en: $('[name="description_en"]').val().trim(),
+            ar: $('[name="description_ar"]').val().trim()
+        },
+        icon: $('[name="icon"]').val().trim(), // Simple icon collection
+        order_no: $('[name="order_no"]').val() || 0,
+        status: $('[name="status"]').val()
+    };
+
+    // Simple AJAX call
+    $.ajax({
+        url: "{{ route('admin.feature.store') }}",
+        type: "POST",
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                alert('Feature saved successfully!');
+                $("#featureForm")[0].reset();
+                $("#featureModal").modal('hide');
+            }
+        },
+        error: function(xhr) {
+            alert('Error: ' + (xhr.responseJSON.message || "Something went wrong"));
+        }
+    });
+});
+
+
+
+
+        // Edit Feature - Show Modal
+        $(document).on('click', '.edit-feature', function() {
+            const featureId = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', featureId),
+                type: "GET",
+                beforeSend: function() {
+                    $(this).prop('disabled', true);
+                },
+                success: function(response) {
+                    $('#update_feature_id').val(featureId);
+                    $('#update_feature_title_en').val(response.title?.en || '');
+                    $('#update_feature_title_ar').val(response.title?.ar || '');
+                    $('#update_feature_subtitle_en').val(response.subtitle?.en || '');
+                    $('#update_feature_subtitle_ar').val(response.subtitle?.ar || '');
+                    $('#update_feature_description_en').val(response.description?.en || '');
+                    $('#update_feature_description_ar').val(response.description?.ar || '');
+                    $('#update_feature_icon').val(response.icon || '');
+                    $('#update_feature_order_no').val(response.order_no || 0);
+                    $('#update_feature_status').val(response.status || 'active');
+
+                    $('#editFeatureModal').modal('show');
+                },
+                error: function(xhr) {
+                    toastr.error("Failed to load feature data");
+                    console.error("Error:", xhr.responseText);
+                },
+                complete: function() {
+                    $(this).prop('disabled', false);
+                }
+            });
+        });
+
+        // Update Feature
+        $("#editFeatureForm").submit(function(e) {
+            e.preventDefault();
+            $(".error").text("");
+
+            const featureId = $('#update_feature_id').val();
+            const formData = {
+                title: {
+                    en: $("#update_feature_title_en").val().trim(),
+                    ar: $("#update_feature_title_ar").val().trim()
+                },
+                subtitle: {
+                    en: $("#update_feature_subtitle_en").val().trim(),
+                    ar: $("#update_feature_subtitle_ar").val().trim()
+                },
+                description: {
+                    en: $("#update_feature_description_en").val().trim(),
+                    ar: $("#update_feature_description_ar").val().trim()
+                },
+                icon: $("#update_feature_icon").val().trim(),
+                order_no: $("#update_feature_order_no").val() || 0,
+                status: $("#update_feature_status").val(),
+                _method: "PUT"
+            };
+
+            $.ajax({
+                url: "{{ route('admin.feature.update', ':id') }}".replace(':id', featureId),
+                type: "POST",
+                data: formData,
+                beforeSend: function() {
+                    $('button[type="submit"]', '#editFeatureForm').prop('disabled', true)
+                        .html('<i class="fas fa-spinner fa-spin"></i> Updating...');
+                },
+                success: function(response) {
+                    toastr.success("Feature updated successfully");
+                    $("#editFeatureModal").modal('hide');
+                    loadFeatures();
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        const errors = xhr.responseJSON.errors;
+                        Object.keys(errors).forEach(key => {
+                            const errorId = `error_${key.replace('.', '_')}`;
+                            $(`#${errorId}`).text(errors[key][0]);
+                        });
+                        toastr.error("Please fix the validation errors");
+                    } else {
+                        toastr.error("Failed to update feature");
+                        console.error("Error:", xhr.responseText);
+                    }
+                },
+                complete: function() {
+                    $('button[type="submit"]', '#editFeatureForm').prop('disabled', false).html('Update');
+                }
+            });
+        });
+
+        // Delete Feature
+        $(document).on("click", ".delete-feature", function() {
+            const featureId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('admin.feature.delete', ':id') }}".replace(':id', featureId),
+                        type: "DELETE",
+                        success: function(response) {
+                            toastr.success("Feature deleted successfully");
+                            loadFeatures();
+                        },
+                        error: function(xhr) {
+                            toastr.error("Failed to delete feature");
+                            console.error("Error:", xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
+
 
 
 
