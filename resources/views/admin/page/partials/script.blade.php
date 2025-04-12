@@ -3,16 +3,16 @@
 
 <script>
     $(document).ready(function() {
-
         loadTestimonials();
-
+        
         function loadTestimonials() {
+            const pageId = {{ $page->id }};
             $.ajax({
-                url: '/admin/testimonials',
+                // url: '/admin/testimonials',
+                url: `/admin/testimonials/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
-
                     $('#testimonialsTableBody').html(
                         '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
@@ -34,9 +34,7 @@
                 }
             });
         }
-
         // Function to render testimonials in table
-
         function renderTestimonials(testimonials) {
             let html = '';
 
@@ -132,12 +130,9 @@
                     isValid = false;
                 }
             }
-
             if (!isValid) return; // Stop if validation fails
-
             // Prepare FormData
             let formData = new FormData(this);
-
             $.ajax({
                 url: "{{ route('testimonials.store') }}",
                 type: "POST",
@@ -150,9 +145,7 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Testimonial added successfully!");
-
                         refreshTestimonials();
-
                         $("#testimonialForm")[0].reset();
                         $("#testimonialModal").removeClass("show").hide();
                         $(".modal-backdrop").remove();
@@ -168,6 +161,38 @@
                 },
                 error: function() {
                     toastr.error("Something went wrong!");
+                }
+            });
+        });
+
+        
+        $('#editTestimonialForm').on('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let id = $('#update_testimonial_id').val();
+            let url = `/admin/testimonials/${id}`;
+            // Append `_method` as Laravel does not accept PUT with FormData
+            formData.append('_method', 'PUT');
+
+            $.ajax({
+                url: url,
+                type: "POST", // Change from PUT to POST
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editTestimonialModal').modal('hide');
+                    toastr.success("Testimonial updated successfully!");
+                    refreshTestimonials();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_' + key.replace('.', '_')).text(error[0]);
+                    });
                 }
             });
         });
@@ -214,42 +239,6 @@
                 }
             });
         });
-
-
-        $('#editTestimonialForm').on('submit', function(e) {
-            e.preventDefault();
-
-            let formData = new FormData(this);
-            let id = $('#update_testimonial_id').val();
-            let url = `/admin/testimonials/${id}`;
-
-            // Append `_method` as Laravel does not accept PUT with FormData
-            formData.append('_method', 'PUT');
-
-            $.ajax({
-                url: url,
-                type: "POST", // Change from PUT to POST
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                },
-                success: function(response) {
-                    $('#editTestimonialModal').modal('hide');
-                    toastr.success("Testimonial updated successfully!");
-                    refreshTestimonials();
-                },
-                error: function(response) {
-                    $('.error').text('');
-                    $.each(response.responseJSON.errors, function(key, error) {
-                        $('#error_' + key.replace('.', '_')).text(error[0]);
-                    });
-                }
-            });
-        });
-
-
 
         $(document).on("click", ".delete-testimonial", function() {
             let testimonialId = $(this).data("id");
@@ -369,30 +358,30 @@
         $("#procedureForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-            
+
             // Get all required field values
             const titleEn = $("#procedureTitleEn").val().trim();
             const titleAr = $("#procedureTitleAr").val().trim();
             const status = $("#procedureStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#procedureErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#procedureErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#procedureErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -429,9 +418,18 @@
                 url: `/admin/procedures/${id}/edit`,
                 type: "GET",
                 success: function(response) {
-                    let title = response.title || { en: "", ar: "" };
-                    let subtitle = response.subtitle || { en: "", ar: "" };
-                    let description = response.description || { en: "", ar: "" };
+                    let title = response.title || {
+                        en: "",
+                        ar: ""
+                    };
+                    let subtitle = response.subtitle || {
+                        en: "",
+                        ar: ""
+                    };
+                    let description = response.description || {
+                        en: "",
+                        ar: ""
+                    };
 
                     $('#editProcedureId').val(id);
                     $('#editProcedureTitleEn').val(title.en);
@@ -463,25 +461,25 @@
             const titleEn = $("#editProcedureTitleEn").val().trim();
             const titleAr = $("#editProcedureTitleAr").val().trim();
             const status = $("#editProcedureStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#editProcedureErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#editProcedureErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#editProcedureErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -598,7 +596,7 @@
             documents.forEach((document, index) => {
                 const title = typeof document.title === 'string' ? JSON.parse(document.title) : document.title;
                 const description = typeof document.description === 'string' ? JSON.parse(document.description) : document.description;
-                
+
                 html += `
                 <tr id="document-row-${document.id}">
                     <td>${index + 1}</td>
@@ -631,30 +629,30 @@
         $("#documentForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-            
+
             // Get all required field values
             const titleEn = $("#documentTitleEn").val().trim();
             const titleAr = $("#documentTitleAr").val().trim();
             const status = $("#documentStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#documentErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#documentErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#documentErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -691,8 +689,14 @@
                 url: `/admin/document-requireds/${id}/edit`,
                 type: "GET",
                 success: function(response) {
-                    let title = response.title || { en: "", ar: "" };
-                    let description = response.description || { en: "", ar: "" };
+                    let title = response.title || {
+                        en: "",
+                        ar: ""
+                    };
+                    let description = response.description || {
+                        en: "",
+                        ar: ""
+                    };
 
                     $('#editDocumentId').val(id);
                     $('#editDocumentTitleEn').val(title.en);
@@ -722,25 +726,25 @@
             const titleEn = $("#editDocumentTitleEn").val().trim();
             const titleAr = $("#editDocumentTitleAr").val().trim();
             const status = $("#editDocumentStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#editDocumentErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#editDocumentErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#editDocumentErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -818,52 +822,58 @@
 {{-- faqs section --}}
 
 <script>
-$(document).ready(function() {
-    // Load FAQs on page load
-    loadFAQs();
+    $(document).ready(function() {
+        // Load FAQs on page load
+        loadFAQs();
 
-    function loadFAQs() {
-        $.ajax({
-            url: "{{ route('faqs.index') }}",
-            type: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('#faqsTableBody').html(
-                    '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
-                );
-            },
-            success: function(response) {
-                if (response.data && response.data.length > 0) {
-                    renderFAQs(response.data);
-                } else {
+        function loadFAQs() {
+            $.ajax({
+                url: "{{ route('faqs.index') }}",
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
                     $('#faqsTableBody').html(
-                        '<tr><td colspan="6" class="text-center">No FAQs found</td></tr>'
+                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderFAQs(response.data);
+                    } else {
+                        $('#faqsTableBody').html(
+                            '<tr><td colspan="6" class="text-center">No FAQs found</td></tr>'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    $('#faqsTableBody').html(
+                        '<tr><td colspan="6" class="text-center text-danger">Error loading FAQs</td></tr>'
+                    );
+                    console.error("Error loading FAQs:", xhr.responseText);
+                    toastr.error("Failed to load FAQs");
                 }
-            },
-            error: function(xhr) {
-                $('#faqsTableBody').html(
-                    '<tr><td colspan="6" class="text-center text-danger">Error loading FAQs</td></tr>'
-                );
-                console.error("Error loading FAQs:", xhr.responseText);
-                toastr.error("Failed to load FAQs");
-            }
-        });
-    }
+            });
+        }
 
-    function renderFAQs(faqs) {
-        let html = '';
-        faqs.forEach((faq, index) => {
-            // Safely parse JSON fields
-            const question = typeof faq.question === 'string' ? JSON.parse(faq.question) : faq.question || { en: '', ar: '' };
-            const answer = typeof faq.answer === 'string' ? JSON.parse(faq.answer) : faq.answer || { en: '', ar: '' };
-            
-            // Shorten the answer for display
-            const shortAnswer = answer.en.length > 50 ? 
-                answer.en.substring(0, 50) + '...' : 
-                answer.en || 'No answer';
+        function renderFAQs(faqs) {
+            let html = '';
+            faqs.forEach((faq, index) => {
+                // Safely parse JSON fields
+                const question = typeof faq.question === 'string' ? JSON.parse(faq.question) : faq.question || {
+                    en: '',
+                    ar: ''
+                };
+                const answer = typeof faq.answer === 'string' ? JSON.parse(faq.answer) : faq.answer || {
+                    en: '',
+                    ar: ''
+                };
 
-            html += `
+                // Shorten the answer for display
+                const shortAnswer = answer.en.length > 50 ?
+                    answer.en.substring(0, 50) + '...' :
+                    answer.en || 'No answer';
+
+                html += `
             <tr id="faq-row-${faq.id}">
                 <td>${index + 1}</td>
                 <td>${question.en || 'No question'}</td>
@@ -883,303 +893,309 @@ $(document).ready(function() {
                     </button>
                 </td>
             </tr>`;
+            });
+            $('#faqsTableBody').html(html);
+        }
+
+
+        // Edit FAQ with validation
+        $(document).on('click', '.editFaq', function() {
+            let id = $(this).data('id');
+            $.ajax({
+                url: `/admin/faqs/${id}/edit`,
+                type: "GET",
+                beforeSend: function() {
+                    $(this).prop('disabled', true);
+                },
+                success: function(response) {
+                    // Parse JSON fields if needed
+                    const question = typeof response.question === 'string' ?
+                        JSON.parse(response.question) :
+                        response.question || {
+                            en: "",
+                            ar: ""
+                        };
+                    const answer = typeof response.answer === 'string' ?
+                        JSON.parse(response.answer) :
+                        response.answer || {
+                            en: "",
+                            ar: ""
+                        };
+
+                    $('#editFaqId').val(id);
+                    $('#editFaqQuestionEn').val(question.en);
+                    $('#editFaqQuestionAr').val(question.ar);
+                    $('#editFaqAnswerEn').val(answer.en);
+                    $('#editFaqAnswerAr').val(answer.ar);
+                    $('#editFaqOrderNo').val(response.order_no || 0);
+                    $('#editFaqStatus').val(response.status || 'active');
+
+                    $('#editFaqModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.error("Error loading FAQ:", xhr.responseText);
+                    toastr.error("Failed to load FAQ data");
+                },
+                complete: function() {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
-        $('#faqsTableBody').html(html);
-    }
 
+        // Update FAQ with validation - FIXED VERSION
+        $('#editFaqForm').submit(function(e) {
+            e.preventDefault();
+            $(".error").text("");
 
-    // Edit FAQ with validation
-    $(document).on('click', '.editFaq', function() {
-        let id = $(this).data('id');
-        $.ajax({
-            url: `/admin/faqs/${id}/edit`,
-            type: "GET",
-            beforeSend: function() {
-                $(this).prop('disabled', true);
-            },
-            success: function(response) {
-                // Parse JSON fields if needed
-                const question = typeof response.question === 'string' ? 
-                    JSON.parse(response.question) : 
-                    response.question || { en: "", ar: "" };
-                const answer = typeof response.answer === 'string' ? 
-                    JSON.parse(response.answer) : 
-                    response.answer || { en: "", ar: "" };
+            // Get all required field values
+            const questionEn = $("#editFaqQuestionEn").val().trim();
+            const questionAr = $("#editFaqQuestionAr").val().trim();
+            const answerEn = $("#editFaqAnswerEn").val().trim();
+            const answerAr = $("#editFaqAnswerAr").val().trim();
+            const status = $("#editFaqStatus").val();
 
-                $('#editFaqId').val(id);
-                $('#editFaqQuestionEn').val(question.en);
-                $('#editFaqQuestionAr').val(question.ar);
-                $('#editFaqAnswerEn').val(answer.en);
-                $('#editFaqAnswerAr').val(answer.ar);
-                $('#editFaqOrderNo').val(response.order_no || 0);
-                $('#editFaqStatus').val(response.status || 'active');
+            // Validate required fields
+            let isValid = true;
 
-                $('#editFaqModal').modal('show');
-            },
-            error: function(xhr) {
-                console.error("Error loading FAQ:", xhr.responseText);
-                toastr.error("Failed to load FAQ data");
-            },
-            complete: function() {
-                $(this).prop('disabled', false);
+            if (!questionEn) {
+                $("#editFaqErrorQuestionEn").text("English question is required");
+                isValid = false;
             }
+
+            if (!questionAr) {
+                $("#editFaqErrorQuestionAr").text("Arabic question is required");
+                isValid = false;
+            }
+
+            if (!answerEn) {
+                $("#editFaqErrorAnswerEn").text("English answer is required");
+                isValid = false;
+            }
+
+            if (!answerAr) {
+                $("#editFaqErrorAnswerAr").text("Arabic answer is required");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                toastr.error("Please fill all required fields");
+                return;
+            }
+
+            let id = $('#editFaqId').val();
+
+            // Prepare form data in correct format
+            const formData = new FormData();
+            formData.append('_method', 'PUT'); // This is crucial for resource routes
+            formData.append('question[en]', questionEn);
+            formData.append('question[ar]', questionAr);
+            formData.append('answer[en]', answerEn);
+            formData.append('answer[ar]', answerAr);
+            formData.append('order_no', $("#editFaqOrderNo").val() || 0);
+            formData.append('status', status);
+            formData.append('_token', "{{ csrf_token() }}");
+
+            // Use the resource route URL
+            const url = "{{ route('faqs.update', ':id') }}".replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST", // Still POST but with _method=PUT
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $("#editFaqSubmitBtn").prop('disabled', true)
+                        .html('<i class="fas fa-spinner fa-spin"></i> Updating...');
+                },
+                success: function(response) {
+                    toastr.success("FAQ updated successfully");
+                    $('#editFaqModal').modal('hide');
+                    loadFAQs();
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        const errors = xhr.responseJSON.errors;
+                        // Handle validation errors
+                        if (errors['question.en']) {
+                            $("#editFaqErrorQuestionEn").text(errors['question.en'][0]);
+                        }
+                        if (errors['question.ar']) {
+                            $("#editFaqErrorQuestionAr").text(errors['question.ar'][0]);
+                        }
+                        if (errors['answer.en']) {
+                            $("#editFaqErrorAnswerEn").text(errors['answer.en'][0]);
+                        }
+                        if (errors['answer.ar']) {
+                            $("#editFaqErrorAnswerAr").text(errors['answer.ar'][0]);
+                        }
+                        if (errors['status']) {
+                            $("#editFaqErrorStatus").text(errors['status'][0]);
+                        }
+                    } else {
+                        toastr.error("Something went wrong");
+                        console.error("Update error:", xhr.responseText);
+                    }
+                },
+                complete: function() {
+                    $("#editFaqSubmitBtn").prop('disabled', false).html('Update');
+                }
+            });
         });
-    });
 
-    // Update FAQ with validation - FIXED VERSION
-$('#editFaqForm').submit(function(e) {
-    e.preventDefault();
-    $(".error").text("");
+        // Update FAQ with validation
+        $(document).ready(function() {
+            // ... (keep your existing loadFAQs and renderFAQs functions)
 
-    // Get all required field values
-    const questionEn = $("#editFaqQuestionEn").val().trim();
-    const questionAr = $("#editFaqQuestionAr").val().trim();
-    const answerEn = $("#editFaqAnswerEn").val().trim();
-    const answerAr = $("#editFaqAnswerAr").val().trim();
-    const status = $("#editFaqStatus").val();
-    
-    // Validate required fields
-    let isValid = true;
-    
-    if (!questionEn) {
-        $("#editFaqErrorQuestionEn").text("English question is required");
-        isValid = false;
-    }
-    
-    if (!questionAr) {
-        $("#editFaqErrorQuestionAr").text("Arabic question is required");
-        isValid = false;
-    }
-    
-    if (!answerEn) {
-        $("#editFaqErrorAnswerEn").text("English answer is required");
-        isValid = false;
-    }
-    
-    if (!answerAr) {
-        $("#editFaqErrorAnswerAr").text("Arabic answer is required");
-        isValid = false;
-    }
-    
-    if (!isValid) {
-        toastr.error("Please fill all required fields");
-        return;
-    }
+            // Add new FAQ with validation - UPDATED VERSION
+            $("#faqForm").submit(function(e) {
+                e.preventDefault();
+                $(".error").text("");
 
-    let id = $('#editFaqId').val();
-    
-    // Prepare form data in correct format
-    const formData = new FormData();
-    formData.append('_method', 'PUT'); // This is crucial for resource routes
-    formData.append('question[en]', questionEn);
-    formData.append('question[ar]', questionAr);
-    formData.append('answer[en]', answerEn);
-    formData.append('answer[ar]', answerAr);
-    formData.append('order_no', $("#editFaqOrderNo").val() || 0);
-    formData.append('status', status);
-    formData.append('_token', "{{ csrf_token() }}");
+                // Get all required field values
+                const questionEn = $("#faqQuestionEn").val().trim();
+                const questionAr = $("#faqQuestionAr").val().trim();
+                const answerEn = $("#faqAnswerEn").val().trim();
+                const answerAr = $("#faqAnswerAr").val().trim();
+                const status = $("#faqStatus").val();
 
-    // Use the resource route URL
-    const url = "{{ route('faqs.update', ':id') }}".replace(':id', id);
+                // Validate required fields
+                let isValid = true;
 
-    $.ajax({
-        url: url,
-        type: "POST", // Still POST but with _method=PUT
-        data: formData,
-        processData: false,
-        contentType: false,
-        beforeSend: function() {
-            $("#editFaqSubmitBtn").prop('disabled', true)
-                .html('<i class="fas fa-spinner fa-spin"></i> Updating...');
-        },
-        success: function(response) {
-            toastr.success("FAQ updated successfully");
-            $('#editFaqModal').modal('hide');
-            loadFAQs();
-        },
-        error: function(xhr) {
-            if (xhr.status === 422) {
-                const errors = xhr.responseJSON.errors;
-                // Handle validation errors
-                if (errors['question.en']) {
-                    $("#editFaqErrorQuestionEn").text(errors['question.en'][0]);
+                if (!questionEn) {
+                    $("#faqErrorQuestionEn").text("English question is required");
+                    isValid = false;
                 }
-                if (errors['question.ar']) {
-                    $("#editFaqErrorQuestionAr").text(errors['question.ar'][0]);
+
+                if (!questionAr) {
+                    $("#faqErrorQuestionAr").text("Arabic question is required");
+                    isValid = false;
                 }
-                if (errors['answer.en']) {
-                    $("#editFaqErrorAnswerEn").text(errors['answer.en'][0]);
+
+                if (!answerEn) {
+                    $("#faqErrorAnswerEn").text("English answer is required");
+                    isValid = false;
                 }
-                if (errors['answer.ar']) {
-                    $("#editFaqErrorAnswerAr").text(errors['answer.ar'][0]);
+
+                if (!answerAr) {
+                    $("#faqErrorAnswerAr").text("Arabic answer is required");
+                    isValid = false;
                 }
-                if (errors['status']) {
-                    $("#editFaqErrorStatus").text(errors['status'][0]);
+
+                if (!isValid) {
+                    toastr.error("Please fill all required fields");
+                    return;
                 }
-            } else {
-                toastr.error("Something went wrong");
-                console.error("Update error:", xhr.responseText);
-            }
-        },
-        complete: function() {
-            $("#editFaqSubmitBtn").prop('disabled', false).html('Update');
-        }
-    });
-});
 
-    // Update FAQ with validation
-    $(document).ready(function() {
-    // ... (keep your existing loadFAQs and renderFAQs functions)
+                // Prepare form data in the correct format
+                const formData = new FormData();
+                formData.append('page_id', $("#faqPageId").val());
+                formData.append('question[en]', questionEn);
+                formData.append('question[ar]', questionAr);
+                formData.append('answer[en]', answerEn);
+                formData.append('answer[ar]', answerAr);
+                formData.append('order_no', $("#faqOrderNo").val() || 0);
+                formData.append('status', status);
+                formData.append('_token', "{{ csrf_token() }}");
 
-    // Add new FAQ with validation - UPDATED VERSION
-    $("#faqForm").submit(function(e) {
-        e.preventDefault();
-        $(".error").text("");
-        
-        // Get all required field values
-        const questionEn = $("#faqQuestionEn").val().trim();
-        const questionAr = $("#faqQuestionAr").val().trim();
-        const answerEn = $("#faqAnswerEn").val().trim();
-        const answerAr = $("#faqAnswerAr").val().trim();
-        const status = $("#faqStatus").val();
-        
-        // Validate required fields
-        let isValid = true;
-        
-        if (!questionEn) {
-            $("#faqErrorQuestionEn").text("English question is required");
-            isValid = false;
-        }
-        
-        if (!questionAr) {
-            $("#faqErrorQuestionAr").text("Arabic question is required");
-            isValid = false;
-        }
-        
-        if (!answerEn) {
-            $("#faqErrorAnswerEn").text("English answer is required");
-            isValid = false;
-        }
-        
-        if (!answerAr) {
-            $("#faqErrorAnswerAr").text("Arabic answer is required");
-            isValid = false;
-        }
-        
-        if (!isValid) {
-            toastr.error("Please fill all required fields");
-            return;
-        }
-
-        // Prepare form data in the correct format
-        const formData = new FormData();
-        formData.append('page_id', $("#faqPageId").val());
-        formData.append('question[en]', questionEn);
-        formData.append('question[ar]', questionAr);
-        formData.append('answer[en]', answerEn);
-        formData.append('answer[ar]', answerAr);
-        formData.append('order_no', $("#faqOrderNo").val() || 0);
-        formData.append('status', status);
-        formData.append('_token', "{{ csrf_token() }}");
-
-        $.ajax({
-            url: "{{ route('faqs.store') }}",
-            type: "POST",
-            data: formData,
-            processData: false,  // Important for FormData
-            contentType: false, // Important for FormData
-            beforeSend: function() {
-                $("#faqSubmitBtn").prop('disabled', true)
-                    .html('<i class="fas fa-spinner fa-spin"></i> Saving...');
-            },
-            success: function(response) {
-                toastr.success("FAQ added successfully");
-                $("#faqForm")[0].reset();
-                $("#faqModal").modal('hide');
-                loadFAQs();
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    const errors = xhr.responseJSON.errors;
-                    // Handle validation errors
-                    if (errors['question.en']) {
-                        $("#faqErrorQuestionEn").text(errors['question.en'][0]);
-                    }
-                    if (errors['question.ar']) {
-                        $("#faqErrorQuestionAr").text(errors['question.ar'][0]);
-                    }
-                    if (errors['answer.en']) {
-                        $("#faqErrorAnswerEn").text(errors['answer.en'][0]);
-                    }
-                    if (errors['answer.ar']) {
-                        $("#faqErrorAnswerAr").text(errors['answer.ar'][0]);
-                    }
-                    if (errors['status']) {
-                        $("#faqErrorStatus").text(errors['status'][0]);
-                    }
-                } else {
-                    toastr.error("Something went wrong");
-                    console.error("Error:", xhr.responseText);
-                }
-            },
-            complete: function() {
-                $("#faqSubmitBtn").prop('disabled', false).html('Save');
-            }
-        });
-    });
-
-    // ... (keep your existing edit, update, and delete functions)
-});
-
-    // Delete FAQ with confirmation
-    $(document).on('click', '.delete-faq', function() {
-        let id = $(this).data('id');
-        const $deleteBtn = $(this);
-        
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
                 $.ajax({
-                    url: `/admin/faqs/${id}`,
+                    url: "{{ route('faqs.store') }}",
                     type: "POST",
-                    data: {
-                        _method: "DELETE",
-                        _token: "{{ csrf_token() }}"
-                    },
+                    data: formData,
+                    processData: false, // Important for FormData
+                    contentType: false, // Important for FormData
                     beforeSend: function() {
-                        $deleteBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+                        $("#faqSubmitBtn").prop('disabled', true)
+                            .html('<i class="fas fa-spinner fa-spin"></i> Saving...');
                     },
                     success: function(response) {
-                        Swal.fire(
-                            'Deleted!',
-                            'FAQ has been deleted.',
-                            'success'
-                        );
+                        toastr.success("FAQ added successfully");
+                        $("#faqForm")[0].reset();
+                        $("#faqModal").modal('hide');
                         loadFAQs();
                     },
                     error: function(xhr) {
-                        Swal.fire(
-                            'Error!',
-                            xhr.responseJSON.message || 'Failed to delete FAQ.',
-                            'error'
-                        );
-                        console.error("Delete error:", xhr.responseText);
+                        if (xhr.status === 422) {
+                            const errors = xhr.responseJSON.errors;
+                            // Handle validation errors
+                            if (errors['question.en']) {
+                                $("#faqErrorQuestionEn").text(errors['question.en'][0]);
+                            }
+                            if (errors['question.ar']) {
+                                $("#faqErrorQuestionAr").text(errors['question.ar'][0]);
+                            }
+                            if (errors['answer.en']) {
+                                $("#faqErrorAnswerEn").text(errors['answer.en'][0]);
+                            }
+                            if (errors['answer.ar']) {
+                                $("#faqErrorAnswerAr").text(errors['answer.ar'][0]);
+                            }
+                            if (errors['status']) {
+                                $("#faqErrorStatus").text(errors['status'][0]);
+                            }
+                        } else {
+                            toastr.error("Something went wrong");
+                            console.error("Error:", xhr.responseText);
+                        }
                     },
                     complete: function() {
-                        $deleteBtn.prop('disabled', false).html('<i class="fas fa-trash"></i> Delete');
+                        $("#faqSubmitBtn").prop('disabled', false).html('Save');
                     }
                 });
-            }
+            });
+
+            // ... (keep your existing edit, update, and delete functions)
+        });
+
+        // Delete FAQ with confirmation
+        $(document).on('click', '.delete-faq', function() {
+            let id = $(this).data('id');
+            const $deleteBtn = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/admin/faqs/${id}`,
+                        type: "POST",
+                        data: {
+                            _method: "DELETE",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        beforeSend: function() {
+                            $deleteBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+                        },
+                        success: function(response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'FAQ has been deleted.',
+                                'success'
+                            );
+                            loadFAQs();
+                        },
+                        error: function(xhr) {
+                            Swal.fire(
+                                'Error!',
+                                xhr.responseJSON.message || 'Failed to delete FAQ.',
+                                'error'
+                            );
+                            console.error("Delete error:", xhr.responseText);
+                        },
+                        complete: function() {
+                            $deleteBtn.prop('disabled', false).html('<i class="fas fa-trash"></i> Delete');
+                        }
+                    });
+                }
+            });
         });
     });
-});
 </script>
 
 
@@ -1223,7 +1239,7 @@ $('#editFaqForm').submit(function(e) {
             ctas.forEach((cta, index) => {
                 const title = typeof cta.title === 'string' ? JSON.parse(cta.title) : cta.title;
                 const buttonText = typeof cta.button_text === 'string' ? JSON.parse(cta.button_text) : cta.button_text;
-                
+
                 html += `
                 <tr id="cta-row-${cta.id}">
                     <td>${index + 1}</td>
@@ -1252,7 +1268,7 @@ $('#editFaqForm').submit(function(e) {
         $("#ctaForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-            
+
             // Get all required field values
             const titleEn = $("#ctaTitleEn").val().trim();
             const titleAr = $("#ctaTitleAr").val().trim();
@@ -1260,40 +1276,40 @@ $('#editFaqForm').submit(function(e) {
             const buttonTextAr = $("#ctaButtonTextAr").val().trim();
             const buttonLink = $("#ctaButtonLink").val().trim();
             const status = $("#ctaStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#ctaErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#ctaErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!buttonTextEn) {
                 $("#ctaErrorButtonTextEn").text("English button text is required");
                 isValid = false;
             }
-            
+
             if (!buttonTextAr) {
                 $("#ctaErrorButtonTextAr").text("Arabic button text is required");
                 isValid = false;
             }
-            
+
             if (!buttonLink) {
                 $("#ctaErrorButtonLink").text("Button link is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#ctaErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -1348,9 +1364,18 @@ $('#editFaqForm').submit(function(e) {
                 url: `/admin/call-to-actions/${id}/edit`,
                 type: "GET",
                 success: function(response) {
-                    let title = response.title || { en: "", ar: "" };
-                    let subtitle = response.subtitle || { en: "", ar: "" };
-                    let buttonText = response.button_text || { en: "", ar: "" };
+                    let title = response.title || {
+                        en: "",
+                        ar: ""
+                    };
+                    let subtitle = response.subtitle || {
+                        en: "",
+                        ar: ""
+                    };
+                    let buttonText = response.button_text || {
+                        en: "",
+                        ar: ""
+                    };
 
                     $('#editCtaId').val(id);
                     $('#editCtaTitleEn').val(title.en);
@@ -1379,40 +1404,40 @@ $('#editFaqForm').submit(function(e) {
             const buttonTextAr = $("#editCtaButtonTextAr").val().trim();
             const buttonLink = $("#editCtaButtonLink").val().trim();
             const status = $("#editCtaStatus").val();
-            
+
             // Validate required fields
             let isValid = true;
-            
+
             if (!titleEn) {
                 $("#editCtaErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-            
+
             if (!titleAr) {
                 $("#editCtaErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-            
+
             if (!buttonTextEn) {
                 $("#editCtaErrorButtonTextEn").text("English button text is required");
                 isValid = false;
             }
-            
+
             if (!buttonTextAr) {
                 $("#editCtaErrorButtonTextAr").text("Arabic button text is required");
                 isValid = false;
             }
-            
+
             if (!buttonLink) {
                 $("#editCtaErrorButtonLink").text("Button link is required");
                 isValid = false;
             }
-            
+
             if (!status) {
                 $("#editCtaErrorStatus").text("Status is required");
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -1509,52 +1534,58 @@ $('#editFaqForm').submit(function(e) {
 
 
 <script>
-$(document).ready(function() {
-    // Load hero sections on page load
-    loadHeroSections();
+    $(document).ready(function() {
+        // Load hero sections on page load
+        loadHeroSections();
 
-    function loadHeroSections() {
-        $.ajax({
-            url: '/hero-sections',
-            type: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('#herosectionsTableBody').html(
-                    '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
-                );
-            },
-            success: function(response) {
-                if (response.data && response.data.length > 0) {
-                    renderHeroSections(response.data);
-                } else {
+        function loadHeroSections() {
+            $.ajax({
+                url: '/hero-sections',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
                     $('#herosectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center">No hero sections found</td></tr>'
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderHeroSections(response.data);
+                    } else {
+                        $('#herosectionsTableBody').html(
+                            '<tr><td colspan="5" class="text-center">No hero sections found</td></tr>'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    $('#herosectionsTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading hero sections</td></tr>'
+                    );
+                    console.error("Error loading hero sections:", xhr.responseText);
                 }
-            },
-            error: function(xhr) {
-                $('#herosectionsTableBody').html(
-                    '<tr><td colspan="5" class="text-center text-danger">Error loading hero sections</td></tr>'
-                );
-                console.error("Error loading hero sections:", xhr.responseText);
-            }
-        });
-    }
+            });
+        }
 
-    function renderHeroSections(herosections) {
-        let html = '';
+        function renderHeroSections(herosections) {
+            let html = '';
 
-        herosections.forEach((herosection, index) => {
-            // Safely handle JSON fields
-            const title = typeof herosection.title === 'string' ? 
-                JSON.parse(herosection.title) : 
-                herosection.title || { en: '', ar: '' };
-                
-            const subtitle = typeof herosection.subtitle === 'string' ? 
-                JSON.parse(herosection.subtitle) : 
-                herosection.subtitle || { en: '', ar: '' };
+            herosections.forEach((herosection, index) => {
+                // Safely handle JSON fields
+                const title = typeof herosection.title === 'string' ?
+                    JSON.parse(herosection.title) :
+                    herosection.title || {
+                        en: '',
+                        ar: ''
+                    };
 
-            html += `
+                const subtitle = typeof herosection.subtitle === 'string' ?
+                    JSON.parse(herosection.subtitle) :
+                    herosection.subtitle || {
+                        en: '',
+                        ar: ''
+                    };
+
+                html += `
                 <tr id="herosection-row-${herosection.id}">
                     <td>${index + 1}</td>
                     <td>
@@ -1573,185 +1604,194 @@ $(document).ready(function() {
                         </button>
                     </td>
                 </tr>`;
-        });
+            });
 
-        $('#herosectionsTableBody').html(html);
-    }
-
-    function refreshHeroSections() {
-        loadHeroSections();
-    }
-
-    // Add Hero Section Form Submission
-    $("#herosectionForm").submit(function(event) {
-        event.preventDefault();
-        $(".error").text("");
-
-        // Basic frontend validation
-        let isValid = true;
-        if (!$("#title_en").val().trim()) {
-            $("#error_title_en").text("English title is required");
-            isValid = false;
+            $('#herosectionsTableBody').html(html);
         }
-        if (!$("#title_ar").val().trim()) {
-            $("#error_title_ar").text("Arabic title is required");
-            isValid = false;
+
+        function refreshHeroSections() {
+            loadHeroSections();
         }
-        if (!isValid) return;
 
-        let formData = new FormData(this);
+        // Add Hero Section Form Submission
+        $("#herosectionForm").submit(function(event) {
+            event.preventDefault();
+            $(".error").text("");
 
-        $.ajax({
-            url: "{{ route('admin.hero_section.store') }}",
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                "X-CSRF-TOKEN": $('input[name="_token"]').val()
-            },
-            success: function(response) {
-                if (response.success) {
-                    toastr.success("Hero Section added successfully!");
-                    $("#herosectionForm")[0].reset();
-                    $("#herosectionModal").modal('hide');
-                    refreshHeroSections();
-                } else if (response.errors) {
-                    $.each(response.errors, function(key, value) {
-                        $("#error_" + key.replace('.', '_')).text(value[0]);
-                    });
-                    toastr.error("Please fix the errors");
-                }
-            },
-            error: function(xhr) {
-                toastr.error("Something went wrong!");
-                console.error(xhr.responseText);
+            // Basic frontend validation
+            let isValid = true;
+            if (!$("#title_en").val().trim()) {
+                $("#error_title_en").text("English title is required");
+                isValid = false;
             }
-        });
-    });
-
-    // Edit Hero Section
-    $(document).on('click', '.editHeroSection', function() {
-        let id = $(this).data('id');
-
-        $.ajax({
-            url: "{{ route('admin.hero_section.edit', ':id') }}".replace(':id', id),
-            type: "GET",
-            success: function(response) {
-                // Handle multilingual fields
-                const title = typeof response.title === 'string' ? 
-                    JSON.parse(response.title) : response.title || { en: '', ar: '' };
-                const subtitle = typeof response.subtitle === 'string' ? 
-                    JSON.parse(response.subtitle) : response.subtitle || { en: '', ar: '' };
-                const description = typeof response.description === 'string' ? 
-                    JSON.parse(response.description) : response.description || { en: '', ar: '' };
-
-                // Populate form
-                $('#update_herosection_id').val(id);
-                $('#update_title_en').val(title.en);
-                $('#update_title_ar').val(title.ar);
-                $('#update_subtitle_en').val(subtitle.en);
-                $('#update_subtitle_ar').val(subtitle.ar);
-                $('#update_description_en').val(description.en);
-                $('#update_description_ar').val(description.ar);
-                $('#update_status').val(response.status);
-
-                // Image preview
-                if (response.background_image) {
-                    $('#editHeroSectionModal').find('.image-preview').html(
-                        `<img src="/uploads/hero_section/${response.background_image}" width="100" class="img-thumbnail">`
-                    );
-                } else {
-                    $('#editHeroSectionModal').find('.image-preview').html('<p>No image</p>');
-                }
-
-                $('#editHeroSectionModal').modal('show');
-            },
-            error: function(xhr) {
-                toastr.error("Failed to load hero section data");
-                console.error(xhr.responseText);
+            if (!$("#title_ar").val().trim()) {
+                $("#error_title_ar").text("Arabic title is required");
+                isValid = false;
             }
-        });
-    });
+            if (!isValid) return;
 
-    // Update Hero Section
-    $('#editHeroSectionForm').on('submit', function(e) {
-        e.preventDefault();
-        $('.error').text('');
+            let formData = new FormData(this);
 
-        let formData = new FormData(this);
-        let id = $('#update_herosection_id').val();
-        let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-            },
-            success: function(response) {
-                $('#editHeroSectionModal').modal('hide');
-                toastr.success("Hero Section updated successfully!");
-                refreshHeroSections();
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    $.each(xhr.responseJSON.errors, function(key, error) {
-                        $('#error_' + key.replace('.', '_')).text(error[0]);
-                    });
-                } else {
-                    toastr.error("Something went wrong!");
-                }
-            }
-        });
-    });
-
-    // Delete Hero Section
-    $(document).on("click", ".delete-herosection", function() {
-        let herosectionId = $(this).data("id");
-
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: `/hero-section/delete/${herosectionId}/`,
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        _method: "DELETE"
-                    },
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: response.message,
-                            icon: "success",
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
+            $.ajax({
+                url: "{{ route('admin.hero_section.store') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("Hero Section added successfully!");
+                        $("#herosectionForm")[0].reset();
+                        $("#herosectionModal").modal('hide');
                         refreshHeroSections();
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Error!",
-                            text: xhr.responseJSON.message || "Failed to delete",
-                            icon: "error"
+                    } else if (response.errors) {
+                        $.each(response.errors, function(key, value) {
+                            $("#error_" + key.replace('.', '_')).text(value[0]);
                         });
+                        toastr.error("Please fix the errors");
                     }
-                });
-            }
+                },
+                error: function(xhr) {
+                    toastr.error("Something went wrong!");
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
+        // Edit Hero Section
+        $(document).on('click', '.editHeroSection', function() {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('admin.hero_section.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
+                    // Handle multilingual fields
+                    const title = typeof response.title === 'string' ?
+                        JSON.parse(response.title) : response.title || {
+                            en: '',
+                            ar: ''
+                        };
+                    const subtitle = typeof response.subtitle === 'string' ?
+                        JSON.parse(response.subtitle) : response.subtitle || {
+                            en: '',
+                            ar: ''
+                        };
+                    const description = typeof response.description === 'string' ?
+                        JSON.parse(response.description) : response.description || {
+                            en: '',
+                            ar: ''
+                        };
+
+                    // Populate form
+                    $('#update_herosection_id').val(id);
+                    $('#update_title_en').val(title.en);
+                    $('#update_title_ar').val(title.ar);
+                    $('#update_subtitle_en').val(subtitle.en);
+                    $('#update_subtitle_ar').val(subtitle.ar);
+                    $('#update_description_en').val(description.en);
+                    $('#update_description_ar').val(description.ar);
+                    $('#update_status').val(response.status);
+
+                    // Image preview
+                    if (response.background_image) {
+                        $('#editHeroSectionModal').find('.image-preview').html(
+                            `<img src="/uploads/hero_section/${response.background_image}" width="100" class="img-thumbnail">`
+                        );
+                    } else {
+                        $('#editHeroSectionModal').find('.image-preview').html('<p>No image</p>');
+                    }
+
+                    $('#editHeroSectionModal').modal('show');
+                },
+                error: function(xhr) {
+                    toastr.error("Failed to load hero section data");
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
+        // Update Hero Section
+        $('#editHeroSectionForm').on('submit', function(e) {
+            e.preventDefault();
+            $('.error').text('');
+
+            let formData = new FormData(this);
+            let id = $('#update_herosection_id').val();
+            let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editHeroSectionModal').modal('hide');
+                    toastr.success("Hero Section updated successfully!");
+                    refreshHeroSections();
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        $.each(xhr.responseJSON.errors, function(key, error) {
+                            $('#error_' + key.replace('.', '_')).text(error[0]);
+                        });
+                    } else {
+                        toastr.error("Something went wrong!");
+                    }
+                }
+            });
+        });
+
+        // Delete Hero Section
+        $(document).on("click", ".delete-herosection", function() {
+            let herosectionId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/hero-section/delete/${herosectionId}/`,
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: "DELETE"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            refreshHeroSections();
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Error!",
+                                text: xhr.responseJSON.message || "Failed to delete",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
         });
     });
-});
 </script>
 {{-- <script>
 
@@ -1759,112 +1799,112 @@ $(document).ready(function() {
                 let id = $(this).data("id");
 
                 $.ajax({
-                    url: "{{ route('admin.feature.edit', ':id') }}".replace(":id", id), 
-                    type: "GET",
-                    success: function (response) {
-                        let title = response.title ? response.title : { en: "", ar: "" };
-                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let description = response.description ? response.description : { en: "", ar: "" };
+                    url: "{{ route('admin.feature.edit', ':id') }}".replace(":id", id),
+type: "GET",
+success: function (response) {
+let title = response.title ? response.title : { en: "", ar: "" };
+let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
+let description = response.description ? response.description : { en: "", ar: "" };
 
-                        // Populate form fields
-                        $("#update_feature_id").val(id);
-                        $("#update_title_en").val(title.en);
-                        $("#update_title_ar").val(title.ar);
-                        $("#update_subtitle_en").val(subtitle.en);
-                        $("#update_subtitle_ar").val(subtitle.ar);
-                        $("#update_description_en").val(description.en);
-                        $("#update_description_ar").val(description.ar);
-                        $("#update_icon").val(response.icon);
-                        $("#update_status").val(response.status);
-                        $("#update_order_no").val(response.order_no);
+// Populate form fields
+$("#update_feature_id").val(id);
+$("#update_title_en").val(title.en);
+$("#update_title_ar").val(title.ar);
+$("#update_subtitle_en").val(subtitle.en);
+$("#update_subtitle_ar").val(subtitle.ar);
+$("#update_description_en").val(description.en);
+$("#update_description_ar").val(description.ar);
+$("#update_icon").val(response.icon);
+$("#update_status").val(response.status);
+$("#update_order_no").val(response.order_no);
 
-                        // Show the modal
-                        $("#editFeatureModal").modal("show");
-                    },
-                    error: function (xhr) {
-                        console.log("AJAX Error:", xhr);
-                    },
-                });
-            });
-
-
+// Show the modal
+$("#editFeatureModal").modal("show");
+},
+error: function (xhr) {
+console.log("AJAX Error:", xhr);
+},
+});
+});
 
 
-            $('#editHeroSectionForm').on('submit', function(e) {
-                e.preventDefault();
 
-                let formData = new FormData(this);
-                let id = $('#update_herosection_id').val();
-                let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editHeroSectionModal').modal('hide');
-                        toastr.success("Hero Section updated successfully!");
-                        refreshHeroSections();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
-                    }
-                });
-            });
+$('#editHeroSectionForm').on('submit', function(e) {
+e.preventDefault();
 
-            $(document).on("click", ".delete-herosection", function() {
-                let herosectionId = $(this).data("id");
+let formData = new FormData(this);
+let id = $('#update_herosection_id').val();
+let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/hero-section/delete/${herosectionId}/`,
-                            type: "POST",
-                            data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
+$.ajax({
+url: url,
+type: "POST",
+data: formData,
+processData: false,
+contentType: false,
+headers: {
+"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+},
+success: function(response) {
+$('#editHeroSectionModal').modal('hide');
+toastr.success("Hero Section updated successfully!");
+refreshHeroSections();
+},
+error: function(response) {
+$('.error').text('');
+$.each(response.responseJSON.errors, function(key, error) {
+$('#error_' + key.replace('.', '_')).text(error[0]);
+});
+}
+});
+});
 
-                                refreshHeroSections();
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
+$(document).on("click", ".delete-herosection", function() {
+let herosectionId = $(this).data("id");
 
-        });
-</script> --}}
+Swal.fire({
+title: "Are you sure?",
+text: "You won't be able to revert this!",
+icon: "warning",
+showCancelButton: true,
+confirmButtonColor: "#d33",
+cancelButtonColor: "#3085d6",
+confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+if (result.isConfirmed) {
+$.ajax({
+url: `/hero-section/delete/${herosectionId}/`,
+type: "POST",
+data: {
+_method: "POST",
+_token: "{{ csrf_token() }}"
+},
+success: function(response) {
+Swal.fire({
+title: "Deleted!",
+text: response.message,
+icon: "success",
+timer: 2000,
+showConfirmButton: false
+});
+
+refreshHeroSections();
+},
+error: function() {
+Swal.fire({
+title: "Error!",
+text: "Failed to delete. Please try again.",
+icon: "error"
+});
+}
+});
+}
+});
+});
+
+// });
+// </script>
 
 
 
@@ -1940,45 +1980,45 @@ $(document).ready(function() {
         }
 
         $("#featureForm").submit(function(e) {
-    e.preventDefault();
-    
-    // Simple form data collection
-    let formData = {
-        page_id: $('[name="page_id"]').val(),
-        title: {
-            en: $('[name="title_en"]').val().trim(),
-            ar: $('[name="title_ar"]').val().trim()
-        },
-        subtitle: {
-            en: $('[name="subtitle_en"]').val().trim(),
-            ar: $('[name="subtitle_ar"]').val().trim()
-        },
-        description: {
-            en: $('[name="description_en"]').val().trim(),
-            ar: $('[name="description_ar"]').val().trim()
-        },
-        icon: $('[name="icon"]').val().trim(), // Simple icon collection
-        order_no: $('[name="order_no"]').val() || 0,
-        status: $('[name="status"]').val()
-    };
+            e.preventDefault();
 
-    // Simple AJAX call
-    $.ajax({
-        url: "{{ route('admin.feature.store') }}",
-        type: "POST",
-        data: formData,
-        success: function(response) {
-            if (response.success) {
-                alert('Feature saved successfully!');
-                $("#featureForm")[0].reset();
-                $("#featureModal").modal('hide');
-            }
-        },
-        error: function(xhr) {
-            alert('Error: ' + (xhr.responseJSON.message || "Something went wrong"));
-        }
-    });
-});
+            // Simple form data collection
+            let formData = {
+                page_id: $('[name="page_id"]').val(),
+                title: {
+                    en: $('[name="title_en"]').val().trim(),
+                    ar: $('[name="title_ar"]').val().trim()
+                },
+                subtitle: {
+                    en: $('[name="subtitle_en"]').val().trim(),
+                    ar: $('[name="subtitle_ar"]').val().trim()
+                },
+                description: {
+                    en: $('[name="description_en"]').val().trim(),
+                    ar: $('[name="description_ar"]').val().trim()
+                },
+                icon: $('[name="icon"]').val().trim(), // Simple icon collection
+                order_no: $('[name="order_no"]').val() || 0,
+                status: $('[name="status"]').val()
+            };
+
+            // Simple AJAX call
+            $.ajax({
+                url: "{{ route('admin.feature.store') }}",
+                type: "POST",
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        alert('Feature saved successfully!');
+                        $("#featureForm")[0].reset();
+                        $("#featureModal").modal('hide');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error: ' + (xhr.responseJSON.message || "Something went wrong"));
+                }
+            });
+        });
 
 
 
@@ -2116,52 +2156,52 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
-            
-            loadIntroSections();
 
-            function loadIntroSections() {
-                $.ajax({
-                    url: '/Intro-sections',
-                    type: 'GET',
-                    dataType: 'json',
-                    beforeSend: function() {
-                        // Show loading indicator
+        loadIntroSections();
+
+        function loadIntroSections() {
+            $.ajax({
+                url: '/Intro-sections',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    // Show loading indicator
+                    $('#introsectionsTableBody').html(
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                    );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderIntroSections(response.data);
+                    } else {
                         $('#introsectionsTableBody').html(
-                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                            '<tr><td colspan="5" class="text-center">No introsections found</td></tr>'
                         );
-                    },
-                    success: function(response) {
-                        if (response.data && response.data.length > 0) {
-                            renderIntroSections(response.data);
-                        } else {
-                            $('#introsectionsTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No introsections found</td></tr>'
-                            );
-                        }
-                    },
-                    error: function(xhr) {
-                        $('#introsectionsTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading introsections</td></tr>'
-                        );
-                        console.error("Error loading introsections:", xhr.responseText);
                     }
-                });
-            }
+                },
+                error: function(xhr) {
+                    $('#introsectionsTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading introsections</td></tr>'
+                    );
+                    console.error("Error loading introsections:", xhr.responseText);
+                }
+            });
+        }
 
-            // Function to render introsections in table
+        // Function to render introsections in table
 
-            function renderIntroSections(introsections) {
-                let html = '';
+        function renderIntroSections(introsections) {
+            let html = '';
 
-                introsections.forEach((introsection, index) => {
-                    let formattedText = introsection.type.replace(/_/g, ' ');
-                    formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
-                    const introtitle = typeof introsection.title === 'string' ? JSON.parse(introsection.title) :
-                        introsection.title;
-                    const introsubtitle = typeof introsection.subtitle === 'string' ? JSON.parse(introsection
-                        .subtitle) : introsection.subtitle;
+            introsections.forEach((introsection, index) => {
+                let formattedText = introsection.type.replace(/_/g, ' ');
+                formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
+                const introtitle = typeof introsection.title === 'string' ? JSON.parse(introsection.title) :
+                    introsection.title;
+                const introsubtitle = typeof introsection.subtitle === 'string' ? JSON.parse(introsection
+                    .subtitle) : introsection.subtitle;
 
-                    html += `
+                html += `
             <tr id="introsection-row-${introsection.id}">
                 <td>${index + 1}</td>
                 <td>
@@ -2182,220 +2222,229 @@ $(document).ready(function() {
                     </form>
                 </td>
             </tr>`;
-                });
+            });
 
-                $('#introsectionsTableBody').html(html);
+            $('#introsectionsTableBody').html(html);
+        }
+
+        function refreshIntroSections() {
+            loadIntroSections();
+        }
+
+
+
+        $("#introsectionForm").submit(function(event) {
+            event.preventDefault();
+
+
+            $(".error").text("");
+            let introtitleEn = $("#intro_title_en").val().trim();
+            let introtitleAr = $("#intro_title_ar").val().trim();
+            let introsubtitleEn = $("#intro_subtitle_en").val().trim();
+            let introsubtitleAr = $("#intro_subtitle_ar").val().trim();
+            let introdescriptionEn = $("#intro_description_en").val().trim();
+            let introdescriptionAr = $("#intro_description_ar").val().trim();
+
+            let isValid = true;
+
+            // Frontend validation
+            if (introtitleEn.length < 1) {
+                $("#error_intro_name_en").text("English name is required.");
+                isValid = false;
+            }
+            if (introtitleAr.length < 1) {
+                $("#error_intro_name_ar").text("Arabic name is required.");
+                isValid = false;
+            }
+            if (introdescriptionEn.length < 1) {
+                $("#error_intro_designation_en").text("English description is required.");
+                isValid = false;
+            }
+            if (introdescriptionAr.length < 1) {
+                $("#error_intro_designation_ar").text("Arabic description is required.");
+                isValid = false;
+            }
+            if (introsubtitleEn.length < 1) {
+                // $("#error_feedback_en").text("English feedback is required.");
+                isValid = true;
+            }
+            if (introsubtitleAr.length < 1) {
+                // $("#error_feedback_ar").text("Arabic feedback is required.");
+                isValid = true;
             }
 
-            function refreshIntroSections() {
-                loadIntroSections();
-            }
+            if (!isValid) return;
 
+            // Prepare FormData
+            let introformData = new FormData(this);
 
+            $.ajax({
+                url: "{{ route('admin.intro_section.store') }}",
+                type: "POST",
+                data: introformData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("IntroSection added successfully!");
 
-            $("#introsectionForm").submit(function(event) {
-                event.preventDefault();
+                        refreshIntroSections();
 
-
-                $(".error").text("");
-                let introtitleEn = $("#intro_title_en").val().trim();
-                let introtitleAr = $("#intro_title_ar").val().trim();
-                let introsubtitleEn = $("#intro_subtitle_en").val().trim();
-                let introsubtitleAr = $("#intro_subtitle_ar").val().trim();
-                let introdescriptionEn = $("#intro_description_en").val().trim();
-                let introdescriptionAr = $("#intro_description_ar").val().trim();
-
-                let isValid = true;
-
-                // Frontend validation
-                if (introtitleEn.length < 1) {
-                    $("#error_intro_name_en").text("English name is required.");
-                    isValid = false;
+                        $("#introsectionForm")[0].reset();
+                        $("#introsectionModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+                    } else {
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                $("#error_intro_" + key.replace('.', '_')).text(value[0]);
+                            });
+                        }
+                        toastr.error("Something went wrong! Please check the errors.");
+                    }
+                },
+                error: function() {
+                    toastr.error("Something went wrong!");
                 }
-                if (introtitleAr.length < 1) {
-                    $("#error_intro_name_ar").text("Arabic name is required.");
-                    isValid = false;
-                }
-                if (introdescriptionEn.length < 1) {
-                    $("#error_intro_designation_en").text("English description is required.");
-                    isValid = false;
-                }
-                if (introdescriptionAr.length < 1) {
-                    $("#error_intro_designation_ar").text("Arabic description is required.");
-                    isValid = false;
-                }
-                if (introsubtitleEn.length < 1) {
-                    // $("#error_feedback_en").text("English feedback is required.");
-                    isValid = true;
-                }
-                if (introsubtitleAr.length < 1) {
-                    // $("#error_feedback_ar").text("Arabic feedback is required.");
-                    isValid = true;
-                }
+            });
+        });
 
-                if (!isValid) return;
+        $(document).on('click', '.editIntroSection', function() {
+            let id = $(this).data('id');
 
-                // Prepare FormData
-                let introformData = new FormData(this);
+            $.ajax({
+                url: "{{ route('admin.intro_section.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
 
-                $.ajax({
-                    url: "{{ route('admin.intro_section.store') }}",
-                    type: "POST",
-                    data: introformData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success("IntroSection added successfully!");
+                    let introtitle = response.title ? response.title : {
+                        en: "",
+                        ar: ""
+                    };
+                    let introsubtitle = response.subtitle ? response.subtitle : {
+                        en: "",
+                        ar: ""
+                    };
+                    let introdescription = response.description ? response.description : {
+                        en: "",
+                        ar: ""
+                    };
+
+                    // Populate form fields
+                    $('#update_introsection_id').val(id);
+                    $('#update_intro_title_en').val(introtitle.en);
+                    $('#update_intro_title_ar').val(introtitle.ar);
+                    $('#update_intro_subtitle_en').val(introsubtitle.en);
+                    $('#update_intro_subtitle_ar').val(introsubtitle.ar);
+                    $('#update_intro_description_en').val(introdescription.en);
+                    $('#update_intro_description_ar').val(introdescription.ar);
+                    $('#update_intro_status').val(response.status);
+                    $('#update_intro_type').val(response.type);
+
+                    // Ensure background image is set
+                    if (response.images) {
+                        let imagePath = `/uploads/introsections/${response.images}`;
+                        $('#image_preview').attr('src', imagePath).show();
+                    } else {
+                        $('#image_preview').hide();
+                    }
+
+                    // Show the modal
+                    $('#editIntroSectionModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.log("AJAX Error:", xhr);
+                }
+            });
+        });
+
+
+
+        $('#editIntroSectionForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let introformData = new FormData(this);
+            let id = $('#update_introsection_id').val();
+            let url = `{{ route('admin.intro_section.update', ':id') }}`.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: introformData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editIntroSectionModal').modal('hide');
+                    toastr.success("Intro Section updated successfully!");
+                    refreshIntroSections();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_intro_' + key.replace('.', '_')).text(error[0]);
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".delete-introsection", function() {
+            let introsectionId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/Intro-section/delete/${introsectionId}/`,
+                        type: "POST",
+                        data: {
+                            _method: "POST",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
 
                             refreshIntroSections();
-
-                            $("#introsectionForm")[0].reset();
-                            $("#introsectionModal").removeClass("show").hide();
-                            $(".modal-backdrop").remove();
-                            $("body").removeClass("modal-open");
-                        } else {
-                            if (response.errors) {
-                                $.each(response.errors, function(key, value) {
-                                    $("#error_intro_" + key.replace('.', '_')).text(value[0]);
-                                });
-                            }
-                            toastr.error("Something went wrong! Please check the errors.");
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to delete. Please try again.",
+                                icon: "error"
+                            });
                         }
-                    },
-                    error: function() {
-                        toastr.error("Something went wrong!");
-                    }
-                });
+                    });
+                }
             });
-
-            $(document).on('click', '.editIntroSection', function() {
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.intro_section.edit', ':id') }}".replace(':id', id), 
-                    type: "GET",
-                    success: function(response) {
-
-                        let introtitle = response.title ? response.title : { en: "", ar: "" };
-                        let introsubtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let introdescription = response.description ? response.description : { en: "", ar: "" };
-
-                        // Populate form fields
-                        $('#update_introsection_id').val(id);
-                        $('#update_intro_title_en').val(introtitle.en);
-                        $('#update_intro_title_ar').val(introtitle.ar);
-                        $('#update_intro_subtitle_en').val(introsubtitle.en);
-                        $('#update_intro_subtitle_ar').val(introsubtitle.ar);
-                        $('#update_intro_description_en').val(introdescription.en);
-                        $('#update_intro_description_ar').val(introdescription.ar);
-                        $('#update_intro_status').val(response.status);
-                        $('#update_intro_type').val(response.type);
-
-                        // Ensure background image is set
-                        if (response.images) {
-                            let imagePath = `/uploads/introsections/${response.images}`;
-                            $('#image_preview').attr('src', imagePath).show();
-                        } else {
-                            $('#image_preview').hide();
-                        }
-
-                        // Show the modal
-                        $('#editIntroSectionModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.log("AJAX Error:", xhr);
-                    }
-                });
-            });
-
-
-
-            $('#editIntroSectionForm').on('submit', function(e) {
-                e.preventDefault();
-
-                let introformData = new FormData(this);
-                let id = $('#update_introsection_id').val();
-                let url = `{{ route('admin.intro_section.update', ':id') }}`.replace(':id', id);
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: introformData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editIntroSectionModal').modal('hide');
-                        toastr.success("Intro Section updated successfully!");
-                        refreshIntroSections();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_intro_' + key.replace('.', '_')).text(error[0]);
-                        });
-                    }
-                });
-            });
-
-            $(document).on("click", ".delete-introsection", function() {
-                let introsectionId = $(this).data("id");
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/Intro-section/delete/${introsectionId}/`,
-                            type: "POST",
-                            data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
-
-                                refreshIntroSections();
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
         });
+
+    });
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const typeSelect = document.getElementById("intro_type");
         const imageInput = document.getElementById("intro_images");
 
-        typeSelect.addEventListener("change", function () {
+        typeSelect.addEventListener("change", function() {
             let maxFiles = 1;
 
             if (this.value === "double_image") {
@@ -2404,7 +2453,7 @@ $(document).ready(function() {
                 maxFiles = 3;
             }
 
-            imageInput.addEventListener("change", function () {
+            imageInput.addEventListener("change", function() {
                 if (this.files.length > maxFiles) {
                     alert(`You can only select up to ${maxFiles} images.`);
                     this.value = "";
@@ -2427,52 +2476,52 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
-            
-            loadSectionTitles();
 
-            function loadSectionTitles() {
-                $.ajax({
-                    url: '/section-titles',
-                    type: 'GET',
-                    dataType: 'json',
-                    beforeSend: function() {
-                        // Show loading indicator
+        loadSectionTitles();
+
+        function loadSectionTitles() {
+            $.ajax({
+                url: '/section-titles',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    // Show loading indicator
+                    $('#sectiontitlesTableBody').html(
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                    );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderSectionTitles(response.data);
+                    } else {
                         $('#sectiontitlesTableBody').html(
-                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                            '<tr><td colspan="5" class="text-center">No sectiontitles found</td></tr>'
                         );
-                    },
-                    success: function(response) {
-                        if (response.data && response.data.length > 0) {
-                            renderSectionTitles(response.data);
-                        } else {
-                            $('#sectiontitlesTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No sectiontitles found</td></tr>'
-                            );
-                        }
-                    },
-                    error: function(xhr) {
-                        $('#sectiontitlesTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading sectiontitles</td></tr>'
-                        );
-                        console.error("Error loading sectiontitles:", xhr.responseText);
                     }
-                });
-            }
+                },
+                error: function(xhr) {
+                    $('#sectiontitlesTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading sectiontitles</td></tr>'
+                    );
+                    console.error("Error loading sectiontitles:", xhr.responseText);
+                }
+            });
+        }
 
-            // Function to render sectiontitles in table
+        // Function to render sectiontitles in table
 
-            function renderSectionTitles(sectiontitles) {
-                let html = '';
+        function renderSectionTitles(sectiontitles) {
+            let html = '';
 
-                sectiontitles.forEach((sectiontitle, index) => {
-                    let formattedText = sectiontitle.type.replace(/_/g, ' ');
-                    formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
-                    const sectionstitle = typeof sectiontitle.title === 'string' ? JSON.parse(sectiontitle.title) :
-                        sectiontitle.title;
-                    const sectionsubtitle = typeof sectiontitle.subtitle === 'string' ? JSON.parse(sectiontitle
-                        .subtitle) : sectiontitle.subtitle;
+            sectiontitles.forEach((sectiontitle, index) => {
+                let formattedText = sectiontitle.type.replace(/_/g, ' ');
+                formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
+                const sectionstitle = typeof sectiontitle.title === 'string' ? JSON.parse(sectiontitle.title) :
+                    sectiontitle.title;
+                const sectionsubtitle = typeof sectiontitle.subtitle === 'string' ? JSON.parse(sectiontitle
+                    .subtitle) : sectiontitle.subtitle;
 
-                    html += `
+                html += `
             <tr id="sectiontitle-row-${sectiontitle.id}">
                 <td>${index + 1}</td>
                 <td>
@@ -2493,192 +2542,201 @@ $(document).ready(function() {
                     </form>
                 </td>
             </tr>`;
-                });
+            });
 
-                $('#sectiontitlesTableBody').html(html);
+            $('#sectiontitlesTableBody').html(html);
+        }
+
+        function refreshSectionTitles() {
+            loadSectionTitles();
+        }
+
+
+
+        $("#sectiontitleForm").submit(function(event) {
+            event.preventDefault();
+
+
+            $(".error").text("");
+            let sectiontitleEn = $("#section_title_en").val().trim();
+            let sectiontitleAr = $("#section_title_ar").val().trim();
+            let sectionsubtitleEn = $("#section_subtitle_en").val().trim();
+            let sectionsubtitleAr = $("#section_subtitle_ar").val().trim();
+
+            let isValid = true;
+
+            // Frontend validation
+            if (sectiontitleEn.length < 1) {
+                $("#error_section_name_en").text("English name is required.");
+                isValid = false;
+            }
+            if (sectiontitleAr.length < 1) {
+                $("#error_section_name_ar").text("Arabic name is required.");
+                isValid = false;
+            }
+            if (sectionsubtitleEn.length < 1) {
+                // $("#error_feedback_en").text("English feedback is required.");
+                isValid = true;
+            }
+            if (sectionsubtitleAr.length < 1) {
+                // $("#error_feedback_ar").text("Arabic feedback is required.");
+                isValid = true;
             }
 
-            function refreshSectionTitles() {
-                loadSectionTitles();
-            }
+            if (!isValid) return;
 
+            // Prepare FormData
+            let sectionformData = new FormData(this);
 
+            $.ajax({
+                url: "{{ route('admin.section_title.store') }}",
+                type: "POST",
+                data: sectionformData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("SectionTitle added successfully!");
 
-            $("#sectiontitleForm").submit(function(event) {
-                event.preventDefault();
+                        refreshSectionTitles();
 
-
-                $(".error").text("");
-                let sectiontitleEn = $("#section_title_en").val().trim();
-                let sectiontitleAr = $("#section_title_ar").val().trim();
-                let sectionsubtitleEn = $("#section_subtitle_en").val().trim();
-                let sectionsubtitleAr = $("#section_subtitle_ar").val().trim();
-
-                let isValid = true;
-
-                // Frontend validation
-                if (sectiontitleEn.length < 1) {
-                    $("#error_section_name_en").text("English name is required.");
-                    isValid = false;
+                        $("#sectiontitleForm")[0].reset();
+                        $("#sectiontitleModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+                    } else {
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                $("#error_section_" + key.replace('.', '_')).text(value[0]);
+                            });
+                        }
+                        toastr.error("Something went wrong! Please check the errors.");
+                    }
+                },
+                error: function() {
+                    toastr.error("Something went wrong!");
                 }
-                if (sectiontitleAr.length < 1) {
-                    $("#error_section_name_ar").text("Arabic name is required.");
-                    isValid = false;
-                }
-                if (sectionsubtitleEn.length < 1) {
-                    // $("#error_feedback_en").text("English feedback is required.");
-                    isValid = true;
-                }
-                if (sectionsubtitleAr.length < 1) {
-                    // $("#error_feedback_ar").text("Arabic feedback is required.");
-                    isValid = true;
-                }
+            });
+        });
 
-                if (!isValid) return;
+        $(document).on('click', '.editSectionTitle', function() {
+            let id = $(this).data('id');
 
-                // Prepare FormData
-                let sectionformData = new FormData(this);
+            $.ajax({
+                url: "{{ route('admin.section_title.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
 
-                $.ajax({
-                    url: "{{ route('admin.section_title.store') }}",
-                    type: "POST",
-                    data: sectionformData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success("SectionTitle added successfully!");
+                    let sectiontitle = response.title ? response.title : {
+                        en: "",
+                        ar: ""
+                    };
+                    let sectionsubtitle = response.subtitle ? response.subtitle : {
+                        en: "",
+                        ar: ""
+                    };
+                    let sectiondescription = response.description ? response.description : {
+                        en: "",
+                        ar: ""
+                    };
+
+                    // Populate form fields
+                    $('#update_sectiontitle_id').val(id);
+                    $('#update_section_title_en').val(sectiontitle.en);
+                    $('#update_section_title_ar').val(sectiontitle.ar);
+                    $('#update_section_subtitle_en').val(sectionsubtitle.en);
+                    $('#update_section_subtitle_ar').val(sectionsubtitle.ar);
+                    $('#update_section_status').val(response.status);
+                    $('#update_section_type').val(response.type);
+
+                    // Show the modal
+                    $('#editSectionTitleModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.log("AJAX Error:", xhr);
+                }
+            });
+        });
+
+
+
+        $('#editSectionTitleForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let sectionformData = new FormData(this);
+            let id = $('#update_sectiontitle_id').val();
+            let url = `{{ route('admin.section_title.update', ':id') }}`.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: sectionformData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editSectionTitleModal').modal('hide');
+                    toastr.success("SectionTitle updated successfully!");
+                    refreshSectionTitles();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_section_' + key.replace('.', '_')).text(error[0]);
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".delete-sectiontitle", function() {
+            let sectiontitleId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/section-title/delete/${sectiontitleId}/`,
+                        type: "POST",
+                        data: {
+                            _method: "POST",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
 
                             refreshSectionTitles();
-
-                            $("#sectiontitleForm")[0].reset();
-                            $("#sectiontitleModal").removeClass("show").hide();
-                            $(".modal-backdrop").remove();
-                            $("body").removeClass("modal-open");
-                        } else {
-                            if (response.errors) {
-                                $.each(response.errors, function(key, value) {
-                                    $("#error_section_" + key.replace('.', '_')).text(value[0]);
-                                });
-                            }
-                            toastr.error("Something went wrong! Please check the errors.");
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to delete. Please try again.",
+                                icon: "error"
+                            });
                         }
-                    },
-                    error: function() {
-                        toastr.error("Something went wrong!");
-                    }
-                });
+                    });
+                }
             });
-
-            $(document).on('click', '.editSectionTitle', function() {
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.section_title.edit', ':id') }}".replace(':id', id), 
-                    type: "GET",
-                    success: function(response) {
-
-                        let sectiontitle = response.title ? response.title : { en: "", ar: "" };
-                        let sectionsubtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let sectiondescription = response.description ? response.description : { en: "", ar: "" };
-
-                        // Populate form fields
-                        $('#update_sectiontitle_id').val(id);
-                        $('#update_section_title_en').val(sectiontitle.en);
-                        $('#update_section_title_ar').val(sectiontitle.ar);
-                        $('#update_section_subtitle_en').val(sectionsubtitle.en);
-                        $('#update_section_subtitle_ar').val(sectionsubtitle.ar);
-                        $('#update_section_status').val(response.status);
-                        $('#update_section_type').val(response.type);
-
-                        // Show the modal
-                        $('#editSectionTitleModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.log("AJAX Error:", xhr);
-                    }
-                });
-            });
-
-
-
-            $('#editSectionTitleForm').on('submit', function(e) {
-                e.preventDefault();
-
-                let sectionformData = new FormData(this);
-                let id = $('#update_sectiontitle_id').val();
-                let url = `{{ route('admin.section_title.update', ':id') }}`.replace(':id', id);
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: sectionformData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editSectionTitleModal').modal('hide');
-                        toastr.success("SectionTitle updated successfully!");
-                        refreshSectionTitles();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_section_' + key.replace('.', '_')).text(error[0]);
-                        });
-                    }
-                });
-            });
-
-            $(document).on("click", ".delete-sectiontitle", function() {
-                let sectiontitleId = $(this).data("id");
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/section-title/delete/${sectiontitleId}/`,
-                            type: "POST",
-                            data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
-
-                                refreshSectionTitles();
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
         });
+
+    });
 </script>
 
 
@@ -2693,54 +2751,54 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
-            
-            loadWhyUs();
 
-            function loadWhyUs() {
-                $.ajax({
-                    url: '/why-choose-us',
-                    type: 'GET',
-                    dataType: 'json',
-                    beforeSend: function() {
+        loadWhyUs();
+
+        function loadWhyUs() {
+            $.ajax({
+                url: '/why-choose-us',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#whyusTableBody').html(
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                    );
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderWhyUs(response.data);
+                    } else {
                         $('#whyusTableBody').html(
-                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                            '<tr><td colspan="5" class="text-center">No whyus found</td></tr>'
                         );
-                    },
-                    success: function(response) {
-                        if (response.data && response.data.length > 0) {
-                            renderWhyUs(response.data);
-                        } else {
-                            $('#whyusTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No whyus found</td></tr>'
-                            );
-                        }
-                    },
-                    error: function(xhr) {
-                        $('#whyusTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading whyus</td></tr>'
-                        );
-                        console.error("Error loading whyus:", xhr.responseText);
                     }
-                });
-            }
+                },
+                error: function(xhr) {
+                    $('#whyusTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading whyus</td></tr>'
+                    );
+                    console.error("Error loading whyus:", xhr.responseText);
+                }
+            });
+        }
 
-            // Function to render whyuss in table
+        // Function to render whyuss in table
 
-            function renderWhyUs(whyuses) {
-                let html = '';
+        function renderWhyUs(whyuses) {
+            let html = '';
 
-                whyuses.forEach((whyus, index) => {
-                    const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
-                        whyus.title;
-                    const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus
-                        .subtitle) : whyus.subtitle;
+            whyuses.forEach((whyus, index) => {
+                const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
+                    whyus.title;
+                const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus
+                    .subtitle) : whyus.subtitle;
 
-                    const description = typeof whyus.description === 'string' ? JSON.parse(whyus
-                        .description) : whyus.description;
+                const description = typeof whyus.description === 'string' ? JSON.parse(whyus
+                    .description) : whyus.description;
 
-                    const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
+                const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
 
-                    html += `
+                html += `
             <tr id="whyus-row-${whyus.id}">
                 <td>${index + 1}</td>
                 <td>
@@ -2761,211 +2819,220 @@ $(document).ready(function() {
                     </form>
                 </td>
             </tr>`;
-                });
-
-                $('#whyusTableBody').html(html);
-            }
-
-            function refreshWhyUs() {
-                loadWhyUs();
-            }
-
-
-
-            $("#whyusForm").submit(function(event) {
-                event.preventDefault();
-
-
-                $(".error").text("");
-                let titleEn = $("#title_en").val().trim();
-                let titleAr = $("#title_ar").val().trim();
-                let subtitleEn = $("#subtitle_en").val().trim();
-                let subtitleAr = $("#subtitle_ar").val().trim();
-                let descriptionEn = $("#description_en").val().trim();
-                let descriptionAr = $("#description_ar").val().trim();
-                let status = $('#status').val().trim();
-                let icon = $("#icon").val().trim();
-
-                let isValid = true;
-
-                // Frontend validation
-                if (titleEn.length < 1) {
-                    $("#error_name_en").text("English name is required.");
-                    isValid = false;
-                }
-                if (titleAr.length < 1) {
-                    $("#error_name_ar").text("Arabic name is required.");
-                    isValid = false;
-                }
-                if (subtitleEn.length < 1) {
-                    $("#error_subtitle").text("English subtitle is required.");
-                    isValid = false;
-                }
-                if (subtitleAr.length < 1) {
-                    $("#error_subtitle").text("Arabic subtitle is required.");
-                    isValid = false;
-                }
-                if (descriptionEn.length < 1) {
-                    isValid = true;
-                }
-                if (descriptionAr.length < 1) {
-                    isValid = true;
-                }
-                if (icon.length < 1) {
-                    $('#error_icon').text("Icon Field is required.");
-                    isValid = false;
-                }
-
-                if (!isValid) return;
-
-                // Prepare FormData
-                let formData = new FormData(this);
-
-                $.ajax({
-                    url: "{{ route('admin.why-choose-us.store') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success("Feature added successfully!");
-
-                            refreshWhyUs();
-
-                            $("#whyusForm")[0].reset();
-                            $("#whyusModal").removeClass("show").hide();
-                            $(".modal-backdrop").remove();
-                            $("body").removeClass("modal-open");
-                        } else {
-                            if (response.errors) {
-                                $.each(response.errors, function(key, value) {
-                                    $("#error_" + key.replace('.', '_')).text(value[0]);
-                                });
-                            }
-                            toastr.error("Something went wrong! Please check the errors.");
-                        }
-                    },
-                    error: function(xhr) {
-                        console.error("AJAX Error:", xhr.responseText);
-                        toastr.error("Something went wrong!");
-                    }
-                });
             });
 
-            $(document).on('click', '.editFeature', function() {
-                let id = $(this).data('id');
+            $('#whyusTableBody').html(html);
+        }
 
-                $.ajax({
-                    url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id), 
-                    type: "GET",
-                    success: function(response) {
-
-                        let title = response.title ? response.title : { en: "", ar: "" };
-                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let description = response.description ? response.description : { en: "", ar: "" };
-                        let icon = response.icon ? response.icon : "";
-
-                        $('#update_whyus_id').val(id);
-                        $('#update_whyus_title_en').val(title.en);
-                        $('#update_whyus_title_ar').val(title.ar);
-                        $('#update_whyus_subtitle_en').val(subtitle.en);
-                        $('#update_whyus_subtitle_ar').val(subtitle.ar);
-                        $('#update_whyus_description_en').val(description.en);
-                        $('#update_whyus_description_ar').val(description.ar);
-                        $('#update_whyus_status').val(response.status);
-                        $('#update_whyus_icon').val(icon);
-                        $('#update_whyus_order_no').val(response.order_no);
-
-                        // Show the modal
-                        $('#editWhyUsModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.log("AJAX Error:", xhr);
-                    }
-                });
-            });
+        function refreshWhyUs() {
+            loadWhyUs();
+        }
 
 
-            $('#editWhyUsForm').on('submit', function(e) {
-                e.preventDefault();
 
-                let formData = new FormData(this);
-                let id = $('#update_whyus_id').val();
-                let url = `{{ route('admin.why-choose-us.update', ':id') }}`.replace(':id', id);
+        $("#whyusForm").submit(function(event) {
+            event.preventDefault();
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editWhyUsModal').modal('hide');
-                        toastr.success("Hero Section updated successfully!");
+
+            $(".error").text("");
+            let titleEn = $("#title_en").val().trim();
+            let titleAr = $("#title_ar").val().trim();
+            let subtitleEn = $("#subtitle_en").val().trim();
+            let subtitleAr = $("#subtitle_ar").val().trim();
+            let descriptionEn = $("#description_en").val().trim();
+            let descriptionAr = $("#description_ar").val().trim();
+            let status = $('#status').val().trim();
+            let icon = $("#icon").val().trim();
+
+            let isValid = true;
+
+            // Frontend validation
+            if (titleEn.length < 1) {
+                $("#error_name_en").text("English name is required.");
+                isValid = false;
+            }
+            if (titleAr.length < 1) {
+                $("#error_name_ar").text("Arabic name is required.");
+                isValid = false;
+            }
+            if (subtitleEn.length < 1) {
+                $("#error_subtitle").text("English subtitle is required.");
+                isValid = false;
+            }
+            if (subtitleAr.length < 1) {
+                $("#error_subtitle").text("Arabic subtitle is required.");
+                isValid = false;
+            }
+            if (descriptionEn.length < 1) {
+                isValid = true;
+            }
+            if (descriptionAr.length < 1) {
+                isValid = true;
+            }
+            if (icon.length < 1) {
+                $('#error_icon').text("Icon Field is required.");
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Prepare FormData
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: "{{ route('admin.why-choose-us.store') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("Feature added successfully!");
+
                         refreshWhyUs();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_' + key.replace('.', '_')).text(error[0]);
-                        });
+
+                        $("#whyusForm")[0].reset();
+                        $("#whyusModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+                    } else {
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                $("#error_" + key.replace('.', '_')).text(value[0]);
+                            });
+                        }
+                        toastr.error("Something went wrong! Please check the errors.");
                     }
-                });
+                },
+                error: function(xhr) {
+                    console.error("AJAX Error:", xhr.responseText);
+                    toastr.error("Something went wrong!");
+                }
             });
-
-            $(document).on("click", ".delete-whyus", function() {
-                let whyusId = $(this).data("id");
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/why-choose-us/delete/${whyusId}`,
-                            type: "POST",
-                            data: {
-                                _token: $('meta[name="csrf-token"]').attr('content') // Get CSRF token from meta tag
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
-
-                                refreshWhyUs(); // Function to refresh the list
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
-
-
-
         });
+
+        $(document).on('click', '.editFeature', function() {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
+
+                    let title = response.title ? response.title : {
+                        en: "",
+                        ar: ""
+                    };
+                    let subtitle = response.subtitle ? response.subtitle : {
+                        en: "",
+                        ar: ""
+                    };
+                    let description = response.description ? response.description : {
+                        en: "",
+                        ar: ""
+                    };
+                    let icon = response.icon ? response.icon : "";
+
+                    $('#update_whyus_id').val(id);
+                    $('#update_whyus_title_en').val(title.en);
+                    $('#update_whyus_title_ar').val(title.ar);
+                    $('#update_whyus_subtitle_en').val(subtitle.en);
+                    $('#update_whyus_subtitle_ar').val(subtitle.ar);
+                    $('#update_whyus_description_en').val(description.en);
+                    $('#update_whyus_description_ar').val(description.ar);
+                    $('#update_whyus_status').val(response.status);
+                    $('#update_whyus_icon').val(icon);
+                    $('#update_whyus_order_no').val(response.order_no);
+
+                    // Show the modal
+                    $('#editWhyUsModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.log("AJAX Error:", xhr);
+                }
+            });
+        });
+
+
+        $('#editWhyUsForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+            let id = $('#update_whyus_id').val();
+            let url = `{{ route('admin.why-choose-us.update', ':id') }}`.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editWhyUsModal').modal('hide');
+                    toastr.success("Hero Section updated successfully!");
+                    refreshWhyUs();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_' + key.replace('.', '_')).text(error[0]);
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".delete-whyus", function() {
+            let whyusId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/why-choose-us/delete/${whyusId}`,
+                        type: "POST",
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content') // Get CSRF token from meta tag
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+
+                            refreshWhyUs(); // Function to refresh the list
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to delete. Please try again.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+    });
 </script>
 
 
@@ -2974,54 +3041,54 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
-            
-            loadFeatureImages();
 
-            function loadFeatureImages() {
-                $.ajax({
-                    url: '/feature-images',
-                    type: 'GET',
-                    dataType: 'json',
-                    beforeSend: function() {
+        loadFeatureImages();
 
+        function loadFeatureImages() {
+            $.ajax({
+                url: '/feature-images',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+
+                    $('#featureimgsTableBody').html(
+                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                    );
+
+                },
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        loadFeatureImageImages(response.data);
+                    } else {
                         $('#featureimgsTableBody').html(
-                            '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                            '<tr><td colspan="5" class="text-center">No features found</td></tr>'
                         );
-
-                    },
-                    success: function(response) {
-                        if (response.data && response.data.length > 0) {
-                            loadFeatureImageImages(response.data);
-                        } else {
-                            $('#featureimgsTableBody').html(
-                                '<tr><td colspan="5" class="text-center">No features found</td></tr>'
-                            );
-                        }
-                    },
-                    error: function(xhr) {
-                        $('#featureimgsTableBody').html(
-                            '<tr><td colspan="5" class="text-center text-danger">Error loading feature images</td></tr>'
-                        );
-                        console.error("Error loading features:", xhr.responseText);
                     }
-                });
-            }
+                },
+                error: function(xhr) {
+                    $('#featureimgsTableBody').html(
+                        '<tr><td colspan="5" class="text-center text-danger">Error loading feature images</td></tr>'
+                    );
+                    console.error("Error loading features:", xhr.responseText);
+                }
+            });
+        }
 
-            // Function to render features in table
+        // Function to render features in table
 
-            function loadFeatureImageImages(featureimgs) {
-                let html = '';
+        function loadFeatureImageImages(featureimgs) {
+            let html = '';
 
-                featureimgs.forEach((featureimg, index) => {
-                    const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :
-                        featureimg.title;
-                    const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg
-                        .subtitle) : featureimg.subtitle;
+            featureimgs.forEach((featureimg, index) => {
+                const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :
+                    featureimg.title;
+                const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg
+                    .subtitle) : featureimg.subtitle;
 
-                    const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg
-                        .description) : featureimg.description;
+                const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg
+                    .description) : featureimg.description;
 
-                    html += `
+                html += `
             <tr id="featureimg-row-${featureimg.id}">
                 <td>${index + 1}</td>
                 <td>
@@ -3044,215 +3111,223 @@ $(document).ready(function() {
                     </form>
                 </td>
             </tr>`;
-                });
+            });
 
-                $('#featureimgsTableBody').html(html);
+            $('#featureimgsTableBody').html(html);
+        }
+
+        function refreshFeatureImages() {
+            loadFeatureImages();
+        }
+
+
+
+        $("#featureimgForm").submit(function(event) {
+            event.preventDefault();
+
+            $(".error").text("");
+            let titleEn = $("#title_en").val().trim();
+            let titleAr = $("#title_ar").val().trim();
+            let subtitleEn = $("#subtitle_en").val().trim();
+            let subtitleAr = $("#subtitle_ar").val().trim();
+            let descriptionEn = $("#description_en").val().trim();
+            let descriptionAr = $("#description_ar").val().trim();
+            let status = $('#status').val().trim();
+            let image = $("#image")[0].files[0];
+
+            let isValid = true;
+
+            // Frontend validation
+            if (titleEn.length < 1) {
+                $("#error_name_en").text("English name is required.");
+                isValid = false;
+            }
+            if (titleAr.length < 1) {
+                $("#error_name_ar").text("Arabic name is required.");
+                isValid = false;
+            }
+            if (subtitleEn.length < 1) {
+                $("#error_designation_en").text("English designation is required.");
+                isValid = false;
+            }
+            if (subtitleAr.length < 1) {
+                $("#error_designation_ar").text("Arabic designation is required.");
+                isValid = false;
+            }
+            if (descriptionEn.length < 1) {
+                isValid = true;
+            }
+            if (descriptionAr.length < 1) {
+                isValid = true;
+            }
+            if (image) {
+                let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
+                let fileExtension = image.name.split('.').pop().toLowerCase();
+                if (!allowedExtensions.includes(fileExtension)) {
+                    $("#error_image").text("Only JPG, PNG, WEBP, or GIF allowed.");
+                    isValid = false;
+                }
             }
 
-            function refreshFeatureImages() {
-                loadFeatureImages();
-            }
+            if (!isValid) return;
 
+            // Prepare FormData
+            let formData = new FormData(this);
 
+            $.ajax({
+                url: "{{ route('admin.feature-image.store') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("FeatureImage added successfully!");
 
-            $("#featureimgForm").submit(function(event) {
-                event.preventDefault();
+                        refreshFeatureImages();
 
-                $(".error").text("");
-                let titleEn = $("#title_en").val().trim();
-                let titleAr = $("#title_ar").val().trim();
-                let subtitleEn = $("#subtitle_en").val().trim();
-                let subtitleAr = $("#subtitle_ar").val().trim();
-                let descriptionEn = $("#description_en").val().trim();
-                let descriptionAr = $("#description_ar").val().trim();
-                let status = $('#status').val().trim();
-                let image = $("#image")[0].files[0];
-
-                let isValid = true;
-
-                // Frontend validation
-                if (titleEn.length < 1) {
-                    $("#error_name_en").text("English name is required.");
-                    isValid = false;
-                }
-                if (titleAr.length < 1) {
-                    $("#error_name_ar").text("Arabic name is required.");
-                    isValid = false;
-                }
-                if (subtitleEn.length < 1) {
-                    $("#error_designation_en").text("English designation is required.");
-                    isValid = false;
-                }
-                if (subtitleAr.length < 1) {
-                    $("#error_designation_ar").text("Arabic designation is required.");
-                    isValid = false;
-                }
-                if (descriptionEn.length < 1) {
-                    isValid = true;
-                }
-                if (descriptionAr.length < 1) {
-                    isValid = true;
-                }
-                if (image) {
-                    let allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
-                    let fileExtension = image.name.split('.').pop().toLowerCase();
-                    if (!allowedExtensions.includes(fileExtension)) {
-                        $("#error_image").text("Only JPG, PNG, WEBP, or GIF allowed.");
-                        isValid = false;
+                        $("#featureimgForm")[0].reset();
+                        $("#featureimgModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+                    } else {
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                $("#error_" + key.replace('.', '_')).text(value[0]);
+                            });
+                        }
+                        toastr.error("Something went wrong! Please check the errors.");
                     }
+                },
+                error: function() {
+                    toastr.error("Something went wrong!");
                 }
+            });
+        });
 
-                if (!isValid) return;
 
-                // Prepare FormData
-                let formData = new FormData(this);
+        $(document).on('click', '.editFeatureImage', function() {
+            let id = $(this).data('id');
 
-                $.ajax({
-                    url: "{{ route('admin.feature-image.store') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success("FeatureImage added successfully!");
+            $.ajax({
+                url: "{{ route('admin.feature-image.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
+
+                    let title = response.title ? response.title : {
+                        en: "",
+                        ar: ""
+                    };
+                    let subtitle = response.subtitle ? response.subtitle : {
+                        en: "",
+                        ar: ""
+                    };
+                    let description = response.description ? response.description : {
+                        en: "",
+                        ar: ""
+                    };
+
+                    $('#update_featureimg_id').val(id);
+                    $('#update_featureimg_title_en').val(title.en);
+                    $('#update_featureimg_title_ar').val(title.ar);
+                    $('#update_featureimg_subtitle_en').val(subtitle.en);
+                    $('#update_featureimg_subtitle_ar').val(subtitle.ar);
+                    $('#update_featureimg_description_en').val(description.en);
+                    $('#update_featureimg_description_ar').val(description.ar);
+                    $('#update_featureimg_status').val(response.status);
+                    $('#update_featureimg_order_no').val(response.order_no);
+
+                    if (response.image) {
+                        $('#image_preview').attr('src',
+                            `/assets/admin/uploads/feature_image//${response.image}`).show();
+                    } else {
+                        $('#image_preview').hide();
+                    }
+
+                    // Show the modal
+                    $('#editFeatureImageModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.log("AJAX Error:", xhr);
+                }
+            });
+        });
+
+
+        $('#editFeatureImageForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+            let id = $('#update_featureimg_id').val();
+            let url = `{{ route('admin.feature-image.update', ':id') }}`.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editFeatureImageModal').modal('hide');
+                    toastr.success("Hero Section updated successfully!");
+                    refreshFeatureImages();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_' + key.replace('.', '_')).text(error[0]);
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".delete-featureimg", function() {
+            let featureId = $(this).data("id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/feature-image/delete/${featureId}/`,
+                        type: "POST",
+                        data: {
+                            _method: "POST",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
 
                             refreshFeatureImages();
-
-                            $("#featureimgForm")[0].reset();
-                            $("#featureimgModal").removeClass("show").hide();
-                            $(".modal-backdrop").remove();
-                            $("body").removeClass("modal-open");
-                        } else {
-                            if (response.errors) {
-                                $.each(response.errors, function(key, value) {
-                                    $("#error_" + key.replace('.', '_')).text(value[0]);
-                                });
-                            }
-                            toastr.error("Something went wrong! Please check the errors.");
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to delete. Please try again.",
+                                icon: "error"
+                            });
                         }
-                    },
-                    error: function() {
-                        toastr.error("Something went wrong!");
-                    }
-                });
-            });
-
-
-            $(document).on('click', '.editFeatureImage', function() {
-                let id = $(this).data('id');
-
-                $.ajax({
-                    url: "{{ route('admin.feature-image.edit', ':id') }}".replace(':id', id),
-                    type: "GET",
-                    success: function(response) {
-
-                        let title = response.title ? response.title : { en: "", ar: "" };
-                        let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-                        let description = response.description ? response.description : { en: "", ar: "" };
-
-                        $('#update_featureimg_id').val(id);
-                        $('#update_featureimg_title_en').val(title.en);
-                        $('#update_featureimg_title_ar').val(title.ar);
-                        $('#update_featureimg_subtitle_en').val(subtitle.en);
-                        $('#update_featureimg_subtitle_ar').val(subtitle.ar);
-                        $('#update_featureimg_description_en').val(description.en);
-                        $('#update_featureimg_description_ar').val(description.ar);
-                        $('#update_featureimg_status').val(response.status);
-                        $('#update_featureimg_order_no').val(response.order_no);
-                        
-                        if (response.image) {
-                            $('#image_preview').attr('src',
-                                `/assets/admin/uploads/feature_image//${response.image}`).show();
-                        } else {
-                            $('#image_preview').hide();
-                        }
-
-                        // Show the modal
-                        $('#editFeatureImageModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.log("AJAX Error:", xhr);
-                    }
-                });
-            });
-
-
-            $('#editFeatureImageForm').on('submit', function(e) {
-                e.preventDefault();
-
-                let formData = new FormData(this);
-                let id = $('#update_featureimg_id').val();
-                let url = `{{ route('admin.feature-image.update', ':id') }}`.replace(':id', id);
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    success: function(response) {
-                        $('#editFeatureImageModal').modal('hide');
-                        toastr.success("Hero Section updated successfully!");
-                        refreshFeatureImages();
-                    },
-                    error: function(response) {
-                        $('.error').text('');
-                        $.each(response.responseJSON.errors, function(key, error) {
-                            $('#error_' + key.replace('.', '_')).text(error[0]);
                     });
-                    }
-                });
+                }
             });
-
-            $(document).on("click", ".delete-featureimg", function() {
-                let featureId = $(this).data("id");
-
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/feature-image/delete/${featureId}/`,
-                            type: "POST",
-                            data: {
-                                _method: "POST",
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                });
-
-                                refreshFeatureImages();
-                            },
-                            error: function() {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text: "Failed to delete. Please try again.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
         });
+    });
 </script>

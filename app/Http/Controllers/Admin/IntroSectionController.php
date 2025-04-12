@@ -38,57 +38,41 @@ class IntroSectionController extends Controller
             'intro_title.en' => 'required|max:250',
             'intro_status' => 'required',
         ]);
-        
         $typeLimits = [
             'single_image'  => 1,
             'double_image'  => 2,
             'tripple_image' => 3,
         ];
-
         $maxFiles = $typeLimits[$request->type] ?? 1;
-    
         $intro_section = new IntroductionSection();
-    
         $intro_section->page_id = $request->page_id;
-    
         $intro_section->title = json_encode($request->intro_title, JSON_UNESCAPED_UNICODE);
         $intro_section->subtitle = json_encode($request->intro_subtitle, JSON_UNESCAPED_UNICODE);
         $intro_section->description = json_encode($request->intro_description, JSON_UNESCAPED_UNICODE);
-    
         $intro_section->status = $request->intro_status;
         $intro_section->type = $request->intro_type;
-
         $imagePaths = [];
-
         if ($request->hasFile('images')) {
             $uploadedImages = $request->file('images');
-
             if (!is_array($uploadedImages)) {
                 $uploadedImages = [$uploadedImages];
             }
-
             if (count($uploadedImages) > $maxFiles) {
                 return response()->json(['images' => "You can upload a maximum of $maxFiles images for {$request->type}."]);
             }
-
             foreach ($uploadedImages as $image) {
                 $filename = time() . '_' . $image->getClientOriginalName();
                 $image->move(public_path('uploads/introduction_section'), $filename);
                 $imagePaths[] = 'uploads/introduction_section/' . $filename;
             }
         }
-    
-    
         $intro_section->save();
-    
         return response()->json([
             'success' => true,
             'introsection' => $intro_section
         ]);
     }
     
-    
-
     // IntroductionSection Delete
     public function delete($id)
     {

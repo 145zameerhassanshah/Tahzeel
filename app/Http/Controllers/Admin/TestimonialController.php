@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Storage;
 class TestimonialController extends Controller
 {
 
+    public function getByPageId($pageId)
+    {
+        $testimonials = Testimonial::where('page_id', $pageId)->get();
+        return response()->json([
+            'data' => $testimonials
+        ]);
+    }
+
+
     public function list($id)
     {
         $testimonials = Testimonial::where('group_id', $id)->get();
@@ -31,11 +40,9 @@ class TestimonialController extends Controller
         return view('admin.testimonial.add', compact("group"));
     }
 
-
     public function index()
     {
         $testimonials = Testimonial::orderBy('order_no')->get();
-        
         return response()->json([
             'data' => $testimonials
         ]);
@@ -44,7 +51,6 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         // Validate request data
-       
         $request->validate([
             'name.en' => 'required|string',
             'name.ar' => 'required|string',
@@ -59,50 +65,42 @@ class TestimonialController extends Controller
         // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
-        
-        $testimonial->name = json_encode([
-            'en' => $request->name,
-            'ar' => $request->name
-        ]);
         // Store multilingual fields correctly
         $testimonial->name = json_encode([
             'en' => $request->input('name.en'),
             'ar' => $request->input('name.ar')
         ], JSON_UNESCAPED_UNICODE);
-    
+
         $testimonial->feedback = json_encode([
             'en' => $request->input('feedback.en'),
             'ar' => $request->input('feedback.ar')
         ], JSON_UNESCAPED_UNICODE);
-    
+
         $testimonial->designation = json_encode([
             'en' => $request->input('designation.en'),
             'ar' => $request->input('designation.ar')
         ], JSON_UNESCAPED_UNICODE);
-    
+
         // Handle Image Upload
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->file('image')->extension();
             $request->file('image')->move(public_path('assets/admin/uploads/testimonial/'), $imageName);
             $testimonial->image = $imageName;
         }
-    
         $testimonial->order_no = $request->order_no ?? 0;
         $testimonial->status = $request->status;
         $testimonial->save();
-    
+
         // Return JSON response
         return response()->json([
             'success' => true,
             'testimonial' => $testimonial
         ]);
     }
-    
-    
+
     public function edit($id)
     {
         $testimonial = Testimonial::findOrFail($id);
-        
         return response()->json([
             'name' => json_decode($testimonial->name),
             'designation' => json_decode($testimonial->designation),
@@ -131,33 +129,27 @@ class TestimonialController extends Controller
             'en' => $request->input('name.en'),
             'ar' => $request->input('name.ar')
         ], JSON_UNESCAPED_UNICODE);
-    
+
         $testimonial->feedback = json_encode([
             'en' => $request->input('feedback.en'),
             'ar' => $request->input('feedback.ar')
         ], JSON_UNESCAPED_UNICODE);
-    
+
         $testimonial->designation = json_encode([
             'en' => $request->input('designation.en'),
             'ar' => $request->input('designation.ar')
         ], JSON_UNESCAPED_UNICODE);
-
         if ($request->hasFile('image')) {
-
-            @unlink('assets/admin/uploads/testimonial/'. $testimonial->image);
-        
+            @unlink('assets/admin/uploads/testimonial/' . $testimonial->image);
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $image = time() . rand() . '.' . $extension;
             $file->move('assets/admin/uploads/testimonial/', $image);
             $testimonial->image = $image;
         }
-
         $testimonial->order_no = $request->order_no;
         $testimonial->status = $request->status;
-
         $testimonial->save();
-
         return response()->json([
             'data' => $testimonial,
         ]);
@@ -167,11 +159,8 @@ class TestimonialController extends Controller
     public function destroy($id)
     {
         $testimonial = Testimonial::findOrFail($id);
-
-        @unlink('assets/admin/uploads/testimonial/'. $testimonial->image);
-
+        @unlink('assets/admin/uploads/testimonial/' . $testimonial->image);
         $testimonial->delete();
-
         return response()->json([
             'success' => true
         ]);

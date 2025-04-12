@@ -22,6 +22,7 @@ class HeroSectionController extends Controller
             'data' => $hero_sections
         ]);
     }
+
     public function add($id)
     {
         $group = Group::find($id);
@@ -35,34 +36,24 @@ class HeroSectionController extends Controller
             'page_id' => 'required|exists:groups,id',
             'title.en' => 'required|max:250',
             'status' => 'required',
-        ]);
-    
+        ]);    
         $hero_section = new HeroSection();
-    
         $hero_section->page_id = $request->page_id;
-    
         $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
         $hero_section->subtitle = json_encode($request->subtitle, JSON_UNESCAPED_UNICODE);
         $hero_section->description = json_encode($request->description, JSON_UNESCAPED_UNICODE);
-    
         $hero_section->status = $request->status;
-
         if ($request->hasFile('background_image')) {
             $imageName = time() . '.' . $request->file('background_image')->extension();
             $request->file('background_image')->move(public_path('uploads/hero_section/'), $imageName);
             $hero_section->background_image = $imageName;
-        }
-    
-    
+        }   
         $hero_section->save();
-    
         return response()->json([
             'success' => true,
             'herosection' => $hero_section
         ]);
     }
-    
-    
 
     // HeroSection Delete
     public function delete($id)

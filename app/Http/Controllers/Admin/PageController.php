@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
+use App\Models\Feature;
 use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\HeroSection;
+use App\Models\IntroductionSection;
 use App\Models\Page;
 use App\Models\PageGroup;
 use App\Models\Testimonial;
@@ -17,10 +21,31 @@ class PageController extends Controller
         return view('admin.page.list', compact('pages'));
     }
 
-    public function detail($slug)
+    // public function detail($slug)
+    // {
+    //     $page = Page::where('slug',$slug)->first();
+    //     $testimonials = Testimonial::where('page_id', $page->id)->get();
+    //     $intro_types = ['single_image', 'double_image', 'tripple_image'];
+    //     $section_types = [
+    //         'testimonial',
+    //         'faq',
+    //         'feature',
+    //         'procedure',
+    //         'why_choose_us',
+    //         'document',
+    //         'call_to_action'
+    //     ];
+    //     return view('admin.page.detail', compact('page','testimonials', 'intro_types', 'section_types'));
+    // }
+    public function detail($id, $slug)
     {
-        $page = Page::where('slug',$slug)->first();
+        $page = Page::where('id', $id)->where('slug', $slug)->firstOrFail();
+
         $testimonials = Testimonial::where('page_id', $page->id)->get();
+        $heroSection = HeroSection::where('page_id', $page->id)->first();
+        $introSection = IntroductionSection::where('page_id', $page->id)->first();
+        $faq = Faq::where('page_id', $page->id)->get();
+        $features = Feature::where('page_id', $page->id)->get();
         $intro_types = ['single_image', 'double_image', 'tripple_image'];
         $section_types = [
             'testimonial',
@@ -31,8 +56,19 @@ class PageController extends Controller
             'document',
             'call_to_action'
         ];
-        return view('admin.page.detail', compact('page','testimonials', 'intro_types', 'section_types'));
+
+        return view('admin.page.detail', compact(
+            'page',
+            'testimonials',
+            'heroSection',
+            'introSection',
+            'faq',
+            'features',
+            'intro_types',
+            'section_types'
+        ));
     }
+
 
     public function addGroupstoPage($id)
     {
@@ -42,7 +78,7 @@ class PageController extends Controller
         $pagegroups = PageGroup::with('group')->where('page_id', $id)->get();
 
 
-        return view('admin.page.add-groups', compact('page', 'groups','pagegroups'));
+        return view('admin.page.add-groups', compact('page', 'groups', 'pagegroups'));
     }
 
     public function storeGroupstoPage(Request $request)
@@ -86,6 +122,4 @@ class PageController extends Controller
         );
         return redirect()->back()->with('notification', $notification);
     }
-
-
 }

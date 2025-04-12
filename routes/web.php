@@ -27,9 +27,7 @@ use App\Http\Controllers\Admin\FeatureImageController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\IntroSectionController;
-
 use App\Http\Controllers\Admin\NotificationController;
-
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
@@ -90,15 +88,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/approvedUsers', [UserController::class, 'approvedUsers'])->name('admin.user.approvedUsers');
         Route::get('/blockedUsers', [UserController::class, 'blockedUsers'])->name('admin.user.blockedUsers');
 
-
         // bulk delte Route
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
 
-        // Page Routes
-
+        // Page Routes:-
         Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
         Route::get('/add-page', [PageController::class, 'create'])->name('admin.page.create');
-        Route::get('/page-detail/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
+        // Route::get('/page-detail/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
+        // Route::get('/page-detail/{slug}/{id}', [PageController::class, 'detail'])->name('admin.page.detail');
+        Route::get('/page-detail/{id}/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
         Route::get('/add-groups/{id}', [PageController::class, 'addGroupstoPage'])->name('admin.page.add-groups');
         Route::post('/store-groups/{id}', [PageController::class, 'storeGroupstoPage'])->name('admin.page.store-groups');
         Route::get('/edit-page-groups/{id}', [PageController::class, 'edit'])->name('admin.page.edit-groups');
@@ -176,14 +174,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/job-category/delete/{id}', action: [JcategoryController::class, 'delete'])->name('admin.jcategory.delete');
 
 
-         // Feature Routes
-         Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
-         Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
-         Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
-         Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
-         Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
-         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
-         Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
+        // Feature Routes
+        Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
+        Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
+        Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
+        Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
+        Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
+        Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
+        Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
 
         // WhyChooseUs Routes
@@ -225,50 +223,50 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
 
 
-         // SectionTitle Routes
-         Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
-         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
-         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
-         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
-         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
-         Route::post('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
-         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
+        // SectionTitle Routes
+        Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
+        Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
+        Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
+        Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
+        Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
+        Route::post('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+        Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
 
-         // SectionTitle Routes
-         Route::get('/introduction-sections', [IntroductionSectionController::class, 'index'])->name('admin.introduction_section.index');
-         Route::get('/introduction-sections/{id}/list', [IntroductionSectionController::class, 'list'])->name('admin.introduction_section.list');
-         Route::get('/introduction-section/{id}/add', [IntroductionSectionController::class, 'add'])->name('admin.introduction_section.add');
-         Route::post('/introduction-section/store', [IntroductionSectionController::class, 'store'])->name('admin.introduction_section.store');
-         Route::get('/introduction-section/edit/{id}', [IntroductionSectionController::class, 'edit'])->name('admin.introduction_section.edit');
-         Route::post('/introduction-section/update/{id}', [IntroductionSectionController::class, 'update'])->name('admin.introduction_section.update');
-         Route::post('/introduction-section/delete/{id}', [IntroductionSectionController::class, 'delete'])->name('admin.introduction_section.delete');
+        // SectionTitle Routes
+        Route::get('/introduction-sections', [IntroductionSectionController::class, 'index'])->name('admin.introduction_section.index');
+        Route::get('/introduction-sections/{id}/list', [IntroductionSectionController::class, 'list'])->name('admin.introduction_section.list');
+        Route::get('/introduction-section/{id}/add', [IntroductionSectionController::class, 'add'])->name('admin.introduction_section.add');
+        Route::post('/introduction-section/store', [IntroductionSectionController::class, 'store'])->name('admin.introduction_section.store');
+        Route::get('/introduction-section/edit/{id}', [IntroductionSectionController::class, 'edit'])->name('admin.introduction_section.edit');
+        Route::post('/introduction-section/update/{id}', [IntroductionSectionController::class, 'update'])->name('admin.introduction_section.update');
+        Route::post('/introduction-section/delete/{id}', [IntroductionSectionController::class, 'delete'])->name('admin.introduction_section.delete');
 
-         // SectionTitle Routes
-         Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
-         Route::get('/hero-sections/{id}/list', [HeroSectionController::class, 'list'])->name('admin.hero_section.list');
-         Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
-         Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
-         Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
-         Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
-         Route::delete('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+        // SectionTitle Routes
+        Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
+        Route::get('/hero-sections/{id}/list', [HeroSectionController::class, 'list'])->name('admin.hero_section.list');
+        Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
+        Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
+        Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
+        Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
+        Route::delete('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
 
-         // SectionTitle Routes
-         Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
-         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
-         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
-         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
-         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
-         Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
-         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
+        // SectionTitle Routes
+        Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
+        Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
+        Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
+        Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
+        Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
+        Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+        Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
 
-         // SectionTitle Routes
-         Route::get('/Intro-sections', [IntroSectionController::class, 'index'])->name('admin.intro_section.index');
-         Route::get('/Intro-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.intro_section.list');
-         Route::get('/Intro-section/{id}/add', [IntroSectionController::class, 'add'])->name('admin.intro_section.add');
-         Route::post('/Intro-section/store', [IntroSectionController::class, 'store'])->name('admin.intro_section.store');
-         Route::get('/Intro-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.intro_section.edit');
-         Route::put('/Intro-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.intro_section.update');
-         Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
+        // SectionTitle Routes
+        Route::get('/Intro-sections', [IntroSectionController::class, 'index'])->name('admin.intro_section.index');
+        Route::get('/Intro-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.intro_section.list');
+        Route::get('/Intro-section/{id}/add', [IntroSectionController::class, 'add'])->name('admin.intro_section.add');
+        Route::post('/Intro-section/store', [IntroSectionController::class, 'store'])->name('admin.intro_section.store');
+        Route::get('/Intro-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.intro_section.edit');
+        Route::put('/Intro-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.intro_section.update');
+        Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
 
         // Procedure Routes
         // Route::get('/procedures', [ProcedureController::class, 'index'])->name('admin.procedure.index');
@@ -337,18 +335,12 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/enquiry/comment/delete/{id}', [EnquiryController::class, 'deleteComment'])->name('admin.enquiry.comment.delete');
         Route::get('enquiry/restore/{id}', [EnquiryController::class, 'restore'])->name('admin.enquiry.restore');
         Route::post('enquiry/force_delete/{id}', [EnquiryController::class, 'forceDelete'])->name('admin.enquiry.force.delete');
-
         // End of Enquiry
 
-
-
         // Setting Routes
-
         Route::get('/setting', [SettingController::class, 'edit'])->name('admin.setting.edit');
         Route::post('/setting/update', [SettingController::class, 'update'])->name('admin.setting.update');
-
         // End of Setting Routes
-
     });
 
 
@@ -356,29 +348,28 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::resource('admin/testimonials', TestimonialController::class);
     Route::resource('admin/faqs', FaqController::class);
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
-    Route::resource('admin/testimonials', TestimonialController::class);
+
+    // Testimonial routes start
+    // Route::resource('admin/testimonials', TestimonialController::class);
+    Route::get('/admin/testimonials/{pageId}', [TestimonialController::class, 'getByPageId'])->name('admin.testimonials');
+    Route::get('/admin/testimonials', [TestimonialController::class, 'list'])->name('admin.testimonials');
+    Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
+    Route::get('admin/testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
+    Route::put('/admin/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+    // Route::put('/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+    Route::delete('/admin/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+    // Testimonial routes end
+
 
     Route::resource('admin/procedures', ProcedureController::class);
     Route::resource('admin/document-requireds', DocumentRequiredController::class);
     Route::resource('admin/procedures', ProcedureController::class);
     Route::resource('admin/call-to-actions', CallToActionController::class);
-    
 
     Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
-
-
-
-
-
-
-
-
-
-
-
 
     Route::get('language/{locale}', function ($locale) {
         if (in_array($locale, config('app.available_locales'))) {
@@ -387,8 +378,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         }
         return redirect()->back();
     })->name('setLanguage');
-
-
 
     Route::get('/', [FrontController::class, 'index'])->name('front.index');
     Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
@@ -409,24 +398,12 @@ Route::middleware(['auth', 'status'])->group(function () {
 
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 
-
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
-
-
 
     Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
 
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
-
 });
-
 // all admin routes write in admin middleware
-
-
-
-
-
-
-
