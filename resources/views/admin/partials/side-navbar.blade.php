@@ -36,7 +36,7 @@
                 </li>
 
 
-                {{-- Groups --}}
+                {{-- Pages --}}
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.page.index' || Route::currentRouteName() == 'admin.page.create' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.page.index') }}" class="nav-link">
@@ -59,43 +59,6 @@
                         </li>
                     </ul>
                 </li>
-
-
-
-                {{-- Groups --}}
-                <li
-                    class="nav-item {{ Route::currentRouteName() == 'admin.group.index' || Route::currentRouteName() == 'admin.group.create' ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-layer-group"></i>
-                        <p>
-                            {{ __('Groups') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-
-                    <ul class="nav nav-treeview">
-
-                        {{-- All Groups --}}
-                        <li class="nav-item">
-                            <a href="{{ route('admin.group.index') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'admin.group.index' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Groups') }}</p>
-                            </a>
-                        </li>
-
-                        {{-- Add New Group --}}
-                        <li class="nav-item">
-                            <a href="{{ route('admin.group.create') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'admin.group.create' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Add New Group') }}</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-
 
                 {{-- users --}}
                 <li
@@ -243,148 +206,6 @@
 
                 {{-- Job --}}
 
-
-                {{-- Feature --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.feature.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Features') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- Feature --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.feature-image.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature-image.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Feature Images') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- End Feature --}}
-
-                {{-- Section Title --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.section_title.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.section_title.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Section Titles') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- End Section Title --}}
-
-                {{-- Introduction Section --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.introduction_section.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.introduction_section.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Introduction Sections') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- End Introduction Section --}}
-
-                {{-- Hero Section --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.hero_section.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.hero_section.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Hero Sections') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- End Hero Section --}}
-
-
-                {{-- Procedure --}}
-                <li class="nav-item">
-                    <a href="{{ route('procedures.index') }}" class="nav-link {{ Route::currentRouteName() == 'procedures.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Procedures') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- Call To Action --}}
-                <li class="nav-item">
-                    <a href="{{ route('call-to-actions.index') }}" class="nav-link {{ Route::currentRouteName() == 'call-to-actions.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('CallToActions') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- Testimonial --}}
-                <li class="nav-item">
-                    <a href="{{ route('testimonials.index') }}" class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Testimonials') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- Faq --}}
-                <li class="nav-item">
-                    <a href="{{ route('faqs.index') }}" class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('Faqs') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- WhyChooseUs --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.why-choose-us.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('WhyChooseUs') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- Feature --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.why-us-image.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.why-us-image.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('WhyUs Images') }}
-                        </p>
-                    </a>
-
-                </li>
-
-                {{-- WhyChooseUs --}}
-                <li class="nav-item">
-                    <a href="{{ route('document-requireds.index') }}" class="nav-link {{ Route::currentRouteName() == 'document-requireds.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>
-                            {{ __('DocumentRequired') }}
-                        </p>
-                    </a>
-
-                </li>
-
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.partner.index' || Route::currentRouteName() == 'admin.partner.add' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.partner.index') }}" class="nav-link">
@@ -504,71 +325,6 @@
                     </ul>
                 </li>
                 {{-- Enquiry End --}}
-
-
-
-
-
-                {{-- faq --}}
-                <li
-                    class="nav-item {{ Route::currentRouteName() == 'faqs.index' || Route::currentRouteName() == 'faqs.create' ? 'menu-open' : '' }}">
-                    <a href="{{ route('faqs.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            {{ __('Faq') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="{{ route('faqs.index') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Faq') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('faqs.create') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'faqs.create' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Add Faq') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- end Faq --}}
-
-                {{-- testimonila --}}
-                <li
-                    class="nav-item {{ Route::currentRouteName() == 'testimonials.index' || Route::currentRouteName() == 'testimonials.create' ? 'menu-open' : '' }}">
-                    <a href="{{ route('testimonials.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            {{ __('Testimonial') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="{{ route('testimonials.index') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'testimonials.index' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Testimonial') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('testimonials.create') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'testimonials.create' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Add Testimonial') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- end --}}
-
 
                 {{-- Settings --}}
 
