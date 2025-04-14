@@ -51,7 +51,6 @@ $procedure_title = $section_titles->where('type', 'procedure')->first();
         </div>
     </div>
     <div class="row gx-md-5 mb-5 mb-md-5">
-
         @foreach ($features as $feature)
         <div class="col-md-6 col-xl-3 ">
             <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
@@ -59,25 +58,22 @@ $procedure_title = $section_titles->where('type', 'procedure')->first();
                     <i class="{{ $feature->icon }}"></i>
                     <h4>{{ $feature->title }}</h4>
                     <p class="mb-2">{{ $feature->description }}</p>
-
                 </div>
                 <!--/.card-body -->
             </div>
             <!--/.card -->
         </div>
         @endforeach
-
         <!--/column -->
     </div>
     <!--/.row -->
-
 </div>
 @endif
 {{-- end features  --}}
 
 {{-- @if($procedures)
-        @include('front.partials._procedures')
-     @endif --}}
+@include('front.partials._procedures')
+@endif --}}
 
 @php
 $faq_title = $section_titles->where('type', 'faq')->first();
@@ -90,9 +86,7 @@ $faq_title = $section_titles->where('type', 'faq')->first();
             <div class="col-md-8 text-center">
                 <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{{ $faq_title->subtitle }}</h2>
                 <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">{{ $faq_title->title }}</h3>
-                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process. <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.
-
-                </p>
+                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process. <span class="underline green">Tah-zeel</span>simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.</p>
             </div>
         </div>
         <div class="row">
@@ -102,8 +96,7 @@ $faq_title = $section_titles->where('type', 'faq')->first();
                     <div class="card accordion-item icon">
                         <div class="card-header" id="headingIconOne">
                             <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseIconOne"
-                                aria-expanded="true" aria-controls="collapseIconOne"><span><i
-                                        class="bi bi-passport"></i></span>{{ $faq->question }}</button>
+                            aria-expanded="true" aria-controls="collapseIconOne"><span><i class="bi bi-passport"></i></span>{{ $faq->question }}</button>
                         </div>
                         <!--/.card-header -->
                         <div id="collapseIconOne" class="accordion-collapse collapse show"
@@ -128,13 +121,9 @@ $faq_title = $section_titles->where('type', 'faq')->first();
 @include('front.partials._cta')
 @endif
 
-@php
-$testimonial_title = $section_titles->where('type', 'testimonial')->first();
-@endphp
-@if (isset($testimonials) && isset($testimonial_title))
+@if (isset($testimonials))
 @include('front.partials._clients')
 @endif
-
 
 @include('front.partials.affiliations')
 
@@ -144,4 +133,4 @@ $testimonial_title = $section_titles->where('type', 'testimonial')->first();
 
 @include('front.partials.amr-services-cards')
 
-@endsection
+@endsection 

@@ -48,8 +48,7 @@
                                                 <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1">
                                                     <i class="fas fa-info"></i> {{ __('Details') }}
                                                 </a>
-                                                <form id="deleteform" class="d-inline-block mx-1"
-                                                    action="#" method="post">
+                                                <form id="deleteform" class="d-inline-block mx-1" action="#" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" id="delete">
                                                         <i class="fas fa-trash"></i>

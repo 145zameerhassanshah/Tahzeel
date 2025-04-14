@@ -4,11 +4,11 @@
 <script>
     $(document).ready(function() {
         loadTestimonials();
-        
+
         function loadTestimonials() {
-            const pageId = {{ $page->id }};
+            let pageId = "{{ $page->id }}"; // Assuming you have the page ID available in your script
+            // const pageId = {{$page->id}};
             $.ajax({
-                // url: '/admin/testimonials',
                 url: `/admin/testimonials/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
@@ -34,27 +34,21 @@
                 }
             });
         }
+
         // Function to render testimonials in table
         function renderTestimonials(testimonials) {
             let html = '';
-
             testimonials.forEach((testimonial, index) => {
                 const name = typeof testimonial.name === 'string' ? JSON.parse(testimonial.name) :
                     testimonial.name;
                 const designation = typeof testimonial.designation === 'string' ? JSON.parse(testimonial
                     .designation) : testimonial.designation;
-
                 html += `
-        <tr id="testimonial-row-${testimonial.id}">
+            <tr id="testimonial-row-${testimonial.id}">
             <td>${index + 1}</td>
             <td>
-                ${testimonial.image ? 
-                    `<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50px">` : 
-                    ''}
-            </td>
-            <td>${name.en}</td>
-            <td>${designation.en}</td>
-            <td>${designation.ar}</td>
+            ${testimonial.image?`<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50px">`:''}</td>
+            <td>${name.en}</td><td>${designation.en}</td><td>${designation.ar}</td>
             <td>
                 <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
                     <i class="fas fa-edit"></i> Edit
@@ -69,7 +63,6 @@
             </td>
         </tr>`;
             });
-
             $('#testimonialsTableBody').html(html);
         }
 
@@ -165,7 +158,7 @@
             });
         });
 
-        
+
         $('#editTestimonialForm').on('submit', function(e) {
             e.preventDefault();
             let formData = new FormData(this);
@@ -295,8 +288,9 @@
         loadProcedures();
 
         function loadProcedures() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: "{{ route('procedures.index') }}",
+                url: `/admin/procedures/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -430,7 +424,6 @@
                         en: "",
                         ar: ""
                     };
-
                     $('#editProcedureId').val(id);
                     $('#editProcedureTitleEn').val(title.en);
                     $('#editProcedureTitleAr').val(title.ar);
@@ -440,13 +433,11 @@
                     $('#editProcedureDescriptionAr').val(description.ar);
                     $('#editProcedureOrderNo').val(response.order_no || 0);
                     $('#editProcedureStatus').val(response.status || 'active');
-
                     $('#editProcedureImagePreview').html(
                         response.image ?
                         `<img src="/assets/admin/uploads/procedure/${response.image}" width="100" class="img-thumbnail">` :
                         '<p>No image</p>'
                     );
-
                     $('#editProcedureModal').modal('show');
                 }
             });
@@ -456,15 +447,12 @@
         $('#editProcedureForm').submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-
             // Get all required field values
             const titleEn = $("#editProcedureTitleEn").val().trim();
             const titleAr = $("#editProcedureTitleAr").val().trim();
             const status = $("#editProcedureStatus").val();
-
             // Validate required fields
             let isValid = true;
-
             if (!titleEn) {
                 $("#editProcedureErrorTitleEn").text("English title is required");
                 isValid = false;
@@ -1527,20 +1515,16 @@
     });
 </script>
 
-
-
 {{-- Hero Section --}}
-
-
 
 <script>
     $(document).ready(function() {
         // Load hero sections on page load
         loadHeroSections();
-
         function loadHeroSections() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: '/hero-sections',
+                url: `/hero-sections/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -2146,22 +2130,16 @@ icon: "error"
     });
 </script>
 
-
-
-
-
 {{-- Intro Section --}}
-
-
 
 <script>
     $(document).ready(function() {
-
         loadIntroSections();
 
         function loadIntroSections() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: '/Intro-sections',
+                url: `/Intro-sections/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -2463,25 +2441,15 @@ icon: "error"
     });
 </script>
 
-
-
-
-
-
-
-
 {{-- Section Title --}}
-
-
 
 <script>
     $(document).ready(function() {
-
         loadSectionTitles();
-
         function loadSectionTitles() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: '/section-titles',
+                url: `/section-titles/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -3014,7 +2982,6 @@ icon: "error"
                                 timer: 2000,
                                 showConfirmButton: false
                             });
-
                             refreshWhyUs(); // Function to refresh the list
                         },
                         error: function() {
@@ -3028,37 +2995,30 @@ icon: "error"
                 }
             });
         });
-
-
-
-
     });
 </script>
 
-
-
 {{-- Feature Image Section --}}
-
 <script>
     $(document).ready(function() {
 
         loadFeatureImages();
 
         function loadFeatureImages() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: '/feature-images',
+                url: `/feature-images/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
-
                     $('#featureimgsTableBody').html(
                         '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
-
                 },
                 success: function(response) {
                     if (response.data && response.data.length > 0) {
                         loadFeatureImageImages(response.data);
+                        alerts(response.data);
                     } else {
                         $('#featureimgsTableBody').html(
                             '<tr><td colspan="5" class="text-center">No features found</td></tr>'
@@ -3075,19 +3035,15 @@ icon: "error"
         }
 
         // Function to render features in table
-
         function loadFeatureImageImages(featureimgs) {
             let html = '';
-
             featureimgs.forEach((featureimg, index) => {
                 const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :
                     featureimg.title;
                 const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg
                     .subtitle) : featureimg.subtitle;
-
                 const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg
                     .description) : featureimg.description;
-
                 html += `
             <tr id="featureimg-row-${featureimg.id}">
                 <td>${index + 1}</td>
