@@ -100,7 +100,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/edit-page-groups/{id}', [PageController::class, 'edit'])->name('admin.page.edit-groups');
         Route::post('/update-page-groups/{id}', [PageController::class, 'update'])->name('admin.page.update-groups');
         Route::post('/delete--page-groups/{id}', [PageController::class, 'deletePageGroup'])->name('admin.page.delete-groups');
-        
+
         // Group Routes:-
         Route::get('/groups', [GroupController::class, 'index'])->name('admin.group.index');
         Route::get('/add-group', [GroupController::class, 'create'])->name('admin.group.create');
@@ -178,17 +178,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
         Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
-
-        // WhyChooseUs Routes:-
-        Route::get('/why-choose-us', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
-        Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
-        Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
-        Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
-        Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
-        Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
-        Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
-
-
         // Feature Routes
         // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
         Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'getByPageId'])->name('admin.feature-image.index');
@@ -199,8 +188,18 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
         Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
+        // Why Choose Us Routes
+        Route::get('/why-choose-us/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.why-choose-us');
+        // Route::get('/why-choose-us', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
+        Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
+        Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
+        Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
+        Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
+        Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
+        Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
 
-        // WhyChooseUs Routes
+        // Why Us Images Routes
+        Route::get('/why-us-image/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.feature-image.index');
         Route::get('/why-us-image', [WhyUsImageController::class, 'index'])->name('admin.why-us-image.index');
         Route::get('/why-us-image/{id}/list', [WhyUsImageController::class, 'list'])->name('admin.why-us-image.list');
         Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
@@ -336,6 +335,7 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
     Route::resource('admin/faqs', FaqController::class);
+    Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
 
     // Testimonial routes start
@@ -355,14 +355,19 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('/admin/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedures.list');
     Route::post('/procedures/store', [ProcedureController::class, 'store'])->name('procedures.store');
     Route::get('/admin/procedures/{id}/edit', [ProcedureController::class, 'edit'])->name('procedures.edit');
-    Route::post('/admin/procedures/{id}', [ProcedureController::class, 'update'])->name('procedures.update');
+    Route::put('/admin/procedures/{id}', [ProcedureController::class, 'update'])->name('procedures.update');
     Route::post('/admin/procedures/{id}', [ProcedureController::class, 'destroy'])->name('procedures.delete');
 
+    Route::get('/admin/document-requireds/{pageId}', [DocumentRequiredController::class, 'getByPageId'])->name('admin.document-requireds');
+    Route::get('/admin/document-requireds/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-requireds.list');
+    Route::post('/document-requireds/store', [DocumentRequiredController::class, 'store'])->name('document-requireds.store');
+    Route::get('/admin/document-requireds/{id}/edit', [DocumentRequiredController::class, 'edit'])->name('document-requireds.edit');
+    Route::put('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'update'])->name('document-requireds.update');
+    Route::delete('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'destroy'])->name('document-requireds.delete');
 
-    Route::resource('admin/document-requireds', DocumentRequiredController::class);
+    Route::get('/admin/call-to-actions/page/{pageId}', [CallToActionController::class, 'getByPageId'])->name('call-to-actions.byPage');
     Route::resource('admin/call-to-actions', CallToActionController::class);
 
-    
 
     Route::get('language/{locale}', function ($locale) {
         if (in_array($locale, config('app.available_locales'))) {

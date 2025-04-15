@@ -23,11 +23,22 @@ class FeatureImageController extends Controller
     }
 
 
-    public function getByPageId($pageId)
+    public function getByPaeId($pageId)
     {
         $feature_images = FeatureImage::where('page_id', $pageId)->get();
         return response()->json([
             'data' => $feature_images
+        ]);
+    }
+
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $featureImage = FeatureImage::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $featureImage
         ]);
     }
 

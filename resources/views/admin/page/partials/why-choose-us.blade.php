@@ -67,7 +67,7 @@
 
                             <div class="col-md-6">
                                 <label for="order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="order_no" name="order_no">
+                                <input type="number" class="form-control" id="order_no" name="order_no">
                                 <span class="text-danger error" id="error_order_no"></span>
                             </div>
 
@@ -158,7 +158,7 @@
 
                             <div class="col-md-6">
                                 <label for="update_whyus_order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_whyus_order_no" name="order_no">
+                                <input type="number" class="form-control" id="update_whyus_order_no" name="order_no">
                                 <span class="text-danger error" id="error_order_no"></span>
                             </div>
 
@@ -183,14 +183,14 @@
 </div>
 
 
-
+<h1>reached here</h1>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('All WhyUs') }}</h3>
+                    <h3 class="card-title">{{ __('All Why Choose Us') }}</h3>
 
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#whyusModal">

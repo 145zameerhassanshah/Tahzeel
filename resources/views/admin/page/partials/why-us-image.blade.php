@@ -192,7 +192,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('All WhyusImages') }}</h3>
+                        <h3 class="card-title">{{ __('All Why Choose Us Images') }}</h3>
 
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#whyusimgModal">

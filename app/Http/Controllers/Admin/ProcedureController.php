@@ -26,7 +26,10 @@ class ProcedureController extends Controller
 
     public function getByPageId($pageId)
     {
-        $procedure = Procedure::where('page_id', $pageId)->get();
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $procedure = Procedure::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
         return response()->json([
             'data' => $procedure
         ]);

@@ -23,6 +23,17 @@ class WhyUsImageController extends Controller
         ]);
     }
 
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $whyUsImage = WhyUsImage::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $whyUsImage
+        ]);
+    }
+
     public function add($id)
     {
         $group = Group::find($id);

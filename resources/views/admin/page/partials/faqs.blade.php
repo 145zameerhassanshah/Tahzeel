@@ -13,7 +13,6 @@
                     <input type="hidden" name="_token" id="faqToken" value="{{ csrf_token() }}">
                     <div class="modal-body">
                         <input type="hidden" name="page_id" id="faqPageId" value="{{ $page->id }}">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="faqQuestionEn">{{ __('Question (English)') }} <span class="text-danger">*</span></label>
@@ -43,7 +42,7 @@
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="faqOrderNo">{{ __('Order Number') }}</label>
-                                <input type="number" class="form-control" id="faqOrderNo" name="order_no" value="0">
+                                <input type="number" class="form-control" id="faqOrderNo" name="order_no">
                                 <span class="text-danger error" id="faqErrorOrderNo"></span>
                             </div>
 
@@ -113,7 +112,7 @@
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="editFaqOrderNo">{{ __('Order Number') }}</label>
-                                <input type="number" class="form-control" id="editFaqOrderNo" name="order_no">
+                                <input type="number" class="form-control" id="editFaqOrderNo" name="order_no"  value="0">
                                 <span class="text-danger error" id="editFaqErrorOrderNo"></span>
                             </div>
 
@@ -153,7 +152,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped table-hover text-center">
                             <thead>
                                 <tr>
                                     <th>{{ __('Id') }}</th>

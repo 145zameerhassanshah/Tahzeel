@@ -11,15 +11,23 @@ use Illuminate\Support\Facades\Storage;
 
 class TestimonialController extends Controller
 {
-
-    public function getByPageId($pageId)
+    public function index()
     {
-        $testimonials = Testimonial::where('page_id', $pageId)->get();
+        $testimonials = Testimonial::orderBy('order_no')->get();
         return response()->json([
             'data' => $testimonials
         ]);
     }
-
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $testimonials = Testimonial::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $testimonials
+        ]);
+    }
 
     public function list($id)
     {
@@ -28,24 +36,11 @@ class TestimonialController extends Controller
         return view('admin.testimonial.list', compact('testimonials', 'id', 'group'));
     }
 
-    // public function index()
-    // {
-    //     $groups = Group::where('type', 'testimonials')->get();
-    //     return view('admin.testimonial.index', compact('groups'));
-    // }
 
     public function create(Request $request)
     {
         $group = Group::find($request->id);
         return view('admin.testimonial.add', compact("group"));
-    }
-
-    public function index()
-    {
-        $testimonials = Testimonial::orderBy('order_no')->get();
-        return response()->json([
-            'data' => $testimonials
-        ]);
     }
 
     public function store(Request $request)
@@ -165,4 +160,10 @@ class TestimonialController extends Controller
             'success' => true
         ]);
     }
+
+    // public function index()
+    // {
+    //     $groups = Group::where('type', 'testimonials')->get();
+    //     return view('admin.testimonial.index', compact('groups'));
+    // }
 }

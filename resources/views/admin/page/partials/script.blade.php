@@ -57,11 +57,11 @@
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
-        <i class="fas fa-trash"></i> Delete
-        </button>
-                </form>
+            <i class="fas fa-trash"></i> Delete
+            </button>
+            </form>
             </td>
-        </tr>`;
+            </tr>`;
             });
             $('#testimonialsTableBody').html(html);
         }
@@ -279,8 +279,6 @@
     });
 </script>
 
-
-
 {{-- procedure section --}}
 <script>
     $(document).ready(function() {
@@ -352,12 +350,10 @@
         $("#procedureForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-
             // Get all required field values
             const titleEn = $("#procedureTitleEn").val().trim();
             const titleAr = $("#procedureTitleAr").val().trim();
             const status = $("#procedureStatus").val();
-
             // Validate required fields
             let isValid = true;
 
@@ -543,7 +539,6 @@
 </script>
 {{-- end script --}}
 
-
 {{-- document required --}}
 
 <script>
@@ -552,8 +547,9 @@
         loadDocuments();
 
         function loadDocuments() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: "{{ route('document-requireds.index') }}",
+                url: `/admin/document-requireds/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -815,8 +811,9 @@
         loadFAQs();
 
         function loadFAQs() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: "{{ route('faqs.index') }}",
+                url: `/admin/faqs/page/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -934,7 +931,6 @@
         $('#editFaqForm').submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-
             // Get all required field values
             const questionEn = $("#editFaqQuestionEn").val().trim();
             const questionAr = $("#editFaqQuestionAr").val().trim();
@@ -1186,7 +1182,6 @@
     });
 </script>
 
-
 {{-- call to action  --}}
 
 <script>
@@ -1195,8 +1190,9 @@
         loadCTAs();
 
         function loadCTAs() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: "{{ route('call-to-actions.index') }}",
+                url: `/admin/call-to-actions/page/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -1521,6 +1517,7 @@
     $(document).ready(function() {
         // Load hero sections on page load
         loadHeroSections();
+
         function loadHeroSections() {
             let pageId = "{{ $page->id }}";
             $.ajax({
@@ -1889,9 +1886,6 @@ icon: "error"
 
 // });
 // </script>
-
-
-
 
 {{-- Feature Section --}}
 
@@ -2446,6 +2440,7 @@ icon: "error"
 <script>
     $(document).ready(function() {
         loadSectionTitles();
+
         function loadSectionTitles() {
             let pageId = "{{ $page->id }}";
             $.ajax({
@@ -2707,12 +2702,6 @@ icon: "error"
     });
 </script>
 
-
-
-
-
-
-
 {{-- Why Choose Us Section --}}
 
 
@@ -2723,8 +2712,9 @@ icon: "error"
         loadWhyUs();
 
         function loadWhyUs() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: '/why-choose-us',
+                url: `/why-choose-us/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -2734,10 +2724,11 @@ icon: "error"
                 },
                 success: function(response) {
                     if (response.data && response.data.length > 0) {
+                        alert("reached here");
                         renderWhyUs(response.data);
                     } else {
                         $('#whyusTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No whyus found</td></tr>'
+                            '<tr><td colspan="5" class="text-center">No Records found</td></tr>'
                         );
                     }
                 },
@@ -2753,8 +2744,9 @@ icon: "error"
         // Function to render whyuss in table
 
         function renderWhyUs(whyuses) {
+            alert("reached here");
             let html = '';
-
+            alert(whyuses.length);
             whyuses.forEach((whyus, index) => {
                 const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
                     whyus.title;
@@ -2778,7 +2770,7 @@ icon: "error"
                     <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
-                    <form class="d-inline-block" action="/whyus/delete/${whyus.id}" method="post">
+                    <form class="d-inline-block" action="/whyus/delete/${whyus.id}">
                         @csrf
                         @method('POST')
                         <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
@@ -3018,7 +3010,6 @@ icon: "error"
                 success: function(response) {
                     if (response.data && response.data.length > 0) {
                         loadFeatureImageImages(response.data);
-                        alerts(response.data);
                     } else {
                         $('#featureimgsTableBody').html(
                             '<tr><td colspan="5" class="text-center">No features found</td></tr>'

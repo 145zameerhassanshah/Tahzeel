@@ -40,7 +40,6 @@ class PageController extends Controller
     public function detail($id, $slug)
     {
         $page = Page::where('id', $id)->where('slug', $slug)->firstOrFail();
-
         $testimonials = Testimonial::where('page_id', $page->id)->get();
         $heroSection = HeroSection::where('page_id', $page->id)->first();
         $introSection = IntroductionSection::where('page_id', $page->id)->first();
@@ -56,7 +55,6 @@ class PageController extends Controller
             'document',
             'call_to_action'
         ];
-
         return view('admin.page.detail', compact(
             'page',
             'testimonials',

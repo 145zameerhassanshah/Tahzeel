@@ -193,7 +193,7 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped table-hover text-center">
                             <thead>
                                 <tr>
                                     <th>{{ __('Id') }}</th>

@@ -1,3 +1,12 @@
+This means that $field is already an array, and json_decode() is trying to decode it again, which causes the error.
+🧠 What this does:
+Checks if $field is already an array (no need to decode).
+If not, decodes it and attempts to get the localized value.
+Fallbacks to the original value if no match is found.
+Let me know if you want a fallback locale too (like 'en' if 'ar' not found), I can help add that logic too.
+
+
+
 @php
 $testimonial_title = $section_titles->where('type', 'testimonial')->first();
 @endphp
@@ -37,10 +46,10 @@ $.ajax({
 });
 
 Route::get('/section-titles/{pageId}', [SectionTitleController::class, 'getByPageId'])->name('admin.section_title.index');
+// Route::resource('admin/document-requireds', DocumentRequiredController::class);
 
-
-                url: "{{ route('procedures.index') }}",
-
+url: "{{ route('procedures.index') }}",
+url: "{{ route('document-requireds.index') }}",
 
 
 // Procedure Routes
@@ -54,11 +63,6 @@ Route::get('/section-titles/{pageId}', [SectionTitleController::class, 'getByPag
 
 
 
-
-
-
-php artisan serve --port=8001
-php artisan serve
 php artisan migrate
 php artisan migrate:fresh
 php artisan migrate:refresh
@@ -73,3 +77,7 @@ git status
 git commit -m "data-according-to-pages"
 git push -u origin master
 git checkout
+
+
+php artisan serve --port=8001
+php artisan serve

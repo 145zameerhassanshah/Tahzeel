@@ -1,15 +1,32 @@
 <?php
 
+// if (!function_exists('getLocalizedField')) {
+//     function getLocalizedField($field, $locale)
+//     {
+//         $decodedField = json_decode($field, true);
+//         if (is_array($decodedField) && isset($decodedField[$locale])) {
+//             return $decodedField[$locale];
+//         }
+//         return $field; // Return original value if not localized
+//     }
+// }
+
 if (!function_exists('getLocalizedField')) {
     function getLocalizedField($field, $locale)
     {
+        // If already an array, use it directly
+        if (is_array($field)) {
+            return $field[$locale] ?? reset($field); // fallback to first if locale missing
+        }
+        // Decode if it's a string
         $decodedField = json_decode($field, true);
         if (is_array($decodedField) && isset($decodedField[$locale])) {
             return $decodedField[$locale];
         }
-        return $field; // Return original value if not localized
+        return $field; // Return original if not a localized array
     }
 }
+
 
 if (!function_exists('localizeHeroSection')) {
     function localizeHeroSection($model, $locale)
