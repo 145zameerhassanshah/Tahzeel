@@ -73,7 +73,7 @@
 
                             <div class="form-group mt-3">
                                 <label for="update_image">{{ __('Image') }}</label>
-                                <input type="file" class="form-control" id="update_image" name="image"
+                                <input type="file" class="form-control" id="image" name="image"
                                     accept="image/*">
                                 <span class="text-danger error" id="error_image"></span>
                             </div>
@@ -95,7 +95,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('Update WhyusImage') }}</h5>
+                <h5 class="modal-title">{{ __('Update Why Us Image') }}</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -165,8 +165,7 @@
 
                             <div class="form-group mt-3">
                                 <label for="update_image">{{ __('Image') }}</label>
-                                <input type="file" class="form-control" id="update_image" name="image"
-                                    accept="image/*">
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                 <span class="text-danger error" id="error_image"></span>
                             </div>
 
@@ -184,8 +183,6 @@
     </div>
 </div>
 
-
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -193,7 +190,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('All Why Choose Us Images') }}</h3>
-
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#whyusimgModal">
                             <i class="fas fa-plus"></i> {{ __('Add New') }}
@@ -201,22 +197,22 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped table-hover text-center">
                             <thead>
                                 <tr>
                                     <th>{{ __('Id') }}</th>
-                                    <th>{{ __('Icon') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Description') }}</th>
+                                    <th>{{ __('Image') }}</th>
+                                    <th>{{ __('Order No') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="whyusimgsTableBody">
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        <i class="fas fa-spinner fa-spin"></i> Loading
-                                        whyusimgs...
-                                    </td>
+                                    <td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading Records...</td>
                                 </tr>
                             </tbody>
                         </table>

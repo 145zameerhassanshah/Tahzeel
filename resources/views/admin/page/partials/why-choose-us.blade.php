@@ -182,8 +182,6 @@
     </div>
 </div>
 
-
-<h1>reached here</h1>
 <section class="content">
     <div class="container-fluid">
         <div class="row">

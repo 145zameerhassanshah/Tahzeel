@@ -170,7 +170,8 @@ Route::middleware(['auth', 'status'])->group(function () {
 
 
         // Feature Routes:-
-        Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
+        // Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
+        Route::get('/feature/{pageId}', [FeatureController::class, 'getByPageId'])->name('admin.feature');
         Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
         Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
         Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
@@ -189,8 +190,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
         // Why Choose Us Routes
-        Route::get('/why-choose-us/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.why-choose-us');
-        // Route::get('/why-choose-us', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
+        Route::get('/why-choose-us/{pageId}', [WhyChooseUsController::class, 'getByPageId'])->name('admin.why-choose-us');
         Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
         Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
         Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
@@ -199,7 +199,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
 
         // Why Us Images Routes
-        Route::get('/why-us-image/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.feature-image.index');
+        Route::get('/why-us-image/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.why-us-image');
         Route::get('/why-us-image', [WhyUsImageController::class, 'index'])->name('admin.why-us-image.index');
         Route::get('/why-us-image/{id}/list', [WhyUsImageController::class, 'list'])->name('admin.why-us-image.list');
         Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
@@ -208,7 +208,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
-        // // DocumentRequired Routes
+        // DocumentRequired Routes
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
         // Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
         // Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
@@ -347,16 +347,14 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin/testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
     Route::put('/admin/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
     Route::delete('/admin/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
-    Route::get('/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
-    // Route::put('/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
-    // Testimonial routes end
+    Route::get('admin/testimonials/{id}/list', [TestimonialController::class, 'list'])->name('admin.testimonial.list');
 
     Route::get('/admin/procedures/{pageId}', [ProcedureController::class, 'getByPageId'])->name('admin.procedures');
     Route::get('/admin/procedures/{id}/list', [ProcedureController::class, 'list'])->name('admin.procedures.list');
     Route::post('/procedures/store', [ProcedureController::class, 'store'])->name('procedures.store');
     Route::get('/admin/procedures/{id}/edit', [ProcedureController::class, 'edit'])->name('procedures.edit');
     Route::put('/admin/procedures/{id}', [ProcedureController::class, 'update'])->name('procedures.update');
-    Route::post('/admin/procedures/{id}', [ProcedureController::class, 'destroy'])->name('procedures.delete');
+    Route::delete('/admin/procedures/{id}', [ProcedureController::class, 'destroy'])->name('procedures.delete');
 
     Route::get('/admin/document-requireds/{pageId}', [DocumentRequiredController::class, 'getByPageId'])->name('admin.document-requireds');
     Route::get('/admin/document-requireds/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-requireds.list');

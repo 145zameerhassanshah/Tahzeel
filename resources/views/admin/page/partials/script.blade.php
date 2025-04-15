@@ -46,8 +46,7 @@
                 html += `
             <tr id="testimonial-row-${testimonial.id}">
             <td>${index + 1}</td>
-            <td>
-            ${testimonial.image?`<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50px">`:''}</td>
+            <td>${testimonial.image?`<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50px">`:''}</td>
             <td>${name.en}</td><td>${designation.en}</td><td>${designation.ar}</td>
             <td>
                 <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
@@ -1774,118 +1773,120 @@
         });
     });
 </script>
-{{-- <script>
+<script>
+    $(document).on("click", ".editFeature", function() {
+        let id = $(this).data("id");
+        $.ajax({
+            url: "{{ route('admin.feature.edit', ':id') }}".replace(":id", id),
+            type: "GET",
+            success: function(response) {
+                let title = response.title ? response.title : {
+                    en: "",
+                    ar: ""
+                };
+                let subtitle = response.subtitle ? response.subtitle : {
+                    en: "",
+                    ar: ""
+                };
+                let description = response.description ? response.description : {
+                    en: "",
+                    ar: ""
+                };
 
-            $(document).on("click", ".editFeature", function () {
-                let id = $(this).data("id");
+                // Populate form fields
+                $("#update_feature_id").val(id);
+                $("#update_title_en").val(title.en);
+                $("#update_title_ar").val(title.ar);
+                $("#update_subtitle_en").val(subtitle.en);
+                $("#update_subtitle_ar").val(subtitle.ar);
+                $("#update_description_en").val(description.en);
+                $("#update_description_ar").val(description.ar);
+                $("#update_icon").val(response.icon);
+                $("#update_status").val(response.status);
+                $("#update_order_no").val(response.order_no);
+                // Show the modal
+                $("#editFeatureModal").modal("show");
+            },
+            error: function(xhr) {
+                console.log("AJAX Error:", xhr);
+            },
+        });
+    });
 
+    $('#editHeroSectionForm').on('submit', function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let id = $('#update_herosection_id').val();
+        let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            success: function(response) {
+                $('#editHeroSectionModal').modal('hide');
+                toastr.success("Hero Section updated successfully!");
+                refreshHeroSections();
+            },
+            error: function(response) {
+                $('.error').text('');
+                $.each(response.responseJSON.errors, function(key, error) {
+                    $('#error_' + key.replace('.', '_')).text(error[0]);
+                });
+            }
+        });
+    });
+
+    $(document).on("click", ".delete-herosection", function() {
+        let herosectionId = $(this).data("id");
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
                 $.ajax({
-                    url: "{{ route('admin.feature.edit', ':id') }}".replace(":id", id),
-type: "GET",
-success: function (response) {
-let title = response.title ? response.title : { en: "", ar: "" };
-let subtitle = response.subtitle ? response.subtitle : { en: "", ar: "" };
-let description = response.description ? response.description : { en: "", ar: "" };
+                    url: `/hero-section/delete/${herosectionId}/`,
+                    type: "POST",
+                    data: {
+                        _method: "POST",
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: response.message,
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
 
-// Populate form fields
-$("#update_feature_id").val(id);
-$("#update_title_en").val(title.en);
-$("#update_title_ar").val(title.ar);
-$("#update_subtitle_en").val(subtitle.en);
-$("#update_subtitle_ar").val(subtitle.ar);
-$("#update_description_en").val(description.en);
-$("#update_description_ar").val(description.ar);
-$("#update_icon").val(response.icon);
-$("#update_status").val(response.status);
-$("#update_order_no").val(response.order_no);
+                        refreshHeroSections();
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete. Please try again.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        });
+    });
 
-// Show the modal
-$("#editFeatureModal").modal("show");
-},
-error: function (xhr) {
-console.log("AJAX Error:", xhr);
-},
-});
-});
-
-
-
-
-$('#editHeroSectionForm').on('submit', function(e) {
-e.preventDefault();
-
-let formData = new FormData(this);
-let id = $('#update_herosection_id').val();
-let url = `{{ route('admin.hero_section.update', ':id') }}`.replace(':id', id);
-
-$.ajax({
-url: url,
-type: "POST",
-data: formData,
-processData: false,
-contentType: false,
-headers: {
-"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-},
-success: function(response) {
-$('#editHeroSectionModal').modal('hide');
-toastr.success("Hero Section updated successfully!");
-refreshHeroSections();
-},
-error: function(response) {
-$('.error').text('');
-$.each(response.responseJSON.errors, function(key, error) {
-$('#error_' + key.replace('.', '_')).text(error[0]);
-});
-}
-});
-});
-
-$(document).on("click", ".delete-herosection", function() {
-let herosectionId = $(this).data("id");
-
-Swal.fire({
-title: "Are you sure?",
-text: "You won't be able to revert this!",
-icon: "warning",
-showCancelButton: true,
-confirmButtonColor: "#d33",
-cancelButtonColor: "#3085d6",
-confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-if (result.isConfirmed) {
-$.ajax({
-url: `/hero-section/delete/${herosectionId}/`,
-type: "POST",
-data: {
-_method: "POST",
-_token: "{{ csrf_token() }}"
-},
-success: function(response) {
-Swal.fire({
-title: "Deleted!",
-text: response.message,
-icon: "success",
-timer: 2000,
-showConfirmButton: false
-});
-
-refreshHeroSections();
-},
-error: function() {
-Swal.fire({
-title: "Error!",
-text: "Failed to delete. Please try again.",
-icon: "error"
-});
-}
-});
-}
-});
-});
-
-// });
-// </script>
+    // });
+    // 
+</script>
 
 {{-- Feature Section --}}
 
@@ -1902,8 +1903,9 @@ icon: "error"
         loadFeatures();
 
         function loadFeatures() {
+            let pageId = "{{ $page->id }}";
             $.ajax({
-                url: "{{ route('admin.feature.index') }}",
+                url: `/feature/${pageId}`,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function() {
@@ -1916,7 +1918,7 @@ icon: "error"
                         renderFeatures(response.data);
                     } else {
                         $('#featuresTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No features found</td></tr>'
                         );
                     }
                 },
@@ -1937,13 +1939,19 @@ icon: "error"
                 const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature.subtitle) : feature.subtitle;
                 const description = typeof feature.description === 'string' ? JSON.parse(feature.description) : feature.description;
                 const icon = typeof feature.icon === 'string' ? JSON.parse(feature.icon) : feature.icon;
-
                 html += `
                 <tr id="feature-row-${feature.id}">
                     <td>${index + 1}</td>
                     <td>${icon || ''}</td>
                     <td>${title?.en || ''}</td>
                     <td>${subtitle?.en || ''}</td>
+                    <td>${description?.en || ''}</td>
+                    <td>
+                        <span class="badge ${feature.status === 'active' ? 'bg-success' : 'bg-secondary'}">
+                            ${feature.status}
+                        </span>
+                    </td>
+                    <td>${order_no?.en || ''}</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-feature" data-id="${feature.id}">
                             <i class="fas fa-edit"></i> Edit
@@ -1959,7 +1967,6 @@ icon: "error"
 
         $("#featureForm").submit(function(e) {
             e.preventDefault();
-
             // Simple form data collection
             let formData = {
                 page_id: $('[name="page_id"]').val(),
@@ -1975,31 +1982,32 @@ icon: "error"
                     en: $('[name="description_en"]').val().trim(),
                     ar: $('[name="description_ar"]').val().trim()
                 },
-                icon: $('[name="icon"]').val().trim(), // Simple icon collection
+                // icon: $('[name="icon"]').val().trim(), // Simple icon collection
                 order_no: $('[name="order_no"]').val() || 0,
                 status: $('[name="status"]').val()
             };
-
             // Simple AJAX call
             $.ajax({
                 url: "{{ route('admin.feature.store') }}",
                 type: "POST",
-                data: formData,
+                data: JSON.stringify(formData),
+                contentType: "application/json", // Tell server you're sending JSON
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token if needed
+                },
                 success: function(response) {
                     if (response.success) {
-                        alert('Feature saved successfully!');
                         $("#featureForm")[0].reset();
                         $("#featureModal").modal('hide');
+                        loadFeatures();
                     }
                 },
                 error: function(xhr) {
                     alert('Error: ' + (xhr.responseJSON.message || "Something went wrong"));
                 }
             });
+
         });
-
-
-
 
         // Edit Feature - Show Modal
         $(document).on('click', '.edit-feature', function() {
@@ -2724,7 +2732,6 @@ icon: "error"
                 },
                 success: function(response) {
                     if (response.data && response.data.length > 0) {
-                        alert("reached here");
                         renderWhyUs(response.data);
                     } else {
                         $('#whyusTableBody').html(
@@ -2744,43 +2751,31 @@ icon: "error"
         // Function to render whyuss in table
 
         function renderWhyUs(whyuses) {
-            alert("reached here");
             let html = '';
-            alert(whyuses.length);
             whyuses.forEach((whyus, index) => {
                 const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
                     whyus.title;
-                const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus
-                    .subtitle) : whyus.subtitle;
-
-                const description = typeof whyus.description === 'string' ? JSON.parse(whyus
-                    .description) : whyus.description;
-
+                const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus.subtitle) : whyus.subtitle;
+                const description = typeof whyus.description === 'string' ? JSON.parse(whyus.description) : whyus.description;
                 const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
-
                 html += `
-            <tr id="whyus-row-${whyus.id}">
+                <tr id="whyus-row-${whyus.id}">
                 <td>${index + 1}</td>
-                <td>
-                    ${icon}
-                </td>
+                <td>${icon}</td>
                 <td>${title.en}</td>
                 <td>${subtitle.en}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
+                <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}"><i class="fas fa-edit"></i> Edit</button>
                     <form class="d-inline-block" action="/whyus/delete/${whyus.id}">
-                        @csrf
-                        @method('POST')
-                        <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
-    <i class="fas fa-trash"></i> Delete
-</button>
+                    @csrf
+                    @method('POST')
+                    <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
+                    <i class="fas fa-trash"></i> Delete
+                    </button>
                     </form>
                 </td>
             </tr>`;
             });
-
             $('#whyusTableBody').html(html);
         }
 
@@ -2788,12 +2783,8 @@ icon: "error"
             loadWhyUs();
         }
 
-
-
         $("#whyusForm").submit(function(event) {
             event.preventDefault();
-
-
             $(".error").text("");
             let titleEn = $("#title_en").val().trim();
             let titleAr = $("#title_ar").val().trim();
@@ -2803,9 +2794,7 @@ icon: "error"
             let descriptionAr = $("#description_ar").val().trim();
             let status = $('#status').val().trim();
             let icon = $("#icon").val().trim();
-
             let isValid = true;
-
             // Frontend validation
             if (titleEn.length < 1) {
                 $("#error_name_en").text("English name is required.");
@@ -2833,12 +2822,9 @@ icon: "error"
                 $('#error_icon').text("Icon Field is required.");
                 isValid = false;
             }
-
             if (!isValid) return;
-
             // Prepare FormData
             let formData = new FormData(this);
-
             $.ajax({
                 url: "{{ route('admin.why-choose-us.store') }}",
                 type: "POST",
@@ -2851,9 +2837,7 @@ icon: "error"
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Feature added successfully!");
-
                         refreshWhyUs();
-
                         $("#whyusForm")[0].reset();
                         $("#whyusModal").removeClass("show").hide();
                         $(".modal-backdrop").remove();
@@ -3236,7 +3220,6 @@ icon: "error"
 
         $(document).on("click", ".delete-featureimg", function() {
             let featureId = $(this).data("id");
-
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -3278,3 +3261,252 @@ icon: "error"
         });
     });
 </script>
+
+
+{{-- Why Choose Us Image Section Start --}}
+<script>
+    $(document).ready(function() {
+        WhyUsImages();
+
+        function WhyUsImages() {
+            let pageId = "{{ $page->id }}";
+            $.ajax({
+                url: `/why-us-image/${pageId}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.data && response.data.length > 0) {
+                        renderWhyUsImg(response.data);
+                    } else {
+                        $('#whyusimgsTableBody').html(
+                            '<tr><td colspan="8" class="text-center">No Records found</td></tr>'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    $('#whyusimgsTableBody').html(
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading Records</td></tr>'
+                    );
+                    console.error("Error loading Records:", xhr.responseText);
+                }
+            });
+        }
+
+        function renderWhyUsImg(whyusImage) {
+            let html = '';
+            whyusImage.forEach((whyus, index) => {
+                const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) : whyus.title;
+                const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus.subtitle) : whyus.subtitle;
+                const description = typeof whyus.description === 'string' ? JSON.parse(whyus.description) : whyus.description;
+                const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
+                html += `
+                <tr id="whyusImg-row-${whyus.id}">
+                <td>${index + 1}</td>
+                <td>${title.en}</td>
+                <td>${subtitle.en}</td>
+                <td>${description.en}</td>
+                <td>${whyus.image?`<img src="/assets/admin/uploads/why_us_image/${whyus.image}" width="50" height="50px">`:''}</td>
+                <td>${whyus.order_no}</td>
+                
+                <td><span class="badge ${whyus.status === 'active' ? 'bg-success' : 'bg-secondary'}">
+                ${whyus.status}</span></td>
+
+                <td>
+                <button class="btn btn-sm btn-primary delete-whyusImg" data-id="${whyus.id}"><i class="fas fa-edit"></i>Delete</button>
+                <button class="btn btn-sm btn-primary editWhyUsImg" data-id="${whyus.id}"><i class="fas fa-edit"></i> Edit</button>
+                </td>
+            </tr>`;
+            });
+            $('#whyusimgsTableBody').html(html);
+        }
+
+        function refreshWhyUsImg() {
+            WhyUsImages();
+        }
+
+        $("#whyusimgForm").submit(function(event) {
+            event.preventDefault();
+            $(".error").text("");
+            let titleEn = $("#title_en").val().trim();
+            let titleAr = $("#title_ar").val().trim();
+            let subtitleEn = $("#subtitle_en").val().trim();
+            let subtitleAr = $("#subtitle_ar").val().trim();
+            let descriptionEn = $("#description_en").val().trim();
+            let descriptionAr = $("#description_ar").val().trim();
+            let status = $('#status').val().trim();
+            let image = $("#image").val().trim();
+            let isValid = true;
+            // Frontend validation
+            if (titleEn.length < 1) {
+                $("#error_name_en").text("English name is required.");
+                isValid = false;
+            }
+            if (titleAr.length < 1) {
+                $("#error_name_ar").text("Arabic name is required.");
+                isValid = false;
+            }
+            if (subtitleEn.length < 1) {
+                $("#error_subtitle").text("English subtitle is required.");
+                isValid = false;
+            }
+            if (subtitleAr.length < 1) {
+                $("#error_subtitle").text("Arabic subtitle is required.");
+                isValid = false;
+            }
+            if (descriptionEn.length < 1) {
+                isValid = true;
+            }
+            if (descriptionAr.length < 1) {
+                isValid = true;
+            }
+            if (icon.length < 1) {
+                $('#error_icon').text("Icon Field is required.");
+                isValid = false;
+            }
+            if (!isValid) return;
+            // Prepare FormData
+            let formData = new FormData(this);
+            $.ajax({
+                url: "{{ route('admin.why-us-image.store') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success("Feature added successfully!");
+
+                        refreshWhyUsImg();
+                        $("#whyusimgForm")[0].reset();
+                        $("#whyusImgModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+                    } else {
+                        if (response.errors) {
+                            $.each(response.errors, function(key, value) {
+                                $("#error_" + key.replace('.', '_')).text(value[0]);
+                            });
+                        }
+                        toastr.error("Something went wrong! Please check the errors.");
+                    }
+                },
+                error: function(xhr) {
+                    console.error("AJAX Error:", xhr.responseText);
+                    toastr.error("Something went wrong!");
+                }
+            });
+        });
+
+        $('#editWhyusImageForm').on('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let id = $('#update_whyusimg_id').val();
+            let url = `{{ route('admin.why-us-image.update', ':id') }}`.replace(':id', id);
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function(response) {
+                    $('#editWhyusImageModal').modal('hide');
+                    toastr.success("Hero Section updated successfully!");
+                    refreshWhyUsImg();
+                },
+                error: function(response) {
+                    $('.error').text('');
+                    $.each(response.responseJSON.errors, function(key, error) {
+                        $('#error_' + key.replace('.', '_')).text(error[0]);
+                    });
+                }
+            });
+        });
+
+        $(document).on('click', '.editWhyUsImg', function() {
+            let id = $(this).data('id');
+            $.ajax({
+                url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id),
+                type: "GET",
+                success: function(response) {
+
+                    let title = response.title ? response.title : {
+                        en: "",
+                        ar: ""
+                    };
+                    let subtitle = response.subtitle ? response.subtitle : {
+                        en: "",
+                        ar: ""
+                    };
+                    let description = response.description ? response.description : {
+                        en: "",
+                        ar: ""
+                    };
+                    let icon = response.icon ? response.icon : "";
+                    $('#update_whyusimg_id').val(id);
+                    $('#update_whyusimg_title_en').val(title.en);
+                    $('#update_whyusimg_title_ar').val(title.ar);
+                    $('#update_whyusimg_subtitle_en').val(subtitle.en);
+                    $('#update_whyusimg_subtitle_ar').val(subtitle.ar);
+                    $('#update_whyusimg_description_en').val(description.en);
+                    $('#update_whyusimg_description_ar').val(description.ar);
+                    $('#update_whyusimg_status').val(response.status);
+                    $('#update_whyusimg_order_no').val(response.order_no);
+                    $('#update_image').val(response.image);
+                    // Show the modal
+                    $('#editWhyusImageModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.log("AJAX Error:", xhr);
+                }
+            });
+        });
+
+        $(document).on("click", ".delete-whyusImg", function() {
+            let whyusId = $(this).data("id");
+            alert(whyusId);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/why-us-image/delete/${whyusId}`,
+                        type: "POST",
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content') // Get CSRF token from meta tag
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            refreshWhyUsImg(); // Function to refresh the list
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Failed to delete. Please try again.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+{{-- Why Choose Us Image Section End--}}

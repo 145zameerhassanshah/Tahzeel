@@ -1,3 +1,20 @@
+Vat Registration For Businesses:-
+
+Vat Registration For Businesses Testimonial
+Vat Registration For Businesses Hero Section
+Vat Registration For Businesses Intro Section
+Vat Registration For Businesses Section Title
+Vat Registration For Businesses Feature Image
+Vat Registration For Businesses Procedures
+Vat Registration For Businesses Call to Actions
+Vat Registration For Businesses FAQ's
+Vat Registration For Businesses Documents Required
+Vat Registration For Businesses Why Choose Us
+Vat Registration For Businesses Features
+Vat Registration For Businesses Why Us Images
+
+
+
 This means that $field is already an array, and json_decode() is trying to decode it again, which causes the error.
 🧠 What this does:
 Checks if $field is already an array (no need to decode).
