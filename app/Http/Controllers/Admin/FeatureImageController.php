@@ -9,17 +9,36 @@ use Illuminate\Http\Request;
 
 class FeatureImageController extends Controller
 {
+    public function index(Request $request)
+    {
+        $feature_images = FeatureImage::all();
+        return response()->json([
+            'data' => $feature_images,
+        ]);
+    }
     public function list($id)
     {
         $feature_images = FeatureImage::where('group_id', $id)->get();
         return view('admin.feature-image.list', compact('feature_images', 'id'));
     }
 
-    public function index(Request $request)
+
+    public function getByPaeId($pageId)
     {
-        $feature_images = FeatureImage::all();
+        $feature_images = FeatureImage::where('page_id', $pageId)->get();
         return response()->json([
-            'data' => $feature_images,
+            'data' => $feature_images
+        ]);
+    }
+
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $featureImage = FeatureImage::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $featureImage
         ]);
     }
 
@@ -74,11 +93,11 @@ class FeatureImageController extends Controller
     {
 
         $feature_image = FeatureImage::find($id);
-        @unlink('assets/admin/uploads/feature_image/'. $feature_image->image);
+        @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
         $feature_image->delete();
 
         return response()->json([
-            'success'=> true,
+            'success' => true,
         ]);
     }
 
@@ -118,7 +137,7 @@ class FeatureImageController extends Controller
         $feature_image->status = $request->status;
 
         if ($request->hasFile('image')) {
-            @unlink('assets/admin/uploads/feature_image/'. $feature_image->image);
+            @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $image = time() . rand() . '.' . $extension;

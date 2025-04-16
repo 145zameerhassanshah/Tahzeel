@@ -23,6 +23,17 @@ class WhyChooseUsController extends Controller
         ]);
     }
 
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $whyChooseUs = WhyChooseUs::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $whyChooseUs
+        ]);
+    }
+
     public function add($id)
     {
         $group = Group::find($id);
@@ -32,8 +43,6 @@ class WhyChooseUsController extends Controller
     // Store Feature
     public function store(Request $request)
     {
-
-
         $request->validate([
             'page_id' => 'required|exists:groups,id',
             'title' => 'required',
@@ -42,22 +51,15 @@ class WhyChooseUsController extends Controller
             'order_no' => 'required',
             'status' => 'required',
         ]);
-
         $why_choose_us = new WhyChooseUs();
-
         $why_choose_us->page_id = $request->page_id;
-
         $why_choose_us->title = json_encode($request->title);
         $why_choose_us->subtitle = json_encode($request->subtitle);
         $why_choose_us->description = json_encode($request->description);
         $why_choose_us->icon = json_encode($request->icon);
-
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
-
         $why_choose_us->save();
-
-
         return response()->json([
             'success' => true,
             'whyus' => $why_choose_us,
@@ -67,25 +69,22 @@ class WhyChooseUsController extends Controller
     // Feature Delete
     public function delete($id)
     {
-
         $why_choose_us = WhyChooseUs::find($id);
         $why_choose_us->delete();
-
         return response()->json([
-            'success'=> true,
+            'success' => true,
         ]);
     }
 
     // Feature Edit
     public function edit($id)
     {
-
         $whyUs = WhyChooseUs::find($id);
         return response()->json([
             'title' => json_decode($whyUs->title, true),
             'subtitle' => json_decode($whyUs->subtitle, true),
             'description' => json_decode($whyUs->description, true),
-            'icon' => json_decode($whyUs->icon, true), 
+            'icon' => json_decode($whyUs->icon, true),
             'order_no' => $whyUs->order_no,
             'status' => $whyUs->status,
         ]);
@@ -94,7 +93,6 @@ class WhyChooseUsController extends Controller
     // Update Feature
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'title' => 'required',
             'icon' => 'required',
@@ -102,20 +100,14 @@ class WhyChooseUsController extends Controller
             'order_no' => 'required',
             'status' => 'required',
         ]);
-
         $why_choose_us = WhyChooseUs::find($id);
-
         $why_choose_us->title = json_encode($request->title);
         $why_choose_us->subtitle = json_encode($request->subtitle);
         $why_choose_us->description = json_encode($request->description);
         $why_choose_us->icon = json_encode($request->icon);
-
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
-
         $why_choose_us->save();
-
-
         return response()->json([
             'data' => $why_choose_us,
         ]);

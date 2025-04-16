@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 
 class HeroSectionController extends Controller
 {
-    public function list($id)
-    {
-        $hero_sections = HeroSection::where('group_id', $id)->get();
-        return view('admin.hero_section.list', compact('hero_sections', 'id'));
-    }
-
     public function index()
     {
         $hero_sections = HeroSection::all();
@@ -22,6 +16,25 @@ class HeroSectionController extends Controller
             'data' => $hero_sections
         ]);
     }
+
+    public function getByPageId($pageId)
+    {
+        if (!is_numeric($pageId)) {
+            return response()->json(['error' => 'Invalid page ID'], 400);
+        }
+        $heroSection = HeroSection::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
+        return response()->json([
+            'data' => $heroSection
+        ]);
+    }
+
+    public function list($id)
+    {
+        $hero_sections = HeroSection::where('group_id', $id)->get();
+        return view('admin.hero_section.list', compact('hero_sections', 'id'));
+    }
+
+
     public function add($id)
     {
         $group = Group::find($id);
@@ -36,33 +49,23 @@ class HeroSectionController extends Controller
             'title.en' => 'required|max:250',
             'status' => 'required',
         ]);
-    
         $hero_section = new HeroSection();
-    
         $hero_section->page_id = $request->page_id;
-    
         $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
         $hero_section->subtitle = json_encode($request->subtitle, JSON_UNESCAPED_UNICODE);
         $hero_section->description = json_encode($request->description, JSON_UNESCAPED_UNICODE);
-    
         $hero_section->status = $request->status;
-
         if ($request->hasFile('background_image')) {
             $imageName = time() . '.' . $request->file('background_image')->extension();
             $request->file('background_image')->move(public_path('uploads/hero_section/'), $imageName);
             $hero_section->background_image = $imageName;
         }
-    
-    
         $hero_section->save();
-    
         return response()->json([
             'success' => true,
             'herosection' => $hero_section
         ]);
     }
-    
-    
 
     // HeroSection Delete
     public function delete($id)
@@ -70,7 +73,7 @@ class HeroSectionController extends Controller
 
         $hero_section = HeroSection::find($id);
         $imagePath = public_path('uploads/hero_section/' . $hero_section->background_image);
-            
+
         if (file_exists($imagePath) && is_file($imagePath)) {
             unlink($imagePath);
         }
@@ -85,7 +88,7 @@ class HeroSectionController extends Controller
     public function edit($id)
     {
         $hero_section = HeroSection::find($id);
-    
+
         return response()->json([
             'title' => json_decode($hero_section->title),
             'subtitle' => json_decode($hero_section->subtitle),
@@ -94,7 +97,7 @@ class HeroSectionController extends Controller
             'background_image' => $hero_section->background_image,
         ]);
     }
-    
+
     // Update HeroSection
     public function update(Request $request, $id)
     {
@@ -114,17 +117,17 @@ class HeroSectionController extends Controller
 
         if ($request->hasFile('background_image')) {
             $imagePath = public_path('uploads/hero_section/' . $hero_section->background_image);
-            
+
             if (file_exists($imagePath) && is_file($imagePath)) {
                 unlink($imagePath);
             }
-        
+
             $image = $request->file('background_image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads/hero_section'), $filename);
             $hero_section->background_image = $filename;
         }
-        
+
 
         $hero_section->save();
 

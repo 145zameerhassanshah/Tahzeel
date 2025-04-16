@@ -19,7 +19,8 @@ class Feature extends Model
     protected $casts = [
         'title' => 'array',
         'subtitle' => 'array',
-        'description' => 'array'
+        'description' => 'array',
+        'icon' => 'array',
     ];
 
     public function page()

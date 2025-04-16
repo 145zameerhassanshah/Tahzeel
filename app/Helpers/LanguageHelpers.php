@@ -1,15 +1,32 @@
 <?php
 
+// if (!function_exists('getLocalizedField')) {
+//     function getLocalizedField($field, $locale)
+//     {
+//         $decodedField = json_decode($field, true);
+//         if (is_array($decodedField) && isset($decodedField[$locale])) {
+//             return $decodedField[$locale];
+//         }
+//         return $field; // Return original value if not localized
+//     }
+// }
+
 if (!function_exists('getLocalizedField')) {
     function getLocalizedField($field, $locale)
     {
+        // If already an array, use it directly
+        if (is_array($field)) {
+            return $field[$locale] ?? reset($field); // fallback to first if locale missing
+        }
+        // Decode if it's a string
         $decodedField = json_decode($field, true);
         if (is_array($decodedField) && isset($decodedField[$locale])) {
             return $decodedField[$locale];
         }
-        return $field; // Return original value if not localized
+        return $field; // Return original if not a localized array
     }
 }
+
 
 if (!function_exists('localizeHeroSection')) {
     function localizeHeroSection($model, $locale)
@@ -145,19 +162,16 @@ if (!function_exists('localizeCTA')) {
     }
 }
 
-
 if (!function_exists('localizeTestimonial')) {
     function localizeTestimonial($testimonial, $locale)
     {
         if (!$testimonial) {
             return null;
         }
-
         // Localize textual fields
         $testimonial->name = getLocalizedField($testimonial->name, $locale);
         $testimonial->feedback = getLocalizedField($testimonial->feedback, $locale);
         $testimonial->designation = getLocalizedField($testimonial->designation, $locale);
-
         return $testimonial;
     }
 }
@@ -193,20 +207,20 @@ if (!function_exists('localizeDocumentRequired')) {
     }
 }
 
-    if (!function_exists('localizeFaq')) {
-        function localizeFaq($faq, $locale)
-        {
-            if (!$faq) {
-                return null;
-            }
-
-            // Localize textual fields
-            $faq->question = getLocalizedField($faq->question, $locale);
-            $faq->answer = getLocalizedField($faq->answer, $locale);
-
-            return $faq;
+if (!function_exists('localizeFaq')) {
+    function localizeFaq($faq, $locale)
+    {
+        if (!$faq) {
+            return null;
         }
+
+        // Localize textual fields
+        $faq->question = getLocalizedField($faq->question, $locale);
+        $faq->answer = getLocalizedField($faq->answer, $locale);
+
+        return $faq;
     }
+}
 
 
 
@@ -222,8 +236,3 @@ if (!function_exists('getImagePath')) {
         return null;
     }
 }
-
-
-
-
-?>
