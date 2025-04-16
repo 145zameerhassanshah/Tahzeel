@@ -110,7 +110,7 @@ class FrontPageController extends Controller
         // $data['testimonials'] = localizeTestimonial($page_detail->testimonials, $locale);
         // $data['document_required'] = localizeDocumentRequired($page_detail->documentRequireds, $locale);
         // $data['faq'] = localizeFaq($page_detail->faqs, $locale);
-        
+
         return view('front.vat.vat-reg-business', $data);
     }
 
