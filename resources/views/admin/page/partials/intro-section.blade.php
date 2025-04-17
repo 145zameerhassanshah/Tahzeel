@@ -74,10 +74,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="col-12">
                                 <label for="intro_images" class="control-label">{{ __('Images') }}<span class="text-danger">*</span></label>
-                                <input type="file" name="intro_images[]" id="intro_images" class="form-control" multiple>
+                                <input type="file" name="images[]" id="intro_images" class="form-control" multiple>
                             </div>
 
                         </div>
@@ -168,10 +168,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="col-12">
                                 <label for="intro_images" class="control-label">{{ __('Images') }}<span class="text-danger">*</span></label>
-                                <input type="file" name="intro_images[]" id="intro_images" class="form-control" multiple>
+                                <input type="file" name="images[]" id="intro_images" class="form-control" multiple>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('All IntroSections') }}</h3>
-
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#introsectionModal">
                             <i class="fas fa-plus"></i> {{ __('Add New') }}
@@ -211,6 +210,8 @@
                                     <th>{{ __('Image') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Description') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -224,6 +225,18 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Image Preview Modal -->
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img id="modalPreviewImage" src="" class="img-fluid" style="max-height: 80vh;" alt="Preview">
                 </div>
             </div>
         </div>

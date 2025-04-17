@@ -32,7 +32,6 @@ class SectionTitleController extends Controller
         return view('admin.section_title.list', compact('section_titles', 'id'));
     }
 
-
     public function getByPageId($pageId)
     {
         $sectionTitle = SectionTitle::where('page_id', $pageId)->get();

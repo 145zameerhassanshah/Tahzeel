@@ -135,7 +135,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -171,9 +171,10 @@
                             <thead>
                                 <tr>
                                     <th>{{ __('Id') }}</th>
-                                    <th>{{ __('Image') }}</th>
+                                    <th>{{ __('Type') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -187,6 +188,18 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Image Preview Modal -->
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img id="modalPreviewImage" src="" class="img-fluid" style="max-height: 80vh;" alt="Preview">
                 </div>
             </div>
         </div>

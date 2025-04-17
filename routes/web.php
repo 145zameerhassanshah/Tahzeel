@@ -225,7 +225,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
-        Route::post('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+        Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
         // Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
 

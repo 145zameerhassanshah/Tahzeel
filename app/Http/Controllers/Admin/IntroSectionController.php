@@ -43,17 +43,19 @@ class IntroSectionController extends Controller
     // Store Feature
     public function store(Request $request)
     {
+        $typeLimits = [
+            'single_image' => 1,
+            'double_image' => 2,
+            'tripple_image' => 3,
+        ];
+        $maxFiles = $typeLimits[$request->intro_type] ?? 1;
         $request->validate([
             'page_id' => 'required|exists:groups,id',
             'intro_title.en' => 'required|max:250',
             'intro_status' => 'required',
+            'images' => 'required|array|max:' . $maxFiles,
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $typeLimits = [
-            'single_image'  => 1,
-            'double_image'  => 2,
-            'tripple_image' => 3,
-        ];
-        $maxFiles = $typeLimits[$request->type] ?? 1;
         $intro_section = new IntroductionSection();
         $intro_section->page_id = $request->page_id;
         $intro_section->title = json_encode($request->intro_title, JSON_UNESCAPED_UNICODE);
@@ -67,8 +69,9 @@ class IntroSectionController extends Controller
             if (!is_array($uploadedImages)) {
                 $uploadedImages = [$uploadedImages];
             }
+            // Validate number of uploaded files
             if (count($uploadedImages) > $maxFiles) {
-                return response()->json(['images' => "You can upload a maximum of $maxFiles images for {$request->type}."]);
+                return response()->json(['images' => "You can upload a maximum of $maxFiles images for {$request->intro_type}."]);
             }
             foreach ($uploadedImages as $image) {
                 $filename = time() . '_' . $image->getClientOriginalName();
@@ -76,6 +79,7 @@ class IntroSectionController extends Controller
                 $imagePaths[] = 'uploads/introduction_section/' . $filename;
             }
         }
+        $intro_section->images = json_encode($imagePaths); // Store image paths
         $intro_section->save();
         return response()->json([
             'success' => true,
@@ -83,18 +87,24 @@ class IntroSectionController extends Controller
         ]);
     }
 
+
     // IntroductionSection Delete
     public function delete($id)
     {
-
         $intro_section = IntroductionSection::find($id);
-        $imagePath = public_path('uploads/intro_section/' . $intro_section->images);
-
-        if (file_exists($imagePath) && is_file($imagePath)) {
-            unlink($imagePath);
+        // Decode images JSON to array
+        if ($intro_section && $intro_section->images) {
+            $images = json_decode($intro_section->images, true);
+            if (is_array($images)) {
+                foreach ($images as $imagePath) {
+                    $fullPath = public_path($imagePath);
+                    if (file_exists($fullPath) && is_file($fullPath)) {
+                        unlink($fullPath);
+                    }
+                }
+            }
         }
         $intro_section->delete();
-
         return response()->json([
             'success' => true
         ]);
@@ -104,7 +114,6 @@ class IntroSectionController extends Controller
     public function edit($id)
     {
         $intro_section = IntroductionSection::find($id);
-
         return response()->json([
             'title' => json_decode($intro_section->title),
             'subtitle' => json_decode($intro_section->subtitle),
@@ -118,59 +127,47 @@ class IntroSectionController extends Controller
     // Update IntroductionSection
     public function update(Request $request, $id)
     {
-
-        $request->validate([
-            'intro_title' => 'required|max:250',
-            'intro_status' => 'required',
-        ]);
-
         $typeLimits = [
             'single_image'  => 1,
             'double_image'  => 2,
             'tripple_image' => 3,
         ];
-
-        $maxFiles = $typeLimits[$request->type] ?? 1;
-
-        $intro_section = IntroductionSection::find($id);
-
-        $intro_section->title = json_encode($request->intro_title);
-        $intro_section->subtitle = json_encode($request->intro_subtitle);
-        $intro_section->description = json_encode($request->intro_description);
-
+        $maxFiles = $typeLimits[$request->intro_type] ?? 1;
+        $request->validate([
+            'intro_title' => 'required|max:250',
+            'intro_status' => 'required',
+            'images' => 'nullable|array|max:' . $maxFiles,
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $intro_section = IntroductionSection::findOrFail($id); // Update text fields
+        $intro_section->title = json_encode($request->intro_title, JSON_UNESCAPED_UNICODE);
+        $intro_section->subtitle = json_encode($request->intro_subtitle, JSON_UNESCAPED_UNICODE);
+        $intro_section->description = json_encode($request->intro_description, JSON_UNESCAPED_UNICODE);
         $intro_section->status = $request->intro_status;
-        $intro_section->type = $request->intro_type;
-
-        $imagePaths = [];
-
+        $intro_section->type = $request->intro_type; // Handle image update
         if ($request->hasFile('images')) {
-
-            if ($intro_section->image && file_exists(public_path($intro_section->image))) {
-                unlink(public_path('uploads/introduction/' . $intro_section->image));
+            // Delete old images (optional)
+            if ($intro_section->images) {
+                $oldImages = json_decode($intro_section->images, true);
+                foreach ($oldImages as $oldImagePath) {
+                    $fullPath = public_path($oldImagePath);
+                    if (file_exists($fullPath) && is_file($fullPath)) {
+                        unlink($fullPath);
+                    }
+                }
             }
-
-            $uploadedImages = $request->file('images');
-
-            if (!is_array($uploadedImages)) {
-                $uploadedImages = [$uploadedImages];
-            }
-
-            if (count($uploadedImages) > $maxFiles) {
-                return back()->withErrors(['images' => "You can upload a maximum of $maxFiles images for {$request->type}."])->withInput();
-            }
-
-            foreach ($uploadedImages as $image) {
-                $filename = time() . '_' . $image->getClientOriginalName();
+            $imagePaths = [];
+            foreach ($request->file('images') as $image) {
+                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('uploads/introduction_section'), $filename);
                 $imagePaths[] = 'uploads/introduction_section/' . $filename;
             }
+            $intro_section->images = json_encode($imagePaths);
         }
-
-
         $intro_section->save();
-
         return response()->json([
-            'data' => $intro_section,
+            'success' => true,
+            'data' => $intro_section
         ]);
     }
 }

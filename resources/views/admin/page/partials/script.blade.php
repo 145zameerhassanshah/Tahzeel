@@ -39,10 +39,9 @@
         function renderTestimonials(testimonials) {
             let html = '';
             testimonials.forEach((testimonial, index) => {
-                const name = typeof testimonial.name === 'string' ? JSON.parse(testimonial.name) :
-                    testimonial.name;
-                const designation = typeof testimonial.designation === 'string' ? JSON.parse(testimonial
-                    .designation) : testimonial.designation;
+                const name = typeof testimonial.name === 'string' ? JSON.parse(testimonial.name) : testimonial.name;
+                const designation = typeof testimonial.designation === 'string' ? JSON.parse(testimonial.designation) : testimonial.designation;
+
                 html += `
             <tr id="testimonial-row-${testimonial.id}">
             <td>${index + 1}</td>
@@ -292,7 +291,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#proceduresTableBody').html(
-                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -300,13 +299,13 @@
                         renderProcedures(response.data);
                     } else {
                         $('#proceduresTableBody').html(
-                            '<tr><td colspan="6" class="text-center">No procedures found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No procedures found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#proceduresTableBody').html(
-                        '<tr><td colspan="6" class="text-center text-danger">Error loading procedures</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading procedures</td></tr>'
                     );
                     console.error("Error loading procedures:", xhr.responseText);
                 }
@@ -317,33 +316,39 @@
             let html = '';
             procedures.forEach((procedure, index) => {
                 const title = typeof procedure.title === 'string' ? JSON.parse(procedure.title) : procedure.title;
+                const subtitle = typeof procedure.subtitle === 'string' ? JSON.parse(procedure.subtitle) : procedure.subtitle;
+                const description = typeof procedure.description === 'string' ? JSON.parse(procedure.description) : procedure.description;
+
                 html += `
-                <tr id="procedure-row-${procedure.id}">
-                    <td>${index + 1}</td>
-                    <td>
-                        ${procedure.image ? 
-                            `<img src="/assets/admin/uploads/procedure/${procedure.image}" width="50" height="50">` : 
-                            '<i class="fas fa-image text-muted"></i>'}
-                    </td>
-                    <td>${title.en}</td>
-                    <td>${procedure.order_no}</td>
-                    <td>
-                        <span class="badge ${procedure.status === 'active' ? 'bg-success' : 'bg-secondary'}">
-                            ${procedure.status}
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-primary editProcedure" data-id="${procedure.id}">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-sm btn-danger delete-procedure" data-id="${procedure.id}">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </td>
-                </tr>`;
+        <tr id="procedure-row-${procedure.id}">
+            <td>${index + 1}</td>
+            <td>
+                ${procedure.image 
+                    ? `<img src="/assets/admin/uploads/procedure/${procedure.image}" width="50" height="50">` 
+                    : '<i class="fas fa-image text-muted"></i>'}
+            </td>
+            <td>${title?.en ?? '-'}</td>
+            <td>${subtitle?.en ?? '-'}</td>
+            <td>${description?.en ?? '-'}</td>
+            <td>${procedure.order_no ?? '-'}</td>
+            <td>
+                <span class="badge ${procedure.status === 'active' ? 'bg-success' : 'bg-secondary'}">
+                    ${procedure.status}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-primary editProcedure" data-id="${procedure.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-danger delete-procedure" data-id="${procedure.id}">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </td>
+        </tr>`;
             });
             $('#proceduresTableBody').html(html);
         }
+
 
         // Add new procedure with validation
         $("#procedureForm").submit(function(e) {
@@ -2147,7 +2152,7 @@
                 beforeSend: function() {
                     // Show loading indicator
                     $('#introsectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -2155,13 +2160,13 @@
                         renderIntroSections(response.data);
                     } else {
                         $('#introsectionsTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No introsections found</td></tr>'
+                            '<tr><td colspan="7" class="text-center">No introsections found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#introsectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading introsections</td></tr>'
+                        '<tr><td colspan="7" class="text-center text-danger">Error loading introsections</td></tr>'
                     );
                     console.error("Error loading introsections:", xhr.responseText);
                 }
@@ -2169,26 +2174,36 @@
         }
 
         // Function to render introsections in table
-
         function renderIntroSections(introsections) {
             let html = '';
-
             introsections.forEach((introsection, index) => {
-                let formattedText = introsection.type.replace(/_/g, ' ');
-                formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
-                const introtitle = typeof introsection.title === 'string' ? JSON.parse(introsection.title) :
-                    introsection.title;
-                const introsubtitle = typeof introsection.subtitle === 'string' ? JSON.parse(introsection
-                    .subtitle) : introsection.subtitle;
-
+                // Format type nicely
+                let formattedType = introsection.type.replace(/_/g, ' ');
+                formattedType = formattedType.charAt(0).toUpperCase() + formattedType.slice(1);
+                const introtitle = typeof introsection.title === 'string' ? JSON.parse(introsection.title) : introsection.title;
+                const introdescription = typeof introsection.description === 'string' ? JSON.parse(introsection.description) : introsection.description;
+                const introsubtitle = typeof introsection.subtitle === 'string' ? JSON.parse(introsection.subtitle) : introsection.subtitle;
+                const images = typeof introsection.images === 'string' ? JSON.parse(introsection.images) : introsection.images;
+                // Create image tags
+                let imageTags = 'No Images';
+                if (Array.isArray(images) && images.length > 0) {
+                    imageTags = images.map(imgPath => {
+                        return `<img src="/${imgPath}" data-image="/${imgPath}" class="img-thumbnail preview-image" style="width: 60px; margin: 3px; cursor: pointer;">`;
+                    }).join('');
+                }
                 html += `
             <tr id="introsection-row-${introsection.id}">
                 <td>${index + 1}</td>
-                <td>
-                    ${formattedText}
-                </td>
+                <td>${imageTags}</td>
                 <td>${introtitle.en}</td>
                 <td>${introsubtitle.en}</td>
+                <td>${introdescription?.en || ''}</td>
+                <td>${formattedType}</td>
+                <td>
+                    <span class="badge badge-${introsection.status === 'active' ? 'success' : 'secondary'}">
+                        ${introsection.status.charAt(0).toUpperCase() + introsection.status.slice(1)}
+                    </span>
+                </td>
                 <td>
                     <button class="btn btn-sm btn-primary editIntroSection" data-id="${introsection.id}">
                         <i class="fas fa-edit"></i> Edit
@@ -2197,26 +2212,28 @@
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-danger btn-sm delete-introsection" data-id="${introsection.id}">
-    <i class="fas fa-trash"></i> Delete
-</button>
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                     </form>
                 </td>
             </tr>`;
             });
-
             $('#introsectionsTableBody').html(html);
+            // Attach click event to preview images
+            $('.preview-image').on('click', function() {
+                const imgSrc = $(this).data('image');
+                $('#modalPreviewImage').attr('src', imgSrc);
+                $('#imagePreviewModal').modal('show');
+            });
         }
+
 
         function refreshIntroSections() {
             loadIntroSections();
         }
 
-
-
         $("#introsectionForm").submit(function(event) {
             event.preventDefault();
-
-
             $(".error").text("");
             let introtitleEn = $("#intro_title_en").val().trim();
             let introtitleAr = $("#intro_title_ar").val().trim();
@@ -2224,9 +2241,7 @@
             let introsubtitleAr = $("#intro_subtitle_ar").val().trim();
             let introdescriptionEn = $("#intro_description_en").val().trim();
             let introdescriptionAr = $("#intro_description_ar").val().trim();
-
             let isValid = true;
-
             // Frontend validation
             if (introtitleEn.length < 1) {
                 $("#error_intro_name_en").text("English name is required.");
@@ -2252,12 +2267,9 @@
                 // $("#error_feedback_ar").text("Arabic feedback is required.");
                 isValid = true;
             }
-
             if (!isValid) return;
-
             // Prepare FormData
             let introformData = new FormData(this);
-
             $.ajax({
                 url: "{{ route('admin.intro_section.store') }}",
                 type: "POST",
@@ -2433,12 +2445,16 @@
                 maxFiles = 3;
             }
 
-            imageInput.addEventListener("change", function() {
-                if (this.files.length > maxFiles) {
-                    alert(`You can only select up to ${maxFiles} images.`);
-                    this.value = "";
-                }
-            });
+            imageInput.setAttribute("multiple", "multiple");
+            imageInput.setAttribute("data-max-files", maxFiles);
+        });
+
+        imageInput.addEventListener("change", function() {
+            const maxFiles = parseInt(this.getAttribute("data-max-files"));
+            if (this.files.length > maxFiles) {
+                alert(`You can only select up to ${maxFiles} images.`);
+                this.value = "";
+            }
         });
     });
 </script>
@@ -2483,7 +2499,6 @@
 
         function renderSectionTitles(sectiontitles) {
             let html = '';
-
             sectiontitles.forEach((sectiontitle, index) => {
                 let formattedText = sectiontitle.type.replace(/_/g, ' ');
                 formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
@@ -2495,11 +2510,14 @@
                 html += `
             <tr id="sectiontitle-row-${sectiontitle.id}">
                 <td>${index + 1}</td>
-                <td>
-                    ${formattedText}
-                </td>
+                <td>${formattedText}</td>
                 <td>${sectionstitle.en}</td>
                 <td>${sectionsubtitle.en}</td>
+                <td>
+                <span class="badge ${sectiontitle.status === 'active' ? 'bg-success' : 'bg-secondary'}">
+                    ${sectiontitle.status}
+                </span>
+            </td>
                 <td>
                     <button class="btn btn-sm btn-primary editSectionTitle" data-id="${sectiontitle.id}">
                         <i class="fas fa-edit"></i> Edit
@@ -2727,7 +2745,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#whyusTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -2735,13 +2753,13 @@
                         renderWhyUs(response.data);
                     } else {
                         $('#whyusTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No Records found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No Records found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#whyusTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading whyus</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading whyus</td></tr>'
                     );
                     console.error("Error loading whyus:", xhr.responseText);
                 }
@@ -2753,31 +2771,41 @@
         function renderWhyUs(whyuses) {
             let html = '';
             whyuses.forEach((whyus, index) => {
-                const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) :
-                    whyus.title;
+                const title = typeof whyus.title === 'string' ? JSON.parse(whyus.title) : whyus.title;
                 const subtitle = typeof whyus.subtitle === 'string' ? JSON.parse(whyus.subtitle) : whyus.subtitle;
                 const description = typeof whyus.description === 'string' ? JSON.parse(whyus.description) : whyus.description;
                 const icon = typeof whyus.icon === 'string' ? JSON.parse(whyus.icon) : whyus.icon;
+
                 html += `
-                <tr id="whyus-row-${whyus.id}">
-                <td>${index + 1}</td>
-                <td>${icon}</td>
-                <td>${title.en}</td>
-                <td>${subtitle.en}</td>
-                <td>
-                <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}"><i class="fas fa-edit"></i> Edit</button>
-                    <form class="d-inline-block" action="/whyus/delete/${whyus.id}">
+        <tr id="whyus-row-${whyus.id}">
+            <td>${index + 1}</td>
+            <td>${icon}</td>
+            <td>${title.en}</td>
+            <td>${subtitle.en}</td>
+            <td>${description.en}</td>
+            <td>${whyus.order_no ?? '-'}</td>
+            <td>
+                <span class="badge badge-${whyus.status === 'active' ? 'success' : 'secondary'}">
+                    ${whyus.status}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-primary editFeature" data-id="${whyus.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <form class="d-inline-block" action="/whyus/delete/${whyus.id}" method="POST">
                     @csrf
                     @method('POST')
                     <button type="button" class="btn btn-danger btn-sm delete-whyus" data-id="${whyus.id}">
-                    <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Delete
                     </button>
-                    </form>
-                </td>
-            </tr>`;
+                </form>
+            </td>
+        </tr>`;
             });
             $('#whyusTableBody').html(html);
         }
+
 
         function refreshWhyUs() {
             loadWhyUs();
