@@ -17,4 +17,5 @@ return [
     'Subscribe to our newsletter to get our news & deals delivered to you.' => 'Subscribe to our newsletter to get our news & deals delivered to you.',
     'Email Address' => 'Email Address',
     'Join' => 'Join',
+    'Contact Us' => 'Contact Us',
 ];

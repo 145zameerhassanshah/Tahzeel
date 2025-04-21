@@ -1,4 +1,4 @@
-<footer class="bg-dark section-frame" dir="rtl">
+<footer class="bg-dark section-frame">
     <div class="container pb-13 pb-md-15">
         <div class="card image-wrapper bg-full bg-image bg-overlay mt-n50p mx-md-5"
             data-image-src="{{ asset('front/dev/assets/img/personal/contact.webp') }}">
