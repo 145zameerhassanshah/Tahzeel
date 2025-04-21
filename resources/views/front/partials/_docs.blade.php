@@ -4,7 +4,7 @@
             <div class="col-md-8 text-center">
                 <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! $document_title->subtitle !!}</h2>
                 <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">{!! $document_title->title !!}</h3>
-                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.</p>
+                {{-- <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.</p> --}}
             </div>
         </div>
         <div class="row">
@@ -18,7 +18,8 @@
                                         data-bs-target="#collapseIcon{{ $index }}"
                                         aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
                                         aria-controls="collapseIcon{{ $index }}">
-                                    <span><i class="{{ $doc->icon }}"></i></span>{{ $doc->title }}
+                                    {{-- <span><i class="{{ $doc->icon }}"></i></span>{{ $doc->title }} --}}
+                                    <img style="width: 20px; height:auto;" src="{{ asset('assets/admin/uploads/document/' . $doc->icon) }}" alt="" class="me-2" >{{ $doc->title }}
                                 </button>
                             </div>
                             <!--/.card-header -->

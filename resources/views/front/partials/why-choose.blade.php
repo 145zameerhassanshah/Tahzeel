@@ -3,7 +3,7 @@
         <div class="col">
             <h2 class="display-5">Why Choose <span class="text-gradient gradient-6 display-1">Tah-zeel</span></h2>
             <p class="">
-                Experience the Difference with Tah-zeel – Your Trusted Visa Partner
+                {{ __('why-tahzeel.subtitle') }}
             </p>
         </div>
     </div>

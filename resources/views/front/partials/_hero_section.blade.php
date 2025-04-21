@@ -2,7 +2,7 @@
 
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17">
         <div class="row text-start">
-            <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
+            <div class="col-lg-8 col-xl-8 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">
                 <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">
                    {!! $hero_section->title ?? '' !!}
                 </h1>

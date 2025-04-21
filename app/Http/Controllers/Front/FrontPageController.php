@@ -36,7 +36,7 @@ class FrontPageController extends Controller
     {
         app()->setLocale(session('locale', 'en'));
         $locale = app()->getLocale();  // Current language ('en' or 'ar')
-        $page = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
+        $data['page'] = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
         $page_detail = Page::with([
             'procedures',
             'callToActions',
@@ -50,7 +50,7 @@ class FrontPageController extends Controller
             'documentRequireds',
             'whyUsImages',
             'featureImages'
-        ])->findOrFail($page->id);
+        ])->findOrFail($data['page']->id);
         // dd($page->testimonials);
         // return $page_detail->heroSections;
         $data['hero_sections'] = $page_detail->heroSections->map(function ($section) use ($locale) {
@@ -92,16 +92,7 @@ class FrontPageController extends Controller
         $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
             return localizeWhyUsImage($item, $locale);
         });
-        // $data['hero_section'] = localizeHeroSection($page_detail->heroSections, locale: $locale);
-        // $data['intro_section'] = localizeIntroductionSection($page_detail->introductionSections, $locale);
-        // $data['section_title'] = localizeSectionTitle($page_detail->sectionTitles, $locale);
-        // $data['call_to_action'] = localizeCTA($page_detail->callToActions, $locale);
-        // $data['procedure'] = localizeProcedure($page_detail->procedures, $locale);
-        // $data['hero_section'] = localizeHeroSection($page_detail->heroSections, $locale);
-        // $data['feature_image'] = localizeFeatureImage($page_detail->featureImages, $locale);
-        // $data['testimonials'] = localizeTestimonial($page_detail->testimonials, $locale);
-        // $data['document_required'] = localizeDocumentRequired($page_detail->documentRequireds, $locale);
-        // $data['faq'] = localizeFaq($page_detail->faqs, $locale);
+
         return view('front.vat.vat-reg-business', $data);
     }
 
