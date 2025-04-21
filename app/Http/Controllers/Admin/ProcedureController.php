@@ -46,13 +46,11 @@ class ProcedureController extends Controller
             'description.ar' => 'nullable|string',
             'order_no' => 'nullable|integer|min:0',
             'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|max:4000',
+            'image' => 'nullable',
         ]);
-
         // Create new Procedure
         $procedure = new Procedure();
         $procedure->page_id = $request->page_id;
-
         // Store multilingual fields
         $procedure->title = [
             'en' => $request->input('title.en'),
