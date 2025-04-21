@@ -49,7 +49,13 @@ class FeatureController extends Controller
             'page_id' => 'required',
             'title.en' => 'required',
             'title.ar' => 'required',
-            // 'icon' => 'required',
+            'subtitle.en' => 'required',
+            'subtitle.ar' => 'required',
+            'description.en' => 'required',
+            'description.ar' => 'required',
+            'icon' => 'required',
+            'order_no' => 'required',
+            'status' => 'required',
         ]);
         $feature = Feature::create([
             'page_id' => $request->page_id,
@@ -57,7 +63,7 @@ class FeatureController extends Controller
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'description' => $request->description,
-            'order_no' => $request->order_no ?? 0,
+            'order_no' => $request->order_no,
             'status' => $request->status
         ]);
         return response()->json([

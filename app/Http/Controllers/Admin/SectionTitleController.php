@@ -54,35 +54,24 @@ class SectionTitleController extends Controller
             'section_title.en' => 'required|max:250',
             'section_status' => 'required',
         ]);
-
         $section_title = new SectionTitle();
-
         $section_title->page_id = $request->page_id;
-
         $section_title->title = json_encode($request->section_title, JSON_UNESCAPED_UNICODE);
         $section_title->subtitle = json_encode($request->section_subtitle, JSON_UNESCAPED_UNICODE);
-
         $section_title->status = $request->section_status;
         $section_title->type = $request->section_type;
-
         $section_title->save();
-
         return response()->json([
             'success' => true,
             'section_title' => $section_title
         ]);
     }
 
-
-
     // SectionTitle Delete
     public function delete($id)
     {
-
         $section_title = SectionTitle::find($id);
-
         $section_title->delete();
-
         return response()->json([
             'success' => true
         ]);
@@ -92,7 +81,6 @@ class SectionTitleController extends Controller
     public function edit($id)
     {
         $section_title = SectionTitle::find($id);
-
         return response()->json([
             'title' => json_decode($section_title->title),
             'subtitle' => json_decode($section_title->subtitle),
@@ -106,22 +94,16 @@ class SectionTitleController extends Controller
     // Update SectionTitle
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'section_title' => 'required|max:250',
             'section_status' => 'required',
         ]);
-
         $section_title = SectionTitle::find($id);
-
         $section_title->title = json_encode($request->section_title);
         $section_title->subtitle = json_encode($request->section_subtitle);
-
         $section_title->status = $request->section_status;
         $section_title->type = $request->section_type;
-
         $section_title->save();
-
         return response()->json([
             'data' => $section_title,
         ]);

@@ -46,7 +46,7 @@ class ProcedureController extends Controller
             'description.ar' => 'nullable|string',
             'order_no' => 'nullable|integer|min:0',
             'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:4000',
         ]);
 
         // Create new Procedure

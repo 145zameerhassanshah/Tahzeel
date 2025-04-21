@@ -1233,7 +1233,7 @@
                 const title = typeof cta.title === 'string' ? JSON.parse(cta.title) : cta.title;
                 const subtitle = typeof cta.subtitle === 'string' ? JSON.parse(cta.subtitle) : cta.subtitle;
                 const buttonText = typeof cta.button_text === 'string' ? JSON.parse(cta.button_text) : cta.button_text;
-                
+
 
                 html += `
                 <tr id="cta-row-${cta.id}">
@@ -1578,7 +1578,7 @@
                         ar: ''
                     };
 
-                    const description = typeof herosection.description === 'string' ?
+                const description = typeof herosection.description === 'string' ?
                     JSON.parse(herosection.description) :
                     herosection.description || {
                         en: '',
@@ -1962,17 +1962,12 @@
                 html += `
                 <tr id="feature-row-${feature.id}">
                     <td>${index + 1}</td>
-                    <td>${icon || ''}</td>
-                    <td>${icon || ''}</td>
+                    <td>${feature.icon || ''}</td>
                     <td>${title?.en || ''}</td>
                     <td>${subtitle?.en || ''}</td>
                     <td>${description?.en || ''}</td>
-                    <td>
-                        <span class="badge ${feature.status === 'active' ? 'bg-success' : 'bg-secondary'}">
-                            ${feature.status}
-                        </span>
-                    </td>
-                    <td>${order_no?.en || ''}</td>
+                    <td><span class="badge ${feature.status === 'active' ? 'bg-success' : 'bg-secondary'}">${feature.status}</span></td>
+                    <td>${feature.order_no || ''}</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-feature" data-id="${feature.id}">
                             <i class="fas fa-edit"></i> Edit
@@ -2003,8 +1998,8 @@
                     en: $('[name="description_en"]').val().trim(),
                     ar: $('[name="description_ar"]').val().trim()
                 },
-                icon: $('[name="icon"]').val().trim(), // Simple icon collection
-                order_no: $('[name="order_no"]').val() || 0,
+                icon: $('[name="icon"]').val().trim(),
+                order_no: $('[name="order_no"]').val(),
                 status: $('[name="status"]').val()
             };
             // Simple AJAX call
@@ -2030,7 +2025,7 @@
 
         });
 
-                // Update Feature
+        // Update Feature
         $("#editFeatureForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
@@ -2524,7 +2519,7 @@
                     .subtitle) : sectiontitle.subtitle;
 
                 html += `
-            <tr id="sectiontitle-row-${sectiontitle.id}">
+                <tr id="sectiontitle-row-${sectiontitle.id}">
                 <td>${index + 1}</td>
                 <td>${formattedText}</td>
                 <td>${sectionstitle.en}</td>
@@ -2533,7 +2528,7 @@
                 <span class="badge ${sectiontitle.status === 'active' ? 'bg-success' : 'bg-secondary'}">
                     ${sectiontitle.status}
                 </span>
-            </td>
+                </td>
                 <td>
                     <button class="btn btn-sm btn-primary editSectionTitle" data-id="${sectiontitle.id}">
                         <i class="fas fa-edit"></i> Edit
@@ -2542,8 +2537,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-danger btn-sm delete-sectiontitle" data-id="${sectiontitle.id}">
-    <i class="fas fa-trash"></i> Delete
-</button>
+                        <i class="fas fa-trash"></i> Delete</button>
                     </form>
                 </td>
             </tr>`;
@@ -2557,19 +2551,14 @@
         }
 
 
-
         $("#sectiontitleForm").submit(function(event) {
             event.preventDefault();
-
-
             $(".error").text("");
             let sectiontitleEn = $("#section_title_en").val().trim();
             let sectiontitleAr = $("#section_title_ar").val().trim();
             let sectionsubtitleEn = $("#section_subtitle_en").val().trim();
             let sectionsubtitleAr = $("#section_subtitle_ar").val().trim();
-
             let isValid = true;
-
             // Frontend validation
             if (sectiontitleEn.length < 1) {
                 $("#error_section_name_en").text("English name is required.");
@@ -3057,7 +3046,7 @@
         function loadFeatureImageImages(featureimgs) {
             let html = '';
             featureimgs.forEach((featureimg, index) => {
-                const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :featureimg.title;
+                const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) : featureimg.title;
                 const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg.subtitle) : featureimg.subtitle;
                 const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg.description) : featureimg.description;
                 html += `
