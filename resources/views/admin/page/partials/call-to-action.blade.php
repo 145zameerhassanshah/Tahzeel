@@ -184,6 +184,7 @@
                                 <tr>
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('Title') }}</th>
+                                    <th>{{ __('SubTitle') }}</th>
                                     <th>{{ __('Button Text') }}</th>
                                     <th>{{ __('Button Link') }}</th>
                                     <th>{{ __('Status') }}</th>

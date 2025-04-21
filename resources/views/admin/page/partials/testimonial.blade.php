@@ -199,8 +199,10 @@
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('Image') }}</th>
                                     <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Designation [En]') }}</th>
-                                    <th>{{ __('Designation [Ar]') }}</th>
+                                    <th>{{ __('Designation') }}</th>
+                                    <th>{{ __('Order No') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Feedback') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -208,7 +210,7 @@
                                 <!-- Data will be loaded via AJAX -->
                                 <tr>
                                     <td colspan="6" class="text-center">
-                                        <i class="fas fa-spinner fa-spin"></i> Loading testimonials...
+                                        <i class="fas fa-spinner fa-spin"></i> Loading testimonials....
                                     </td>
                                 </tr>
                             </tbody>
@@ -218,4 +220,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>  

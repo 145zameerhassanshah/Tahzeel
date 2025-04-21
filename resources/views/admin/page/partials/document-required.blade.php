@@ -172,6 +172,7 @@
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('Icon') }}</th>
                                     <th>{{ __('Title') }}</th>
+                                    <th>{{ __('Description') }}</th>
                                     <th>{{ __('Order') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
@@ -179,7 +180,7 @@
                             </thead>
                             <tbody id="documentsTableBody">
                                 <tr>
-                                    <td colspan="6" class="text-center">
+                                    <td colspan="7" class="text-center">
                                         <i class="fas fa-spinner fa-spin"></i> Loading Documents...
                                     </td>
                                 </tr>

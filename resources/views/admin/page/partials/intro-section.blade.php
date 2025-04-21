@@ -211,16 +211,14 @@
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
                                     <th>{{ __('Description') }}</th>
+                                    <th>{{ __('Type') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="introsectionsTableBody">
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        <i class="fas fa-spinner fa-spin"></i> Loading
-                                        introsections...
-                                    </td>
+                                    <td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading introsections...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -230,7 +228,6 @@
         </div>
     </div>
 
-    
     <!-- Image Preview Modal -->
     <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">

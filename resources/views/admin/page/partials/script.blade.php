@@ -14,7 +14,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#testimonialsTableBody').html(
-                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -22,47 +22,53 @@
                         renderTestimonials(response.data);
                     } else {
                         $('#testimonialsTableBody').html(
-                            '<tr><td colspan="6" class="text-center">No testimonials found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No testimonials found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#testimonialsTableBody').html(
-                        '<tr><td colspan="6" class="text-center text-danger">Error loading testimonials</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading testimonials</td></tr>'
                     );
                     console.error("Error loading testimonials:", xhr.responseText);
                 }
             });
         }
 
-        // Function to render testimonials in table
+        // Function to render testimonials in the table
         function renderTestimonials(testimonials) {
             let html = '';
             testimonials.forEach((testimonial, index) => {
+                // Parse name and designation fields for multilingual content
                 const name = typeof testimonial.name === 'string' ? JSON.parse(testimonial.name) : testimonial.name;
                 const designation = typeof testimonial.designation === 'string' ? JSON.parse(testimonial.designation) : testimonial.designation;
-
+                const feedback = typeof testimonial.feedback === 'string' ? JSON.parse(testimonial.feedback) : testimonial.feedback;
                 html += `
             <tr id="testimonial-row-${testimonial.id}">
-            <td>${index + 1}</td>
-            <td>${testimonial.image?`<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50px">`:''}</td>
-            <td>${name.en}</td><td>${designation.en}</td><td>${designation.ar}</td>
-            <td>
-                <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
-                    <i class="fas fa-edit"></i> Edit
-                </button>
-                <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
-            <i class="fas fa-trash"></i> Delete
-            </button>
-            </form>
-            </td>
+                <td>${index + 1}</td>
+                <td>${testimonial.image ? `<img src="/assets/admin/uploads/testimonial/${testimonial.image}" width="50" height="50" alt="Image">` : ''}</td>
+                <td>${name?.en || 'N/A'}</td>
+                <td>${designation?.en || 'N/A'}</td>
+                <td>${testimonial.order_no || 'N/A'}</td>
+                <td><span class="badge ${testimonial.status === 'active' ? 'bg-success' : 'bg-secondary'}">${testimonial.status}</span></td>
+                <td>${feedback?.en || 'N/A'}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </td>
             </tr>`;
             });
             $('#testimonialsTableBody').html(html);
         }
+
 
         // Refresh testimonials after CRUD operations
         function refreshTestimonials() {
@@ -558,7 +564,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#documentsTableBody').html(
-                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -566,13 +572,13 @@
                         renderDocuments(response.data);
                     } else {
                         $('#documentsTableBody').html(
-                            '<tr><td colspan="6" class="text-center">No documents found</td></tr>'
+                            '<tr><td colspan="7" class="text-center">No documents found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#documentsTableBody').html(
-                        '<tr><td colspan="6" class="text-center text-danger">Error loading documents</td></tr>'
+                        '<tr><td colspan="7" class="text-center text-danger">Error loading documents</td></tr>'
                     );
                     console.error("Error loading documents:", xhr.responseText);
                 }
@@ -594,6 +600,7 @@
                             '<i class="fas fa-image text-muted"></i>'}
                     </td>
                     <td>${title.en}</td>
+                    <td>${description.en}</td>
                     <td>${document.order_no}</td>
                     <td>
                         <span class="badge ${document.status === 'active' ? 'bg-success' : 'bg-secondary'}">
@@ -1039,14 +1046,12 @@
             $("#faqForm").submit(function(e) {
                 e.preventDefault();
                 $(".error").text("");
-
                 // Get all required field values
                 const questionEn = $("#faqQuestionEn").val().trim();
                 const questionAr = $("#faqQuestionAr").val().trim();
                 const answerEn = $("#faqAnswerEn").val().trim();
                 const answerAr = $("#faqAnswerAr").val().trim();
                 const status = $("#faqStatus").val();
-
                 // Validate required fields
                 let isValid = true;
 
@@ -1201,7 +1206,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#ctasTableBody').html(
-                        '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -1209,13 +1214,13 @@
                         renderCTAs(response.data);
                     } else {
                         $('#ctasTableBody').html(
-                            '<tr><td colspan="6" class="text-center">No CTAs found</td></tr>'
+                            '<tr><td colspan="7" class="text-center">No CTAs found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#ctasTableBody').html(
-                        '<tr><td colspan="6" class="text-center text-danger">Error loading CTAs</td></tr>'
+                        '<tr><td colspan="7" class="text-center text-danger">Error loading CTAs</td></tr>'
                     );
                     console.error("Error loading CTAs:", xhr.responseText);
                 }
@@ -1226,12 +1231,15 @@
             let html = '';
             ctas.forEach((cta, index) => {
                 const title = typeof cta.title === 'string' ? JSON.parse(cta.title) : cta.title;
+                const subtitle = typeof cta.subtitle === 'string' ? JSON.parse(cta.subtitle) : cta.subtitle;
                 const buttonText = typeof cta.button_text === 'string' ? JSON.parse(cta.button_text) : cta.button_text;
+                
 
                 html += `
                 <tr id="cta-row-${cta.id}">
                     <td>${index + 1}</td>
                     <td>${title.en}</td>
+                    <td>${subtitle.en}</td>
                     <td>${buttonText.en}</td>
                     <td>${cta.button_link}</td>
                     <td>
@@ -1530,7 +1538,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#herosectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -1538,13 +1546,13 @@
                         renderHeroSections(response.data);
                     } else {
                         $('#herosectionsTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No hero sections found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No hero sections found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#herosectionsTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading hero sections</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading hero sections</td></tr>'
                     );
                     console.error("Error loading hero sections:", xhr.responseText);
                 }
@@ -1570,16 +1578,23 @@
                         ar: ''
                     };
 
+                    const description = typeof herosection.description === 'string' ?
+                    JSON.parse(herosection.description) :
+                    herosection.description || {
+                        en: '',
+                        ar: ''
+                    };
+
                 html += `
                 <tr id="herosection-row-${herosection.id}">
                     <td>${index + 1}</td>
                     <td>
-                        ${herosection.background_image ? 
-                            `<img src="/uploads/hero_section/${herosection.background_image}" width="50" height="50" class="img-thumbnail">` : 
-                            'No Image'}
+                    ${herosection.background_image ? `<img src="/uploads/hero_section/${herosection.background_image}" width="50" height="50" class="img-thumbnail">` : 'No Image'}
                     </td>
-                    <td>${title.en || 'No title'}</td>
-                    <td>${subtitle.en || 'No subtitle'}</td>
+                    <td>${title.en || 'No Title'}</td>
+                    <td>${subtitle.en || 'No Subtitle'}</td>
+                    <td>${description.en || 'No Description'}</td>
+                    <td><span class="badge ${herosection.status === 'active' ? 'bg-success' : 'bg-secondary'}">${herosection.status}</span></td>
                     <td>
                         <button class="btn btn-sm btn-primary editHeroSection" data-id="${herosection.id}">
                             <i class="fas fa-edit"></i> Edit
@@ -1915,7 +1930,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#featuresTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -1929,7 +1944,7 @@
                 },
                 error: function(xhr) {
                     $('#featuresTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading features</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading features</td></tr>'
                     );
                     console.error("Error loading features:", xhr.responseText);
                 }
@@ -1943,10 +1958,11 @@
                 const title = typeof feature.title === 'string' ? JSON.parse(feature.title) : feature.title;
                 const subtitle = typeof feature.subtitle === 'string' ? JSON.parse(feature.subtitle) : feature.subtitle;
                 const description = typeof feature.description === 'string' ? JSON.parse(feature.description) : feature.description;
-                const icon = typeof feature.icon === 'string' ? JSON.parse(feature.icon) : feature.icon;
+                // const icon = typeof feature.icon === 'string' ? JSON.parse(feature.icon) : feature.icon;
                 html += `
                 <tr id="feature-row-${feature.id}">
                     <td>${index + 1}</td>
+                    <td>${icon || ''}</td>
                     <td>${icon || ''}</td>
                     <td>${title?.en || ''}</td>
                     <td>${subtitle?.en || ''}</td>
@@ -1987,7 +2003,7 @@
                     en: $('[name="description_en"]').val().trim(),
                     ar: $('[name="description_ar"]').val().trim()
                 },
-                // icon: $('[name="icon"]').val().trim(), // Simple icon collection
+                icon: $('[name="icon"]').val().trim(), // Simple icon collection
                 order_no: $('[name="order_no"]').val() || 0,
                 status: $('[name="status"]').val()
             };
@@ -2014,41 +2030,7 @@
 
         });
 
-        // Edit Feature - Show Modal
-        $(document).on('click', '.edit-feature', function() {
-            const featureId = $(this).data('id');
-
-            $.ajax({
-                url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', featureId),
-                type: "GET",
-                beforeSend: function() {
-                    $(this).prop('disabled', true);
-                },
-                success: function(response) {
-                    $('#update_feature_id').val(featureId);
-                    $('#update_feature_title_en').val(response.title?.en || '');
-                    $('#update_feature_title_ar').val(response.title?.ar || '');
-                    $('#update_feature_subtitle_en').val(response.subtitle?.en || '');
-                    $('#update_feature_subtitle_ar').val(response.subtitle?.ar || '');
-                    $('#update_feature_description_en').val(response.description?.en || '');
-                    $('#update_feature_description_ar').val(response.description?.ar || '');
-                    $('#update_feature_icon').val(response.icon || '');
-                    $('#update_feature_order_no').val(response.order_no || 0);
-                    $('#update_feature_status').val(response.status || 'active');
-
-                    $('#editFeatureModal').modal('show');
-                },
-                error: function(xhr) {
-                    toastr.error("Failed to load feature data");
-                    console.error("Error:", xhr.responseText);
-                },
-                complete: function() {
-                    $(this).prop('disabled', false);
-                }
-            });
-        });
-
-        // Update Feature
+                // Update Feature
         $("#editFeatureForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
@@ -2105,6 +2087,40 @@
             });
         });
 
+        // Edit Feature - Show Modal
+        $(document).on('click', '.edit-feature', function() {
+            const featureId = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('admin.feature.edit', ':id') }}".replace(':id', featureId),
+                type: "GET",
+                beforeSend: function() {
+                    $(this).prop('disabled', true);
+                },
+                success: function(response) {
+                    $('#update_feature_id').val(featureId);
+                    $('#update_feature_title_en').val(response.title?.en || '');
+                    $('#update_feature_title_ar').val(response.title?.ar || '');
+                    $('#update_feature_subtitle_en').val(response.subtitle?.en || '');
+                    $('#update_feature_subtitle_ar').val(response.subtitle?.ar || '');
+                    $('#update_feature_description_en').val(response.description?.en || '');
+                    $('#update_feature_description_ar').val(response.description?.ar || '');
+                    $('#update_feature_icon').val(response.icon || '');
+                    $('#update_feature_order_no').val(response.order_no || 0);
+                    $('#update_feature_status').val(response.status || 'active');
+
+                    $('#editFeatureModal').modal('show');
+                },
+                error: function(xhr) {
+                    toastr.error("Failed to load feature data");
+                    console.error("Error:", xhr.responseText);
+                },
+                complete: function() {
+                    $(this).prop('disabled', false);
+                }
+            });
+        });
+
         // Delete Feature
         $(document).on("click", ".delete-feature", function() {
             const featureId = $(this).data("id");
@@ -2152,7 +2168,7 @@
                 beforeSend: function() {
                     // Show loading indicator
                     $('#introsectionsTableBody').html(
-                        '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -2160,13 +2176,13 @@
                         renderIntroSections(response.data);
                     } else {
                         $('#introsectionsTableBody').html(
-                            '<tr><td colspan="7" class="text-center">No introsections found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No introsections found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#introsectionsTableBody').html(
-                        '<tr><td colspan="7" class="text-center text-danger">Error loading introsections</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading introsections</td></tr>'
                     );
                     console.error("Error loading introsections:", xhr.responseText);
                 }
@@ -3016,7 +3032,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     $('#featureimgsTableBody').html(
-                        '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
+                        '<tr><td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>'
                     );
                 },
                 success: function(response) {
@@ -3024,13 +3040,13 @@
                         loadFeatureImageImages(response.data);
                     } else {
                         $('#featureimgsTableBody').html(
-                            '<tr><td colspan="5" class="text-center">No features found</td></tr>'
+                            '<tr><td colspan="8" class="text-center">No features found</td></tr>'
                         );
                     }
                 },
                 error: function(xhr) {
                     $('#featureimgsTableBody').html(
-                        '<tr><td colspan="5" class="text-center text-danger">Error loading feature images</td></tr>'
+                        '<tr><td colspan="8" class="text-center text-danger">Error loading feature images</td></tr>'
                     );
                     console.error("Error loading features:", xhr.responseText);
                 }
@@ -3041,22 +3057,18 @@
         function loadFeatureImageImages(featureimgs) {
             let html = '';
             featureimgs.forEach((featureimg, index) => {
-                const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :
-                    featureimg.title;
-                const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg
-                    .subtitle) : featureimg.subtitle;
-                const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg
-                    .description) : featureimg.description;
+                const title = typeof featureimg.title === 'string' ? JSON.parse(featureimg.title) :featureimg.title;
+                const subtitle = typeof featureimg.subtitle === 'string' ? JSON.parse(featureimg.subtitle) : featureimg.subtitle;
+                const description = typeof featureimg.description === 'string' ? JSON.parse(featureimg.description) : featureimg.description;
                 html += `
             <tr id="featureimg-row-${featureimg.id}">
                 <td>${index + 1}</td>
-                <td>
-                    ${featureimg.image ? 
-                        `<img src="/assets/admin/uploads/feature_image/${featureimg.image}" width="50" height="50px">` : 
-                        ''}
-                </td>
+                <td>${featureimg.image ? `<img src="/assets/admin/uploads/feature_image/${featureimg.image}" width="50" height="50px">` : ''}</td>
                 <td>${title.en}</td>
                 <td>${subtitle.en}</td>
+                <td>${description.en}</td>
+                <td><span class="badge ${featureimg.status === 'active' ? 'bg-success' : 'bg-secondary'}">${featureimg.status}</span></td>
+                <td>${featureimg.order_no}</td>
                 <td>
                     <button class="btn btn-sm btn-primary editFeatureImage" data-id="${featureimg.id}">
                         <i class="fas fa-edit"></i> Edit

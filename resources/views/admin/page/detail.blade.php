@@ -10,7 +10,7 @@
                         <ul class="nav nav-tabs mx-3 my-1" id="custom-tabs-three-tab" role="tablist">
                             <li class="nav-item mx-1 my-1">
                                 <a class="nav-link btn btn-success btn-sm text-white active" id="custom-tabs-testimonial-tab" data-toggle="pill"
-                                href="#custom-tabs-testimonial" role="tab" aria-controls="custom-tabs-testimonial" aria-selected="true">Testimonials</a>
+                                    href="#custom-tabs-testimonial" role="tab" aria-controls="custom-tabs-testimonial" aria-selected="true">Testimonials</a>
                             </li>
                             <li class="nav-item mx-1 my-1">
                                 <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-hero-section-tab" data-toggle="pill"
@@ -23,9 +23,7 @@
                                     aria-controls="custom-tabs-intro-section" aria-selected="false">Intro Section</a>
                             </li>
                             <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-section-title-tab" data-toggle="pill"
-                                    href="#custom-tabs-section-title" role="tab"
-                                    aria-controls="custom-tabs-section-title" aria-selected="false">Section Title</a>
+                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-section-title-tab" data-toggle="pill" href="#custom-tabs-section-title" role="tab" aria-controls="custom-tabs-section-title" aria-selected="false">Section Title</a>
                             </li>
                             <li class="nav-item mx-1 my-1">
                                 <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-feature-image-tab" data-toggle="pill"
@@ -127,6 +125,7 @@
         </div>
 </section>
 @endsection
+
 @section('js')
 @include('admin.page.partials.script')
 @endsection

@@ -3,15 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CallToAction;
+use App\Models\DocumentRequired;
 use App\Models\Faq;
 use App\Models\Feature;
+use App\Models\FeatureImage;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\HeroSection;
 use App\Models\IntroductionSection;
 use App\Models\Page;
 use App\Models\PageGroup;
+use App\Models\Procedure;
+use App\Models\SectionTitle;
 use App\Models\Testimonial;
+use App\Models\WhyChooseUs;
+use App\Models\WhyUsImage;
 
 class PageController extends Controller
 {
@@ -43,30 +50,34 @@ class PageController extends Controller
         $testimonials = Testimonial::where('page_id', $page->id)->get();
         $heroSection = HeroSection::where('page_id', $page->id)->first();
         $introSection = IntroductionSection::where('page_id', $page->id)->first();
-        $faq = Faq::where('page_id', $page->id)->get();
-        $features = Feature::where('page_id', $page->id)->get();
+        $sectionTitle = SectionTitle::where('page_id', $page->id)->first();
+        $featureImage = FeatureImage::where('page_id', $page->id)->first();
+        $procedure = Procedure::where('page_id', $page->id)->first();
+        $callToAction = CallToAction::where('page_id', $page->id)->first();
+        $faq = Faq::where('page_id', $page->id)->first();
+        $feature = Feature::where('page_id', $page->id)->first();
+        $whyChooseUs = WhyChooseUs::where('page_id', $page->id)->first();
+        $documentRequired = DocumentRequired::where('page_id', $page->id)->first();
+        $whyUsImage = WhyUsImage::where('page_id', $page->id)->first();
+        
         $intro_types = ['single_image', 'double_image', 'tripple_image'];
         $section_types = [
-            'testimonial',
-            'faq',
-            'feature',
-            'procedure',
-            'why_choose_us',
-            'document',
-            'call_to_action'
-        ];
-        return view('admin.page.detail', compact(
-            'page',
             'testimonials',
             'heroSection',
             'introSection',
+            'sectionTitle',
+            'featureImage',
+            'procedure',
+            'callToAction',
             'faq',
-            'features',
-            'intro_types',
-            'section_types'
-        ));
+            'feature',
+            'whyChooseUs',
+            'document',
+            'whyUsImage',
+            'intro_types'
+        ];
+        return view('admin.page.detail', compact('page', 'testimonials', 'heroSection', 'introSection', 'faq', 'feature', 'intro_types', 'section_types'));
     }
-
 
     public function addGroupstoPage($id)
     {

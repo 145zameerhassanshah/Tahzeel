@@ -1,14 +1,14 @@
 @extends('front.layouts.master')
-@section('title', 'Vat Registration for Business')
-@section('content')
 
+@section('title', 'Vat Registration for Business')
+
+@section('content')
 
 @if(isset($hero_sections))
 @foreach($hero_sections as $hero_section)
 @include('front.partials._hero_section')
 @endforeach
 @endif
-
 
 @if(isset($intro_sections))
 @foreach($intro_sections as $intro_section)
@@ -38,8 +38,8 @@ $procedure_title = $section_titles->where('type', 'procedure')->first();
 @if (isset($procedures) && isset($procedure_title))
 @include('front.partials._procedures')
 @endif
-{{-- Key Features --}}
 
+{{-- Key Features --}}
 @if (isset($feature_title->title))
 <div class="container">
     <div class="row text-center mt-10 mb-12">
@@ -137,4 +137,4 @@ $faq_title = $section_titles->where('type', 'faq')->first();
 
 @include('front.partials.amr-services-cards')
 
-@endsection 
+@endsection

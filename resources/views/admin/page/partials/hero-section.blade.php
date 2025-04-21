@@ -194,6 +194,8 @@
                                     <th>{{ __('Image') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Description') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>

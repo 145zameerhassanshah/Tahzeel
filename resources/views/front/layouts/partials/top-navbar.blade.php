@@ -59,9 +59,7 @@
                     <div class="navbar-other w-100 d-flex ms-auto">
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <li class="nav-item dropdown language-select text-uppercase">
-                                <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    {{ strtoupper(app()->getLocale()) }}
-                                </a>
+                                <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{ strtoupper(app()->getLocale()) }}</a>
                                 <ul class="dropdown-menu text-center">
                                     <li><a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">{{ __('header.en') }}</a></li>
                                     <li><a class="dropdown-item" href="{{ route('lang.switch', 'ar') }}">{{ __('header.ar') }}</a></li>
@@ -70,12 +68,9 @@
                             <li class="nav-item d-none d-md-block">
                                 <a href="{{ route('front.contact.us') }}" class="btn btn-sm btn-success rounded-pill text-white">{{ __('header.apply_now') }}</a>
                             </li>
-                            <li class="nav-item d-lg-none">
-                                <button class="hamburger offcanvas-nav-btn"><span></span></button>
-                            </li>
+                            <li class="nav-item d-lg-none"><button class="hamburger offcanvas-nav-btn"><span></span></button></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </nav>

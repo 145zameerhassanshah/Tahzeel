@@ -14,7 +14,6 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="modal-body">
                         <input type="hidden" name="page_id" value="{{ $page->id }}">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="section_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
@@ -159,13 +158,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('All SectionTitles') }}</h3>
-
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#sectiontitleModal">
                             <i class="fas fa-plus"></i> {{ __('Add New') }}
                         </button>
                     </div>
-
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>

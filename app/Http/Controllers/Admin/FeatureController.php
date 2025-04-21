@@ -53,7 +53,7 @@ class FeatureController extends Controller
         ]);
         $feature = Feature::create([
             'page_id' => $request->page_id,
-            // 'icon' => $request->icon, // Directly use the icon value
+            'icon' => $request->icon, // Directly use the icon value
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'description' => $request->description,

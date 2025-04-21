@@ -208,14 +208,16 @@
                                     <th>{{ __('Icon') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Description') }}</th>
+                                    <th>{{ __('Order No.') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody id="featureimgsTableBody">
                                 <tr>
-                                    <td colspan="5" class="text-center">
-                                        <i class="fas fa-spinner fa-spin"></i> Loading
-                                        featureimgs...
+                                    <td colspan="8" class="text-center">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading featureimgs...
                                     </td>
                                 </tr>
                             </tbody>

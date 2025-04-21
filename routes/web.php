@@ -181,7 +181,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
         Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
-        Route::post('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
+        Route::delete('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
         // Feature Routes
         // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
@@ -413,7 +413,6 @@ Route::middleware(['auth', 'status'])->group(function () {
 
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
-
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
 });

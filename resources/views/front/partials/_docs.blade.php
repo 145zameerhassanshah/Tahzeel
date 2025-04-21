@@ -4,10 +4,7 @@
             <div class="col-md-8 text-center">
                 <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! $document_title->subtitle !!}</h2>
                 <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">{!! $document_title->title !!}</h3>
-
-                {{-- <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.
-
-                </p> --}}
+                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.</p>
             </div>
         </div>
         <div class="row">

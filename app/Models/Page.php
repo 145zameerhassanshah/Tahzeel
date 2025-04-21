@@ -65,5 +65,4 @@ class Page extends Model
     {
         return $this->hasMany(FeatureImage::class);
     }
-
 }
