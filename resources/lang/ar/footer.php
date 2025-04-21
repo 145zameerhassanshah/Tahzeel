@@ -1,0 +1,20 @@
+<?php
+return [
+    'Ready to simplify your visa process?' => 'هل أنت مستعد لتبسيط عملية التأشيرة الخاصة بك؟',
+    'Contact our experts today!' => 'تواصل مع خبرائنا اليوم!',
+    '© 2025 Tah-zeel.' => '© 2025 تـسهـيـل.',
+    'All rights reserved.' => 'جميع الحقوق محفوظة.',
+    'Get in Touch' => 'تواصل معنا',
+    'Dubai, United Arab Emirates' => 'دبي، الإمارات العربية المتحدة',
+    'Learn More' => 'اعرف المزيد',
+    'About Us' => 'من نحن',
+    'Our Story' => 'قصتنا',
+    'Projects' => 'مشاريعنا',
+    'Terms of Use' => 'شروط الاستخدام',
+    'Privacy Policy' => 'سياسة الخصوصية',
+    'Our Newsletter' => 'نشرتنا البريدية',
+    'Subscribe to our newsletter to get our news & deals delivered to you.' => 'اشترك في نشرتنا لتصلك آخر الأخبار والعروض.',
+    'Email Address' => 'البريد الإلكتروني',
+    'Join' => 'اشترك',
+    'Contact Us' => 'اتصل بنا',
+];

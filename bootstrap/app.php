@@ -1,12 +1,12 @@
 <?php
-
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Localization;
 use App\Http\Middleware\CheckUserStatus;
+use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\User;
-use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,10 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'status' => CheckUserStatus::class,
             'admin' => Admin::class,
             'user' => User::class,
-            "locale"=>Localization::class,
+            "locale" => Localization::class,
+            "SetLocale" => SetLocale::class,
         ]);
-       
-    })
-    ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
+    }) ->withExceptions(function (Exceptions $exceptions) {})->create();

@@ -77,15 +77,10 @@ return [
     | set to any locale for which you plan to have translation strings.
     |
     */
-
-
-
     'locale' => 'en', // Default locale
     'fallback_locale' => 'en',
     'available_locales' => ['en', 'ar'],
-
-
-
+    'supported_locales' => ['en', 'ar'],
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
     /*
@@ -98,17 +93,13 @@ return [
     | are secure. You should do this prior to deploying the application.
     |
     */
-
     'cipher' => 'AES-256-CBC',
-
     'key' => env('APP_KEY'),
-
     'previous_keys' => [
         ...array_filter(
             explode(',', env('APP_PREVIOUS_KEYS', ''))
         ),
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
@@ -121,10 +112,9 @@ return [
     | Supported drivers: "file", "cache"
     |
     */
-
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
+    // Illuminate\Translation\TranslationServiceProvider::class,
 ];

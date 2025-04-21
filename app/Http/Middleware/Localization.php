@@ -10,21 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Localization
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function handle(Request $request, Closure $next): Response
     {
+        // $locale = session('locale', config('app.locale'));
         // Check if a 'locale' is set in the session
         if (Session::has('locale')) {
             // Set the application locale to the session value
             App::setLocale(Session::get('locale'));
         }
-
         return $next($request);
     }
 }

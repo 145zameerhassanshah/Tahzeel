@@ -98,3 +98,62 @@ git checkout
 
 php artisan serve --port=8001
 php artisan serve
+
+
+
+======================================= BACKUP CODE =======================================
+<!-- <a class="nav-link dropdown-toggle" href="/amerServices.html" data-bs-toggle="dropdown" onclick="window.location='{{ route('front.amr.services') }}'; return false;">
+Amer Services</a> -->
+<!-- <li class="nav-item"><a class="nav-link " href="{{ route('front.index') }}">{{ __('header.home') }}</a></li> -->
+
+<!-- <li class="nav-item"><a class="dropdown-item" href="{{ route('setLanguage', ['locale' => 'en']) }}">En</a></li>
+<li class="nav-item"><a class="dropdown-item" href="{{ route('setLanguage', ['locale' => 'ar']) }}">Ar</a></li> -->
+{{ __('header.home') }}
+
+ChatGpt Prompt:-
+I'm a complete beginner on ubuntu wanna use for web dev, I want to reach expert level as fast as possible. Design a step-by-step roadmap from beginner to advanced including key topics how to do each and every process cammands
+
+
+php artisan tinker
+$service = App\Models\Service::first();
+$service->setTranslations('name', ['en' => 'Amer Services', 'ar' => 'خدمات آمر']);
+$service->save();
+
+
+
+
+
+Navigation / Header
+- Home — الرئيسية
+- About Us — من نحن
+- Amer Services — خدمات آمر
+- Tasheel Services — خدمات تسهيل
+- Other Services — خدمات أخرى
+- Blog — المدونة
+- Contact — اتصل بنا
+- En — الإنجليزية
+- Apply Now — قدّم الآن
+------------------------------------------------------------------------------------------
+Main Section
+- Ready to simplify your visa process?هل أنت مستعد لتبسيط عملية التأشيرة الخاصة بك؟
+- Contact our experts today!تواصل مع خبرائنا اليوم!
+------------------------------------------------------------------------------------------
+Footer
+- © 2025 Tah-zeel. © 2025 تـسهـيـل.
+- All rights reserved. — جميع الحقوق محفوظة.
+- Get in Touch — تواصل معنا
+- Dubai, United Arab Emirates — دبي، الإمارات العربية المتحدة
+------------------------------------------------------------------------------------------
+Links Section
+- Learn More — اعرف المزيد
+- About Us — من نحن
+- Our Story — قصتنا
+- Projects — مشاريعنا
+- Terms of Use — شروط الاستخدام
+- Privacy Policy — سياسة الخصوصية
+------------------------------------------------------------------------------------------
+Newsletter
+- Our Newsletter — نشرتنا البريدية
+- Subscribe to our newsletter to get our news & deals delivered to you. — اشترك في نشرتنا لتصلك آخر الأخبار والعروض.
+- Email Address — البريد الإلكتروني
+- Join — اشترك

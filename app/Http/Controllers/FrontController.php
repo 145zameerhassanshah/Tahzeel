@@ -93,11 +93,6 @@ class FrontController extends Controller
         return view('front.otherPages.visaCancellation');
     }
 
-    public function dhaServices()
-    {
-        return view('front.otherPages.dhaServices');
-    }
-
     public function notaryDocumentAuthentication()
     {
         return view('front.otherPages.notaryDocumentAuthentication');

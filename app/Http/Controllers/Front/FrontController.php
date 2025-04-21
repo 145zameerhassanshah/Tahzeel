@@ -1,32 +1,37 @@
 <?php
+// PHP's cleaner grouped import
 namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
-
+// 🔹 Helper Functions
 require_once app_path('Helpers/LanguageHelpers.php');
-
-use App\Models\Enquiry;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Service;
-use Illuminate\Http\Request;
-use App\Mail\InquiryEmail;
-use App\Models\User;
-use App\Models\Page;
-use App\Models\Group;
-use App\Models\PageGroup;
-use App\Models\CallToAction;
-use App\Models\Faq;
-use App\Models\IntroductionSection;
-use App\Models\Feature;
-use App\Models\HeroSection;
-use App\Models\Testimonial;
-use App\Models\SectionTitle;
-use App\Notifications\InquiryNotification;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
 use App\Helpers\LanguageHelpers;
-use App\Models\DocumentRequired;
-use App\Models\FeatureImage;
-use App\Models\Procedure;
+// 🔹 Laravel Facades
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+// 🔹 Mail & Notifications
+use App\Mail\InquiryEmail;
+use App\Notifications\InquiryNotification;
+// 🔹 Models
+use App\Models\{
+    CallToAction,
+    DocumentRequired,
+    Faq,
+    Feature,
+    FeatureImage,
+    Group,
+    HeroSection,
+    IntroductionSection,
+    Page,
+    PageGroup,
+    Procedure,
+    SectionTitle,
+    Testimonial,
+    Service,
+    Enquiry,
+    User
+};
 
 class FrontController extends Controller
 {
@@ -79,6 +84,11 @@ class FrontController extends Controller
         return view('front.otherPages.residencyVisa');
     }
 
+    public function dhaServices()
+    {
+        return view('front.otherPages.dhaServices');
+    }
+
     public function openFile()
     {
         return view('front.otherPages.openfile');
@@ -94,10 +104,6 @@ class FrontController extends Controller
         return view('front.otherPages.visaCancellation');
     }
 
-
-
-
-
     public function DEDbusinessLicense()
     {
         return view('front.otherPages.DED-businessLicense');
@@ -106,11 +112,6 @@ class FrontController extends Controller
     public function test()
     {
         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
-
-
-
-
-
         if (isset($service)) {
             return view('front.otherPages.test', compact('service'));
         } else {
@@ -151,10 +152,4 @@ class FrontController extends Controller
             'message' => 'Inquiry submitted successfully!',
         ]);
     }
-
-
-
-
-
-
 }
