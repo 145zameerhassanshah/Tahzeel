@@ -6,8 +6,7 @@
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-8 col-xl-9 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">
-                    <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">Your Gateway to <span
-                            class="underline-3 style-2 yellow">Global</span> Opportunities</h1>
+                        {!! __('about-us.hero_title') !!}
                     <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15">At Tehzeel Visa Consultancy, we simplify
                         the visa process, helping you explore new horizons with ease and confidence. Your journey starts
                         here.</p>
