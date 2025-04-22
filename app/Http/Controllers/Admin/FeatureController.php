@@ -44,6 +44,7 @@ class FeatureController extends Controller
     // Store Feature
     public function store(Request $request)
     {
+        
         $request->merge(json_decode($request->getContent(), true));
         $request->validate([
             'page_id' => 'required',
@@ -59,7 +60,7 @@ class FeatureController extends Controller
         ]);
         $feature = Feature::create([
             'page_id' => $request->page_id,
-            'icon' => $request->icon, // Directly use the icon value
+            'icon' => $request->icon,
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'description' => $request->description,
@@ -110,7 +111,7 @@ class FeatureController extends Controller
         $feature->title = json_encode($request->title);
         $feature->subtitle = json_encode($request->subtitle);
         $feature->description = json_encode($request->description);
-        $feature->icon = json_encode($request->icon);
+        $feature->icon = $request->icon;
         $feature->order_no = $request->order_no;
         $feature->status = $request->status;
         $feature->save();

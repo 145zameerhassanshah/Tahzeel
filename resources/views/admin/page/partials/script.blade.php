@@ -1998,9 +1998,9 @@
                     en: $('[name="description_en"]').val().trim(),
                     ar: $('[name="description_ar"]').val().trim()
                 },
-                icon: $('[name="icon"]').val().trim(),
-                order_no: $('[name="order_no"]').val(),
-                status: $('[name="status"]').val()
+                icon: $("#feature_icon").val().trim(),
+                order_no: $("#feature_order_no").val() || 0,
+                status: $("#feature_status").val(),
             };
             // Simple AJAX call
             $.ajax({
