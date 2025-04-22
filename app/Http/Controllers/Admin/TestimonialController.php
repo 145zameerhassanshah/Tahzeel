@@ -55,7 +55,7 @@ class TestimonialController extends Controller
             'designation.ar' => 'required|string',
             'order_no' => 'nullable|integer|min:0',
             'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
         // Create new Testimonial
         $testimonial = new Testimonial();
@@ -115,7 +115,7 @@ class TestimonialController extends Controller
             'designation.en' => 'required|string',
             'designation.ar' => 'required|string',
             'status' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $testimonial = Testimonial::find($id);

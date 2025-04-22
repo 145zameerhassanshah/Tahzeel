@@ -121,8 +121,8 @@
         </div>
     @endif
 
-    @if (isset($why_choose_us))
-        @include('front.partials.why-choose')
+    @if (isset($why_us_images))
+        @include('front.partials._why_us_image')
     @endif
 
     @if (isset($call_to_actions))
