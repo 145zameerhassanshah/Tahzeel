@@ -55,7 +55,7 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label>{{ __('Status') }}</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" id="feature_status">
                                 <option value="active">{{ __('Active') }}</option>
                                 <option value="inactive">{{ __('Inactive') }}</option>
                             </select>
@@ -63,12 +63,12 @@
                         </div>
                         <div class="col-md-6">
                             <label>{{ __('Order No') }}</label>
-                            <input type="text" class="form-control" name="order_no">
+                            <input type="text" class="form-control" name="order_no" id="feature_order_no">
                             <span class="text-danger error" id="error_order_no"></span>
                         </div>
                         <div class="col-md-6">
                             <label>{{ __('Icon') }}</label>
-                            <input type="text" class="form-control" name="icon" id="icon">
+                            <input type="text" class="form-control" name="icon" id="feature_icon">
                             <span class="text-danger error" id="error_icon"></span>
                         </div>
                         
