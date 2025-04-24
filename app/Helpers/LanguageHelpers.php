@@ -16,7 +16,7 @@ if (!function_exists('getLocalizedField')) {
     {
         // If already an array, use it directly
         if (is_array($field)) {
-            return $field[$locale] ?? reset($field); // fallback to first if locale missing
+            return $field[$locale] ?? reset($field);
         }
         // Decode if it's a string
         $decodedField = json_decode($field, true);
@@ -182,6 +182,29 @@ if (!function_exists('localizeSectionTitle')) {
         $sectionTitle->title = getLocalizedField($sectionTitle->title, $locale);
         $sectionTitle->subtitle = getLocalizedField($sectionTitle->subtitle, $locale);
         return $sectionTitle;
+    }
+}
+
+if (!function_exists('localize_blog')) {
+    function localize_blog($blog, $locale)
+    {
+        if (!$blog) {
+            return null;
+        }
+        $blog->title = getLocalizedField($blog->title, $locale);
+        $blog->content = getLocalizedField($blog->content, $locale);
+        return $blog;
+    }
+}
+
+if (!function_exists('localize_blog_category')) {
+    function localize_blog_category($blogCategory, $locale)
+    {
+        if (!$blogCategory) {
+            return null;
+        }
+        $blogCategory->name = getLocalizedField($blogCategory->name, $locale);
+        return $blogCategory;
     }
 }
 

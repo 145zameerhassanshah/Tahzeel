@@ -17,6 +17,8 @@ use App\Mail\InquiryEmail;
 use App\Notifications\InquiryNotification;
 // 🔹 Models
 use App\Models\{
+    Bcategory,
+    Blog,
     CallToAction,
     DocumentRequired,
     Faq,
@@ -56,10 +58,26 @@ class FrontController extends Controller
     {
         return view('front.otherPages.amrServices');
     }
+
     public function blog()
     {
-        return view('front.otherPages.blog');
+        app()->setLocale(session('locale', 'en'));
+        $locale = app()->getLocale();
+        $blogs = Blog::where('status', '1')->get();
+        $categories = Bcategory::where('status', '1')->get();
+        $localized_blog = $blogs->map(function ($item) use ($locale) {
+            return localize_blog($item, $locale);
+        });
+        $localized_categories = $categories->map(function ($item) use ($locale) {
+            return localize_blog_category($item, $locale);
+        });
+        return view('front.otherPages.blog', [
+            'blogs' => $localized_blog,
+            'bCategories' => $localized_categories,
+        ]);
     }
+
+
     public function contactUs()
     {
         return view('front.otherPages.contactUs');

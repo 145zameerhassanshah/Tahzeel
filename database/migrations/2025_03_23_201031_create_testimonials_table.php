@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('page_id')->onDelete('cascade');  // Relating to a group
             $table->json('name');
-            $table->json('feedback');                      // {"en": "Great service!", "ar": "خدمة رائعة!"}
+            $table->json('feedback');                           // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->json('designation')->nullable();
-            $table->integer('order_no')->default(0);       // Order for sorting testimonials
+            $table->integer('order_no')->default(0);            // Order for sorting testimonials
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('image')->nullable();
             $table->timestamps();

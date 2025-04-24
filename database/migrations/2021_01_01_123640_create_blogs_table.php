@@ -6,20 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBlogsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->integer('bcategory_id')->nullable();
-            $table->string('title', 255)->nullable();
+            $table->json('title')->nullable();
+            $table->json('content')->nullable();
             $table->string('slug', 255)->nullable();
             $table->string('image', 255)->nullable();
-            $table->text('content')->nullable();
             $table->tinyInteger('status')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
@@ -27,12 +22,6 @@ class CreateBlogsTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('blogs');
