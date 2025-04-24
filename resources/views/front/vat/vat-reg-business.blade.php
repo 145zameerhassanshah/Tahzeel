@@ -125,6 +125,9 @@ $faq_title = $section_titles->where('type', 'faq')->first();
 </div>
 @endif
 
+    @if (isset($why_choose_us))
+        @include('front.partials.why-choose')
+    @endif
 
 @if (isset($call_to_actions))
 @include('front.partials._cta')

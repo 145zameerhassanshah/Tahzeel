@@ -38,7 +38,8 @@ $hasTestimonialContent = isset($testimonial_title) && (
                         <blockquote class="icon mb-0">
                           <p>“{{ $testimonial->feedback }}”</p>
                           <div class="blockquote-details">
-                            <img class="rounded-circle w-12" src="{{ asset('front') }}/dev/assets/img/avatars/te1.jpg" srcset="./assets/img/avatars/te1@2x.jpg 2x" alt="" />
+
+                            <img class="rounded-circle w-12" src="{{ asset('assets/admin/uploads/testimonial/' . $testimonial->image) }}" alt="" />
                             <div class="info">
                               <h5 class="mb-1">{{ $testimonial->name }}</h5>
                               <p class="mb-0">{{ $testimonial->designation }}</p>
