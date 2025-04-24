@@ -105,14 +105,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/update-page-groups/{id}', [PageController::class, 'update'])->name('admin.page.update-groups');
         Route::post('/delete--page-groups/{id}', [PageController::class, 'deletePageGroup'])->name('admin.page.delete-groups');
 
-        // Group Routes:-
-        Route::get('/groups', [GroupController::class, 'index'])->name('admin.group.index');
-        Route::get('/add-group', [GroupController::class, 'create'])->name('admin.group.create');
-        Route::post('/store-group', [GroupController::class, 'store'])->name('admin.group.store');
-        Route::get('/edit-group/{id}', [GroupController::class, 'edit'])->name('admin.group.edit');
-        Route::post('/update-group/{id}', [GroupController::class, 'update'])->name('admin.group.update');
-        Route::post('/delete-group/{id}', [GroupController::class, 'destroy'])->name('admin.group.delete');
-
         // Partner Routes:-
         Route::get('/partners', [PartnerController::class, 'index'])->name('admin.partner.index');
         Route::get('/partner/add', [PartnerController::class, 'add'])->name('admin.partner.add');

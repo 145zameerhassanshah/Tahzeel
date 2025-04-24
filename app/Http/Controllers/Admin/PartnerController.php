@@ -16,6 +16,7 @@ class PartnerController extends Controller
 
     public function add()
     {
+
         return view('admin.partner.add');
     }
 
@@ -80,7 +81,7 @@ class PartnerController extends Controller
         if ($request->hasFile('image')) {
 
             @unlink('assets/admin/uploads/partner/' . $partner->image);
-            
+
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $image = time() . rand() . '.' . $extension;
