@@ -95,8 +95,6 @@ class FeatureController extends Controller
             'status' => $feature->status,
         ]);
     }
-
-    // Update Feature
     public function update(Request $request, $id)
     {
         $request->validate([
