@@ -405,13 +405,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
         Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
         Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
+        Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     });
 
 
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
-    Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
+
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
 });
