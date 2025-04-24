@@ -14,7 +14,6 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="modal-body">
                         <input type="hidden" name="page_id" value="{{ $page->id }}">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
@@ -33,30 +32,25 @@
                                 <input type="text" class="form-control" id="subtitle_en" name="subtitle[en]">
                                 <span class="text-danger error" id="error_subtitle_en"></span>
                             </div>
-
                             <div class="col-md-6">
                                 <label for="subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="subtitle_ar" name="subtitle[ar]">
                                 <span class="text-danger error" id="error_subtitle_ar"></span>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="description_en" name="description[en]">
                                 <span class="text-danger error" id="error_description_en"></span>
                             </div>
-
                             <div class="col-md-6">
                                 <label for="description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="description_ar" name="description[ar]">
                                 <span class="text-danger error" id="error_description_ar"></span>
                             </div>
                         </div>
-
                         <div class="row mt-3">
-
                             <div class="col-md-6">
                                 <label for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" id="status" name="status">
@@ -64,22 +58,18 @@
                                     <option value="inactive">{{ __('Inactive') }}</option>
                                 </select>
                             </div>
-
                             <div class="col-md-6">
                                 <label for="order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" id="order_no" name="order_no">
                                 <span class="text-danger error" id="error_order_no"></span>
                             </div>
-
                             <div class="col-md-6">
                                 <label for="icon">{{ __('Icon') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="icon" name="icon">
                                 <span class="text-danger error" id="error_icon"></span>
                             </div>
-
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
                         <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
@@ -188,14 +178,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                    <h3 class="card-title">{{ __('All Why Choose Us') }}</h3>
-
+                        <h3 class="card-title">{{ __('All Why Choose Us') }}</h3>
                         <button class="btn btn-primary btn-sm float-right"
                             data-toggle="modal" data-target="#whyusModal">
                             <i class="fas fa-plus"></i> {{ __('Add New') }}
                         </button>
                     </div>
-
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>

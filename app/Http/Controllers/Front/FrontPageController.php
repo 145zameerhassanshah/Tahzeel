@@ -1,37 +1,43 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+// Helpers
 require_once app_path('Helpers/LanguageHelpers.php');
-use App\Http\Controllers\Controller;
-use App\Models\Page;
-use App\Models\Procedure;
-use App\Models\CallToAction;
-use App\Models\SectionTitle;
-use App\Models\IntroductionSection;
-use App\Models\HeroSection;
-use App\Models\Testimonial;
-use App\Models\DocumentRequired;
-use App\Models\FeatureImage;
-use App\Models\PageGroup;
-use App\Notifications\InquiryNotification;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
 use App\Helpers\LanguageHelpers;
-use Illuminate\Http\Request;
-use App\Models\WhyChooseUs;
-use App\Models\WhyUsImage;
+// Controllers
+use App\Http\Controllers\Controller;
+// Models
+use App\Models\{
+    Page,
+    Procedure,
+    CallToAction,
+    SectionTitle,
+    IntroductionSection,
+    HeroSection,
+    Testimonial,
+    DocumentRequired,
+    FeatureImage,
+    PageGroup,
+    WhyChooseUs,
+    WhyUsImage,
+    Feature,
+    Enquiry,
+    Service,
+    User,
+    Faq
+};
+// Mail/Notifications
 use App\Mail\InquiryEmail;
-use App\Models\Feature;
-use App\Models\Enquiry;
-use App\Models\Service;
-use App\Models\User;
-use App\Models\Faq;
+use App\Notifications\InquiryNotification;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
+
 
 class FrontPageController extends Controller
 {
-    // 'hero', 'section_title' , 'intro_section', 'features', 'faq', 'why_choose_us',
-    //'testimonials', 'documents_required', 'procedure', 'cta','img_features'
+    // 'hero', 'section_title' , 'intro_section', 'features', 'faq', 'why_choose_us', 'testimonials', 'documents_required', 'procedure', 'cta','img_features'
     public function vatBusiness()
     {
         app()->setLocale(session('locale', 'en'));
@@ -89,10 +95,10 @@ class FrontPageController extends Controller
         $data['why_choose_us'] = $page_detail->whyChooseUs->map(function ($item) use ($locale) {
             return localizeWhyChooseUs($item, $locale);
         });
+        // dd($data['why_choose_us']);
         $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
             return localizeWhyUsImage($item, $locale);
         });
-
         return view('front.vat.vat-reg-business', $data);
     }
 

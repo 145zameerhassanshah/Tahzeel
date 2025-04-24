@@ -67,7 +67,7 @@
 
                             <div class="col-md-6">
                                 <label for="order_no">{{ __('Order No)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="order_no" name="order_no">
+                                <input type="number" class="form-control" id="order_no" name="order_no">
                                 <span class="text-danger error" id="error_order_no"></span>
                             </div>
 

@@ -2,11 +2,9 @@
     <div class="container py-10 py-md-12 mb-15">
         <div class="row d-flex justify-content-center mt-5 mb-12">
             <div class="col-md-6 text-center">
-                <h2 class="display-5">Get In Touch With <span class="text-gradient gradient-6 display-1">Tah-zeel</span>
-                </h2>
-                <p class="">
-                    We're here to assist you with any inquiries or concerns. Reach out to our team, and we'll get
-                    back to you promptly to help you with all your visa, business, and legal needs.
+                {!! __('contact-us.contactus_title') !!}
+                <p>
+                    {!! __('contact-us.contactus_description') !!}
                 </p>
             </div>
         </div>
@@ -74,10 +72,10 @@
                                     {{-- <input type="button" id="submitButton"
                                         class="btn btn-success rounded-pill btn-send mb-3 text-white"
                                         value="Send message"> --}}
-                                        <button type="button" id="submitButton" class="btn btn-success rounded-pill btn-send mb-3 text-white">
-                                            Send message
-                                            <span id="spinner" class="spinner-border spinner-border-sm ms-2" role="status" style="display: none;"></span>
-                                        </button>
+                                    <button type="button" id="submitButton" class="btn btn-success rounded-pill btn-send mb-3 text-white">
+                                    {!! __('contact-us.send_message') !!}
+                                        <span id="spinner" class="spinner-border spinner-border-sm ms-2" role="status" style="display: none;"></span>
+                                    </button>
                                     <p class="text-muted"><strong>*</strong> These fields are required.</p>
                                 </div>
                             </div>
@@ -89,12 +87,11 @@
                             <div class="card-body p-6 shadow-lg">
                                 <div class="d-flex flex-row">
                                     <div>
-                                        <span class="icon btn btn-circle btn-lg btn-soft-red pe-none me-4"><i
-                                                class="uil uil-location-pin-alt"></i></span>
+                                        <span class="icon btn btn-circle btn-lg btn-soft-red pe-none me-4"><i class="uil uil-location-pin-alt"></i></span>
                                     </div>
                                     <div>
-                                        <h4 class="mb-1 text-red">Address</h4>
-                                        <p class="mb-0 fw-normal">{{ $setting->address }}</p>
+                                        <h4 class="mb-1 text-red">{!! __('contact-us.Address') !!}</h4>
+                                        <p class="mb-0 fw-normal">Dubai, United Arab Emirates</p>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +106,7 @@
                                                 class="uil uil-phone-volume"></i></span>
                                     </div>
                                     <div>
-                                        <h4 class="mb-1 text-green">Phone</h4>
+                                        <h4 class="mb-1 text-green">{!! __('contact-us.Phone') !!}</h4>
                                         <p class="mb-0 fw-normal">{{ $setting->phone_no }}</p>
                                     </div>
                                 </div>
@@ -125,7 +122,7 @@
                                                 class="uil uil-envelope"></i></span>
                                     </div>
                                     <div>
-                                        <h4 class="mb-1 text-yellow">Email</h4>
+                                        <h4 class="mb-1 text-yellow">{!! __('contact-us.Email') !!}</h4>
                                         <p class="mb-0 fw-normal">{{ $setting->email }}</p>
                                     </div>
                                 </div>
