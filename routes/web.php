@@ -377,17 +377,24 @@ Route::middleware(['auth', 'status'])->group(function () {
     //     }
     //     return redirect()->back();
     // })->name('setLanguage');
+    Route::get('/lang/{locale}', function ($locale) {
+        if (in_array($locale, config('app.available_locales'))) {
+            session(['locale' => $locale]);
+            app()->setLocale($locale);
+        }
+        return redirect()->back();
+    })->name('lang.switch');
 
 
     Route::middleware('SetLocale')->group(function () {
         // Language Switcher Route for changing the language
-        Route::get('/lang/{locale}', function ($locale) {
-            if (in_array($locale, config('app.available_locales'))) {
-                session(['locale' => $locale]);
-                app()->setLocale($locale);
-            }
-            return redirect()->back();
-        })->name('lang.switch');
+        // Route::get('/lang/{locale}', function ($locale) {
+        //     if (in_array($locale, config('app.available_locales'))) {
+        //         session(['locale' => $locale]);
+        //         app()->setLocale($locale);
+        //     }
+        //     return redirect()->back();
+        // })->name('lang.switch');
 
         // Frontend routes
         Route::get('/', [FrontController::class, 'index'])->name('front.index');

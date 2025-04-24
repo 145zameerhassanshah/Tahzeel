@@ -1,6 +1,6 @@
 <div class="modal fade" id="testimonialModal" tabindex="-1" role="dialog" aria-labelledby="testimonialModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document"> <!-- Increase width -->
+    <div class="modal-dialog modal-lg" role="document"><!-- Increase width -->
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Add Testimonial') }}</h5>
