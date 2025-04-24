@@ -3,6 +3,7 @@ $hasTestimonialContent = isset($testimonial_title) && (
 !empty($testimonial_title->title) ||
 !empty($testimonial_title->subtitle)
 );
+
 @endphp
 @if(($testimonials && $testimonials->isNotEmpty()) || $hasTestimonialContent)
 <!-- start testimonial -->
@@ -33,12 +34,12 @@ $hasTestimonialContent = isset($testimonial_title) && (
                     <div class="card">
                       <div class="card-body">
                         <blockquote class="icon mb-0">
-                          <p>“{{ $testimonial->feedback }}”</p>
+                          <p>{{ $testimonial->getTranslation('feedback', app()->getLocale()) }}</p>
                           <div class="blockquote-details">
 
                             <img class="rounded-circle w-12" src="{{ asset('assets/admin/uploads/testimonial/' . $testimonial->image) }}" alt="" />
                             <div class="info">
-                              <h5 class="mb-1">{{ $testimonial->name }}</h5>
+                              <h5 class="mb-1">{{ $testimonial->getTranslation('name','ar') }}</h5>
                               <p class="mb-0">{{ $testimonial->designation }}</p>
                             </div>
                           </div>

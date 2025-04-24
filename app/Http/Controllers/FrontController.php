@@ -29,6 +29,7 @@ use App\Models\Procedure;
 
 class FrontController extends Controller
 {
+    
     public function index()
     {
         $data['services'] = Service::where('status', 'publish')->orderBy('order_no', 'asc')->get();
@@ -110,41 +111,41 @@ class FrontController extends Controller
         $page = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
         $pageGroups = PageGroup::where('page_id', $page->id)->get();
 
-            // Get group IDs
-            $hero_section_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
-            $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
-            $docs_group_id = $pageGroups->where('group_type', 'documents_required')->pluck('group_id')->first();
-            $faq_group_id = $pageGroups->where('group_type', 'faq')->pluck('group_id')->first();
-            $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
+        // Get group IDs
+        $hero_section_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
+        $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
+        $docs_group_id = $pageGroups->where('group_type', 'documents_required')->pluck('group_id')->first();
+        $faq_group_id = $pageGroups->where('group_type', 'faq')->pluck('group_id')->first();
+        $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
 
 
-              // Fetching only hero_section with localization
-              $hero_section_data = HeroSection::where('group_id', $hero_section_id)->first();
-              $intro_section_data = IntroductionSection::where('group_id', $intro_section_id)->first();
-              $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
-                                        return localizeSectionTitle($sectionTitle, $locale);
-                                    });
-            $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs_data) use ($locale) {
-                                        return localizeDocumentRequired($docs_data, $locale);
-                                    });
+        // Fetching only hero_section with localization
+        $hero_section_data = HeroSection::where('group_id', $hero_section_id)->first();
+        $intro_section_data = IntroductionSection::where('group_id', $intro_section_id)->first();
+        $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
+            return localizeSectionTitle($sectionTitle, $locale);
+        });
+        $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs_data) use ($locale) {
+            return localizeDocumentRequired($docs_data, $locale);
+        });
 
-            $faqs_data = Faq::where('group_id', $faq_group_id)->get()->map(function ($faqs_data) use ($locale) {
-                return localizeFaq($faqs_data, $locale);
-            });
-
-
-
-              // Apply the localization using your helper function
-              $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
-              $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
-              $data['docs'] = $docs_data;
-              $data['faqs'] = $faqs_data;
-              $data['feature_title'] = $section_title_data->where('type', 'feature')->first();
+        $faqs_data = Faq::where('group_id', $faq_group_id)->get()->map(function ($faqs_data) use ($locale) {
+            return localizeFaq($faqs_data, $locale);
+        });
 
 
 
-            return view('front.vat.vat-reg-business', $data);
-        }
+        // Apply the localization using your helper function
+        $data['hero_section'] = localizeHeroSection($hero_section_data, $locale);
+        $data['intro_section'] = localizeIntroductionSection($intro_section_data, $locale);
+        $data['docs'] = $docs_data;
+        $data['faqs'] = $faqs_data;
+        $data['feature_title'] = $section_title_data->where('type', 'feature')->first();
+
+
+
+        return view('front.vat.vat-reg-business', $data);
+    }
 
 
     public function vatReturnFilling()
@@ -163,7 +164,7 @@ class FrontController extends Controller
         $hero_ection_id = $pageGroups->where('group_type', 'hero')->pluck('group_id')->first();
         $intro_section_id = $pageGroups->where('group_type', 'intro_section')->pluck('group_id')->first();
         $docs_group_id = $pageGroups->where('group_type', 'documents_required')->pluck('group_id')->first();
-        $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck( 'group_id');
+        $section_title_ids = $pageGroups->where('group_type', 'section_title')->pluck('group_id');
         $img_feature_id = $pageGroups->where('group_type', 'feature_img')->pluck('group_id')->first();
         $procedure_id = $pageGroups->where('group_type', 'procedure')->pluck('group_id')->first();
         $cta_id = $pageGroups->where('group_type', 'cta')->pluck('group_id')->first();
@@ -176,25 +177,25 @@ class FrontController extends Controller
         $intro_section_data = IntroductionSection::where('group_id', $intro_section_id)->first();
 
         $section_title_data = SectionTitle::whereIn('group_id', $section_title_ids)->get()->map(function ($sectionTitle) use ($locale) {
-                                return localizeSectionTitle($sectionTitle, $locale);
-                                });
+            return localizeSectionTitle($sectionTitle, $locale);
+        });
         $docs_data = DocumentRequired::where('group_id', $docs_group_id)->get()->map(function ($docs) use ($locale) {
-                                    return localizeDocumentRequired($docs, $locale);
-                                });
+            return localizeDocumentRequired($docs, $locale);
+        });
 
-        $feature_image_data = FeatureImage::where('group_id', $img_feature_id)->get()->map(function($feature_image_data) use ($locale) {
+        $feature_image_data = FeatureImage::where('group_id', $img_feature_id)->get()->map(function ($feature_image_data) use ($locale) {
             return localizeFeatureImage($feature_image_data, $locale);
         });
 
-        $procedure_data = Procedure::where('group_id', $procedure_id)->get()->map(function($procedure_data) use ($locale){
+        $procedure_data = Procedure::where('group_id', $procedure_id)->get()->map(function ($procedure_data) use ($locale) {
             return localizeProcedure($procedure_data, $locale);
         });
 
-        $cta_data = CallToAction::where('group_id', $cta_id)->get()->map(function($cta_data) use ($locale){
+        $cta_data = CallToAction::where('group_id', $cta_id)->get()->map(function ($cta_data) use ($locale) {
             return localizeCTA($cta_data, $locale);
         });
 
-        $testimonial_data = Testimonial::where('group_id', $testimonial_id)->get()->map(function($testimonial_data) use ($locale){
+        $testimonial_data = Testimonial::where('group_id', $testimonial_id)->get()->map(function ($testimonial_data) use ($locale) {
             return localizeTestimonial($testimonial_data, $locale);
         });
 
