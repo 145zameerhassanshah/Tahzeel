@@ -51,7 +51,11 @@ class HeroSectionController extends Controller
         ]);
         $hero_section = new HeroSection();
         $hero_section->page_id = $request->page_id;
-        $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
+        // $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
+        $hero_section->setTranslations('title', [
+            'en' => 'Chair',
+            'ar' => 'كرسي',
+        ]);
         $hero_section->subtitle = json_encode($request->subtitle, JSON_UNESCAPED_UNICODE);
         $hero_section->description = json_encode($request->description, JSON_UNESCAPED_UNICODE);
         $hero_section->status = $request->status;

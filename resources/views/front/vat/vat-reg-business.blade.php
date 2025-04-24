@@ -10,11 +10,11 @@
 @endforeach
 @endif
 
-@if (isset($intro_sections))
+{{-- @if (isset($intro_sections))
 @foreach ($intro_sections as $intro_section)
 @include('front.partials._intro_three_images')
 @endforeach
-@endif
+@endif --}}
 
 @php
 $document_title = $section_titles->where('type', 'document')->first();
