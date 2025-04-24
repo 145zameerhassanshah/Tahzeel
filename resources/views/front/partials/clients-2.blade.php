@@ -1,10 +1,11 @@
-<!-- start testimonial -->
+<!--Start Testimonial-->
 <section class="wrapper bg-light">
   <div class="container py-14 py-md-16">
-    <div class="row gx-xl-12 gy-10">
+    <div class="row gx-xl-12 gy-10 align-items-center">
       <div class="col-xl-4">
-        <h2 class="display-4 mt-10 mb-3">Our <span class="text-gradient gradient-6 fw-bolder">Clients</span></h2>
-        <p class="lead fs-lg mb-6">Customer satisfaction is our major goal. See what our clients are saying about our services.</p>
+        {!! $sectionTitle->title !!}
+        <!-- Section Title : <h2 class="display-4 mt-10 mb-3">Our <span class="text-gradient gradient-6 fw-bolder">Clients</span></h2> -->
+        <p class="lead fs-lg mb-6">{{ $sectionTitle->subtitle }}</p>
         <a href="#" class="btn btn-red rounded-pill text-white">Apply Now</a>
       </div>
       <!-- /column -->
@@ -15,8 +16,6 @@
           <div class="swiper-container dots-closer mb-6" data-margin="0" data-dots="true" data-items-md="2" data-items-xs="1">
             <div class="swiper">
               <div class="swiper-wrapper">
-
-              <h1>Reached here</h1>
                 @foreach ($testimonials as $testimonial)
                 <div class="swiper-slide">
                   <div class="item-inner">
@@ -25,7 +24,7 @@
                         <blockquote class="icon mb-0">
                           <p>“{{ $testimonial->feedback }}”</p>
                           <div class="blockquote-details">
-                            <img class="rounded-circle w-12" src="{{ asset('front') }}/dev/assets/img/avatars/te1.jpg" srcset="./assets/img/avatars/te1@2x.jpg 2x" alt="" />
+                            <img class="rounded-circle w-12" src="{{ asset('assets/admin/uploads/testimonial/' . $testimonial->image) }}" alt="" />
                             <div class="info">
                               <h5 class="mb-1">{{ $testimonial->name }}</h5>
                               <p class="mb-0">{{ $testimonial->designation }}</p>
@@ -40,8 +39,6 @@
                   <!-- /.item-inner -->
                 </div>
                 @endforeach
-
-
                 <!--/.swiper-slide -->
               </div>
               <!--/.swiper-wrapper -->
@@ -59,8 +56,4 @@
   <!-- /.container -->
 </section>
 <!-- /section -->
-<!-- end testimonial  -->
-
-
-
-
+<!-- End Testimonial-->

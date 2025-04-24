@@ -4,7 +4,6 @@ $hasTestimonialContent = isset($testimonial_title) && (
 !empty($testimonial_title->subtitle)
 );
 @endphp
-
 @if(($testimonials && $testimonials->isNotEmpty()) || $hasTestimonialContent)
 <!-- start testimonial -->
 <section class="wrapper bg-light">
@@ -14,14 +13,12 @@ $hasTestimonialContent = isset($testimonial_title) && (
         @if(!empty($testimonial_title->title))
         <h2 class="display-4 mt-10 mb-3">{{ $testimonial_title->title }}</h2>
         @endif
-
         @if(!empty($testimonial_title->subtitle))
         <p class="lead fs-lg mb-6">{{ $testimonial_title->subtitle }}</p>
         <a href="#" class="btn btn-red rounded-pill text-white">Apply Now</a>
         @endif
       </div>
       <!-- /column -->
-
       @if($testimonials && $testimonials->isNotEmpty())
       <div class="col-xl-8">
         <div class="position-relative">

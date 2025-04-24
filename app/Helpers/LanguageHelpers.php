@@ -47,19 +47,14 @@ if (!function_exists('localizeIntroductionSection')) {
         if (!$introductionSection) {
             return null;
         }
-
         // Localize textual fields
         $introductionSection->title = getLocalizedField($introductionSection->title, $locale);
         $introductionSection->subtitle = getLocalizedField($introductionSection->subtitle, $locale);
         $introductionSection->description = getLocalizedField($introductionSection->description, $locale);
         $introductionSection->images = json_decode($introductionSection->images, true);;
-
-
-
         return $introductionSection;
     }
 }
-
 
 if (!function_exists('localizeFeatureImage')) {
     function localizeFeatureImage($featureImage, $locale)
@@ -183,11 +178,9 @@ if (!function_exists('localizeSectionTitle')) {
         if (!$sectionTitle) {
             return null;
         }
-
         // Localize textual fields
         $sectionTitle->title = getLocalizedField($sectionTitle->title, $locale);
         $sectionTitle->subtitle = getLocalizedField($sectionTitle->subtitle, $locale);
-
         return $sectionTitle;
     }
 }
