@@ -1,9 +1,11 @@
 <?php
 // PHP's cleaner grouped import
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
 // 🔹 Helper Functions
 require_once app_path('Helpers/LanguageHelpers.php');
+
 use App\Helpers\LanguageHelpers;
 // 🔹 Laravel Facades
 use Illuminate\Http\Request;
@@ -62,10 +64,30 @@ class FrontController extends Controller
     {
         return view('front.otherPages.contactUs');
     }
+
     public function emirateId()
     {
-        return view('front.otherPages.emirateId');
+        app()->setLocale(session('locale', 'en'));
+        $locale = app()->getLocale();
+        $testimonials = Testimonial::where('status', 'active')->get();
+        $introSection = IntroductionSection::first();
+        $sectionTitles = SectionTitle::where('status', 'active')->where('type', 'testimonial')->get();
+        $localized_testimonials = $testimonials->map(function ($item) use ($locale) {
+            return localizeTestimonial($item, $locale);
+        });
+        $localized_section_titles = $sectionTitles->map(function ($item) use ($locale) {
+            return localizeSectionTitle($item, $locale);
+        });
+        $localized_intro_section = localizeIntroductionSection($introSection, $locale);
+        $sectionTitle = $localized_section_titles->first();
+        return view('front.otherPages.emirateId', [
+            'testimonials' => $localized_testimonials,
+            'sectionTitle' => $sectionTitle,
+            'introSection' => $localized_intro_section,
+        ]);
     }
+
+
     public function visitVisa()
     {
         return view('front.otherPages.visitVisa');

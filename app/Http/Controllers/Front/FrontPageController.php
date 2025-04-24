@@ -57,8 +57,6 @@ class FrontPageController extends Controller
             'whyUsImages',
             'featureImages'
         ])->findOrFail($data['page']->id);
-        // dd($page->testimonials);
-        // return $page_detail->heroSections;
         $data['hero_sections'] = $page_detail->heroSections->map(function ($section) use ($locale) {
             return localizeHeroSection($section, $locale);
         });
