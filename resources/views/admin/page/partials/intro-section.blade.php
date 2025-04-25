@@ -18,25 +18,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="intro_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_title_en" name="intro_title[en]">
+                                <input type="text" class="form-control" id="intro_title_en" name="title[en]">
                                 <span class="text-danger error" id="error_intro_title_en"></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="intro_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_title_ar" name="intro_title[ar]">
+                                <input type="text" class="form-control" id="intro_title_ar" name="title[ar]">
                                 <span class="text-danger error" id="error_intro_title_ar"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="intro_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_subtitle_en" name="intro_subtitle[en]">
+                                <input type="text" class="form-control" id="intro_subtitle_en" name="subtitle[en]">
                                 <span class="text-danger error" id="error_intro_subtitle_en"></span>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="intro_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_subtitle_ar" name="intro_subtitle[ar]">
+                                <input type="text" class="form-control" id="intro_subtitle_ar" name="subtitle[ar]">
                                 <span class="text-danger error" id="error_intro_subtitle_ar"></span>
                             </div>
                         </div>
@@ -44,13 +44,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="intro_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_description_en" name="intro_description[en]">
+                                <input type="text" class="form-control" id="intro_description_en" name="description[en]">
                                 <span class="text-danger error" id="error_intro_description_en"></span>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="intro_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="intro_description_ar" name="intro_description[ar]">
+                                <input type="text" class="form-control" id="intro_description_ar" name="description[ar]">
                                 <span class="text-danger error" id="error_intro_description_ar"></span>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
 
                             <div class="col-md-6">
                                 <label for="intro_status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                <select class="form-control" id="intro_status" name="intro_status">
+                                <select class="form-control" id="intro_status" name="status">
                                     <option value="active">{{ __('Active') }}</option>
                                     <option value="inactive">{{ __('Inactive') }}</option>
                                 </select>
@@ -67,7 +67,7 @@
 
                             <div class="col-md-6">
                                 <label for="intro_type" class="control-label">{{ __('Type') }}<span class="text-danger">*</span></label>
-                                <select class="form-control" name="intro_type" id="intro_type">
+                                <select class="form-control" name="type" id="intro_type">
                                     <option disabled selected>Select Type</option>
                                     @foreach ($intro_types as $type)
                                     <option value="{{ $type }}">{{ ucfirst(str_replace('_', ' ', $type)) }}</option>
@@ -112,25 +112,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="update_intro_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_title_en" name="intro_title[en]">
+                                <input type="text" class="form-control" id="update_intro_title_en" name="title[en]">
                                 <span class="text-danger error" id="error_intro_title_en"></span>
                             </div>
                             <div class="col-md-6">
                                 <label for="update_intro_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_title_ar" name="intro_title[ar]">
+                                <input type="text" class="form-control" id="update_intro_title_ar" name="title[ar]">
                                 <span class="text-danger error" id="error_intro_title_ar"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="update_intro_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_subtitle_en" name="intro_subtitle[en]">
+                                <input type="text" class="form-control" id="update_intro_subtitle_en" name="subtitle[en]">
                                 <span class="text-danger error" id="error_intro_subtitle_en"></span>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="update_intro_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_subtitle_ar" name="intro_subtitle[ar]">
+                                <input type="text" class="form-control" id="update_intro_subtitle_ar" name="subtitle[ar]">
                                 <span class="text-danger error" id="error_intro_subtitle_ar"></span>
                             </div>
                         </div>
@@ -138,13 +138,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="update_intro_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_description_en" name="intro_description[en]">
+                                <input type="text" class="form-control" id="update_intro_description_en" name="description[en]">
                                 <span class="text-danger error" id="error_intro_description_en"></span>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="update_intro_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="update_intro_description_ar" name="intro_description[ar]">
+                                <input type="text" class="form-control" id="update_intro_description_ar" name="description[ar]">
                                 <span class="text-danger error" id="error_intro_description_ar"></span>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
 
                             <div class="col-md-6">
                                 <label for="update_intro_status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                <select class="form-control" id="update_intro_status" name="intro_status">
+                                <select class="form-control" id="update_intro_status" name="status">
                                     <option value="active">{{ __('Active') }}</option>
                                     <option value="inactive">{{ __('Inactive') }}</option>
                                 </select>
@@ -161,7 +161,7 @@
 
                             <div class="col-md-6">
                                 <label for="intro_type" class="control-label">{{ __('Type') }}<span class="text-danger">*</span></label>
-                                <select class="form-control" name="intro_type" id="intro_type">
+                                <select class="form-control" name="type" id="intro_type">
                                     <option disabled selected>Select Type</option>
                                     @foreach ($intro_types as $type)
                                     <option value="{{ $type }}">{{ ucfirst(str_replace('_', ' ', $type)) }}</option>

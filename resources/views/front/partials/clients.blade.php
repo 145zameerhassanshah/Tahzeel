@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-light-500 pb-15"
-            data-image-src="{{ asset('front/dev/assets/img/personal/testimonial-bg.jpg') }}">
+            data-image-src="{{ asset('assets/static/testimonial-bg.jpg') }}">
             <div class="card-body py-14 px-0">
                 <div class="container">
 

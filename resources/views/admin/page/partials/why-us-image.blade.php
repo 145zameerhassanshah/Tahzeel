@@ -76,7 +76,6 @@
                                     accept="image/*">
                                 <span class="text-danger error" id="error_image"></span>
                             </div>
-
                         </div>
                     </div>
 
@@ -167,7 +166,7 @@
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                 <span class="text-danger error" id="error_image"></span>
                             </div>
-
+                            <div id="current_image_preview"></div>
                         </div>
                     </div>
 

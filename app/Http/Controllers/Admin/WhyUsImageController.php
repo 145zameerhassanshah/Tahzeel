@@ -45,18 +45,33 @@ class WhyUsImageController extends Controller
     {
         $request->validate([
             'page_id' => 'required',
-            'title' => 'required',
-            'subtitle' => 'required',
-            'description' => 'required',
+            'title.en' => 'required',
+            'title.ar' => 'required',
+            'subtitle.en' => 'required',
+            'subtitle.ar' => 'required',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'image' => 'required',
             'order_no' => 'required',
             'status' => 'required',
         ]);
         $why_us_image = new WhyUsImage();
         $why_us_image->page_id = $request->page_id;
-        $why_us_image->title = json_encode($request->title);
-        $why_us_image->subtitle = json_encode($request->subtitle);
-        $why_us_image->description = json_encode($request->description);
+        $why_us_image->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $why_us_image->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $why_us_image->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
+        // $why_us_image->title = json_encode($request->title);
+        // $why_us_image->subtitle = json_encode($request->subtitle);
+        // $why_us_image->description = json_encode($request->description);
         $why_us_image->order_no = $request->order_no;
         $why_us_image->status = $request->status;
         if ($request->hasFile('image')) {
@@ -108,9 +123,19 @@ class WhyUsImageController extends Controller
     {
         $whyUs = WhyUsImage::find($id);
         return response()->json([
-            'title' => json_decode($whyUs->title, true),
-            'subtitle' => json_decode($whyUs->subtitle, true),
-            'description' => json_decode($whyUs->description, true),
+            'title' => [
+                'en' => $whyUs->getTranslation('title', 'en'),
+                'ar' => $whyUs->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $whyUs->getTranslation('subtitle', 'en'),
+                'ar' => $whyUs->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $whyUs->getTranslation('description', 'en'),
+                'ar' => $whyUs->getTranslation('description', 'ar'),
+            ],
+            // 'title' => json_decode($whyUs->title, true),
             'image' => $whyUs->image,
             'order_no' => $whyUs->order_no,
             'status' => $whyUs->status,
@@ -128,9 +153,21 @@ class WhyUsImageController extends Controller
             'status' => 'required',
         ]);
         $why_us_image = WhyUsImage::find($id);
-        $why_us_image->title = json_encode($request->title);
-        $why_us_image->subtitle = json_encode($request->subtitle);
-        $why_us_image->description = json_encode($request->description);
+        $why_us_image->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $why_us_image->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $why_us_image->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
+        // $why_us_image->title = json_encode($request->title);
+        // $why_us_image->subtitle = json_encode($request->subtitle);
+        // $why_us_image->description = json_encode($request->description);
         $why_us_image->order_no = $request->order_no;
         $why_us_image->status = $request->status;
         if ($request->hasFile('image')) {

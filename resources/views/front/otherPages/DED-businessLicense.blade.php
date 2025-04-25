@@ -4,7 +4,7 @@
 
 
     <section class="wrapper image-wrapper bg-image  bg-overlay-300"
-        data-image-src="{{ asset('front') }}/dev/assets/img/personal/ded-businessLicenseBG.webp">
+        data-image-src="{{ asset('assets/static') }}/ded-businessLicenseBG.webp">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -32,7 +32,7 @@
           <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
             <div class="col-md-8 col-lg-6 col-xl-5 order-lg-2 position-relative">
               <div class="shape bg-soft-primary rounded-circle rellax w-20 h-20" data-rellax-speed="1" style="top: -2rem; right: -1.9rem;"></div>
-              <figure class="rounded"><img src="{{ asset('front') }}/dev/assets/img/personal/ded-businessLicense.webp" srcset="{{ asset('front') }}/dev/assets/img/personal/ded-businessLicense.webp" alt=""></figure>
+              <figure class="rounded"><img src="{{ asset('assets/static') }}/ded-businessLicense.webp"  alt=""></figure>
             </div>
             <!--/column -->
             <div class="col-lg-6">
@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/target.svg" class="svg-inject icon-svg icon-svg-sm me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/target.svg" class="svg-inject icon-svg icon-svg-sm me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Our Mission</h4>
@@ -56,7 +56,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/award-2.svg" class="svg-inject icon-svg icon-svg-sm me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/award-2.svg" class="svg-inject icon-svg icon-svg-sm me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Our Values</h4>
@@ -218,26 +218,26 @@
                     We take care of every step, ensuring a smooth registration and licensing process.
                 </p>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/file-text.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                             <h4 class="mb-1">1. Consultation & Guidance</h4>
                             <p class="mb-5 mb-md-0 text-justify">Understand the requirements and get expert advice.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/box-arrow-in-right.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4 class="mb-1">2. Trade Name & Initial Approval</h4>
                             <p class="mb-5 mb-md-0 text-justify">We handle trade name reservation and approvals.
                             </p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/arrow-repeat.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                             <h4 class="mb-1">3. Document Submission </h4>
                             <p class="mb-5 mb-md-0 text-justify"> We collect, verify, and submit documents to DED.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/check2-circle.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4 class="mb-1">4. DED Approval & License Issuance</h4>
                             <p class="mb-5 mb-md-0 text-justify">Fast-tracked licensing process with follow-ups.</p>
@@ -270,7 +270,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-green  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/person-lock.svg') }}"
+                        <img src="{{ asset('assets/static/person-lock.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                         <h4>DED Expertise </h4>
                         <p class="mb-2">We navigate Dubai’s regulatory landscape effortlessly.</p>
@@ -284,7 +284,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-orange  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/bookmark-check.svg') }}"
+                        <img src="{{ asset('assets/static/bookmark-check.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-orange mb-3" alt="" />
                         <h4> Fast & Reliable</h4>
                         <p class="mb-2">Get your approvals without unnecessary delays.</p>
@@ -298,7 +298,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-blue  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/globe.svg') }}"
+                        <img src="{{ asset('assets/static/globe.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="" />
                         <h4>End-to-End Support </h4>
                         <p class="mb-2">From consultation to finalization, we cover it all.</p>
@@ -312,7 +312,7 @@
             <div class="col-md-6 col-xl-3 ">
                 <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/boxes.svg') }}"
+                        <img src="{{ asset('assets/static/boxes.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                         <h4>{{__('Transparent Pricing')}}</h4>
                         <p class="mb-2">{{__("No hidden fees, just honest service.")}}</p>
@@ -351,7 +351,7 @@
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                       <div class="card-body d-flex flex-row align-items-center">
                         <div>
-                          <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/search-2.svg" 
+                          <img src="{{ asset('assets/static') }}/search-2.svg" 
                                class="svg-inject icon-svg icon-svg-md text-green me-4" alt="" />
                         </div>
                         <div>
@@ -370,7 +370,7 @@
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                     <div class="card-body d-flex flex-row">
                     <div>
-                        <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/puzzle-2.svg" class="svg-inject icon-svg icon-svg-md text-red me-5" alt="" />
+                        <img src="{{ asset('assets/static') }}/puzzle-2.svg" class="svg-inject icon-svg icon-svg-md text-red me-5" alt="" />
                     </div>
                     <div>
                         <h3 class="fs-21 mb-2">Trade Name Reservation</h3>
@@ -388,7 +388,7 @@
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <div class="card-body d-flex flex-row">
                   <div>
-                    <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/smartphone.svg" class="svg-inject icon-svg icon-svg-md text-blue me-5" alt="" />
+                    <img src="{{ asset('assets/static') }}/smartphone.svg" class="svg-inject icon-svg icon-svg-md text-blue me-5" alt="" />
                   </div>
                   <div>
                     <h3 class="fs-21 mb-2">Initial Approval </h3>
@@ -406,7 +406,7 @@
               onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <div class="card-body d-flex flex-row">
                   <div>
-                    <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/design.svg" class="svg-inject icon-svg icon-svg-md text-red me-5" alt="" />
+                    <img src="{{ asset('assets/static') }}/design.svg" class="svg-inject icon-svg icon-svg-md text-red me-5" alt="" />
                   </div>
                   <div>
                     <h3 class="fs-21 mb-2">License Renewal & Amendments </h3>
@@ -424,7 +424,7 @@
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <div class="card-body d-flex flex-row">
                   <div>
-                    <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/video-editing.svg" class="svg-inject icon-svg icon-svg-md text-green me-5" alt="" />
+                    <img src="{{ asset('assets/static') }}/video-editing.svg" class="svg-inject icon-svg icon-svg-md text-green me-5" alt="" />
                   </div>
                   <div>
                     <h3 class="fs-21 mb-2">Company Deregistration</h3>
@@ -442,7 +442,7 @@
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <div class="card-body d-flex flex-row">
                   <div>
-                    <img src="{{ asset('front') }}/dev/assets/img/icons/lineal/browser.svg" class="svg-inject icon-svg icon-svg-md text-blue me-5" alt="" />
+                    <img src="{{ asset('assets/static') }}/browser.svg" class="svg-inject icon-svg icon-svg-md text-blue me-5" alt="" />
                   </div>
                   <div>
                     <h3 class="fs-21 mb-2">Commercial Permits</h3>
@@ -468,7 +468,7 @@
     
 
 
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
 
     @include('front.partials.affiliations')
 

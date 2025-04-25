@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/dev/assets/img/personal/entryPermit-bg.webp">
+    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static') }}/entryPermit-bg.webp">
       <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
         <div class="row text-start">
           <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -29,15 +29,15 @@
             <div class="col-lg-6">
               <div class="row gx-md-5 gy-5">
                 <div class="col-12 d-none d-md-block">
-                  <figure class="rounded mx-5 "><img src="{{ asset('front') }}/dev/assets/img/personal/entryPermit1.webp" srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded mx-5 "><img src="{{ asset('assets/static') }}/entryPermit1.webp" alt=""></figure>
                 </div>
                 <!--/column -->
                 <div class="col-md-6">
-                  <figure class="rounded d-none d-md-block"><img src="{{ asset('front') }}/dev/assets/img/personal/entryPermit2.webp" srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded d-none d-md-block"><img src="{{ asset('assets/static') }}/entryPermit2.webp" alt=""></figure>
                 </div>
                 <!--/column -->
                 <div class="col-md-6">
-                  <figure class="rounded "><img src="{{ asset('front') }}/dev/assets/img/personal/entryPermit3.webp" srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                  <figure class="rounded "><img src="{{ asset('assets/static') }}/entryPermit3.webp"  alt=""></figure>
                 </div>
                 <!--/column -->
               </div>
@@ -52,7 +52,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/personal/airplane.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/airplane.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Tourist Entry Permit</h4>
@@ -64,7 +64,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/personal/people.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/people.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Visit Entry Permit</h4>
@@ -76,7 +76,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/personal/suitcase-lg.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/suitcase-lg.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Business Entry Permit</h4>
@@ -88,7 +88,7 @@
                 <div class="col-md-6">
                   <div class="d-flex flex-row">
                     <div>
-                      <img src="{{ asset('front') }}/dev/assets/img/personal/bag-heart.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
+                      <img src="{{ asset('assets/static') }}/bag-heart.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                     </div>
                     <div>
                       <h4 class="mb-1">Transit Entry Permit</h4>
@@ -223,23 +223,23 @@
               <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How to Apply for an Entry Permit with <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support</h3>
               <p class="lead fs-lg mb-8">  <span class="underline green">Tah-zeel </span> makes the entry permit application process straightforward, offering guidance at each stage for a smooth experience.</p> 
               <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                   <h4 class="mb-1">1. Document Preparation</h4>
                   <p class="mb-5 mb-md-0 text-justify">Gather and verify all required documents.
                 </p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/box-arrow-in-right.svg" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/box-arrow-in-right.svg" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                   <h4 class="mb-1">2. Submission</h4>
                   <p class="mb-5 mb-md-0 text-justify">Tah-zeel submits the application on behalf of the client through Amer Services.</p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/arrow-repeat.svg" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                   <h4 class="mb-1">3. Processing</h4>
                   <p class="mb-5 mb-md-0 text-justify" > Permit processing by relevant UAE authorities.</p>
                 </div>
                 <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/check2-circle.svg" class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
+                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg" class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                     <h4 class="mb-1">4. Permit Issuance</h4>
                     <p class="mb-5 mb-md-0 text-justify"> Finalized permit is issued for travel arrangements.</p>
                   </div>
@@ -259,7 +259,7 @@
 
     
 
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
 
 
     @include('front.partials.affiliations')

@@ -45,17 +45,30 @@ class WhyChooseUsController extends Controller
     {
         $request->validate([
             'page_id' => 'required|exists:groups,id',
-            'title' => 'required',
+            'title.en' => 'required',
+            'title.ar' => 'required',
+            'subtitle.en' => 'required',
+            'subtitle.ar' => 'required',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'icon' => 'required',
-            'description' => 'required',
             'order_no' => 'required',
             'status' => 'required',
         ]);
         $why_choose_us = new WhyChooseUs();
         $why_choose_us->page_id = $request->page_id;
-        $why_choose_us->title = json_encode($request->title);
-        $why_choose_us->subtitle = json_encode($request->subtitle);
-        $why_choose_us->description = json_encode($request->description);
+        $why_choose_us->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $why_choose_us->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $why_choose_us->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         $why_choose_us->icon = json_encode($request->icon);
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
@@ -81,10 +94,19 @@ class WhyChooseUsController extends Controller
     {
         $whyUs = WhyChooseUs::find($id);
         return response()->json([
-            'title' => json_decode($whyUs->title, true),
-            'subtitle' => json_decode($whyUs->subtitle, true),
-            'description' => json_decode($whyUs->description, true),
-            'icon' => json_decode($whyUs->icon, true),
+            'title' => [
+                'en' => $whyUs->getTranslation('title', 'en'),
+                'ar' => $whyUs->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $whyUs->getTranslation('subtitle', 'en'),
+                'ar' => $whyUs->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $whyUs->getTranslation('description', 'en'),
+                'ar' => $whyUs->getTranslation('description', 'ar'),
+            ],
+            'icon' => $whyUs->icon,
             'order_no' => $whyUs->order_no,
             'status' => $whyUs->status,
         ]);
@@ -101,9 +123,18 @@ class WhyChooseUsController extends Controller
             'status' => 'required',
         ]);
         $why_choose_us = WhyChooseUs::find($id);
-        $why_choose_us->title = json_encode($request->title);
-        $why_choose_us->subtitle = json_encode($request->subtitle);
-        $why_choose_us->description = json_encode($request->description);
+        $why_choose_us->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $why_choose_us->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $why_choose_us->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         $why_choose_us->icon = json_encode($request->icon);
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;

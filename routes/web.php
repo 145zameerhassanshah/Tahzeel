@@ -204,7 +204,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
-        // DocumentRequired Routes
+        // Documents Required Routes:-
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
         // Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
         // Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
@@ -213,17 +213,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
         // Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
 
-
         // SectionTitle Routes
         Route::get('/section-titles/{pageId}', [SectionTitleController::class, 'getByPageId'])->name('admin.section_title.index');
-        // Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
         Route::get('/section-titles/{id}/list', [SectionTitleController::class, 'list'])->name('admin.section_title.list');
         Route::get('/section-title/{id}/add', [SectionTitleController::class, 'add'])->name('admin.section_title.add');
         Route::post('/section-title/store', [SectionTitleController::class, 'store'])->name('admin.section_title.store');
         Route::get('/section-title/edit/{id}', [SectionTitleController::class, 'edit'])->name('admin.section_title.edit');
         Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
         Route::post('/section-title/delete/{id}', [SectionTitleController::class, 'delete'])->name('admin.section_title.delete');
-        // Route::put('/section-title/update/{id}', [SectionTitleController::class, 'update'])->name('admin.section_title.update');
+        // Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
 
         // introduction Routes
         Route::get('/introduction-sections', [IntroductionSectionController::class, 'index'])->name('admin.introduction_section.index');
@@ -236,13 +234,13 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // Hero Sections Routes
         Route::get('/hero-sections/{pageId}', [HeroSectionController::class, 'getByPageId'])->name('admin.hero_section.index');
-        // Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
         Route::get('/hero-sections/{id}/list', [HeroSectionController::class, 'list'])->name('admin.hero_section.list');
         Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
         Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
         Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
         Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
         Route::delete('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+        // Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
 
         // Intro Routes
         Route::get('/Intro-sections/{pageId}', [IntroSectionController::class, 'getByPageId'])->name('admin.intro_section.index');

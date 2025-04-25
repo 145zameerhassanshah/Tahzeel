@@ -52,34 +52,24 @@ class DocumentRequiredController extends Controller
             'status' => 'required|in:active,inactive',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // Create new DocumentRequired
         $document = new DocumentRequired();
         $document->page_id = $request->page_id;
-
-        // Store multilingual fields
-        $document->title = json_encode([
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ], JSON_UNESCAPED_UNICODE);
-
-        $document->description = json_encode([
-            'en' => $request->input('description.en'),
-            'ar' => $request->input('description.ar')
-        ], JSON_UNESCAPED_UNICODE);
-
-        // Handle Icon Upload
+        $document->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $document->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         if ($request->hasFile('icon')) {
             $iconName = time() . '.' . $request->file('icon')->extension();
             $request->file('icon')->move(public_path('assets/admin/uploads/document/'), $iconName);
             $document->icon = $iconName;
         }
-
         $document->order_no = $request->order_no ?? 0;
         $document->status = $request->status;
         $document->save();
-
-        // Return JSON response
         return response()->json([
             'success' => true,
             'document' => $document
@@ -89,10 +79,15 @@ class DocumentRequiredController extends Controller
     public function edit($id)
     {
         $document = DocumentRequired::findOrFail($id);
-
         return response()->json([
-            'title' => json_decode($document->title),
-            'description' => json_decode($document->description),
+            'title' => [
+                'en' => $document->getTranslation('title', 'en'),
+                'ar' => $document->getTranslation('title', 'ar'),
+            ],
+            'description' => [
+                'en' => $document->getTranslation('description', 'en'),
+                'ar' => $document->getTranslation('description', 'ar'),
+            ],
             'order_no' => $document->order_no,
             'status' => $document->status,
             'icon' => $document->icon
@@ -111,22 +106,18 @@ class DocumentRequiredController extends Controller
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $document = DocumentRequired::findOrFail($id);
-        // Update multilingual fields
-        $document->title = json_encode([
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ], JSON_UNESCAPED_UNICODE);
-        $document->description = json_encode([
-            'en' => $request->input('description.en'),
-            'ar' => $request->input('description.ar')
-        ], JSON_UNESCAPED_UNICODE);
-        // Handle Icon Upload
+        $document->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $document->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         if ($request->hasFile('icon')) {
-            // Delete old icon if exists
             if ($document->icon) {
                 @unlink(public_path('assets/admin/uploads/document/' . $document->icon));
             }
-
             $file = $request->file('icon');
             $extension = $file->getClientOriginalExtension();
             $icon = time() . rand() . '.' . $extension;

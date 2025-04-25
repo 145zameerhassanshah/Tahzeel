@@ -31,18 +31,18 @@
                         <div class="col-12 d-none d-md-block">
                             <figure class="rounded mx-5 "><img
                                     src="{{ asset('assets/static') }}/openfile-3.webp"
-                                    srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
                             <figure class="rounded d-none d-md-block"><img
                                     src="{{ asset('assets/static') }}/openfile-1.webp"
-                                    srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
                             <figure class="rounded "><img src="{{ asset('assets/static') }}/openfile-2.webp"
-                                    srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>
@@ -326,7 +326,7 @@
         <!-- /.container -->
     </section>
 
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
     @include('front.partials.affiliations')
     @include('front.partials.cta-1')
     @include('front.partials.contact-us')
