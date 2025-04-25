@@ -11,10 +11,9 @@ use App\Http\Controllers\Controller;
 
 class BcategoryController extends Controller
 {
-
     public function bcategory(Request $request)
     {
-        $bcategories = Bcategory::orderBy('serial_number', 'asc')->get();
+        $bcategories = Bcategory::orderBy('id', 'desc')->get();
         return view('admin.blog.blog-category.index', compact('bcategories'));
     }
 
@@ -60,11 +59,14 @@ class BcategoryController extends Controller
         return redirect()->route('admin.bcategory.index')->with('notification', $notification);
     }
 
+
     // Blog Category Delete
     public function delete($id)
     {
+
         $bcategory = Bcategory::find($id);
         $blogs = Blog::where('bcategory_id', $id)->get();
+
         if ($blogs->count() >= 1) {
             $notification = array(
                 'message' => 'First Delete Blogs Under This Category !',
@@ -72,7 +74,10 @@ class BcategoryController extends Controller
             );
             return redirect()->back()->with('notification', $notification);
         }
+
         $bcategory->delete();
+
+
         $notification = array(
             'message' => 'Blog Category Deleted successfully!',
             'alert' => 'success'
@@ -91,40 +96,38 @@ class BcategoryController extends Controller
     public function update(Request $request, $id)
     {
         $slug = Helper::make_slug($request->name['en']);
-        $bcategories = Bcategory::where('id', '!=', $id)->select('slug')->get();
+        $bcategories = Bcategory::select('slug')->get();
         $bcategory = Bcategory::findOrFail($id);
         $request->validate([
             'name' => [
                 'required',
                 'array',
-                function ($attribute, $value, $fail) use ($slug, $bcategories) {
+                'max:150',
+                function ($attribute, $value, $fail) use ($slug, $bcategories, $bcategory) {
                     foreach ($bcategories as $serv) {
-                        if ($serv->slug == $slug) {
-                            return $fail('Title already taken!');
+                        if ($bcategory->slug != $slug) {
+                            if ($serv->slug == $slug) {
+                                return $fail('Title already taken!');
+                            }
                         }
                     }
-                }
+                },
+                'unique:bcategories,name,' . $id
             ],
-            'name.en' => 'required|max:255', // Validate English name
-            'name.ar' => 'required|max:255', // Validate Arabic name
             'status' => 'required',
             'serial_number' => 'required|numeric',
         ]);
-
-        // Update the Bcategory
+        $bcategory = Bcategory::find($id);
         $bcategory->name = json_encode($request->name);
-        $bcategory->slug = $slug;
         $bcategory->status = $request->status;
+        $bcategory->slug = $slug;
         $bcategory->serial_number = $request->serial_number;
         $bcategory->save();
 
-        // Set a success notification
-        $notification = [
+        $notification = array(
             'message' => 'Blog Category Updated successfully!',
             'alert' => 'success'
-        ];
-
-        // Redirect with success message
+        );
         return redirect(route('admin.bcategory.index'))->with('notification', $notification);
     }
 }

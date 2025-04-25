@@ -1,7 +1,5 @@
 <?php
-
 // tahzeel\resources\lang\en\home.php
-
 return [
     'home_title' => '<h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">Experience Seamless Solutions with <span class="underline-3 style-2 yellow">Tah-zeel</span></h1>',
     'home_subtitle' => 'Your trusted partner for visa, business setup, and legal services in Dubai. We simplify the complex, so you can focus on what matters most.',

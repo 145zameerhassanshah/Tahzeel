@@ -16,7 +16,7 @@ if (!function_exists('getLocalizedField')) {
     {
         // If already an array, use it directly
         if (is_array($field)) {
-            return $field[$locale] ?? reset($field);
+            return $field[$locale] ?? $field['en'] ?? '';
         }
         // Decode if it's a string
         $decodedField = json_decode($field, true);

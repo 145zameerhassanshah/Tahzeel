@@ -55,7 +55,7 @@
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 control-label">{{ __('Title(English)') }}<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="title[en]" value="{{ json_decode($blog->title)->en }}">
+                                <input type="text" class="form-control" name="title[en]" value="{{ json_decode($blog->title)->en ?? '' }}">
                                     @if ($errors->has('title.en'))
                                     <p class="text-danger"> {{ $errors->first('title.en') }} </p>
                                     @endif
@@ -77,7 +77,7 @@
                             <div class="form-group row">
                                 <label for="content" class="col-sm-2 control-label">{{ __('Content(English)') }}<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea name="content[en]" class="form-control summernote" rows="6">{{ json_decode($blog->content)->en }}</textarea>
+                                <textarea name="content[en]" class="form-control summernote" rows="6">{{ json_decode($blog->content)->en ?? '' }}</textarea>
                                     @if ($errors->has('content.en'))
                                     <p class="text-danger"> {{ $errors->first('content.en') }} </p>
                                     @endif

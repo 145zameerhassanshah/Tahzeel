@@ -70,38 +70,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <!-- Title -->
-                            <!-- <div class="form-group row">
-                                <label for="title" class="col-sm-2 control-label">{{ __('Title') }}<span class="text-danger">*</span></label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <label for="name_en">{{ __('(English)') }} <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="name_en" name="name[en]">
-                                        <span class="text-danger error" id="error_name_en"></span>
-                                    </div>
-                                    <div>
-                                        <label for="name_ar">{{ __('(Arabic)') }} <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="name_ar" name="name[ar]">
-                                        <span class="text-danger error" id="error_name_ar"></span>
-                                    </div>
-                                </div>
-                            </div> -->
 
-                            <div class="form-group row">
-                                <label for="bcategory_id" class="col-sm-2 control-label">{{ __('Category') }}<span class="text-danger">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="bcategory_id" id="bcategory_id">
-                                        @foreach ($bcategories as $bcategory)
-                                        <option value="{{ $bcategory->id }}" {{ $bcategory->id == $blog->bcategory_id ? 'selected' : '' }}>
-                                            {{ json_decode($bcategory->name)->en }} <!-- Display English Category Name -->
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('bcategory_id'))
-                                    <p class="text-danger"> {{ $errors->first('bcategory_id') }} </p>
-                                    @endif
-                                </div>
-                            </div>
+                            
 
 
                             <div class="form-group row">

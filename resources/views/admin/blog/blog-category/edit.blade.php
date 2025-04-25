@@ -69,17 +69,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="status" class="col-sm-2 control-label">{{ __('Status') }}<span
-                                        class="text-danger">*</span></label>
-
+                                <label for="status" class="col-sm-2 control-label">{{ __('Status') }}<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="status">
-                                        <option value="0" {{ $bcategory->status == '0' ? 'selected' : '' }}>
-                                            {{ __('Unpublish') }}
-                                        </option>
-                                        <option value="1" {{ $bcategory->status == '1' ? 'selected' : '' }}>
-                                            {{ __('Publish') }}
-                                        </option>
+                                        <option value="0" {{ $bcategory->status == '0' ? 'selected' : '' }}> {{ __('Unpublish') }} </option>
+                                        <option value="1" {{ $bcategory->status == '1' ? 'selected' : '' }}> {{ __('Publish') }} </option>
                                     </select>
                                     @if ($errors->has('status'))
                                     <p class="text-danger"> {{ $errors->first('status') }} </p>

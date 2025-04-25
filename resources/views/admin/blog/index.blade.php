@@ -57,7 +57,7 @@
                                     <td><input type="checkbox" class="bulk-item" value="{{ $blog->id }} "></td>
                                     <td><img class="w-80" src="{{ asset('assets/front/img/blog/' . $blog->image) }}" alt=""></td>
                                     <td>{{ json_decode($blog->title)->en }}</td>
-                                    <td>{{ json_decode($blog->bcategory->name)->en }}</td>
+                                    <td>{{ $blog->bcategory ? json_decode($blog->bcategory->name)->en : 'N/A' }}</td>
                                     <td>{{ json_decode($blog->content)->en }}</td>
                                     <td>@if ($blog->status == 1)
                                         <span class="badge badge-success">{{ __('Publish') }}</span>

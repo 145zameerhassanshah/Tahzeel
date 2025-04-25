@@ -15,6 +15,26 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('serial_number', 'asc')->get();
         return view('admin.blog.index', compact('blogs'));
     }
+    // public function blog()
+    // {
+    //     app()->setLocale(session('locale', 'en'));
+    //     $locale = app()->getLocale();
+    //     $blogs = Blog::where('status', '1')->get();
+    //     $categories = Bcategory::where('status', '1')->get();
+    //     // Localizing blogs
+    //     $localized_blog = $blogs->map(function ($item) use ($locale) {
+    //         return localize_blog($item, $locale);
+    //     });
+    //     // Localizing categories
+    //     $localized_categories = $categories->map(function ($item) use ($locale) {
+    //         return localize_blog_category($item, $locale);
+    //     });
+    //     return view('front.otherPages.blog', [
+    //         'blogs' => $localized_blog,
+    //         'bCategories' => $localized_categories,
+    //     ]);
+    // }
+
     // Add Blog
     public function add($id = null)
     {
@@ -32,6 +52,7 @@ class BlogController extends Controller
             'image' => 'required|mimes:jpeg,jpg,png',
             'title' => [
                 'required',
+                'array',
                 'unique:blogs,title',
                 'max:255',
                 function ($attribute, $value, $fail) use ($slug, $blogs) {
