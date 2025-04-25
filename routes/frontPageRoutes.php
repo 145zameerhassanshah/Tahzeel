@@ -39,6 +39,8 @@ Route::middleware('SetLocale')->group(function () {
 
 
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
+
+    Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
 });
 
 

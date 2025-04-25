@@ -34,15 +34,15 @@
             <!--/column -->
             <div class="col-lg-5">
                 <h2 class="fs-16 text-uppercase text-success mb-3">
-                    {!! __('home.about_title') !!}</h2>
+                    {!! __('home-page.about_title') !!}</h2>
                 <h3 class="display-4 mb-4 me-lg-n5">
-                    {!! __('home.about_subtitle') !!}</h3>
+                    {!! __('home-page.about_subtitle') !!}</h3>
                 <p class="mb-6">
-                    {!! __('home.about_description') !!}</p>
+                    {!! __('home-page.about_description') !!}</p>
                 <ul class="icon-list bullet-bg bullet-soft-red">
-                    <li><i class="uil uil-check"></i><b>{!! __('home.about_benefit1_description') !!}</b> {!! __('home.about_benefit1') !!}</li></li>
-                    <li><i class="uil uil-check"></i><b>{!! __('home.about_benefit2_description') !!}</b> {!! __('home.about_benefit2') !!}</li></li>
-                    <li><i class="uil uil-check"></i><b>{!! __('home.about_benefit3_description') !!}</b> {!! __('home.about_benefit3') !!}</li></li>
+                    <li><i class="uil uil-check"></i><b>{!! __('home-page.about_benefit1_description') !!}</b> {!! __('home-page.about_benefit1') !!}</li></li>
+                    <li><i class="uil uil-check"></i><b>{!! __('home-page.about_benefit2_description') !!}</b> {!! __('home-page.about_benefit2') !!}</li></li>
+                    <li><i class="uil uil-check"></i><b>{!! __('home-page.about_benefit3_description') !!}</b> {!! __('home-page.about_benefit3') !!}</li></li>
                 </ul>
             </div>
             <!--/column -->
