@@ -1,6 +1,4 @@
-@php
-$why_us_image_title = $section_titles->where('type', 'why_us_image')->first();
-@endphp
+
 <div class="container">
     @if(isset( $why_us_image_title->title ))
     <div class="row text-center mt-10 mb-12">
