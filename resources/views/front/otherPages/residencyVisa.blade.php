@@ -4,14 +4,12 @@
 
 
     <section class="wrapper image-wrapper bg-image  bg-overlay-300"
-        data-image-src="{{ asset('front') }}/dev/assets/img/personal/residencyVisa-bg.webp">
+        data-image-src="{{ asset('assets/static/residencyVisa-bg.webp')}}">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
-                    <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"><span
-                            class="underline-3 style-2 yellow"> Residency</span> Visa Issuance & Renewal Services </h1>
-                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Hassle-Free Residency
-                        Visa Issuance and Renewal Solutions with Tah-zeel</p>
+                    <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">{!! __('residency-visa.hero_title') !!}</h1>
+                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">{{ __('residency-visa.hero_sub_title') }}</p>
                     <!-- <div>
                       <a class="btn btn-white rounded mb-10 mb-xxl-5">Let's Talk</a>
                     </div> -->
