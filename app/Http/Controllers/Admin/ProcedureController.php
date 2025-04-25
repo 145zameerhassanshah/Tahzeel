@@ -52,20 +52,16 @@ class ProcedureController extends Controller
         $procedure = new Procedure();
         $procedure->page_id = $request->page_id;
         // Store multilingual fields
-        $procedure->title = [
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ];
 
-        $procedure->subtitle = [
-            'en' => $request->input('subtitle.en'),
-            'ar' => $request->input('subtitle.ar')
-        ];
 
-        $procedure->description = [
-            'en' => $request->input('description.en'),
-            'ar' => $request->input('description.ar')
-        ];
+        $procedure->setTranslation('title', 'en', $request['title']['en']);
+        $procedure->setTranslation('title', 'ar', $request['title']['ar']);
+
+        $procedure->setTranslation('subtitle', 'en', $request['subtitle']['en']);
+        $procedure->setTranslation('subtitle', 'ar', $request['subtitle']['ar']);
+
+        $procedure->setTranslation('description', 'en', $request['description']['en']);
+        $procedure->setTranslation('description', 'ar', $request['description']['ar']);
 
         // Handle Image Upload
         if ($request->hasFile('image')) {
@@ -101,9 +97,22 @@ class ProcedureController extends Controller
     {
         $procedure = Procedure::findOrFail($id);
         return response()->json([
-            'title' => is_string($procedure->title) ? json_decode($procedure->title, true) : $procedure->title,
-            'subtitle' => is_string($procedure->subtitle) ? json_decode($procedure->subtitle, true) : $procedure->subtitle,
-            'description' => is_string($procedure->description) ? json_decode($procedure->description, true) : $procedure->description,
+
+            'title' => [
+                'en' => $procedure->getTranslation('title', 'en'),
+                'ar' => $procedure->getTranslation('title', 'ar'),
+            ],
+
+            'subtitle' => [
+                'en' => $procedure->getTranslation('subtitle', 'en'),
+                'ar' => $procedure->getTranslation('subtitle', 'ar'),
+            ],
+
+            'description' => [
+                'en' => $procedure->getTranslation('description', 'en'),
+                'ar' => $procedure->getTranslation('description', 'ar'),
+            ],
+
             'order_no' => $procedure->order_no,
             'status' => $procedure->status,
             'image' => $procedure->image
@@ -127,21 +136,15 @@ class ProcedureController extends Controller
 
         $procedure = Procedure::findOrFail($id);
 
-        // Update multilingual fields
-        $procedure->title = json_encode([
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ], JSON_UNESCAPED_UNICODE);
 
-        $procedure->subtitle = json_encode([
-            'en' => $request->input('subtitle.en'),
-            'ar' => $request->input('subtitle.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        $procedure->setTranslation('title', 'en', $request['title']['en']);
+        $procedure->setTranslation('title', 'ar', $request['title']['ar']);
 
-        $procedure->description = json_encode([
-            'en' => $request->input('description.en'),
-            'ar' => $request->input('description.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        $procedure->setTranslation('subtitle', 'en', $request['subtitle']['en']);
+        $procedure->setTranslation('subtitle', 'ar', $request['subtitle']['ar']);
+
+        $procedure->setTranslation('description', 'en', $request['description']['en']);
+        $procedure->setTranslation('description', 'ar', $request['description']['ar']);
 
         // Handle Image Upload
         if ($request->hasFile('image')) {

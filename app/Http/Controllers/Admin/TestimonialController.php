@@ -60,8 +60,10 @@ class TestimonialController extends Controller
         // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
+
         $testimonial->setTranslation('name', 'en', $request['name']['en']);
         $testimonial->setTranslation('name', 'ar', $request['name']['ar']);
+        
         $testimonial->setTranslation('feedback', 'en', $request['feedback']['en']);
         $testimonial->setTranslation('feedback', 'ar', $request['feedback']['ar']);
         $testimonial->setTranslation('designation', 'en', $request['designation']['en']);
