@@ -15,6 +15,7 @@ public/hot
 public_html/storage
 public_html/hot
 /public/uploads/
+/public/assets/admin/uploads/
 
 storage/*.key
 .env
