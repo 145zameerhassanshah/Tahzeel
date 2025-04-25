@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="navbar-other w-100 d-flex ms-auto">
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <li class="nav-item dropdown language-select text-uppercase">
@@ -66,7 +66,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item d-none d-md-block">
+                                @auth
+                                    <!-- If the user is authenticated -->
+                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-success rounded-pill text-white">{{ __('Dashboard') }}</a>
+                                 @endauth
+
+                            @guest
+                                <!-- If the user is a guest (not authenticated) -->
                                 <a href="{{ route('front.contact.us') }}" class="btn btn-sm btn-success rounded-pill text-white">{{ __('header.apply_now') }}</a>
+                            @endguest
+
                             </li>
                             <li class="nav-item d-lg-none"><button class="hamburger offcanvas-nav-btn"><span></span></button></li>
                         </ul>
