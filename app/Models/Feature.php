@@ -23,6 +23,11 @@ class Feature extends Model
         'description' => 'array',
         'icon' => 'array',
     ];
+    public $translatable = [
+        'title',
+        'subtitle',
+        'description',
+    ];
 
     public function page()
     {

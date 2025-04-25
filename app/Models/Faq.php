@@ -13,6 +13,12 @@ class Faq extends Model
         'answer' => 'array'
     ];
     protected $fillable = ['page_id', 'question', 'answer'];
+
+    public $translatable = [
+        'question',
+        'answer',
+    ];
+
     public function page()
     {
         return $this->belongsTo(Page::class);

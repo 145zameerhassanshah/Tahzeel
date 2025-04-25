@@ -22,7 +22,14 @@ class HeroSection extends Model
     ];
 
 
-    public $translatable = ['title'];
+
+
+    public $translatable = [
+        'title',
+        'subtitle',
+        'description',
+    ];
+
     public function page()
     {
         return $this->belongsTo(Page::class);
