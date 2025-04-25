@@ -11,6 +11,7 @@
         "laravel/breeze": "^2.1",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "spatie/laravel-responsecache": "^7.6",
         "spatie/laravel-translatable": "^6.8",
         "spatie/laravel-translation-loader": "^2.8"
     },

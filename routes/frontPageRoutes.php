@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontController;
+use Spatie\ResponseCache\Middlewares\CacheResponse;
+use App\Http\Middleware\SetLocale;
 
 
 Route::get('/lang/{locale}', function ($locale) {
@@ -14,7 +16,7 @@ Route::get('/lang/{locale}', function ($locale) {
 })->name('lang.switch');
 
 
-Route::middleware('SetLocale')->group(function () {
+Route::middleware([SetLocale::class])->group(function () {
 
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 

@@ -1,7 +1,7 @@
 <footer class="bg-dark section-frame">
     <div class="container pb-13 pb-md-15">
         <div class="card image-wrapper bg-full bg-image bg-overlay mt-n50p mx-md-5"
-            data-image-src="{{ asset('front/dev/assets/img/personal/contact.webp') }}">
+            data-image-src="{{ asset('assets/static/contact.webp') }}">
             <div class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between text-lg-start">
                 <h3 class="display-4 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-18 text-white">
                     {{ __('footer.Ready to simplify your visa process?') }} <br>

@@ -20,7 +20,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <a href="/amerServices.html"><img src="dev/assets/img/personal/amer-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" /></a>
+                <a href="/amerServices.html"><img src="assets/static/amer-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" /></a>
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">
@@ -41,7 +41,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card d-flex">
               <div class="card-header">
-                <img src="dev/assets/img/personal/tasheel-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/tasheel-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
 
@@ -63,7 +63,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <img src="dev/assets/img/personal/DED-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/DED-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">
@@ -82,7 +82,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <img src="dev/assets/img/personal/legal-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/legal-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">
@@ -101,7 +101,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <img src="dev/assets/img/personal/DHA-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/DHA-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">
@@ -119,7 +119,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <img src="dev/assets/img/personal/Notary-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/Notary-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">
@@ -137,7 +137,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="pricing card text-center h-100 hover-card">
               <div class="card-header">
-                <img src="dev/assets/img/personal/attest-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
+                <img src="assets/static/attest-card.webp" class=" card-img-top w-50 text-center justify-content-center" alt="" />
 
               </div>
               <div class="card-body pt-4 pb-4 h-100 d-flex flex-column align-items-center">

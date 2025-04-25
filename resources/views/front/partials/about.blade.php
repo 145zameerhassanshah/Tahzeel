@@ -2,7 +2,7 @@
     <div class="container py-14 py-md-16">
         <div class="row gx-md-8 gy-10 align-items-center">
             <div class="col-lg-6 offset-lg-1 order-lg-2 position-relative">
-                <figure class="rounded"><img class="img-fluid" src="{{ asset('assets/static/about27.jpg') }}"  alt="" /></figure>
+                <figure class="rounded"><img class="img-fluid" src="{{ asset('assets/static/happy-family2.webp') }}"  alt="" /></figure>
                         <!-- srcset="{{ asset('front/dev/assets/img/personal/happy-family2.webp') }}" -->
                 <div class="card shadow-lg position-absolute d-none d-md-block" style="top: 15%; left: -7%">
                     <div class="card-body py-4 px-5">

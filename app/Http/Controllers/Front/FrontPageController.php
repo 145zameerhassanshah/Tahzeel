@@ -56,11 +56,17 @@ class FrontPageController extends Controller
             'featureImages'
         ])->where('slug', 'vat-registration-for-businesses')->firstOrFail();
         $data['page'] = $page;
+<<<<<<< HEAD
+=======
+
+        return view('front.page-detail', $data);
+>>>>>>> 7a06ca91dadda0d44ec583d6ad347109b661321c
     }
     public function vatBusiness1()
     {
         $hero = HeroSection::find(2);
         return $hero->getTranslation('title', 'ar'); // كرسي
+<<<<<<< HEAD
         app()->setLocale(session('locale', 'en'));
         $locale = app()->getLocale();  // Current language ('en' or 'ar')
         $data['page'] = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
@@ -116,6 +122,11 @@ class FrontPageController extends Controller
         $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
             return localizeWhyUsImage($item, $locale);
         });
+=======
+
+
+
+>>>>>>> 7a06ca91dadda0d44ec583d6ad347109b661321c
         //return $data['intro_sections'];
         return view('front.vat.vat-reg-business', $data);
     }

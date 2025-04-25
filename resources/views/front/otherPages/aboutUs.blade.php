@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('title', 'About Us')
 @section('content')
-<section class="wrapper image-wrapper bg-image bg-overlay-300" data-image-src="{{ asset('assets/static/about-bg.webp') }}">
+<section class="wrapper image-wrapper bg-image bg-overlay-300" data-image-src="{{ asset('assets/static/about-bg2.webp') }}">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
         <div class="row text-start">
             <div class="col-lg-8 col-xl-9 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -25,7 +25,7 @@
                 <div class="shape rounded bg-soft-tehzeel rellax d-md-block" data-rellax-speed="0"
                     style="bottom: -1.8rem; right: -1.5rem; width: 85%; height: 90%; "></div>
                 <figure class="rounded "><img src="{{ asset('assets/static/happy-family.webp') }}"
-                        srcset="./assets/img/photos/about7@2x.jpg 2x" alt="" /></figure>
+                        alt="" /></figure>
             </div>
             <!--/column -->
             <div class="col-lg-5 col-xl-4 offset-lg-1">
@@ -43,7 +43,7 @@
                 <div class="shape rounded bg-soft-tehzeel rellax d-md-block" data-rellax-speed="0"
                     style="bottom: -1.8rem; left: -1.5rem; width: 85%; height: 90%; "></div>
                 <figure class="rounded"><img src="{{ asset('assets/static/global-map.webp') }}"
-                        srcset="./assets/img/photos/about9@2x.jpg 2x" alt=""></figure>
+                        alt=""></figure>
             </div>
             <!--/column -->
             <div class="col-lg-5 col-xl-4 offset-lg-1">
@@ -63,7 +63,7 @@
                 <div class="shape rounded bg-soft-tehzeel rellax d-md-block" data-rellax-speed="0"
                     style="bottom: -1.8rem; right: -1.5rem; width: 85%; height: 90%; "></div>
                 <figure class="rounded"><img src="{{ asset('assets/static/Handshake.webp') }}"
-                        srcset="./assets/img/photos/about7@2x.jpg 2x" alt="" /></figure>
+                         alt="" /></figure>
             </div>
             <!--/column -->
             <div class="col-lg-5 col-xl-4 offset-lg-1">
