@@ -58,6 +58,7 @@ class FrontPageController extends Controller
 
         $data['page'] = $page;
 
+        return view('front.page-detail', $data);
     }
     public function vatBusiness1()
     {
@@ -66,62 +67,6 @@ class FrontPageController extends Controller
         return $hero->getTranslation('title', 'ar'); // كرسي
 
 
-        app()->setLocale(session('locale', 'en'));
-        $locale = app()->getLocale();  // Current language ('en' or 'ar')
-
-        $data['page'] = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
-        $page_detail = Page::with([
-            'procedures',
-            'callToActions',
-            'sectionTitles',
-            'introductionSections',
-            'heroSections',
-            'features',
-            'faqs',
-            'testimonials',
-            'whyChooseUs',
-            'documentRequireds',
-            'whyUsImages',
-            'featureImages'
-        ])->findOrFail($data['page']->id);
-        $data['hero_sections'] = $page_detail->heroSections->map(function ($section) use ($locale) {
-            return localizeHeroSection($section, $locale);
-        });
-        $data['intro_sections'] = $page_detail->introductionSections->map(function ($item) use ($locale) {
-            return localizeIntroductionSection($item, $locale);
-        });
-        $data['section_titles'] = $page_detail->sectionTitles->map(function ($item) use ($locale) {
-            return localizeSectionTitle($item, $locale);
-        });
-        $data['call_to_actions'] = $page_detail->callToActions->map(function ($item) use ($locale) {
-            return localizeCTA($item, $locale);
-        });
-        $data['procedures'] = $page_detail->procedures->map(function ($item) use ($locale) {
-            return localizeProcedure($item, $locale);
-        });
-
-        $data['feature_images'] = $page_detail->featureImages->map(function ($item) use ($locale) {
-            return localizeFeatureImage($item, $locale);
-        });
-        $data['testimonials'] = $page_detail->testimonials->map(function ($item) use ($locale) {
-            return localizeTestimonial($item, $locale);
-        });
-        $data['document_requireds'] = $page_detail->documentRequireds->map(function ($item) use ($locale) {
-            return localizeDocumentRequired($item, $locale);
-        });
-        $data['faqs'] = $page_detail->faqs->map(function ($item) use ($locale) {
-            return localizeFaq($item, $locale);
-        });
-        $data['features'] = $page_detail->features->map(function ($item) use ($locale) {
-            return localizeFeature($item, $locale);
-        });
-        $data['why_choose_us'] = $page_detail->whyChooseUs->map(function ($item) use ($locale) {
-            return localizeWhyChooseUs($item, $locale);
-        });
-        // dd($data['why_choose_us']);
-        $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
-            return localizeWhyUsImage($item, $locale);
-        });
 
         //return $data['intro_sections'];
         return view('front.vat.vat-reg-business', $data);

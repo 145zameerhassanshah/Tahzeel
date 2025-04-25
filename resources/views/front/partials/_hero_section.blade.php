@@ -1,3 +1,5 @@
+@foreach ($page->heroSections as $hero_section)
+
 <section class="wrapper image-wrapper bg-image bg-overlay-300" data-image-src="{{ asset('uploads/hero_section/' . $hero_section->background_image) }}">
 
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17">
@@ -13,3 +15,5 @@
         </div>
     </div>
 </section>
+
+@endforeach

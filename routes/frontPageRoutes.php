@@ -15,7 +15,7 @@ Route::get('/lang/{locale}', function ($locale) {
 })->name('lang.switch');
 
 
-Route::middleware([SetLocale::class, CacheResponse::class])->group(function () {
+Route::middleware([SetLocale::class])->group(function () {
 
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
 
