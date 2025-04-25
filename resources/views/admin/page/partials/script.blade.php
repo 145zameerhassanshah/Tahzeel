@@ -2892,7 +2892,6 @@
 
         $(document).on('click', '.editFeature', function() {
             let id = $(this).data('id');
-
             $.ajax({
                 url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id),
                 type: "GET",
@@ -2935,11 +2934,9 @@
 
         $('#editWhyUsForm').on('submit', function(e) {
             e.preventDefault();
-
             let formData = new FormData(this);
             let id = $('#update_whyus_id').val();
             let url = `{{ route('admin.why-choose-us.update', ':id') }}`.replace(':id', id);
-
             $.ajax({
                 url: url,
                 type: "POST",
@@ -2965,7 +2962,6 @@
 
         $(document).on("click", ".delete-whyus", function() {
             let whyusId = $(this).data("id");
-
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
