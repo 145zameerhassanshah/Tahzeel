@@ -4,6 +4,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Setting;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,5 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $setting = Setting::first();
         View::share('setting', $setting);
+    
+
     }
 }

@@ -60,21 +60,14 @@ class TestimonialController extends Controller
         // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
-        // Store multilingual fields correctly
-        $testimonial->name = json_encode([
-            'en' => $request->input('name.en'),
-            'ar' => $request->input('name.ar')
-        ], JSON_UNESCAPED_UNICODE);
 
-        $testimonial->feedback = json_encode([
-            'en' => $request->input('feedback.en'),
-            'ar' => $request->input('feedback.ar')
-        ], JSON_UNESCAPED_UNICODE);
-
-        $testimonial->designation = json_encode([
-            'en' => $request->input('designation.en'),
-            'ar' => $request->input('designation.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        $testimonial->setTranslation('name', 'en', $request['name']['en']);
+        $testimonial->setTranslation('name', 'ar', $request['name']['ar']);
+        
+        $testimonial->setTranslation('feedback', 'en', $request['feedback']['en']);
+        $testimonial->setTranslation('feedback', 'ar', $request['feedback']['ar']);
+        $testimonial->setTranslation('designation', 'en', $request['designation']['en']);
+        $testimonial->setTranslation('designation', 'ar', $request['designation']['ar']);
 
         // Handle Image Upload
         if ($request->hasFile('image')) {
@@ -96,13 +89,23 @@ class TestimonialController extends Controller
     public function edit($id)
     {
         $testimonial = Testimonial::findOrFail($id);
+
         return response()->json([
-            'name' => json_decode($testimonial->name),
-            'designation' => json_decode($testimonial->designation),
-            'feedback' => json_decode($testimonial->feedback),
+            'name' => [
+                'en' => $testimonial->getTranslation('name', 'en'),
+                'ar' => $testimonial->getTranslation('name', 'ar'),
+            ],
+            'designation' => [
+                'en' => $testimonial->getTranslation('designation', 'en'),
+                'ar' => $testimonial->getTranslation('designation', 'ar'),
+            ],
+            'feedback' => [
+                'en' => $testimonial->getTranslation('feedback', 'en'),
+                'ar' => $testimonial->getTranslation('feedback', 'ar'),
+            ],
             'order_no' => $testimonial->order_no,
             'status' => $testimonial->status,
-            'image' => $testimonial->image
+            'image' => $testimonial->image,
         ]);
     }
 
@@ -120,20 +123,12 @@ class TestimonialController extends Controller
 
         $testimonial = Testimonial::find($id);
 
-        $testimonial->name = json_encode([
-            'en' => $request->input('name.en'),
-            'ar' => $request->input('name.ar')
-        ], JSON_UNESCAPED_UNICODE);
-
-        $testimonial->feedback = json_encode([
-            'en' => $request->input('feedback.en'),
-            'ar' => $request->input('feedback.ar')
-        ], JSON_UNESCAPED_UNICODE);
-
-        $testimonial->designation = json_encode([
-            'en' => $request->input('designation.en'),
-            'ar' => $request->input('designation.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        $testimonial->setTranslation('name', 'en', $request['name']['en']);
+        $testimonial->setTranslation('name', 'ar', $request['name']['ar']);
+        $testimonial->setTranslation('feedback', 'en', $request['feedback']['en']);
+        $testimonial->setTranslation('feedback', 'ar', $request['feedback']['ar']);
+        $testimonial->setTranslation('designation', 'en', $request['designation']['en']);
+        $testimonial->setTranslation('designation', 'ar', $request['designation']['ar']);
         if ($request->hasFile('image')) {
             @unlink('assets/admin/uploads/testimonial/' . $testimonial->image);
             $file = $request->file('image');

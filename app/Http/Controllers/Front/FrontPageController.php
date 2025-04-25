@@ -38,10 +38,16 @@ use Illuminate\Http\Request;
 class FrontPageController extends Controller
 {
     // 'hero', 'section_title' , 'intro_section', 'features', 'faq', 'why_choose_us', 'testimonials', 'documents_required', 'procedure', 'cta','img_features'
-    public function vatBusiness()
+    public function vatBusiness1()
     {
+        $hero=HeroSection::find(2);
+
+        return $hero->getTranslation('title', 'ar'); // كرسي
+
+
         app()->setLocale(session('locale', 'en'));
         $locale = app()->getLocale();  // Current language ('en' or 'ar')
+
         $data['page'] = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
         $page_detail = Page::with([
             'procedures',
@@ -72,9 +78,7 @@ class FrontPageController extends Controller
         $data['procedures'] = $page_detail->procedures->map(function ($item) use ($locale) {
             return localizeProcedure($item, $locale);
         });
-        $data['hero_sections'] = $page_detail->heroSections->map(function ($item) use ($locale) {
-            return localizeHeroSection($item, $locale);
-        });
+
         $data['feature_images'] = $page_detail->featureImages->map(function ($item) use ($locale) {
             return localizeFeatureImage($item, $locale);
         });
@@ -97,6 +101,46 @@ class FrontPageController extends Controller
         $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
             return localizeWhyUsImage($item, $locale);
         });
+
+        //return $data['intro_sections'];
+        return view('front.vat.vat-reg-business', $data);
+    }
+
+
+
+
+    public function vatBusiness()
+    {
+        $hero=HeroSection::find(2);
+
+       
+
+
+    
+        $locale = app()->getLocale();  // Current language ('en' or 'ar')
+
+        $data['page'] = Page::where('slug', 'vat-registration-for-businesses')->firstOrFail();
+        $page_detail = Page::with([
+            'procedures',
+            'callToActions',
+            'sectionTitles',
+            'introductionSections',
+            'heroSections',
+            'features',
+            'faqs',
+            'testimonials',
+            'whyChooseUs',
+            'documentRequireds',
+            'whyUsImages',
+            'featureImages'
+        ])->findOrFail($data['page']->id);
+       
+       
+        $data['testimonials'] = Testimonial::all();
+       
+        
+
+        //return $data['intro_sections'];
         return view('front.vat.vat-reg-business', $data);
     }
 

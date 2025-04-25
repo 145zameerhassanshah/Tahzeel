@@ -10,22 +10,22 @@
 @endforeach
 @endif
 
-@if (isset($intro_sections))
+{{-- @if (isset($intro_sections))
 @foreach ($intro_sections as $intro_section)
 @include('front.partials._intro_three_images')
 @endforeach
-@endif
+@endif --}}
 
-@php
+{{-- @php
 $document_title = $section_titles->where('type', 'document')->first();
 @endphp
 @if (isset($document_requireds) && isset($document_title->title))
 @include('front.partials._docs')
-@endif
+@endif --}}
 
-@php
+{{-- @php
 $feature_title = $section_titles->where('type', 'feature')->first();
-@endphp
+@endphp --}}
 
 
 @if (isset($feature_images) && isset($feature_title->title))
@@ -37,9 +37,9 @@ $feature_title = $section_titles->where('type', 'feature')->first();
 @include('front.partials._whyChoose')
 @endif
 
-@php
+{{-- @php
 $procedure_title = $section_titles->where('type', 'procedure')->first();
-@endphp
+@endphp --}}
 
 @if (isset($procedures) && isset($procedure_title))
 @include('front.partials._procedures')
@@ -78,10 +78,10 @@ $procedure_title = $section_titles->where('type', 'procedure')->first();
 {{-- end features  --}}
 
 
-
+{{-- 
 @php
 $faq_title = $section_titles->where('type', 'faq')->first();
-@endphp
+@endphp --}}
 
 @if (isset($faq_title))
 <div class="wrapper">

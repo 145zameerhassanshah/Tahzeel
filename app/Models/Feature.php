@@ -2,9 +2,11 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Feature extends Model
 {
+    use HasTranslations;
     protected $fillable = [
         'page_id',
         'icon',
@@ -20,6 +22,11 @@ class Feature extends Model
         'subtitle' => 'array',
         'description' => 'array',
         'icon' => 'array',
+    ];
+    public $translatable = [
+        'title',
+        'subtitle',
+        'description',
     ];
 
     public function page()

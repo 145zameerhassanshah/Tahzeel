@@ -51,10 +51,29 @@ class HeroSectionController extends Controller
         ]);
         $hero_section = new HeroSection();
         $hero_section->page_id = $request->page_id;
-        $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
-        $hero_section->subtitle = json_encode($request->subtitle, JSON_UNESCAPED_UNICODE);
-        $hero_section->description = json_encode($request->description, JSON_UNESCAPED_UNICODE);
+        // $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
+        $hero_section->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+
+        $hero_section->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+
+        $hero_section->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
+
         $hero_section->status = $request->status;
+
+
+
+        $hero_section->status = $request->status;
+
+
         if ($request->hasFile('background_image')) {
             $imageName = time() . '.' . $request->file('background_image')->extension();
             $request->file('background_image')->move(public_path('uploads/hero_section/'), $imageName);
@@ -109,9 +128,20 @@ class HeroSectionController extends Controller
 
         $hero_section = HeroSection::find($id);
 
-        $hero_section->title = json_encode($request->title);
-        $hero_section->subtitle = json_encode($request->subtitle);
-        $hero_section->description = json_encode($request->description);
+        $hero_section->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+
+        $hero_section->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+
+        $hero_section->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
 
         $hero_section->status = $request->status;
 

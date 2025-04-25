@@ -2,9 +2,12 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
+    use HasTranslations;
+
     public function procedures()
     {
         return $this->hasMany(Procedure::class);

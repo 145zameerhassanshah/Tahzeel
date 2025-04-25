@@ -395,8 +395,15 @@
                 contentType: false,
                 success: function(response) {
                     toastr.success("Procedure added successfully");
+                    
+
+
                     $("#procedureForm")[0].reset();
-                    $("#procedureModal").modal('hide');
+                        $("#procedureModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
+
+
                     loadProcedures();
                 },
                 error: function(xhr) {
@@ -661,8 +668,13 @@
                 contentType: false,
                 success: function(response) {
                     toastr.success("Document added successfully");
+                   
+
+                    
                     $("#documentForm")[0].reset();
-                    $("#documentModal").modal('hide');
+                        $("#documentModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
                     loadDocuments();
                 },
                 error: function(xhr) {
@@ -1103,8 +1115,13 @@
                     },
                     success: function(response) {
                         toastr.success("FAQ added successfully");
-                        $("#faqForm")[0].reset();
-                        $("#faqModal").modal('hide');
+                        
+
+                        
+                    $("#faqForm")[0].reset();
+                        $("#faqModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
                         loadFAQs();
                     },
                     error: function(xhr) {
@@ -1337,8 +1354,13 @@
                 dataType: 'json',
                 success: function(response) {
                     toastr.success("CTA added successfully");
+                   
+
+                    
                     $("#ctaForm")[0].reset();
-                    $("#ctaModal").modal('hide');
+                        $("#ctaModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
                     loadCTAs();
                 },
                 error: function(xhr) {
@@ -1644,8 +1666,12 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Hero Section added successfully!");
+                        
+                       
                         $("#herosectionForm")[0].reset();
-                        $("#herosectionModal").modal('hide');
+                        $("#herosectionModal").removeClass("show").hide();
+                        $(".modal-backdrop").remove();
+                        $("body").removeClass("modal-open");
                         refreshHeroSections();
                     } else if (response.errors) {
                         $.each(response.errors, function(key, value) {
@@ -2870,11 +2896,11 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Feature added successfully!");
-                        refreshWhyUs();
+                        
                         $("#whyusForm")[0].reset();
-                        $("#whyusModal").removeClass("show").hide();
-                        $(".modal-backdrop").remove();
-                        $("body").removeClass("modal-open");
+                        $("#whyusModal").modal('hide');
+                       
+                        refreshWhyUs();
                     } else {
                         if (response.errors) {
                             $.each(response.errors, function(key, value) {
