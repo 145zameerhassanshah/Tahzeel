@@ -349,7 +349,7 @@
         <!-- /.container -->
     </section>
     <!-- /section -->
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
     @include('front.partials.affiliations')
     @include('front.partials.cta-1')
     @include('front.partials.contact-us')
