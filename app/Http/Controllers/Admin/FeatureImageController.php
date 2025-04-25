@@ -54,9 +54,9 @@ class FeatureImageController extends Controller
         $request->validate([
             'page_id' => 'required',
             'title' => 'required|max:250',
-            'image' => 'required',
             'subtitle' => 'required|max:250',
             'description' => 'required',
+            'image' => 'required',
             'order_no' => 'required|max:250',
             'status' => 'required',
         ]);
@@ -64,11 +64,18 @@ class FeatureImageController extends Controller
         $feature_image = new FeatureImage();
 
         $feature_image->page_id = $request->page_id;
-
-        $feature_image->title = json_encode($request->title);
-        $feature_image->subtitle = json_encode($request->subtitle);
-        $feature_image->description = json_encode($request->description);
-
+        $feature_image->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $feature_image->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $feature_image->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         $feature_image->order_no = $request->order_no;
         $feature_image->status = $request->status;
 
@@ -79,10 +86,7 @@ class FeatureImageController extends Controller
             $file->move('assets/admin/uploads/feature_image/', $image);
             $feature_image->image = $image;
         }
-
         $feature_image->save();
-
-
         return response()->json([
             'success' => true,
         ]);
@@ -91,11 +95,9 @@ class FeatureImageController extends Controller
     // Feature Delete
     public function delete($id)
     {
-
         $feature_image = FeatureImage::find($id);
         @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
         $feature_image->delete();
-
         return response()->json([
             'success' => true,
         ]);
@@ -106,9 +108,18 @@ class FeatureImageController extends Controller
     {
         $feature_image = FeatureImage::find($id);
         return response()->json([
-            'title' => json_decode($feature_image->title, true),
-            'subtitle' => json_decode($feature_image->subtitle, true),
-            'description' => json_decode($feature_image->description, true),
+            'title' => [
+                'en' => $feature_image->getTranslation('title', 'en'),
+                'ar' => $feature_image->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $feature_image->getTranslation('subtitle', 'en'),
+                'ar' => $feature_image->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $feature_image->getTranslation('description', 'en'),
+                'ar' => $feature_image->getTranslation('description', 'ar'),
+            ],
             'image' => $feature_image->image,
             'order_no' => $feature_image->order_no,
             'status' => $feature_image->status,
@@ -120,22 +131,27 @@ class FeatureImageController extends Controller
     {
         $request->validate([
             'title' => 'required|max:250',
-            'image' => 'nullable',
             'subtitle' => 'required|max:250',
             'description' => 'required',
             'order_no' => 'required|max:250',
+            'image' => 'nullable',
             'status' => 'required',
         ]);
-
         $feature_image = FeatureImage::find($id);
-
-        $feature_image->title = json_encode($request->title);
-        $feature_image->subtitle = json_encode($request->subtitle);
-        $feature_image->description = json_encode($request->description);
-
+        $feature_image->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $feature_image->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $feature_image->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
         $feature_image->order_no = $request->order_no;
         $feature_image->status = $request->status;
-
         if ($request->hasFile('image')) {
             @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
             $file = $request->file('image');
@@ -144,9 +160,7 @@ class FeatureImageController extends Controller
             $file->move('assets/admin/uploads/feature_image/', $image);
             $feature_image->image = $image;
         }
-
         $feature_image->save();
-
         return response()->json([
             'data' => $feature_image
         ]);

@@ -395,13 +395,13 @@
                 contentType: false,
                 success: function(response) {
                     toastr.success("Procedure added successfully");
-                    
+
 
 
                     $("#procedureForm")[0].reset();
-                        $("#procedureModal").removeClass("show").hide();
-                        $(".modal-backdrop").remove();
-                        $("body").removeClass("modal-open");
+                    $("#procedureModal").removeClass("show").hide();
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
 
 
                     loadProcedures();
@@ -631,30 +631,24 @@
         $("#documentForm").submit(function(e) {
             e.preventDefault();
             $(".error").text("");
-
             // Get all required field values
             const titleEn = $("#documentTitleEn").val().trim();
             const titleAr = $("#documentTitleAr").val().trim();
             const status = $("#documentStatus").val();
-
             // Validate required fields
             let isValid = true;
-
             if (!titleEn) {
                 $("#documentErrorTitleEn").text("English title is required");
                 isValid = false;
             }
-
             if (!titleAr) {
                 $("#documentErrorTitleAr").text("Arabic title is required");
                 isValid = false;
             }
-
             if (!status) {
                 $("#documentErrorStatus").text("Status is required");
                 isValid = false;
             }
-
             if (!isValid) {
                 toastr.error("Please fill all required fields");
                 return;
@@ -668,13 +662,10 @@
                 contentType: false,
                 success: function(response) {
                     toastr.success("Document added successfully");
-                   
-
-                    
                     $("#documentForm")[0].reset();
-                        $("#documentModal").removeClass("show").hide();
-                        $(".modal-backdrop").remove();
-                        $("body").removeClass("modal-open");
+                    $("#documentModal").removeClass("show").hide();
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
                     loadDocuments();
                 },
                 error: function(xhr) {
@@ -1058,40 +1049,32 @@
             $("#faqForm").submit(function(e) {
                 e.preventDefault();
                 $(".error").text("");
-                // Get all required field values
                 const questionEn = $("#faqQuestionEn").val().trim();
                 const questionAr = $("#faqQuestionAr").val().trim();
                 const answerEn = $("#faqAnswerEn").val().trim();
                 const answerAr = $("#faqAnswerAr").val().trim();
                 const status = $("#faqStatus").val();
-                // Validate required fields
                 let isValid = true;
-
                 if (!questionEn) {
                     $("#faqErrorQuestionEn").text("English question is required");
                     isValid = false;
                 }
-
                 if (!questionAr) {
                     $("#faqErrorQuestionAr").text("Arabic question is required");
                     isValid = false;
                 }
-
                 if (!answerEn) {
                     $("#faqErrorAnswerEn").text("English answer is required");
                     isValid = false;
                 }
-
                 if (!answerAr) {
                     $("#faqErrorAnswerAr").text("Arabic answer is required");
                     isValid = false;
                 }
-
                 if (!isValid) {
                     toastr.error("Please fill all required fields");
                     return;
                 }
-
                 // Prepare form data in the correct format
                 const formData = new FormData();
                 formData.append('page_id', $("#faqPageId").val());
@@ -1102,23 +1085,19 @@
                 formData.append('order_no', $("#faqOrderNo").val() || 0);
                 formData.append('status', status);
                 formData.append('_token', "{{ csrf_token() }}");
-
                 $.ajax({
                     url: "{{ route('faqs.store') }}",
                     type: "POST",
                     data: formData,
-                    processData: false, // Important for FormData
-                    contentType: false, // Important for FormData
+                    processData: false,
+                    contentType: false,
                     beforeSend: function() {
                         $("#faqSubmitBtn").prop('disabled', true)
                             .html('<i class="fas fa-spinner fa-spin"></i> Saving...');
                     },
                     success: function(response) {
                         toastr.success("FAQ added successfully");
-                        
-
-                        
-                    $("#faqForm")[0].reset();
+                        $("#faqForm")[0].reset();
                         $("#faqModal").removeClass("show").hide();
                         $(".modal-backdrop").remove();
                         $("body").removeClass("modal-open");
@@ -1127,7 +1106,6 @@
                     error: function(xhr) {
                         if (xhr.status === 422) {
                             const errors = xhr.responseJSON.errors;
-                            // Handle validation errors
                             if (errors['question.en']) {
                                 $("#faqErrorQuestionEn").text(errors['question.en'][0]);
                             }
@@ -1153,8 +1131,6 @@
                     }
                 });
             });
-
-            // ... (keep your existing edit, update, and delete functions)
         });
 
         // Delete FAQ with confirmation
@@ -1354,13 +1330,10 @@
                 dataType: 'json',
                 success: function(response) {
                     toastr.success("CTA added successfully");
-                   
-
-                    
                     $("#ctaForm")[0].reset();
-                        $("#ctaModal").removeClass("show").hide();
-                        $(".modal-backdrop").remove();
-                        $("body").removeClass("modal-open");
+                    $("#ctaModal").removeClass("show").hide();
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
                     loadCTAs();
                 },
                 error: function(xhr) {
@@ -1666,8 +1639,8 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Hero Section added successfully!");
-                        
-                       
+
+
                         $("#herosectionForm")[0].reset();
                         $("#herosectionModal").removeClass("show").hide();
                         $(".modal-backdrop").remove();
@@ -2896,10 +2869,10 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("Feature added successfully!");
-                        
+
                         $("#whyusForm")[0].reset();
                         $("#whyusModal").modal('hide');
-                       
+
                         refreshWhyUs();
                     } else {
                         if (response.errors) {
@@ -3486,10 +3459,9 @@
         $(document).on('click', '.editWhyUsImg', function() {
             let id = $(this).data('id');
             $.ajax({
-                url: "{{ route('admin.why-choose-us.edit', ':id') }}".replace(':id', id),
+                url: "{{ route('admin.why-us-image.edit', ':id') }}".replace(':id', id),
                 type: "GET",
                 success: function(response) {
-
                     let title = response.title ? response.title : {
                         en: "",
                         ar: ""
@@ -3503,6 +3475,8 @@
                         ar: ""
                     };
                     let icon = response.icon ? response.icon : "";
+
+                    // Set form values
                     $('#update_whyusimg_id').val(id);
                     $('#update_whyusimg_title_en').val(title.en);
                     $('#update_whyusimg_title_ar').val(title.ar);
@@ -3512,8 +3486,12 @@
                     $('#update_whyusimg_description_ar').val(description.ar);
                     $('#update_whyusimg_status').val(response.status);
                     $('#update_whyusimg_order_no').val(response.order_no);
-                    $('#update_image').val(response.image);
-                    // Show the modal
+                    // Display the image name or preview
+                    if (response.image) {
+                        $('#current_image_preview').text(response.image); // Show image name as text
+                        // Alternatively, you can display the image preview if it's available
+                        $('#current_image_preview').html('<img src="assets/admin/uploads/why_us_image/' + response.image + '" width="100" height="100">');
+                    }
                     $('#editWhyusImageModal').modal('show');
                 },
                 error: function(xhr) {
@@ -3521,6 +3499,7 @@
                 }
             });
         });
+
 
         $(document).on("click", ".delete-whyusImg", function() {
             let whyusId = $(this).data("id");

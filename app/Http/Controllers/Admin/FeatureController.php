@@ -41,80 +41,109 @@ class FeatureController extends Controller
         return view('admin.feature.add', compact('group'));
     }
 
-    // Store Feature
     public function store(Request $request)
     {
-        
-        $request->merge(json_decode($request->getContent(), true));
         $request->validate([
-            'page_id' => 'required',
-            'title.en' => 'required',
-            'title.ar' => 'required',
-            'subtitle.en' => 'required',
-            'subtitle.ar' => 'required',
-            'description.en' => 'required',
-            'description.ar' => 'required',
-            'icon' => 'required',
-            'order_no' => 'required',
-            'status' => 'required',
+            'page_id' => 'required|exists:pages,id',
+            'title.en' => 'required|string',
+            'title.ar' => 'required|string',
+            'subtitle.en' => 'required|string',
+            'subtitle.ar' => 'required|string',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'icon' => 'required|string',
+            'order_no' => 'required|integer',
+            'status' => 'required|in:active,inactive',
         ]);
-        $feature = Feature::create([
-            'page_id' => $request->page_id,
-            'icon' => $request->icon,
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'description' => $request->description,
-            'order_no' => $request->order_no,
-            'status' => $request->status
-        ]);
+
+        $feature = new Feature();
+        $feature->page_id = $request->page_id;
+        $feature->icon = $request->icon;
+        $feature->order_no = $request->order_no;
+        $feature->status = $request->status;
+
+        $feature->setTranslations('title', $request->input('title'));
+        $feature->setTranslations('subtitle', $request->input('subtitle'));
+        $feature->setTranslations('description', $request->input('description'));
+
+        $feature->save();
+
         return response()->json([
             'success' => true,
             'message' => 'Feature saved!',
+            'data' => $feature
         ]);
     }
 
-    // Feature Delete
+
+    public function edit($id)
+    {
+        $feature = Feature::findOrFail($id);
+        return response()->json([
+            'title' => [
+                'en' => $feature->getTranslation('title', 'en'),
+                'ar' => $feature->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $feature->getTranslation('subtitle', 'en'),
+                'ar' => $feature->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $feature->getTranslation('description', 'en'),
+                'ar' => $feature->getTranslation('description', 'ar'),
+            ],
+            'icon' => is_string($feature->icon) ? json_decode($feature->icon, true) : $feature->icon,
+            'order_no' => $feature->order_no,
+            'status' => $feature->status,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title.en' => 'required|string',
+            'title.ar' => 'required|string',
+            'subtitle.en' => 'required|string',
+            'subtitle.ar' => 'required|string',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'icon' => 'required|string',
+            'order_no' => 'required|integer',
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        $feature = Feature::findOrFail($id);
+
+        $feature->setTranslations('title', [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar'),
+        ]);
+        $feature->setTranslations('subtitle', [
+            'en' => $request->input('subtitle.en'),
+            'ar' => $request->input('subtitle.ar'),
+        ]);
+        $feature->setTranslations('description', [
+            'en' => $request->input('description.en'),
+            'ar' => $request->input('description.ar'),
+        ]);
+
+        $feature->icon = $request->icon;
+        $feature->order_no = $request->order_no;
+        $feature->status = $request->status;
+
+        $feature->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => $feature
+        ]);
+    }
     public function delete($id)
     {
         $feature = Feature::find($id);
         $feature->delete();
         return response()->json([
             'success' => true,
-        ]);
-    }
-
-    public function edit($id)
-    {
-        $feature = Feature::findOrFail($id);
-        return response()->json([
-            'title' => is_string($feature->title) ? json_decode($feature->title, true) : $feature->title,
-            'subtitle' => is_string($feature->subtitle) ? json_decode($feature->subtitle, true) : $feature->subtitle,
-            'description' => is_string($feature->description) ? json_decode($feature->description, true) : $feature->description,
-            'icon' => is_string($feature->icon) ? json_decode($feature->icon, true) : $feature->icon,
-            'order_no' => $feature->order_no,
-            'status' => $feature->status,
-        ]);
-    }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required',
-            'icon' => 'required',
-            'subtitle' => 'required',
-            'description' => 'required',
-            'order_no' => 'required',
-            'status' => 'required',
-        ]);
-        $feature = Feature::find($id);
-        $feature->title = json_encode($request->title);
-        $feature->subtitle = json_encode($request->subtitle);
-        $feature->description = json_encode($request->description);
-        $feature->icon = $request->icon;
-        $feature->order_no = $request->order_no;
-        $feature->status = $request->status;
-        $feature->save();
-        return response()->json([
-            'data' => $feature,
         ]);
     }
 }

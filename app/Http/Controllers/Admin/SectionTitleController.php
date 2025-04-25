@@ -11,7 +11,6 @@ class SectionTitleController extends Controller
 {
     public function index()
     {
-        $section_titles = SectionTitle::all();
         $types = [
             'testimonial',
             'faq',
@@ -21,91 +20,97 @@ class SectionTitleController extends Controller
             'document',
             'call_to_action'
         ];
-        return response()->json([
-            'data' => $section_titles,
-            'types' => $types
-        ]);
-    }
-    public function list($id)
-    {
-        $section_titles = SectionTitle::where('group_id', $id)->get();
-        return view('admin.section_title.list', compact('section_titles', 'id'));
+        return view('admin.section_title.index', compact('types'));
     }
 
     public function getByPageId($pageId)
     {
-        $sectionTitle = SectionTitle::where('page_id', $pageId)->get();
-        return response()->json([
-            'data' => $sectionTitle
-        ]);
+        $sectionTitles = SectionTitle::where('page_id', $pageId)->get();
+        return response()->json(['data' => $sectionTitles]);
     }
 
-    public function add($id)
-    {
-        $group = Group::find($id);
-        return view('admin.section_title.add', compact('group'));
-    }
-
-    // Store Feature
     public function store(Request $request)
     {
         $request->validate([
-            'page_id' => 'required|exists:groups,id',
-            'section_title.en' => 'required|max:250',
-            'section_status' => 'required',
+            'page_id' => 'required|exists:pages,id',
+            'section_title.en' => 'required|string|max:250',
+            'section_title.ar' => 'required|string|max:250',
+            'section_subtitle.en' => 'nullable|string|max:250',
+            'section_subtitle.ar' => 'nullable|string|max:250',
+            'section_status' => 'required|in:active,inactive',
+            'section_type' => 'required|string'
         ]);
-        $section_title = new SectionTitle();
-        $section_title->page_id = $request->page_id;
-        $section_title->title = json_encode($request->section_title, JSON_UNESCAPED_UNICODE);
-        $section_title->subtitle = json_encode($request->section_subtitle, JSON_UNESCAPED_UNICODE);
-        $section_title->status = $request->section_status;
-        $section_title->type = $request->section_type;
-        $section_title->save();
-        return response()->json([
-            'success' => true,
-            'section_title' => $section_title
+        $sectionTitle = new SectionTitle();
+        $sectionTitle->page_id = $request->page_id;
+        $sectionTitle->setTranslations('title', [
+            'en' => $request->section_title['en'],
+            'ar' => $request->section_title['ar'],
         ]);
+        if (isset($request->section_subtitle['en']) && isset($request->section_subtitle['ar'])) {
+            $sectionTitle->setTranslations('subtitle', [
+                'en' => $request->section_subtitle['en'],
+                'ar' => $request->section_subtitle['ar'],
+            ]);
+        }
+        $sectionTitle->status = $request->section_status;
+        $sectionTitle->type = $request->section_type;
+        $sectionTitle->save();
+        return response()->json(['success' => true, 'section_title' => $sectionTitle]);
     }
 
-    // SectionTitle Delete
-    public function delete($id)
-    {
-        $section_title = SectionTitle::find($id);
-        $section_title->delete();
-        return response()->json([
-            'success' => true
-        ]);
-    }
 
-    // SectionTitle Edit
     public function edit($id)
     {
-        $section_title = SectionTitle::find($id);
+        $sectionTitle = SectionTitle::findOrFail($id);
+
         return response()->json([
-            'title' => json_decode($section_title->title),
-            'subtitle' => json_decode($section_title->subtitle),
-            'description' => json_decode($section_title->description),
-            'status' => $section_title->status,
-            'images' => $section_title->images,
-            'type' => $section_title->type,
+            'title' => [
+                'en' => $sectionTitle->getTranslation('title', 'en'),
+                'ar' => $sectionTitle->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $sectionTitle->getTranslation('subtitle', 'en'),
+                'ar' => $sectionTitle->getTranslation('subtitle', 'ar'),
+            ],
+            'status' => $sectionTitle->status,
+            'type' => $sectionTitle->type,
+            'id' => $sectionTitle->id
         ]);
     }
 
-    // Update SectionTitle
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            'section_title' => 'required|max:250',
-            'section_status' => 'required',
+            'section_title.en' => 'required|string|max:250',
+            'section_title.ar' => 'required|string|max:250',
+            'section_subtitle.en' => 'required|string|max:250',
+            'section_subtitle.ar' => 'required|string|max:250',
+            'section_status' => 'required|in:active,inactive',
+            'section_type' => 'required|string'
         ]);
-        $section_title = SectionTitle::find($id);
-        $section_title->title = json_encode($request->section_title);
-        $section_title->subtitle = json_encode($request->section_subtitle);
-        $section_title->status = $request->section_status;
-        $section_title->type = $request->section_type;
-        $section_title->save();
-        return response()->json([
-            'data' => $section_title,
+
+        $sectionTitle = SectionTitle::findOrFail($id);
+        $sectionTitle->setTranslations('title', [
+            'en' => $request->section_title['en'],
+            'ar' => $request->section_title['ar'],
         ]);
+        $sectionTitle->setTranslations('subtitle', [
+            'en' => $request->section_subtitle['en'],
+            'ar' => $request->section_subtitle['ar'],
+        ]);
+        $sectionTitle->status = $request->section_status;
+        $sectionTitle->type = $request->section_type;
+        $sectionTitle->save();
+
+        return response()->json(['success' => true, 'section_title' => $sectionTitle]);
+    }
+
+    public function delete($id)
+    {
+        $sectionTitle = SectionTitle::findOrFail($id);
+        $sectionTitle->delete();
+
+        return response()->json(['success' => true]);
     }
 }

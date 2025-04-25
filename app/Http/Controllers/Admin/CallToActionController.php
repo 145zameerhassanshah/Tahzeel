@@ -53,22 +53,35 @@ class CallToActionController extends Controller
         // Create new CTA
         $cta = new CallToAction();
         $cta->page_id = $request->page_id;
+        
+        $cta->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $cta->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $cta->setTranslations('button_text', [
+            'en' => $request->button_text['en'],
+            'ar' => $request->button_text['ar'],
+        ]);
 
-        // Store multilingual fields
-        $cta->title = json_encode([
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // // Store multilingual fields
+        // $cta->title = json_encode([
+        //     'en' => $request->input('title.en'),
+        //     'ar' => $request->input('title.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
-        $cta->subtitle = json_encode([
-            'en' => $request->input('subtitle.en'),
-            'ar' => $request->input('subtitle.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // $cta->subtitle = json_encode([
+        //     'en' => $request->input('subtitle.en'),
+        //     'ar' => $request->input('subtitle.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
-        $cta->button_text = json_encode([
-            'en' => $request->input('button_text.en'),
-            'ar' => $request->input('button_text.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // $cta->button_text = json_encode([
+        //     'en' => $request->input('button_text.en'),
+        //     'ar' => $request->input('button_text.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
         $cta->button_link = $request->button_link;
         $cta->status = $request->status;
@@ -86,9 +99,21 @@ class CallToActionController extends Controller
         $cta = CallToAction::findOrFail($id);
 
         return response()->json([
-            'title' => json_decode($cta->title),
-            'subtitle' => json_decode($cta->subtitle),
-            'button_text' => json_decode($cta->button_text),
+            'title' => [
+                'en' => $cta->getTranslation('title', 'en'),
+                'ar' => $cta->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $cta->getTranslation('subtitle', 'en'),
+                'ar' => $cta->getTranslation('subtitle', 'ar'),
+            ],
+            'button_text' => [
+                'en' => $cta->getTranslation('button_text', 'en'),
+                'ar' => $cta->getTranslation('button_text', 'ar'),
+            ],
+            // 'title' => json_decode($cta->title),
+            // 'subtitle' => json_decode($cta->subtitle),
+            // 'button_text' => json_decode($cta->button_text),
             'button_link' => $cta->button_link,
             'status' => $cta->status,
             'page_id' => $cta->page_id
@@ -98,7 +123,6 @@ class CallToActionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
             'subtitle.en' => 'nullable|string',
@@ -111,21 +135,36 @@ class CallToActionController extends Controller
 
         $cta = CallToAction::findOrFail($id);
 
+
+        $cta->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $cta->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $cta->setTranslations('button_text', [
+            'en' => $request->button_text['en'],
+            'ar' => $request->button_text['ar'],
+        ]);
+        
+
         // Update multilingual fields
-        $cta->title = json_encode([
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // $cta->title = json_encode([
+        //     'en' => $request->input('title.en'),
+        //     'ar' => $request->input('title.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
-        $cta->subtitle = json_encode([
-            'en' => $request->input('subtitle.en'),
-            'ar' => $request->input('subtitle.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // $cta->subtitle = json_encode([
+        //     'en' => $request->input('subtitle.en'),
+        //     'ar' => $request->input('subtitle.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
-        $cta->button_text = json_encode([
-            'en' => $request->input('button_text.en'),
-            'ar' => $request->input('button_text.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        // $cta->button_text = json_encode([
+        //     'en' => $request->input('button_text.en'),
+        //     'ar' => $request->input('button_text.ar')
+        // ], JSON_UNESCAPED_UNICODE);
 
         $cta->button_link = $request->button_link;
         $cta->status = $request->status;

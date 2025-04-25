@@ -150,7 +150,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>{{ __('Order No') }}</label>
-                            <input type="text" class="form-control" id="update_feature_order_no" name="order_no">
+                            <input type="number" class="form-control" id="update_feature_order_no" name="order_no">
                             <span class="text-danger error" id="error_order_no_edit"></span>
                         </div>
                         <div class="col-md-6">

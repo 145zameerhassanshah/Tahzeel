@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('introduction_sections', function (Blueprint $table) {
@@ -19,18 +16,14 @@ return new class extends Migration
                 'double_image',
                 'tripple_image'
             ]);
-            $table->json('title');                     // {"en": "About Our VAT Services", "ar": "حول خدمات ضريبة القيمة المضافة"}
-            $table->json('subtitle')->nullable();                  // {"en": "Expert Guidance", "ar": "إرشاد خبير"}
-            $table->json('description')->nullable();               // {"en": "We offer...", "ar": "نحن نقدم..."}
-            $table->string('images')->nullable();        // Stores paths to images as an array, e.g., ["image1.jpg", "image2.jpg"]
+            $table->json('title');                              // {"en": "About Our VAT Services", "ar": "حول خدمات ضريبة القيمة المضافة"}
+            $table->json('subtitle')->nullable();               // {"en": "Expert Guidance", "ar": "إرشاد خبير"}
+            $table->json('description')->nullable();            // {"en": "We offer...", "ar": "نحن نقدم..."}
+            $table->string('images')->nullable();               // Stores paths to images as an array, e.g., ["image1.jpg", "image2.jpg"]
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('introduction_sections');
