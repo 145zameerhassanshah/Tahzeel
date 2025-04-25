@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('title', 'Visit Visa')
 @section('content')
-<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front/dev/assets/img/personal/amer-center-bg.png') }}">
+<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static/amer-center-bg.png') }}">
   <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
     <div class="row text-start">
       <div class="col-lg-8 col-xl-9 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -18,19 +18,19 @@
           <div class="col-lg-6">
               <div class="row gx-md-5 gy-5">
                   <div class="col-12 d-none d-md-block">
-                      <figure class="rounded mx-5 "><img src="{{ asset('front/dev/assets/img/personal/visitVisa-1.webp') }}"
-                              srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                      <figure class="rounded mx-5 "><img src="{{ asset('assets/static/visitVisa-1.webp') }}"
+                               alt=""></figure>
                   </div>
                   <!--/column -->
                   <div class="col-md-6">
                       <figure class="rounded d-none d-md-block"><img
-                              src="{{ asset('front/dev/assets/img/personal/visitVisa-2.webp') }}"
-                              srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                              src="{{ asset('assets/static/visitVisa-2.webp') }}"
+                               alt=""></figure>
                   </div>
                   <!--/column -->
                   <div class="col-md-6">
-                      <figure class="rounded "><img src="{{ asset('front/dev/assets/img/personal/visitVisa-3.webp') }}"
-                              srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                      <figure class="rounded "><img src="{{ asset('assets/static/visitVisa-3.webp') }}"
+                             alt=""></figure>
                   </div>
                   <!--/column -->
               </div>
@@ -50,7 +50,7 @@
                   <div class="col-md-6">
                       <div class="d-flex flex-row">
                           <div>
-                              <img src="{{ asset('front/dev/assets/img/personal/lightning-charge.svg') }}"
+                              <img src="{{ asset('assets/static/lightning-charge.svg') }}"
                                   class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4"
                                   alt="" />
                           </div>
@@ -64,7 +64,7 @@
                   <div class="col-md-6">
                       <div class="d-flex flex-row">
                           <div>
-                              <img src="{{ asset('front/dev/assets/img/personal/journal-check.svg') }}"
+                              <img src="{{ asset('assets/static/journal-check.svg') }}"
                                   class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4"
                                   alt="" />
                           </div>
@@ -78,7 +78,7 @@
                   <div class="col-md-6">
                       <div class="d-flex flex-row">
                           <div>
-                              <img src="{{ asset('front/dev/assets/img/personal/person-check.svg') }}"
+                              <img src="{{ asset('assets/static/person-check.svg') }}"
                                   class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4"
                                   alt="" />
                           </div>
@@ -92,7 +92,7 @@
                   <div class="col-md-6">
                       <div class="d-flex flex-row">
                           <div>
-                              <img src="{{ asset('front/dev/assets/img/personal/transparency.svg') }}"
+                              <img src="{{ asset('assets/static/transparency.svg') }}"
                                   class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4"
                                   alt="" />
                           </div>
@@ -122,28 +122,28 @@
               <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How to Apply for Your Visit Visa with
                   <span class="text-gradient gradient-6 display-1">Tah-zeel</span></h3>
               <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                  <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/info-circle.svg') }}"
+                  <div class="col-md-3"> <img src="{{ asset('assets/static/info-circle.svg') }}"
                           class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                       <h4 class="mb-1">1. Consultation</h4>
                       <p class="mb-5 mb-md-0 text-justify">Get in touch with our team to discuss your visa needs
                           and eligibility.</p>
                   </div>
                   <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/file-text.svg') }}"
+                  <div class="col-md-3"> <img src="{{ asset('assets/static/file-text.svg') }}"
                           class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                       <h4 class="mb-1">2. Document Submission</h4>
                       <p class="mb-5 mb-md-0 text-justify">Submit required documents like passport copies and
                           photographs for your application.</p>
                   </div>
                   <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/arrow-repeat.svg') }}"
+                  <div class="col-md-3"> <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
                           class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                       <h4 class="mb-1">3. Application Processing</h4>
                       <p class="mb-5 mb-md-0 text-justify">We submit your application and track its progress with
                           the authorities.</p>
                   </div>
                   <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/check2-circle.svg') }}"
+                  <div class="col-md-3"> <img src="{{ asset('assets/static/check2-circle.svg') }}"
                           class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                       <h4 class="mb-1">4. Visa Approval</h4>
                       <p class="mb-5 mb-md-0 text-justify">Once approved, you’ll receive your visit visa and
@@ -166,8 +166,8 @@
   <div class="container py-14 py-md-16">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
           <div class="col-lg-7 order-lg-2">
-              <figure><img class="w-auto" src="{{ asset('front/dev/assets/img/personal/visitVisa-4.webp') }}"
-                      srcset="./assets/img/illustrations/i2@2x.png 2x" alt="" /></figure>
+              <figure><img class="w-auto" src="{{ asset('assets/static/visitVisa-4.webp') }}"
+                      alt="" /></figure>
           </div>
           <!--/column -->
           <div class="col-lg-5">
@@ -309,7 +309,7 @@
   <!-- /.container -->
 </section>
 
-@include('front.partials.clients-2')
+@include('front.partials.clients')
 
 @include('front.partials.affiliations')
 

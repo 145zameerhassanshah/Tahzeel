@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('title', 'Medical Fitness Test')
 @section('content')
-    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front/dev/assets/img/personal/medical-bg.webp') }}">
+    <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static/medical-bg.webp') }}">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -21,18 +21,18 @@
                 <div class="col-lg-6">
                     <div class="row gx-md-5 gy-5">
                         <div class="col-12 d-none d-md-block">
-                            <figure class="rounded mx-5 "><img src="{{ asset('front/dev/assets/img/personal/medical-1.webp') }}"
-                                    srcset="./assets/img/photos/g8@2x.jpg 2x" alt=""></figure>
+                            <figure class="rounded mx-5 "><img src="{{ asset('assets/static/medical-1.webp') }}"
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
-                            <figure class="rounded d-none d-md-block"><img src="{{ asset('front/dev/assets/img/personal/medical-2.webp') }}"
-                                    srcset="./assets/img/photos/g9@2x.jpg 2x" alt=""></figure>
+                            <figure class="rounded d-none d-md-block"><img src="{{ asset('assets/static/medical-2.webp') }}"
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
-                            <figure class="rounded "><img src="{{ asset('front/dev/assets/img/personal/medical-3.webp') }}"
-                                    srcset="./assets/img/photos/g10@2x.jpg 2x" alt=""></figure>
+                            <figure class="rounded "><img src="{{ asset('assets/static/medical-3.webp') }}"
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front/dev/assets/img/personal/exclamation-octagon.svg') }}"
+                                    <img src="{{ asset('assets/static/exclamation-octagon.svg') }}"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4"
                                         alt="" />
                                 </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front/dev/assets/img/personal/hospital.svg') }}"
+                                    <img src="{{ asset('assets/static/hospital.svg') }}"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4"
                                         alt="" />
                                 </div>
@@ -81,7 +81,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front/dev/assets/img/personal/bug.svg') }}"
+                                    <img src="{{ asset('assets/static/bug.svg') }}"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4"
                                         alt="" />
                                 </div>
@@ -96,7 +96,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front/dev/assets/img/personal/check2-circle.svg') }}"
+                                    <img src="{{ asset('assets/static/check2-circle.svg') }}"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                                 </div>
                                 <div>
@@ -225,26 +225,26 @@
                         efficiently. <span class="underline green">Tah-zeel </span>assists with all steps to streamline
                         your experience.</p>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                        <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/file-text.svg') }}"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static/file-text.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                             <h4 class="mb-1">1. Schedule Test</h4>
                             <p class="mb-5 mb-md-0 text-justify">Book an appointment at a DHA-accredited center.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/box-arrow-in-right.svg') }}"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static/box-arrow-in-right.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4 class="mb-1">2. Document Verification</h4>
                             <p class="mb-5 mb-md-0 text-justify">Present required documents at the center.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/arrow-repeat.svg') }}"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                             <h4 class="mb-1">3. Health Screening</h4>
                             <p class="mb-5 mb-md-0 text-justify">Includes tests for tuberculosis, HIV, hepatitis, and other
                                 health checks.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front/dev/assets/img/personal/check2-circle.svg') }}"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static/check2-circle.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4 class="mb-1">4. Results and Follow-Up</h4>
                             <p class="mb-5 mb-md-0 text-justify">Receive results, and Tah-zeel coordinates with DHA for any
@@ -261,7 +261,7 @@
         <!-- /.container -->
     </section>
 
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
 
     @include('front.partials.affiliations')
 

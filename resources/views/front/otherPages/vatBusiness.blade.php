@@ -3,7 +3,7 @@
 @section('content')
 
 
-<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/dev/assets/img/personal/vatBusinessBg.webp">
+<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('front') }}/vatBusinessBg.webp">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
       <div class="row text-start">
         <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -27,18 +27,18 @@
                 <div class="col-lg-6">
                     <div class="row gx-md-5 gy-5">
                         <div class="col-12 d-none d-md-block">
-                            <figure class="rounded mx-5 "><img src="{{ asset('front') }}/dev/assets/img/personal/vatBusiness1.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/vatBusiness1.webp" alt=""></figure>
+                            <figure class="rounded mx-5 "><img src="{{ asset('assets/static') }}/vatBusiness1.webp"
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
-                            <figure class="rounded d-none d-md-block"><img src="{{ asset('front') }}/dev/assets/img/personal/vatBusiness2.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/vatBusiness2.webp" alt=""></figure>
+                            <figure class="rounded d-none d-md-block"><img src="{{ asset('assets/static') }}/vatBusiness2.webp"
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
-                            <figure class="rounded "><img src="{{ asset('front') }}/dev/assets/img/personal/vatBusiness3.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/vatBusiness3.webp" alt=""></figure>
+                            <figure class="rounded "><img src="{{ asset('assets/static') }}/vatBusiness3.webp"
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>
@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/hourglass-bottom.svg"
+                                    <img src="{{ asset('front') }}/hourglass-bottom.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4"
                                         alt="" />
                                 </div>
@@ -70,7 +70,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/bookmark-check.svg"
+                                    <img src="{{ asset('front') }}/bookmark-check.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4"
                                         alt="" />
                                 </div>
@@ -84,7 +84,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/person-check.svg"
+                                    <img src="{{ asset('front') }}/person-check.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4"
                                         alt="" />
                                 </div>
@@ -98,7 +98,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/x-octagon.svg"
+                                    <img src="{{ asset('front') }}/x-octagon.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                                 </div>
                                 <div>
@@ -213,7 +213,7 @@
             <div class="col-md-6 col-xl-3 ">
                 <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/boxes.svg') }}"
+                        <img src="{{ asset('front/boxes.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                         <h4>{{__('Fast & Hassle-Free Processing')}}</h4>
                         <p class="mb-2">{{__("Get your VAT registration and filings completed quickly with our streamlined approach, minimizing delays and errors.")}}</p>
@@ -227,7 +227,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-green  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/person-lock.svg') }}"
+                        <img src="{{ asset('front/person-lock.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                         <h4>FTA Compliance Assurance</h4>
                         <p class="mb-2">We ensure your VAT processes meet all Federal Tax Authority (FTA) regulations, reducing the risk of penalties or non-compliance.</p>
@@ -241,7 +241,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-orange  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/bookmark-check.svg') }}"
+                        <img src="{{ asset('front/bookmark-check.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-orange mb-3" alt="" />
                         <h4>Expert Guidance & Support</h4>
                         <p class="mb-2">Our VAT specialists provide step-by-step assistance, helping you understand your tax obligations and making compliance easier.</p>
@@ -255,7 +255,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card shadow-lg card-border-bottom border-soft-blue  h-100 hover-card">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/globe.svg') }}"
+                        <img src="{{ asset('front/globe.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="" />
                         <h4>End-to-End VAT Solutions</h4>
                         <p class="mb-2">From registration and return filing to consultation and deregistration, we handle every aspect of VAT so you can focus on your business.</p>
@@ -283,26 +283,26 @@
                     </h3>
                     <p class="lead fs-lg mb-8"><span class="underline green">Tah-zeel </span>simplifies VAT processing, ensuring fast registration and compliance with expert guidance. </p>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/file-text.svg"
+                        <div class="col-md-3"> <img src="{{ asset('front') }}/file-text.svg"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                             <h4 class="mb-1">1. Document Submission</h4>
                             <p class="mb-5 mb-md-0 text-justify">We assess your VAT needs and guide you on required services..</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/box-arrow-in-right.svg"
+                        <div class="col-md-3"> <img src="{{ asset('front') }}/box-arrow-in-right.svg"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4 class="mb-1">2.Document Collection & Verification</h4>
                             <p class="mb-5 mb-md-0 text-justify">We gather and verify documents for FTA compliance.
                             </p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/arrow-repeat.svg"
+                        <div class="col-md-3"> <img src="{{ asset('front') }}/arrow-repeat.svg"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                             <h4 class="mb-1">3. Application Submission</h4>
                             <p class="mb-5 mb-md-0 text-justify"> We submit your VAT request accurately and efficiently.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/check2-circle.svg"
+                        <div class="col-md-3"> <img src="{{ asset('front') }}/check2-circle.svg"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4 class="mb-1">4. Approval & Compliance Support</h4>
                             <p class="mb-5 mb-md-0 text-justify">We assist with compliance, return filing, and expert guidance.</p>

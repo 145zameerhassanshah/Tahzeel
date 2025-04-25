@@ -278,7 +278,7 @@
 
 @include('front.partials.cta-2')
 
-@include('front.partials.clients-2')
+@include('front.partials.clients')
 
 @include('front.partials._intro_three_images')
 

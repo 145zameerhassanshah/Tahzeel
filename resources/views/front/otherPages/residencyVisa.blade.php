@@ -4,7 +4,7 @@
 
 
     <section class="wrapper image-wrapper bg-image  bg-overlay-300"
-        data-image-src="{{ asset('front') }}/dev/assets/img/personal/residencyVisa-bg.webp">
+        data-image-src="{{ asset('assets/static') }}/residencyVisa-bg.webp">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -33,19 +33,19 @@
                     <div class="row gx-md-5 gy-5">
                         <div class="col-12 d-none d-md-block">
                             <figure class="rounded mx-5 "><img
-                                    src="{{ asset('front') }}/dev/assets/img/personal/residency1.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g8@2x.jpg 2x" alt=""></figure>
+                                    src="{{ asset('assets/static') }}/residency1.webp"
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
                             <figure class="rounded d-none d-md-block"><img
-                                    src="{{ asset('front') }}/dev/assets/img/personal/residency2.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g9@2x.jpg 2x" alt=""></figure>
+                                    src="{{ asset('assets/static') }}/residency2.webp"
+                                 alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6">
-                            <figure class="rounded "><img src="{{ asset('front') }}/dev/assets/img/personal/residency3.webp"
-                                    srcset="{{ asset('front') }}/dev/assets/img/personal/g10@2x.jpg 2x" alt=""></figure>
+                            <figure class="rounded "><img src="{{ asset('assets/static') }}/residency3.webp"
+                                     alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/lightning-charge.svg"
+                                    <img src="{{ asset('assets/static') }}/lightning-charge.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4"
                                         alt="" />
                                 </div>
@@ -79,7 +79,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/journal-check.svg"
+                                    <img src="{{ asset('assets/static') }}/journal-check.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-violet me-4"
                                         alt="" />
                                 </div>
@@ -93,7 +93,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/person-check.svg"
+                                    <img src="{{ asset('assets/static') }}/person-check.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-orange me-4"
                                         alt="" />
                                 </div>
@@ -108,7 +108,7 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <img src="{{ asset('front') }}/dev/assets/img/personal/transparency.svg"
+                                    <img src="{{ asset('assets/static') }}/transparency.svg"
                                         class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                                 </div>
                                 <div>
@@ -240,7 +240,7 @@
                         class="nav nav-tabs nav-tabs-bg nav-tabs-shadow-lg d-flex justify-content-between nav-justified flex-lg-row flex-column">
                         <li class="nav-item">
                             <a class="nav-link d-flex flex-row active" data-bs-toggle="tab" href="#tab2-1">
-                                <div><img src="{{ asset('front') }}/dev/assets/img/personal/businessman.png"
+                                <div><img src="{{ asset('assets/static') }}/businessman.png"
                                         class="svg-inject icon-svg icon-svg-md text-yellow me-4" alt="" /></div>
                                 <div>
                                     <h4 class="mb-1">For Sponsors</h4>
@@ -250,7 +250,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex flex-row" data-bs-toggle="tab" href="#tab2-2">
-                                <div><img src="{{ asset('front') }}/dev/assets/img/personal/social-worker.png"
+                                <div><img src="{{ asset('assets/static') }}/social-worker.png"
                                         class="svg-inject icon-svg icon-svg-md text-green me-4" alt="" /></div>
                                 <div>
                                     <h4 class="mb-1">For Applicants</h4>
@@ -309,7 +309,7 @@
                         <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support
                     </h3>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/file-text.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                             <h4 class="mb-1">1. Document Preparation</h4>
                             <p class="mb-5 mb-md-0 text-justify">Gather required documents like identification, income
@@ -318,21 +318,21 @@
                         </div>
                         <!--/column -->
                         <div class="col-md-3"> <img
-                                src="{{ asset('front') }}/dev/assets/img/personal/box-arrow-in-right.svg"
+                                src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4 class="mb-1">2. Application Submission</h4>
                             <p class="mb-5 mb-md-0 text-justify">Submit the application to the relevant authority. Tah-zeel
                                 manages the entire submission for faster processing.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/arrow-repeat.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                             <h4 class="mb-1">3. Processing and Follow-up</h4>
                             <p class="mb-5 mb-md-0 text-justify">The application undergoes government review. Tah-zeel
                                 monitors progress, handling any additional requests promptly.</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> <img src="{{ asset('front') }}/dev/assets/img/personal/check2-circle.svg"
+                        <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4 class="mb-1">4. Final Approval and Visa Issuance</h4>
                             <p class="mb-5 mb-md-0 text-justify">After approval, the visa is issued. Tah-zeel ensures
@@ -349,7 +349,7 @@
         <!-- /.container -->
     </section>
     <!-- /section -->
-    @include('front.partials.clients-2')
+    @include('front.partials.clients')
     @include('front.partials.affiliations')
     @include('front.partials.cta-1')
     @include('front.partials.contact-us')
