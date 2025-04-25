@@ -45,7 +45,6 @@ class TestimonialController extends Controller
 
     public function store(Request $request)
     {
-        // Validate request data
         $request->validate([
             'name.en' => 'required|string',
             'name.ar' => 'required|string',
@@ -57,19 +56,22 @@ class TestimonialController extends Controller
             'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|max:2048',
         ]);
-        // Create new Testimonial
         $testimonial = new Testimonial();
         $testimonial->page_id = $request->page_id;
-
-        $testimonial->setTranslation('name', 'en', $request['name']['en']);
-        $testimonial->setTranslation('name', 'ar', $request['name']['ar']);
-        
-        $testimonial->setTranslation('feedback', 'en', $request['feedback']['en']);
-        $testimonial->setTranslation('feedback', 'ar', $request['feedback']['ar']);
-        $testimonial->setTranslation('designation', 'en', $request['designation']['en']);
-        $testimonial->setTranslation('designation', 'ar', $request['designation']['ar']);
-
-        // Handle Image Upload
+        $testimonial->setTranslations('name', [
+            'en' => $request->name['en'],
+            'ar' => $request->name['ar'],
+        ]);
+        $testimonial->setTranslations('feedback', [
+            'en' => $request->feedback['en'],
+            'ar' => $request->feedback['ar'],
+        ]);
+        $testimonial->setTranslations('designation', [
+            'en' => $request->designation['en'],
+            'ar' => $request->designation['ar'],
+        ]);
+        // $testimonial->setTranslation('name', 'en', $request['name']['en']);
+        // $testimonial->setTranslation('name', 'ar', $request['name']['ar']);
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->file('image')->extension();
             $request->file('image')->move(public_path('assets/admin/uploads/testimonial/'), $imageName);
@@ -78,8 +80,6 @@ class TestimonialController extends Controller
         $testimonial->order_no = $request->order_no ?? 0;
         $testimonial->status = $request->status;
         $testimonial->save();
-
-        // Return JSON response
         return response()->json([
             'success' => true,
             'testimonial' => $testimonial
@@ -89,7 +89,6 @@ class TestimonialController extends Controller
     public function edit($id)
     {
         $testimonial = Testimonial::findOrFail($id);
-
         return response()->json([
             'name' => [
                 'en' => $testimonial->getTranslation('name', 'en'),

@@ -44,49 +44,55 @@ class IntroSectionController extends Controller
     public function store(Request $request)
     {
         $typeLimits = [
-            'single_image' => 1,
-            'double_image' => 2,
+            'single_image'  => 1,
+            'double_image'  => 2,
             'tripple_image' => 3,
         ];
         $maxFiles = $typeLimits[$request->intro_type] ?? 1;
         $request->validate([
-            'page_id' => 'required|exists:groups,id',
-            'intro_title.en' => 'required|max:250',
-            'intro_status' => 'required',
+            'page_id' => 'required|exists:pages,id',
+            'title.en' => 'required|max:250',
+            'title.ar' => 'required|max:250',
+            'subtitle.en' => 'required|max:250',
+            'subtitle.ar' => 'required|max:250',
+            'description.en' => 'required|max:250',
+            'description.ar' => 'required|max:250',
+            'status' => 'required|in:active,inactive',
+            'type' => 'required|in:single_image,double_image,tripple_image',
             'images' => 'required|array|max:' . $maxFiles,
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
         ]);
         $intro_section = new IntroductionSection();
         $intro_section->page_id = $request->page_id;
-        $intro_section->title = json_encode($request->intro_title, JSON_UNESCAPED_UNICODE);
-        $intro_section->subtitle = json_encode($request->intro_subtitle, JSON_UNESCAPED_UNICODE);
-        $intro_section->description = json_encode($request->intro_description, JSON_UNESCAPED_UNICODE);
-        $intro_section->status = $request->intro_status;
-        $intro_section->type = $request->intro_type;
+        $intro_section->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $intro_section->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $intro_section->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
+        $intro_section->status = $request->status;
+        $intro_section->type = $request->type;
         $imagePaths = [];
         if ($request->hasFile('images')) {
-            $uploadedImages = $request->file('images');
-            if (!is_array($uploadedImages)) {
-                $uploadedImages = [$uploadedImages];
-            }
-            // Validate number of uploaded files
-            if (count($uploadedImages) > $maxFiles) {
-                return response()->json(['images' => "You can upload a maximum of $maxFiles images for {$request->intro_type}."]);
-            }
-            foreach ($uploadedImages as $image) {
-                $filename = time() . '_' . $image->getClientOriginalName();
+            foreach ($request->file('images') as $image) {
+                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('uploads/introduction_section'), $filename);
                 $imagePaths[] = 'uploads/introduction_section/' . $filename;
             }
         }
-        $intro_section->images = json_encode($imagePaths); // Store image paths
+        $intro_section->images = json_encode($imagePaths);
         $intro_section->save();
         return response()->json([
             'success' => true,
-            'introsection' => $intro_section
+            'introsection' => $intro_section,
         ]);
     }
-
 
     // IntroductionSection Delete
     public function delete($id)
@@ -113,16 +119,18 @@ class IntroSectionController extends Controller
     // IntroductionSection Edit
     public function edit($id)
     {
-        $intro_section = IntroductionSection::find($id);
+        $intro_section = IntroductionSection::findOrFail($id);
         return response()->json([
-            'title' => json_decode($intro_section->title),
-            'subtitle' => json_decode($intro_section->subtitle),
-            'description' => json_decode($intro_section->description),
-            'status' => $intro_section->status,
-            'images' => $intro_section->images,
-            'type' => $intro_section->type,
+            'title'       => $intro_section->getTranslations('title'),
+            'subtitle'    => $intro_section->getTranslations('subtitle'),
+            'description' => $intro_section->getTranslations('description'),
+            'status'      => $intro_section->status,
+            'images'      => json_decode($intro_section->images),
+            'type'        => $intro_section->type,
+            'page_id'     => $intro_section->page_id,
         ]);
     }
+
 
     // Update IntroductionSection
     public function update(Request $request, $id)
@@ -134,25 +142,39 @@ class IntroSectionController extends Controller
         ];
         $maxFiles = $typeLimits[$request->intro_type] ?? 1;
         $request->validate([
-            'intro_title' => 'required|max:250',
-            'intro_status' => 'required',
+            'title.en' => 'required|max:250',
+            'title.ar' => 'required|max:250',
+            'subtitle.en' => 'required|max:250',
+            'subtitle.ar' => 'required|max:250',
+            'description.en' => 'required|max:250',
+            'description.ar' => 'required|max:250',
+            'status' => 'required|in:active,inactive',
+            'type' => 'required|in:single_image,double_image,tripple_image',
             'images' => 'nullable|array|max:' . $maxFiles,
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
         ]);
-        $intro_section = IntroductionSection::findOrFail($id); // Update text fields
-        $intro_section->title = json_encode($request->intro_title, JSON_UNESCAPED_UNICODE);
-        $intro_section->subtitle = json_encode($request->intro_subtitle, JSON_UNESCAPED_UNICODE);
-        $intro_section->description = json_encode($request->intro_description, JSON_UNESCAPED_UNICODE);
-        $intro_section->status = $request->intro_status;
-        $intro_section->type = $request->intro_type; // Handle image update
+        $intro_section = IntroductionSection::findOrFail($id);
+        $intro_section->setTranslations('title', [
+            'en' => $request->title['en'],
+            'ar' => $request->title['ar'],
+        ]);
+        $intro_section->setTranslations('subtitle', [
+            'en' => $request->subtitle['en'],
+            'ar' => $request->subtitle['ar'],
+        ]);
+        $intro_section->setTranslations('description', [
+            'en' => $request->description['en'],
+            'ar' => $request->description['ar'],
+        ]);
+        $intro_section->status = $request->status;
+        $intro_section->type = $request->type;
         if ($request->hasFile('images')) {
-            // Delete old images (optional)
             if ($intro_section->images) {
                 $oldImages = json_decode($intro_section->images, true);
                 foreach ($oldImages as $oldImagePath) {
                     $fullPath = public_path($oldImagePath);
-                    if (file_exists($fullPath) && is_file($fullPath)) {
-                        unlink($fullPath);
+                    if (file_exists($fullPath)) {
+                        @unlink($fullPath);
                     }
                 }
             }
@@ -167,7 +189,7 @@ class IntroSectionController extends Controller
         $intro_section->save();
         return response()->json([
             'success' => true,
-            'data' => $intro_section
+            'data' => $intro_section,
         ]);
     }
 }

@@ -53,23 +53,25 @@ class FaqController extends Controller
             'order_no' => 'nullable|integer|min:0',
             'status' => 'required|in:active,inactive',
         ]);
-        // Create the FAQ
-        $faq = Faq::create([
-            'page_id' => $validated['page_id'],
-            'question' => [
-                'en' => $validated['question']['en'],
-                'ar' => $validated['question']['ar']
-            ],
-            'answer' => [
-                'en' => $validated['answer']['en'],
-                'ar' => $validated['answer']['ar']
-            ],
-            'order_no' => $validated['order_no'] ?? 0,
-            'status' => $validated['status']
+
+        // Create empty FAQ instance
+        $faq = new Faq();
+        $faq->page_id = $validated['page_id'];
+        $faq->order_no = $validated['order_no'] ?? 0;
+        $faq->status = $validated['status'];
+
+        // Set translations AFTER object is instantiated
+        $faq->setTranslations('question', [
+            'en' => $request->input('question.en'),
+            'ar' => $request->input('question.ar'),
         ]);
-        $faq->order_no = $request->order_no ?? 0;
-        $faq->status = $request->status;
+        $faq->setTranslations('answer', [
+            'en' => $request->input('answer.en'),
+            'ar' => $request->input('answer.ar'),
+        ]);
+
         $faq->save();
+
         return response()->json([
             'success' => true,
             'message' => 'FAQ created successfully',
@@ -77,12 +79,19 @@ class FaqController extends Controller
         ]);
     }
 
+
     public function edit($id)
     {
         $faq = Faq::findOrFail($id);
         return response()->json([
-            'question' => $faq->question,
-            'answer' => $faq->answer,
+            'question' => [
+                'en' => $faq->getTranslation('question', 'en'),
+                'ar' => $faq->getTranslation('question', 'ar'),
+            ],
+            'answer' => [
+                'en' => $faq->getTranslation('answer', 'en'),
+                'ar' => $faq->getTranslation('answer', 'ar'),
+            ],
             'order_no' => $faq->order_no,
             'status' => $faq->status,
             'page_id' => $faq->page_id
@@ -101,14 +110,14 @@ class FaqController extends Controller
         ]);
         $faq = Faq::findOrFail($id);
         // Update multilingual fields
-        $faq->question = json_encode([
-            'en' => $request->input('question.en'),
-            'ar' => $request->input('question.ar')
-        ], JSON_UNESCAPED_UNICODE);
-        $faq->answer = json_encode([
-            'en' => $request->input('answer.en'),
-            'ar' => $request->input('answer.ar')
-        ], JSON_UNESCAPED_UNICODE);
+        $faq->setTranslations('question', [
+            'en' => $request->question['en'],
+            'ar' => $request->question['ar'],
+        ]);
+        $faq->setTranslations('answer', [
+            'en' => $request->answer['en'],
+            'ar' => $request->answer['ar'],
+        ]);
         $faq->order_no = $request->order_no ?? 0;
         $faq->status = $request->status;
         $faq->save();
