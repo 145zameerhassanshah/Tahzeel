@@ -7,7 +7,6 @@ use Spatie\Translatable\HasTranslations;
 class Page extends Model
 {
     use HasTranslations;
-    public $translatable = [];
 
     protected $fillable = [
         'slug',
@@ -28,6 +27,7 @@ class Page extends Model
     ];
 
     public $translatable = [
+        'title',
         'description',
         'hero_title',
         'hero_sub_title',

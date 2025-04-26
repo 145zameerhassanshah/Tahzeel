@@ -97,13 +97,22 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // Page Routes:-
         Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
-        Route::get('/add-page', [PageController::class, 'create'])->name('admin.page.create');
         Route::get('/page-detail/{id}/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
         Route::get('/add-groups/{id}', [PageController::class, 'addGroupstoPage'])->name('admin.page.add-groups');
         Route::post('/store-groups/{id}', [PageController::class, 'storeGroupstoPage'])->name('admin.page.store-groups');
         Route::get('/edit-page-groups/{id}', [PageController::class, 'edit'])->name('admin.page.edit-groups');
         Route::post('/update-page-groups/{id}', [PageController::class, 'update'])->name('admin.page.update-groups');
         Route::post('/delete--page-groups/{id}', [PageController::class, 'deletePageGroup'])->name('admin.page.delete-groups');
+
+        Route::get('/page/add', [PageController::class, 'add'])->name('admin.page.add');
+        Route::post('/page/store', [PageController::class, 'store'])->name('admin.page.store');
+        // Route::post('/page/store', [PageController::class, 'store'])->middleware(['auth', 'can:create-page']);
+        Route::get('/page/edit/{id}', [PageController::class, 'edit'])->name('admin.page.edit');
+        Route::post('/page/update/{id}', [PageController::class, 'update'])->name('admin.page.update');
+        Route::get('/page/delete/{id}', action: [PageController::class, 'delete'])->name('admin.page.delete');
+
+        Route::resource('admin/pages', PageController::class)->except(['show']);
+        Route::delete('admin/pages/{page}', [PageController::class, 'destroy'])->name('admin.page.destroy');
 
         // Partner Routes:-
         Route::get('/partners', [PartnerController::class, 'index'])->name('admin.partner.index');
@@ -371,6 +380,5 @@ Route::middleware(['auth', 'status'])->group(function () {
 
 
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
-
 });
 // all admin routes write in admin middleware
