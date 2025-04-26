@@ -274,8 +274,11 @@ class FrontController extends Controller
     }
 
 
-
-
+   
+    public function manpowerRecruitment()
+    {
+        return view('front.otherPages.manpowerRecruitment');
+    }
 
 
 }
