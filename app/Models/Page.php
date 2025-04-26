@@ -27,6 +27,7 @@ class Page extends Model
     ];
 
     public $translatable = [
+        'title',
         'description',
         'hero_title',
         'hero_sub_title',

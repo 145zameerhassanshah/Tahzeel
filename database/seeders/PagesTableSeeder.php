@@ -12,10 +12,8 @@ class PagesTableSeeder extends Seeder
         $pages = [
             [
                 'slug' => 'corporate-bank-account-setup',
-                'title' => 'Corporate Bank Account Setup',
-                'description' => [
-                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                ],
+                'title' => ['en' => 'Corporate Bank Account Setup',],
+                'description' => ['en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',],
                 'hero_title' => [
                     'en' => 'Corporate Banking Made Easy',
                 ],
@@ -38,7 +36,7 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'slug' => 'personal-bank-account-assistance',
-                'title' => 'Personal Bank Account Assistance',
+                'title' => ['en' => 'Personal Bank Account Assistance'],
                 'description' => [
                     'en' => 'Get expert guidance for personal bank account opening with ease and convenience.',
                 ],
@@ -62,7 +60,6 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'footer',
                 'order_no' => 2,
             ],
-            // Add more pages as needed using the same structure...
         ];
 
         foreach ($pages as $pageData) {

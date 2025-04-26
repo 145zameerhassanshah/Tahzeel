@@ -53,16 +53,14 @@
                 <td><span class="badge ${testimonial.status === 'active' ? 'bg-success' : 'bg-secondary'}">${testimonial.status}</span></td>
                 <td>${feedback?.en || 'N/A'}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </form>
+                <button class="btn btn-sm btn-primary editTestimonial" data-id="${testimonial.id}"><i class="fas fa-edit"></i> Edit</button>
+                <form class="d-inline-block" action="/admin/testimonials/${testimonial.id}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="btn btn-danger btn-sm delete-testimonial" data-id="${testimonial.id}">
+                <i class="fas fa-trash"></i> Delete
+                </button>
+                </form>
                 </td>
             </tr>`;
             });
