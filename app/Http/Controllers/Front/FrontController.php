@@ -191,4 +191,8 @@ class FrontController extends Controller
             'message' => 'Inquiry submitted successfully!',
         ]);
     }
+    public function manpowerRecruitment()
+    {
+        return view('front.otherPages.manpowerRecruitment');
+    }
 }

@@ -47,7 +47,7 @@
                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Human Resources</a>
                                             <ul class="dropdown-menu">
                                               
-                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">Manpower Recruitment</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
                                               <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
                                               <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
                                               <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
