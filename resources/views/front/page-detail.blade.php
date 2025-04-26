@@ -4,11 +4,11 @@
 @section('content')
 
 {{-- Hero Section --}}
+@include('front.partials._hero_section')
 @php($section = $page->sectionTitles->where('type', 'hero_section')->first())
 @if($section)
 @include('front.partials._section_title', ['section' => $section])
 @endif
-@include('front.partials._hero_section')
 
 {{-- Introduction Section --}}
 @php($section = $page->sectionTitles->where('type', 'intro_section')->first())

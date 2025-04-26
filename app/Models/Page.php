@@ -7,6 +7,7 @@ use Spatie\Translatable\HasTranslations;
 class Page extends Model
 {
     use HasTranslations;
+    public $translatable = [];
 
     public function procedures()
     {
