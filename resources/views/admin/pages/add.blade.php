@@ -54,25 +54,26 @@
 
                             <!-- Title (English) -->
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 control-label">{{ __('Title(English)') }}<span class="text-danger">*</span></label>
+                                <label for="title_en" class="col-sm-2 control-label">Title (Eng)<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="title[en]" value="{{ old('title[en]') }}">
-                                    @if ($errors->has('title'))
-                                    <p class="text-danger"> {{ $errors->first('title') }} </p>
+                                    <input type="text" class="form-control" id="title_en" name="title[en]" value="{{ old('title.en') }}">
+                                    @if ($errors->has('title.en'))
+                                    <p class="text-danger"> {{ $errors->first('title.en') }} </p>
                                     @endif
                                 </div>
                             </div>
 
-                            <!-- Title (Arabic) -->
-                            <div class="form-group row">
-                                <label for="title" class="col-sm-2 control-label">{{ __('Title(Arabic)') }}<span class="text-danger">*</span></label>
+                             <!-- Title (Arabic) -->
+                             <div class="form-group row">
+                                <label for="title_ar" class="col-sm-2 control-label">Title (Arabic)<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="title[ar]" value="{{ old('title[ar]') }}">
-                                    @if ($errors->has('title'))
-                                    <p class="text-danger"> {{ $errors->first('title') }} </p>
+                                    <input type="text" class="form-control" id="title_ar" name="title[ar]" value="{{ old('title.ar') }}">
+                                    @if ($errors->has('title.ar'))
+                                    <p class="text-danger"> {{ $errors->first('title.ar') }} </p>
                                     @endif
                                 </div>
                             </div>
+
 
                             <!-- Slug -->
                             <div class="form-group row">
