@@ -13,14 +13,27 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->json('title');
             $table->string('slug')->unique();
-            $table->string('title');            // Single language, so we use string
-            $table->text('description')->nullable();   // Using text for longer descriptions
-            $table->text('meta_tags')->nullable();     // Meta tags as a single text column
-            $table->string('banner_image')->nullable();
+            $table->json('description')->nullable();   // Using text for longer descriptions
+            $table->string('hero_image')->nullable();
+            $table->json('hero_title')->nullable();
+            $table->json('hero_sub_title')->nullable();
+            $table->json('hero_description')->nullable();
             $table->enum('status', ['draft', 'published'])->default('published');
+            $table->enum('type',['amer-service','visa','ded','real-estate']);
+            $table->string('route_name')->nullable();     // Route name for URL routing
+            $table->enum('page_link_for', ['header', 'footer', 'services', 'none']);
+            $table->integer('order_no')->default(0);
+            $table->json('meta_tags')->nullable();      // Ordering in menus
+            $table->string('meta_title')->nullable();     // SEO Meta Title
+            $table->text('meta_description')->nullable(); // SEO Meta Description
             $table->timestamps();
             $table->softDeletes(); // Adding soft deletes
+
+            $table->index(['type']);
+            $table->index(['status']);
+            $table->index(['route_name']);
         });
     }
 
