@@ -1,3 +1,4 @@
+<!-- resources\views\front\page-detail.blade.php -->
 @extends('front.layouts.master')
 @section('title', $page->title)
 @section('content')
@@ -19,15 +20,18 @@
 @include('front.partials._intro_three_images', ['introSection' => $introSection])
 @endif
 
+
 {{-- Why Us Image --}}
 @php($section = $page->sectionTitles->where('type', 'whyUsImages')->first())
 @if($section)
 @include('front.partials._section_title', ['section' => $section])
 @endif
+
 @php($why_us_images = $page->whyUsImages)
 @if($why_us_images->isNotEmpty())
-@include('front.partials._intro_three_images', ['why_us_images' => $why_us_images])
+@include('front.partials._why_us_image', ['why_us_images' => $why_us_images])
 @endif
+
 
 {{-- Procedure --}}
 @php($section = $page->sectionTitles->where('type', 'procedure')->first())
@@ -41,15 +45,14 @@
 @if($section)
 @include('front.partials._section_title', ['section' => $section])
 @endif
+
 @php($call_to_actions = $page->callToActions)
 @if($call_to_actions->isNotEmpty())
 @include('front.partials._cta', ['call_to_actions' => $call_to_actions])
 @endif
 
+
 {{-- Document Required Section --}}
-
-
-
 @php($section = $page->sectionTitles->where('type', 'document_required')->first())
 @if($section)
 @include('front.partials._section_title', ['section' => $section])
@@ -61,8 +64,6 @@
 'document_title' => $section
 ])
 @endif
-
-
 
 
 {{-- Feature Image Section --}}
@@ -81,6 +82,7 @@
 @endif
 @endif
 
+
 {{-- Why Choose Us --}}
 @php($section = $page->sectionTitles->where('type', 'why_choose_us')->first())
 @if($section)
@@ -90,6 +92,7 @@
 @if($why_choose_us->isNotEmpty())
 @include('front.partials._whyChoose', ['why_choose_us' => $why_choose_us])
 @endif
+
 
 {{-- Testimonials --}}
 @php($section = $page->sectionTitles->where('type', 'testimonial')->first())

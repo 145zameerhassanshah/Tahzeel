@@ -53,9 +53,10 @@ class FrontPageController extends Controller
             'whyUsImages',
             'featureImages'
         ])->where('slug', $slug)->firstOrFail();
-        
-        return view('front.page-detail',compact('page'));
+
+        return view('front.page-detail', ['page' => $page]);
     }
+
 
     public function vatBusiness1()
     {

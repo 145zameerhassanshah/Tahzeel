@@ -1,22 +1,3 @@
-public function pagedetail($slug)
-    {
-        $page = Page::with([
-            'procedures',
-            'callToActions',
-            'sectionTitles',
-            'introductionSections',
-            'heroSections',
-            'features',
-            'faqs',
-            'testimonials',
-            'whyChooseUs',
-            'documentRequireds',
-            'whyUsImages',
-            'featureImages'
-        ])->where('slug', $slug)->firstOrFail();
-        return view('front.page-detail', ['page' => $page]);
-    }
-
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;

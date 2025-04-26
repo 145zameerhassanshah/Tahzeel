@@ -37,7 +37,6 @@
                     <!--/.accordion-item -->
                     @endforeach
                 </div>
-
                 <!--/.accordion -->
             </div>
         </div>
