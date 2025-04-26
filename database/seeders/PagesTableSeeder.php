@@ -13,71 +13,60 @@ class PagesTableSeeder extends Seeder
             [
                 'slug' => 'corporate-bank-account-setup',
                 'title' => 'Corporate Bank Account Setup',
-                'description' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                'meta_tags' => 'Corporate Bank Account, Business Banking, Account Setup',
-                'banner_image' => null,
+                'description' => [
+                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
+                ],
+                'hero_title' => [
+                    'en' => 'Corporate Banking Made Easy',
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Get your business banking set up with expert help.',
+                ],
+                'hero_description' => [
+                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
+                ],
+                'meta_tags' => [
+                    'en' => 'Corporate Bank Account, Business Banking, Account Setup',
+                ],
+                'meta_title' => 'Corporate Bank Account Setup',
+                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
+                'type' => 'visa',
                 'status' => 'published',
+                'route_name' => 'pages.show',
+                'page_link_for' => 'header',
+                'order_no' => 1,
             ],
             [
                 'slug' => 'personal-bank-account-assistance',
                 'title' => 'Personal Bank Account Assistance',
-                'description' => 'Get expert guidance for personal bank account opening with ease and convenience.',
-                'meta_tags' => 'Personal Bank Account, Bank Account Assistance, Banking Solutions',
-                'banner_image' => null,
+                'description' => [
+                    'en' => 'Get expert guidance for personal bank account opening with ease and convenience.',
+                ],
+                'hero_title' => [
+                    'en' => 'Open Your Personal Bank Account',
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Seamless personal banking experience.',
+                ],
+                'hero_description' => [
+                    'en' => 'Let us guide you through every step of opening a personal account.',
+                ],
+                'meta_tags' => [
+                    'en' => 'Personal Bank Account, Bank Account Assistance, Banking Solutions',
+                ],
+                'meta_title' => 'Personal Bank Account Help',
+                'meta_description' => 'Reliable help in personal banking and account setup.',
+                'type' => 'visa',
                 'status' => 'published',
+                'route_name' => 'pages.show',
+                'page_link_for' => 'footer',
+                'order_no' => 2,
             ],
-            [
-                'slug' => 'business-banking-consultation',
-                'title' => 'Business Banking Consultation',
-                'description' => 'Consult with our experts to choose the best banking solutions for your business.',
-                'meta_tags' => 'Business Banking, Banking Consultation, Banking Solutions',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
-            [
-                'slug' => 'online-banking-solutions',
-                'title' => 'Online Banking Solutions',
-                'description' => 'We provide guidance for setting up reliable online banking solutions for your business.',
-                'meta_tags' => 'Online Banking, Banking Solutions, Online Transactions',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
-            [
-                'slug' => 'vat-registration-for-businesses',
-                'title' => 'VAT Registration for Businesses',
-                'description' => 'Complete VAT registration services for businesses to ensure compliance.',
-                'meta_tags' => 'VAT Registration, Business VAT, Tax Compliance',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
-            [
-                'slug' => 'vat-return-filing',
-                'title' => 'VAT Return Filing',
-                'description' => 'Expert assistance in preparing and filing VAT returns on time.',
-                'meta_tags' => 'VAT Return Filing, VAT Services, Tax Compliance',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
-            [
-                'slug' => 'vat-consultation-compliance',
-                'title' => 'VAT Consultation & Compliance',
-                'description' => 'Professional consultation to ensure your business stays VAT compliant.',
-                'meta_tags' => 'VAT Consultation, VAT Compliance, Tax Services',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
-            [
-                'slug' => 'vat-deregistration',
-                'title' => 'VAT Deregistration',
-                'description' => 'We assist you in the complete process of VAT deregistration when needed.',
-                'meta_tags' => 'VAT Deregistration, Tax Compliance, VAT Services',
-                'banner_image' => null,
-                'status' => 'published',
-            ],
+            // Add more pages as needed using the same structure...
         ];
 
-        foreach ($pages as $page) {
-            Page::create($page);
+        foreach ($pages as $pageData) {
+            Page::create($pageData);
         }
     }
 }

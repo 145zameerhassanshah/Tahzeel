@@ -9,6 +9,36 @@ class Page extends Model
     use HasTranslations;
     public $translatable = [];
 
+    protected $fillable = [
+        'slug',
+        'title',
+        'description',
+        'hero_image',
+        'hero_title',
+        'hero_sub_title',
+        'hero_description',
+        'status',
+        'type',
+        'route_name',
+        'page_link_for',
+        'order_no',
+        'meta_tags',
+        'meta_title',
+        'meta_description',
+    ];
+
+    public $translatable = [
+        'description',
+        'hero_title',
+        'hero_sub_title',
+        'hero_description',
+        'meta_tags',
+        'meta_title',
+        'meta_description',
+    ];
+
+
+
     public function procedures()
     {
         return $this->hasMany(Procedure::class);

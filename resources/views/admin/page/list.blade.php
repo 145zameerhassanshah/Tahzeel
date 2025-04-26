@@ -42,9 +42,6 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <!-- <a href="{{ route('admin.page.add-groups', $page->id) }}" class="btn btn-info btn-sm mx-1">
-                                                    <i class="fas fa-plus"></i> {{ __('Add Groups') }}
-                                                </a> -->
                                                 <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1">
                                                     <i class="fas fa-info"></i> {{ __('Details') }}
                                                 </a>
