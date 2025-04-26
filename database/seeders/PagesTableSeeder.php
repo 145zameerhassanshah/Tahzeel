@@ -23,9 +23,7 @@ class PagesTableSeeder extends Seeder
                 'hero_description' => [
                     'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
                 ],
-                'meta_tags' => [
-                    'en' => 'Corporate Bank Account, Business Banking, Account Setup',
-                ],
+                
                 'meta_title' => 'Corporate Bank Account Setup',
                 'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
                 'type' => 'visa',
@@ -49,9 +47,7 @@ class PagesTableSeeder extends Seeder
                 'hero_description' => [
                     'en' => 'Let us guide you through every step of opening a personal account.',
                 ],
-                'meta_tags' => [
-                    'en' => 'Personal Bank Account, Bank Account Assistance, Banking Solutions',
-                ],
+               
                 'meta_title' => 'Personal Bank Account Help',
                 'meta_description' => 'Reliable help in personal banking and account setup.',
                 'type' => 'visa',
