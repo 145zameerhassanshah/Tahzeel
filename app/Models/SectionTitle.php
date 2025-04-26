@@ -14,12 +14,14 @@ class SectionTitle extends Model
         'type',
         'title',
         'subtitle',
+        'description',
         'status',
     ];
 
     public $translatable = [
         'title',
         'subtitle',
+        'description',
     ];
 
 

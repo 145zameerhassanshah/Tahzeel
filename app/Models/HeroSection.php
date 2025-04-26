@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
@@ -12,6 +13,7 @@ class HeroSection extends Model
         'subtitle' => 'array',
         'description' => 'array'
     ];
+
     protected $fillable = [
         'page_id',
         'title',
@@ -20,9 +22,6 @@ class HeroSection extends Model
         'background_image',
         'status'
     ];
-
-
-
 
     public $translatable = [
         'title',

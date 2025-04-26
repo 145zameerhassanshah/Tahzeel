@@ -17,8 +17,7 @@
                     <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Ensuring Health Compliance with
                         <span class="underline-3 style-2 yellow">DHA Standards</span>
                     </h1>
-                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Reliable Medical
-                        Fitness Testing for UAE Residency</p>
+                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Reliable Medical Fitness Testing for UAE Residency</p>
                 </div>
             </div>
         </div>

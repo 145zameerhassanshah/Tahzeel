@@ -2510,38 +2510,43 @@
         function renderSectionTitles(sectiontitles) {
             let html = '';
             sectiontitles.forEach((sectiontitle, index) => {
+                // Format the type of sectiontitle to make it more readable
                 let formattedText = sectiontitle.type.replace(/_/g, ' ');
                 formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
-                const sectionstitle = typeof sectiontitle.title === 'string' ? JSON.parse(sectiontitle.title) :
-                    sectiontitle.title;
-                const sectionsubtitle = typeof sectiontitle.subtitle === 'string' ? JSON.parse(sectiontitle
-                    .subtitle) : sectiontitle.subtitle;
 
+                // Parse the title, subtitle, and description fields if they are JSON strings
+                const sectionstitle = typeof sectiontitle.title === 'string' ? JSON.parse(sectiontitle.title) : sectiontitle.title;
+                const sectionsubtitle = typeof sectiontitle.subtitle === 'string' ? JSON.parse(sectiontitle.subtitle) : sectiontitle.subtitle;
+                const sectiondescription = typeof sectiontitle.description === 'string' ? JSON.parse(sectiontitle.description) : sectiontitle.description;
+
+                // Build the table row HTML
                 html += `
-                <tr id="sectiontitle-row-${sectiontitle.id}">
-                <td>${index + 1}</td>
-                <td>${formattedText}</td>
-                <td>${sectionstitle.en}</td>
-                <td>${sectionsubtitle.en}</td>
-                <td>
+        <tr id="sectiontitle-row-${sectiontitle.id}">
+            <td>${index + 1}</td>
+            <td>${formattedText}</td>
+            <td>${sectionstitle.en}</td>
+            <td>${sectionsubtitle.en}</td>
+            <td>${sectiondescription ? sectiondescription.en : ''}</td> <!-- Ensure description is safely accessed -->
+            <td>
                 <span class="badge ${sectiontitle.status === 'active' ? 'bg-success' : 'bg-secondary'}">
                     ${sectiontitle.status}
                 </span>
-                </td>
-                <td>
-                    <button class="btn btn-sm btn-primary editSectionTitle" data-id="${sectiontitle.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <form class="d-inline-block" action="/admin/section-titles/${sectiontitle.id}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm delete-sectiontitle" data-id="${sectiontitle.id}">
-                        <i class="fas fa-trash"></i> Delete</button>
-                    </form>
-                </td>
-            </tr>`;
+            </td>
+            <td>
+                <button class="btn btn-sm btn-primary editSectionTitle" data-id="${sectiontitle.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <form class="d-inline-block" action="/admin/section-titles/${sectiontitle.id}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-danger btn-sm delete-sectiontitle" data-id="${sectiontitle.id}">
+                    <i class="fas fa-trash"></i> Delete</button>
+                </form>
+            </td>
+        </tr>`;
             });
 
+            // Append the generated HTML to the table body
             $('#sectiontitlesTableBody').html(html);
         }
 
@@ -2557,6 +2562,8 @@
             let sectiontitleAr = $("#section_title_ar").val().trim();
             let sectionsubtitleEn = $("#section_subtitle_en").val().trim();
             let sectionsubtitleAr = $("#section_subtitle_ar").val().trim();
+            let sectiondescriptionEn = $("#section_description_en").val().trim();
+            let sectiondescriptionAr = $("#section_description_ar").val().trim();
             let isValid = true;
             // Frontend validation
             if (sectiontitleEn.length < 1) {
@@ -2568,19 +2575,23 @@
                 isValid = false;
             }
             if (sectionsubtitleEn.length < 1) {
-                // $("#error_feedback_en").text("English feedback is required.");
+                $("#error_feedback_en").text("English feedback is required.");
                 isValid = true;
             }
             if (sectionsubtitleAr.length < 1) {
-                // $("#error_feedback_ar").text("Arabic feedback is required.");
+                $("#error_feedback_ar").text("Arabic feedback is required.");
                 isValid = true;
             }
-
+            if (sectiondescriptionEn.length < 1) {
+                $("#error_section_description_en").text("English Description is required.");
+                isValid = false;
+            }
+            if (sectiondescriptionAr.length < 1) {
+                $("#error_section_description_ar").text("Arabic Description is required.");
+                isValid = false;
+            }
             if (!isValid) return;
-
-            // Prepare FormData
             let sectionformData = new FormData(this);
-
             $.ajax({
                 url: "{{ route('admin.section_title.store') }}",
                 type: "POST",
@@ -2593,9 +2604,7 @@
                 success: function(response) {
                     if (response.success) {
                         toastr.success("SectionTitle added successfully!");
-
                         refreshSectionTitles();
-
                         $("#sectiontitleForm")[0].reset();
                         $("#sectiontitleModal").removeClass("show").hide();
                         $(".modal-backdrop").remove();
@@ -2642,9 +2651,10 @@
                     $('#update_section_title_ar').val(sectiontitle.ar);
                     $('#update_section_subtitle_en').val(sectionsubtitle.en);
                     $('#update_section_subtitle_ar').val(sectionsubtitle.ar);
+                    $('#update_section_description_en').val(sectiondescription.en);
+                    $('#update_section_description_ar').val(sectiondescription.ar);
                     $('#update_section_status').val(response.status);
                     $('#update_section_type').val(response.type);
-
                     // Show the modal
                     $('#editSectionTitleModal').modal('show');
                 },
