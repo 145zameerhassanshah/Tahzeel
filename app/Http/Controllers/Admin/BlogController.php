@@ -15,25 +15,6 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('serial_number', 'asc')->get();
         return view('admin.blog.index', compact('blogs'));
     }
-    // public function blog()
-    // {
-    //     app()->setLocale(session('locale', 'en'));
-    //     $locale = app()->getLocale();
-    //     $blogs = Blog::where('status', '1')->get();
-    //     $categories = Bcategory::where('status', '1')->get();
-    //     // Localizing blogs
-    //     $localized_blog = $blogs->map(function ($item) use ($locale) {
-    //         return localize_blog($item, $locale);
-    //     });
-    //     // Localizing categories
-    //     $localized_categories = $categories->map(function ($item) use ($locale) {
-    //         return localize_blog_category($item, $locale);
-    //     });
-    //     return view('front.otherPages.blog', [
-    //         'blogs' => $localized_blog,
-    //         'bCategories' => $localized_categories,
-    //     ]);
-    // }
 
     // Add Blog
     public function add($id = null)
@@ -94,20 +75,20 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index')->with('notification', $notification);
     }
 
-    // Blog  Delete
+    // Blog Delete
     public function delete($id)
     {
         $blog = Blog::find($id);
         @unlink('assets/front/img/blog/' . $blog->main_image);
         $blog->delete();
         $notification = array(
-            'message' => 'Blog  Deleted successfully!',
+            'message' => 'Blog Deleted successfully!',
             'alert' => 'success'
         );
         return redirect()->back()->with('notification', $notification);
     }
 
-    // Blog  Edit
+    // Blog Edit
     public function edit($id)
     {
         $blog = Blog::findOrFail($id);
@@ -165,4 +146,24 @@ class BlogController extends Controller
         );
         return redirect(route('admin.blog.index'))->with('notification', $notification);
     }
+
+    // public function blog()
+    // {
+    //     app()->setLocale(session('locale', 'en'));
+    //     $locale = app()->getLocale();
+    //     $blogs = Blog::where('status', '1')->get();
+    //     $categories = Bcategory::where('status', '1')->get();
+    //     // Localizing blogs
+    //     $localized_blog = $blogs->map(function ($item) use ($locale) {
+    //         return localize_blog($item, $locale);
+    //     });
+    //     // Localizing categories
+    //     $localized_categories = $categories->map(function ($item) use ($locale) {
+    //         return localize_blog_category($item, $locale);
+    //     });
+    //     return view('front.otherPages.blog', [
+    //         'blogs' => $localized_blog,
+    //         'bCategories' => $localized_categories,
+    //     ]);
+    // }
 }

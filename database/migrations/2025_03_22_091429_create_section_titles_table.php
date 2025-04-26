@@ -24,8 +24,9 @@ return new class extends Migration
                 'why_us_image',
                 'call_to_action'
             ]);
-            $table->json('title');// {"en": "Our Services", "ar": "خدماتنا"}
-            $table->json('subtitle')->nullable();// {"en": "Why Choose Us", "ar": "لماذا تختارنا"}
+            $table->json('title');  // {"en": "Our Services", "ar": "خدماتنا"}
+            $table->json('subtitle')->nullable();
+            $table->json('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

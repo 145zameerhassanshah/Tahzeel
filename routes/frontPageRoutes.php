@@ -4,8 +4,6 @@ use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontController;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
-
-
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, config('app.available_locales'))) {
         session(['locale' => $locale]);
@@ -13,12 +11,8 @@ Route::get('/lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang.switch');
-
-
 Route::middleware([SetLocale::class])->group(function () {
-
     Route::post('/store-inquiry', [FrontController::class, 'storeInquiry'])->name('front.store.inquiry');
-
     // Frontend routes
     Route::get('/', [FrontController::class, 'index'])->name('front.index');
     Route::get('/service-detail/{slug}', [FrontController::class, 'serviceDetail'])->name('front.service.detail');
@@ -37,16 +31,15 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
     Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
+<<<<<<< HEAD
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
     Route::get('/manpower-recruitment', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower.recruitment');
 
 
 
+=======
+    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');    
+>>>>>>> c31883af3f664d31391adc3abf4d97cd61f3515c
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
-
     Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
 });
-
-
-
-?>

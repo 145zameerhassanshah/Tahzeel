@@ -7,6 +7,7 @@ use File;
 use App\Models\Income;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Expense;
+
 class ReportService
 {
     public function generatePdf($data)

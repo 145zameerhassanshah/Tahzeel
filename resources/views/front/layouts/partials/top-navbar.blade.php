@@ -5,7 +5,7 @@
                 <div class="navbar-collapse-wrapper bg-white d-flex flex-row flex-nowrap w-100 justify-content-between align-items-center">
                     <div class="navbar-brand w-100">
                         <a href="{{ route('front.index') }}">
-                            <img src="{{ asset($setting->logo) }}" width="150px" alt="" />
+                            <!-- <img src="{{ asset($setting->logo) }}" width="150px" alt="" /> -->
                         </a>
                     </div>
                     <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
@@ -31,9 +31,9 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('header.tasheel_services') }}</a>
+                                    <a class="nav-link dropdown-toggle" href="{{ route('front.page.detail','corporate-bank-account-setup') }}" data-bs-toggle="dropdown">{{ __('header.tasheel_services') }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">{{ __('header.under_construction') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.page.detail','corporate-bank-account-setup') }}">{{ __('header.under_construction') }}</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
