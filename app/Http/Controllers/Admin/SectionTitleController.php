@@ -37,6 +37,8 @@ class SectionTitleController extends Controller
             'section_title.ar' => 'required|string|max:250',
             'section_subtitle.en' => 'nullable|string|max:250',
             'section_subtitle.ar' => 'nullable|string|max:250',
+            'section_description.en' => 'nullable|string|max:250',
+            'section_description.ar' => 'nullable|string|max:250',
             'section_status' => 'required|in:active,inactive',
             'section_type' => 'required|string'
         ]);
@@ -46,12 +48,21 @@ class SectionTitleController extends Controller
             'en' => $request->section_title['en'],
             'ar' => $request->section_title['ar'],
         ]);
-        if (isset($request->section_subtitle['en']) && isset($request->section_subtitle['ar'])) {
-            $sectionTitle->setTranslations('subtitle', [
-                'en' => $request->section_subtitle['en'],
-                'ar' => $request->section_subtitle['ar'],
-            ]);
-        }
+        $sectionTitle->setTranslations('subtitle', [
+            'en' => $request->section_subtitle['en'],
+            'ar' => $request->section_subtitle['ar'],
+        ]);
+        $sectionTitle->setTranslations('description', [
+            'en' => $request->section_description['en'],
+            'ar' => $request->section_description['ar'],
+        ]);
+        // if (isset($request->section_subtitle['en']) && isset($request->section_subtitle['ar'])) {
+        //     $sectionTitle->setTranslations('subtitle', [
+        //         'en' => $request->section_subtitle['en'],
+        //         'ar' => $request->section_subtitle['ar'],
+        //     ]);
+        // }
+
         $sectionTitle->status = $request->section_status;
         $sectionTitle->type = $request->section_type;
         $sectionTitle->save();
@@ -62,7 +73,6 @@ class SectionTitleController extends Controller
     public function edit($id)
     {
         $sectionTitle = SectionTitle::findOrFail($id);
-
         return response()->json([
             'title' => [
                 'en' => $sectionTitle->getTranslation('title', 'en'),
@@ -71,6 +81,10 @@ class SectionTitleController extends Controller
             'subtitle' => [
                 'en' => $sectionTitle->getTranslation('subtitle', 'en'),
                 'ar' => $sectionTitle->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $sectionTitle->getTranslation('description', 'en'),
+                'ar' => $sectionTitle->getTranslation('description', 'ar'),
             ],
             'status' => $sectionTitle->status,
             'type' => $sectionTitle->type,
@@ -89,7 +103,6 @@ class SectionTitleController extends Controller
             'section_status' => 'required|in:active,inactive',
             'section_type' => 'required|string'
         ]);
-
         $sectionTitle = SectionTitle::findOrFail($id);
         $sectionTitle->setTranslations('title', [
             'en' => $request->section_title['en'],
@@ -98,6 +111,10 @@ class SectionTitleController extends Controller
         $sectionTitle->setTranslations('subtitle', [
             'en' => $request->section_subtitle['en'],
             'ar' => $request->section_subtitle['ar'],
+        ]);
+        $sectionTitle->setTranslations('description', [
+            'en' => $request->section_description['en'],
+            'ar' => $request->section_description['ar'],
         ]);
         $sectionTitle->status = $request->section_status;
         $sectionTitle->type = $request->section_type;

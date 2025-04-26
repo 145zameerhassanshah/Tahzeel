@@ -1,7 +1,6 @@
 @extends('front.layouts.master')
 
 @section('title', $page->title)
-
 @section('content')
 
 @if (isset($hero_sections))

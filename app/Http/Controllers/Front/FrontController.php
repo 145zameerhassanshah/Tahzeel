@@ -105,7 +105,6 @@ class FrontController extends Controller
         ]);
     }
 
-
     public function visitVisa()
     {
         return view('front.otherPages.visitVisa');

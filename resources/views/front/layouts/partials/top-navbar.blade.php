@@ -5,7 +5,7 @@
                 <div class="navbar-collapse-wrapper bg-white d-flex flex-row flex-nowrap w-100 justify-content-between align-items-center">
                     <div class="navbar-brand w-100">
                         <a href="{{ route('front.index') }}">
-                            <img src="{{ asset($setting->logo) }}" width="150px" alt="" />
+                            <!-- <img src="{{ asset($setting->logo) }}" width="150px" alt="" /> -->
                         </a>
                     </div>
                     <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
