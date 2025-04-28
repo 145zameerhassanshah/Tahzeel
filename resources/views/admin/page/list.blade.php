@@ -21,14 +21,11 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('#') }}</th>
-                                        <th>{{ __('Title (English)') }}</th>
-                                        <th>{{ __('Slug') }}</th>
+                                        <th>{{ __('Title') }}</th>
                                         <th>{{ __('Route') }}</th>
-                                        <th>{{ __('Status') }}</th>
                                         <th>{{ __('Type') }}</th>
-                                        <th>{{ __('Page Link For') }}</th>
+                                        <th>{{ __('Link For') }}</th>
                                         <th>{{ __('Order No') }}</th>
-                                        <th>{{ __('Meta Title') }}</th>
                                         <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
@@ -36,24 +33,19 @@
                                     @forelse ($pages as $id => $page)
                                     <tr>
                                         <td class="text-center">{{ ++$id }}</td>
-                                        <td>{{ json_decode($page->title)->en ?? 'N/A' }}</td>
-                                        <td>{{ $page->slug }}</td>
+                                        <td>{{ __($page->title) }}</td>
                                         <td>{{ $page->route_name ?? 'N/A' }}</td>
-                                        <td>{{ ucfirst($page->status) }}</td>
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->type)) }}</td>
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->page_link_for)) }}</td>
                                         <td>{{ $page->order_no }}</td>
-                                        <td>{{ $page->meta_title ?? 'N/A' }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->
-                                                <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1">
-                                                    <i class="fas fa-edit"></i> {{ __('Edit') }}
-                                                </a>
+                                                <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
 
                                                 <!-- Details Button -->
                                                 <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1">
-                                                    <i class="fas fa-info"></i> {{ __('Details') }}
+                                                <i class="fas fa-info"></i>
                                                 </a>
 
                                                 <!-- Delete Button -->
