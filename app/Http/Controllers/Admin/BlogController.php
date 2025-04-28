@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
 use App\Helpers\Helper;
+use Illuminate\Support\Str;
 use App\Models\Bcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,10 @@ class BlogController extends Controller
     // Store Blog
     public function store(Request $request)
     {
-        $slug = Helper::make_slug($request->title['en']);
+
+        $slug = Str::slug($request->title['en']);
+        // $slug = Helper::make_slug($request->title['en']);
+        $slug = "hgg-dd-ddd";
         $blogs = Blog::select('slug')->get();
         $request->validate(rules: [
             'image' => 'required|mimes:jpeg,jpg,png',
@@ -74,6 +78,8 @@ class BlogController extends Controller
         );
         return redirect()->route('admin.blog.index')->with('notification', $notification);
     }
+
+
 
     // Blog Delete
     public function delete($id)
