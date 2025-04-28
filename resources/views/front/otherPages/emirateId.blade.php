@@ -2,7 +2,7 @@
 @section('title', 'Emirate Id')
 @section('content')
 <section class="wrapper image-wrapper bg-image  bg-overlay-300"
-    data-image-src="{{ asset('front/dev/assets/img/personal/emiratesID-bg.webp') }}">
+    data-image-src="{{ asset('assets/static/emiratesID-bg.webp') }}">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
         <div class="row text-start">
             <div class="col-lg-7 col-xl-8 col-xxl-7 me-auto" data-cues="slideInDown" data-group="page-title">
@@ -20,8 +20,8 @@
             <div class="col-md-8 col-lg-6 col-xl-5 order-lg-2 position-relative">
                 <div class="shape bg-soft-green rounded-circle rellax w-20 h-20" data-rellax-speed="1"
                     style="top: -2rem; right: -1.9rem;"></div>
-                <figure class="rounded"><img src="{{ asset('front/dev/assets/img/personal/emiratesID1.webp') }}"
-                        srcset="{{ asset('front/dev/assets/img/personal/emiratesID1.webp') }} 2x" alt="">
+                <figure class="rounded"><img src="{{ asset('assets/static/emiratesID1.webp') }}"
+                        srcset="{{ asset('assets/static/emiratesID1.webp') }} 2x" alt="">
                 </figure>
             </div>
             <!--/column -->
@@ -36,7 +36,7 @@
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
                             <div>
-                                <img src="{{ asset('front/dev/assets/img/personal/bank2.svg') }}"
+                                <img src="{{ asset('assets/static/bank2.svg') }}"
                                     class="svg-inject icon-svg icon-svg-sm me-4 text-red" alt="" />
                             </div>
                             <div>
@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
                             <div>
-                                <img src="{{ asset('front/dev/assets/img/personal/hand-thumbs-up.svg') }}"
+                                <img src="{{ asset('assets/static/hand-thumbs-up.svg') }}"
                                     class="svg-inject icon-svg icon-svg-sm me-4 text-green" alt="" />
                             </div>
                             <div>
@@ -64,7 +64,7 @@
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
                             <div>
-                                <img src="{{ asset('front/dev/assets/img/personal/file-text.svg') }}"
+                                <img src="{{ asset('assets/static/file-text.svg') }}"
                                     class="svg-inject icon-svg icon-svg-sm me-4 text-blue" alt="" />
                             </div>
                             <div>
@@ -78,7 +78,7 @@
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
                             <div>
-                                <img src="{{ asset('front/dev/assets/img/personal/box-arrow-in-right.svg') }}"
+                                <img src="{{ asset('assets/static/box-arrow-in-right.svg') }}"
                                     class="svg-inject icon-svg icon-svg-sm me-4 text-orange" alt="" />
                             </div>
                             <div>
@@ -120,7 +120,7 @@
                         <h3 class="display-4 mb-4">How to Get Your Emirates ID?</h3>
                         <p class="lead fs-lg mb-0">Email us to clear your querries</p>
                         <div class="d-flex align-items-start">
-                            <img src="{{ asset('front/dev/assets/img/personal/envelope.svg') }}"
+                            <img src="{{ asset('assets/static/envelope.svg') }}"
                                 class="w-5 svg-inject icon-svg icon-svg-sm text-red " alt="">
                             <a href="" class="lead fs-lg mb-0 text-red pt-1 ms-2">
                                 <p>tahzeel@gmail.com</p>
@@ -130,7 +130,7 @@
                         <p class="lead fs-lg mb-0">Or Call Us</p>
 
                         <div class="d-flex">
-                            <img src="{{ asset('front/dev/assets/img/personal/telephone.svg') }}"
+                            <img src="{{ asset('assets/static/telephone.svg') }}"
                                 class="w-5 svg-inject icon-svg icon-svg-sm text-red" alt="">
                             <a href="" class="lead fs-lg mb-0 text-red pt-1 ms-2">
                                 <p>+97 123 456789</p>
@@ -293,7 +293,7 @@
                         class="underline-2 underline-gradient-9"><em>visa and documentation</em></span> processes
                     smoothly and stress-free. </h3>
                 <a href="#" class="btn btn-white fw-normal py-0"><img
-                        src="{{ asset('front/dev/assets/img/personal/telephone.svg') }}" alt="">
+                        src="{{ asset('assets/static/telephone.svg') }}" alt="">
                     <p class="ms-2 pt-4">+97-123-456789</p>
                 </a>
             </div>

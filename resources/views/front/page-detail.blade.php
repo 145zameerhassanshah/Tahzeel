@@ -6,7 +6,6 @@
     {{-- Hero Section --}}
     @include('front.partials._hero_section')
 
-    
 
     {{-- Introduction Section --}}
     @php($section = $page->sectionTitles->where('type', 'intro_section')->first())
@@ -39,11 +38,6 @@
     @include('front.partials._procedures')
 
     {{-- Call To Action --}}
-    @php($section = $page->sectionTitles->where('type', 'call_to_action')->first())
-    @if ($section)
-        @include('front.partials._section_title', ['section' => $section])
-    @endif
-
     @php($call_to_actions = $page->callToActions)
     @if ($call_to_actions->isNotEmpty())
         @include('front.partials._cta', ['call_to_actions' => $call_to_actions])
@@ -51,34 +45,23 @@
 
 
     {{-- Document Required Section --}}
-    @php($section = $page->sectionTitles->where('type', 'document_required')->first())
+    @php($section = $page->sectionTitles->where('type', 'document')->first())
     @if ($section)
         @include('front.partials._section_title', ['section' => $section])
     @endif
-    @php($document_requireds = $page->documentRequireds)
-    @if ($document_requireds->isNotEmpty())
+    @if ($page->documentRequireds->isNotEmpty())
         @include('front.partials._docs', [
-            'document_requireds' => $document_requireds,
-            'document_title' => $section,
+            'document_requireds' => $page->documentRequireds,
         ])
     @endif
 
 
     {{-- Feature Image Section --}}
-    @php($feature_title = $page->sectionTitles->where('type', 'feature_image')->first())
-    @if ($feature_title)
-        @include('front.partials._section_title', ['section' => $feature_title])
-
-        @php($feature_images = $page->featureImages)
-        @if ($feature_images->isNotEmpty())
-            @include('front.partials._feature_image', [
-                'feature_images' => $feature_images,
-                'feature_title' => $feature_title,
-            ])
-        @else
-            <p>No feature images available.</p>
-        @endif
+    @php($section = $page->sectionTitles->where('type', 'feature_image')->first())
+    @if ($section)
+        @include('front.partials._section_title', ['section' => $section])
     @endif
+     @include('front.partials._feature_image');
 
 
     {{-- Why Choose Us --}}

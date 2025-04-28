@@ -1,10 +1,4 @@
 <div class="container">
-    <div class="row text-center mt-10 mb-12">
-        <div class="col">
-            {!! __('about-us.feature_title') !!}
-            <p>{!! __('about-us.feature_subtitle') !!}</p>
-        </div>
-    </div>
     <div class="row gx-md-5 mb-5 mb-md-5">
         @foreach ($why_choose_us as $why_choose)
         <div class="col-md-6 col-xl-3">

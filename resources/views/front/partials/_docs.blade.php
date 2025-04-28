@@ -1,12 +1,5 @@
-<!-- resources\views\front\partials\_docs.blade.php -->
 <div class="wrapper">
     <div class="container">
-        <div class="row d-flex justify-content-center mb-10 mt-10">
-            @if($document_title)
-            <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! $document_title->subtitle !!}</h2>
-            <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">{!! $document_title->title !!}</h3>
-            @endif
-        </div>
         <div class="row">
             <div class="col">
                 <div class="accordion accordion-wrapper" id="accordionIconExample">

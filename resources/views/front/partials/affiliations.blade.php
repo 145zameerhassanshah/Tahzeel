@@ -15,14 +15,14 @@
             data-items-xl="4" data-items-lg="4" data-items-md="3" data-items-xs="2">
             <div class="swiper">
                 <div class="swiper-wrapper ticker">
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-1.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-2.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-3.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-4.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-1.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-2.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-3.svg') }}" alt=""></div>
-                    <div class="swiper-slide px-5"><img src="{{ asset('front/dev/assets/img/personal/govrt-4.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-1.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-2.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-3.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-4.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-1.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-2.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-3.svg') }}" alt=""></div>
+                    <div class="swiper-slide px-5"><img src="{{ asset('assets/static/govrt-4.svg') }}" alt=""></div>
                 </div>
                 <!--/.swiper-wrapper -->
             </div>
