@@ -7,7 +7,7 @@ use Spatie\Translatable\HasTranslations;
 class Blog extends Model
 {
     use HasTranslations;
-    use HasTranslations;
+   
 
     protected $fillable = [
         'bcategory_id',
