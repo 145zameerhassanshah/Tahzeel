@@ -19,7 +19,7 @@
 
 
     {{-- Why Us Image --}}
-    @php($section = $page->sectionTitles->where('type', 'whyUsImages')->first())
+    @php($section = $page->sectionTitles->where('type', 'why_us_image')->first())
     @if ($section)
         @include('front.partials._section_title', ['section' => $section])
     @endif
