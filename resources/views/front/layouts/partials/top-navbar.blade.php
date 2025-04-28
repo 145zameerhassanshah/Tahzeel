@@ -27,7 +27,7 @@
                                         <li><a class="dropdown-item" href="{{ route('front.medical.fitness.test') }}">{{ __('header.medical_test') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.entry.permit') }}">{{ __('header.entry_permit') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.visit.visa') }}">{{ __('header.visit_visa') }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('front.domestic.worker.visa') }}">{{ __('header.domestic_worker') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.domestic.worker.visa') }}">{{ __('Domestic Worker Visa') }}</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -39,19 +39,15 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('header.other_services') }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="./blog2.html">{{ __('header.blog_with_sidebar') }}</a></li>
-                                        <li><a class="dropdown-item" href="./blog3.html">{{ __('header.bank_account') }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('header.vat_business') }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">{{ __('header.ded_license') }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('front.dhaServices') }}">{{ __('header.dha_services') }}</a></li>
+                                       
+                                        <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('"Under Construction"') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">{{ __('DED License') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.dhaServices') }}">{{ __('DHA Services') }}</a></li>
                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Human Resources</a>
                                             <ul class="dropdown-menu">
                                               
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
-                                              <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
-                                              <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
-                                              <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
-                                              <li class="nav-item"><a class="dropdown-item" href="#">HR Consultancy Services</a></li>
+                                              
                                             </ul>
                                           </li>
                                     </ul>

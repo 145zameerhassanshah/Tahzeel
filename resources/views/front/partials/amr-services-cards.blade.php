@@ -20,7 +20,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-recidencyVisa.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-recidencyVisa.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -44,7 +44,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-openFile.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-openFile.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -68,7 +68,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-visaCancel.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-visaCancel.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -92,7 +92,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/services-EmiratesID.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/services-EmiratesID.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -116,7 +116,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/services-medical.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/services-medical.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -140,7 +140,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/services-entryPermit.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/services-entryPermit.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -164,7 +164,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-change.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-change.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -188,7 +188,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/services-visitVisa.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/services-visitVisa.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -213,7 +213,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-domestic.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-domestic.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -238,7 +238,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-travel.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-travel.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>
@@ -262,7 +262,7 @@
                     <div class="card shadow-lg hover-card">
                         <figure class="card-img-top overlay overlay-1">
                             <a href="#"><img class="img-fluid"
-                                    src="{{ asset('front/dev/assets/img/personal/service-fine.webp') }}" alt="" /></a>
+                                    src="{{ asset('assets/static/service-fine.webp') }}" alt="" /></a>
                             <figcaption>
                                 <h5 class="from-top mb-0">See Details</h5>
                             </figcaption>

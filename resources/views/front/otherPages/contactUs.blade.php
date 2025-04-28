@@ -31,7 +31,7 @@
             <div class="col-md-8 col-xl-4 d-flex">
                 <div class="card shadow-lg card-border-bottom border-red text-center h-100 w-100">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/map.svg') }}" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                        <img src="{{ asset('assets/static/map.svg') }}" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                         <h4>{!! __('contact-us.hero_location') !!}</h4>
                         <p class="mb-2">Dubai, United Arab Emirates</p>
                         <a href="#" class=" hover link-red fs-50"> <i class="bi bi-arrow-right-circle-fill"></i></a>
@@ -44,7 +44,7 @@
             <div class="col-md-8 col-xl-4 d-flex">
                 <div class="card shadow-lg card-border-bottom border-green text-center h-100 w-100">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/telephone.svg') }}"
+                        <img src="{{ asset('assets/static/telephone.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                         <h4>{!! __('contact-us.hero_contact') !!}</h4>
                         <p class="mb-2">Phone:{{ $setting->phone_no }}</p>
@@ -59,7 +59,7 @@
             <div class="col-md-8 col-xl-4 d-flex">
                 <div class="card shadow-lg card-border-bottom border-red text-center h-100 w-100">
                     <div class="card-body">
-                        <img src="{{ asset('front/dev/assets/img/personal/envelope.svg') }}"
+                        <img src="{{ asset('assets/static/envelope.svg') }}"
                             class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                         <h4>{!! __('contact-us.hero_email') !!}</h4>
                         <p class="mb-2">{{ $setting->email }}</p>
