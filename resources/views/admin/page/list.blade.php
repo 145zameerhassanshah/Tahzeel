@@ -48,8 +48,11 @@
                                                 </button>
                                                 <div class="dropdown-menu" role="menu" style="">
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.add', $page->id) }}">Add Section</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">View</a>
+
                                                     <div class="dropdown-divider"></div>
                                                 </div>
+                                                
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->

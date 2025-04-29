@@ -15,8 +15,9 @@ class PageSectionController extends Controller
     {
         $page = Page::find($id);
         $pageSections = PageSection::where('Page_id', $id)->get();
-        return view('admin.Page-section.index', compact('PageSections', 'Page'));
-    }
+        // return view('admin.Page-section.index', compact('PageSections', 'Page'));
+    //new
+    return view('admin.Page-section.index', compact('pageSections', 'page'));      }
 
     public function add($id)
     {
