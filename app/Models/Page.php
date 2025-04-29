@@ -98,4 +98,9 @@ class Page extends Model
     {
         return $this->hasMany(FeatureImage::class);
     }
+
+    public function sections()
+    {
+        return $this->hasMany(PageSection::class);
+    }
 }
