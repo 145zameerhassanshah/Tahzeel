@@ -26,7 +26,8 @@
                                 <span class="text-danger error" id="error_section_title_ar"></span>
                             </div>
                         </div>
-                        <div class="row">
+
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="section_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="section_subtitle_en" name="section_subtitle[en]">
@@ -41,7 +42,20 @@
                         </div>
 
                         <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="section_description_en">{{ __('description (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="section_description_en" name="section_description[en]">
+                                <span class="text-danger error" id="error_section_description_en"></span>
+                            </div>
 
+                            <div class="col-md-6">
+                                <label for="section_description_ar">{{ __('description (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="section_description_ar" name="section_description[ar]">
+                                <span class="text-danger error" id="error_section_description_ar"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="section_status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" id="section_status" name="section_status">
@@ -101,7 +115,8 @@
                                 <span class="text-danger error" id="error_section_title_ar"></span>
                             </div>
                         </div>
-                        <div class="row">
+                        
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="update_section_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="update_section_subtitle_en" name="section_subtitle[en]">
@@ -116,7 +131,20 @@
                         </div>
 
                         <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="update_section_description_en">{{ __('description (English)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_section_description_en" name="section_description[en]">
+                                <span class="text-danger error" id="error_section_description_en"></span>
+                            </div>
 
+                            <div class="col-md-6">
+                                <label for="update_section_description_ar">{{ __('description (Arabic)') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="update_section_description_ar" name="section_description[ar]">
+                                <span class="text-danger error" id="error_section_description_ar"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="update_section_status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                 <select class="form-control" id="update_section_status" name="section_status">
@@ -171,6 +199,7 @@
                                     <th>{{ __('Type') }}</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Subtitle') }}</th>
+                                    <th>{{ __('Description') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>

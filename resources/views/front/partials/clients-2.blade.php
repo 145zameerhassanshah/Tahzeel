@@ -3,10 +3,9 @@
   <div class="container py-14 py-md-16">
     <div class="row gx-xl-12 gy-10 align-items-center">
       <div class="col-xl-4">
-        {!! $sectionTitle->title !!}
-        <!-- Section Title : <h2 class="display-4 mt-10 mb-3">Our <span class="text-gradient gradient-6 fw-bolder">Clients</span></h2> -->
-        <p class="lead fs-lg mb-6">{{ $sectionTitle->subtitle }}</p>
-        <a href="#" class="btn btn-red rounded-pill text-white">Apply Now</a>
+        {!!  __('testimonials.testimonial_title') !!}
+        <p class="lead fs-lg mb-6">{!!  __('testimonials.testimonial_sub_title') !!}</p>
+        <a href="{{ route('front.contact.us') }}" class="btn btn-red rounded-pill text-white">{{ __('buttons.apply_now') }}</a>
       </div>
       <!-- /column -->
       <div class="col-xl-8">

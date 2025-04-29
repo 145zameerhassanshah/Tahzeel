@@ -17,7 +17,7 @@
                 <div class="col-md-4 col-lg-3">
                     <div class="widget">
                         <a href="{{ route('front.index') }}">
-                            <img src="{{ asset($setting->logo) }}" width="150px" srcset="{{ asset($setting->logo) }}" alt="" />
+                            <!-- <img src="{{ asset($setting->logo) }}" width="150px" srcset="{{ asset($setting->logo) }}" alt="" /> -->
                         </a>
                         <p class="mb-4">© <script>
                                 document.write(new Date().getUTCFullYear());

@@ -48,7 +48,6 @@ class IntroSectionController extends Controller
             'double_image'  => 2,
             'tripple_image' => 3,
         ];
-        $maxFiles = $typeLimits[$request->intro_type] ?? 1;
         $request->validate([
             'page_id' => 'required|exists:pages,id',
             'title.en' => 'required|max:250',
@@ -59,8 +58,8 @@ class IntroSectionController extends Controller
             'description.ar' => 'required|max:250',
             'status' => 'required|in:active,inactive',
             'type' => 'required|in:single_image,double_image,tripple_image',
-            'images' => 'required|array|max:' . $maxFiles,
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'images' => 'required|array',
+            'images.*' => 'image|max:3000',
         ]);
         $intro_section = new IntroductionSection();
         $intro_section->page_id = $request->page_id;
@@ -140,7 +139,6 @@ class IntroSectionController extends Controller
             'double_image'  => 2,
             'tripple_image' => 3,
         ];
-        $maxFiles = $typeLimits[$request->intro_type] ?? 1;
         $request->validate([
             'title.en' => 'required|max:250',
             'title.ar' => 'required|max:250',
@@ -150,8 +148,8 @@ class IntroSectionController extends Controller
             'description.ar' => 'required|max:250',
             'status' => 'required|in:active,inactive',
             'type' => 'required|in:single_image,double_image,tripple_image',
-            'images' => 'nullable|array|max:' . $maxFiles,
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'images' => 'required|array',
+            'images.*' => 'image|max:3000',
         ]);
         $intro_section = IntroductionSection::findOrFail($id);
         $intro_section->setTranslations('title', [

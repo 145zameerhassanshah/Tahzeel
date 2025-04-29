@@ -83,9 +83,21 @@ class HeroSectionController extends Controller
         $hero_section = HeroSection::find($id);
 
         return response()->json([
-            'title' => json_decode($hero_section->title),
-            'subtitle' => json_decode($hero_section->subtitle),
-            'description' => json_decode($hero_section->description),
+            'title' => [
+                'en' => $hero_section->getTranslation('title', 'en'),
+                'ar' => $hero_section->getTranslation('title', 'ar'),
+            ],
+            'subtitle' => [
+                'en' => $hero_section->getTranslation('subtitle', 'en'),
+                'ar' => $hero_section->getTranslation('subtitle', 'ar'),
+            ],
+            'description' => [
+                'en' => $hero_section->getTranslation('description', 'en'),
+                'ar' => $hero_section->getTranslation('description', 'ar'),
+            ],
+            // 'title' => json_decode($hero_section->title),
+            // 'subtitle' => json_decode($hero_section->subtitle),
+            // 'description' => json_decode($hero_section->description),
             'status' => $hero_section->status,
             'background_image' => $hero_section->background_image,
         ]);

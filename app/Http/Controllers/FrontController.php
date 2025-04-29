@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
+
 
 require_once app_path('Helpers/LanguageHelpers.php');
 
@@ -26,6 +27,7 @@ use App\Helpers\LanguageHelpers;
 use App\Models\DocumentRequired;
 use App\Models\FeatureImage;
 use App\Models\Procedure;
+use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
 {
@@ -274,8 +276,8 @@ class FrontController extends Controller
     }
 
 
-
-
+   
+    
 
 
 }

@@ -105,7 +105,6 @@ class FrontController extends Controller
         ]);
     }
 
-
     public function visitVisa()
     {
         return view('front.otherPages.visitVisa');
@@ -191,5 +190,9 @@ class FrontController extends Controller
             'success' => true,
             'message' => 'Inquiry submitted successfully!',
         ]);
+    }
+    public function manpowerRecruitment()
+    {
+        return view('front.otherPages.manpowerRecruitment');
     }
 }

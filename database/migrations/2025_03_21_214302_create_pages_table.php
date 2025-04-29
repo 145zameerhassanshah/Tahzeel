@@ -6,27 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->json('title');
+            $table->json('description')->nullable();
+            $table->json('hero_title')->nullable();
+            $table->json('hero_sub_title')->nullable();
+            $table->json('hero_description')->nullable();
             $table->string('slug')->unique();
-            $table->string('title');            // Single language, so we use string
-            $table->text('description')->nullable();   // Using text for longer descriptions
-            $table->text('meta_tags')->nullable();     // Meta tags as a single text column
-            $table->string('banner_image')->nullable();
+            $table->string('hero_image')->nullable();
             $table->enum('status', ['draft', 'published'])->default('published');
+            $table->enum('type',['amer-service','visa','ded','real-estate']);
+            $table->string('route_name')->nullable();
+            $table->enum('page_link_for', ['header', 'footer', 'services', 'none']);
+            $table->integer('order_no')->default(0);
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->timestamps();
-            $table->softDeletes(); // Adding soft deletes
+            $table->softDeletes();
+            $table->index(['type']);
+            $table->index(['status']);
+            $table->index(['route_name']);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('pages');

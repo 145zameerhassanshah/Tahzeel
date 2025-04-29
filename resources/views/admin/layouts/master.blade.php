@@ -15,8 +15,7 @@
 <body @php
     use Illuminate\Support\Facades\Session; @endphp {{ Session::has('notification') ? 'data-notification' : '' }}
     @if (Session::has('notification')) data-notification-message='{{ json_encode(Session::get('notification')) }} @endif'
-    class=" hold-transition sidebar-mini layout-fixed layout-navbar-fixed"
-    style="text-transform:capitalize !important;">
+    class=" hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
         @include('admin.partials.top-navbar')
         @include('admin.partials.side-navbar')
