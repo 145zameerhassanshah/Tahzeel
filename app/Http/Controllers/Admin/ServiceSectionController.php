@@ -26,7 +26,7 @@ class ServiceSectionController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'title.en' => 'required|string|max:255',
             'title.ar' => 'required|string|max:255',
