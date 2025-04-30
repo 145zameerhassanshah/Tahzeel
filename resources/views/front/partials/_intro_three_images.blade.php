@@ -1,28 +1,31 @@
+@php
+    $images = json_decode($introSection->images, true);
+@endphp
 <section class="wrapper bg-light">
     <div class="container py-14 py-md-16">
         <div class="row gy-10 gy-sm-13 gx-md-8 gx-xl-12 align-items-center">
             <div class="col-lg-6">
                 <div class="row gx-md-5 gy-5">
-                    @if (!empty($introSection->images[0]))
+                    @if (!empty($images[0]))
                         <div class="col-12 d-none d-md-block">
                             <figure class="rounded mx-5">
-                                <img src="{{ asset($introSection->images[0]) }}" alt="">
+                                <img src="{{ asset($images[0]) }}" alt="">
                             </figure>
                         </div>
                     @endif
 
-                    @if (!empty($introSection->images[1]))
+                    @if (!empty($images[1]))
                         <div class="col-md-6">
                             <figure class="rounded d-none d-md-block">
-                                <img src="{{ asset($introSection->images[1]) }}" alt="">
+                                <img src="{{ asset($images[1]) }}" alt="">
                             </figure>
                         </div>
                     @endif
 
-                    @if (!empty($introSection->images[2]))
+                    @if (!empty($images[2]))
                         <div class="col-md-6">
                             <figure class="rounded">
-                                <img src="{{ asset($introSection->images[2]) }}" alt="">
+                                <img src="{{ asset($images[2]) }}" alt="">
                             </figure>
                         </div>
                     @endif

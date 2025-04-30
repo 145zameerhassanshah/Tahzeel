@@ -39,6 +39,21 @@
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->page_link_for)) }}</td>
                                         <td>{{ $page->order_no }}</td>
                                         <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success">Action</button>
+                                                <button type="button"
+                                                    class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu" role="menu" style="">
+                                                    <a class="dropdown-item" href="{{ route('admin.page.section.add', $page->id) }}">Add Section</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">View</a>
+
+                                                    <div class="dropdown-divider"></div>
+                                                </div>
+                                                
+                                            </div>
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->
                                                 <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
