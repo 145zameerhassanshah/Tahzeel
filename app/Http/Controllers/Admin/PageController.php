@@ -150,7 +150,7 @@ class PageController extends Controller
         if ($request->hasFile('hero_image')) {
             $file = $request->file('hero_image');
             $filename = time() . '_' . Str::slug($file->getClientOriginalName(), '_') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/pages'), $filename);
+            $file->move(public_path('assets/admin/img'), $filename);
             $data['hero_image'] = $filename;
         }
 
