@@ -51,7 +51,8 @@ class FrontPageController extends Controller
             'whyChooseUs',
             'documentRequireds',
             'whyUsImages',
-            'featureImages'
+            'featureImages',
+            'sections'
         ])->where('slug', $slug)->firstOrFail();
 
         return view('front.page-detail', ['page' => $page]);
