@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 // Helpers
 require_once app_path('Helpers/LanguageHelpers.php');
-
 use App\Helpers\LanguageHelpers;
 // Controllers
 use App\Http\Controllers\Controller;

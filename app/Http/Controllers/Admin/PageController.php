@@ -73,16 +73,13 @@ class PageController extends Controller
             'page_link_for' => 'required|in:header,footer,services,none',
             'hero_image' => 'nullable|image|max:2048'
         ]);
-
         $page = new Page();
-
         if ($request->hasFile('hero_image')) {
             $file = $request->file('hero_image');
             $image = time() . rand() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('assets/admin/img'), $image);
             $page->hero_image = $image;
         }
-
         $page->slug = $request->slug;
         $page->status = $request->status;
         $page->type = $request->type;
@@ -93,7 +90,6 @@ class PageController extends Controller
         $page->meta_description = $request->meta_description;
         $page->meta_keywords = $request->meta_keywords;
 
-        // Set translations like this:
         $page->setTranslations('title', [
             'en' => $request->input('title.en'),
             'ar' => $request->input('title.ar')
@@ -104,7 +100,6 @@ class PageController extends Controller
             'ar' => $request->input('description.ar')
         ]);
 
-        // If you also want to set hero_title, hero_sub_title, hero_description — same way.
         $page->setTranslations('hero_title', [
             'en' => $request->input('hero_title.en'),
             'ar' => $request->input('hero_title.ar')
