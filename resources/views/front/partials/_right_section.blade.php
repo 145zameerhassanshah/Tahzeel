@@ -6,15 +6,14 @@
                     style="top: -2rem; right: -1.9rem;"></div>
                 <div class="shape rounded bg-soft-tehzeel rellax d-md-block" data-rellax-speed="0"
                     style="bottom: -1.8rem; left: -1.5rem; width: 85%; height: 90%; "></div>
-                <figure class="rounded"><img src="{{ asset('assets/static/global-map.webp') }}"
+                <figure class="rounded"><img src="{{ asset($section->image) }}"
                         alt=""></figure>
             </div>
-            <!--/column -->
             <div class="col-lg-5 col-xl-4 offset-lg-1">
-                <h2 class="fs-16 text-uppercase text-line text-success mb-3">{!! __('about-us.our_vision_title') !!}</h2>
-                <h3 class="display-4 mb-7">{!! __('about-us.our_vision_subtitle') !!}</h3>
+                <h2 class="fs-16 text-uppercase text-line text-success mb-3">{{ $section->title }}</h2>
+                <h3 class="display-4 mb-7">{{ $section->subtitle }}</h3>
                 <p>
-                    {!! __('about-us.our_vision_description') !!}
+                    {!! $section->description !!}
                 </p>
             </div>
             <!--/column -->

@@ -80,6 +80,7 @@
     @if ($section)
         @include('front.partials._section_title', ['section' => $section])
     @endif
+
     @php($testimonials = $page->testimonials)
     @if ($testimonials->isNotEmpty())
         @include('front.partials.clients-2', ['testimonials' => $testimonials])
@@ -87,7 +88,17 @@
 
 
 
-    @include('front.partials._left_section');
-    @include('front.partials._right_section');
+    @php($section = $page->sections->where('type', 'ltr')->first())
+    @if ($section)
+    @include('front.partials._left_section',['section' => $section]);
+        
+    @endif
+    @php($section = $page->sections->where('type', 'rtl')->first())
+    @if ($section)
+    @include('front.partials._right_section',['section' => $section]);
+        
+    @endif
+    {{-- @include('front.partials._left_section');
+    @include('front.partials._right_section'); --}}
 
 @endsection

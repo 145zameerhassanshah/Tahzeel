@@ -39,7 +39,7 @@ class FrontPageController extends Controller
 {
     public function pagedetail($slug)
     {
-        $page = Page::with([
+         $page = Page::with([
             'procedures',
             'callToActions',
             'sectionTitles',
