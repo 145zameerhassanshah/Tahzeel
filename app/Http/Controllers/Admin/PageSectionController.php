@@ -27,25 +27,25 @@ class PageSectionController extends Controller
 
     public function store(Request $request)
     {
-
-        $request->validate([
-            'title.en' => 'required|string|max:255',
-            'title.ar' => 'required|string|max:255',
-            'subtitle.en' => 'required|string|max:255',
-            'subtitle.ar' => 'required|string|max:255',
-            'Page_id' => 'required|integer',
-            'image' => 'required|max:2048',
-            'order_no' => 'required|integer',
-            'type' => 'required',
-            'description.en' => 'required',
-            'description.ar' => 'required',
-        ]);
+        // return $request;
+        // $request->validate([
+        //     'title.en' => 'required|string|max:255',
+        //     'title.ar' => 'required|string|max:255',
+        //     'subtitle.en' => 'required|string|max:255',
+        //     'subtitle.ar' => 'required|string|max:255',
+        //     'Page_id' => 'required|integer',
+        //     'image' => 'required|max:2048',
+        //     'order_no' => 'required|integer',
+        //     'type' => 'required',
+        //     'description.en' => 'required',
+        //     'description.ar' => 'required',
+        // ]);
 
         $pageSection = new PageSection();
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
-        $pageSection->Page_id = $request->Page_id;
+        $pageSection->Page_id = $request->page_id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
         $pageSection->description = $request->description;
@@ -75,13 +75,13 @@ class PageSectionController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
+        return redirect()->route('admin.page.section.index', $pageSection->Page_id)->with('notification', $notification);
     }
 
     public function edit($id)
     {
         $pageSection = PageSection::findOrFail($id);
-        return view('admin.Page-section.edit', compact('PageSection'));
+        return view('admin.Page-section.edit', compact('pageSection'));
     }
 
     public function update(Request $request, $id)
@@ -98,7 +98,7 @@ class PageSectionController extends Controller
             'description.ar' => 'required',
         ]);
 
-        $pageSection = PageSection::find($id);
+     $pageSection = PageSection::find($id);
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
@@ -132,8 +132,8 @@ class PageSectionController extends Controller
             'message' => 'Page Section Updated Successfully!',
             'alert' => 'success',
         );
-
-        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
+     
+        return redirect()->route('admin.page.section.index', $pageSection->page_id)->with('notification', $notification);
     }
 
     public function delete($id)

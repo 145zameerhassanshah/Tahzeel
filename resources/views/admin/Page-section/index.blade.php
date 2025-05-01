@@ -34,27 +34,30 @@
                                     @foreach($pageSections as $section)
                                         <tr>
                                             <td>{{ $section->id }}</td>
-                                            <td>{{ $section->title['en'] ?? 'N/A' }}</td> <!-- Example of getting JSON data for 'en' -->
-                                            <td>{{ $section->subtitle['en'] ?? 'N/A' }}</td>
-                                            <td>{{ $section->description['en'] ?? 'N/A' }}</td>
-                                            <td><img src="{{ asset('storage/'.$section->image) }}" alt="Image" width="100"></td>
+                                            <td>{{ $section->getTranslation('title', 'en') ?? 'N/A' }}</td>
+                                            <td>{{ $section->getTranslation('subtitle', 'en') ?? 'N/A' }}</td>
+                                            <td>{!! $section->getTranslation('description', 'en') ?? 'N/A' !!}</td>
+                                            <td><img src="{{ asset($section->image) }}" alt="Image" width="100"></td>
                                             <td>{{ $section->type }}</td>
                                             <td>{{ $section->order_no }}</td>
                                             <td>
-                                                <a href="{{ route('page-sections.edit', $section->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        
-                                                <form action="{{ route('page-sections.destroy', $section->id) }}" method="POST" style="display:inline;">
+                                                <a href="{{ route('admin.page.section.edit', $section->id) }}"
+                                                    class="btn btn-warning btn-sm">Edit</a>
+
+                                                <form action="{{ route('admin.page.section.delete', $section->id) }}"
+                                                    method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this section?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to delete this section?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        
-                                                </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

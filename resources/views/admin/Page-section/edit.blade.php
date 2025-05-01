@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="form-horizontal" action="{{ route('admin.service.section.update', $serviceSection->id) }}" method="post"
+                    <form class="form-horizontal" action="{{ route('admin.page.section.update', $pageSection->id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -40,7 +40,7 @@
                                                 <label for="title_en">{{ __('Title (English)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <input type="text" id="title_en" class="form-control" name="title[en]"
-                                                    placeholder="Enter Title in English" value="{{ old('title.en', $serviceSection->getTranslations('title')['en']) }}"
+                                                    placeholder="Enter Title in English" value="{{ old('title.en', $pageSection->getTranslations('title')['en']) }}"
                                                     required>
                                                 @error('title.en')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -50,7 +50,7 @@
                                                 <label for="title_ar">{{ __('Title (Arabic)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <input type="text" id="title_ar" class="form-control" name="title[ar]"
-                                                    placeholder="Enter Title in Arabic" value="{{ old('title.ar', $serviceSection->getTranslations('title')['ar']) }}"
+                                                    placeholder="Enter Title in Arabic" value="{{ old('title.ar', $pageSection->getTranslations('title')['ar']) }}"
                                                     required>
                                                 @error('title.ar')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -63,7 +63,7 @@
                                                         class="text-danger">*</span></label>
                                                 <input type="text" id="subtitle_en" class="form-control"
                                                     name="subtitle[en]" placeholder="Enter Subtitle in English"
-                                                    value="{{ old('subtitle.en', $serviceSection->getTranslations('subtitle')['en']) }}" required>
+                                                    value="{{ old('subtitle.en', $pageSection->getTranslations('subtitle')['en']) }}" required>
                                                 @error('subtitle.en')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -73,7 +73,7 @@
                                                         class="text-danger">*</span></label>
                                                 <input type="text" id="subtitle_ar" class="form-control"
                                                     name="subtitle[ar]" placeholder="Enter Subtitle in Arabic"
-                                                    value="{{ old('subtitle.ar', $serviceSection->getTranslations('subtitle')['ar']) }}" required>
+                                                    value="{{ old('subtitle.ar', $pageSection->getTranslations('subtitle')['ar']) }}" required>
                                                 @error('subtitle.ar')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -84,7 +84,7 @@
                                                 <label for="order_no">{{ __('Order No') }}<span
                                                         class="text-danger">*</span></label>
                                                 <input type="number" id="order_no" class="form-control" name="order_no"
-                                                    value="{{ old('order_no', $serviceSection->order_no) }}" placeholder="Enter Order No">
+                                                    value="{{ old('order_no', $pageSection->order_no) }}" placeholder="Enter Order No">
                                                 @error('order_no')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -96,8 +96,8 @@
                                                         class="text-danger">*</span></label>
                                                 <select id="type" name="type" class="form-control">
                                                     <option value="" selected disabled>Select Type</option>
-                                                    <option value="rtl" {{ $serviceSection->type == 'rtl' ? 'selected' : '' }}>Right To Left</option>
-                                                    <option value="ltr" {{ $serviceSection->type == 'ltr' ? 'selected' : '' }}>Left To Right</option>
+                                                    <option value="rtl" {{ $pageSection->type == 'rtl' ? 'selected' : '' }}>Right To Left</option>
+                                                    <option value="ltr" {{ $pageSection->type == 'ltr' ? 'selected' : '' }}>Left To Right</option>
                                                 </select>
                                                 @error('type')
                                                     <p class="text-danger">{{ $message }}</p>
@@ -109,7 +109,7 @@
                                                 <label for="description_en">{{ __('Description (English)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <textarea id="description_en" class="form-control summernote" name="description[en]"
-                                                    placeholder="Enter Description in English" rows="6" required>{{ old('description.en', $serviceSection->getTranslations('description')['en']) }}</textarea>
+                                                    placeholder="Enter Description in English" rows="6" required>{{ old('description.en', $pageSection->getTranslations('description')['en']) }}</textarea>
                                                 @error('description.en')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -118,7 +118,7 @@
                                                 <label for="description_ar">{{ __('Description (Arabic)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <textarea id="description_ar" class="form-control summernote" name="description[ar]"
-                                                    placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar', $serviceSection->getTranslations('description')['ar']) }}</textarea>
+                                                    placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar', $pageSection->getTranslations('description')['ar']) }}</textarea>
                                                 @error('description.ar')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -136,7 +136,7 @@
                                                             class="custom-file-input up-img form-control" name="image"
                                                             id="image">
                                                         <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                            src="{{ asset($serviceSection->image) }}"
+                                                            src="{{ asset($pageSection->image) }}"
                                                             alt="">
                                                         @error('image')
                                                             <p class="text-danger">{{ $message }}</p>
