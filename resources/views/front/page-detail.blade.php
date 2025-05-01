@@ -4,7 +4,7 @@
 @section('content')
 
     {{-- Hero Section --}}
-    @include('front.partials._hero_section')
+    @include('front.partials._hero_section', ['page' => $page])
 
 
     {{-- Introduction Section --}}
@@ -91,12 +91,12 @@
     @php($section = $page->sections->where('type', 'ltr')->first())
     @if ($section)
     @include('front.partials._left_section',['section' => $section]);
-        
+
     @endif
     @php($section = $page->sections->where('type', 'rtl')->first())
     @if ($section)
     @include('front.partials._right_section',['section' => $section]);
-        
+
     @endif
     {{-- @include('front.partials._left_section');
     @include('front.partials._right_section'); --}}
