@@ -85,4 +85,9 @@
         @include('front.partials.clients-2', ['testimonials' => $testimonials])
     @endif
 
+
+
+    @include('front.partials._left_section');
+    @include('front.partials._right_section');
+
 @endsection
