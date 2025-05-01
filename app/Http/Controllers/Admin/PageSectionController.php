@@ -120,14 +120,10 @@ class PageSectionController extends Controller
             $thumb_icon = $imgManager->read('assets/admin/uploads/PageSection/thumb/' . $image);
             $thumb_icon->cover(600, 600);
             $thumb_icon->save(public_path('assets/admin/uploads/PageSection/' . $image));
-
             @unlink('assets/admin/uploads/PageSection/thumb/' . $image);
-
             $pageSection->image = 'assets/admin/uploads/PageSection/' . $image;
         }
-
         $pageSection->save();
-
         $notification = array(
             'message' => 'Page Section Updated Successfully!',
             'alert' => 'success',
