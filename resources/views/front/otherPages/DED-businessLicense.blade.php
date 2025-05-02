@@ -438,10 +438,6 @@
 
     @include('front.partials.cta-2')
 
-
-    
-
-
     @include('front.partials.clients')
 
     @include('front.partials.affiliations')
