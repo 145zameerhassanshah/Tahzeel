@@ -14,7 +14,6 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="modal-body">
                         <input type="hidden" name="page_id" value="{{ $page->id }}">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>

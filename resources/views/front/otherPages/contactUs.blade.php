@@ -1,6 +1,7 @@
 @extends('front.layouts.master')
 @section('title', 'Contact Us')
 @section('content')
+
 <section class="wrapper image-wrapper bg-image bg-overlay bg-overlay-300"
     data-image-src="{{ asset('assets/static/contact-bg.webp') }}">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 text-center">
@@ -23,10 +24,10 @@
         </div>
     </div>
 </section>
+
 <section class="wrapper bg-light">
     <div class="container pb-15 pb-md-17">
         <div class="row gx-md-5 gy-5 mt-n19 mb-10 mb-md-12">
-
             <!--/column -->
             <div class="col-md-8 col-xl-4 d-flex">
                 <div class="card shadow-lg card-border-bottom border-red text-center h-100 w-100">

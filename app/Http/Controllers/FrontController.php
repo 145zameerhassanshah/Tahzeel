@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Front;
 
 
@@ -59,10 +60,4 @@ class FrontController extends Controller
     {
         return view('front.otherPages.contactUs');
     }
-   
-
-
-
-
-
 }

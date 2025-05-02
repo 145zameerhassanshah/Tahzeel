@@ -5,33 +5,12 @@ namespace App\Http\Controllers\Front;
 require_once app_path('Helpers/LanguageHelpers.php');
 
 use App\Helpers\LanguageHelpers;
-// Controllers
 use App\Http\Controllers\Controller;
-// Models
-use App\Models\{
-    Page,
-    SectionTitle,
-    IntroductionSection,
-    HeroSection,
-    Testimonial,
-    Procedure,
-    CallToAction,
-    DocumentRequired,
-    FeatureImage,
-    PageGroup,
-    WhyChooseUs,
-    WhyUsImage,
-    Feature,
-    Enquiry,
-    Service,
-    User,
-    Faq
-};
-// Mail/Notifications
+use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonial, Procedure, CallToAction, DocumentRequired, FeatureImage, PageGroup, Enquiry, Service, User, WhyChooseUs, WhyUsImage, Feature, Faq};
 use App\Mail\InquiryEmail;
 use App\Notifications\InquiryNotification;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 
@@ -39,7 +18,7 @@ class FrontPageController extends Controller
 {
     public function pagedetail($slug)
     {
-         $page = Page::with([
+        $page = Page::with([
             'procedures',
             'callToActions',
             'sectionTitles',
@@ -54,7 +33,6 @@ class FrontPageController extends Controller
             'featureImages',
             'sections'
         ])->where('slug', $slug)->firstOrFail();
-
         return view('front.page-detail', ['page' => $page]);
     }
 
@@ -92,16 +70,28 @@ class FrontPageController extends Controller
             'featureImages',
             'sections'
         ])->where('slug', 'residency-visa')->firstOrFail();
-
-
-        return view('front.otherPages.residencyVisa',compact('page'));
+        return view('front.otherPages.residencyVisa', compact('page'));
     }
 
     public function openFile()
     {
-        return view('front.otherPages.openfile');
+        $page = Page::with([
+            'procedures',
+            'callToActions',
+            'sectionTitles',
+            'introductionSections',
+            'heroSections',
+            'features',
+            'faqs',
+            'testimonials',
+            'whyChooseUs',
+            'documentRequireds',
+            'whyUsImages',
+            'featureImages',
+            'sections'
+        ])->where('slug', 'open-file')->firstOrFail();
+        return view('front.otherPages.openfile', compact('page'));
     }
-
     public function entryPermit()
     {
         return view('front.otherPages.entryPermits');
@@ -117,8 +107,6 @@ class FrontPageController extends Controller
         return view('front.otherPages.notaryDocumentAuthentication');
     }
 
-
-
     public function DEDbusinessLicense()
     {
         return view('front.otherPages.DED-businessLicense');
@@ -127,11 +115,6 @@ class FrontPageController extends Controller
     public function test()
     {
         $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
-
-
-
-
-
         if (isset($service)) {
             return view('front.otherPages.test', compact('service'));
         } else {
@@ -172,8 +155,6 @@ class FrontPageController extends Controller
             'message' => 'Inquiry submitted successfully!',
         ]);
     }
-
-
 
     public function vatBusiness1()
     {
