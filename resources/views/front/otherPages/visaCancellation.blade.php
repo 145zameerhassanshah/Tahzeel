@@ -2,23 +2,27 @@
 @section('title', 'Visa Cancellation')
 @section('content')
 
-<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static') }}/visacancel-bg.webp">
+{{-- <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static') }}/visacancel-bg.webp">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
       <div class="row text-start">
         <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
-          <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Visa Cancellation <span class="underline-3 style-2 yellow">Services</span></h1>
-          <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Ending Your Residency Status with Ease</p>
+          {{-- <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Visa Cancellation <span class="underline-3 style-2 yellow">Services</span></h1>
+          <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Ending Your Residency Status with Ease</p> --}}
           <!-- <div>
             <a class="btn btn-white rounded mb-10 mb-xxl-5">Let's Talk</a>
           </div> -->
-        </div>
+        {{-- </div> --}}
         <!-- /column -->
-      </div>
+      {{-- </div> --}}
       <!-- /.row -->
-    </div>
+    {{-- </div> --}}
     
-  </section>
+  {{-- </section> --}} 
   <!-- /section -->
+     {{-- Hero Section --}}
+     @include('front.partials._hero_section', ['page' => $page])
+
+
 
     <section class="wrapper bg-light">
         <div class="container py-14 py-md-16">

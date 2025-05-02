@@ -109,8 +109,26 @@ class FrontPageController extends Controller
 
     public function visaCancellation()
     {
-        return view('front.otherPages.visaCancellation');
+        $page = Page::with([
+            'procedures',
+            'callToActions',
+            'sectionTitles',
+            'introductionSections',
+            'heroSections',
+            'features',
+            'faqs',
+            'testimonials',
+            'whyChooseUs',
+            'documentRequireds',
+            'whyUsImages',
+            'featureImages',
+            'sections'
+        ])->where('slug', 'Visa-Cancellation')->firstOrFail();
+
+
+        return view('front.otherPages.visaCancellation',compact('page'));
     }
+
 
     public function notaryDocumentAuthentication()
     {
