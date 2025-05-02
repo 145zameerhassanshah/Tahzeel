@@ -14,10 +14,10 @@ class PageSectionController extends Controller
     public function index($id)
     {
         $page = Page::find($id);
-        $pageSections = PageSection::where('Page_id', $id)->get();
+        $pageSections = PageSection::where('page_id', $id)->get();
         // return view('admin.Page-section.index', compact('PageSections', 'Page'));
     //new
-    return view('admin.Page-section.index', compact('pageSections', 'page'));      }
+    return view('admin.page-section.index', compact('pageSections', 'page'));      }
 
     public function add($id)
     {
@@ -33,7 +33,7 @@ class PageSectionController extends Controller
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
-            'Page_id' => 'required|integer',
+            'page_id' => 'required|integer',
             'image' => 'required|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
@@ -45,7 +45,7 @@ class PageSectionController extends Controller
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
-        $pageSection->Page_id = $request->Page_id;
+        $pageSection->page_id = $request->page_id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
         $pageSection->description = $request->description;
@@ -67,6 +67,23 @@ class PageSectionController extends Controller
 
             $pageSection->image = 'assets/admin/uploads/PageSection/' . $image;
         }
+        // Set translations like this:
+        $pageSection->setTranslations('title', [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar')
+        ]);
+        // If you also want to set subtitle, title, description — same way.
+        $pageSection->setTranslations('subtitle', [
+            'en' => $request->input('subtitle.en'),
+            'ar' => $request->input('subtitle.ar')
+        ]);
+
+        $pageSection->setTranslations('description', [
+            'en' => $request->input('description.en'),
+            'ar' => $request->input('description.ar')
+        ]);
+
+
 
         $pageSection->save();
 
@@ -75,13 +92,13 @@ class PageSectionController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
+        return redirect()->route('admin.page-section.index', $pageSection->page_id)->with('notification', $notification);
     }
 
     public function edit($id)
     {
         $pageSection = PageSection::findOrFail($id);
-        return view('admin.Page-section.edit', compact('PageSection'));
+        return view('admin.page-section.edit', compact('pageSection'));
     }
 
     public function update(Request $request, $id)
@@ -133,7 +150,7 @@ class PageSectionController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
+        return redirect()->route('admin.page-section.index', $pageSection->page_id)->with('notification', $notification);
     }
 
     public function delete($id)

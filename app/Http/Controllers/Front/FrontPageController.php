@@ -98,7 +98,7 @@ class FrontPageController extends Controller
             return localizeFeatureImage($item, $locale);
         });
         $data['testimonials'] = $page_detail->testimonials->map(function ($item) use ($locale) {
-            return localizeTestimonial($item, $locale);
+             return localizeTestimonial($item, $locale);
         });
         $data['document_requireds'] = $page_detail->documentRequireds->map(function ($item) use ($locale) {
             return localizeDocumentRequired($item, $locale);

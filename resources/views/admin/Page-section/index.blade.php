@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service Section')
+@section('title', 'Page Section')
 @section('content')
 
     <section class="content">
@@ -41,9 +41,9 @@
                                             <td>{{ $section->type }}</td>
                                             <td>{{ $section->order_no }}</td>
                                             <td>
-                                                <a href="{{ route('page-sections.edit', $section->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="{{ route('admin.page.section.edit', $section->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         
-                                                <form action="{{ route('page-sections.destroy', $section->id) }}" method="POST" style="display:inline;">
+                                                <form action="{{ route('admin.page.section.delete', $section->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this section?')">Delete</button>
