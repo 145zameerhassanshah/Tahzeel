@@ -39,6 +39,44 @@ class FrontPageController extends Controller
 {
     public function pagedetail($slug)
     {
+         $page = Page::with([
+            'procedures',
+            'callToActions',
+            'sectionTitles',
+            'introductionSections',
+            'heroSections',
+            'features',
+            'faqs',
+            'testimonials',
+            'whyChooseUs',
+            'documentRequireds',
+            'whyUsImages',
+            'featureImages',
+            'sections'
+        ])->where('slug', $slug)->firstOrFail();
+
+        return view('front.page-detail', ['page' => $page]);
+    }
+
+    public function emirateId()
+    {
+        return view('front.otherPages.emirateId');
+    }
+    public function visitVisa()
+    {
+        return view('front.otherPages.visitVisa');
+    }
+    public function domesticWorkerVisa()
+    {
+        return view('front.otherPages.domesticWorkerVisa');
+    }
+    public function medicalFitnessTest()
+    {
+        return view('front.otherPages.medicalFitnessTest');
+    }
+
+    public function residencyVisa()
+    {
         $page = Page::with([
             'procedures',
             'callToActions',
@@ -51,11 +89,90 @@ class FrontPageController extends Controller
             'whyChooseUs',
             'documentRequireds',
             'whyUsImages',
-            'featureImages'
-        ])->where('slug', $slug)->firstOrFail();
+            'featureImages',
+            'sections'
+        ])->where('slug', 'residency-visa')->firstOrFail();
 
-        return view('front.page-detail', ['page' => $page]);
+
+        return view('front.otherPages.residencyVisa',compact('page'));
     }
+
+    public function openFile()
+    {
+        return view('front.otherPages.openfile');
+    }
+
+    public function entryPermit()
+    {
+        return view('front.otherPages.entryPermits');
+    }
+
+    public function visaCancellation()
+    {
+        return view('front.otherPages.visaCancellation');
+    }
+
+    public function notaryDocumentAuthentication()
+    {
+        return view('front.otherPages.notaryDocumentAuthentication');
+    }
+
+
+
+    public function DEDbusinessLicense()
+    {
+        return view('front.otherPages.DED-businessLicense');
+    }
+
+    public function test()
+    {
+        $service = Service::with('serviceFeatures')->where('status', 'publish')->first();
+
+
+
+
+
+        if (isset($service)) {
+            return view('front.otherPages.test', compact('service'));
+        } else {
+            return back();
+        }
+    }
+    public function storeInquiry(Request $request)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'message' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        $inquiry = new Enquiry();
+        $inquiry->name = $request->name;
+        $inquiry->phone_no = $request->phone;
+        $inquiry->email = $request->email;
+        $inquiry->enquiry_message = $request->message;
+        $inquiry->save();
+        $users = User::all();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new InquiryEmail($inquiry));
+        }
+        foreach ($users as $user) {
+            $user->notify(new InquiryNotification($inquiry));
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Inquiry submitted successfully!',
+        ]);
+    }
+
 
 
     public function vatBusiness1()

@@ -27,13 +27,13 @@ class PageSectionController extends Controller
 
     public function store(Request $request)
     {
-
+        // return $request;
         $request->validate([
             'title.en' => 'required|string|max:255',
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
-            'page_id' => 'required|integer',
+            'Page_id' => 'required|integer',
             'image' => 'required|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
@@ -41,11 +41,11 @@ class PageSectionController extends Controller
             'description.ar' => 'required',
         ]);
 
-        $pageSection = new PageSection();
+        $pageSection = new pageSection();
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
-        $pageSection->page_id = $request->page_id;
+        $pageSection->Page_id = $request->Page_id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
         $pageSection->description = $request->description;
@@ -92,13 +92,13 @@ class PageSectionController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.page-section.index', $pageSection->page_id)->with('notification', $notification);
+        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
     }
 
     public function edit($id)
     {
         $pageSection = PageSection::findOrFail($id);
-        return view('admin.page-section.edit', compact('pageSection'));
+        return view('admin.Page-section.edit', compact('PageSection'));
     }
 
     public function update(Request $request, $id)
@@ -115,7 +115,7 @@ class PageSectionController extends Controller
             'description.ar' => 'required',
         ]);
 
-        $pageSection = PageSection::find($id);
+     $pageSection = PageSection::find($id);
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
@@ -137,20 +137,16 @@ class PageSectionController extends Controller
             $thumb_icon = $imgManager->read('assets/admin/uploads/PageSection/thumb/' . $image);
             $thumb_icon->cover(600, 600);
             $thumb_icon->save(public_path('assets/admin/uploads/PageSection/' . $image));
-
             @unlink('assets/admin/uploads/PageSection/thumb/' . $image);
-
             $pageSection->image = 'assets/admin/uploads/PageSection/' . $image;
         }
-
         $pageSection->save();
-
         $notification = array(
             'message' => 'Page Section Updated Successfully!',
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.page-section.index', $pageSection->page_id)->with('notification', $notification);
+        return redirect()->route('admin.Page.section.index', $pageSection->Page_id)->with('notification', $notification);
     }
 
     public function delete($id)

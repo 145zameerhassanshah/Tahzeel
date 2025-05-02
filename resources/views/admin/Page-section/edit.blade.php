@@ -109,7 +109,7 @@
                                                 <label for="description_en">{{ __('Description (English)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <textarea id="description_en" class="form-control summernote" name="description[en]"
-                                                    placeholder="Enter Description in English" rows="6" required>{{ old('description.en', $serviceSection->getTranslations('description')['en']) }}</textarea>
+                                                    placeholder="Enter Description in English" rows="6" required>{{ old('description.en', $pageSection->getTranslations('description')['en']) }}</textarea>
                                                 @error('description.en')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -118,7 +118,7 @@
                                                 <label for="description_ar">{{ __('Description (Arabic)') }}<span
                                                         class="text-danger">*</span></label>
                                                 <textarea id="description_ar" class="form-control summernote" name="description[ar]"
-                                                    placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar', $serviceSection->getTranslations('description')['ar']) }}</textarea>
+                                                    placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar', $pageSection->getTranslations('description')['ar']) }}</textarea>
                                                 @error('description.ar')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
