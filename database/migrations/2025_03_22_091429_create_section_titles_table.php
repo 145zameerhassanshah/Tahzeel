@@ -22,9 +22,10 @@ return new class extends Migration
                 'hero_section',
                 'intro_section',
                 'why_us_image',
-                'call_to_action'
+                'call_to_action',
+                'residency-visa',
             ]);
-            $table->json('title');  // {"en": "Our Services", "ar": "خدماتنا"}
+            $table->json('title');           // {"en": "Our Services", "ar": "خدماتنا"}
             $table->json('subtitle')->nullable();
             $table->json('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

@@ -17,7 +17,7 @@
                         <input type="hidden" name="page_id" value="{{ $page->id }}">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="name_en">{{ __('Name (English)') }} <span class="text-danger">*</span></label>
+                                <label for="name_en">{{ __('Name (Eng)') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="name_en" name="name[en]">
                                 <span class="text-danger error" id="error_name_en"></span>
                             </div>
@@ -220,4 +220,4 @@
             </div>
         </div>
     </div>
-</section>  
+</section>

@@ -90,7 +90,7 @@
                                 <label for="hero_image">Hero Image</label>
                                 <input type="file" class="form-control" id="hero_image" name="hero_image">
                                 @if($page->hero_image)
-                                    <img src="{{ asset('uploads/pages/' . $page->hero_image) }}" width="120" class="mt-2">
+                                    <img src="{{ asset('assets/admin/img/' . $page->hero_image) }}" width="120" class="mt-2">
                                 @endif
                                 <small class="text-muted">Recommended size: 730x455 px. Formats: jpg, jpeg, png.</small>
                             </div>

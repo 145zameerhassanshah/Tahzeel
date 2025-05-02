@@ -7,7 +7,6 @@ use Spatie\Translatable\HasTranslations;
 class Page extends Model
 {
     use HasTranslations;
-
     protected $fillable = [
         'slug',
         'title',
@@ -36,8 +35,6 @@ class Page extends Model
         'meta_title',
         'meta_description',
     ];
-
-
 
     public function procedures()
     {
@@ -97,5 +94,10 @@ class Page extends Model
     public function featureImages()
     {
         return $this->hasMany(FeatureImage::class);
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(PageSection::class);
     }
 }

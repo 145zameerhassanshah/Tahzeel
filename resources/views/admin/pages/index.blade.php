@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+{{-- @extends('admin.layouts.master')
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
@@ -91,4 +91,4 @@
     </div>
     <!-- /.row -->
 </section>
-@endsection
+@endsection --}}

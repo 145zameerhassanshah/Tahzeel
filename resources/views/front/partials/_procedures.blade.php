@@ -1,6 +1,6 @@
 @if ($page->procedures->isNotEmpty())
 <section class="wrapper bg-light">
-    <div class="container-fluid py-4 py-md-8">
+    <div class="container-fluid py-1 py-md-8">
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
