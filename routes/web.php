@@ -91,10 +91,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/pendingUsers', [UserController::class, 'pendingUsers'])->name('admin.user.pendingUsers');
         Route::get('/approvedUsers', [UserController::class, 'approvedUsers'])->name('admin.user.approvedUsers');
         Route::get('/blockedUsers', [UserController::class, 'blockedUsers'])->name('admin.user.blockedUsers');
-
         // Bulk Delete Routes:-
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
-
         // Page Routes:-
         Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
         Route::get('/page-detail/{id}/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');

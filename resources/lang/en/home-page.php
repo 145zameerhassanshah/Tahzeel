@@ -20,6 +20,6 @@ return [
     'about_benefit3' => 'Client-Centered Approach:',
     'about_benefit3_description' => 'A personalized approach for every client, ensuring satisfaction and success.',
 
-    'affiliations_title' => 'Tah-zeel: Trusted by Government Authorities',
+    'affiliations_title' => '<h2 class="display-5"><span class="text-gradient gradient-6 fw-bolder">Tah-zeel:</span> Trusted by Government Authorities</h2>',
     'affiliations_subtitle' => 'At Tah-zeel, we proudly collaborate with renowned government bodies, ensuring that all our services meet the highest standards of compliance and reliability.',
 ];

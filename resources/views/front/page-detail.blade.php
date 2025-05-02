@@ -3,8 +3,8 @@
 @section('title', $page->title)
 @section('content')
 
-    {{-- Hero Section --}}
-    @include('front.partials._hero_section', ['page' => $page])
+{{-- Hero Section --}}
+@include('front.partials._hero_section')
 
 
 {{-- Introduction Section --}}
@@ -88,17 +88,18 @@
 
 
 
-    @php($section = $page->sections->where('type', 'ltr')->first())
-    @if ($section)
-    @include('front.partials._left_section',['section' => $section]);
+@php($section = $page->sections->where('type', 'ltr')->first())
+@if ($section)
+@include('front.partials._left_section',['section' => $section]);
+@endif
 
-    @endif
-    @php($section = $page->sections->where('type', 'rtl')->first())
-    @if ($section)
-    @include('front.partials._right_section',['section' => $section]);
 
-    @endif
-    {{-- @include('front.partials._left_section');
-    @include('front.partials._right_section'); --}}
+@php($section = $page->sections->where('type', 'rtl')->first())
+@if ($section)
+@include('front.partials._right_section',['section' => $section]);
+@endif
+
+{{-- @include('front.partials._left_section');
+@include('front.partials._right_section'); --}}
 
 @endsection

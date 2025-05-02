@@ -2,11 +2,10 @@
     <div class="container-fluid py-2 py-md-4">
         <div class="row d-flex justify-content-center mt-5 mb-12">
             <div class="col-md-8 text-center">
-            {!! __('home-page.affiliations_title') !!}
-                <h2 class="display-5"><span class="text-gradient gradient-6 fw-bolder">Tah-zeel:</span> Trusted by Government Authorities</h2>
+                {!! __('home-page.affiliations_title') !!}
+                <!-- <h2 class="display-5"><span class="text-gradient gradient-6 fw-bolder">Tah-zeel:</span> Trusted by Government Authorities</h2> -->
                 <p>
-                {!! __('home-page.affiliations_subtitle') !!}
-                    <!-- At Tah-zeel, we proudly collaborate with renowned government bodies, ensuring that all our services meet the highest standards of compliance and reliability -->
+                    {!! __('home-page.affiliations_subtitle') !!}
                 </p>
             </div>
         </div>

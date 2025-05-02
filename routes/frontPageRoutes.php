@@ -25,15 +25,14 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/domestic-worker-visa', [FrontController::class, 'domesticWorkerVisa'])->name('front.domestic.worker.visa');
     Route::get('/medical-fitness-test', [FrontController::class, 'medicalFitnessTest'])->name('front.medical.fitness.test');
     Route::get('/residency-visa', [FrontPageController::class, 'residencyVisa'])->name('front.residency.visa');
-    Route::get('/open-file', [FrontController::class, 'openFile'])->name('front.open.file');
+    Route::get('/open-file', [FrontPageController::class, 'openFile'])->name('front.open.file');
     Route::get('/visa-cancellation', [FrontController::class, 'visaCancellation'])->name('front.visa.cancellation');
     Route::get('/ded-businessLicense', [FrontController::class, 'DEDbusinessLicense'])->name('front.ded.businessLicense');
     Route::get('/dha-services', [FrontController::class, 'dhaServices'])->name('front.dhaServices');
     Route::get('/entry-permit', [FrontController::class, 'entryPermit'])->name('front.entry.permit');
     Route::get('/vat-return-filing', [FrontController::class, 'vatReturnFilling'])->name('front.vat.return-filling');
-    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
+    Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');    
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
     Route::get('/manpower-recruitment', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
-
 });

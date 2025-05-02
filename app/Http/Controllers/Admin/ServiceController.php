@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use App\Models\Service;
-use App\Models\ServiceCategory;
-use App\Models\ServiceFeature;
+use App\Models\{Service, ServiceCategory, ServiceFeature};
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\GD\Driver;
@@ -317,7 +314,7 @@ class ServiceController extends Controller
         $service = Service::find($id);
 
         if ($service->serviceSections->count() === 0) {
-            
+
             $service_features = ServiceFeature::where('service_id', $id)->get();
 
             @unlink($service->icon);
@@ -334,7 +331,6 @@ class ServiceController extends Controller
                 'message' => 'Service Deleted Successfully!',
                 'alert' => 'success',
             );
-
         } else {
             $notification = array(
                 'message' => 'First Delete Service Sections!',

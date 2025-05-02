@@ -1,18 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\IntroductionSection;
-use App\Models\HeroSection;
-use App\Models\Feature;
-use App\Models\Faq;
-use App\Models\Group;
-use App\Models\Page;
-use App\Models\PageGroup;
-use App\Models\Testimonial;
+use App\Models\{IntroductionSection, PageGroup, HeroSection, Feature, Faq, Group, Page, Testimonial};
 
 class PageController extends Controller
 {
@@ -154,6 +146,4 @@ class PageController extends Controller
 
         return redirect()->route('admin.page.index')->with('success', 'Page updated successfully.');
     }
-
-
 }
