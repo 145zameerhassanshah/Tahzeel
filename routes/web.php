@@ -279,8 +279,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         // End of Service Routes
 
         // Elements Routes
-        Route::get('/element', [ElementController::class, 'index'])->name('admin.element.index');
-        Route::get('/element/add', [ElementController::class, 'add'])->name('admin.element.add');
+        Route::get('/element/{id}', [ElementController::class, 'index'])->name('admin.element.index');
+        Route::get('/element/add/{id}', [ElementController::class, 'add'])->name('admin.element.add');
         Route::post('/element/store', [ElementController::class, 'store'])->name('admin.element.store');
         Route::get('/element/edit/{id}', [ElementController::class, 'edit'])->name('admin.element.edit');
         Route::post('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
