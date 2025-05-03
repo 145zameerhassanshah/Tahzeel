@@ -81,9 +81,6 @@
                                                             <div class="col-md-5">
                                                                 <input type="text" name="title[${titleIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
                                                             </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                                                            </div>
                                                         </div>
                                                         <div class="row mb-3 feature-group">
                                                             <div class="col-md-5">
@@ -92,9 +89,6 @@
                                                             <div class="col-md-5">
                                                                 <input type="text" name="subtitle[${subtitleIndex}][ar]" class="form-control" placeholder="Subtitle in Arabic" required>
                                                             </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                                                            </div>
                                                         </div>
                                                         <div class="row mb-3 feature-group">
                                                             <div class="col-md-5">
@@ -102,9 +96,6 @@
                                                             </div>
                                                             <div class="col-md-5">
                                                                 <input type="text" name="description[${descriptionIndex}][ar]" class="form-control" placeholder="Description in Arabic" required>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
                                                             </div>
                                                         </div>
                                                     </div>

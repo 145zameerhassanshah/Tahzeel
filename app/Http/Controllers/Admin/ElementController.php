@@ -25,9 +25,8 @@ class ElementController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the inputs
         $request->validate([
-            'element_name' => 'required|string|max:255', // Add validation for element_name
+            'element_name' => 'required|string|max:255',
             'icon' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'title.*.en' => 'required|string|max:255',
@@ -37,34 +36,20 @@ class ElementController extends Controller
             'description.*.en' => 'required|string',
             'description.*.ar' => 'required|string',
         ]);
-
-        // Create new Element
         $element = new Element();
-
-        // Save translations for title, subtitle, and description
         $element->setTranslations('title', $request->title);
         $element->setTranslations('subtitle', $request->subtitle);
         $element->setTranslations('description', $request->description);
-
-        // Save element name
         $element->element_name = $request->input('element_name');
-
-        // Handle icon file upload
         if ($request->hasFile('icon')) {
             $icon = $this->uploadImage($request->file('icon'), 'icon');
             $element->icon = $icon;
         }
-
-        // Handle image file upload
         if ($request->hasFile('image')) {
             $image = $this->uploadImage($request->file('image'), 'image');
             $element->image = $image;
         }
-
-        // Save the element to the database
         $element->save();
-
-        // Redirect with success message
         return redirect()->route('admin.element.index')->with('message', 'Element Added Successfully!');
     }
 
