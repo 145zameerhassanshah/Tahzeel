@@ -17,6 +17,7 @@ return new class extends Migration
             $table->json('description')->nullable(); // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
+            $table->foreignId('page_id')->constrained('pages')->onDelete('cascade');
             $table->timestamps();
         });
     }

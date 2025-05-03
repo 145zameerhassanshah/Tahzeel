@@ -1,184 +1,158 @@
 @extends('admin.layouts.master')
-@section('title', 'Add Elements')
+@section('title', 'Add New Element')
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-dark">{{ __('Add New Element') }}</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i>{{ __('Home') }}</a></li>
-                    <li class="breadcrumb-item active">{{ __('Elements') }}</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
 
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <form class="form-horizontal" action="{{ route('admin.element.store') }}" method="post"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="">{{ __('Add Element') }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <!-- Element Name -->
-                                        <div class="col-md-4">
-                                            <label for="element_name">Element Name<span class="text-danger">*</span></label>
-                                            <input type="text" id="element_name" class="form-control" name="element_name" placeholder="Element Name" value="{{ old('element_name') }}" required>
-                                            @error('element_name')
-                                            <p class="text-danger">{{ $message }}</p>
-                                            @enderror
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="form-horizontal" action="{{ route('admin.element.store') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header d-flex align-items-center" >
+                                        <div class="flex-grow-1">
+                                            <h5 class="mb-0">{{ $page->title }} - Add New Element</h5>
                                         </div>
-                                        <!-- Icon -->
-                                        <div class="col-md-4">
-                                            <label for="icon">{{ __('Icon') }}<span class="text-danger">*</span></label>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <label class="custom-file-label" for="icon">{{ __('Choose New Image') }}</label>
-                                                    <input type="file" class="custom-file-input up-img form-control" name="icon" id="icon">
-                                                    <img class="mw-400 mb-3 show-img img-demo mt-2" src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                                    @error('icon')
+                                        <div>
+                                            <a href="{{ route('admin.element.index', $page->id) }}" class="btn btn-primary btn-sm">
+                                                {{ __('Element List') }}
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <input type="hidden" name="page_id" value="{{ $page->id }}">
+
+                                            <!-- Title Fields -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="title_en">{{ __('Title (English)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" id="title_en" class="form-control" name="title[en]"
+                                                    placeholder="Enter Title in English" value="{{ old('title.en') }}"
+                                                    required>
+                                                @error('title.en')
                                                     <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                                @enderror
                                             </div>
-                                        </div>
-                                        <!-- Image -->
-                                        <div class="col-md-4">
-                                            <label for="image">{{ __('Image') }}<span class="text-danger">*</span></label>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <label class="custom-file-label" for="image">{{ __('Choose New Image') }}</label>
-                                                    <input type="file" class="custom-file-input up-img form-control" name="image" id="image">
-                                                    <img class="mw-400 mb-3 show-img img-demo mt-2" src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                                    @error('image')
+                                            <div class="col-md-6 mb-3">
+                                                <label for="title_ar">{{ __('Title (Arabic)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" id="title_ar" class="form-control" name="title[ar]"
+                                                    placeholder="Enter Title in Arabic" value="{{ old('title.ar') }}"
+                                                    required>
+                                                @error('title.ar')
                                                     <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                                @enderror
                                             </div>
-                                        </div>
-                                        <!-- Title Subtitle Description Fields -->
-                                        <div class="col-md-12 mb-3">
-                                            <div id="title_subtitle_desc_container">
-                                                <div class="col-md-12 mb-3">
-                                                    <!-- <label>Title Subtitle Description</label> -->
-                                                    <div id="features-container">
-                                                        <div class="row mb-3 feature-group">
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="title[${titleIndex}][en]" class="form-control" placeholder="Title in English" required>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="title[${titleIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3 feature-group">
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="subtitle[${subtitleIndex}][en]" class="form-control" placeholder="Subtitle in English" required>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="subtitle[${subtitleIndex}][ar]" class="form-control" placeholder="Subtitle in Arabic" required>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3 feature-group">
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="description[${descriptionIndex}][en]" class="form-control" placeholder="Description in English" required>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <input type="text" name="description[${descriptionIndex}][ar]" class="form-control" placeholder="Description in Arabic" required>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                                                            </div>
-                                                        </div>
+
+                                            <!-- SubTitle Fields -->
+                                            <div class="col-md-6 mb-3">
+                                                <label for="subtitle_en">{{ __('Subtitle (English)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" id="subtitle_en" class="form-control"
+                                                    name="subtitle[en]" placeholder="Enter Subtitle in English"
+                                                    value="{{ old('subtitle.en') }}" required>
+                                                @error('subtitle.en')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="subtitle_ar">{{ __('Subtitle (Arabic)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" id="subtitle_ar" class="form-control"
+                                                    name="subtitle[ar]" placeholder="Enter Subtitle in Arabic"
+                                                    value="{{ old('subtitle.ar') }}" required>
+                                                @error('subtitle.ar')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+
+                                             <!-- image -->
+                                             <div class="col-md-6">
+                                                <label for="image">{{ __('Image') }}</label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="custom-file-label"
+                                                            for="image">{{ __('Choose New Image') }}</label>
+                                                        <input type="file"
+                                                            class="custom-file-input up-img form-control" name="image"
+                                                            id="image">
+                                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}"
+                                                            alt="">
+                                                        @error('image')
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-secondary mt-2" id="add_title_subtitle_desc">Add Tilte Subilte Description</button>
-                                            <button type="submit" class="btn btn-secondary mt-5">Save</button>
+
+
+                                             <!-- Icon -->
+                                             <div class="col-md-6">
+                                                <label for="icon">{{ __('Icon') }}</label>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="custom-file-label"
+                                                            for="icon">{{ __('Choose New Icon') }}</label>
+                                                        <input type="file"
+                                                            class="custom-file-input up-img form-control" name="icon"
+                                                            id="icon">
+                                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}"
+                                                            alt="">
+                                                        @error('icon')
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <!-- Description Fields -->
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description_en">{{ __('Description (English)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <textarea id="description_en" class="form-control summernote" name="description[en]"
+                                                    placeholder="Enter Description in English" rows="6" required>{{ old('description.en') }}</textarea>
+                                                @error('description.en')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description_ar">{{ __('Description (Arabic)') }}<span
+                                                        class="text-danger">*</span></label>
+                                                <textarea id="description_ar" class="form-control summernote" name="description[ar]"
+                                                    placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar') }}</textarea>
+                                                @error('description.ar')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btn btn-success btn-lg"
+                                                style="border-radius: 10px;">{{ __('Add Element') }}</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-@endsection
-@section('js')
-<script>
-    $(document).ready(function() {
-        let titleIndex = 0;
-        let subtitleIndex = 0;
-        let descriptionIndex = 0;
-        // Function to add Title Subtitle Description row
-        $('#add_title_subtitle_desc').click(function() {
-            const featureRowHTML = `
-                <div class="row mb-3 feature-group">
-                    <div class="col-md-5">
-                        <input type="text" name="title[${titleIndex}][en]" class="form-control" placeholder="Title in English" required>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" name="title[${titleIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-danger btn-sm remove_feature_group">Remove</button>
-                    </div>
-                </div>
+    </section>
 
-                <div class="row mb-3 feature-group">
-                    <div class="col-md-5">
-                        <input type="text" name="subtitle[${subtitleIndex}][en]" class="form-control" placeholder="Subtitle in English" required>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" name="subtitle[${subtitleIndex}][ar]" class="form-control" placeholder="Subtitle in Arabic" required>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-danger btn-sm remove_feature_group">Remove</button>
-                    </div>
-                </div>
-
-                <div class="row mb-3 feature-group">
-                    <div class="col-md-5">
-                        <input type="text" name="description[${descriptionIndex}][en]" class="form-control" placeholder="Description in English" required>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" name="description[${descriptionIndex}][ar]" class="form-control" placeholder="Description in Arabic" required>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-danger btn-sm remove_feature_group">Remove</button>
-                    </div>
-                </div>`;
-            // Append the new feature row to the container
-            $('#title_subtitle_desc_container').append(featureRowHTML);
-            // Increment the indices after adding the new rows
-            titleIndex++;
-            subtitleIndex++;
-            descriptionIndex++;
-        });
-        // Event listener for removing a feature-group row
-        $(document).on('click', '.remove_feature_group', function() {
-            $(this).closest('.feature-group').remove();
-        });
-    });
-</script>
 @endsection

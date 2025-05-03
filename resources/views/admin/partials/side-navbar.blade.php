@@ -297,38 +297,6 @@
 
 
 
-                {{-- Services --}}
-                <li
-                    class="nav-item {{ Route::currentRouteName() == 'admin.service.index' || Route::currentRouteName() == 'admin.service.add' ? 'menu-open' : '' }}">
-                    <a href="{{ route('admin.service.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            {{ __('Elements') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="{{ route('admin.element.index') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'admin.element.index' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('All Elements') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.element.add') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'admin.element.add' ? 'active' : '' }}">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>{{ __('Add Elements') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                    {{-- Services End --}}
-                </li>
-                {{-- Services End --}}
-
-
 
                 {{-- Enquiry --}}
                 <li
