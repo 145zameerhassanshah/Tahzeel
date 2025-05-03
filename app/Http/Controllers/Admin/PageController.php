@@ -1,168 +1,149 @@
+<?php
+
 namespace App\Http\Controllers\Admin;
-
-use App\Models\Element;
-use App\Models\ElementFeature;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;  // Add this import
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Models\{IntroductionSection, PageGroup, Faq, Group, Page, Testimonial};
 
-class ElementController extends Controller
+class PageController extends Controller
 {
-    public function index()
+    public function pagelist()
     {
-        // Get all elements with their features
-        $elements = Element::with('features')->get();
-
-        return view('admin.element.index', compact('elements'));
+        $pages = Page::all();
+        return view('admin.page.list', compact('pages'));
     }
 
-    public function create()
+    public function detail($id, $slug)
     {
-        return view('admin.element.create');
+        $page = Page::where('slug', $slug)->first();
+        $testimonials = Testimonial::where('page_id', $page->id)->get();
+        $intro_types = ['single_image', 'double_image', 'tripple_image'];
+        $section_types = [
+            'testimonial',
+            'faq',
+            'feature',
+            'procedure',
+            'why_choose_us',
+            'document',
+            'call_to_action',
+            'feature_image',
+            'hero_section',
+            'intro_section',
+            'why_us_image'
+        ];
+        return view('admin.page.detail', compact('page', 'testimonials', 'intro_types', 'section_types'));
     }
 
+
+    // Page Crud Functions:-
+    public function add()
+    {
+        return view('admin.pages.add');
+    }
     public function store(Request $request)
     {
-        // Validate the form data
-        $validated = $request->validate([
-            'name.en' => 'required|string|max:255',
-            'name.ar' => 'required|string|max:255',
+        $request->validate([
+            'title.en' => 'required|string|max:255',
+            'title.ar' => 'required|string|max:255',
             'description.en' => 'nullable|string',
             'description.ar' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
-            'features.*.en' => 'nullable|string',
-            'features.*.ar' => 'nullable|string',
+            'hero_title.en' => 'nullable|string',
+            'hero_title.ar' => 'nullable|string',
+            'hero_sub_title.en' => 'nullable|string',
+            'hero_sub_title.ar' => 'nullable|string',
+            'hero_description.en' => 'nullable|string',
+            'hero_description.ar' => 'nullable|string',
+            'route_name' => 'nullable|string',
+            'meta_title' => 'nullable|string',
+            'order_no' => 'integer',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
+            'slug' => 'required|unique:pages,slug',
+            'status' => 'required|in:draft,published',
+            'type' => 'required',
+            'page_link_for' => 'required|in:header,footer,services,none',
+            'hero_image' => 'nullable|image|max:2048'
         ]);
-
-        // Create the element
-        $element = new Element();
-        
-        // Handle image upload if provided
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $imagePath = public_path('assets/admin/img');
-            
-            // Ensure the directory exists
-            if (!File::exists($imagePath)) {
-                File::makeDirectory($imagePath, 0755, true);
-            }
-
-            // Move the image to the desired location
-            $image->move($imagePath, $imageName);
-
-            // Save the image path to the database (relative to the public folder)
-            $element->image = 'assets/admin/img/' . $imageName;
+        $page = new Page();
+        if ($request->hasFile('hero_image')) {
+            $file = $request->file('hero_image');
+            $image = time() . rand() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/admin/img'), $image);
+            $page->hero_image = $image;
         }
+        $page->slug = $request->slug;
+        $page->status = $request->status;
+        $page->type = $request->type;
+        $page->route_name = $request->route_name;
+        $page->page_link_for = $request->page_link_for ?? 'none';
+        $page->order_no = $request->order_no ?? 0;
+        $page->meta_title = $request->meta_title;
+        $page->meta_description = $request->meta_description;
+        $page->meta_keywords = $request->meta_keywords;
 
-        // Set translations for 'name' and 'description'
-        $element->setTranslations('name', [
-            'en' => $request->input('name.en'),
-            'ar' => $request->input('name.ar')
+        $page->setTranslations('title', [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar')
         ]);
 
-        $element->setTranslations('description', [
+        $page->setTranslations('description', [
             'en' => $request->input('description.en'),
             'ar' => $request->input('description.ar')
         ]);
 
-        // Save other fields
-        $element->status = true;  // Assuming active by default
-        $element->save();
+        $page->setTranslations('hero_title', [
+            'en' => $request->input('hero_title.en'),
+            'ar' => $request->input('hero_title.ar')
+        ]);
 
-        // Store element features
-        foreach ($request->features as $feature) {
-            ElementFeature::create([
-                'element_id' => $element->id,
-                'feature_name' => $feature,
-            ]);
-        }
+        $page->setTranslations('hero_sub_title', [
+            'en' => $request->input('hero_sub_title.en'),
+            'ar' => $request->input('hero_sub_title.ar')
+        ]);
 
-        return redirect()->route('admin.element.index')->with('success', 'Element created successfully');
+        $page->setTranslations('hero_description', [
+            'en' => $request->input('hero_description.en'),
+            'ar' => $request->input('hero_description.ar')
+        ]);
+
+        $page->save();
+        return redirect()->route('admin.page.index')->with('success', 'Page created successfully.');
     }
 
-    public function edit(Element $element)
+
+    // Page Delete
+    public function delete($id)
     {
-        return view('admin.element.edit', compact('element'));
+        $page = Page::findOrFail($id);
+        @unlink(public_path('assets/admin/img/' . $page->hero_image));
+        $page->delete();
+        return redirect()->route('admin.page.index')->with('success', 'Page deleted successfully!');
     }
 
-    public function update(Request $request, Element $element)
+    // Page Edit
+    public function edit($id)
     {
-        // Validate the form data
-        $validated = $request->validate([
-            'name.en' => 'required|string|max:255',
-            'name.ar' => 'required|string|max:255',
-            'description.en' => 'nullable|string',
-            'description.ar' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
-            'features.*.en' => 'nullable|string',
-            'features.*.ar' => 'nullable|string',
-        ]);
-
-        // Update the element
-        $element->update([
-            'status' => true,  // Assuming active by default
-        ]);
-
-        // Handle image upload if provided
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            if ($element->image && File::exists(public_path($element->image))) {
-                File::delete(public_path($element->image));
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $imagePath = public_path('assets/admin/img');
-
-            // Ensure the directory exists
-            if (!File::exists($imagePath)) {
-                File::makeDirectory($imagePath, 0755, true);
-            }
-
-            // Move the image to the desired location
-            $image->move($imagePath, $imageName);
-
-            // Save the new image path to the database (relative to the public folder)
-            $element->image = 'assets/admin/img/' . $imageName;
-        }
-
-        // Set translations for 'name' and 'description'
-        $element->setTranslations('name', [
-            'en' => $request->input('name.en'),
-            'ar' => $request->input('name.ar')
-        ]);
-
-        $element->setTranslations('description', [
-            'en' => $request->input('description.en'),
-            'ar' => $request->input('description.ar')
-        ]);
-
-        // Update element features
-        $element->features()->delete(); // Delete existing features
-        foreach ($request->features as $feature) {
-            ElementFeature::create([
-                'element_id' => $element->id,
-                'feature_name' => $feature,
-            ]);
-        }
-
-        return redirect()->route('admin.element.index')->with('success', 'Element updated successfully');
+        $page = Page::findOrFail($id);
+        return view('admin.pages.edit', compact('page'));
     }
 
-    public function destroy(Element $element)
+    public function update(Request $request, $id)
     {
-        // Delete associated features
-        $element->features()->delete();
+        $page = Page::findOrFail($id);
 
-        // Delete the image file if it exists
-        if ($element->image && File::exists(public_path($element->image))) {
-            File::delete(public_path($element->image));
+        $data = $request->except('hero_image');
+
+        if ($request->hasFile('hero_image')) {
+            @unlink(public_path('assets/admin/img/' . $page->hero_image));
+            $file = $request->file('hero_image');
+            $filename = time() . '_' . Str::slug($file->getClientOriginalName(), '_') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/admin/img'), $filename);
+            $data['hero_image'] = $filename;
         }
 
-        // Delete the element itself
-        $element->delete();
+        $page->update($data);
 
-        return redirect()->route('admin.element.index')->with('success', 'Element deleted successfully');
+        return redirect()->route('admin.page.index')->with('success', 'Page updated successfully.');
     }
 }

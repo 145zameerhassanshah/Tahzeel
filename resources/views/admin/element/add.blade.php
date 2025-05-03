@@ -114,6 +114,42 @@
                                                 </div>
                                             </div>
 
+                                            <!-- Features Fields -->
+                                            <div class="col-md-12 mb-3">
+                                                <label>{{ __('Features') }}</label>
+                                                <div id="features-container">
+                                                    <div class="feature-group mb-3">
+                                                        <div class="row mb-2">
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="number" name="features[${featureIndex}][order]" class="form-control" placeholder="Order No" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="features[${featureIndex}][description_en]" class="form-control" placeholder="Description Title in English">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="features[${featureIndex}][description_ar]" class="form-control" placeholder="Description Title in Arabic">
+                                                            </div>
+                                                            <div class="col-md-4 d-flex align-items-end">
+                                                                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                                                    </div>
+                                                <button type="button" class="btn btn-secondary mt-2"
+                                                    id="add-feature">Add Feature</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
                                             <!-- Description Fields -->
@@ -155,4 +191,42 @@
         </div>
     </section>
 
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            let featureIndex = 0;
+
+            $('#add-feature').click(function() {
+                $('#features-container').append(`
+                    <div class="row mb-3 feature-group">
+                        <div class="col-md-4">
+                            <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
+                        </div>
+    <div class="col-md-4">
+        <input type="number" name="features[${featureIndex}][order]" class="form-control" placeholder="Order No" required>
+    </div>
+                        <div class="col-md-4">
+                            <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Description in English" required>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Description in Arabic" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
+                        </div>
+                    </div>
+                `);
+                featureIndex++;
+            });
+
+            $(document).on('click', '.remove-feature', function() {
+                $(this).closest('.feature-group').remove();
+            });
+        });
+    </script>
 @endsection

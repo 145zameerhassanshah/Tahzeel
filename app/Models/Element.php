@@ -21,4 +21,9 @@ class Element extends Model
         'subtitle',
         'description'
     ];
+    public function features()
+{
+    return $this->hasMany(ElementFeature::class);
+}
+
 }
