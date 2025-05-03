@@ -6,10 +6,8 @@
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
         <div class="row text-start">
             <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
-                <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Open File Services with <span
-                        class="underline-3 style-2 yellow"> Tah-zeel</span></h1>
-                <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Facilitating a Smooth
-                    Start for Your Residency Journey</p>
+                {!! __('open-file.hero_title') !!}
+                <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">{!! __('open-file.hero_subtitle') !!}</p>
                 <!-- <div><a class="btn btn-white rounded mb-10 mb-xxl-5">Let's Talk</a></div> -->
             </div>
             <!-- /column -->
@@ -40,12 +38,9 @@
             </div>
             <!--/column -->
             <div class="col-lg-6">
-                <h2 class="fs-16 text-uppercase text-red mb-3">Understanding the Open File Process</h2>
-                <h3 class="display-3 mb-8"> Why <span class="text-gradient gradient-6 display-1">Opening a File</span> is Essential for Residency in the UAE</h3>
-                <p class="mb-3">Opening a file with the appropriate UAE government authority is the initial step in
-                    applying for a residency visa, allowing your records to be formally recognized and processed for
-                    further immigration services. Tah-zeel simplifies this process, ensuring that all requirements are
-                    met, so your residency journey starts without obstacles.</p>
+                <h2 class="fs-16 text-uppercase text-red mb-3">{!! __('open-file.open_file_subtitle') !!}</h2>
+                {!! __('open-file.open_file_title') !!}
+                <p class="mb-3">{!! __('open-file.open_file_desc') !!}</p>
                 <div class="row gy-8">
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
@@ -53,8 +48,8 @@
                                 <img src="{{ asset('assets/static') }}/journal-check.svg" class="svg-inject icon-svg icon-svg-xs solid-mono text-fuchsia me-4" alt="" />
                             </div>
                             <div>
-                                <h4 class="mb-1">Document Verification</h4>
-                                <p class="mb-0">Tah-zeel will review your documents to ensure they meet official standards, minimizing delays.</p>
+                                <h4 class="mb-1">{!! __('open-file.open_file_point') !!}</h4>
+                                <p class="mb-0">{!! __('open-file.open_file_point_answer') !!}</p>
                             </div>
                         </div>
                     </div>
@@ -67,9 +62,8 @@
                                     alt="" />
                             </div>
                             <div>
-                                <h4 class="mb-1"> Application Submission</h4>
-                                <p class="mb-0">We handle the official submission, verifying that all details align
-                                    with government criteria.</p>
+                                <h4 class="mb-1">{!! __('open-file.open_file_point1') !!}</h4>
+                                <p class="mb-0">{!! __('open-file.open_file_point_answer1') !!}</p>
                             </div>
                         </div>
                     </div>
@@ -82,9 +76,8 @@
                                     alt="" />
                             </div>
                             <div>
-                                <h4 class="mb-1">Coordination with Authorities</h4>
-                                <p class="mb-0">Our team communicates with relevant government offices, ensuring your
-                                    file proceeds smoothly.</p>
+                                <h4 class="mb-1">{!! __('open-file.open_file_point2') !!}</h4>
+                                <p class="mb-0">{!! __('open-file.open_file_point_answer2') !!}</p>
                             </div>
                         </div>
                     </div>
@@ -96,9 +89,8 @@
                                     class="svg-inject icon-svg icon-svg-xs solid-mono text-green me-4" alt="" />
                             </div>
                             <div>
-                                <h4 class="mb-1">Status Updates and Follow-Up</h4>
-                                <p class="mb-0">With Tah-zeel, you receive timely updates, so you always know the
-                                    status of your application.</p>
+                                <h4 class="mb-1">{!! __('open-file.open_file_point3') !!}</h4>
+                                <p class="mb-0">{!! __('open-file.open_file_point_answer3') !!}</p>
                             </div>
                         </div>
                     </div>
@@ -122,12 +114,10 @@
     <div class="container">
         <div class="row d-flex justify-content-center mb-10">
             <div class="col-md-8 text-center">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Requirements for Opening a Residency File</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">Eligibility Criteria for <span
-                        class="text-green"> Open File</span> Process in the UAE</h3>
-                <p class="lead fs-lg mb-8">Learn about the necessary qualifications and documentation for <span
-                        class="underline green">opening a residency file</span> in the UAE, both for applicants and
-                    sponsors. These criteria may include: </p>
+                eligibility_criteria_subtitle
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! __('open-file.eligibility_criteria_subtitle') !!}</h2>
+                {!! __('open-file.eligibility_criteria_title') !!}
+                {!! __('open-file.eligibility_criteria_desc') !!}
             </div>
         </div>
         <div class="row">
@@ -137,13 +127,13 @@
                         <div class="card-header" id="headingIconOne">
                             <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseIconOne"
                                 aria-expanded="true" aria-controls="collapseIconOne"><span><i
-                                        class="bi bi-person-vcard"></i></span>Identification</button>
+                                        class="bi bi-person-vcard"></i></span>{!! __('open-file.eligibility_criteria_point') !!}</button>
                         </div>
                         <!--/.card-header -->
                         <div id="collapseIconOne" class="accordion-collapse collapse show"
                             aria-labelledby="headingIconOne" data-bs-parent="#accordionIconExample">
                             <div class="card-body">
-                                <p>Valid passport and UAE ID copies</p>
+                                <p>{!! __('open-file.eligibility_criteria_point_answer') !!}</p>
                             </div>
                             <!--/.card-body -->
                         </div>
@@ -154,13 +144,13 @@
                         <div class="card-header" id="headingIconTwo">
                             <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconTwo"
                                 aria-expanded="false" aria-controls="collapseIconTwo"><span><i
-                                        class="bi bi-file-person"></i></span>Proof of Residency</button>
+                                        class="bi bi-file-person"></i></span>{!! __('open-file.eligibility_criteria_point1') !!}</button>
                         </div>
                         <!--/.card-header -->
                         <div id="collapseIconTwo" class="accordion-collapse collapse"
                             aria-labelledby="headingIconTwo" data-bs-parent="#accordionIconExample">
                             <div class="card-body">
-                                <p>Documentation of your UAE address</p>
+                                <p>{!! __('open-file.eligibility_criteria_point_answer1') !!}</p>
                             </div>
                             <!--/.card-body -->
                         </div>
@@ -171,13 +161,13 @@
                         <div class="card-header" id="headingIconThree">
                             <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconThree"
                                 aria-expanded="false" aria-controls="collapseIconThree"><span><i
-                                        class="bi bi-currency-exchange"></i></span>Financial Requirements</button>
+                                        class="bi bi-currency-exchange"></i></span>{!! __('open-file.eligibility_criteria_point2') !!}</button>
                         </div>
                         <!--/.card-header -->
                         <div id="collapseIconThree" class="accordion-collapse collapse"
                             aria-labelledby="headingIconThree" data-bs-parent="#accordionIconExample">
                             <div class="card-body">
-                                <p>Bank statements or salary certificates, if applicable</p>
+                                <p>{!! __('open-file.eligibility_criteria_point_answer2') !!}</p>
                             </div>
                             <!--/.card-body -->
                         </div>
@@ -189,13 +179,13 @@
                         <div class="card-header" id="headingIconFourth">
                             <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconFourth"
                                 aria-expanded="false" aria-controls="collapseIconThree"><span><i
-                                        class="bi bi-file-text"></i></span>Additional Documentation</button>
+                                        class="bi bi-file-text"></i></span>{!! __('open-file.eligibility_criteria_point3') !!}</button>
                         </div>
                         <!--/.card-header -->
                         <div id="collapseIconFourth" class="accordion-collapse collapse"
                             aria-labelledby="headingIconThree" data-bs-parent="#accordionIconExample">
                             <div class="card-body">
-                                <p>As per specific residency requirements</p>
+                                <p>{!! __('open-file.eligibility_criteria_point_answer3') !!}</p>
                             </div>
                             <!--/.card-body -->
                         </div>
@@ -216,38 +206,36 @@
     <div class="container py-14 py-md-16">
         <div class="row d-flex justify-content-center mb-10">
             <div class="col-md-8 text-center">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Essential Documents for File Opening</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15"> Required Documents for <span
-                        class="text-green">Open File</span> Application in the UAE</h3>
-                <p class="lead fs-lg mb-8">Here’s what you’ll need to start your <span
-                        class="underline green">residency file:</span></p>
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! __('open-file.required_documents_subtitle') !!}</h2>
+                {!! __('open-file.required_documents_title') !!}
+                {!! __('open-file.required_documents_desc') !!}
             </div>
         </div>
 
         <div class="row gx-lg-8 gx-xl-12 gy-6 process-wrapper line d-flex justify-content-center text-center">
             <div class="col-md-6 col-lg-2"> <span class="icon btn btn-circle btn-lg btn-soft-red pe-none mb-4"><span
                         class="number">01</span></span>
-                <h4 class="mb-1 fw-light">Copy of passport</h4>
+                <h4 class="mb-1 fw-light">{!! __('open-file.required_documents_point') !!}</h4>
             </div>
             <!--/column -->
             <div class="col-md-6 col-lg-2 "> <span class="icon btn btn-circle btn-lg btn-soft-red pe-none mb-4"><span
                         class="number">02</span></span>
-                <h4 class="mb-1 fw-light">UAE entry permit or previous residency visa (if applicable)</h4>
+                <h4 class="mb-1 fw-light">{!! __('open-file.required_documents_point1') !!}</h4>
             </div>
             <!--/column -->
             <div class="col-md-6 col-lg-2"> <span class="icon btn btn-circle btn-lg btn-soft-red pe-none mb-4"><span
                         class="number">03</span></span>
-                <h4 class="mb-1 fw-light">Proof of UAE residence, such as a lease agreement or ownership documents</h4>
+                <h4 class="mb-1 fw-light">{!! __('open-file.required_documents_point2') !!}</h4>
             </div>
             <!--/column -->
             <div class="col-md-6 col-lg-2"> <span class="icon btn btn-circle btn-lg btn-soft-red pe-none mb-4"><span
                         class="number">04</span></span>
-                <h4 class="mb-1 fw-light">Passport-size photograph</h4>
+                <h4 class="mb-1 fw-light">{!! __('open-file.required_documents_point3') !!}</h4>
             </div>
             <!--/column -->
             <div class="col-md-6 col-lg-2"> <span class="icon btn btn-circle btn-lg btn-soft-red pe-none mb-4"><span
                         class="number">05</span></span>
-                <h4 class="mb-1 fw-light">Other documents as per unique visa requirements</h4>
+                <h4 class="mb-1 fw-light">{!! __('open-file.required_documents_point4') !!}</h4>
             </div>
             <!--/column -->
         </div>
@@ -264,42 +252,34 @@
 
 <section class="wrapper bg-light">
     <div class="container-fluid py-4 py-md-8">
-
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Step-by-Step Application Support</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">Streamlined Visa Application Process with
-                    <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support
-                </h3>
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! __('residency-visa.streamlined_visa_application_process_subtitle') !!}</h2>
+                {!! __('residency-visa.streamlined_visa_application_process_title') !!}
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg"
                             class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                        <h4 class="mb-1">1. Document Preparation</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Gather required documents like identification, income
-                            proof, and housing information. Tah-zeel assists with document checks to ensure accuracy.
-                        </p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img
                             src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                             class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                        <h4 class="mb-1">2. Application Submission</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Submit the application to the relevant authority. Tah-zeel
-                            manages the entire submission for faster processing.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point1') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer1') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                        <h4 class="mb-1">3. Processing and Follow-up</h4>
-                        <p class="mb-5 mb-md-0 text-justify">The application undergoes government review. Tah-zeel
-                            monitors progress, handling any additional requests promptly.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point2') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer2') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg"
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                        <h4 class="mb-1">4. Final Approval and Visa Issuance</h4>
-                        <p class="mb-5 mb-md-0 text-justify">After approval, the visa is issued. Tah-zeel ensures
-                            smooth collection and guides on next steps, including residency stamping if needed.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point3') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer3') !!}</p>
                     </div>
                     <!--/column -->
                 </div>
@@ -310,8 +290,7 @@
         <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
-
+</section>  
 @include('front.partials.clients')
 @include('front.partials.affiliations')
 @include('front.partials.cta-1')

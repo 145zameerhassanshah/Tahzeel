@@ -70,4 +70,18 @@ return [
     'join_our_community_title' => 'Join Our Community',
     'join_our_community_subtitle' => '<h3 class="display-3 text-white mb-6">We’ve helped thousands of <span class="underline-2 underline-gradient-6"><em>clients</em></span> navigate UAE’s government services efficiently.</h3>',
     'join_our_community_subtitle1' => '<h3 class="display-3 text-white mb-6">Let us handle your <span class="underline-2 underline-gradient-9"><em>visa and documentation</em></span> processes smoothly and stress-free.</h3>',
+
+
+
+
+    'streamlined_visa_application_process_title' => '<h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">Streamlined Visa Application Process with <span class="text-gradient gradient-6 display-1">Tah-zeel’s  </span> Expert Support</h3>',
+    'streamlined_visa_application_process_subtitle' => 'Your Step-by-Step Guide to a Smooth Domestic Worker Visa Application',
+    'streamlined_visa_application_process_point' => '1. Document Preparation',
+    'streamlined_visa_application_process_point_answer' => 'Gather required documents like identification, income proof, and housing information. Tah-zeel assists with document checks to ensure accuracy.',
+    'streamlined_visa_application_process_point1' => '2. Application Submission',
+    'streamlined_visa_application_process_point_answer1' => 'Submit the application to the relevant authority. Tah-zeel manages the entire submission for faster processing.',
+    'streamlined_visa_application_process_point2' => '3. Processing and Follow-up',
+    'streamlined_visa_application_process_point_answer2' => 'The application undergoes government review. Tah-zeel monitors progress, handling any additional requests promptly.',
+    'streamlined_visa_application_process_point3' => '4. Final Approval and Visa Issuance',
+    'streamlined_visa_application_process_point_answer3' => 'After approval, the visa is issued. Tah-zeel ensures smooth collection and guides on next steps, including residency stamping if needed.',
 ];

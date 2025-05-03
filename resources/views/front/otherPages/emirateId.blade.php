@@ -153,7 +153,7 @@
                                     <div class="card-body">
                                         <p>Identify whether you are applying for an Emirates ID renewal or a new one.
                                             Each process might slightly differ, and our expert consultants are here to
-                                            advise you on the required steps and documents for Emirates ID. </p>
+                                            advise you on the required steps and documents for Emirates ID.</p>
                                     </div>
                                     <!--/.card-body -->
                                 </div>

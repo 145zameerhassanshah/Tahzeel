@@ -61,12 +61,12 @@ class FrontPageController extends Controller
             'sectionTitles',
             'introductionSections',
             'heroSections',
-            'features',
             'faqs',
             'testimonials',
             'whyChooseUs',
             'documentRequireds',
             'whyUsImages',
+            'features',
             'featureImages',
             'sections'
         ])->where('slug', 'residency-visa')->firstOrFail();

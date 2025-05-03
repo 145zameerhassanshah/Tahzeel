@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use App\Models\Page;
 
@@ -13,8 +12,8 @@ class PagesTableSeeder extends Seeder
             [
                 'slug' => 'open-file',
                 'title' => [
-                    'en' => 'Open The Files',
-                    'ar' => 'Open The Files Arabic'
+                    'en' => 'Open The Files Title',
+                    'ar' => 'Open The Files Title Arabic'
                 ],
                 'description' => [
                     'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',

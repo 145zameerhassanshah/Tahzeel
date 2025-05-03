@@ -9,41 +9,42 @@ use App\Http\Middleware\SetLocale;
 use App\Models\Enquiry;
 // Frontend Controllers
 use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\Front\FrontPageController;
 // General Controllers
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-// Admin Controllers
-use App\Http\Controllers\Admin\BcategoryController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\BulkDeleteController;
-use App\Http\Controllers\Admin\CallToActionController;
-use App\Http\Controllers\Admin\DocumentRequiredController;
-use App\Http\Controllers\Admin\EnquiryController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\FeatureImageController;
-use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\GcategoryController;
-use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\Admin\HeroSectionController;
-use App\Http\Controllers\Admin\IntroSectionController;
-use App\Http\Controllers\Admin\JcategoryController;
-use App\Http\Controllers\Admin\JobController;
-use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\Admin\ProcedureController;
-use App\Http\Controllers\Admin\SectionTitleController;
-use App\Http\Controllers\Admin\ServiceCategoryController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\ServiceSectionController;
-use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\TestimonialController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\WhyChooseUsController;
-use App\Http\Controllers\Admin\WhyUsImageController;
-use App\Http\Controllers\Admin\PageSectionController;
+use App\Http\Controllers\Admin\{
+    BcategoryController,
+    BlogController,
+    BulkDeleteController,
+    CallToActionController,
+    DocumentRequiredController,
+    EnquiryController,
+    FaqController,
+    FeatureController,
+    FeatureImageController,
+    GalleryController,
+    GcategoryController,
+    GroupController,
+    HeroSectionController,
+    IntroSectionController,
+    JcategoryController,
+    JobController,
+    NotificationController,
+    PageController,
+    PartnerController,
+    ProcedureController,
+    SectionTitleController,
+    ServiceCategoryController,
+    ServiceController,
+    ServiceSectionController,
+    SettingController,
+    TestimonialController,
+    UserController,
+    WhyChooseUsController,
+    WhyUsImageController,
+    PageSectionController,
+    ElementController
+};
 
 
 Route::get('/pending-user', [UserController::class, 'pendingUser'])->name('pending.user');
@@ -70,9 +71,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/user-dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
     });
     Route::middleware(['auth', 'admin'])->group(function () {
-
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
-        //profile routes
+        // profile routes
         Route::get('/editProfile', [ProfileController::class, 'editProfile'])->name('admin.profile.edit');
         Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('admin.profile.update');
         Route::post('/updatePassword', [ProfileController::class, 'updatePassword'])->name('admin.password.update');
@@ -260,8 +260,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/Intro-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.intro_section.update');
         Route::post('/Intro-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.intro_section.delete');
 
-
-
         // Service Category Routes
         Route::get('/service-category', [ServiceCategoryController::class, 'index'])->name('admin.service.category.index');
         Route::get('/service-category/add', [ServiceCategoryController::class, 'add'])->name('admin.service.category.add');
@@ -270,7 +268,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/service-category/update/{id}', [ServiceCategoryController::class, 'update'])->name('admin.service.category.update');
         Route::post('/service-category/delete/{id}', [ServiceCategoryController::class, 'delete'])->name('admin.service.category.delete');
         // End of Service Category Routes
-
 
         // Service Routes
         Route::get('/service', [ServiceController::class, 'index'])->name('admin.service.index');
@@ -281,6 +278,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/service/delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
         // End of Service Routes
 
+        // Elements Routes
+        Route::get('/element', [ElementController::class, 'index'])->name('admin.element.index');
+        Route::get('/element/add', [ElementController::class, 'add'])->name('admin.element.add');
+        Route::post('/element/store', [ElementController::class, 'store'])->name('admin.element.store');
+        Route::get('/element/edit/{id}', [ElementController::class, 'edit'])->name('admin.element.edit');
+        Route::post('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
+        Route::post('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
+        // End of Elements Routes
+
         // Service Section Routes
         Route::get('/service-section/{id}', [ServiceSectionController::class, 'index'])->name('admin.service.section.index');
         Route::get('/service-section/add/{id}', [ServiceSectionController::class, 'add'])->name('admin.service.section.add');
@@ -288,11 +294,9 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/service-section/edit/{id}', [ServiceSectionController::class, 'edit'])->name('admin.service.section.edit');
         Route::post('/service-section/update/{id}', [ServiceSectionController::class, 'update'])->name('admin.service.section.update');
         Route::post('/service-section/delete/{id}', [ServiceSectionController::class, 'delete'])->name('admin.service.section.delete');
-
         // End of Service Section Routes
 
         // Enquiry Routes
-
         Route::get('/enquiry', [EnquiryController::class, 'index'])->name('admin.enquiry.index');
         Route::get('/enquiry/add', [EnquiryController::class, 'add'])->name('admin.enquiry.add');
         Route::post('/enquiry/store', [EnquiryController::class, 'store'])->name('admin.enquiry.store');
@@ -362,7 +366,7 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('/page-section/edit/{id}', [PageSectionController::class, 'edit'])->name('admin.page.section.edit');
     Route::post('/page-section/update/{id}', [PageSectionController::class, 'update'])->name('admin.page.section.update');
     Route::post('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
-   
+
     // Route::get('language/{locale}', function ($locale) {
     //     if (in_array($locale, config('app.available_locales'))) {
     //         session(['locale' => $locale]);

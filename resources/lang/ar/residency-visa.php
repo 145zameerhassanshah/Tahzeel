@@ -69,4 +69,19 @@ return [
     'join_our_community_title' => 'انضم إلى مجتمعنا',
     'join_our_community_subtitle' => '<h3 class="display-3 text-white mb-6">ساعدنا الآلاف من <span class="underline-2 underline-gradient-6"><em>العملاء</em></span> في التنقل بكفاءة بين خدمات الحكومة الإماراتية.</h3>',
     'join_our_community_subtitle1' => '<h3 class="display-3 text-white mb-6">دعنا نتولى عمليات <span class="underline-2 underline-gradient-9"><em>التأشيرات والمستندات</em></span> الخاصة بك بسهولة وراحة.</h3>',
+
+    'streamlined_visa_application_process_title' => '<h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">عملية تقديم تأشيرة مبسطة مع دعم الخبراء من <span class="text-gradient gradient-6 display-1">تهذيل</span></h3>',
+    'streamlined_visa_application_process_subtitle' => 'دليلك خطوة بخطوة لتقديم تأشيرة العمالة المنزلية بسلاسة',
+
+    'streamlined_visa_application_process_point' => '1. تجهيز المستندات',
+    'streamlined_visa_application_process_point_answer' => 'اجمع المستندات المطلوبة مثل الهوية، إثبات الدخل، ومعلومات السكن. تسهيل تساعدك في التحقق من دقة المستندات.',
+
+    'streamlined_visa_application_process_point1' => '2. تقديم الطلب',
+    'streamlined_visa_application_process_point_answer1' => 'قدّم الطلب إلى الجهة المختصة. تسهيل تدير عملية التقديم بالكامل لضمان سرعة المعالجة.',
+
+    'streamlined_visa_application_process_point2' => '3. المعالجة والمتابعة',
+    'streamlined_visa_application_process_point_answer2' => 'يخضع الطلب للمراجعة الحكومية. تتابع تسهيل التقدم وتتعامل بسرعة مع أي متطلبات إضافية.',
+
+    'streamlined_visa_application_process_point3' => '4. الموافقة النهائية وإصدار التأشيرة',
+    'streamlined_visa_application_process_point_answer3' => 'بعد الموافقة، تُصدر التأشيرة. تسهيل تضمن عملية استلام سلسة وتقدم الإرشاد بشأن الخطوات التالية مثل ختم الإقامة إذا لزم الأمر.',
 ];
