@@ -28,7 +28,6 @@ use App\Http\Controllers\Admin\GcategoryController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\IntroSectionController;
-use App\Http\Controllers\Admin\IntroductionSectionController;
 use App\Http\Controllers\Admin\JcategoryController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\NotificationController;
@@ -92,10 +91,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/pendingUsers', [UserController::class, 'pendingUsers'])->name('admin.user.pendingUsers');
         Route::get('/approvedUsers', [UserController::class, 'approvedUsers'])->name('admin.user.approvedUsers');
         Route::get('/blockedUsers', [UserController::class, 'blockedUsers'])->name('admin.user.blockedUsers');
-
         // Bulk Delete Routes:-
         Route::get('bulk/deletes', [BulkDeleteController::class, 'bulkDelete'])->name('back.bulk.delete');
-
         // Page Routes:-
         Route::get('/pages', [PageController::class, 'pagelist'])->name('admin.page.index');
         Route::get('/page-detail/{id}/{slug}', [PageController::class, 'detail'])->name('admin.page.detail');
@@ -235,13 +232,13 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
 
         // introduction Routes
-        Route::get('/introduction-sections', [IntroductionSectionController::class, 'index'])->name('admin.introduction_section.index');
-        Route::get('/introduction-sections/{id}/list', [IntroductionSectionController::class, 'list'])->name('admin.introduction_section.list');
-        Route::get('/introduction-section/{id}/add', [IntroductionSectionController::class, 'add'])->name('admin.introduction_section.add');
-        Route::post('/introduction-section/store', [IntroductionSectionController::class, 'store'])->name('admin.introduction_section.store');
-        Route::get('/introduction-section/edit/{id}', [IntroductionSectionController::class, 'edit'])->name('admin.introduction_section.edit');
-        Route::post('/introduction-section/update/{id}', [IntroductionSectionController::class, 'update'])->name('admin.introduction_section.update');
-        Route::post('/introduction-section/delete/{id}', [IntroductionSectionController::class, 'delete'])->name('admin.introduction_section.delete');
+        Route::get('/introduction-sections', [IntroSectionController::class, 'index'])->name('admin.introduction_section.index');
+        Route::get('/introduction-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.introduction_section.list');
+        Route::get('/introduction-section/{id}/add', [IntroSectionController::class, 'add'])->name('admin.introduction_section.add');
+        Route::post('/introduction-section/store', [IntroSectionController::class, 'store'])->name('admin.introduction_section.store');
+        Route::get('/introduction-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.introduction_section.edit');
+        Route::post('/introduction-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.introduction_section.update');
+        Route::post('/introduction-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.introduction_section.delete');
 
         // Hero Sections Routes
         Route::get('/hero-sections/{pageId}', [HeroSectionController::class, 'getByPageId'])->name('admin.hero_section.index');

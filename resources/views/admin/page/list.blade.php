@@ -46,13 +46,12 @@
                                                     data-toggle="dropdown" aria-expanded="false">
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
-                                                <div class="dropdown-menu" role="menu" style="">
+                                                <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.add', $page->id) }}">Add Section</a>
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">View</a>
-
                                                     <div class="dropdown-divider"></div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->
@@ -60,7 +59,7 @@
 
                                                 <!-- Details Button -->
                                                 <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1">
-                                                <i class="fas fa-info"></i>
+                                                    <i class="fas fa-info"></i>
                                                 </a>
 
                                                 <!-- Delete Button -->

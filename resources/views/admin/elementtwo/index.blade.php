@@ -1,93 +1,71 @@
 @extends('admin.layouts.master')
-@section('title', 'Service')
-@section('content')
+@section('title', 'Elements')
 
+@section('content')
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('Service') }} </h1>
-                </div><!-- /.col -->
+                    <h1 class="m-0 text-dark">{{ __('Elements') }}</h1>
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
-                                    class="fas fa-home"></i>{{ __('Home') }}</a></li>
-                        <li class="breadcrumb-item">{{ __('Service') }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i> {{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('Elements') }}</li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Service') }}</h3>
-                            <div class="card-tools d-flex">
+                <div class="col-12">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
 
-                                <a href="{{ route('admin.service.add') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> {{ __('Add New Services') }}
-                                </a>
-                            </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{ route('admin.element.create') }}" class="btn btn-primary">{{ __('Add Element') }}</a>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-striped table-bordered data_table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('#') }}</th>
-                                        <th>{{ __('Icon') }}</th>
-                                        <th>{{ __('Name') }}</th>
-                                        <th>{{ __('Status') }}</th>
-                                        <th>{{ __('Order No') }}</th>
-                                        <th>{{ __('Action') }}</th>
+                                        <th>{{ __('Element Name') }}</th>
+                                        <th>{{ __('Description') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Features') }}</th>
+                                        <th>{{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach ($services as $id => $service)
+                                    @foreach ($elements as $element)
                                         <tr>
+                                            <td>{{ $element->name['en'] }}</td>
+                                            <td>{{ $element->description['en'] }}</td>
                                             <td>
-                                                {{ ++$id }}
-                                            </td>
-                                            <td>
-                                                <img src="{{ asset($service->icon) }}" width="70px" alt="Icon">
-                                            </td>
-                                            <td>
-                                                {{ $service->name }}
-                                            </td>
-                                            <td>
-                                                @if ($service->status == 'publish')
-                                                    <span class="badge bg-success">Published</span>
-                                                @elseif($service->status == 'draft')
-                                                    <span class="badge bg-info">Draft</span>
+                                                @if($element->image)
+                                                    <img src="{{ asset('storage/' . $element->image) }}" alt="Image" width="100">
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $service->order_no }}
+                                                @foreach ($element->features as $feature)
+                                                    <span>{{ $feature->feature_name['en'] }}</span><br>
+                                                @endforeach
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.service.section.index', $service->id) }}"
-                                                    class="btn btn-info btn-sm"><i class="bi bi-sign-intersection"></i></a>
-
-                                                <a href="{{ route('admin.service.edit', $service->id) }}"
-                                                    class="btn btn-info btn-sm"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-
-                                                <form id="deleteform" class="d-inline-block"
-                                                    action="{{ route('admin.service.delete', $service->id) }}"
-                                                    method="post">
+                                                <a href="{{ route('admin.element.edit', $element->id) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
+                                                <form action="{{ route('admin.element.destroy', $element->id) }}" method="POST" style="display:inline;">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="delete">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">{{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -95,7 +73,5 @@
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-
     </section>
 @endsection

@@ -114,200 +114,193 @@
 </section>
 
 <section class="wrapper bg-light">
-  <div class="container py-4 py-md-8">
-
-      <div class="row text-center">
-          <div class="col-lg-9 mx-auto">
-              <h2 class="fs-15 text-uppercase text-muted mb-3 mt-12">Your Guide to a Seamless Visa Experience</h2>
-              <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How to Apply for Your Visit Visa with
-                  <span class="text-gradient gradient-6 display-1">Tah-zeel</span></h3>
-              <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                  <div class="col-md-3"> <img src="{{ asset('assets/static/info-circle.svg') }}"
-                          class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                      <h4 class="mb-1">1. Consultation</h4>
-                      <p class="mb-5 mb-md-0 text-justify">Get in touch with our team to discuss your visa needs
-                          and eligibility.</p>
-                  </div>
-                  <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('assets/static/file-text.svg') }}"
-                          class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                      <h4 class="mb-1">2. Document Submission</h4>
-                      <p class="mb-5 mb-md-0 text-justify">Submit required documents like passport copies and
-                          photographs for your application.</p>
-                  </div>
-                  <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
-                          class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                      <h4 class="mb-1">3. Application Processing</h4>
-                      <p class="mb-5 mb-md-0 text-justify">We submit your application and track its progress with
-                          the authorities.</p>
-                  </div>
-                  <!--/column -->
-                  <div class="col-md-3"> <img src="{{ asset('assets/static/check2-circle.svg') }}"
-                          class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                      <h4 class="mb-1">4. Visa Approval</h4>
-                      <p class="mb-5 mb-md-0 text-justify">Once approved, you’ll receive your visit visa and
-                          necessary documents for travel.</p>
-                  </div>
-                  <!--/column -->
-              </div>
-              <!--/.row -->
-          </div>
-          <!-- /column -->
-      </div>
-      <!-- /.row -->
-  </div>
-  <!-- /.container -->
-</section>
+    <div class="container py-4 py-md-8">
+        <div class="row text-center">
+            <div class="col-lg-9 mx-auto">
+                <h2 class="fs-15 text-uppercase text-muted mb-3 mt-12">{{ __('visit-visa.seamless_visa_experience') }}</h2>
+                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">{{ __('visit-visa.how_to_apply') }} 
+                    <span class="text-gradient gradient-6 display-1">{{ __('visit-visa.tahzeel') }}</span></h3>
+                <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/info-circle.svg') }}" 
+                             class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('visit-visa.consultation') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.consultation_desc') }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/file-text.svg') }}" 
+                             class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('visit-visa.document_submission') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.document_submission_desc') }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/arrow-repeat.svg') }}" 
+                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('visit-visa.application_processing') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.application_processing_desc') }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/check2-circle.svg') }}" 
+                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('visit-visa.visa_approval') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.visa_approval_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
 
 @include('front.partials.cta-2')
 
 <section class="wrapper bg-light">
-  <div class="container py-14 py-md-16">
-      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
-          <div class="col-lg-7 order-lg-2">
-              <figure><img class="w-auto" src="{{ asset('assets/static/visitVisa-4.webp') }}"
-                      alt="" /></figure>
-          </div>
-          <!--/column -->
-          <div class="col-lg-5">
-              <h2 class="fs-15 text-uppercase text-line text-primary mb-3">Required Documents for Your Visit Visa
-              </h2>
-              <h3 class="display-5 mb-7">Ensure a Smooth Application Process with These Essential Documents</h3>
-              <div class="accordion accordion-wrapper" id="accordionExample">
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingOne">
-                          <button class="accordion-button" data-bs-toggle="collapse"
-                              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Valid Passport or Travel Document </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseOne" class="accordion-collapse collapse show"
-                          aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>A passport-sized photo with a white background.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingTwo">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                              aria-expanded="false" aria-controls="collapseTwo"> Valid Passport or Travel
-                              Document </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                          data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>A passport or document valid for at least 6 months.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingThree">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                              aria-expanded="false" aria-controls="collapseThree"> Valid Health Insurance
-                          </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseThree" class="accordion-collapse collapse"
-                          aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>Proof of valid health insurance for the duration of your stay.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingThree">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseForth"
-                              aria-expanded="false" aria-controls="collapseForth"> National Identity Card
-                          </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseForth" class="accordion-collapse collapse"
-                          aria-labelledby="headingForth" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>Required for certain nationalities; provide a valid ID card.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingFifth">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFifth"
-                              aria-expanded="false" aria-controls="collapseFifth"> Onward Travel Ticket
-                          </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseFifth" class="accordion-collapse collapse"
-                          aria-labelledby="headingFifth" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>A confirmed ticket for onward travel, especially for transit visas (within 96
-                                  hours).</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingSixth">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSixth"
-                              aria-expanded="false" aria-controls="collapseSixth"> GCC Resident Permit </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseSixth" class="accordion-collapse collapse"
-                          aria-labelledby="headingSixth" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>A copy of your residence permit for residents of GCC countries.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-                  <!--/.accordion-item -->
-                  <div class="card plain accordion-item">
-                      <div class="card-header" id="headingSeventh">
-                          <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSeventh"
-                              aria-expanded="false" aria-controls="collapseSeventh"> Visa/Residence Card for
-                              Indian Nationals </button>
-                      </div>
-                      <!--/.card-header -->
-                      <div id="collapseSeventh" class="accordion-collapse collapse"
-                          aria-labelledby="headingSeventh" data-bs-parent="#accordionExample">
-                          <div class="card-body">
-                              <p>A permanent residence card (Green Card) for the USA, or a residence visa issued
-                                  by the UK or EU.</p>
-                          </div>
-                          <!--/.card-body -->
-                      </div>
-                      <!--/.accordion-collapse -->
-                  </div>
-                  <!--/.accordion-item -->
-              </div>
-              <!--/.accordion -->
-          </div>
-          <!--/column -->
-      </div>
-      <!--/.row -->
-  </div>
-  <!-- /.container -->
-</section>
+    <div class="container py-14 py-md-16">
+        <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+            <div class="col-lg-7 order-lg-2">
+                <figure><img class="w-auto" src="{{ asset('assets/static/visitVisa-4.webp') }}" alt="" /></figure>
+            </div>
+            <!--/column -->
+            <div class="col-lg-5">
+                <h2 class="fs-15 text-uppercase text-line text-primary mb-3">{{ __('visit-visa.required_documents') }}</h2>
+                <h3 class="display-5 mb-7">{{ __('visit-visa.smooth_application') }}</h3>
+                <div class="accordion accordion-wrapper" id="accordionExample">
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingOne">
+                            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                {{ __('visit-visa.document_1_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_1_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingTwo">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                {{ __('visit-visa.document_2_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_2_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingThree">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
+                                {{ __('visit-visa.document_3_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_3_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingFour">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                aria-expanded="false" aria-controls="collapseFour">
+                                {{ __('visit-visa.document_4_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseFour" class="accordion-collapse collapse"
+                            aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_4_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingFive">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                aria-expanded="false" aria-controls="collapseFive">
+                                {{ __('visit-visa.document_5_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseFive" class="accordion-collapse collapse"
+                            aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_5_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingSix">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+                                aria-expanded="false" aria-controls="collapseSix">
+                                {{ __('visit-visa.document_6_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseSix" class="accordion-collapse collapse"
+                            aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_6_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item">
+                        <div class="card-header" id="headingSeven">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+                                aria-expanded="false" aria-controls="collapseSeven">
+                                {{ __('visit-visa.document_7_title') }}
+                            </button>
+                        </div>
+                        <!--/.card-header -->
+                        <div id="collapseSeven" class="accordion-collapse collapse"
+                            aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>{{ __('visit-visa.document_7_desc') }}</p>
+                            </div>
+                            <!--/.card-body -->
+                        </div>
+                        <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                </div>
+                <!--/.accordion -->
+            </div>
+            <!--/column -->
+        </div>
+        <!--/.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  
 
 @include('front.partials.clients')
 
