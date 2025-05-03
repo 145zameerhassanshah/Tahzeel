@@ -107,6 +107,7 @@ class FrontPageController extends Controller
         return view('front.otherPages.entryPermits');
     }
 
+    
     public function visaCancellation()
     {
         $page = Page::with([
@@ -123,8 +124,7 @@ class FrontPageController extends Controller
             'whyUsImages',
             'featureImages',
             'sections'
-        ])->where('slug', 'Visa-Cancellation')->firstOrFail();
-
+        ])->where('slug', 'visa-Cancellation')->firstOrFail();
 
         return view('front.otherPages.visaCancellation',compact('page'));
     }
