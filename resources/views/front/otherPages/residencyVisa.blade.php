@@ -33,6 +33,40 @@
 @endif
 
 
+{{-- Testimonials --}}
+@php($testimonials = $page->testimonials)
+@if ($testimonials->isNotEmpty())
+@include('front.partials.clients-2', ['testimonials' => $testimonials])
+@endif
+
+
+{{-- Procedures --}}
+@php($procedures = $page->procedures)
+@if ($procedures->isNotEmpty())
+@include('front.partials._procedures', ['procedures' => $procedures])
+@endif
+
+
+{{-- Call To Actions --}}
+@php($callToActions = $page->callToActions)
+@if ($callToActions->isNotEmpty())
+@include('front.partials._cta', ['callToActions' => $callToActions])
+@endif
+
+
+{{-- FAQ's --}}
+@php($faqs = $page->faqs)
+@if ($faqs->isNotEmpty())
+@include('front.partials._faqs_1', ['faqs' => $faqs])
+@endif
+
+
+
+{{-- Features --}}
+@php($features = $page->features)
+@if ($features->isNotEmpty())
+@include('front.partials._features', ['features' => $features])
+@endif
 
 <!-- About Amer Centers  -->
 <section class="wrapper bg-light">
@@ -294,52 +328,42 @@
         </div>
     </div>
 </div>
-
 <!-- end document section  -->
+
 <!-- cta  -->
 @include('front.partials.cta-2')
-<!-- /section -->
 <!-- end cta  -->
-
 
 <section class="wrapper bg-light">
     <div class="container-fluid py-4 py-md-8">
-
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Your Step-by-Step Guide to a Smooth Domestic Worker Visa Application</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">Streamlined Visa Application Process with
-                    <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support
-                </h3>
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! __('residency-visa.streamlined_visa_application_process_subtitle') !!}</h2>
+                {!! __('residency-visa.streamlined_visa_application_process_title') !!}
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg"
                             class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                        <h4 class="mb-1">1. Document Preparation</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Gather required documents like identification, income
-                            proof, and housing information. Tah-zeel assists with document checks to ensure accuracy.
-                        </p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img
                             src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                             class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                        <h4 class="mb-1">2. Application Submission</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Submit the application to the relevant authority. Tah-zeel
-                            manages the entire submission for faster processing.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point1') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer1') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                        <h4 class="mb-1">3. Processing and Follow-up</h4>
-                        <p class="mb-5 mb-md-0 text-justify">The application undergoes government review. Tah-zeel
-                            monitors progress, handling any additional requests promptly.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point2') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer2') !!}</p>
                     </div>
                     <!--/column -->
                     <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg"
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                        <h4 class="mb-1">4. Final Approval and Visa Issuance</h4>
-                        <p class="mb-5 mb-md-0 text-justify">After approval, the visa is issued. Tah-zeel ensures
-                            smooth collection and guides on next steps, including residency stamping if needed.</p>
+                        <h4 class="mb-1">{!! __('residency-visa.streamlined_visa_application_process_point3') !!}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{!! __('residency-visa.streamlined_visa_application_process_point_answer3') !!}</p>
                     </div>
                     <!--/column -->
                 </div>
@@ -351,6 +375,7 @@
     </div>
     <!-- /.container -->
 </section>
+
 <!-- /section -->
 @include('front.partials.clients')
 @include('front.partials.affiliations')

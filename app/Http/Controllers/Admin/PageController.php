@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\{IntroductionSection, PageGroup, HeroSection, Feature, Faq, Group, Page, Testimonial};
+use App\Models\{IntroductionSection, PageGroup, Faq, Group, Page, Testimonial};
 
 class PageController extends Controller
 {

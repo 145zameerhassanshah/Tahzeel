@@ -2,12 +2,14 @@
 @section('title', 'Visa Cancellation')
 @section('content')
 
-<section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static') }}/visacancel-bg.webp">
+ <section class="wrapper image-wrapper bg-image  bg-overlay-300" data-image-src="{{ asset('assets/static') }}/visacancel-bg.webp">
     <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
       <div class="row text-start">
         <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">
-          <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Visa Cancellation <span class="underline-3 style-2 yellow">Services</span></h1>
-          <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Ending Your Residency Status with Ease</p>
+          {{-- <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12"> Visa Cancellation <span class="underline-3 style-2 yellow">Services</span></h1>
+          <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Ending Your Residency Status with Ease</p> --}}
+          @include('front.partials._hero_section', ['page' => $page])
+
           <!-- <div>
             <a class="btn btn-white rounded mb-10 mb-xxl-5">Let's Talk</a>
           </div> -->
@@ -17,8 +19,11 @@
       <!-- /.row -->
     </div>
     
-  </section>
+  </section> 
   <!-- /section -->
+     {{-- Hero Section --}}
+
+
 
     <section class="wrapper bg-light">
         <div class="container py-14 py-md-16">
@@ -239,38 +244,42 @@
 
             <div class="row text-center">
                 <div class="col-lg-9 mx-auto">
-                    <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">tep-by-Step Cancellation Support</h2>
-                    <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How Visa Cancellation Process Works with
+                    <h2 class="fs-15 text-uppercase text-red mb-3 mt-12"> 
+                         {!! __('visa-cancellation.support_intro') !!}</h2>
+                         {!! __('visa-cancellation.support_title') !!}
+                    {{-- <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How Visa Cancellation Process Works with
                         <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support
-                    </h3>
-                    <p class="lead fs-lg mb-8"><span class="underline green">Tah-zeel </span>ensures that clients
+                    </h3> --}}
+                    {!! __('visa-cancellation.support_description') !!}
+
+                    {{-- <p class="lead fs-lg mb-8"><span class="underline green">Tah-zeel </span>ensures that clients
                         understand each stage of the cancellation process, helping them navigate the steps seamlessly
-                        through Amer Services. </p>
+                        through Amer Services. </p> --}}
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
                         <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                            <h4 class="mb-1">1. Document Submission</h4>
-                            <p class="mb-5 mb-md-0 text-justify">Collect and submit all required documents.</p>
+                            <h4 class="mb-1">{!! __('visa-cancellation.step1_title') !!}
+                            </h4>
+                            <p class="mb-5 mb-md-0 text-justify"> {!! __('visa-cancellation.step1_para') !!}</p>
                         </div>
                         <!--/column -->
                         <div class="col-md-3"> <img src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                            <h4 class="mb-1">2. Application Submission</h4>
-                            <p class="mb-5 mb-md-0 text-justify">Tah-zeel submits the application on behalf of the client.
-                            </p>
+                            <h4 class="mb-1"> {!! __('visa-cancellation.step2_title') !!} </h4>
+                            <p class="mb-5 mb-md-0 text-justify"> {!! __('visa-cancellation.step2_para') !!}</p>
+                        </p>
                         </div>
                         <!--/column -->
                         <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                            <h4 class="mb-1">3. Final Clearance</h4>
-                            <p class="mb-5 mb-md-0 text-justify"> The cancellation is processed by the relevant UAE
-                                authorities.</p>
+                                <h4 class="mb-1"> {!! __('visa-cancellation.step3_title') !!} </h4>                                
+                                <p class="mb-5 mb-md-0 text-justify"> {!! __('visa-cancellation.step3_para') !!}</p>
                         </div>
                         <!--/column -->
                         <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                            <h4 class="mb-1">4. Receive Cancellation Confirmation</h4>
-                            <p class="mb-5 mb-md-0 text-justify">Obtain a stamped cancellation confirmation as proof.</p>
+                                <h4 class="mb-1"> {!! __('visa-cancellation.step4_title') !!} </h4>
+                                <p class="mb-5 mb-md-0 text-justify"> {!! __('visa-cancellation.step4_para') !!}</p>
                         </div>
                         <!--/column -->
                     </div>

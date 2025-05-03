@@ -1,7 +1,7 @@
 <aside class="main-sidebar elevation-4 main-sidebar elevation-4 sidebar-primary-primary">
     <!-- Sidebar -->
     @php
-        use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Route;
     @endphp
 
     <div class="sidebar pt-0 mt-0">
@@ -263,6 +263,7 @@
                     </ul>
                     {{-- Services Category End --}}
 
+
                     {{-- Services --}}
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.service.index' || Route::currentRouteName() == 'admin.service.add' ? 'menu-open' : '' }}">
@@ -291,10 +292,11 @@
                         </li>
                     </ul>
                     {{-- Services End --}}
-
-
                 </li>
                 {{-- Services End --}}
+
+
+
 
                 {{-- Enquiry --}}
                 <li

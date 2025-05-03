@@ -61,12 +61,12 @@ class FrontPageController extends Controller
             'sectionTitles',
             'introductionSections',
             'heroSections',
-            'features',
             'faqs',
             'testimonials',
             'whyChooseUs',
             'documentRequireds',
             'whyUsImages',
+            'features',
             'featureImages',
             'sections'
         ])->where('slug', 'residency-visa')->firstOrFail();
@@ -97,10 +97,28 @@ class FrontPageController extends Controller
         return view('front.otherPages.entryPermits');
     }
 
+    
     public function visaCancellation()
     {
-        return view('front.otherPages.visaCancellation');
+        $page = Page::with([
+            'procedures',
+            'callToActions',
+            'sectionTitles',
+            'introductionSections',
+            'heroSections',
+            'features',
+            'faqs',
+            'testimonials',
+            'whyChooseUs',
+            'documentRequireds',
+            'whyUsImages',
+            'featureImages',
+            'sections'
+        ])->where('slug', 'visa-Cancellation')->firstOrFail();
+
+        return view('front.otherPages.visaCancellation',compact('page'));
     }
+
 
     public function notaryDocumentAuthentication()
     {
@@ -196,7 +214,7 @@ class FrontPageController extends Controller
             return localizeFeatureImage($item, $locale);
         });
         $data['testimonials'] = $page_detail->testimonials->map(function ($item) use ($locale) {
-            return localizeTestimonial($item, $locale);
+             return localizeTestimonial($item, $locale);
         });
         $data['document_requireds'] = $page_detail->documentRequireds->map(function ($item) use ($locale) {
             return localizeDocumentRequired($item, $locale);

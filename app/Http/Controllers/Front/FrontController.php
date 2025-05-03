@@ -88,24 +88,33 @@ class FrontController extends Controller
         app()->setLocale(session('locale', 'en'));
         $locale = app()->getLocale();
         $testimonials = Testimonial::where('status', 'active')->get();
-        $introSection = IntroductionSection::first();
+        $introSection = IntroductionSection::first(); // You could check if it's null here
         $sectionTitles = SectionTitle::where('status', 'active')->where('type', 'testimonial')->get();
+    
+        // Handle case where introSection is null
+        if (!$introSection) {
+            $introSection = new IntroductionSection(); // Provide a default empty object
+            $introSection->images = json_encode([]); // Default empty array for images
+        }
+    
         $localized_testimonials = $testimonials->map(function ($item) use ($locale) {
             return localizeTestimonial($item, $locale);
         });
+    
         $localized_section_titles = $sectionTitles->map(function ($item) use ($locale) {
             return localizeSectionTitle($item, $locale);
         });
+    
         $localized_intro_section = localizeIntroductionSection($introSection, $locale);
         $sectionTitle = $localized_section_titles->first();
+    
         return view('front.otherPages.emirateId', [
             'testimonials' => $localized_testimonials,
             'sectionTitle' => $sectionTitle,
             'introSection' => $localized_intro_section,
         ]);
     }
-
-    public function visitVisa()
+        public function visitVisa()
     {
         return view('front.otherPages.visitVisa');
     }

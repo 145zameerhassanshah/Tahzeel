@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service Section')
+@section('title', 'Page Section')
 @section('content')
 
     <section class="content">
@@ -41,11 +41,17 @@
                                             <td>{{ $section->type }}</td>
                                             <td>{{ $section->order_no }}</td>
                                             <td>
+<<<<<<< HEAD
+                                                <a href="{{ route('admin.page.section.edit', $section->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        
+                                                <form action="{{ route('admin.page.section.delete', $section->id) }}" method="POST" style="display:inline;">
+=======
                                                 <a href="{{ route('admin.page.section.edit', $section->id) }}"
                                                     class="btn btn-warning btn-sm">Edit</a>
 
                                                 <form action="{{ route('admin.page.section.delete', $section->id) }}"
                                                     method="POST" style="display:inline;">
+>>>>>>> 51e6a8e89e774a2ec60dd3d7e9c98f94dac6d96c
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
