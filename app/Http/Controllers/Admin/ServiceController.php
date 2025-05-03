@@ -78,7 +78,6 @@ class ServiceController extends Controller
         $service->meta_description = $request->meta_description;
 
         if ($request->hasFile('icon')) {
-
             $file = $request->file('icon');
             $extension = $file->getClientOriginalExtension();
             $icon = time() . rand() . '.' . $extension;
