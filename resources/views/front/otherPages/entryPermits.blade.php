@@ -216,44 +216,50 @@
 
       <section class="wrapper bg-light">
         <div class="container-fluid py-4 py-md-8">
-          
-          <div class="row text-center">
-            <div class="col-lg-9 mx-auto">
-              <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">"Step-by-Step Entry Permit Support</h2>
-              <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How to Apply for an Entry Permit with <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support</h3>
-              <p class="lead fs-lg mb-8">  <span class="underline green">Tah-zeel </span> makes the entry permit application process straightforward, offering guidance at each stage for a smooth experience.</p> 
-              <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                  <h4 class="mb-1">1. Document Preparation</h4>
-                  <p class="mb-5 mb-md-0 text-justify">Gather and verify all required documents.
-                </p>
+            <div class="row text-center">
+                <div class="col-lg-9 mx-auto">
+                    <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{{ __('entry-permit.step_by_step_support') }}</h2>
+                    <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">{{ __('entry-permit.how_to_apply') }} <span class="text-gradient gradient-6 display-1">{{ __('entry-permit.tahzeel') }}</span> {{ __('entry-permit.expert_support') }}</h3>
+                    <p class="lead fs-lg mb-8">{{ __('entry-permit.entry_permit_description') }} <span class="underline green">{{ __('entry-permit.tahzeel') }}</span> {{ __('entry-permit.smooth_experience') }}</p>
+                    <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
+                        <div class="col-md-3">
+                            <img src="{{ asset('assets/static/file-text.svg') }}"
+                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
+                            <h4 class="mb-1">{{ __('entry-permit.step_1_title') }}</h4>
+                            <p class="mb-5 mb-md-0 text-justify">{{ __('entry-permit.step_1_desc') }}</p>
+                        </div>
+                        <!--/column -->
+                        <div class="col-md-3">
+                            <img src="{{ asset('assets/static/box-arrow-in-right.svg') }}"
+                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                            <h4 class="mb-1">{{ __('entry-permit.step_2_title') }}</h4>
+                            <p class="mb-5 mb-md-0 text-justify">{{ __('entry-permit.step_2_desc') }}</p>
+                        </div>
+                        <!--/column -->
+                        <div class="col-md-3">
+                            <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
+                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                            <h4 class="mb-1">{{ __('entry-permit.step_3_title') }}</h4>
+                            <p class="mb-5 mb-md-0 text-justify">{{ __('entry-permit.step_3_desc') }}</p>
+                        </div>
+                        <!--/column -->
+                        <div class="col-md-3">
+                            <img src="{{ asset('assets/static/check2-circle.svg') }}"
+                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
+                            <h4 class="mb-1">{{ __('entry-permit.step_4_title') }}</h4>
+                            <p class="mb-5 mb-md-0 text-justify">{{ __('entry-permit.step_4_desc') }}</p>
+                        </div>
+                        <!--/column -->
+                    </div>
+                    <!--/.row -->
                 </div>
-                <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/box-arrow-in-right.svg" class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                  <h4 class="mb-1">2. Submission</h4>
-                  <p class="mb-5 mb-md-0 text-justify">Tah-zeel submits the application on behalf of the client through Amer Services.</p>
-                </div>
-                <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/arrow-repeat.svg" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                  <h4 class="mb-1">3. Processing</h4>
-                  <p class="mb-5 mb-md-0 text-justify" > Permit processing by relevant UAE authorities.</p>
-                </div>
-                <!--/column -->
-                <div class="col-md-3"> <img src="{{ asset('assets/static') }}/check2-circle.svg" class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                    <h4 class="mb-1">4. Permit Issuance</h4>
-                    <p class="mb-5 mb-md-0 text-justify"> Finalized permit is issued for travel arrangements.</p>
-                  </div>
-                  <!--/column -->
-              </div>
-              <!--/.row -->
+                <!-- /column -->
             </div>
-            <!-- /column -->
-          </div>
-          <!-- /.row -->
+            <!-- /.row -->
         </div>
         <!-- /.container -->
-      </section>
-      <!-- /section -->
+    </section>
+    
 
       
 

@@ -213,40 +213,39 @@
 
 <section class="wrapper bg-light">
     <div class="container-fluid py-4 py-md-8">
-
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">Step-by-Step Testing Guide</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How the Medical Fitness Test Works with <span
-                        class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support</h3>
-                <p class="lead fs-lg mb-8">Understanding the testing process helps ensure it’s completed accurately and
-                    efficiently. <span class="underline green">Tah-zeel </span>assists with all steps to streamline
-                    your experience.</p>
+                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{{ __('medical-fitness-test.step_by_step_guide') }}</h2>
+                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">{{ __('medical-fitness-test.how_it_works') }} <span
+                        class="text-gradient gradient-6 display-1">{{ __('medical-fitness-test.tahzeel') }}</span> {{ __('medical-fitness-test.expert_support') }}</h3>
+                <p class="lead fs-lg mb-8">{{ __('medical-fitness-test.testing_process_description') }} <span class="underline green">{{ __('medical-fitness-test.tahzeel') }}</span> {{ __('medical-fitness-test.assistance_description') }}</p>
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                    <div class="col-md-3"> <img src="{{ asset('assets/static/file-text.svg') }}"
-                            class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
-                        <h4 class="mb-1">1. Schedule Test</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Book an appointment at a DHA-accredited center.</p>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/file-text.svg') }}"
+                             class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('medical-fitness-test.step_1_title') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('medical-fitness-test.step_1_desc') }}</p>
                     </div>
                     <!--/column -->
-                    <div class="col-md-3"> <img src="{{ asset('assets/static/box-arrow-in-right.svg') }}"
-                            class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
-                        <h4 class="mb-1">2. Document Verification</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Present required documents at the center.</p>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/box-arrow-in-right.svg') }}"
+                             class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('medical-fitness-test.step_2_title') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('medical-fitness-test.step_2_desc') }}</p>
                     </div>
                     <!--/column -->
-                    <div class="col-md-3"> <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
-                            class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
-                        <h4 class="mb-1">3. Health Screening</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Includes tests for tuberculosis, HIV, hepatitis, and other
-                            health checks.</p>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
+                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('medical-fitness-test.step_3_title') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('medical-fitness-test.step_3_desc') }}</p>
                     </div>
                     <!--/column -->
-                    <div class="col-md-3"> <img src="{{ asset('assets/static/check2-circle.svg') }}"
-                            class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
-                        <h4 class="mb-1">4. Results and Follow-Up</h4>
-                        <p class="mb-5 mb-md-0 text-justify">Receive results, and Tah-zeel coordinates with DHA for any
-                            required follow-up.</p>
+                    <div class="col-md-3">
+                        <img src="{{ asset('assets/static/check2-circle.svg') }}"
+                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
+                        <h4 class="mb-1">{{ __('medical-fitness-test.step_4_title') }}</h4>
+                        <p class="mb-5 mb-md-0 text-justify">{{ __('medical-fitness-test.step_4_desc') }}</p>
                     </div>
                     <!--/column -->
                 </div>
@@ -258,6 +257,7 @@
     </div>
     <!-- /.container -->
 </section>
+
 {{-- @include('front.partials.clients-2') --}}
 @include('front.partials.affiliations')
 @include('front.partials.cta-1')

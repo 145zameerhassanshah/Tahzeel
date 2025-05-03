@@ -6,10 +6,9 @@
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-7 col-xl-8 col-xxl-8 me-auto" data-cues="slideInDown" data-group="page-title">
-                    <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">Streamline Your <span
-                            class="underline-3 style-2 yellow"> Domestic</span> Worker Visa Process</h1>
-                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Efficiently secure
-                        trusted domestic help with our expert visa services.</p>
+                    <h1 class="display-1 text-white fs-60 mb-4 px-md-15 px-lg-0 pt-12">Your Trusted Partner in <span
+                        class="underline-3 style-2 yellow"> Manpower</span> Solutions</h1>
+                    <p class=" fs-24 text-white lh-sm mb-7 mx-md-14 mx-lg-0 pe-15 d-none d-sm-block">Bridging Talent with Opportunity Across the UAE.</p>
                 </div>
             </div>
         </div>
