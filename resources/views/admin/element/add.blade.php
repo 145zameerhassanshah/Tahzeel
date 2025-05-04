@@ -22,12 +22,9 @@
                                             </a>
                                         </div>
                                     </div>
-
                                     <div class="card-body">
                                         <div class="row">
-
                                             <input type="hidden" name="page_id" value="{{ $page->id }}">
-
                                             <!-- Title Fields -->
                                             <div class="col-md-6 mb-3">
                                                 <label for="title_en">{{ __('Title (English)') }}<span
