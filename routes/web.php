@@ -285,8 +285,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/element/add/{id}', [ElementController::class, 'add'])->name('admin.element.add');
         Route::post('/element/store', [ElementController::class, 'store'])->name('admin.element.store');
         Route::get('/element/edit/{id}', [ElementController::class, 'edit'])->name('admin.element.edit');
-        Route::post('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
-        Route::post('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
+        Route::put('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
+        Route::delete('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
         // End of Elements Routes
 
         // Blocks  Routes
@@ -294,8 +294,8 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/block/add/{id}', [BlockController::class, 'add'])->name('admin.block.add');
         Route::post('/block/store', [BlockController::class, 'store'])->name('admin.block.store');
         Route::get('/block/edit/{id}', [BlockController::class, 'edit'])->name('admin.block.edit');
-        Route::post('/block/update/{id}', [BlockController::class, 'update'])->name('admin.block.update');
-        Route::post('/block/delete/{id}', [BlockController::class, 'delete'])->name('admin.block.delete');
+        Route::put('/block/update/{id}', [BlockController::class, 'update'])->name('admin.block.update');
+        Route::delete('/block/delete/{id}', [BlockController::class, 'delete'])->name('admin.block.delete');
         // End of Blocks Routes
 
         // Service Section Routes

@@ -12,8 +12,11 @@ class BlockController extends Controller
 {
     public function index($page_id)
     {
-        $elements = Block::where('page_id',$page_id)->get();
-        return view('admin.block.index', compact('blocks'));
+        $blocks = Block::where('page_id',$page_id)->get();
+        $page = Page::findOrFail($page_id); // fetch page info
+
+
+        return view('admin.block.index', compact('blocks','page'));
     }
 
     public function add($page_id)
@@ -90,8 +93,8 @@ public function store(Request $request)
 
 public function edit($id)
 {
-    $element = Block::with('features')->findOrFail($id);
-    $page = $element->page;
+    $block = Block::with('features')->findOrFail($id);
+    $page = $block->page;
     return view('admin.block.edit', compact('block', 'page'));
 }
 
@@ -153,7 +156,8 @@ public function update(Request $request, $id)
         }
     }
 
-    return redirect()->back()->with('notification', [
+    return redirect()->route('admin.block.index', $block->id)
+    ->with('notification', [
         'message' => 'Page Block Updated Successfully!',
         'alert' => 'success',
     ]);
