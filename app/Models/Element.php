@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +23,7 @@ class Element extends Model
         'description'
     ];
     public function features()
-{
-    return $this->hasMany(ElementFeature::class);
-}
-
+    {
+        return $this->hasMany(ElementFeature::class);
+    }
 }

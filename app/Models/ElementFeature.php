@@ -11,7 +11,6 @@ use Spatie\Translatable\HasTranslations;
 class ElementFeature extends Model
 {
     use HasFactory, HasTranslations;
-
     protected $fillable = [
         'element_id', 
         'title', 
@@ -19,10 +18,6 @@ class ElementFeature extends Model
         'order_no',
     ];
     public $translatable = ['title', 'subtitle', 'description'];
-
-    /**
-     * Get the element that owns the feature.
-     */
     public function element()
     {
         return $this->belongsTo(Element::class);
