@@ -49,7 +49,9 @@
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.add', $page->id) }}">Add Section</a>
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">section list</a>
-                                                    <a class="dropdown-item" href="{{ route('admin.element.add', $page->id) }}">Add Element</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.element.index', $page->id) }}"> Element List</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.block.index', $page->id) }}"> Block List</a>
+
                                                     <div class="dropdown-divider"></div>
                                                 </div>
 

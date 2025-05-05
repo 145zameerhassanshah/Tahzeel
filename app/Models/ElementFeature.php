@@ -23,5 +23,3 @@ class ElementFeature extends Model
         return $this->belongsTo(Element::class);
     }
 }
-
-
