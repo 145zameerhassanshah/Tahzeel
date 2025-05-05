@@ -14,7 +14,7 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-header d-flex align-items-center" >
                                         <div class="flex-grow-1">
-                                            <h5 class="mb-0">{{ $page->title }} - Add New Block</h5>
+                                            <h5 class="mb-0">Block Page - Add New Block</h5>
                                         </div>
                                         <div>
                                             <a href="{{ route('admin.block.index', $page->id) }}" class="btn btn-primary btn-sm">
@@ -200,7 +200,7 @@ $(document).ready(function() {
                 <div class="col-md-2">
                     <input type="number" name="features[${featureIndex}][order_no]" class="form-control" placeholder="Order No" required>
                 </div>
-                <div class="col-md-2 text-end mt-2">
+                <div class="col-md-2 text-end ">
                     <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
                 </div>
             </div>
