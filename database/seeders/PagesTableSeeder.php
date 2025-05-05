@@ -9,6 +9,38 @@ class PagesTableSeeder extends Seeder
     public function run()
     {
         $pages = [
+            // visa-cancellation
+            [
+                'slug' => 'visa-cancellation',
+                'title' => [
+                    'en' => 'visa cancellation',
+                    'ar' => 'إلغاء التأشيرة'
+                ],
+                'description' => [
+                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
+                    'ar' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
+                ],
+                'hero_title' => [
+                    'en' => 'visa cancellation',
+                    'ar' => 'إلغاء التأشيرة'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Get your business banking set up with expert help.',
+                    'ar' => 'قم بإعداد حسابك المصرفي للأعمال بمساعدة الخبراء.'
+                ],
+                'hero_description' => [
+                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
+                    'ar' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
+                ],
+
+                'meta_title' => 'Corporate Bank Account Setup',
+                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
+                'type' => 'amer-service',
+                'status' => 'published',
+                'route_name' => 'front.residency.visa',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
             [
                 'slug' => 'open-file',
                 'title' => [
