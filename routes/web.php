@@ -15,6 +15,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\{
     BcategoryController,
     BlogController,
+    BlockController,
+
     BulkDeleteController,
     CallToActionController,
     DocumentRequiredController,
@@ -286,6 +288,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
         Route::post('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
         // End of Elements Routes
+
+        // Blocks  Routes
+        Route::get('/block/{id}', [BlockController::class, 'index'])->name('admin.block.index');
+        Route::get('/block/add/{id}', [BlockController::class, 'add'])->name('admin.block.add');
+        Route::post('/block/store', [BlockController::class, 'store'])->name('admin.block.store');
+        Route::get('/block/edit/{id}', [BlockController::class, 'edit'])->name('admin.block.edit');
+        Route::post('/block/update/{id}', [BlockController::class, 'update'])->name('admin.block.update');
+        Route::post('/block/delete/{id}', [BlockController::class, 'delete'])->name('admin.block.delete');
+        // End of Blocks Routes
 
         // Service Section Routes
         Route::get('/service-section/{id}', [ServiceSectionController::class, 'index'])->name('admin.service.section.index');

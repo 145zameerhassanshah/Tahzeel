@@ -193,40 +193,39 @@
 
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function() {
-            let featureIndex = 0;
+<script>
+    $(document).ready(function() {
+        let featureIndex = 0;
 
-            $('#add-feature').click(function() {
-                $('#features-container').append(`
-                    <div class="row mb-3 feature-group">
-                        <div class="col-md-4">
-                            <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
-                        </div>
-    <div class="col-md-4">
-        <input type="number" name="features[${featureIndex}][order]" class="form-control" placeholder="Order No" required>
-    </div>
-                        <div class="col-md-4">
-                            <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Description in English" required>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Description in Arabic" required>
-                        </div>
-
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                        </div>
+        $('#add-feature').click(function() {
+            $('#features-container').append(`
+                <div class="row mb-3 feature-group border rounded p-2">
+                    <div class="col-md-4">
+                        <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
                     </div>
-                `);
-                featureIndex++;
-            });
-
-            $(document).on('click', '.remove-feature', function() {
-                $(this).closest('.feature-group').remove();
-            });
+                    <div class="col-md-4">
+                        <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" name="features[${featureIndex}][order_no]" class="form-control" placeholder="Order No" required>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <input type="text" name="features[${featureIndex}][description_en]" class="form-control" placeholder="Description in English">
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <input type="text" name="features[${featureIndex}][description_ar]" class="form-control" placeholder="Description in Arabic">
+                    </div>
+                    <div class="col-md-12 text-end mt-2">
+                        <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
+                    </div>
+                </div>
+            `);
+            featureIndex++;
         });
-    </script>
+
+        $(document).on('click', '.remove-feature', function() {
+            $(this).closest('.feature-group').remove();
+        });
+    });
+</script>
 @endsection

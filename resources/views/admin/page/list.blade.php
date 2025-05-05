@@ -50,6 +50,8 @@
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.add', $page->id) }}">Add Section</a>
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">section list</a>
                                                     <a class="dropdown-item" href="{{ route('admin.element.add', $page->id) }}">Add Element</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.block.add', $page->id) }}">Add Block</a>
+
                                                     <div class="dropdown-divider"></div>
                                                 </div>
 
