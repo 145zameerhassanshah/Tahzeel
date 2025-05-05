@@ -133,11 +133,11 @@ public function store(Request $request)
                 'en' => $feature['description_en'] ?? '',
                 'ar' => $feature['description_ar'] ?? '',
             ]);
-            
+
             $elementFeature->order_no = $feature['order_no'] ?? 0;
             $elementFeature->save();
         }
-    }        
+    }
     return redirect()->back()->with('notification', [
         'message' => 'Page Element Added Successfully!',
         'alert' => 'success',
