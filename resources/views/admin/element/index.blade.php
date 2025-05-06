@@ -52,7 +52,7 @@
                                     <td><img src="{{ asset($element->image) }}" width="70px" alt="Image"></td>
                                     <td>{{ $element->getTranslation('title', 'en') }}</td>
                                     <td>{{ $element->getTranslation('subtitle', 'en') }}</td>
-                                    <td>{{ $element->getTranslation('description', 'en') }}</td>
+                                    <td>{!! $element->getTranslation('description', 'en') !!}</td>
                                     <td>
                                         <!-- Edit Button -->
                                         <a href="{{ route('admin.element.edit', $element->id) }}" class="btn btn-sm btn-info" title="Edit">

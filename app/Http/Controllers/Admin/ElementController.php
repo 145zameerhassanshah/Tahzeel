@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Element;
 use App\Models\Page;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\GD\Driver;
-use Illuminate\Support\Str;
 use App\Models\ElementFeature;
 
 class ElementController extends Controller

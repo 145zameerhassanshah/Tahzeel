@@ -52,7 +52,7 @@
                                     <td><img src="{{ asset($block->image) }}" width="70px" alt="Image"></td>
                                     <td>{{ $block->getTranslation('title', 'en') }}</td>
                                     <td>{{ $block->getTranslation('subtitle', 'en') }}</td>
-                                    <td>{{ $block->getTranslation('description', 'en') }}</td>
+                                    <td>{!! $block->getTranslation('description', 'en') !!}</td>
                                     <td>
                                         <!-- Edit Button -->
                                         <a href="{{ route('admin.block.edit', $block->id) }}" class="btn btn-sm btn-info" title="Edit">

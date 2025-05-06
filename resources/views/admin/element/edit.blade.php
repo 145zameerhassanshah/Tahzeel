@@ -95,21 +95,21 @@
                                             <div class="feature-group mb-3 border rounded p-2">
                                                 <div class="row mb-2">
                                                     <div class="col-md-4">
-                                                        <input type="text" name="features[{{ $index }}][en]" class="form-control" placeholder="Title in English" value="{{ old('features.'.$index.'.en', $feature['en']) }}" required>
+                                                        <input type="text" name="features[{{ $index }}][en]" class="form-control" placeholder="Title in English" value="{{ old('features.'.$index.'.en', $feature->getTranslation('title', 'en')) }}" required>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="text" name="features[{{ $index }}][ar]" class="form-control" placeholder="Title in Arabic" value="{{ old('features.'.$index.'.ar', $feature['ar']) }}" required>
+                                                        <input type="text" name="features[{{ $index }}][ar]" class="form-control" placeholder="Title in Arabic" value="{{ old('features.'.$index.'.ar', $feature->getTranslation('title', 'ar')) }}" required>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="number" name="features[{{ $index }}][order]" class="form-control" placeholder="Order No" value="{{ old('features.'.$index.'.order', $feature['order']) }}" required>
+                                                        <input type="number" name="features[{{ $index }}][order]" class="form-control" placeholder="Order No" value="{{ old('features.'.$index.'.order', $feature->order_no) }}" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <input type="text" name="features[{{ $index }}][description_en]" class="form-control" placeholder="Description Title in English" value="{{ old('features.'.$index.'.description_en', $feature['description_en']) }}">
+                                                        <input type="text" name="features[{{ $index }}][description_en]" class="form-control" placeholder="Description Title in English" value="{{ old('features.'.$index.'.description_en', $feature->getTranslation('description', 'en')) }}">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="features[{{ $index }}][description_ar]" class="form-control" placeholder="Description Title in Arabic" value="{{ old('features.'.$index.'.description_ar', $feature['description_ar']) }}">
+                                                        <input type="text" name="features[{{ $index }}][description_ar]" class="form-control" placeholder="Description Title in Arabic" value="{{ old('features.'.$index.'.description_ar', $feature->getTranslation('description', 'ar')) }}">
                                                     </div>
                                                     <div class="col-md-12 text-end mt-2">
                                                         <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>

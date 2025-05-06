@@ -131,9 +131,7 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $page = Page::findOrFail($id);
-
         $data = $request->except('hero_image');
-
         if ($request->hasFile('hero_image')) {
             @unlink(public_path('assets/admin/img/' . $page->hero_image));
             $file = $request->file('hero_image');
@@ -141,9 +139,7 @@ class PageController extends Controller
             $file->move(public_path('assets/admin/img'), $filename);
             $data['hero_image'] = $filename;
         }
-
         $page->update($data);
-
         return redirect()->route('admin.page.index')->with('success', 'Page updated successfully.');
     }
 }
