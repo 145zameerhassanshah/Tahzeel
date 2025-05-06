@@ -1,22 +1,36 @@
-<!-- resources\views\front\page-detail.blade.php -->
 @extends('front.layouts.master')
 @section('title', $page->title)
 @section('content')
 
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-1', ['element' => $page->elements[0]])
+@endif
 
 @if ($page->elements->isNotEmpty())
-    @include('front.partials._element-features-1', ['element' => $page->elements[0]])
+@include('front.partials._element-features-2', ['element' => $page->elements[0]])
+@endif
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-3', ['element' => $page->elements[0]])
+@endif
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-4', ['element' => $page->elements[0]])
+@endif
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-5', ['element' => $page->elements[0]])
 @endif
 
 
 @if ($page->elements->isNotEmpty())
-    @include('front.partials._element-features-2', ['element' => $page->elements[0]])
+@include('front.partials._element-features-6', ['element' => $page->elements[0]])
 @endif
-
 
 @if ($page->elements->isNotEmpty())
-    @include('front.partials._element-features-3', ['elements' => $page->elements])
+@include('front.partials._block2', ['element' => $page->elements[0]])
 @endif
+<<<<<<< HEAD
 
 
 @if ($page->blocks->isNotEmpty())
@@ -40,3 +54,7 @@
 
 
 @endsection
+=======
+<!-- _element-features-7 -->
+@endsection
+>>>>>>> d555d885f24a1bb0d5fcec113fdb9b0008b00fd9
