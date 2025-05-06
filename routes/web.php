@@ -366,11 +366,6 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::resource('admin/call-to-actions', CallToActionController::class);
 
 
-
-
-
-
-
     Route::get('/page-section/{id}', [PageSectionController::class, 'index'])->name('admin.page.section.index');
     Route::get('/page-section/add/{id}', [PageSectionController::class, 'add'])->name('admin.page.section.add');
     Route::post('/page-section/store', [PageSectionController::class, 'store'])->name('admin.page.section.store');
@@ -386,8 +381,5 @@ Route::middleware(['auth', 'status'])->group(function () {
     //     return redirect()->back();
     // })->name('setLanguage');
 
-
-
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 });
-// all admin routes write in admin middleware

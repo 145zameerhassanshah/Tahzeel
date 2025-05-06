@@ -36,19 +36,37 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
     Route::get('/manpower-recruitment', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
 
+
+
+
+
+
+
+
+
+
+
+
+
+    Route::get('/testingpage', [FrontPageController::class, 'testPage'])->name('front.page.testing');
+
     // Testing View's
     Route::get('/testing', function () {
         return view('test');
     })->name('test.view');
+
     Route::get('/testing0', function () {
         return view('test0');
     })->name('test0.view');
+
     Route::get('/testing1', function () {
         return view('test1');
     })->name('test1.view');
+
     Route::get('/testing2', function () {
         return view('test2');
     })->name('test2.view');
+
     Route::get('/testing3', function () {
         return view('test3');
     })->name('test3.view');
@@ -64,4 +82,12 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/testing6', function () {
         return view('test6');
     })->name('test6.view');
+
+    Route::get('/testing7', function () {
+        return view('test7');
+    })->name('test7.view');
+
+    Route::get('/testing8', function () {
+        return view('test8');
+    })->name('test8.view');
 });

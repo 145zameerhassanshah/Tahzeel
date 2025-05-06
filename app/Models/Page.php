@@ -100,4 +100,14 @@ class Page extends Model
     {
         return $this->hasMany(PageSection::class);
     }
+
+    public function elements()
+    {
+        return $this->hasMany(Element::class);
+    }
+
+    public function blocks()
+    {
+        return $this->hasMany(Block::class);
+    }
 }

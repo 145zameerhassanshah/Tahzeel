@@ -33,21 +33,21 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="{{ route('front.page.detail','corporate-bank-account-setup') }}" data-bs-toggle="dropdown">{{ __('header.tasheel_services') }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('front.page.detail','corporate-bank-account-setup') }}">{{ __('header.under_construction') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.page.testing') }}">{{ __('header.under_construction') }}</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('header.other_services') }}</a>
                                     <ul class="dropdown-menu">
-                                       
+
                                         <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('"Under Construction"') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">{{ __('DED License') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.dhaServices') }}">{{ __('DHA Services') }}</a></li>
                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Human Resources</a>
                                             <ul class="dropdown-menu">
-                                              
+
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
-                                              
+
                                             </ul>
                                           </li>
                                     </ul>

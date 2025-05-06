@@ -26,4 +26,8 @@ class Element extends Model
     {
         return $this->hasMany(ElementFeature::class);
     }
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 }
