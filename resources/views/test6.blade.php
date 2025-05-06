@@ -2,6 +2,6 @@
 @section('title', 'Testing')
 @section('content')
 
-@include('front.partials._block4')
+@include('front.partials._element-features-4')
 
 @endsection
