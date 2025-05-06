@@ -22,11 +22,6 @@
 @if ($page->blocks->isNotEmpty())
     @include('front.partials._block', ['blocks' => $page->blocks])
 @endif
-
-
-
 {{-- Hero Section --}}
-
-
 
 @endsection
