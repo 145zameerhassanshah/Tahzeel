@@ -13,14 +13,14 @@
     <div class="row d-flex align-items-start mb-19">
       <div class="col-lg-6 position-lg-sticky" style="top: 8rem;">
 
-        <figure><img src="{{ asset($element->icon) }}" alt=""></figure>
+        <figure><img src="{{ asset($element->image) }}" alt=""></figure>
       </div>
       <!-- /column -->
       <div class="col-lg-5 ms-auto">
         <div class="d-flex flex-row mb-8">
           <div>
             <div class="svg-bg svg-bg-lg bg-pale-grape rounded-xl me-5">
-              <img src="{{ asset($element->image) }}" class="icon-svg solid text-navy" alt="">
+              <img src="{{ asset($element->icon) }}" class="icon-svg solid text-navy" alt="">
             </div>
           </div>
           <div>
