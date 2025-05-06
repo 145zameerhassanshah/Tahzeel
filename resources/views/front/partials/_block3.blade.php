@@ -30,13 +30,12 @@
             </div>
             <!--/column -->
             <div class="col-lg-6">
-                <h3 class="display-4 mb-5">We bring solutions to make life easier for our customers.</h3>
-                <p class="mb-7">Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula.</p>
+                <h3 class="display-4 mb-5">{{$block->title}}</h3>
+                <p class="mb-7">{!!$block->description!!}</p>
                 <div class="row gy-3">
                     <div class="col-xl-6">
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             <li><span><i class="uil uil-check"></i></span><span>Aenean quam ornare curabitur blandit consectetur.</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>Nullam quis risus eget urna mollis ornare aenean leo.</span></li>
                         </ul>
                     </div>
                     <!--/column -->

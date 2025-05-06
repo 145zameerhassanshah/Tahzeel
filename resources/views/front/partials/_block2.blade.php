@@ -8,26 +8,33 @@
             </div>
             <!--/column -->
             <div class="col-lg-5">
-                <h2 class="fs-16 text-uppercase text-muted mb-3">Our Solutions</h2>
-                <h3 class="display-4 mb-5">We make your spending stress-free for you to have the perfect control.</h3>
-                <p class="mb-6">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus.</p>
-                <div class="row gy-3">
+                <h2 class="fs-16 text-uppercase text-muted mb-3">{{$block->title}}</h2>
+                <h3 class="display-4 mb-5">{{$block->subtitle}}</h3>
+                <p class="mb-6">{!!$block->description!!}</p>
+                <div class="row gy-3 gx-xl-8">
                     <div class="col-xl-6">
+                        @foreach ($block->features as $index => $feature)
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>Aenean quam ornare. Curabitur blandit.</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>Nullam quis risus eget urna mollis ornare.</span></li>
+                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
+                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
-                    </div>
+                    @endforeach
+                </div>
+
                     <!--/column -->
                     <div class="col-xl-6">
+                        @foreach ($block->features as $index => $feature)
+
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>Etiam porta euismod malesuada mollis.</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>Vivamus sagittis lacus vel augue rutrum.</span></li>
+                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
+                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
+                    @endforeach
                     </div>
                     <!--/column -->
                 </div>
                 <!--/.row -->
+
             </div>
             <!--/column -->
         </div>

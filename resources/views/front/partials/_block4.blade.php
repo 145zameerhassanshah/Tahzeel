@@ -32,7 +32,7 @@
             </div>
             <!--/column -->
             <div class="col-lg-5">
-                <h3 class="display-4 mb-7">A few reasons why our valued customers choose us.</h3>
+                <h3 class="display-4 mb-7">{{$block->title}}</h3>
                 <div class="accordion accordion-wrapper" id="accordionExample">
                     <div class="card plain accordion-item">
                         <div class="card-header" id="headingOne">

@@ -10,8 +10,8 @@
             </div>
             <!--/column -->
             <div class="col-lg-5">
-                <h2 class="fs-16 text-uppercase text-line text-primary mb-3">Why Choose Us?</h2>
-                <h3 class="display-4 mb-7">A few reasons why our valued customers choose us.</h3>
+                <h2 class="fs-16 text-uppercase text-line text-primary mb-3">{{$block->title}}</h2>
+                <h3 class="display-4 mb-7">{!!$block->description!!}</h3>
                 <div class="accordion accordion-wrapper" id="accordionExample">
                     <div class="card plain accordion-item">
                         <div class="card-header" id="headingOne">
