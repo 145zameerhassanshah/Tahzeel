@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +23,11 @@ class Block extends Model
         'description'
     ];
     public function features()
-{
-    return $this->hasMany(BlockFeature::class);
-}
-
+    {
+        return $this->hasMany(BlockFeature::class);
+    }
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 }

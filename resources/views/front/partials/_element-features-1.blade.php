@@ -2,10 +2,10 @@
   <div class="container py-16 py-md-18">
     <div class="row text-center">
       <div class="col-md-11 col-lg-9 col-xl-8 col-xxl-7 mx-auto position-relative">
-        <img src="./assets/img/svg/doodle3.svg" class="h-11 position-absolute d-none d-lg-block" style="top: -20%; right: -12%" alt="">
-        <img src="./assets/img/svg/doodle9.svg" class="h-17 position-absolute d-none d-lg-block" style="bottom: 5%; left: -17%" alt="">
-        <h2 class="fs-16 text-uppercase text-muted mb-3 text-center">Why Choose Sandbox?</h2>
-        <h3 class="display-3 mb-12 text-center">Here are a few <span class="text-gradient gradient-7">reasons why</span> our customers choose the Sandbox app.</h3>
+        <img src="{{ asset('front/dist/assets/img/svg/doodle3.svg') }}" class="h-11 position-absolute d-none d-lg-block" style="top: -20%; right: -12%" alt="">
+        <img src="{{ asset('front/dist/assets/img/svg/doodle9.svg') }}" class="h-17 position-absolute d-none d-lg-block" style="bottom: 5%; left: -17%" alt="">
+        <h2 class="fs-16 text-uppercase text-muted mb-3 text-center">{{ $element->title }}</h2>
+        <h3 class="display-3 mb-12 text-center">{!! $element->subtitle !!}</h3>
       </div>
       <!-- /column -->
     </div>
@@ -13,14 +13,14 @@
     <div class="row d-flex align-items-start mb-19">
       <div class="col-lg-6 position-lg-sticky" style="top: 8rem;">
 
-        <figure><img src="{{ asset('uploads/tmp/ext1.jpeg') }}" alt=""></figure>
+        <figure><img src="{{ asset($element->icon) }}" alt=""></figure>
       </div>
       <!-- /column -->
       <div class="col-lg-5 ms-auto">
         <div class="d-flex flex-row mb-8">
           <div>
             <div class="svg-bg svg-bg-lg bg-pale-grape rounded-xl me-5">
-              <img src="{{ asset('uploads/tmp/ext2.jpg') }}" class="icon-svg solid text-navy" alt="">
+              <img src="{{ asset($element->image) }}" class="icon-svg solid text-navy" alt="">
             </div>
           </div>
           <div>
