@@ -93,13 +93,13 @@
                                                 @foreach($block->features as $index => $feature)
                                                     <div class="row mb-3 feature-group border rounded p-2">
                                                         <div class="col-md-4">
-                                                            <input type="text" name="features[{{ $index }}][en]" class="form-control" placeholder="Title in English" value="{{ old('features.'.$index.'.en', $feature['en']) }}" required>
+                                                            <input type="text" name="features[{{ $index }}][en]" class="form-control" placeholder="Title in English" value="{{ old('features.'.$index.'.en', $feature->getTranslation('title', 'en')) }}" required>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="text" name="features[{{ $index }}][ar]" class="form-control" placeholder="Title in Arabic" value="{{ old('features.'.$index.'.ar', $feature['ar']) }}" required>
+                                                            <input type="text" name="features[{{ $index }}][ar]" class="form-control" placeholder="Title in Arabic" value="{{ old('features.'.$index.'.ar', $feature->getTranslation('title', 'ar')) }}" required>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <input type="number" name="features[{{ $index }}][order]" class="form-control" placeholder="Order No" value="{{ old('features.'.$index.'.order', $feature['order']) }}" required>
+                                                            <input type="number" name="features[{{ $index }}][order]" class="form-control" placeholder="Order No" value="{{ old('features.'.$index.'.order', $feature->order_no) }}" required>
                                                         </div>
                                                         <div class="col-md-2 d-flex align-items-end">
                                                             <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
