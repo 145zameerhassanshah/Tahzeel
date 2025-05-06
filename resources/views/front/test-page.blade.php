@@ -10,7 +10,7 @@
 
 
 @if ($page->elements->isNotEmpty())
-    @include('front.partials._element-features-2', ['elements' => $page->elements])
+    @include('front.partials._element-features-2', ['element' => $page->elements[0]])
 @endif
 
 
