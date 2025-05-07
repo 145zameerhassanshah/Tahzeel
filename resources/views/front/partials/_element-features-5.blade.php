@@ -29,13 +29,12 @@
                     <div class="col-xl-12">
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             @foreach ($element->features as $feature)
-                            <li class="fw-bold mb-1">
-                                <span><i class="uil uil-check"></i></span>
-                                <span>{{ $feature->title }}</span>
-                            </li>
                             <li class="mb-3">
                                 <span><i class="uil uil-check"></i></span>
-                                <span>{{ $feature->description }}</span>
+                                <span>
+                                    <strong>{{ $feature->title }}</strong><br>
+                                    {{ $feature->description }}
+                                </span>
                             </li>
                             @endforeach
                         </ul>

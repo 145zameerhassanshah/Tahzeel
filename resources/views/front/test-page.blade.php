@@ -28,7 +28,14 @@
 @endif
 
 @if ($page->elements->isNotEmpty())
-@include('front.partials._block2', ['element' => $page->elements[0]])
+@include('front.partials._element-features-7', ['element' => $page->elements[0]])
 @endif
-<!-- _element-features-7 -->
+
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-8', ['element' => $page->elements[0]])
+@endif
+
+
+<!-- _element-features-8 -->
 @endsection
