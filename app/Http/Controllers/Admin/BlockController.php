@@ -156,8 +156,7 @@ public function update(Request $request, $id)
         }
     }
 
-    return redirect()->route('admin.block.index', $block->id)
-    ->with('notification', [
+    return redirect()->back()->with('notification', [
         'message' => 'Page Block Updated Successfully!',
         'alert' => 'success',
     ]);

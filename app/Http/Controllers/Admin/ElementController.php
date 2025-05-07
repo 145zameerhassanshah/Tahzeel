@@ -90,7 +90,8 @@ public function store(Request $request)
             $elementFeature->save();
         }
     }
-    return redirect()->back()->with('notification', [
+    return redirect()->route('admin.element.index', $element->id)
+    ->with('notification', [
         'message' => 'Page Element Added Successfully!',
         'alert' => 'success',
     ]);
