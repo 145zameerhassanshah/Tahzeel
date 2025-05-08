@@ -8,9 +8,6 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         User::create([
@@ -25,7 +22,6 @@ class UserSeeder extends Seeder
             'address' => 'Gujranwala',
         ]);
 
-
         User::create([
             'name' => 'User',
             'email' => 'user@user.com',
@@ -37,6 +33,5 @@ class UserSeeder extends Seeder
             'whatsapp_no' => '+923758365729',
             'address' => 'Gujranwala',
         ]);
-
     }
 }
