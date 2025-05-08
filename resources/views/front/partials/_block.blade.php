@@ -23,7 +23,6 @@
                         @foreach ($block->features as $index => $feature)
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
                     @endforeach
                 </div>
@@ -34,7 +33,6 @@
 
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
                     @endforeach
                     </div>

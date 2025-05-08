@@ -34,17 +34,23 @@
                 <p class="mb-7">{!!$block->description!!}</p>
                 <div class="row gy-3">
                     <div class="col-xl-6">
+                        @foreach ($block->features as $index => $feature)
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>Aenean quam ornare curabitur blandit consectetur.</span></li>
+                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
-                    </div>
+                    @endforeach
+                </div>
+
                     <!--/column -->
                     <div class="col-xl-6">
+                        @foreach ($block->features as $index => $feature)
+
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>Etiam porta euismod malesuada mollis nisl ornare sem.</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>Vivamus sagittis lacus augue rutrum maecenas.</span></li>
+                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
                         </ul>
+                    @endforeach
                     </div>
+                    <!--/column -->
                     <!--/column -->
                 </div>
                 <!--/.row -->
