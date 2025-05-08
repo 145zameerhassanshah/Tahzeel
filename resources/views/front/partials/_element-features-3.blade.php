@@ -8,10 +8,10 @@
       </div>
       <div class="col-lg-5 col-xl-4 offset-lg-1">
         <h2 class="fs-16 text-uppercase text-line text-primary mb-3">
-          {{ $element->title }}
+          {!! $element->title  !!}
         </h2>
         <h3 class="display-4 mb-7">
-          {{ $element->subtitle }}
+            {!! $element->subtitle  !!}
         </h3>
         @foreach ($element->features as $index => $feature)
         <div class="d-flex flex-row mb-6">

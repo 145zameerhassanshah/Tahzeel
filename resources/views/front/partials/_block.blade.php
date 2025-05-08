@@ -1,52 +1,39 @@
-<section class="wrapper bg-light angled upper-end lower-end">
-    <div class="container py-14 py-md-16">
-        <div class="row gx-lg-8 gx-xl-12 gy-10 mb-14 mb-md-17 align-items-center">
-            <div class="col-lg-6 position-relative order-lg-2">
-                <div class="shape bg-dot primary rellax w-16 h-20" data-rellax-speed="1" style="top: 3rem; left: 5.5rem; transform: translate3d(0px, 6px, 0px);"></div>
-                <div class="overlap-grid overlap-grid-2">
-                    <div class="item">
-                        <figure class="rounded shadow"><img src="{{ asset('uploads/tmp/ext3.png') }}" alt=""></figure>
+
+
+
+		<!-- /section -->
+		<section class="wrapper bg-light">
+			<div class="container">
+				<div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+					<div class="col-lg-7 order-lg-2">
+						<figure><img class="w-auto" src="{{ asset('front/dev/assets/img/demos/blockoneext.png') }}"  alt="" /></figure>
+					</div>
+					<!--/column -->
+					<div class="col-lg-5">
+						<h2 class="fs-16 text-uppercase text-muted mb-3">{{$block->title}}</h2>
+						<h3 class="display-4 mb-5">{{$block->subtitle}}</h3>
+						<p class="mb-6">{!!$block->description!!}</p>
+                        @php
+                        $featureChunks = $block->features->chunk(ceil($block->features->count() / 2));
+                    @endphp
+                    
+                    <div class="row gy-3">
+                        @foreach ($featureChunks as $chunk)
+                            <div class="col-xl-6">
+                                <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
+                                    @foreach ($chunk as $feature)
+                                        <li><span><i class="uil uil-check"></i></span><span>{{ $feature->title }}</span></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="item">
-                        <figure class="rounded shadow"><img src="{{ asset('uploads/tmp/ext3.png') }}" alt=""></figure>
-                    </div>
-                </div>
-            </div>
-            <!--/column -->
-            <div class="col-lg-6">
-                <img src="{{ asset('uploads/tmp/ext3.png') }}" class="icon-svg icon-svg-md mb-4" alt="">
-                <h2 class="display-4 mb-3">{{$block->title}}</h2>
-                <p class="lead fs-lg">{!!$block->description!!}</p>
-                <p class="mb-6">{!!$block->description!!}</p>
-            <div class="row gy-3 gx-xl-8">
-                    <div class="col-xl-6">
-                        @foreach ($block->features as $index => $feature)
-                        <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                        </ul>
-                    @endforeach
-                </div>
-
-                    <!--/column -->
-                    <div class="col-xl-6">
-                        @foreach ($block->features as $index => $feature)
-
-                        <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
-                            <li><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                            <li class="mt-3"><span><i class="uil uil-check"></i></span><span>{{$feature->title}}</span></li>
-                        </ul>
-                    @endforeach
-                    </div>
-                    <!--/column -->
-                </div>
-                <!--/.row -->
-
-
-            </div>
-            <!--/column -->
-        </div>
-        <!--/.row -->
-    </div>
-    <!-- /.container -->
-</section>
+                                <!--/.row -->
+					</div>
+					<!--/column -->
+				</div>
+				<!--/.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- /section -->
