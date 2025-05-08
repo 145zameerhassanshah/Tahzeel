@@ -17,17 +17,12 @@
                                             <h5 class="mb-0">{{ $page->title }} - Add New Element</h5>
                                         </div>
                                         <div>
-                                            <a href="{{ route('admin.element.index', $page->id) }}" class="btn btn-primary btn-sm">
-                                                {{ __('Element List') }}
-                                            </a>
+                                            <a href="{{ route('admin.element.index', $page->id) }}" class="btn btn-primary btn-sm">{{ __('Element List') }}</a>
                                         </div>
                                     </div>
-
                                     <div class="card-body">
                                         <div class="row">
-
                                             <input type="hidden" name="page_id" value="{{ $page->id }}">
-
                                             <!-- Title Fields -->
                                             <div class="col-md-6 mb-3">
                                                 <label for="title_en">{{ __('Title (English)') }}<span
