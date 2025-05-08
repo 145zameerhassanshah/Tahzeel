@@ -15,6 +15,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\{
     BcategoryController,
     BlogController,
+    BlockController,
+
     BulkDeleteController,
     CallToActionController,
     DocumentRequiredController,
@@ -283,9 +285,18 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/element/add/{id}', [ElementController::class, 'add'])->name('admin.element.add');
         Route::post('/element/store', [ElementController::class, 'store'])->name('admin.element.store');
         Route::get('/element/edit/{id}', [ElementController::class, 'edit'])->name('admin.element.edit');
-        Route::post('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
-        Route::post('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
+        Route::put('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
+        Route::delete('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
         // End of Elements Routes
+
+        // Blocks  Routes
+        Route::get('/block/{id}', [BlockController::class, 'index'])->name('admin.block.index');
+        Route::get('/block/add/{id}', [BlockController::class, 'add'])->name('admin.block.add');
+        Route::post('/block/store', [BlockController::class, 'store'])->name('admin.block.store');
+        Route::get('/block/edit/{id}', [BlockController::class, 'edit'])->name('admin.block.edit');
+        Route::put('/block/update/{id}', [BlockController::class, 'update'])->name('admin.block.update');
+        Route::delete('/block/delete/{id}', [BlockController::class, 'delete'])->name('admin.block.delete');
+        // End of Blocks Routes
 
         // Service Section Routes
         Route::get('/service-section/{id}', [ServiceSectionController::class, 'index'])->name('admin.service.section.index');
@@ -355,11 +366,6 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::resource('admin/call-to-actions', CallToActionController::class);
 
 
-
-
-
-
-
     Route::get('/page-section/{id}', [PageSectionController::class, 'index'])->name('admin.page.section.index');
     Route::get('/page-section/add/{id}', [PageSectionController::class, 'add'])->name('admin.page.section.add');
     Route::post('/page-section/store', [PageSectionController::class, 'store'])->name('admin.page.section.store');
@@ -375,8 +381,5 @@ Route::middleware(['auth', 'status'])->group(function () {
     //     return redirect()->back();
     // })->name('setLanguage');
 
-
-
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 });
-// all admin routes write in admin middleware
