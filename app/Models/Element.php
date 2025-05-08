@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,4 +22,12 @@ class Element extends Model
         'subtitle',
         'description'
     ];
+    public function features()
+    {
+        return $this->hasMany(ElementFeature::class);
+    }
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 }

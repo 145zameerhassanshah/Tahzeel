@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service Section')
+@section('title', 'Page Section')
 @section('content')
 
     <section class="content">
