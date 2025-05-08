@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
 use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonial, Procedure, CallToAction, DocumentRequired, FeatureImage, PageGroup, Enquiry, Service, User, WhyChooseUs, WhyUsImage, Feature, Faq};
 use App\Mail\InquiryEmail;
@@ -249,8 +250,8 @@ class FrontPageController extends Controller
     {
         $slug = 'corporate-bank-account-setup';
         $page = Page::with([
-           'elements',
-           'blocks',
+            'elements',
+            'blocks',
             'sections'
         ])->where('slug', $slug)->firstOrFail();
         return view('front.test-page', ['page' => $page]);
