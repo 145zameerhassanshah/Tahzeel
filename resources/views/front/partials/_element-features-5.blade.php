@@ -32,8 +32,8 @@
                             <li class="mb-3">
                                 <span><i class="uil uil-check"></i></span>
                                 <span>
-                                    <strong>{{ $feature->title }}</strong><br>
-                                    {{ $feature->description }}
+                                    <strong>{!! $feature->title !!}</strong><br>
+                                    {!! $feature->description !!}
                                 </span>
                             </li>
                             @endforeach

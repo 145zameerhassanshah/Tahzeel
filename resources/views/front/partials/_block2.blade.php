@@ -15,7 +15,7 @@
             <!--/column -->
             <div class="col-lg-6">
                 <img src="{{ asset($block->image) }}" class="icon-svg icon-svg-md mb-4" alt="">
-                <h2 class="display-4 mb-3">{{$block->title}}</h2>
+                <h2 class="display-4 mb-3">{!! $block->title !!}</h2>
                 <p class="lead fs-lg">{!!$block->description!!}</p>
                 <p class="mb-6">{!!$block->description!!}</p>
                 @php
@@ -27,7 +27,7 @@
                     <div class="col-xl-6">
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             @foreach ($chunk as $feature)
-                                <li><span><i class="uil uil-check"></i></span><span>{{ $feature->title }}</span></li>
+                                <li><span><i class="uil uil-check"></i></span><span>{!! $feature->title !!}</span></li>
                             @endforeach
                         </ul>
                     </div>

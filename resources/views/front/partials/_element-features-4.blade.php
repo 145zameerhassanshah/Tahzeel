@@ -13,7 +13,7 @@
             
             <div class="col-lg-5">
                 <h3 class="display-4 mb-7">
-                    {{ $element->title }}
+                    {!! $element->title !!}
                 </h3>
                 <div class="accordion accordion-wrapper" id="accordionExample">
                     @foreach ($element->features as $index => $feature)
@@ -28,7 +28,7 @@
                                 data-bs-target="#{{ $collapseId }}"
                                 aria-expanded="false"
                                 aria-controls="{{ $collapseId }}">
-                                {{ $feature->title }}
+                                {!! $feature->title !!}
                             </button>
                         </div>
                         <div id="{{ $collapseId }}"
@@ -36,7 +36,7 @@
                             aria-labelledby="{{ $headingId }}"
                             data-bs-parent="#accordionExample">
                             <div class="card-body">
-                                <p>{{ $feature->description }}</p>
+                                <p>{!! $feature->description !!}</p>
                             </div>
                         </div>
                     </div>

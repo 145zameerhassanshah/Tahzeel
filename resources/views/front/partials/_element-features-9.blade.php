@@ -20,7 +20,7 @@
             <!--/column -->
             <div class="col-lg-6">
                 <img src="{{ asset('front/dist/assets/img/icons/lineal/megaphone.svg') }}" class="icon-svg icon-svg-md mb-4" alt="">
-                <h2 class="display-4 mb-3">{{ $block->title }}</h2>
+                <h2 class="display-4 mb-3">{!! $block->title !!}</h2>
                 <p class="lead fs-lg">{!! $block->description !!}</p>
                 <div class="row gy-3 gx-xl-8">
                     @php
@@ -32,7 +32,7 @@
                             @foreach ($features->slice(0, $half) as $feature)
                             <li class="mb-3">
                                 <span><i class="uil uil-check"></i></span>
-                                <span>{{ $feature->title }}</span>
+                                <span>{!! $feature->title !!}</span>
                             </li>
                             @endforeach
                         </ul>
@@ -42,7 +42,7 @@
                             @foreach ($features->slice($half) as $feature)
                             <li class="mb-3">
                                 <span><i class="uil uil-check"></i></span>
-                                <span>{{ $feature->title }}</span>
+                                <span>{!! $feature->title !!}</span>
                             </li>
                             @endforeach
                         </ul>

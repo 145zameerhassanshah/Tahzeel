@@ -4,7 +4,7 @@
       <div class="col-md-11 col-lg-9 col-xl-8 col-xxl-7 mx-auto position-relative">
         <img src="{{ asset('front/dist/assets/img/svg/doodle3.svg') }}" class="h-11 position-absolute d-none d-lg-block" style="top: -20%; right: -12%" alt="">
         <img src="{{ asset('front/dist/assets/img/svg/doodle9.svg') }}" class="h-17 position-absolute d-none d-lg-block" style="bottom: 5%; left: -17%" alt="">
-        <h2 class="fs-16 text-uppercase text-muted mb-3 text-center">{{ $element->title }}</h2>
+        <h2 class="fs-16 text-uppercase text-muted mb-3 text-center">{!! $element->title !!}</h2>
         <h3 class="display-3 mb-12 text-center">{!! $element->subtitle !!}</h3>
       </div>
     </div>
@@ -30,8 +30,8 @@
             </div>
           </div>
           <div>
-            <h4 class="fs-20">{{ $feature->title }}</h4>
-            <p>{{ $feature->description }}</p>
+            <h4 class="fs-20">{!! $feature->title !!}</h4>
+            <p>{!! $feature->description !!}</p>
           </div>
         </div>
         @endforeach

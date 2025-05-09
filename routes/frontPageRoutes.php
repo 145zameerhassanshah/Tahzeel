@@ -35,9 +35,9 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
-    Route::get('/manpower-recruitments', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
+    Route::get('/manpower-recruitments', action: [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
 
-    Route::get('manpower-recruitment', [HumanResourceController::class, 'manpowerRecruitment'])->name('front.manpower.recruitment');
+    Route::get('/manpower-recruitment', [HumanResourceController::class, 'manpowerRecruitment'])->name('front.manpower.recruitment');
     Route::get('/hr-consultancy-services', [HumanResourceController::class, 'hrConsultancyServices'])->name('front.hr.consultancy');
     Route::get('/employment-contracts', [HumanResourceController::class, 'employmentContracts'])->name('front.employment.contracts');
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
