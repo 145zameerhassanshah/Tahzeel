@@ -10,7 +10,7 @@ class HumanResourceController extends Controller
 {
     public function manpowerRecruitment()
     {
-        $slug = 'man-power-supply';
+        $slug = 'manpower-recruitment';
         $page = Page::with([
             'elements',
             'blocks',
@@ -42,7 +42,7 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
 
@@ -61,7 +61,7 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
     public function workPermitsLaborCards()
@@ -79,7 +79,7 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
     public function employeeOnboardingCompliance()
@@ -97,7 +97,7 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
 
@@ -116,7 +116,7 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
 

@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
 					<div class="col-lg-7 order-lg-2">
-						<figure><img class="w-auto" src="{{ asset('front/dev/assets/img/demos/blockoneext.png') }}"  alt="" /></figure>
+						<figure><img class="w-auto" src="{{ $block->image }}"  alt="" /></figure>
 					</div>
 					<!--/column -->
 					<div class="col-lg-5">
