@@ -256,4 +256,9 @@ class FrontPageController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.test-page', ['page' => $page]);
     }
+
+
+
+
+
 }

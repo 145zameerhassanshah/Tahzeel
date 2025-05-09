@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\HumanResourceController;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
 Route::get('/lang/{locale}', function ($locale) {
@@ -34,7 +35,15 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/dubai-notary-document-authentication', [FrontController::class, 'notaryDocumentAuthentication'])->name('front.notaryDocumentAuthentication');
     Route::get('/vat-registration-for-businesses', [FrontPageController::class, 'vatBusiness'])->name('front.vat.business');
     Route::get('/page/{slug}', [FrontPageController::class, 'pagedetail'])->name('front.page.detail');
-    Route::get('/manpower-recruitment', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
+    Route::get('/manpower-recruitments', [FrontController::class, 'manpowerRecruitment'])->name('front.manpower-recruitment');
+
+    Route::get('manpower-recruitment', [HumanResourceController::class, 'manpowerRecruitment'])->name('front.manpower.recruitment');
+    Route::get('/hr-consultancy-services', [HumanResourceController::class, 'hrConsultancyServices'])->name('front.hr.consultancy');
+    Route::get('/employment-contracts', [HumanResourceController::class, 'employmentContracts'])->name('front.employment.contracts');
+    Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
+    Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
+    Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
+
 
 
 

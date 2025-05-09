@@ -34,6 +34,7 @@
                                     <a class="nav-link dropdown-toggle" href="{{ route('front.page.detail','corporate-bank-account-setup') }}" data-bs-toggle="dropdown">{{ __('header.tasheel_services') }}</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{ route('front.page.testing') }}">{{ __('header.under_construction') }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">ManPower Recuruitment</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
