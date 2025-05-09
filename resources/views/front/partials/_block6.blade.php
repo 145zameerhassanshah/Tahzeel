@@ -17,7 +17,7 @@
 					</div>
 					<!--/column -->
 					<div class="col-lg-6">
-						<h3 class="display-4 mb-5">{{$block->title}}</h3>
+						<h3 class="display-4 mb-5">{!!$block->title !!}</h3>
 						<p class="mb-5">{!!$block->description!!}</p>
                         @php
                         $featureChunks = $block->features->chunk(ceil($block->features->count() / 2));
@@ -30,7 +30,7 @@
                                     @foreach ($chunk as $index => $feature)
                                         <li @if($index > 0) class="mt-3" @endif>
                                             <span><i class="uil uil-check"></i></span>
-                                            <span>{{ $feature->title }}</span>
+                                            <span>{!! $feature->title !!}</span>
                                         </li>
                                     @endforeach
                                 </ul>

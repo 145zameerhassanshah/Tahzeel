@@ -6,8 +6,8 @@
             <figure class="rounded"><img src="{{ asset($element->image) }}" alt=""></figure>
         </div>
         <div class="col-lg-5">
-            <h2 class="fs-16 text-uppercase text-line text-primary mb-3">{{ $element->title }}</h2>
-            <h3 class="display-4 mb-7">{{ $element->subtitle }}</h3>
+            <h2 class="fs-16 text-uppercase text-line text-primary mb-3">{!! $element->title !!}</h2>
+            <h3 class="display-4 mb-7">{!! $element->subtitle !!}</h3>
             <div class="accordion accordion-wrapper" id="accordionExample">
                 @foreach ($element->features as $index => $feature)
                 @php
@@ -21,7 +21,7 @@
                             data-bs-target="#{{ $collapseId }}"
                             aria-expanded="false"
                             aria-controls="{{ $collapseId }}">
-                            {{ $feature->title }}
+                            {!! $feature->title !!}
                         </button>
                     </div>
                     <div id="{{ $collapseId }}"
@@ -29,7 +29,7 @@
                         aria-labelledby="{{ $headingId }}"
                         data-bs-parent="#accordionExample">
                         <div class="card-body">
-                            <p>{{ $feature->description }}</p>
+                            <p>{!! $feature->description !!}</p>
                         </div>
                     </div>
                 </div>

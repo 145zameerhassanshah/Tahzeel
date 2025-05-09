@@ -30,7 +30,7 @@
             </div>
             <!--/column -->
             <div class="col-lg-6">
-                <h3 class="display-4 mb-5">{{$block->title}}</h3>
+                <h3 class="display-4 mb-5">{!!$block->title!!}</h3>
                 <p class="mb-7">{!!$block->description!!}</p>
                 @php
                 $featureChunks = $block->features->chunk(ceil($block->features->count() / 2));
@@ -41,7 +41,7 @@
                     <div class="col-xl-6">
                         <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                             @foreach ($chunk as $feature)
-                                <li><span><i class="uil uil-check"></i></span><span>{{ $feature->title }}</span></li>
+                                <li><span><i class="uil uil-check"></i></span><span>{!! $feature->title !!}</span></li>
                             @endforeach
                         </ul>
                     </div>
