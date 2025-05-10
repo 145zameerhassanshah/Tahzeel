@@ -38,19 +38,10 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
         return view('front.hr.hr-consultancy-services', ['page' => $page]);
     }
 
 
-=======
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
-    }
-
-
->>>>>>> c79feb3a1a724d80072667e2708bffdebd602ba4
     public function employmentContracts()
     {
         $slug = 'manpower-recruitment';
@@ -64,13 +55,7 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
         return view('front.hr.employment-contracts', ['page' => $page]);
-=======
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
->>>>>>> c79feb3a1a724d80072667e2708bffdebd602ba4
     }
 
     public function workPermitsLaborCards()
@@ -86,13 +71,7 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
-        return view('front.hr.manpower-recruitment', ['page' => $page]);
-=======
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
->>>>>>> c79feb3a1a724d80072667e2708bffdebd602ba4
+        return view('front.hr.workPermits_LaborCards.blade', ['page' => $page]);
     }
 
     public function employeeOnboardingCompliance()
@@ -108,35 +87,8 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
         return view('front.hr.employee-onboarding', ['page' => $page]);
     }
-=======
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
-    }
-
-
-    public function payrollManagement()
-    {
-        $slug = 'manpower-recruitment';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
-    }
-
->>>>>>> c79feb3a1a724d80072667e2708bffdebd602ba4
 
 
     public function payrollManagement()
