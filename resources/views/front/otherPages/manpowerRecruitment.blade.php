@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('front.layouts.master')
 @section('title', 'Domestic Worker Visa')
 @section('content')
@@ -418,7 +417,6 @@
 
 @include('front.partials.amr-services-cards')
 
-=======
 @extends('front.layouts.master')
 @section('title', 'Domestic Worker Visa')
 @section('content')
@@ -837,5 +835,4 @@
 
 @include('front.partials.amr-services-cards')
 
->>>>>>> 81b627cee35d89665615b4dd0362c5f617d135b7
 @endsection
