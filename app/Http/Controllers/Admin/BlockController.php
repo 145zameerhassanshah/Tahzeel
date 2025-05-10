@@ -14,8 +14,6 @@ class BlockController extends Controller
     {
         $blocks = Block::where('page_id',$page_id)->get();
         $page = Page::findOrFail($page_id); // fetch page info
-
-
         return view('admin.block.index', compact('blocks','page'));
     }
 

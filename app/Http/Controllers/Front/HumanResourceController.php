@@ -21,104 +21,89 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-
-
         return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
 
 
-    // public function hrConsultancyServices()
-    // {
-    //     $slug = 'manpower-recruitment';
-    //     $page = Page::with([
-    //         'elements',
-    //         'blocks',
-    //         'sections',
-    //         'callToActions',
-    //         'sectionTitles',
-    //         'faqs',
-    //         'testimonials',
-    //         'whyUsImages'
-    //     ])->where('slug', $slug)->firstOrFail();
+    public function hrConsultancyServices()
+    {
+        $slug = 'manpower-recruitment';
+        $page = Page::with([
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials',
+            'whyUsImages'
+        ])->where('slug', $slug)->firstOrFail();
+        return view('front.hr.hr-consultancy-services', ['page' => $page]);
+    }
 
 
-    //     return view('front.manpower-recruitment', ['page' => $page]);
-    // }
+    public function employmentContracts()
+    {
+        $slug = 'manpower-recruitment';
+        $page = Page::with([
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials',
+            'whyUsImages'
+        ])->where('slug', $slug)->firstOrFail();
+        return view('front.hr.employment-contracts', ['page' => $page]);
+    }
+
+    public function workPermitsLaborCards()
+    {
+        $slug = 'manpower-recruitment';
+        $page = Page::with([
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials',
+            'whyUsImages'
+        ])->where('slug', $slug)->firstOrFail();
+        return view('front.hr.manpower-recruitment', ['page' => $page]);
+    }
+
+    public function employeeOnboardingCompliance()
+    {
+        $slug = 'manpower-recruitment';
+        $page = Page::with([
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials',
+            'whyUsImages'
+        ])->where('slug', $slug)->firstOrFail();
+        return view('front.hr.employee-onboarding', ['page' => $page]);
+    }
 
 
-    // public function employmentContracts()
-    // {
-    //     $slug = 'manpower-recruitment';
-    //     $page = Page::with([
-    //         'elements',
-    //         'blocks',
-    //         'sections',
-    //         'callToActions',
-    //         'sectionTitles',
-    //         'faqs',
-    //         'testimonials',
-    //         'whyUsImages'
-    //     ])->where('slug', $slug)->firstOrFail();
-
-
-    //     return view('front.manpower-recruitment', ['page' => $page]);
-    // }
-
-    // public function workPermitsLaborCards()
-    // {
-    //     $slug = 'manpower-recruitment';
-    //     $page = Page::with([
-    //         'elements',
-    //         'blocks',
-    //         'sections',
-    //         'callToActions',
-    //         'sectionTitles',
-    //         'faqs',
-    //         'testimonials',
-    //         'whyUsImages'
-    //     ])->where('slug', $slug)->firstOrFail();
-
-
-    //     return view('front.manpower-recruitment', ['page' => $page]);
-    // }
-
-    // public function employeeOnboardingCompliance()
-    // {
-    //     $slug = 'manpower-recruitment';
-    //     $page = Page::with([
-    //         'elements',
-    //         'blocks',
-    //         'sections',
-    //         'callToActions',
-    //         'sectionTitles',
-    //         'faqs',
-    //         'testimonials',
-    //         'whyUsImages'
-    //     ])->where('slug', $slug)->firstOrFail();
-
-
-    //     return view('front.manpower-recruitment', ['page' => $page]);
-    // }
-
-
-    // public function payrollManagement()
-    // {
-    //     $slug = 'manpower-recruitment';
-    //     $page = Page::with([
-    //         'elements',
-    //         'blocks',
-    //         'sections',
-    //         'callToActions',
-    //         'sectionTitles',
-    //         'faqs',
-    //         'testimonials',
-    //         'whyUsImages'
-    //     ])->where('slug', $slug)->firstOrFail();
-
-
-    //     return view('front.manpower-recruitment', ['page' => $page]);
-    // }
-
-
-
+    public function payrollManagement()
+    {
+        $slug = 'manpower-recruitment';
+        $page = Page::with([
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials',
+            'whyUsImages'
+        ])->where('slug', $slug)->firstOrFail();
+        return view('front.hr.payroll-management', ['page' => $page]);
+    }
 }

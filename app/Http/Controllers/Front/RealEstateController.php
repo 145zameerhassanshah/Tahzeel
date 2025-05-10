@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-
 use App\Http\Controllers\Controller;
 use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonial, Procedure, CallToAction, DocumentRequired, FeatureImage, PageGroup, Enquiry, Service, User, WhyChooseUs, WhyUsImage, Feature, Faq};
 use Illuminate\Http\Request;
@@ -21,8 +20,6 @@ class RealEstateController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-
-
         return view('front.real-estate.property-buying-selling', ['page' => $page]);
     }
 
@@ -39,8 +36,6 @@ class RealEstateController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-
-
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 
@@ -57,8 +52,6 @@ class RealEstateController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-
-
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 
@@ -75,8 +68,6 @@ class RealEstateController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-
-
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 }

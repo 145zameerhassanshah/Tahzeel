@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('elements', function (Blueprint $table) {
             $table->id();
             $table->string('element_name');
-            // Dual-language fields using JSON
             $table->json('title');                   // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->json('subtitle')->nullable();    // {"en": "Great service!", "ar": "خدمة رائعة!"}
             $table->json('description')->nullable(); // {"en": "Great service!", "ar": "خدمة رائعة!"}
