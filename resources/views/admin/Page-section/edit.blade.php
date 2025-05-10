@@ -95,9 +95,9 @@
                                                 <label for="type">{{ __('Type') }}<span
                                                         class="text-danger">*</span></label>
                                                 <select id="type" name="type" class="form-control">
-                                                    <option value="" selected disabled>Select Type</option>
-                                                    <option value="rtl" {{ $pageSection->type == 'rtl' ? 'selected' : '' }}>Right To Left</option>
-                                                    <option value="ltr" {{ $pageSection->type == 'ltr' ? 'selected' : '' }}>Left To Right</option>
+                                                    <option selected disabled>Select Type</option>
+                                                    <option value="R-2-L" {{ $pageSection->type == 'R-2-L' ? 'selected' : '' }}>Right To Left</option>
+                                                    <option value="L-2-R" {{ $pageSection->type == 'L-2-R' ? 'selected' : '' }}>Left To Right</option>
                                                 </select>
                                                 @error('type')
                                                     <p class="text-danger">{{ $message }}</p>
