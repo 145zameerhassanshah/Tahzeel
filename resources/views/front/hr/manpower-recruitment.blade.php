@@ -15,8 +15,12 @@
     @endif
 
 
+    @if ($page->elements->isNotEmpty())
+        @include('front.partials._element-features-1', ['element' => $page->elements[2]])
+    @endif
+    
+    @include('front.partials._cta3')
 
-    @include('front.partials.counter')
     @include('front.partials.clients')
 
     @include('front.partials.why-choose')

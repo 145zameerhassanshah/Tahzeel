@@ -201,6 +201,131 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
+            [
+                'slug' => 'property-buying-selling-assistance',
+                'title' => [
+                    'en' => 'Property Buying and Selling Assistance',
+                    'ar' => 'مساعدة في شراء وبيع العقارات'
+                ],
+                'description' => [
+                    'en' => 'We guide you through every step of property buying and selling, ensuring legal compliance and smooth transactions.',
+                    'ar' => 'نرشدك في كل خطوة من خطوات شراء وبيع العقارات مع ضمان الامتثال القانوني وسلاسة المعاملات.'
+                ],
+                'hero_title' => [
+                    'en' => 'Property Buying & Selling',
+                    'ar' => 'شراء وبيع العقارات'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Expert guidance for real estate investments.',
+                    'ar' => 'إرشاد خبير للاستثمار العقاري.'
+                ],
+                'hero_description' => [
+                    'en' => 'Our experienced team ensures you get the best deals while complying with all real estate regulations in the UAE.',
+                    'ar' => 'يضمن فريقنا ذو الخبرة حصولك على أفضل الصفقات مع الالتزام بجميع قوانين العقارات في الإمارات.'
+                ],
+                'meta_title' => 'Property Buying and Selling in UAE',
+                'meta_description' => 'Professional support for purchasing or selling property with complete transparency and legal assurance.',
+                'type' => 'real-estate-service',
+                'status' => 'published',
+                'route_name' => 'front.realestate.buying.selling',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+
+            [
+                'slug' => 'real-estate-transactions',
+                'title' => [
+                    'en' => 'Real Estate Transactions',
+                    'ar' => 'المعاملات العقارية'
+                ],
+                'description' => [
+                    'en' => 'We handle all types of real estate transactions with accuracy and full legal compliance.',
+                    'ar' => 'نتولى جميع أنواع المعاملات العقارية بدقة وامتثال قانوني كامل.'
+                ],
+                'hero_title' => [
+                    'en' => 'Real Estate Transactions',
+                    'ar' => 'المعاملات العقارية'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Transparent and secure real estate processes.',
+                    'ar' => 'عمليات عقارية شفافة وآمنة.'
+                ],
+                'hero_description' => [
+                    'en' => 'From documentation to final signatures, we manage all transaction steps to protect your property interests.',
+                    'ar' => 'من التوثيق إلى التوقيعات النهائية، ندير جميع خطوات المعاملة لحماية مصالحك العقارية.'
+                ],
+                'meta_title' => 'Real Estate Transactions in UAE',
+                'meta_description' => 'Comprehensive support for real estate deals including buying, selling, and property transfers.',
+                'type' => 'real-estate-service',
+                'status' => 'published',
+                'route_name' => 'front.realestate.transactions',
+                'page_link_for' => 'header',
+                'order_no' => 2,
+            ],
+
+            [
+                'slug' => 'property-management-solutions',
+                'title' => [
+                    'en' => 'Property Management Solutions',
+                    'ar' => 'حلول إدارة الممتلكات'
+                ],
+                'description' => [
+                    'en' => 'We offer comprehensive property management services to help you maintain and maximize the value of your real estate assets.',
+                    'ar' => 'نقدم خدمات إدارة ممتلكات شاملة لمساعدتك في الحفاظ على قيمة أصولك العقارية وزيادتها.'
+                ],
+                'hero_title' => [
+                    'en' => 'Property Management',
+                    'ar' => 'إدارة الممتلكات'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Reliable care for your property investments.',
+                    'ar' => 'رعاية موثوقة لاستثماراتك العقارية.'
+                ],
+                'hero_description' => [
+                    'en' => 'Our solutions cover tenant management, maintenance, rent collection, and more — ensuring hassle-free ownership.',
+                    'ar' => 'تغطي حلولنا إدارة المستأجرين، الصيانة، تحصيل الإيجار والمزيد — لضمان امتلاك خالٍ من المتاعب.'
+                ],
+                'meta_title' => 'Property Management Services in UAE',
+                'meta_description' => 'Efficient and professional services for managing residential and commercial properties across the UAE.',
+                'type' => 'real-estate-service',
+                'status' => 'published',
+                'route_name' => 'front.realestate.management',
+                'page_link_for' => 'header',
+                'order_no' => 3,
+            ],
+
+            [
+                'slug' => 'rental-agreements-renewals',
+                'title' => [
+                    'en' => 'Rental Agreements and Renewals',
+                    'ar' => 'عقود الإيجار والتجديدات'
+                ],
+                'description' => [
+                    'en' => 'We prepare and renew rental agreements with full legal accuracy, ensuring protection for both tenants and landlords.',
+                    'ar' => 'نقوم بإعداد وتجديد عقود الإيجار بدقة قانونية كاملة لضمان الحماية للمستأجرين والمالكين.'
+                ],
+                'hero_title' => [
+                    'en' => 'Rental Agreements & Renewals',
+                    'ar' => 'عقود الإيجار والتجديدات'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Hassle-free rental documentation and renewals.',
+                    'ar' => 'توثيق وتجديد عقود الإيجار بسهولة وبدون عناء.'
+                ],
+                'hero_description' => [
+                    'en' => 'Our team ensures all rental documents are compliant with UAE laws and registered properly to avoid future disputes.',
+                    'ar' => 'يضمن فريقنا التزام جميع وثائق الإيجار بالقوانين الإماراتية وتسجيلها بالشكل الصحيح لتجنب النزاعات مستقبلاً.'
+                ],
+                'meta_title' => 'Rental Contract Services in UAE',
+                'meta_description' => 'Trusted services for drafting, reviewing, and renewing rental contracts with complete legal compliance.',
+                'type' => 'real-estate-service',
+                'status' => 'published',
+                'route_name' => 'front.realestate.rentals',
+                'page_link_for' => 'header',
+                'order_no' => 4,
+            ],
+
+
 
             [
                 'slug' => 'visa-cancellation',

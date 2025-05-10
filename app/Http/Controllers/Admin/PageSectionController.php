@@ -33,7 +33,7 @@ class PageSectionController extends Controller
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
-            'page_id' => 'required|integer',
+            'Page_id' => 'required|integer',
             'image' => 'required|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
@@ -45,7 +45,7 @@ class PageSectionController extends Controller
 
         $pageSection->title = $request->title;
         $pageSection->subtitle = $request->subtitle;
-        $pageSection->page_id = $request->page_id;
+        $pageSection->Page_id = $request->Page_id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
         $pageSection->description = $request->description;
@@ -98,7 +98,7 @@ class PageSectionController extends Controller
     public function edit($id)
     {
         $pageSection = PageSection::findOrFail($id);
-        return view('admin.page-section.edit', compact('PageSection'));
+        return view('admin.Page-section.edit', compact('PageSection'));
     }
 
     public function update(Request $request, $id)

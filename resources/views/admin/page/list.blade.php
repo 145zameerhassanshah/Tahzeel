@@ -40,9 +40,9 @@
                                         <td>{{ $page->order_no }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-success">Action</button>
+                                                <button type="button" class="btn btn-success mb-1">Action</button>
                                                 <button type="button"
-                                                    class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon"
+                                                    class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon mb-1"
                                                     data-toggle="dropdown" aria-expanded="false">
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
@@ -60,7 +60,7 @@
                                                 <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
 
                                                 <!-- Details Button -->
-                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1">
+                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1 px-2">
                                                     <i class="fas fa-info"></i>
                                                 </a>
 

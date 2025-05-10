@@ -34,6 +34,10 @@
 				</div>
 				<!--/.row -->
 			</div>
-			<!-- /.container -->
-		</section>
-		<!-- /section -->
+			<!--/column -->
+		</div>
+		<!--/.row -->
+	</div>
+	<!-- /.container -->
+</section>
+<!-- /section -->

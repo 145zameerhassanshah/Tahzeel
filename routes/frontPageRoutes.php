@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\HumanResourceController;
+use App\Http\Controllers\Front\RealEstateController;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
 Route::get('/lang/{locale}', function ($locale) {
@@ -43,6 +44,14 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
     Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
     Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
+
+
+
+    Route::get('/property-buying-selling-assistance', [RealEstateController::class, 'propertyBuyingSelling'])->name('front.realestate.buying.selling');
+    Route::get('/real-estate-transactions', [RealEstateController::class, 'realEstateTransactions'])->name('front.realestate.transactions');
+    Route::get('/property-management-solutions', [RealEstateController::class, 'propertyManagement'])->name('front.realestate.management');
+    Route::get('/rental-agreements-renewals', [RealEstateController::class, 'rentalAgreements'])->name('front.realestate.rentals');
+
 
 
 
