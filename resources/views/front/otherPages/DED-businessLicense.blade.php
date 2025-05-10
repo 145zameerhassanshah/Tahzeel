@@ -4,7 +4,7 @@
 
 
     <section class="wrapper image-wrapper bg-image  bg-overlay-300"
-        data-image-src="{{ asset('assets/static') }}/hr-consultancyBG.webp">
+        data-image-src="{{ asset('assets/static') }}/payrollBg.webp">
         <div class="container pt-17 pb-19 pt-md-18 pb-md-17 ">
             <div class="row text-start">
                 <div class="col-lg-6 col-xl-6 col-xxl-6 me-auto" data-cues="slideInDown" data-group="page-title">

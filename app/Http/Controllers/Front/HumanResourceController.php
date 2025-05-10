@@ -38,19 +38,16 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
         return view('front.hr.hr-consultancy-services', ['page' => $page]);
     }
 
 
-=======
 
 
         return view('front.manpower-recruitment', ['page' => $page]);
     }
 
 
->>>>>>> c79feb3a1a724d80072667e2708bffdebd602ba4
     public function employmentContracts()
     {
         $slug = 'manpower-recruitment';
