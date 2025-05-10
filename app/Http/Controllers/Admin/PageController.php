@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,6 +42,7 @@ class PageController extends Controller
     {
         return view('admin.pages.add');
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -86,31 +88,25 @@ class PageController extends Controller
             'en' => $request->input('title.en'),
             'ar' => $request->input('title.ar')
         ]);
-
         $page->setTranslations('description', [
             'en' => $request->input('description.en'),
             'ar' => $request->input('description.ar')
         ]);
-
         $page->setTranslations('hero_title', [
             'en' => $request->input('hero_title.en'),
             'ar' => $request->input('hero_title.ar')
         ]);
-
         $page->setTranslations('hero_sub_title', [
             'en' => $request->input('hero_sub_title.en'),
             'ar' => $request->input('hero_sub_title.ar')
         ]);
-
         $page->setTranslations('hero_description', [
             'en' => $request->input('hero_description.en'),
             'ar' => $request->input('hero_description.ar')
         ]);
-
         $page->save();
         return redirect()->route('admin.page.index')->with('success', 'Page created successfully.');
     }
-
 
     // Page Delete
     public function delete($id)
