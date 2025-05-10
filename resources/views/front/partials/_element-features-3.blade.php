@@ -21,8 +21,8 @@
             </span>
           </div>
           <div>
-            <h4 class="mb-1">{{ $feature->title }}</h4>
-            <p class="mb-0">{{ $feature->description }}</p>
+            <h4 class="mb-1">{!! $feature->title !!}</h4>
+            <p class="mb-0">{!! $feature->description !!}</p>
           </div>
         </div>
         @endforeach

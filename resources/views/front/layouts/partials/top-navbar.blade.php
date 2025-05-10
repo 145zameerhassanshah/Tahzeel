@@ -35,6 +35,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{ route('front.page.testing') }}">{{ __('header.under_construction') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">ManPower Recuruitment</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('front.realestate.buying.selling') }}">Property buying & selling</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -48,6 +49,7 @@
                                             <ul class="dropdown-menu">
 
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">Manpower Recruitment2</a></li>
 
                                             </ul>
                                           </li>
