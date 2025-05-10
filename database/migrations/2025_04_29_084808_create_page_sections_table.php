@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('page_sections', function (Blueprint $table) {
@@ -18,16 +15,11 @@ return new class extends Migration
             $table->json('subtitle');
             $table->json('description');
             $table->string('image');
-            $table->enum('type', ['rtl', 'ltr']);
+            $table->enum('type', ['R-2-L', 'L-2-R']);
             $table->string('order_no');
             $table->timestamps();
-
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('page_sections');

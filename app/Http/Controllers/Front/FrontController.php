@@ -1,12 +1,8 @@
 <?php
-// PHP's cleaner grouped import
+
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-// 🔹 Helper Functions
-require_once app_path('Helpers/LanguageHelpers.php');
-
-use App\Helpers\LanguageHelpers;
 // 🔹 Laravel Facades
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -17,23 +13,23 @@ use App\Mail\InquiryEmail;
 use App\Notifications\InquiryNotification;
 // 🔹 Models
 use App\Models\{
-    Bcategory,
-    Blog,
-    CallToAction,
     DocumentRequired,
-    Faq,
-    Feature,
+    CallToAction,
     FeatureImage,
-    Group,
     HeroSection,
-    IntroductionSection,
-    Page,
-    PageGroup,
     Procedure,
+    PageGroup,
+    Feature,
+    Group,
+    Page,
+    Faq,
+    IntroductionSection,
     SectionTitle,
     Testimonial,
+    Bcategory,
     Service,
     Enquiry,
+    Blog,
     User
 };
 
@@ -90,31 +86,31 @@ class FrontController extends Controller
         $testimonials = Testimonial::where('status', 'active')->get();
         $introSection = IntroductionSection::first(); // You could check if it's null here
         $sectionTitles = SectionTitle::where('status', 'active')->where('type', 'testimonial')->get();
-    
+
         // Handle case where introSection is null
         if (!$introSection) {
             $introSection = new IntroductionSection(); // Provide a default empty object
             $introSection->images = json_encode([]); // Default empty array for images
         }
-    
+
         $localized_testimonials = $testimonials->map(function ($item) use ($locale) {
             return localizeTestimonial($item, $locale);
         });
-    
+
         $localized_section_titles = $sectionTitles->map(function ($item) use ($locale) {
             return localizeSectionTitle($item, $locale);
         });
-    
+
         $localized_intro_section = localizeIntroductionSection($introSection, $locale);
         $sectionTitle = $localized_section_titles->first();
-    
+
         return view('front.otherPages.emirateId', [
             'testimonials' => $localized_testimonials,
             'sectionTitle' => $sectionTitle,
             'introSection' => $localized_intro_section,
         ]);
     }
-        public function visitVisa()
+    public function visitVisa()
     {
         return view('front.otherPages.visitVisa');
     }

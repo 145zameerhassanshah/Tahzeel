@@ -207,11 +207,9 @@ class FrontPageController extends Controller
         $data['why_choose_us'] = $page_detail->whyChooseUs->map(function ($item) use ($locale) {
             return localizeWhyChooseUs($item, $locale);
         });
-        // dd($data['why_choose_us']);
         $data['why_us_images'] = $page_detail->whyUsImages->map(function ($item) use ($locale) {
             return localizeWhyUsImage($item, $locale);
         });
-        //return $data['intro_sections'];
         return view('front.vat.vat-reg-business', $data);
     }
 
@@ -235,14 +233,11 @@ class FrontPageController extends Controller
             'featureImages'
         ])->findOrFail($data['page']->id);
         $data['testimonials'] = Testimonial::all();
-        // return $data['intro_sections'];
         return view('front.vat.vat-reg-business', $data);
     }
 
     public function vatReturnFilling()
     {
-
-        // return  $data['testimonials'];
         return view('front.vat.vat-return-filling');
     }
 
@@ -256,9 +251,4 @@ class FrontPageController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.test-page', ['page' => $page]);
     }
-
-
-
-
-
 }

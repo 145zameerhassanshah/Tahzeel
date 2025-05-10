@@ -371,7 +371,7 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::post('/page-section/store', [PageSectionController::class, 'store'])->name('admin.page.section.store');
     Route::get('/page-section/edit/{id}', [PageSectionController::class, 'edit'])->name('admin.page.section.edit');
     Route::post('/page-section/update/{id}', [PageSectionController::class, 'update'])->name('admin.page.section.update');
-    Route::post('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
+    Route::delete('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
 
     // Route::get('language/{locale}', function ($locale) {
     //     if (in_array($locale, config('app.available_locales'))) {
