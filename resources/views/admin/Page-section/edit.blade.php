@@ -89,21 +89,16 @@
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
-
                                             <!-- type -->
                                             <div class="col-md-6 mb-3">
-                                                <label for="type">{{ __('Type') }}<span
-                                                        class="text-danger">*</span></label>
+                                                <label for="type">{{ __('Type') }}<span class="text-danger">*</span></label>
                                                 <select id="type" name="type" class="form-control">
                                                     <option selected disabled>Select Type</option>
                                                     <option value="R-2-L" {{ $pageSection->type == 'R-2-L' ? 'selected' : '' }}>Right To Left</option>
                                                     <option value="L-2-R" {{ $pageSection->type == 'L-2-R' ? 'selected' : '' }}>Left To Right</option>
                                                 </select>
-                                                @error('type')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                @error('type')<p class="text-danger">{{ $message }}</p>@enderror
                                             </div>
-
                                             <!-- Description Fields -->
                                             <div class="col-md-12 mb-3">
                                                 <label for="description_en">{{ __('Description (English)') }}<span

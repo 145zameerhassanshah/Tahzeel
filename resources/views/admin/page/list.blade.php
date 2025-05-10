@@ -24,6 +24,7 @@
                                         <th>{{ __('Title') }}</th>
                                         <th>{{ __('Route') }}</th>
                                         <th>{{ __('Type') }}</th>
+                                        <th>{{ __('Slug') }}</th>
                                         <th>{{ __('Link For') }}</th>
                                         <th>{{ __('Order No') }}</th>
                                         <th>{{ __('Action') }}</th>
@@ -37,6 +38,7 @@
                                         <td>{{ $page->route_name ?? 'N/A' }}</td>
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->type)) }}</td>
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->page_link_for)) }}</td>
+                                        <td>{{ $page->slug }}</td>
                                         <td>{{ $page->order_no }}</td>
                                         <td>
                                             <div class="btn-group">
@@ -51,19 +53,14 @@
                                                     <a class="dropdown-item" href="{{ route('admin.page.section.index', $page->id) }}">Section List</a>
                                                     <a class="dropdown-item" href="{{ route('admin.element.index', $page->id) }}"> Element List</a>
                                                     <a class="dropdown-item" href="{{ route('admin.block.index', $page->id) }}"> Block List</a>
-                                                    <!-- <div class="dropdown-divider"></div> -->
                                                 </div>
 
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->
                                                 <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
-
                                                 <!-- Details Button -->
-                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1 px-2">
-                                                    <i class="fas fa-info"></i>
-                                                </a>
-
+                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1 px-2"><i class="fas fa-info"></i></a>
                                                 <!-- Delete Button -->
                                                 <form id="deleteform" class="d-inline-block mx-1" action="#" method="post">
                                                     @csrf

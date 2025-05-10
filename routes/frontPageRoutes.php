@@ -52,20 +52,6 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/property-management-solutions', [RealEstateController::class, 'propertyManagement'])->name('front.realestate.management');
     Route::get('/rental-agreements-renewals', [RealEstateController::class, 'rentalAgreements'])->name('front.realestate.rentals');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Route::get('/testingpage', [FrontPageController::class, 'testPage'])->name('front.page.testing');
 
     // Testing View's

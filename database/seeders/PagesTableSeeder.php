@@ -11,7 +11,6 @@ class PagesTableSeeder extends Seeder
     {
         $pages = [
             // visa-cancellation
-
             [
                 'slug' => 'manpower-recruitment',
                 'title' => [
@@ -201,6 +200,7 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
+            
             [
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [
@@ -324,8 +324,6 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 4,
             ],
-
-
 
             [
                 'slug' => 'visa-cancellation',
@@ -470,7 +468,6 @@ class PagesTableSeeder extends Seeder
                 'order_no' => 2,
             ],
         ];
-
         foreach ($pages as $pageData) {
             Page::create($pageData);
         }

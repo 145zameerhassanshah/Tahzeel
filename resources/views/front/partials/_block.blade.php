@@ -1,12 +1,12 @@
-<section class="wrapper bg-light">
-	<div class="container">
+<section class="wrapper bg-light mb-5 pb-5">
+	<div class="container mb-5 pb-5">
 		<div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
 			<div class="col-lg-7 order-lg-2">
 				<figure><img class="w-auto" src="{{ $block->image }}" alt="" /></figure>
 			</div>
 			<div class="col-lg-5">
 				<h2 class="fs-16 text-uppercase text-muted mb-3">{!! $block->title !!}</h2>
-				<h3 class="display-4 mb-5">{!! $block->subtile !!}</h3>
+				<h3 class="display-4 mb-6">{!! $block->subtile !!}</h3>
 				<p class="mb-6">{!!$block->description!!}</p>
 				@php
 				$featureChunks = $block->features->chunk(ceil($block->features->count() / 2));
