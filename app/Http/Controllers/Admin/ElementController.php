@@ -31,8 +31,8 @@ public function store(Request $request)
         'title.ar' => 'required|string|max:255',
         'subtitle.en' => 'nullable|string|max:255',
         'subtitle.ar' => 'nullable|string|max:255',
-        'description.en' => 'required|string',
-        'description.ar' => 'required|string',
+        'description.en' => 'nullable|string',
+        'description.ar' => 'nullable|string',
         'page_id' => 'required|integer',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
@@ -90,8 +90,7 @@ public function store(Request $request)
             $elementFeature->save();
         }
     }
-    return redirect()->route('admin.element.index', $element->id)
-    ->with('notification', [
+    return redirect()->back()->with('notification', [
         'message' => 'Page Element Added Successfully!',
         'alert' => 'success',
     ]);
@@ -169,8 +168,7 @@ public function update(Request $request, $id)
         }
     }
 
-    return redirect()->route('admin.element.index', $element->id)
-    ->with('notification', [
+    return redirect()->back()->with('notification', [
         'message' => 'Page Element Updated Successfully!',
         'alert' => 'success',
     ]);

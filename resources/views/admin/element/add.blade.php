@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+ @extends('admin.layouts.master')
 @section('title', 'Add New Element')
 @section('content')
 
@@ -152,25 +152,26 @@
                         </div>
 
 
-                        <!-- Description Fields -->
-                        <div class="col-md-12 mb-3">
-                            <label for="description_en">{{ __('Description (English)') }}<span
-                                    class="text-danger">*</span></label>
-                            <textarea id="description_en" class="form-control summernote" name="description[en]"
-                                placeholder="Enter Description in English" rows="6" required>{{ old('description.en') }}</textarea>
-                            @error('description.en')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="description_ar">{{ __('Description (Arabic)') }}<span
-                                    class="text-danger">*</span></label>
-                            <textarea id="description_ar" class="form-control summernote" name="description[ar]"
-                                placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar') }}</textarea>
-                            @error('description.ar')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
+                                            <!-- Description Fields -->
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description_en">{{ __('Description (English)') }}</label>
+                                                <textarea id="description_en" class="form-control summernote" name="description[en]"
+                                                    placeholder="Enter Description in English" rows="6" >{{ old('description.en') }}</textarea>
+                                                @error('description.en')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description_ar">{{ __('Description (Arabic)') }}
+                                                    </label>
+                                                <textarea id="description_ar" class="form-control summernote" name="description[ar]"
+                                                    placeholder="Enter Description in Arabic" rows="6">{{ old('description.ar') }}</textarea>
+                                                @error('description.ar')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+
 
 
 
@@ -228,4 +229,7 @@
         });
     });
 </script>
-@endsection
+@endsection 
+
+
+

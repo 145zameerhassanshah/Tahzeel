@@ -6,10 +6,9 @@
     {{-- Hero Section --}}
     @include('front.partials._hero_section')
 
-
-    @if ($page->elements->isNotEmpty())
-        @include('front.partials._element-features-1', ['element' => $page->elements[0]])
-    @endif
+@if ($page->blocks->isNotEmpty())
+@include('front.partials._block', ['block' => $page->blocks[0]])
+@endif
 
 
 
