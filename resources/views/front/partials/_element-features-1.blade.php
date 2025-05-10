@@ -1,5 +1,5 @@
 <section class="wrapper bg-light">
-  <div class="container py-16 py-md-18">
+  <div class="container py-5">
     <div class="row text-center">
       <div class="col-md-11 col-lg-9 col-xl-8 col-xxl-7 mx-auto position-relative">
         <img src="{{ asset('front/dist/assets/img/svg/doodle3.svg') }}" class="h-11 position-absolute d-none d-lg-block" style="top: -20%; right: -12%" alt="">
