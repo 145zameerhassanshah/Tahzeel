@@ -200,7 +200,7 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
-            
+
             [
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [
