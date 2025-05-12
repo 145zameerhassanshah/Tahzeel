@@ -1,5 +1,5 @@
 @php
-    $images = !empty($introSection->images) ? json_decode($introSection->images, true) : [];
+$images = !empty($introSection->images) ? json_decode($introSection->images, true) : [];
 @endphp
 
 <section class="wrapper bg-light">
@@ -8,27 +8,27 @@
             <div class="col-lg-6">
                 <div class="row gx-md-5 gy-5">
                     @if (isset($images[0]) && !empty($images[0]))
-                        <div class="col-12 d-none d-md-block">
-                            <figure class="rounded mx-5">
-                                <img src="{{ asset($images[0]) }}" alt="">
-                            </figure>
-                        </div>
+                    <div class="col-12 d-none d-md-block">
+                        <figure class="rounded mx-5">
+                            <img src="{{ asset($images[0]) }}" alt="">
+                        </figure>
+                    </div>
                     @endif
 
                     @if (isset($images[1]) && !empty($images[1]))
-                        <div class="col-md-6">
-                            <figure class="rounded d-none d-md-block">
-                                <img src="{{ asset($images[1]) }}" alt="">
-                            </figure>
-                        </div>
+                    <div class="col-md-6">
+                        <figure class="rounded d-none d-md-block">
+                            <img src="{{ asset($images[1]) }}" alt="">
+                        </figure>
+                    </div>
                     @endif
 
                     @if (isset($images[2]) && !empty($images[2]))
-                        <div class="col-md-6">
-                            <figure class="rounded">
-                                <img src="{{ asset($images[2]) }}" alt="">
-                            </figure>
-                        </div>
+                    <div class="col-md-6">
+                        <figure class="rounded">
+                            <img src="{{ asset($images[2]) }}" alt="">
+                        </figure>
+                    </div>
                     @endif
                 </div>
             </div>

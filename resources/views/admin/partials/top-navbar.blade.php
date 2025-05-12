@@ -5,7 +5,6 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
     </ul>
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
@@ -14,9 +13,7 @@
                 <span class="badge badge-warning navbar-badge">{{ count(auth()->user()->unreadNotifications) }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">You have {{ count(auth()->user()->unreadNotifications) }}
-                    unread Notifications</span>
-
+                <span class="dropdown-item dropdown-header">You have {{ count(auth()->user()->unreadNotifications) }} unread Notifications</span>
                 @foreach (Auth()->user()->unreadNotifications->take(5) as $notification)
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
@@ -46,7 +43,6 @@
                         alt="User Image">
                 @endif
             </a>
-
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right border-none">
                 <div class="card card-widget widget-user-2 mb-0 shadow-none">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -76,19 +72,15 @@
                                     <i class="fas fa-unlock-alt mr-1"></i> {{ __('Change Password') }}
                                 </a>
                             </li>
-
-
                             <li class="nav-item">
                                 <a href="{{ route('logout') }}" class="nav-link"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="bi bi-arrow-left-square-fill"></i> {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </li>
-
                         </ul>
                     </div>
                 </div>

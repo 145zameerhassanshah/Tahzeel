@@ -10,7 +10,528 @@ class PagesTableSeeder extends Seeder
     public function run()
     {
         $pages = [
-            // visa-cancellation
+            // Typing and Attestation Services Start
+            [
+                'slug' => 'police-clearance',
+                'title' => [
+                    'en' => 'Police Clearance',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.police_clearance',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'new-passport-request',
+                'title' => [
+                    'en' => 'New Passport Request',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.new_passport_request',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'passport-renewal',
+                'title' => [
+                    'en' => 'Passport Renewal',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.passport_renewal',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'passport-lost-report',
+                'title' => [
+                    'en' => 'Passport Lost Report',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.passport_lost_report',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'mofa-attestation',
+                'title' => [
+                    'en' => 'MOFA Attestation (Ministry of Foreign Affairs)',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.mofa_attestation',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'power-of-attorney-drafting',
+                'title' => [
+                    'en' => 'Power of Attorney (POA) Drafting',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.power_of_attorney_drafting',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'document-typing-formatting',
+                'title' => [
+                    'en' => 'Document Typing and Formatting',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'typing-attestation-service',
+                'status' => 'published',
+                'route_name' => 'typing.document_typing_formatting',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            // Typing and Attestation Services End
+
+
+            // DHA Services Start
+            [
+                'slug' => 'medical-fitness-tests',
+                'title' => [
+                    'en' => 'Medical Fitness Tests',
+                    'ar' => 'اختبارات اللياقة الطبية'
+                ],
+                'description' => [
+                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
+                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Medical Fitness',
+                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Efficient and certified testing for visa and employment purposes.',
+                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
+                ],
+                'hero_description' => [
+                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
+                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
+                ],
+                'meta_title' => 'DHA Medical Fitness Test Services',
+                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
+                'type' => 'dha-service',
+                'status' => 'published',
+                'route_name' => 'dha.medical_fitness_tests',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'health-insurance-approvals',
+                'title' => [
+                    'en' => 'Health Insurance Approvals',
+                    'ar' => 'موافقات التأمين الصحي'
+                ],
+                'description' => [
+                    'en' => 'Streamline your DHA health insurance approval process with our end-to-end service support.',
+                    'ar' => 'سهل عملية الحصول على موافقة التأمين الصحي من هيئة الصحة بدبي بمساعدتنا الكاملة.'
+                ],
+                'hero_title' => [
+                    'en' => 'DHA Insurance Approval',
+                    'ar' => 'موافقة التأمين الصحي - هيئة الصحة بدبي'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Fast-track your health coverage with expert approval handling.',
+                    'ar' => 'احصل على موافقة تأمينك الصحي بسرعة مع دعمنا المتخصص.'
+                ],
+                'hero_description' => [
+                    'en' => 'We coordinate with insurance providers and DHA to ensure smooth approvals.',
+                    'ar' => 'ننسق مع مزودي التأمين وهيئة الصحة لضمان الموافقة السلسة.'
+                ],
+                'meta_title' => 'DHA Health Insurance Approvals',
+                'meta_description' => 'Assisting individuals and companies in getting DHA health insurance approvals in Dubai.',
+                'type' => 'dha-service',
+                'status' => 'published',
+                'route_name' => 'dha.health_insurance_approvals',
+                'page_link_for' => 'header',
+                'order_no' => 2,
+            ],
+            // DHA Services End
+
+            // Legal Services Pages Start
+            [
+                'slug' => 'document-drafting',
+                'title' => [
+                    'en' => 'Document Drafting',
+                    'ar' => 'صياغة المستندات'
+                ],
+                'description' => [
+                    'en' => 'Professional legal drafting services to create accurate and enforceable documents.',
+                    'ar' => 'خدمات صياغة قانونية احترافية لإنشاء مستندات دقيقة وقابلة للتنفيذ.'
+                ],
+                'hero_title' => [
+                    'en' => 'Legal Document Drafting',
+                    'ar' => 'صياغة المستندات القانونية'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Clear, compliant, and customized documentation.',
+                    'ar' => 'مستندات واضحة ومطابقة ومخصصة.'
+                ],
+                'hero_description' => [
+                    'en' => 'From contracts to corporate agreements, we ensure your documents are legally sound.',
+                    'ar' => 'من العقود إلى الاتفاقيات، نضمن سلامة مستنداتك قانونياً.'
+                ],
+                'meta_title' => 'Legal Document Drafting UAE',
+                'meta_description' => 'Expert legal drafting services in the UAE for contracts, agreements, and more.',
+                'type' => 'legal-service',
+                'status' => 'published',
+                'route_name' => 'legal.document_drafting',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'consultations',
+                'title' => [
+                    'en' => 'Legal Consultations',
+                    'ar' => 'الاستشارات القانونية'
+                ],
+                'description' => [
+                    'en' => 'Receive expert legal advice tailored to your business or personal needs.',
+                    'ar' => 'احصل على استشارات قانونية متخصصة حسب احتياجاتك الشخصية أو التجارية.'
+                ],
+                'hero_title' => [
+                    'en' => 'Legal Consultation Services',
+                    'ar' => 'خدمات الاستشارات القانونية'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Clarity and confidence in every decision.',
+                    'ar' => 'وضوح وثقة في كل قرار.'
+                ],
+                'hero_description' => [
+                    'en' => 'Our legal team is here to guide you through contracts, disputes, and compliance.',
+                    'ar' => 'فريقنا القانوني يرشدك خلال العقود والنزاعات والامتثال.'
+                ],
+                'meta_title' => 'Legal Consultation UAE',
+                'meta_description' => 'Talk to expert legal consultants in the UAE about contracts, disputes, and business matters.',
+                'type' => 'legal-service',
+                'status' => 'published',
+                'route_name' => 'legal.consultations',
+                'page_link_for' => 'header',
+                'order_no' => 2,
+            ],
+            [
+                'slug' => 'representation',
+                'title' => [
+                    'en' => 'Legal Representation',
+                    'ar' => 'التمثيل القانوني'
+                ],
+                'description' => [
+                    'en' => 'Representation in courts and legal matters from experienced legal professionals.',
+                    'ar' => 'تمثيل قانوني أمام المحاكم وفي المسائل القانونية من قبل محترفين متمرسين.'
+                ],
+                'hero_title' => [
+                    'en' => 'Professional Legal Representation',
+                    'ar' => 'التمثيل القانوني المهني'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Strong advocacy for your rights and interests.',
+                    'ar' => 'دفاع قوي عن حقوقك ومصالحك.'
+                ],
+                'hero_description' => [
+                    'en' => 'We represent individuals and businesses across a variety of legal matters.',
+                    'ar' => 'نُمثل الأفراد والشركات في مجموعة واسعة من القضايا القانونية.'
+                ],
+                'meta_title' => 'Legal Representation UAE',
+                'meta_description' => 'Qualified lawyers for court cases, legal disputes, and more in the UAE.',
+                'type' => 'legal-service',
+                'status' => 'published',
+                'route_name' => 'legal.representation',
+                'page_link_for' => 'header',
+                'order_no' => 3,
+            ],
+            [
+                'slug' => 'dispute-resolution',
+                'title' => [
+                    'en' => 'Dispute Resolution',
+                    'ar' => 'حل النزاعات'
+                ],
+                'description' => [
+                    'en' => 'Efficient dispute resolution services including arbitration, mediation, and negotiation.',
+                    'ar' => 'خدمات حل النزاعات بكفاءة، بما في ذلك التحكيم والوساطة والتفاوض.'
+                ],
+                'hero_title' => [
+                    'en' => 'Dispute Resolution Services',
+                    'ar' => 'خدمات حل النزاعات'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Resolve legal conflicts quickly and effectively.',
+                    'ar' => 'حل النزاعات القانونية بسرعة وفعالية.'
+                ],
+                'hero_description' => [
+                    'en' => 'Minimize risk and avoid lengthy court battles through our tailored legal solutions.',
+                    'ar' => 'قلل المخاطر وتجنب القضايا الطويلة من خلال حلولنا القانونية المخصصة.'
+                ],
+                'meta_title' => 'Dispute Resolution UAE',
+                'meta_description' => 'Legal services in mediation, arbitration, and litigation support in the UAE.',
+                'type' => 'legal-service',
+                'status' => 'published',
+                'route_name' => 'legal.dispute_resolution',
+                'page_link_for' => 'header',
+                'order_no' => 4,
+            ],
+            // Legal Services Pages End
+
+            // VAT Registration & Compliance Start
+            [
+                'slug' => 'vat-registration',
+                'title' => [
+                    'en' => 'VAT Registration for Businesses',
+                    'ar' => 'تسجيل ضريبة القيمة المضافة للشركات'
+                ],
+                'description' => [
+                    'en' => 'Get your business VAT-registered with ease. Our experts guide you through every step.',
+                    'ar' => 'سجّل شركتك في ضريبة القيمة المضافة بكل سهولة بمساعدة خبرائنا.'
+                ],
+                'hero_title' => [
+                    'en' => 'VAT Registration Services',
+                    'ar' => 'خدمات تسجيل ضريبة القيمة المضافة'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'We simplify the VAT registration process.',
+                    'ar' => 'نُبَسِّط لك عملية تسجيل ضريبة القيمة المضافة.'
+                ],
+                'hero_description' => [
+                    'en' => 'Ensure compliance and avoid penalties with our expert VAT registration support.',
+                    'ar' => 'تأكد من الالتزام وتجنب الغرامات بمساعدة خبرائنا.'
+                ],
+                'meta_title' => 'VAT Registration Services in UAE',
+                'meta_description' => 'Professional assistance for VAT registration tailored to your business needs in the UAE.',
+                'type' => 'amer-service',
+                'status' => 'published',
+                'route_name' => 'vat.registration',
+                'page_link_for' => 'header',
+                'order_no' => 1,
+            ],
+            [
+                'slug' => 'vat-return-filing',
+                'title' => [
+                    'en' => 'VAT Return Filing',
+                    'ar' => 'تقديم إقرار ضريبة القيمة المضافة'
+                ],
+                'description' => [
+                    'en' => 'Timely and accurate VAT return submissions to keep your business compliant.',
+                    'ar' => 'تقديم إقرارات ضريبة القيمة المضافة بدقة وفي الوقت المحدد.'
+                ],
+                'hero_title' => [
+                    'en' => 'VAT Return Filing Services',
+                    'ar' => 'خدمات تقديم إقرار ضريبة القيمة المضافة'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Stay compliant with timely VAT submissions.',
+                    'ar' => 'ابقَ ملتزمًا من خلال التقديم في الوقت المناسب.'
+                ],
+                'hero_description' => [
+                    'en' => 'Avoid fines with our expert VAT filing support.',
+                    'ar' => 'تجنب الغرامات بمساعدة خبرائنا في تقديم الإقرارات.'
+                ],
+                'meta_title' => 'VAT Return Filing in UAE',
+                'meta_description' => 'Submit your VAT returns correctly with help from our experienced consultants.',
+                'type' => 'amer-service',
+                'status' => 'published',
+                'route_name' => 'vat.return_filing',
+                'page_link_for' => 'header',
+                'order_no' => 2,
+            ],
+            [
+                'slug' => 'vat-consultation-compliance',
+                'title' => [
+                    'en' => 'VAT Consultation & Compliance',
+                    'ar' => 'الاستشارات والامتثال لضريبة القيمة المضافة'
+                ],
+                'description' => [
+                    'en' => 'Expert VAT consultation services to ensure you stay on the right side of the law.',
+                    'ar' => 'خدمات استشارية متخصصة لضريبة القيمة المضافة لضمان الامتثال الكامل.'
+                ],
+                'hero_title' => [
+                    'en' => 'VAT Compliance Solutions',
+                    'ar' => 'حلول الامتثال لضريبة القيمة المضافة'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Guiding your business through VAT challenges.',
+                    'ar' => 'نرشد عملك لتخطي تحديات ضريبة القيمة المضافة.'
+                ],
+                'hero_description' => [
+                    'en' => 'Comprehensive VAT compliance support tailored to your industry.',
+                    'ar' => 'دعم كامل للامتثال لضريبة القيمة المضافة حسب نشاطك.'
+                ],
+                'meta_title' => 'VAT Compliance Services in UAE',
+                'meta_description' => 'Receive VAT guidance and ensure your business meets FTA compliance standards.',
+                'type' => 'amer-service',
+                'status' => 'published',
+                'route_name' => 'vat.consultation_compliance',
+                'page_link_for' => 'header',
+                'order_no' => 3,
+            ],
+            [
+                'slug' => 'vat-deregistration',
+                'title' => [
+                    'en' => 'VAT Deregistration',
+                    'ar' => 'إلغاء تسجيل ضريبة القيمة المضافة'
+                ],
+                'description' => [
+                    'en' => 'Assistance with smooth VAT deregistration in line with UAE laws.',
+                    'ar' => 'مساعدة في إلغاء تسجيل ضريبة القيمة المضافة بسلاسة وفقًا لقوانين الإمارات.'
+                ],
+                'hero_title' => [
+                    'en' => 'VAT Deregistration Services',
+                    'ar' => 'خدمات إلغاء تسجيل ضريبة القيمة المضافة'
+                ],
+                'hero_sub_title' => [
+                    'en' => 'Proper closure of your VAT registration.',
+                    'ar' => 'إغلاق صحيح لتسجيل ضريبتك.'
+                ],
+                'hero_description' => [
+                    'en' => 'Ensure legal compliance when deregistering from VAT with our support.',
+                    'ar' => 'تأكد من الامتثال القانوني عند إلغاء تسجيلك في ضريبة القيمة المضافة.'
+                ],
+                'meta_title' => 'VAT Deregistration UAE',
+                'meta_description' => 'Guided VAT deregistration process for businesses winding down or no longer eligible.',
+                'type' => 'amer-service',
+                'status' => 'published',
+                'route_name' => 'vat.deregistration',
+                'page_link_for' => 'header',
+                'order_no' => 4,
+            ],
+            // VAT Registration & Compliance End
             [
                 'slug' => 'manpower-recruitment',
                 'title' => [
@@ -200,6 +721,7 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
+<<<<<<< HEAD
             //pro services
       
     [
@@ -818,6 +1340,10 @@ class PagesTableSeeder extends Seeder
 
    // real estate         
   [
+=======
+
+            [
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [
                     'en' => 'Property Buying and Selling Assistance',
@@ -1084,8 +1610,14 @@ class PagesTableSeeder extends Seeder
                 'order_no' => 2,
             ],            
         ];
-        foreach ($pages as $pageData) {
-            Page::create($pageData);
+        foreach ($pages as $page) {
+            Page::updateOrCreate(
+                ['slug' => $page['slug']],
+                $page
+            );
         }
+        // foreach ($pages as $pageData) {
+        //     Page::create($pageData);
+        // }
     }
 }

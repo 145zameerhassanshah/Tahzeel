@@ -51,6 +51,11 @@
 
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">Manpower Recruitment2</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.hr.consultancy') }}">HR consultancy</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.employment.contracts') }}">Employment Contracts</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.work.permits') }}">Work Permits & Labour Cards</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.employee.onboarding') }}">Employee Onboarding & Compliance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.payroll.management') }}">Payroll Management</a></li>
 
                                             </ul>
                                           </li>
