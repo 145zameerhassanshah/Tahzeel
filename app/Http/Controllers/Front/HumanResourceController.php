@@ -23,8 +23,6 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
-
-
     public function hrConsultancyServices()
     {
         $slug = 'manpower-recruitment';
@@ -42,15 +40,6 @@ class HumanResourceController extends Controller
     }
 
 
-<<<<<<< HEAD
-=======
-
-
-        return view('front.manpower-recruitment', ['page' => $page]);
-    }
-
-
->>>>>>> 6e2f0e722a6c7b79c8025ef71a6b430bfc7ac333
     public function employmentContracts()
     {
         $slug = 'manpower-recruitment';
@@ -98,8 +87,6 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.hr.employee-onboarding', ['page' => $page]);
     }
-
-
     public function payrollManagement()
     {
         $slug = 'manpower-recruitment';

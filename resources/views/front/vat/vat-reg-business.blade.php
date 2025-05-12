@@ -3,17 +3,14 @@
 @section('title', $page->title)
 @section('content')
 
-@if (isset($hero_sections))
-@foreach ($hero_sections as $hero_section)
 @include('front.partials._hero_section')
+
+@if (isset($introductionSections))
+@foreach ($introductionSections as $intro_section)
+@include('front.partials._intro_three_images')
 @endforeach
 @endif
 
-{{-- @if (isset($intro_sections))
-@foreach ($intro_sections as $intro_section)
-@include('front.partials._intro_three_images')
-@endforeach
-@endif --}}
 
 {{-- @php
 $document_title = $section_titles->where('type', 'document')->first();
@@ -21,6 +18,26 @@ $document_title = $section_titles->where('type', 'document')->first();
 @if (isset($document_requireds) && isset($document_title->title))
 @include('front.partials._docs')
 @endif --}}
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-1', ['element' => $page->elements[0]])
+@endif
+
+@if ($page->elements->isNotEmpty())
+@include('front.partials._element-features-2', ['element' => $page->elements[0]])
+@endif
+
+@if ($page->blocks->isNotEmpty())
+@include('front.partials._block', ['block' => $page->blocks[0]])
+@endif
+
+{{--
+@php($testimonials = $page->testimonials)
+@if ($testimonials->isNotEmpty())
+@include('front.partials.clients-2', ['testimonials' => $testimonials])
+@endif
+--}}
+
 
 {{-- @php
 $feature_title = $section_titles->where('type', 'feature')->first();
@@ -77,7 +94,7 @@ $procedure_title = $section_titles->where('type', 'procedure')->first();
 {{-- end features  --}}
 
 
-{{-- 
+{{--
 @php
 $faq_title = $section_titles->where('type', 'faq')->first();
 @endphp --}}
@@ -124,11 +141,15 @@ $faq_title = $section_titles->where('type', 'faq')->first();
 </div>
 @endif
 
-    @if (isset($why_choose_us))
-        @include('front.partials.why-choose')
-    @endif
+@if (isset($why_choose_us))
+@include('front.partials.why-choose')
+@endif
 
-@if (isset($call_to_actions))
+
+
+
+@php($callToActions = $page->callToActions)
+@if ($callToActions->isNotEmpty())
 @include('front.partials._cta')
 @endif
 
@@ -139,7 +160,6 @@ $faq_title = $section_titles->where('type', 'faq')->first();
 @include('front.partials.affiliations')
 
 @include('front.partials.cta-1')
-
 
 @include('front.partials.contact-us')
 
