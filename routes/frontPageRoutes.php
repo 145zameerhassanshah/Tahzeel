@@ -61,10 +61,10 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/testingpage', [FrontPageController::class, 'testPage'])->name('front.page.testing');
 
     // real-estate-transactions
-    Route::get('/propertyBuyingSelling', [RealEstateController::class, 'propertyBuyingSelling'])->name('propertyBuyingSelling');
-    Route::get('/realEstateTransactions', [RealEstateController::class, 'realEstateTransactions'])->name('realEstateTransactions');
-    Route::get('/propertyManagement', [RealEstateController::class, 'propertyManagement'])->name('propertyManagement');
-    Route::get('/rentalAgreements', [RealEstateController::class, 'rentalAgreements'])->name('rentalAgreements');
+    // Route::get('/propertyBuyingSelling', [RealEstateController::class, 'propertyBuyingSelling'])->name('propertyBuyingSelling');
+    // Route::get('/realEstateTransactions', [RealEstateController::class, 'realEstateTransactions'])->name('realEstateTransactions');
+    // Route::get('/propertyManagement', [RealEstateController::class, 'propertyManagement'])->name('propertyManagement');
+    // Route::get('/rentalAgreements', [RealEstateController::class, 'rentalAgreements'])->name('rentalAgreements');
     // VAT Registration for Businesses
     Route::prefix('vat')->group(function () {
         Route::get('/registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');

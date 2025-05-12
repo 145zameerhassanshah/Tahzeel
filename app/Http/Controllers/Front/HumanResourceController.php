@@ -39,14 +39,6 @@ class HumanResourceController extends Controller
     }
 
 
-<<<<<<< HEAD
-
-
-   
-
-
-=======
->>>>>>> 6fd6e13189ccae5b49e7dfc1dcd3a630d33af46e
     public function employmentContracts()
     {
         $slug = 'employment-contracts';

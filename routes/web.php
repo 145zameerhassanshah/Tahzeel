@@ -337,9 +337,9 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::resource('admin/faqs', FaqController::class);
     Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
+    Route::resource('admin/faqs', FaqController::class);
 
     // Testimonial routes start
     // Route::resource('admin/testimonials', TestimonialController::class);
