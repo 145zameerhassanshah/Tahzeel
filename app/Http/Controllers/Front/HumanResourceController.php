@@ -39,6 +39,20 @@ class HumanResourceController extends Controller
     }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+   
+
+
+=======
+>>>>>>> 6fd6e13189ccae5b49e7dfc1dcd3a630d33af46e
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
+>>>>>>> ca99a3d01d4a5c01fb1c088998846052b48ec259
     public function employmentContracts()
     {
         $slug = 'employment-contracts';
@@ -68,7 +82,7 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-        return view('front.hr.workPermits_LaborCards.blade', ['page' => $page]);
+        return view('front.hr.workPermits_LaborCards', ['page' => $page]);
     }
 
     public function employeeOnboardingCompliance()

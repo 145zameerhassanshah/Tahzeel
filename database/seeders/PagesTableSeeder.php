@@ -721,8 +721,629 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
+<<<<<<< HEAD
+            //pro services
+      
+    [
+        'slug' => 'document-clearance-submission',
+        'title' => [
+            'en' => 'Document Clearance and Submission',
+            'ar' => 'تخليص وتقديم المستندات'
+        ],
+        'description' => [
+            'en' => 'We ensure timely and accurate processing of all your official documents.',
+            'ar' => 'نضمن معالجة مستنداتك الرسمية بدقة وفي الوقت المحدد.'
+        ],
+        'hero_title' => [
+            'en' => 'Document Clearance',
+            'ar' => 'تخليص المستندات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Fast and reliable services.',
+            'ar' => 'خدمات سريعة وموثوقة.'
+        ],
+        'hero_description' => [
+            'en' => 'From collection to submission, we handle every step of the process.',
+            'ar' => 'من الجمع إلى التقديم، نتولى كل خطوة من العملية.'
+        ],
+        'meta_title' => 'Document Clearance UAE',
+        'meta_description' => 'Professional handling of document clearance and submissions across UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 1,
+    ],
+    [
+        'slug' => 'visa-applications-renewals',
+        'title' => [
+            'en' => 'Visa Applications and Renewals',
+            'ar' => 'طلبات وتجديد التأشيرات'
+        ],
+        'description' => [
+            'en' => 'We assist with all visa types, from application to renewal.',
+            'ar' => 'نساعد في جميع أنواع التأشيرات من التقديم إلى التجديد.'
+        ],
+        'hero_title' => [
+            'en' => 'Visa Services',
+            'ar' => 'خدمات التأشيرات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Your visa made easy.',
+            'ar' => 'تأشيرتك أصبحت سهلة.'
+        ],
+        'hero_description' => [
+            'en' => 'Expert guidance and quick processing for all visa needs.',
+            'ar' => 'إرشاد خبير ومعالجة سريعة لجميع احتياجات التأشيرة.'
+        ],
+        'meta_title' => 'Visa Application UAE',
+        'meta_description' => 'Fast and professional visa application and renewal services in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 2,
+    ],
+    [
+        'slug' => 'labor-immigration-services',
+        'title' => [
+            'en' => 'Labor and Immigration Services',
+            'ar' => 'خدمات العمل والهجرة'
+        ],
+        'description' => [
+            'en' => 'Reliable services for labor card, immigration permits, and more.',
+            'ar' => 'خدمات موثوقة لبطاقة العمل وتصاريح الهجرة والمزيد.'
+        ],
+        'hero_title' => [
+            'en' => 'Labor & Immigration',
+            'ar' => 'العمل والهجرة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Compliance made simple.',
+            'ar' => 'الامتثال أصبح بسيطًا.'
+        ],
+        'hero_description' => [
+            'en' => 'We manage government requirements efficiently on your behalf.',
+            'ar' => 'ندير متطلبات الحكومة بكفاءة نيابة عنك.'
+        ],
+        'meta_title' => 'Labor Immigration UAE',
+        'meta_description' => 'Trusted labor and immigration services with full compliance.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 3,
+    ],
+    [
+        'slug' => 'trade-license-processing',
+        'title' => [
+            'en' => 'Trade License Processing',
+            'ar' => 'معالجة الرخصة التجارية'
+        ],
+        'description' => [
+            'en' => 'We streamline the entire trade license process for your business.',
+            'ar' => 'نُبَسِّط عملية الرخصة التجارية بالكامل لنشاطك التجاري.'
+        ],
+        'hero_title' => [
+            'en' => 'Trade License Services',
+            'ar' => 'خدمات الرخصة التجارية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Start your business with ease.',
+            'ar' => 'ابدأ عملك بسهولة.'
+        ],
+        'hero_description' => [
+            'en' => 'Support with new applications, renewals, and modifications.',
+            'ar' => 'الدعم في الطلبات الجديدة والتجديدات والتعديلات.'
+        ],
+        'meta_title' => 'Trade License UAE',
+        'meta_description' => 'Expert help for trade license application and renewal across UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 4,
+    ],
+    [
+        'slug' => 'attestation-notarization-assistance',
+        'title' => [
+            'en' => 'Attestation and Notarization Assistance',
+            'ar' => 'المساعدة في التصديق والتوثيق'
+        ],
+        'description' => [
+            'en' => 'We facilitate document attestation and notarization at all required levels.',
+            'ar' => 'نُيَسِّر تصديق وتوثيق المستندات على جميع المستويات المطلوبة.'
+        ],
+        'hero_title' => [
+            'en' => 'Attestation Services',
+            'ar' => 'خدمات التصديق'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Verified and certified documents.',
+            'ar' => 'وثائق موثقة ومصدقة.'
+        ],
+        'hero_description' => [
+            'en' => 'From ministries to embassies, we handle the entire process.',
+            'ar' => 'من الوزارات إلى السفارات، نتولى العملية بأكملها.'
+        ],
+        'meta_title' => 'Document Attestation UAE',
+        'meta_description' => 'Comprehensive assistance with all attestation and notarization needs in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 5,
+    ],
+    [
+        'slug' => 'company-registration-setup',
+        'title' => [
+            'en' => 'Company Registration and Setup',
+            'ar' => 'تسجيل وتأسيس الشركات'
+        ],
+        'description' => [
+            'en' => 'We provide full support in registering and setting up your company in the UAE.',
+            'ar' => 'نوفر دعمًا كاملاً في تسجيل وتأسيس شركتك في الإمارات.'
+        ],
+        'hero_title' => [
+            'en' => 'Company Formation',
+            'ar' => 'تأسيس الشركات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Start your business journey.',
+            'ar' => 'ابدأ رحلتك التجارية.'
+        ],
+        'hero_description' => [
+            'en' => 'Guidance on choosing legal structure, jurisdiction, and documentation.',
+            'ar' => 'إرشادات حول اختيار الهيكل القانوني والاختصاص القضائي والمستندات.'
+        ],
+        'meta_title' => 'Company Setup UAE',
+        'meta_description' => 'Start your business with our reliable company registration and setup services.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 6,
+    ],
+    [
+        'slug' => 'government-liaison-services',
+        'title' => [
+            'en' => 'Government Liaison Services',
+            'ar' => 'خدمات التنسيق الحكومي'
+        ],
+        'description' => [
+            'en' => 'We represent you in all government-related procedures and submissions.',
+            'ar' => 'نمثلك في جميع الإجراءات الحكومية والتقديمات.'
+        ],
+        'hero_title' => [
+            'en' => 'Liaison with Authorities',
+            'ar' => 'التنسيق مع الجهات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'We bridge you with the government.',
+            'ar' => 'نُقَرِّبك من الحكومة.'
+        ],
+        'hero_description' => [
+            'en' => 'Our team ensures smooth coordination with UAE ministries and authorities.',
+            'ar' => 'يضمن فريقنا التنسيق السلس مع وزارات وسلطات الإمارات.'
+        ],
+        'meta_title' => 'Government Services UAE',
+        'meta_description' => 'Professional liaison services to manage government interactions and approvals.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 7,
+    ],
+
+
+//7. Document Clearance Services
+
+
+
+    [
+        'slug' => 'government-document-submission',
+        'title' => [
+            'en' => 'Government Document Submission',
+            'ar' => 'تقديم المستندات الحكومية'
+        ],
+        'description' => [
+            'en' => 'We handle the submission of documents to all relevant government departments.',
+            'ar' => 'نتولى تقديم المستندات إلى جميع الجهات الحكومية المعنية.'
+        ],
+        'hero_title' => [
+            'en' => 'Govt. Document Submission',
+            'ar' => 'تقديم المستندات الحكومية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Hassle-free government dealings.',
+            'ar' => 'تعاملات حكومية بدون عناء.'
+        ],
+        'hero_description' => [
+            'en' => 'We ensure your documents are submitted to the right departments on time.',
+            'ar' => 'نضمن تقديم مستنداتك إلى الجهات المناسبة في الوقت المحدد.'
+        ],
+        'meta_title' => 'Government Document Submission UAE',
+        'meta_description' => 'Streamlined government document submission services in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 1,
+    ],
+    [
+        'slug' => 'clearance-for-visa-residency',
+        'title' => [
+            'en' => 'Clearance for Visa and Residency',
+            'ar' => 'تخليص التأشيرات والإقامة'
+        ],
+        'description' => [
+            'en' => 'We assist with document clearance for all types of visa and residency needs.',
+            'ar' => 'نساعد في تخليص المستندات لجميع أنواع التأشيرات والإقامات.'
+        ],
+        'hero_title' => [
+            'en' => 'Visa & Residency Clearance',
+            'ar' => 'تخليص التأشيرات والإقامة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Your visa process simplified.',
+            'ar' => 'نسهل لك عملية التأشيرة.'
+        ],
+        'hero_description' => [
+            'en' => 'Clearance of all required documents for residency and visa applications.',
+            'ar' => 'تخليص جميع المستندات المطلوبة لتأشيرات الإقامة والتأشيرات.'
+        ],
+        'meta_title' => 'Visa Clearance UAE',
+        'meta_description' => 'Fast clearance for all visa and residency documentation.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 2,
+    ],
+    [
+        'slug' => 'labor-immigration-documents',
+        'title' => [
+            'en' => 'Labor and Immigration Documents',
+            'ar' => 'مستندات العمل والهجرة'
+        ],
+        'description' => [
+            'en' => 'Complete assistance with labor card and immigration documentation.',
+            'ar' => 'مساعدة شاملة في بطاقات العمل ووثائق الهجرة.'
+        ],
+        'hero_title' => [
+            'en' => 'Labor & Immigration Docs',
+            'ar' => 'مستندات العمل والهجرة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Handled with accuracy.',
+            'ar' => 'تُدار بدقة وكفاءة.'
+        ],
+        'hero_description' => [
+            'en' => 'Preparation and clearance of labor and immigration related documents.',
+            'ar' => 'إعداد وتخليص مستندات العمل والهجرة.'
+        ],
+        'meta_title' => 'Labor Immigration Documents UAE',
+        'meta_description' => 'Reliable support for labor and immigration paperwork in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 3,
+    ],
+    [
+        'slug' => 'corporate-document-clearance',
+        'title' => [
+            'en' => 'Corporate Document Clearance',
+            'ar' => 'تخليص مستندات الشركات'
+        ],
+        'description' => [
+            'en' => 'We provide expert clearance for all your corporate documentation needs.',
+            'ar' => 'نقدم تخليصًا احترافيًا لجميع مستندات شركتك.'
+        ],
+        'hero_title' => [
+            'en' => 'Corporate Clearance',
+            'ar' => 'تخليص الشركات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Professional and reliable service.',
+            'ar' => 'خدمة احترافية وموثوقة.'
+        ],
+        'hero_description' => [
+            'en' => 'Managing your business document clearance from start to finish.',
+            'ar' => 'إدارة تخليص مستندات أعمالك من البداية للنهاية.'
+        ],
+        'meta_title' => 'Corporate Document Clearance UAE',
+        'meta_description' => 'Seamless clearance of corporate legal and regulatory documents.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 4,
+    ],
+    [
+        'slug' => 'legal-document-processing',
+        'title' => [
+            'en' => 'Legal Document Processing',
+            'ar' => 'معالجة المستندات القانونية'
+        ],
+        'description' => [
+            'en' => 'Fast and accurate processing of all legal documents in the UAE.',
+            'ar' => 'معالجة سريعة ودقيقة لجميع المستندات القانونية في الإمارات.'
+        ],
+        'hero_title' => [
+            'en' => 'Legal Docs Processing',
+            'ar' => 'معالجة المستندات القانونية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Handled with care and precision.',
+            'ar' => 'بكل عناية ودقة.'
+        ],
+        'hero_description' => [
+            'en' => 'Document verification, submission, and follow-up across UAE entities.',
+            'ar' => 'التحقق من المستندات، تقديمها، والمتابعة مع الجهات في الإمارات.'
+        ],
+        'meta_title' => 'Legal Document Processing UAE',
+        'meta_description' => 'Professional handling of legal documents including contracts, affidavits, and more.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 5,
+    ],
+//7. Document Clearance Services END
+
+//  8. Bank Account Opening Services
+[
+    'slug' => 'corporate-bank-account-setup',
+    'title' => [
+        'en' => 'Corporate Bank Account Setup',
+        'ar' => 'إعداد حساب بنكي للشركات'
+    ],
+    'description' => [
+        'en' => 'We help you open and manage your corporate bank accounts in the UAE.',
+        'ar' => 'نساعدك في فتح وإدارة حساباتك المصرفية للشركات في الإمارات العربية المتحدة.'
+    ],
+    'hero_title' => [
+        'en' => 'Corporate Banking',
+        'ar' => 'الخدمات المصرفية للشركات'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Efficient corporate account services.',
+        'ar' => 'خدمات حسابات الشركات بكفاءة.'
+    ],
+    'hero_description' => [
+        'en' => 'From documentation to approval, we simplify your corporate banking process.',
+        'ar' => 'من التوثيق إلى الموافقة، نبسط عملية الخدمات المصرفية لشركتك.'
+    ],
+    'meta_title' => 'Corporate Bank Account UAE',
+    'meta_description' => 'Open your corporate bank account in the UAE with expert assistance.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 1,
+],
+[
+    'slug' => 'personal-bank-account-assistance',
+    'title' => [
+        'en' => 'Personal Bank Account Assistance',
+        'ar' => 'المساعدة في فتح حساب بنكي شخصي'
+    ],
+    'description' => [
+        'en' => 'We guide individuals through opening personal accounts in top banks.',
+        'ar' => 'نوجه الأفراد لفتح الحسابات الشخصية في أفضل البنوك.'
+    ],
+    'hero_title' => [
+        'en' => 'Personal Banking',
+        'ar' => 'الخدمات المصرفية الشخصية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Your financial partner.',
+        'ar' => 'شريكك المالي.'
+    ],
+    'hero_description' => [
+        'en' => 'We handle the full process of opening your personal account hassle-free.',
+        'ar' => 'نتولى كامل عملية فتح حسابك الشخصي بسهولة.'
+    ],
+    'meta_title' => 'Open Personal Bank Account UAE',
+    'meta_description' => 'Assistance for opening personal bank accounts across UAE banks.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 2,
+],
+[
+    'slug' => 'business-banking-consultation',
+    'title' => [
+        'en' => 'Business Banking Consultation',
+        'ar' => 'استشارات الأعمال المصرفية'
+    ],
+    'description' => [
+        'en' => 'Get expert advice on selecting the best business banking solutions.',
+        'ar' => 'احصل على مشورة الخبراء لاختيار أفضل الحلول المصرفية للأعمال.'
+    ],
+    'hero_title' => [
+        'en' => 'Banking Consultation',
+        'ar' => 'الاستشارات المصرفية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Tailored banking advice.',
+        'ar' => 'نصائح مصرفية مخصصة.'
+    ],
+    'hero_description' => [
+        'en' => 'Choose the right financial partner with our expert consultation.',
+        'ar' => 'اختر الشريك المالي المناسب من خلال استشارتنا المتخصصة.'
+    ],
+    'meta_title' => 'Business Banking UAE',
+    'meta_description' => 'Professional consultation for your business banking needs.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 3,
+],
+[
+    'slug' => 'online-banking-solutions',
+    'title' => [
+        'en' => 'Online Banking Solutions',
+        'ar' => 'حلول الخدمات المصرفية عبر الإنترنت'
+    ],
+    'description' => [
+        'en' => 'Manage your finances conveniently with modern online banking tools.',
+        'ar' => 'أدِر أموالك بسهولة باستخدام أدوات الخدمات المصرفية الحديثة عبر الإنترنت.'
+    ],
+    'hero_title' => [
+        'en' => 'Digital Banking',
+        'ar' => 'الخدمات المصرفية الرقمية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Accessible banking anytime.',
+        'ar' => 'الوصول إلى البنك في أي وقت.'
+    ],
+    'hero_description' => [
+        'en' => 'Get support for setting up and using online banking for personal or business use.',
+        'ar' => 'احصل على الدعم لإعداد واستخدام الخدمات المصرفية عبر الإنترنت للأفراد أو الشركات.'
+    ],
+    'meta_title' => 'Online Banking UAE',
+    'meta_description' => 'Modern online banking solutions for UAE residents and businesses.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 4,
+],
+// Bank Account Opening Services end
+
+// 12. Dubai Notary Services
+[
+    'slug' => 'document-authentication',
+    'title' => [
+        'en' => 'Document Authentication',
+        'ar' => 'توثيق المستندات'
+    ],
+    'description' => [
+        'en' => 'We authenticate your documents with full legal validity in Dubai.',
+        'ar' => 'نقوم بتوثيق مستنداتك بصلاحية قانونية كاملة في دبي.'
+    ],
+    'hero_title' => [
+        'en' => 'Trusted Document Authentication',
+        'ar' => 'توثيق مستندات موثوق'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Certified and compliant authentication.',
+        'ar' => 'توثيق معتمد ومتوافق مع القوانين.'
+    ],
+    'hero_description' => [
+        'en' => 'Ensure your documents are legally recognized in the UAE.',
+        'ar' => 'تأكد من أن مستنداتك معترف بها قانونياً في الإمارات.'
+    ],
+    'meta_title' => 'Dubai Document Authentication Services',
+    'meta_description' => 'Professional document authentication services in Dubai for legal use.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.notaryservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 1,
+],
+[
+    'slug' => 'real-estate-transactions',
+    'title' => [
+        'en' => 'Real Estate Transactions',
+        'ar' => 'المعاملات العقارية'
+    ],
+    'description' => [
+        'en' => 'We notarize all your property and real estate documents in Dubai.',
+        'ar' => 'نقوم بتوثيق جميع مستندات العقارات الخاصة بك في دبي.'
+    ],
+    'hero_title' => [
+        'en' => 'Real Estate Notarization',
+        'ar' => 'توثيق العقارات'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Reliable property documentation services.',
+        'ar' => 'خدمات توثيق الممتلكات الموثوقة.'
+    ],
+    'hero_description' => [
+        'en' => 'Complete support for buying, selling, or leasing property in Dubai.',
+        'ar' => 'دعم كامل للبيع أو الشراء أو التأجير في دبي.'
+    ],
+    'meta_title' => 'Real Estate Notary Dubai',
+    'meta_description' => 'Legal notarization for all types of real estate transactions in Dubai.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.notaryservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 2,
+],
+[
+    'slug' => 'affidavits-declarations',
+    'title' => [
+        'en' => 'Affidavits and Declarations',
+        'ar' => 'الإقرارات والتصريحات'
+    ],
+    'description' => [
+        'en' => 'Create and notarize affidavits and statutory declarations quickly and legally.',
+        'ar' => 'إعداد وتوثيق الإقرارات القانونية بسرعة وبشكل قانوني.'
+    ],
+    'hero_title' => [
+        'en' => 'Legal Affidavits',
+        'ar' => 'إقرارات قانونية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Personal and business declarations notarized.',
+        'ar' => 'توثيق الإقرارات الشخصية والتجارية.'
+    ],
+    'hero_description' => [
+        'en' => 'We provide certified notarization for various affidavit types.',
+        'ar' => 'نوفر توثيقاً معتمداً لأنواع مختلفة من الإقرارات.'
+    ],
+    'meta_title' => 'Affidavit Notary Dubai',
+    'meta_description' => 'Dubai notary services for personal and official affidavits and declarations.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.notaryservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 3,
+],
+[
+    'slug' => 'power-of-attorney-notarization',
+    'title' => [
+        'en' => 'Power of Attorney (POA) Notarization',
+        'ar' => 'توثيق الوكالة القانونية'
+    ],
+    'description' => [
+        'en' => 'Draft and notarize your Power of Attorney documents quickly and securely.',
+        'ar' => 'إعداد وتوثيق مستندات الوكالة القانونية بسرعة وأمان.'
+    ],
+    'hero_title' => [
+        'en' => 'POA Notarization',
+        'ar' => 'توثيق الوكالة'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Legally valid POA services in Dubai.',
+        'ar' => 'خدمات وكالة قانونية صالحة في دبي.'
+    ],
+    'hero_description' => [
+        'en' => 'We handle all types of Power of Attorney notarizations.',
+        'ar' => 'نتولى جميع أنواع توثيق الوكالات القانونية.'
+    ],
+    'meta_title' => 'POA Notary Services Dubai',
+    'meta_description' => 'Certified POA notarization services in Dubai for legal and business use.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.notaryservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 4,
+],
+// Dubai Notary Services end
+
+   // real estate         
+  [
+=======
 
             [
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [
                     'en' => 'Property Buying and Selling Assistance',
@@ -987,7 +1608,7 @@ class PagesTableSeeder extends Seeder
                 'route_name' => 'pages.show',
                 'page_link_for' => 'footer',
                 'order_no' => 2,
-            ],
+            ],            
         ];
         foreach ($pages as $page) {
             Page::updateOrCreate(

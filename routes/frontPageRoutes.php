@@ -1,4 +1,18 @@
 <?php
+<<<<<<< HEAD
+use App\Http\Middleware\SetLocale;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontPageController;
+use Spatie\ResponseCache\Middlewares\CacheResponse;
+use App\Http\Controllers\Front\ProServiceController;
+use App\Http\Controllers\Front\RealEstateController;
+use App\Http\Controllers\Front\VatServiceController;
+use App\Http\Controllers\Front\BankServiceController;
+use App\Http\Controllers\Front\HumanResourceController;
+use App\Http\Controllers\Front\DubaiNotaryServiceController;
+use App\Http\Controllers\Front\DocumentClearanceServiceController;
+=======
 
 use App\Http\Controllers\Front\DHAController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +26,7 @@ use App\Http\Controllers\Front\VATRegController;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
 
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, config('app.available_locales'))) {
         session(['locale' => $locale]);
@@ -50,7 +65,30 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
     Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
     Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
+    Route::get('government-document-submission', [DocumentClearanceServiceController::class, 'governmentDocumentSubmission'])->name('front.document-clearance.government-document');
+    Route::get('visa-residency', [DocumentClearanceServiceController::class, 'clearanceForVisaResidency'])->name('front.document-clearance.visa-residency');
+    Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
+    Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
+    Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
+//dubai notary 
+Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
+Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
+Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
+Route::get('/dubai-notary/power-of-attorney-notarization', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
 
+//pro servicess
+    Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('document_clearance');
+    Route::get('/visa-applications-renewals', [ProServiceController::class, 'visaApplications'])->name('visa_applications');
+    Route::get('/labor-immigration-services', [ProServiceController::class, 'laborImmigration'])->name('labor_immigration');
+    Route::get('/trade-license-processing', [ProServiceController::class, 'tradeLicense'])->name('trade_license');
+    Route::get('/attestation-notarization-assistance', [ProServiceController::class, 'attestationNotarization'])->name('attestation_notarization');
+    Route::get('/company-registration-setup', [ProServiceController::class, 'companyRegistration'])->name('company_registration');
+    Route::get('/government-liaison-services', [ProServiceController::class, 'governmentLiaison'])->name('government_liaison');
+//  8. Bank Account Opening Services
+    Route::get('/corporate-bank-account-setup', [BankServiceController::class, 'corporate'])->name('corporate');
+    Route::get('/personal-bank-account-assistance', [BankServiceController::class, 'personal'])->name('personal');
+    Route::get('/business-banking-consultation', [BankServiceController::class, 'consultation'])->name('consultation');
+    Route::get('/online-banking-solutions', [BankServiceController::class, 'online'])->name('online');
 
 
     Route::get('/property-buying-selling-assistance', [RealEstateController::class, 'propertyBuyingSelling'])->name('front.realestate.buying.selling');
