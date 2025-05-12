@@ -200,8 +200,468 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
-            
-            [
+            //pro services
+     [
+    [
+        'slug' => 'document-clearance-submission',
+        'title' => [
+            'en' => 'Document Clearance and Submission',
+            'ar' => 'تخليص وتقديم المستندات'
+        ],
+        'description' => [
+            'en' => 'We ensure timely and accurate processing of all your official documents.',
+            'ar' => 'نضمن معالجة مستنداتك الرسمية بدقة وفي الوقت المحدد.'
+        ],
+        'hero_title' => [
+            'en' => 'Document Clearance',
+            'ar' => 'تخليص المستندات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Fast and reliable services.',
+            'ar' => 'خدمات سريعة وموثوقة.'
+        ],
+        'hero_description' => [
+            'en' => 'From collection to submission, we handle every step of the process.',
+            'ar' => 'من الجمع إلى التقديم، نتولى كل خطوة من العملية.'
+        ],
+        'meta_title' => 'Document Clearance UAE',
+        'meta_description' => 'Professional handling of document clearance and submissions across UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 1,
+    ],
+    [
+        'slug' => 'visa-applications-renewals',
+        'title' => [
+            'en' => 'Visa Applications and Renewals',
+            'ar' => 'طلبات وتجديد التأشيرات'
+        ],
+        'description' => [
+            'en' => 'We assist with all visa types, from application to renewal.',
+            'ar' => 'نساعد في جميع أنواع التأشيرات من التقديم إلى التجديد.'
+        ],
+        'hero_title' => [
+            'en' => 'Visa Services',
+            'ar' => 'خدمات التأشيرات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Your visa made easy.',
+            'ar' => 'تأشيرتك أصبحت سهلة.'
+        ],
+        'hero_description' => [
+            'en' => 'Expert guidance and quick processing for all visa needs.',
+            'ar' => 'إرشاد خبير ومعالجة سريعة لجميع احتياجات التأشيرة.'
+        ],
+        'meta_title' => 'Visa Application UAE',
+        'meta_description' => 'Fast and professional visa application and renewal services in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 2,
+    ],
+    [
+        'slug' => 'labor-immigration-services',
+        'title' => [
+            'en' => 'Labor and Immigration Services',
+            'ar' => 'خدمات العمل والهجرة'
+        ],
+        'description' => [
+            'en' => 'Reliable services for labor card, immigration permits, and more.',
+            'ar' => 'خدمات موثوقة لبطاقة العمل وتصاريح الهجرة والمزيد.'
+        ],
+        'hero_title' => [
+            'en' => 'Labor & Immigration',
+            'ar' => 'العمل والهجرة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Compliance made simple.',
+            'ar' => 'الامتثال أصبح بسيطًا.'
+        ],
+        'hero_description' => [
+            'en' => 'We manage government requirements efficiently on your behalf.',
+            'ar' => 'ندير متطلبات الحكومة بكفاءة نيابة عنك.'
+        ],
+        'meta_title' => 'Labor Immigration UAE',
+        'meta_description' => 'Trusted labor and immigration services with full compliance.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 3,
+    ],
+    [
+        'slug' => 'trade-license-processing',
+        'title' => [
+            'en' => 'Trade License Processing',
+            'ar' => 'معالجة الرخصة التجارية'
+        ],
+        'description' => [
+            'en' => 'We streamline the entire trade license process for your business.',
+            'ar' => 'نُبَسِّط عملية الرخصة التجارية بالكامل لنشاطك التجاري.'
+        ],
+        'hero_title' => [
+            'en' => 'Trade License Services',
+            'ar' => 'خدمات الرخصة التجارية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Start your business with ease.',
+            'ar' => 'ابدأ عملك بسهولة.'
+        ],
+        'hero_description' => [
+            'en' => 'Support with new applications, renewals, and modifications.',
+            'ar' => 'الدعم في الطلبات الجديدة والتجديدات والتعديلات.'
+        ],
+        'meta_title' => 'Trade License UAE',
+        'meta_description' => 'Expert help for trade license application and renewal across UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 4,
+    ],
+    [
+        'slug' => 'attestation-notarization-assistance',
+        'title' => [
+            'en' => 'Attestation and Notarization Assistance',
+            'ar' => 'المساعدة في التصديق والتوثيق'
+        ],
+        'description' => [
+            'en' => 'We facilitate document attestation and notarization at all required levels.',
+            'ar' => 'نُيَسِّر تصديق وتوثيق المستندات على جميع المستويات المطلوبة.'
+        ],
+        'hero_title' => [
+            'en' => 'Attestation Services',
+            'ar' => 'خدمات التصديق'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Verified and certified documents.',
+            'ar' => 'وثائق موثقة ومصدقة.'
+        ],
+        'hero_description' => [
+            'en' => 'From ministries to embassies, we handle the entire process.',
+            'ar' => 'من الوزارات إلى السفارات، نتولى العملية بأكملها.'
+        ],
+        'meta_title' => 'Document Attestation UAE',
+        'meta_description' => 'Comprehensive assistance with all attestation and notarization needs in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 5,
+    ],
+    [
+        'slug' => 'company-registration-setup',
+        'title' => [
+            'en' => 'Company Registration and Setup',
+            'ar' => 'تسجيل وتأسيس الشركات'
+        ],
+        'description' => [
+            'en' => 'We provide full support in registering and setting up your company in the UAE.',
+            'ar' => 'نوفر دعمًا كاملاً في تسجيل وتأسيس شركتك في الإمارات.'
+        ],
+        'hero_title' => [
+            'en' => 'Company Formation',
+            'ar' => 'تأسيس الشركات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Start your business journey.',
+            'ar' => 'ابدأ رحلتك التجارية.'
+        ],
+        'hero_description' => [
+            'en' => 'Guidance on choosing legal structure, jurisdiction, and documentation.',
+            'ar' => 'إرشادات حول اختيار الهيكل القانوني والاختصاص القضائي والمستندات.'
+        ],
+        'meta_title' => 'Company Setup UAE',
+        'meta_description' => 'Start your business with our reliable company registration and setup services.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 6,
+    ],
+    [
+        'slug' => 'government-liaison-services',
+        'title' => [
+            'en' => 'Government Liaison Services',
+            'ar' => 'خدمات التنسيق الحكومي'
+        ],
+        'description' => [
+            'en' => 'We represent you in all government-related procedures and submissions.',
+            'ar' => 'نمثلك في جميع الإجراءات الحكومية والتقديمات.'
+        ],
+        'hero_title' => [
+            'en' => 'Liaison with Authorities',
+            'ar' => 'التنسيق مع الجهات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'We bridge you with the government.',
+            'ar' => 'نُقَرِّبك من الحكومة.'
+        ],
+        'hero_description' => [
+            'en' => 'Our team ensures smooth coordination with UAE ministries and authorities.',
+            'ar' => 'يضمن فريقنا التنسيق السلس مع وزارات وسلطات الإمارات.'
+        ],
+        'meta_title' => 'Government Services UAE',
+        'meta_description' => 'Professional liaison services to manage government interactions and approvals.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 7,
+    ],
+],
+//  8. Bank Account Opening Services
+[
+    'slug' => 'corporate-bank-account-setup',
+    'title' => [
+        'en' => 'Corporate Bank Account Setup',
+        'ar' => 'إعداد حساب بنكي للشركات'
+    ],
+    'description' => [
+        'en' => 'We help you open and manage your corporate bank accounts in the UAE.',
+        'ar' => 'نساعدك في فتح وإدارة حساباتك المصرفية للشركات في الإمارات العربية المتحدة.'
+    ],
+    'hero_title' => [
+        'en' => 'Corporate Banking',
+        'ar' => 'الخدمات المصرفية للشركات'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Efficient corporate account services.',
+        'ar' => 'خدمات حسابات الشركات بكفاءة.'
+    ],
+    'hero_description' => [
+        'en' => 'From documentation to approval, we simplify your corporate banking process.',
+        'ar' => 'من التوثيق إلى الموافقة، نبسط عملية الخدمات المصرفية لشركتك.'
+    ],
+    'meta_title' => 'Corporate Bank Account UAE',
+    'meta_description' => 'Open your corporate bank account in the UAE with expert assistance.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 1,
+],
+[
+    'slug' => 'personal-bank-account-assistance',
+    'title' => [
+        'en' => 'Personal Bank Account Assistance',
+        'ar' => 'المساعدة في فتح حساب بنكي شخصي'
+    ],
+    'description' => [
+        'en' => 'We guide individuals through opening personal accounts in top banks.',
+        'ar' => 'نوجه الأفراد لفتح الحسابات الشخصية في أفضل البنوك.'
+    ],
+    'hero_title' => [
+        'en' => 'Personal Banking',
+        'ar' => 'الخدمات المصرفية الشخصية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Your financial partner.',
+        'ar' => 'شريكك المالي.'
+    ],
+    'hero_description' => [
+        'en' => 'We handle the full process of opening your personal account hassle-free.',
+        'ar' => 'نتولى كامل عملية فتح حسابك الشخصي بسهولة.'
+    ],
+    'meta_title' => 'Open Personal Bank Account UAE',
+    'meta_description' => 'Assistance for opening personal bank accounts across UAE banks.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 2,
+],
+[
+    'slug' => 'business-banking-consultation',
+    'title' => [
+        'en' => 'Business Banking Consultation',
+        'ar' => 'استشارات الأعمال المصرفية'
+    ],
+    'description' => [
+        'en' => 'Get expert advice on selecting the best business banking solutions.',
+        'ar' => 'احصل على مشورة الخبراء لاختيار أفضل الحلول المصرفية للأعمال.'
+    ],
+    'hero_title' => [
+        'en' => 'Banking Consultation',
+        'ar' => 'الاستشارات المصرفية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Tailored banking advice.',
+        'ar' => 'نصائح مصرفية مخصصة.'
+    ],
+    'hero_description' => [
+        'en' => 'Choose the right financial partner with our expert consultation.',
+        'ar' => 'اختر الشريك المالي المناسب من خلال استشارتنا المتخصصة.'
+    ],
+    'meta_title' => 'Business Banking UAE',
+    'meta_description' => 'Professional consultation for your business banking needs.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 3,
+],
+[
+    'slug' => 'online-banking-solutions',
+    'title' => [
+        'en' => 'Online Banking Solutions',
+        'ar' => 'حلول الخدمات المصرفية عبر الإنترنت'
+    ],
+    'description' => [
+        'en' => 'Manage your finances conveniently with modern online banking tools.',
+        'ar' => 'أدِر أموالك بسهولة باستخدام أدوات الخدمات المصرفية الحديثة عبر الإنترنت.'
+    ],
+    'hero_title' => [
+        'en' => 'Digital Banking',
+        'ar' => 'الخدمات المصرفية الرقمية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Accessible banking anytime.',
+        'ar' => 'الوصول إلى البنك في أي وقت.'
+    ],
+    'hero_description' => [
+        'en' => 'Get support for setting up and using online banking for personal or business use.',
+        'ar' => 'احصل على الدعم لإعداد واستخدام الخدمات المصرفية عبر الإنترنت للأفراد أو الشركات.'
+    ],
+    'meta_title' => 'Online Banking UAE',
+    'meta_description' => 'Modern online banking solutions for UAE residents and businesses.',
+    'type' => 'bank-service',
+    'status' => 'published',
+    'route_name' => 'front.bankservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 4,
+],
+// Bank Account Opening Services end
+
+//9. VAT Registration & Compliance
+[
+    'slug' => 'vat-registration-for-businesses',
+    'title' => [
+        'en' => 'VAT Registration for Businesses',
+        'ar' => 'تسجيل ضريبة القيمة المضافة للشركات'
+    ],
+    'description' => [
+        'en' => 'Register your business for VAT in the UAE with ease.',
+        'ar' => 'قم بتسجيل شركتك لضريبة القيمة المضافة في الإمارات بسهولة.'
+    ],
+    'hero_title' => [
+        'en' => 'VAT Registration',
+        'ar' => 'تسجيل ضريبة القيمة المضافة'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Start your VAT journey.',
+        'ar' => 'ابدأ رحلتك مع ضريبة القيمة المضافة.'
+    ],
+    'hero_description' => [
+        'en' => 'We help you comply with UAE VAT regulations smoothly.',
+        'ar' => 'نساعدك في الالتزام بلوائح ضريبة القيمة المضافة في الإمارات بسلاسة.'
+    ],
+    'meta_title' => 'UAE VAT Registration',
+    'meta_description' => 'Professional help with VAT registration for businesses in UAE.',
+    'type' => 'vat-service',
+    'status' => 'published',
+    'route_name' => 'front.vatservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 1,
+],
+[
+    'slug' => 'vat-return-filing',
+    'title' => [
+        'en' => 'VAT Return Filing',
+        'ar' => 'تقديم الإقرار الضريبي'
+    ],
+    'description' => [
+        'en' => 'Accurate and timely VAT return filing services for UAE businesses.',
+        'ar' => 'خدمات تقديم الإقرار الضريبي الدقيقة وفي الوقت المناسب لشركات الإمارات.'
+    ],
+    'hero_title' => [
+        'en' => 'Return Filing',
+        'ar' => 'تقديم الإقرارات'
+    ],
+    'hero_sub_title' => [
+        'en' => 'File your VAT with confidence.',
+        'ar' => 'قدّم ضريبتك بثقة.'
+    ],
+    'hero_description' => [
+        'en' => 'Avoid penalties and stay compliant by filing on time.',
+        'ar' => 'تجنب الغرامات وابقَ ملتزمًا من خلال التقديم في الوقت المناسب.'
+    ],
+    'meta_title' => 'VAT Return Filing UAE',
+    'meta_description' => 'Expert VAT filing services for timely and compliant submission.',
+    'type' => 'vat-service',
+    'status' => 'published',
+    'route_name' => 'front.vatservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 2,
+],
+[
+    'slug' => 'vat-consultation-and-compliance',
+    'title' => [
+        'en' => 'VAT Consultation & Compliance',
+        'ar' => 'استشارات وضمان الالتزام بضريبة القيمة المضافة'
+    ],
+    'description' => [
+        'en' => 'Receive expert VAT consultation and ensure full compliance.',
+        'ar' => 'احصل على استشارة خبراء في ضريبة القيمة المضافة وضمان الالتزام الكامل.'
+    ],
+    'hero_title' => [
+        'en' => 'VAT Compliance',
+        'ar' => 'الامتثال لضريبة القيمة المضافة'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Stay VAT compliant.',
+        'ar' => 'ابقَ ملتزمًا بضريبة القيمة المضافة.'
+    ],
+    'hero_description' => [
+        'en' => 'We help you meet all your VAT obligations and avoid legal issues.',
+        'ar' => 'نساعدك في الوفاء بجميع التزاماتك الضريبية وتجنب المشاكل القانونية.'
+    ],
+    'meta_title' => 'VAT Compliance UAE',
+    'meta_description' => 'Ensure full VAT compliance with our expert consulting services.',
+    'type' => 'vat-service',
+    'status' => 'published',
+    'route_name' => 'front.vatservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 3,
+],
+[
+    'slug' => 'vat-deregistration',
+    'title' => [
+        'en' => 'VAT Deregistration',
+        'ar' => 'إلغاء تسجيل ضريبة القيمة المضافة'
+    ],
+    'description' => [
+        'en' => 'Close your VAT account with professional deregistration services.',
+        'ar' => 'قم بإغلاق حساب ضريبة القيمة المضافة الخاص بك بخدمات مهنية.'
+    ],
+    'hero_title' => [
+        'en' => 'Deregistration',
+        'ar' => 'إلغاء التسجيل'
+    ],
+    'hero_sub_title' => [
+        'en' => 'End your VAT obligations.',
+        'ar' => 'أنهِ التزاماتك الضريبية.'
+    ],
+    'hero_description' => [
+        'en' => 'We simplify the process of deregistering from VAT in UAE.',
+        'ar' => 'نبسط لك عملية إلغاء التسجيل من ضريبة القيمة المضافة في الإمارات.'
+    ],
+    'meta_title' => 'VAT Deregistration UAE',
+    'meta_description' => 'Get help with your VAT deregistration process today.',
+    'type' => 'vat-service',
+    'status' => 'published',
+    'route_name' => 'front.vatservices.show',
+    'page_link_for' => 'header',
+    'order_no' => 4,
+],
+//9. VAT Registration & Compliance end
+
+
+   // real estate         
+  [
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [
                     'en' => 'Property Buying and Selling Assistance',
