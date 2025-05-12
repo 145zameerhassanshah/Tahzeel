@@ -413,6 +413,163 @@ class PagesTableSeeder extends Seeder
         'order_no' => 7,
     ],
 ],
+
+//7. Document Clearance Services
+
+
+[
+    [
+        'slug' => 'government-document-submission',
+        'title' => [
+            'en' => 'Government Document Submission',
+            'ar' => 'تقديم المستندات الحكومية'
+        ],
+        'description' => [
+            'en' => 'We handle the submission of documents to all relevant government departments.',
+            'ar' => 'نتولى تقديم المستندات إلى جميع الجهات الحكومية المعنية.'
+        ],
+        'hero_title' => [
+            'en' => 'Govt. Document Submission',
+            'ar' => 'تقديم المستندات الحكومية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Hassle-free government dealings.',
+            'ar' => 'تعاملات حكومية بدون عناء.'
+        ],
+        'hero_description' => [
+            'en' => 'We ensure your documents are submitted to the right departments on time.',
+            'ar' => 'نضمن تقديم مستنداتك إلى الجهات المناسبة في الوقت المحدد.'
+        ],
+        'meta_title' => 'Government Document Submission UAE',
+        'meta_description' => 'Streamlined government document submission services in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 1,
+    ],
+    [
+        'slug' => 'clearance-for-visa-residency',
+        'title' => [
+            'en' => 'Clearance for Visa and Residency',
+            'ar' => 'تخليص التأشيرات والإقامة'
+        ],
+        'description' => [
+            'en' => 'We assist with document clearance for all types of visa and residency needs.',
+            'ar' => 'نساعد في تخليص المستندات لجميع أنواع التأشيرات والإقامات.'
+        ],
+        'hero_title' => [
+            'en' => 'Visa & Residency Clearance',
+            'ar' => 'تخليص التأشيرات والإقامة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Your visa process simplified.',
+            'ar' => 'نسهل لك عملية التأشيرة.'
+        ],
+        'hero_description' => [
+            'en' => 'Clearance of all required documents for residency and visa applications.',
+            'ar' => 'تخليص جميع المستندات المطلوبة لتأشيرات الإقامة والتأشيرات.'
+        ],
+        'meta_title' => 'Visa Clearance UAE',
+        'meta_description' => 'Fast clearance for all visa and residency documentation.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 2,
+    ],
+    [
+        'slug' => 'labor-immigration-documents',
+        'title' => [
+            'en' => 'Labor and Immigration Documents',
+            'ar' => 'مستندات العمل والهجرة'
+        ],
+        'description' => [
+            'en' => 'Complete assistance with labor card and immigration documentation.',
+            'ar' => 'مساعدة شاملة في بطاقات العمل ووثائق الهجرة.'
+        ],
+        'hero_title' => [
+            'en' => 'Labor & Immigration Docs',
+            'ar' => 'مستندات العمل والهجرة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Handled with accuracy.',
+            'ar' => 'تُدار بدقة وكفاءة.'
+        ],
+        'hero_description' => [
+            'en' => 'Preparation and clearance of labor and immigration related documents.',
+            'ar' => 'إعداد وتخليص مستندات العمل والهجرة.'
+        ],
+        'meta_title' => 'Labor Immigration Documents UAE',
+        'meta_description' => 'Reliable support for labor and immigration paperwork in UAE.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 3,
+    ],
+    [
+        'slug' => 'corporate-document-clearance',
+        'title' => [
+            'en' => 'Corporate Document Clearance',
+            'ar' => 'تخليص مستندات الشركات'
+        ],
+        'description' => [
+            'en' => 'We provide expert clearance for all your corporate documentation needs.',
+            'ar' => 'نقدم تخليصًا احترافيًا لجميع مستندات شركتك.'
+        ],
+        'hero_title' => [
+            'en' => 'Corporate Clearance',
+            'ar' => 'تخليص الشركات'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Professional and reliable service.',
+            'ar' => 'خدمة احترافية وموثوقة.'
+        ],
+        'hero_description' => [
+            'en' => 'Managing your business document clearance from start to finish.',
+            'ar' => 'إدارة تخليص مستندات أعمالك من البداية للنهاية.'
+        ],
+        'meta_title' => 'Corporate Document Clearance UAE',
+        'meta_description' => 'Seamless clearance of corporate legal and regulatory documents.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 4,
+    ],
+    [
+        'slug' => 'legal-document-processing',
+        'title' => [
+            'en' => 'Legal Document Processing',
+            'ar' => 'معالجة المستندات القانونية'
+        ],
+        'description' => [
+            'en' => 'Fast and accurate processing of all legal documents in the UAE.',
+            'ar' => 'معالجة سريعة ودقيقة لجميع المستندات القانونية في الإمارات.'
+        ],
+        'hero_title' => [
+            'en' => 'Legal Docs Processing',
+            'ar' => 'معالجة المستندات القانونية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Handled with care and precision.',
+            'ar' => 'بكل عناية ودقة.'
+        ],
+        'hero_description' => [
+            'en' => 'Document verification, submission, and follow-up across UAE entities.',
+            'ar' => 'التحقق من المستندات، تقديمها، والمتابعة مع الجهات في الإمارات.'
+        ],
+        'meta_title' => 'Legal Document Processing UAE',
+        'meta_description' => 'Professional handling of legal documents including contracts, affidavits, and more.',
+        'type' => 'pro-service',
+        'status' => 'published',
+        'route_name' => 'front.proservices.show',
+        'page_link_for' => 'header',
+        'order_no' => 5,
+    ],
+//7. Document Clearance Services END
+
 //  8. Bank Account Opening Services
 [
     'slug' => 'corporate-bank-account-setup',
@@ -536,129 +693,128 @@ class PagesTableSeeder extends Seeder
 ],
 // Bank Account Opening Services end
 
-//9. VAT Registration & Compliance
+// 12. Dubai Notary Services
 [
-    'slug' => 'vat-registration-for-businesses',
+    'slug' => 'document-authentication',
     'title' => [
-        'en' => 'VAT Registration for Businesses',
-        'ar' => 'تسجيل ضريبة القيمة المضافة للشركات'
+        'en' => 'Document Authentication',
+        'ar' => 'توثيق المستندات'
     ],
     'description' => [
-        'en' => 'Register your business for VAT in the UAE with ease.',
-        'ar' => 'قم بتسجيل شركتك لضريبة القيمة المضافة في الإمارات بسهولة.'
+        'en' => 'We authenticate your documents with full legal validity in Dubai.',
+        'ar' => 'نقوم بتوثيق مستنداتك بصلاحية قانونية كاملة في دبي.'
     ],
     'hero_title' => [
-        'en' => 'VAT Registration',
-        'ar' => 'تسجيل ضريبة القيمة المضافة'
+        'en' => 'Trusted Document Authentication',
+        'ar' => 'توثيق مستندات موثوق'
     ],
     'hero_sub_title' => [
-        'en' => 'Start your VAT journey.',
-        'ar' => 'ابدأ رحلتك مع ضريبة القيمة المضافة.'
+        'en' => 'Certified and compliant authentication.',
+        'ar' => 'توثيق معتمد ومتوافق مع القوانين.'
     ],
     'hero_description' => [
-        'en' => 'We help you comply with UAE VAT regulations smoothly.',
-        'ar' => 'نساعدك في الالتزام بلوائح ضريبة القيمة المضافة في الإمارات بسلاسة.'
+        'en' => 'Ensure your documents are legally recognized in the UAE.',
+        'ar' => 'تأكد من أن مستنداتك معترف بها قانونياً في الإمارات.'
     ],
-    'meta_title' => 'UAE VAT Registration',
-    'meta_description' => 'Professional help with VAT registration for businesses in UAE.',
-    'type' => 'vat-service',
+    'meta_title' => 'Dubai Document Authentication Services',
+    'meta_description' => 'Professional document authentication services in Dubai for legal use.',
+    'type' => 'notary-service',
     'status' => 'published',
-    'route_name' => 'front.vatservices.show',
+    'route_name' => 'front.notaryservices.show',
     'page_link_for' => 'header',
     'order_no' => 1,
 ],
 [
-    'slug' => 'vat-return-filing',
+    'slug' => 'real-estate-transactions',
     'title' => [
-        'en' => 'VAT Return Filing',
-        'ar' => 'تقديم الإقرار الضريبي'
+        'en' => 'Real Estate Transactions',
+        'ar' => 'المعاملات العقارية'
     ],
     'description' => [
-        'en' => 'Accurate and timely VAT return filing services for UAE businesses.',
-        'ar' => 'خدمات تقديم الإقرار الضريبي الدقيقة وفي الوقت المناسب لشركات الإمارات.'
+        'en' => 'We notarize all your property and real estate documents in Dubai.',
+        'ar' => 'نقوم بتوثيق جميع مستندات العقارات الخاصة بك في دبي.'
     ],
     'hero_title' => [
-        'en' => 'Return Filing',
-        'ar' => 'تقديم الإقرارات'
+        'en' => 'Real Estate Notarization',
+        'ar' => 'توثيق العقارات'
     ],
     'hero_sub_title' => [
-        'en' => 'File your VAT with confidence.',
-        'ar' => 'قدّم ضريبتك بثقة.'
+        'en' => 'Reliable property documentation services.',
+        'ar' => 'خدمات توثيق الممتلكات الموثوقة.'
     ],
     'hero_description' => [
-        'en' => 'Avoid penalties and stay compliant by filing on time.',
-        'ar' => 'تجنب الغرامات وابقَ ملتزمًا من خلال التقديم في الوقت المناسب.'
+        'en' => 'Complete support for buying, selling, or leasing property in Dubai.',
+        'ar' => 'دعم كامل للبيع أو الشراء أو التأجير في دبي.'
     ],
-    'meta_title' => 'VAT Return Filing UAE',
-    'meta_description' => 'Expert VAT filing services for timely and compliant submission.',
-    'type' => 'vat-service',
+    'meta_title' => 'Real Estate Notary Dubai',
+    'meta_description' => 'Legal notarization for all types of real estate transactions in Dubai.',
+    'type' => 'notary-service',
     'status' => 'published',
-    'route_name' => 'front.vatservices.show',
+    'route_name' => 'front.notaryservices.show',
     'page_link_for' => 'header',
     'order_no' => 2,
 ],
 [
-    'slug' => 'vat-consultation-and-compliance',
+    'slug' => 'affidavits-declarations',
     'title' => [
-        'en' => 'VAT Consultation & Compliance',
-        'ar' => 'استشارات وضمان الالتزام بضريبة القيمة المضافة'
+        'en' => 'Affidavits and Declarations',
+        'ar' => 'الإقرارات والتصريحات'
     ],
     'description' => [
-        'en' => 'Receive expert VAT consultation and ensure full compliance.',
-        'ar' => 'احصل على استشارة خبراء في ضريبة القيمة المضافة وضمان الالتزام الكامل.'
+        'en' => 'Create and notarize affidavits and statutory declarations quickly and legally.',
+        'ar' => 'إعداد وتوثيق الإقرارات القانونية بسرعة وبشكل قانوني.'
     ],
     'hero_title' => [
-        'en' => 'VAT Compliance',
-        'ar' => 'الامتثال لضريبة القيمة المضافة'
+        'en' => 'Legal Affidavits',
+        'ar' => 'إقرارات قانونية'
     ],
     'hero_sub_title' => [
-        'en' => 'Stay VAT compliant.',
-        'ar' => 'ابقَ ملتزمًا بضريبة القيمة المضافة.'
+        'en' => 'Personal and business declarations notarized.',
+        'ar' => 'توثيق الإقرارات الشخصية والتجارية.'
     ],
     'hero_description' => [
-        'en' => 'We help you meet all your VAT obligations and avoid legal issues.',
-        'ar' => 'نساعدك في الوفاء بجميع التزاماتك الضريبية وتجنب المشاكل القانونية.'
+        'en' => 'We provide certified notarization for various affidavit types.',
+        'ar' => 'نوفر توثيقاً معتمداً لأنواع مختلفة من الإقرارات.'
     ],
-    'meta_title' => 'VAT Compliance UAE',
-    'meta_description' => 'Ensure full VAT compliance with our expert consulting services.',
-    'type' => 'vat-service',
+    'meta_title' => 'Affidavit Notary Dubai',
+    'meta_description' => 'Dubai notary services for personal and official affidavits and declarations.',
+    'type' => 'notary-service',
     'status' => 'published',
-    'route_name' => 'front.vatservices.show',
+    'route_name' => 'front.notaryservices.show',
     'page_link_for' => 'header',
     'order_no' => 3,
 ],
 [
-    'slug' => 'vat-deregistration',
+    'slug' => 'power-of-attorney-notarization',
     'title' => [
-        'en' => 'VAT Deregistration',
-        'ar' => 'إلغاء تسجيل ضريبة القيمة المضافة'
+        'en' => 'Power of Attorney (POA) Notarization',
+        'ar' => 'توثيق الوكالة القانونية'
     ],
     'description' => [
-        'en' => 'Close your VAT account with professional deregistration services.',
-        'ar' => 'قم بإغلاق حساب ضريبة القيمة المضافة الخاص بك بخدمات مهنية.'
+        'en' => 'Draft and notarize your Power of Attorney documents quickly and securely.',
+        'ar' => 'إعداد وتوثيق مستندات الوكالة القانونية بسرعة وأمان.'
     ],
     'hero_title' => [
-        'en' => 'Deregistration',
-        'ar' => 'إلغاء التسجيل'
+        'en' => 'POA Notarization',
+        'ar' => 'توثيق الوكالة'
     ],
     'hero_sub_title' => [
-        'en' => 'End your VAT obligations.',
-        'ar' => 'أنهِ التزاماتك الضريبية.'
+        'en' => 'Legally valid POA services in Dubai.',
+        'ar' => 'خدمات وكالة قانونية صالحة في دبي.'
     ],
     'hero_description' => [
-        'en' => 'We simplify the process of deregistering from VAT in UAE.',
-        'ar' => 'نبسط لك عملية إلغاء التسجيل من ضريبة القيمة المضافة في الإمارات.'
+        'en' => 'We handle all types of Power of Attorney notarizations.',
+        'ar' => 'نتولى جميع أنواع توثيق الوكالات القانونية.'
     ],
-    'meta_title' => 'VAT Deregistration UAE',
-    'meta_description' => 'Get help with your VAT deregistration process today.',
-    'type' => 'vat-service',
+    'meta_title' => 'POA Notary Services Dubai',
+    'meta_description' => 'Certified POA notarization services in Dubai for legal and business use.',
+    'type' => 'notary-service',
     'status' => 'published',
-    'route_name' => 'front.vatservices.show',
+    'route_name' => 'front.notaryservices.show',
     'page_link_for' => 'header',
     'order_no' => 4,
 ],
-//9. VAT Registration & Compliance end
-
+// Dubai Notary Services end
 
    // real estate         
   [

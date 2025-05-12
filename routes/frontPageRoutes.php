@@ -9,6 +9,8 @@ use App\Http\Controllers\Front\RealEstateController;
 use App\Http\Controllers\Front\VatServiceController;
 use App\Http\Controllers\Front\BankServiceController;
 use App\Http\Controllers\Front\HumanResourceController;
+use App\Http\Controllers\Front\DubaiNotaryServiceController;
+use App\Http\Controllers\Front\DocumentClearanceServiceController;
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, config('app.available_locales'))) {
         session(['locale' => $locale]);
@@ -47,6 +49,16 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
     Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
     Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
+    Route::get('government-document', [DocumentClearanceServiceController::class, 'governmentDocumentSubmission'])->name('front.document-clearance.government-document');
+    Route::get('visa-residency', [DocumentClearanceServiceController::class, 'clearanceForVisaResidency'])->name('front.document-clearance.visa-residency');
+    Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
+    Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
+    Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
+//dubai notary 
+Route::get('/dubai-notary/authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
+Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
+Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
+Route::get('/dubai-notary/power-of-attorney', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
 
 //pro servicess
     Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('document_clearance');
@@ -62,11 +74,6 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/business-banking-consultation', [BankServiceController::class, 'consultation'])->name('consultation');
     Route::get('/online-banking-solutions', [BankServiceController::class, 'online'])->name('online');
 
-//vat 
-    Route::get('/vat-registration-for-businesses', [VatServiceController::class, 'registration'])->name('registration');
-    Route::get('/vat-return-filing', [VatServiceController::class, 'filing'])->name('filing');
-    Route::get('/vat-consultation-and-compliance', [VatServiceController::class, 'consultation'])->name('consultation');
-    Route::get('/vat-deregistration', [VatServiceController::class, 'deregistration'])->name('deregistration');
 
     Route::get('/property-buying-selling-assistance', [RealEstateController::class, 'propertyBuyingSelling'])->name('front.realestate.buying.selling');
     Route::get('/real-estate-transactions', [RealEstateController::class, 'realEstateTransactions'])->name('front.realestate.transactions');
