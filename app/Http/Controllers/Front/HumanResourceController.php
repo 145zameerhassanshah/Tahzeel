@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-
 use App\Http\Controllers\Controller;
 use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonial, Procedure, CallToAction, DocumentRequired, FeatureImage, PageGroup, Enquiry, Service, User, WhyChooseUs, WhyUsImage, Feature, Faq};
 use Illuminate\Http\Request;
@@ -23,11 +22,9 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
-
-
     public function hrConsultancyServices()
     {
-        $slug = 'manpower-recruitment';
+        $slug = 'hr-consultancy-services';
         $page = Page::with([
             'elements',
             'blocks',
@@ -44,16 +41,21 @@ class HumanResourceController extends Controller
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 
-        return view('front.manpower-recruitment', ['page' => $page]);
-    }
+   
 
 
->>>>>>> 6e2f0e722a6c7b79c8025ef71a6b430bfc7ac333
+=======
+>>>>>>> 6fd6e13189ccae5b49e7dfc1dcd3a630d33af46e
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
+>>>>>>> ca99a3d01d4a5c01fb1c088998846052b48ec259
     public function employmentContracts()
     {
-        $slug = 'manpower-recruitment';
+        $slug = 'employment-contracts';
         $page = Page::with([
             'elements',
             'blocks',
@@ -69,7 +71,7 @@ class HumanResourceController extends Controller
 
     public function workPermitsLaborCards()
     {
-        $slug = 'manpower-recruitment';
+        $slug = 'work-permits-labor-cards';
         $page = Page::with([
             'elements',
             'blocks',
@@ -80,12 +82,12 @@ class HumanResourceController extends Controller
             'testimonials',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
-        return view('front.hr.workPermits_LaborCards.blade', ['page' => $page]);
+        return view('front.hr.workPermits_LaborCards', ['page' => $page]);
     }
 
     public function employeeOnboardingCompliance()
     {
-        $slug = 'manpower-recruitment';
+        $slug = 'employee-onboarding-compliance';
         $page = Page::with([
             'elements',
             'blocks',
@@ -98,11 +100,9 @@ class HumanResourceController extends Controller
         ])->where('slug', $slug)->firstOrFail();
         return view('front.hr.employee-onboarding', ['page' => $page]);
     }
-
-
     public function payrollManagement()
     {
-        $slug = 'manpower-recruitment';
+        $slug = 'payroll-management';
         $page = Page::with([
             'elements',
             'blocks',

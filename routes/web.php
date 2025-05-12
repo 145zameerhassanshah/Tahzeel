@@ -9,14 +9,17 @@ use App\Http\Middleware\SetLocale;
 use App\Models\Enquiry;
 // Frontend Controllers
 use App\Http\Controllers\Front\FrontController;
-// General Controllers
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Front\RealEstateController;
+use App\Http\Controllers\Front\VATRegController;
+use App\Http\Controllers\Front\TypingAttestationController;
+use App\Http\Controllers\{
+    DashboardController,
+    ProfileController
+};
 use App\Http\Controllers\Admin\{
     BcategoryController,
     BlogController,
     BlockController,
-
     BulkDeleteController,
     CallToActionController,
     DocumentRequiredController,
@@ -47,7 +50,8 @@ use App\Http\Controllers\Admin\{
     PageSectionController,
     ElementController
 };
-
+use App\Http\Controllers\Front\DHAController;
+use App\Http\Controllers\Front\LegalServicesController;
 
 Route::get('/pending-user', [UserController::class, 'pendingUser'])->name('pending.user');
 Route::get('/blocked-user', [UserController::class, 'blockedUser'])->name('blocked.user');
@@ -333,9 +337,9 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::resource('admin/faqs', FaqController::class);
     Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
+    Route::resource('admin/faqs', FaqController::class);
 
     // Testimonial routes start
     // Route::resource('admin/testimonials', TestimonialController::class);
@@ -372,14 +376,11 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('/page-section/edit/{id}', [PageSectionController::class, 'edit'])->name('admin.page.section.edit');
     Route::post('/page-section/update/{id}', [PageSectionController::class, 'update'])->name('admin.page.section.update');
     Route::delete('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
-
     // Route::get('language/{locale}', function ($locale) {
     //     if (in_array($locale, config('app.available_locales'))) {
     //         session(['locale' => $locale]);
-    //         app()->setLocale($locale);
-    //     }
+    //         app()->setLocale($locale);}
     //     return redirect()->back();
     // })->name('setLanguage');
-
     Route::get('/test', [FrontController::class, 'test'])->name('front.test')->middleware(Localization::class);;
 });

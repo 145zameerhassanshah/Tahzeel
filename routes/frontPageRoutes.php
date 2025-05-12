@@ -1,11 +1,32 @@
 <?php
+<<<<<<< HEAD
+use App\Http\Middleware\SetLocale;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontPageController;
+use Spatie\ResponseCache\Middlewares\CacheResponse;
+use App\Http\Controllers\Front\ProServiceController;
+use App\Http\Controllers\Front\RealEstateController;
+use App\Http\Controllers\Front\VatServiceController;
+use App\Http\Controllers\Front\BankServiceController;
+use App\Http\Controllers\Front\HumanResourceController;
+use App\Http\Controllers\Front\DubaiNotaryServiceController;
+use App\Http\Controllers\Front\DocumentClearanceServiceController;
+=======
+
+use App\Http\Controllers\Front\DHAController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\HumanResourceController;
+use App\Http\Controllers\Front\LegalServicesController;
 use App\Http\Controllers\Front\RealEstateController;
+use App\Http\Controllers\Front\TypingAttestationController;
+use App\Http\Controllers\Front\VATRegController;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
+
+>>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, config('app.available_locales'))) {
         session(['locale' => $locale]);
@@ -44,7 +65,30 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
     Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
     Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
+    Route::get('government-document-submission', [DocumentClearanceServiceController::class, 'governmentDocumentSubmission'])->name('front.document-clearance.government-document');
+    Route::get('visa-residency', [DocumentClearanceServiceController::class, 'clearanceForVisaResidency'])->name('front.document-clearance.visa-residency');
+    Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
+    Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
+    Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
+//dubai notary 
+Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
+Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
+Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
+Route::get('/dubai-notary/power-of-attorney-notarization', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
 
+//pro servicess
+    Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('document_clearance');
+    Route::get('/visa-applications-renewals', [ProServiceController::class, 'visaApplications'])->name('visa_applications');
+    Route::get('/labor-immigration-services', [ProServiceController::class, 'laborImmigration'])->name('labor_immigration');
+    Route::get('/trade-license-processing', [ProServiceController::class, 'tradeLicense'])->name('trade_license');
+    Route::get('/attestation-notarization-assistance', [ProServiceController::class, 'attestationNotarization'])->name('attestation_notarization');
+    Route::get('/company-registration-setup', [ProServiceController::class, 'companyRegistration'])->name('company_registration');
+    Route::get('/government-liaison-services', [ProServiceController::class, 'governmentLiaison'])->name('government_liaison');
+//  8. Bank Account Opening Services
+    Route::get('/corporate-bank-account-setup', [BankServiceController::class, 'corporate'])->name('corporate');
+    Route::get('/personal-bank-account-assistance', [BankServiceController::class, 'personal'])->name('personal');
+    Route::get('/business-banking-consultation', [BankServiceController::class, 'consultation'])->name('consultation');
+    Route::get('/online-banking-solutions', [BankServiceController::class, 'online'])->name('online');
 
 
     Route::get('/property-buying-selling-assistance', [RealEstateController::class, 'propertyBuyingSelling'])->name('front.realestate.buying.selling');
@@ -54,19 +98,84 @@ Route::middleware([SetLocale::class])->group(function () {
 
     Route::get('/testingpage', [FrontPageController::class, 'testPage'])->name('front.page.testing');
 
+    // real-estate-transactions
+    // Route::get('/propertyBuyingSelling', [RealEstateController::class, 'propertyBuyingSelling'])->name('propertyBuyingSelling');
+    // Route::get('/realEstateTransactions', [RealEstateController::class, 'realEstateTransactions'])->name('realEstateTransactions');
+    // Route::get('/propertyManagement', [RealEstateController::class, 'propertyManagement'])->name('propertyManagement');
+    // Route::get('/rentalAgreements', [RealEstateController::class, 'rentalAgreements'])->name('rentalAgreements');
+    // VAT Registration for Businesses
+    Route::prefix('vat')->group(function () {
+        Route::get('/registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');
+        Route::get('/return-filing', [VATRegController::class, 'vat_return_filing'])->name('vat.return_filing');
+        Route::get('/consultation-compliance', [VATRegController::class, 'vat_consultation_compliance'])->name('vat.consultation_compliance');
+        Route::get('/deregistration', [VATRegController::class, 'vat_deregistration'])->name('vat.deregistration');
+    });
+    // Legal Services
+    Route::prefix('legal')->group(function () {
+        Route::get('/document-drafting', [LegalServicesController::class, 'document_drafting'])->name('legal.document_drafting');
+        Route::get('/consultations', [LegalServicesController::class, 'consultations'])->name('legal.consultations');
+        Route::get('/representation', [LegalServicesController::class, 'representation'])->name('legal.representation');
+        Route::get('/dispute-resolution', [LegalServicesController::class, 'dispute_resolution'])->name('legal.dispute_resolution');
+    });
+
+    // Dubai Health Authority Services
+    Route::prefix('dha')->group(function () {
+        Route::get('/medical-fitness-tests', [DHAController::class, 'medicalFitnessTests'])->name('dha.medical_fitness_tests');
+        Route::get('/health-insurance-approvals', [DHAController::class, 'healthInsuranceApprovals'])->name('dha.health_insurance_approvals');
+    });
+
+    Route::prefix('typing-attestation')->group(function () {
+        Route::get('/police-clearance', [TypingAttestationController::class, 'policeClearance'])->name('typing.police_clearance');
+        Route::get('/new-passport-request', [TypingAttestationController::class, 'newPassportRequest'])->name('typing.new_passport_request');
+        Route::get('/passport-renewal', [TypingAttestationController::class, 'passportRenewal'])->name('typing.passport_renewal');
+        Route::get('/passport-lost-report', [TypingAttestationController::class, 'passportLostReport'])->name('typing.passport_lost_report');
+        Route::get('/mofa-attestation', [TypingAttestationController::class, 'mofaAttestation'])->name('typing.mofa_attestation');
+        Route::get('/power-of-attorney-drafting', [TypingAttestationController::class, 'powerOfAttorneyDrafting'])->name('typing.power_of_attorney_drafting');
+        Route::get('/document-typing-formatting', [TypingAttestationController::class, 'documentTypingFormatting'])->name('typing.document_typing_formatting');
+    });
+
+
     // Testing View's
-    Route::get('/testing', function () {return view('test');})->name('test.view');
-    Route::get('/testing0', function () {return view('test0');})->name('test0.view');
-    Route::get('/testing1', function () {return view('test1');})->name('test1.view');
-    Route::get('/testing2', function () {return view('test2');})->name('test2.view');
-    Route::get('/testing3', function () {return view('test3');})->name('test3.view');
-    Route::get('/testing4', function () {return view('test4');})->name('test4.view');
-    Route::get('/testing5', function () {return view('test5');})->name('test5.view');
-    Route::get('/testing6', function () {return view('test6');})->name('test6.view');
-    Route::get('/testing7', function () {return view('test7');})->name('test7.view');
-    Route::get('/testing8', function () {return view('test8');})->name('test8.view');
-    Route::get('/testing9', function () {return view('test9');})->name('test9.view');
-    Route::get('/testing10', function () {return view('test10');})->name('test10.view');
-    Route::get('/testing11', function () {return view('test11');})->name('test11.view');
-    Route::get('/testing12', function () {return view('test12');})->name('test12.view');
+    Route::get('/testing', function () {
+        return view('test');
+    })->name('test.view');
+    Route::get('/testing0', function () {
+        return view('test0');
+    })->name('test0.view');
+    Route::get('/testing1', function () {
+        return view('test1');
+    })->name('test1.view');
+    Route::get('/testing2', function () {
+        return view('test2');
+    })->name('test2.view');
+    Route::get('/testing3', function () {
+        return view('test3');
+    })->name('test3.view');
+    Route::get('/testing4', function () {
+        return view('test4');
+    })->name('test4.view');
+    Route::get('/testing5', function () {
+        return view('test5');
+    })->name('test5.view');
+    Route::get('/testing6', function () {
+        return view('test6');
+    })->name('test6.view');
+    Route::get('/testing7', function () {
+        return view('test7');
+    })->name('test7.view');
+    Route::get('/testing8', function () {
+        return view('test8');
+    })->name('test8.view');
+    Route::get('/testing9', function () {
+        return view('test9');
+    })->name('test9.view');
+    Route::get('/testing10', function () {
+        return view('test10');
+    })->name('test10.view');
+    Route::get('/testing11', function () {
+        return view('test11');
+    })->name('test11.view');
+    Route::get('/testing12', function () {
+        return view('test12');
+    })->name('test12.view');
 });
