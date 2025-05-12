@@ -1,32 +1,24 @@
 <?php
-<<<<<<< HEAD
-use App\Http\Middleware\SetLocale;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\Front\FrontPageController;
-use Spatie\ResponseCache\Middlewares\CacheResponse;
-use App\Http\Controllers\Front\ProServiceController;
-use App\Http\Controllers\Front\RealEstateController;
-use App\Http\Controllers\Front\VatServiceController;
-use App\Http\Controllers\Front\BankServiceController;
-use App\Http\Controllers\Front\HumanResourceController;
-use App\Http\Controllers\Front\DubaiNotaryServiceController;
-use App\Http\Controllers\Front\DocumentClearanceServiceController;
-=======
 
+use App\Http\Controllers\Front\BankServiceController;
 use App\Http\Controllers\Front\DHAController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\FrontPageController;
+use App\Http\Controllers\Front\DocumentClearanceServiceController;
+use App\Http\Controllers\Front\DubaiNotaryServiceController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\HumanResourceController;
 use App\Http\Controllers\Front\LegalServicesController;
+use App\Http\Controllers\Front\ProServiceController;
 use App\Http\Controllers\Front\RealEstateController;
 use App\Http\Controllers\Front\TypingAttestationController;
 use App\Http\Controllers\Front\VATRegController;
-use Spatie\ResponseCache\Middlewares\CacheResponse;
 use App\Http\Middleware\SetLocale;
+use Illuminate\Support\Facades\Route;
+use Spatie\ResponseCache\Middlewares\CacheResponse;
 
->>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
+
+
+
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, config('app.available_locales'))) {
         session(['locale' => $locale]);

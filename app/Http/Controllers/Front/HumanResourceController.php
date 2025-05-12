@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
 use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonial, Procedure, CallToAction, DocumentRequired, FeatureImage, PageGroup, Enquiry, Service, User, WhyChooseUs, WhyUsImage, Feature, Faq};
 use Illuminate\Http\Request;
@@ -38,21 +39,6 @@ class HumanResourceController extends Controller
         return view('front.hr.hr-consultancy-services', ['page' => $page]);
     }
 
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-
-   
-
-
-=======
->>>>>>> 6fd6e13189ccae5b49e7dfc1dcd3a630d33af46e
->>>>>>> 54e1aedfdbb10d950b5f4f55c41e6075f409747e
->>>>>>> ca99a3d01d4a5c01fb1c088998846052b48ec259
     public function employmentContracts()
     {
         $slug = 'employment-contracts';
