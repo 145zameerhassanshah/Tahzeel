@@ -49,16 +49,16 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/work-permits-labor-cards', [HumanResourceController::class, 'workPermitsLaborCards'])->name('front.work.permits');
     Route::get('/employee-onboarding-compliance', [HumanResourceController::class, 'employeeOnboardingCompliance'])->name('front.employee.onboarding');
     Route::get('/payroll-management', [HumanResourceController::class, 'payrollManagement'])->name('front.payroll.management');
-    Route::get('government-document', [DocumentClearanceServiceController::class, 'governmentDocumentSubmission'])->name('front.document-clearance.government-document');
+    Route::get('government-document-submission', [DocumentClearanceServiceController::class, 'governmentDocumentSubmission'])->name('front.document-clearance.government-document');
     Route::get('visa-residency', [DocumentClearanceServiceController::class, 'clearanceForVisaResidency'])->name('front.document-clearance.visa-residency');
     Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
     Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
     Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
 //dubai notary 
-Route::get('/dubai-notary/authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
+Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
 Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
 Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
-Route::get('/dubai-notary/power-of-attorney', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
+Route::get('/dubai-notary/power-of-attorney-notarization', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
 
 //pro servicess
     Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('document_clearance');

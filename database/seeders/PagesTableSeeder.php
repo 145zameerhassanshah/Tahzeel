@@ -201,7 +201,7 @@ class PagesTableSeeder extends Seeder
                 'order_no' => 7,
             ],
             //pro services
-     [
+      
     [
         'slug' => 'document-clearance-submission',
         'title' => [
@@ -412,12 +412,12 @@ class PagesTableSeeder extends Seeder
         'page_link_for' => 'header',
         'order_no' => 7,
     ],
-],
+
 
 //7. Document Clearance Services
 
 
-[
+
     [
         'slug' => 'government-document-submission',
         'title' => [
@@ -1082,7 +1082,7 @@ class PagesTableSeeder extends Seeder
                 'route_name' => 'pages.show',
                 'page_link_for' => 'footer',
                 'order_no' => 2,
-            ],
+            ],            
         ];
         foreach ($pages as $pageData) {
             Page::create($pageData);
