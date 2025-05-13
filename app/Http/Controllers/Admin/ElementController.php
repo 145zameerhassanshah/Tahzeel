@@ -127,20 +127,31 @@ public function update(Request $request, $id)
     $element->setTranslations('subtitle', $request->input('subtitle'));
     $element->setTranslations('description', $request->input('description'));
 
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('assets/admin/uploads/element/thumb/'), $imageName);
-        $element->image = 'assets/admin/uploads/element/thumb/' . $imageName;
+if ($request->hasFile('image')) {
+    // Delete the old image if it exists
+    if ($element->image && file_exists(public_path($element->image))) {
+        unlink(public_path($element->image));
     }
 
-    if ($request->hasFile('icon')) {
-        $file = $request->file('icon');
-        $iconName = time() . rand() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('assets/admin/uploads/element/icons/'), $iconName);
-        $element->icon = 'assets/admin/uploads/element/icons/' . $iconName;
+    // Upload new image
+    $file = $request->file('image');
+    $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('assets/admin/uploads/element/thumb/'), $imageName);
+    $element->image = 'assets/admin/uploads/element/thumb/' . $imageName;
+}
+
+if ($request->hasFile('icon')) {
+    // Delete the old icon if it exists
+    if ($element->icon && file_exists(public_path($element->icon))) {
+        unlink(public_path($element->icon));
     }
 
+    // Upload new icon
+    $file = $request->file('icon');
+    $iconName = time() . rand() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('assets/admin/uploads/element/icons/'), $iconName);
+    $element->icon = 'assets/admin/uploads/element/icons/' . $iconName;
+}
     $element->save();
 
     // Update or Add Features

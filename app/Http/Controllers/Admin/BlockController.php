@@ -30,8 +30,8 @@ public function store(Request $request)
         'title.ar' => 'required|string|max:255',
         'subtitle.en' => 'nullable|string|max:255',
         'subtitle.ar' => 'nullable|string|max:255',
-        'description.en' => 'required|string',
-        'description.ar' => 'required|string',
+        'description.en' => 'nullable|string',
+        'description.ar' => 'nullable|string',
         'page_id' => 'required|integer',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
@@ -103,8 +103,8 @@ public function update(Request $request, $id)
         'title.ar' => 'required|string|max:255',
         'subtitle.en' => 'nullable|string|max:255',
         'subtitle.ar' => 'nullable|string|max:255',
-        'description.en' => 'required|string',
-        'description.ar' => 'required|string',
+        'description.en' => 'nullable|string',
+        'description.ar' => 'nullable|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
         'features.*.id' => 'nullable|integer|exists:element_features,id',
@@ -118,20 +118,31 @@ public function update(Request $request, $id)
     $block->setTranslations('subtitle', $request->input('subtitle'));
     $block->setTranslations('description', $request->input('description'));
 
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('assets/admin/uploads/block/thumb/'), $imageName);
-        $block->image = 'assets/admin/uploads/block/thumb/' . $imageName;
+if ($request->hasFile('image')) {
+    // Delete the old image if it exists
+    if ($block->image && file_exists(public_path($block->image))) {
+        unlink(public_path($block->image));
     }
 
-    if ($request->hasFile('icon')) {
-        $file = $request->file('icon');
-        $iconName = time() . rand() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('assets/admin/uploads/block/icons/'), $iconName);
-        $block->icon = 'assets/admin/uploads/block/icons/' . $iconName;
+    // Upload new image
+    $file = $request->file('image');
+    $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('assets/admin/uploads/block/thumb/'), $imageName);
+    $block->image = 'assets/admin/uploads/block/thumb/' . $imageName;
+}
+
+if ($request->hasFile('icon')) {
+    // Delete the old icon if it exists
+    if ($block->icon && file_exists(public_path($block->icon))) {
+        unlink(public_path($block->icon));
     }
 
+    // Upload new icon
+    $file = $request->file('icon');
+    $iconName = time() . rand() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('assets/admin/uploads/block/icons/'), $iconName);
+    $block->icon = 'assets/admin/uploads/block/icons/' . $iconName;
+}
     $block->save();
 
     // Update or Add Features
