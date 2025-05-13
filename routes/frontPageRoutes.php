@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\RealEstateController;
 use App\Http\Controllers\Front\BankServiceController;
 use App\Http\Controllers\Front\HumanResourceController;
 use App\Http\Controllers\Front\LegalServicesController;
+use App\Http\Controllers\Front\InvestmentPlanController;
 use App\Http\Controllers\Front\TasheelServiceController;
 use App\Http\Controllers\Front\TypingAttestationController;
 use App\Http\Controllers\Front\DubaiNotaryServiceController;
