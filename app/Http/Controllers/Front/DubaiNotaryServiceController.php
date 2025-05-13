@@ -26,7 +26,7 @@ class DubaiNotaryServiceController extends Controller
 
     public function realEstateTransactions()
     {
-        $slug = 'real-estate-transactions';
+        $slug = 'real-estate-transaction';
         $page = Page::with([
             'elements',
             'blocks',
