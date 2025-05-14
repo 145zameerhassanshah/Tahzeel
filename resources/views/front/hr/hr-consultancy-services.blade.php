@@ -15,9 +15,10 @@
     @if ($section)
         @include('front.partials._section_title', ['section' => $section])
     @endif
-    @php($why_choose_us = $page->whyChooseUs)
-    @if ($why_choose_us->isNotEmpty())
-        @include('front.partials._whyChoose', ['why_choose_us' => $why_choose_us])
+
+    
+    @if ($page->whyChooseUs->isNotEmpty())
+    @include('front.partials._whyChoose', ['whyChooseUs' => $page->whyChooseUs])
     @endif
 
     {{-- industries we serve section --}}
@@ -26,6 +27,10 @@
         <h2 class="text-center">Industries we serve</h2>
         @include('front.partials._element-features-2', ['element' => $page->elements[2]])
     @endif
+
+    @include('front.partials.industriesWeServe')
+
+    @include('front.partials.availableManpower')
 
     @php($callToActions = $page->callToActions)
     @if ($callToActions->isNotEmpty())
@@ -38,7 +43,7 @@
         @include('front.partials._element-features-6', ['element' => $page->elements[0]])
     @endif
     @if ($page->elements->isNotEmpty())
-        @include('front.partials._element-features-1', ['element' => $page->elements[0]])
+        @include('front.partials._element-features-1', ['element' => $page->elements[1]])
     @endif
 
     @include('front.partials._cta3')
@@ -56,10 +61,8 @@
 
     @include('front.partials._faqs')
 
-    @php($callToActions = $page->callToActions)
-    @if ($callToActions->isNotEmpty())
-        @include('front.partials._cta', ['item' => $callToActions])
-    @endif
+    @include('front.partials.cta-2')
+
 
     @include('front.partials.contact-Us')
 
