@@ -65,13 +65,15 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/realEstateTransactions', [RealEstateController::class, 'realEstateTransactions'])->name('realEstateTransactions');
     Route::get('/propertyManagement', [RealEstateController::class, 'propertyManagement'])->name('propertyManagement');
     Route::get('/rentalAgreements', [RealEstateController::class, 'rentalAgreements'])->name('rentalAgreements');
+
     // VAT Registration for Businesses
     Route::prefix('vat')->group(function () {
-        Route::get('/registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');
-        Route::get('/return-filing', [VATRegController::class, 'vat_return_filing'])->name('vat.return_filing');
         Route::get('/consultation-compliance', [VATRegController::class, 'vat_consultation_compliance'])->name('vat.consultation_compliance');
+        Route::get('/registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');
         Route::get('/deregistration', [VATRegController::class, 'vat_deregistration'])->name('vat.deregistration');
+        Route::get('/return-filing', [VATRegController::class, 'vat_return_filing'])->name('vat.return_filing');
     });
+
     // Legal Services
     Route::prefix('legal')->group(function () {
         Route::get('/document-drafting', [LegalServicesController::class, 'document_drafting'])->name('legal.document_drafting');
@@ -88,56 +90,11 @@ Route::middleware([SetLocale::class])->group(function () {
 
     Route::prefix('typing-attestation')->group(function () {
         Route::get('/police-clearance', [TypingAttestationController::class, 'policeClearance'])->name('typing.police_clearance');
-        Route::get('/new-passport-request', [TypingAttestationController::class, 'newPassportRequest'])->name('typing.new_passport_request');
         Route::get('/passport-renewal', [TypingAttestationController::class, 'passportRenewal'])->name('typing.passport_renewal');
-        Route::get('/passport-lost-report', [TypingAttestationController::class, 'passportLostReport'])->name('typing.passport_lost_report');
         Route::get('/mofa-attestation', [TypingAttestationController::class, 'mofaAttestation'])->name('typing.mofa_attestation');
+        Route::get('/new-passport-request', [TypingAttestationController::class, 'newPassportRequest'])->name('typing.new_passport_request');
+        Route::get('/passport-lost-report', [TypingAttestationController::class, 'passportLostReport'])->name('typing.passport_lost_report');
         Route::get('/power-of-attorney-drafting', [TypingAttestationController::class, 'powerOfAttorneyDrafting'])->name('typing.power_of_attorney_drafting');
         Route::get('/document-typing-formatting', [TypingAttestationController::class, 'documentTypingFormatting'])->name('typing.document_typing_formatting');
     });
-
-
-    // Testing View's
-    Route::get('/testing', function () {
-        return view('test');
-    })->name('test.view');
-    Route::get('/testing0', function () {
-        return view('test0');
-    })->name('test0.view');
-    Route::get('/testing1', function () {
-        return view('test1');
-    })->name('test1.view');
-    Route::get('/testing2', function () {
-        return view('test2');
-    })->name('test2.view');
-    Route::get('/testing3', function () {
-        return view('test3');
-    })->name('test3.view');
-    Route::get('/testing4', function () {
-        return view('test4');
-    })->name('test4.view');
-    Route::get('/testing5', function () {
-        return view('test5');
-    })->name('test5.view');
-    Route::get('/testing6', function () {
-        return view('test6');
-    })->name('test6.view');
-    Route::get('/testing7', function () {
-        return view('test7');
-    })->name('test7.view');
-    Route::get('/testing8', function () {
-        return view('test8');
-    })->name('test8.view');
-    Route::get('/testing9', function () {
-        return view('test9');
-    })->name('test9.view');
-    Route::get('/testing10', function () {
-        return view('test10');
-    })->name('test10.view');
-    Route::get('/testing11', function () {
-        return view('test11');
-    })->name('test11.view');
-    Route::get('/testing12', function () {
-        return view('test12');
-    })->name('test12.view');
 });
