@@ -68,7 +68,8 @@ class WhyChooseUsController extends Controller
             'en' => $request->description['en'],
             'ar' => $request->description['ar'],
         ]);
-        $why_choose_us->icon = json_encode($request->icon);
+        // $why_choose_us->icon = json_encode($request->icon);
+        $why_choose_us->icon = $request->icon;
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
         $why_choose_us->save();
