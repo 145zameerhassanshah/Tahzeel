@@ -66,42 +66,42 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
     Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
     Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
-//dubai notary 
-Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
-Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
-Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
-Route::get('/dubai-notary/power-of-attorney-notarization', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
-//ded services
-Route::prefix('ded-services')->name('front.dedservices.')->group(function () {
-    Route::get('business-setup-licensing', [DedServiceController::class, 'businessSetup'])->name('business_setup');
-    Route::get('trade-name-reservation', [DedServiceController::class, 'tradeNameReservation'])->name('trade_name');
-    Route::get('initial-approval', [DedServiceController::class, 'initialApproval'])->name('initial_approval');
-    Route::get('license-renewal-amendments', [DedServiceController::class, 'licenseRenewal'])->name('license_renewal');
-    Route::get('company-deregistration', [DedServiceController::class, 'deregistration'])->name('deregistration');
-    Route::get('commercial-permits', [DedServiceController::class, 'commercialPermits'])->name('commercial_permits');
-});
-//investment plan 
-Route::prefix('investment-plans')->name('front.investmentplans.')->group(function () {
-    Route::get('global-investment-solutions', [InvestmentPlanController::class, 'globalInvestment'])->name('global_investment');
-    Route::get('investment-planning-advisory', [InvestmentPlanController::class, 'investmentAdvisory'])->name('investment_advisory');
-    Route::get('property-investment-opportunities', [InvestmentPlanController::class, 'propertyInvestment'])->name('property_investment');
-    Route::get('business-investment-strategies', [InvestmentPlanController::class, 'businessStrategy'])->name('business_strategy');
-    Route::get('risk-management-diversification', [InvestmentPlanController::class, 'riskManagement'])->name('risk_management');
-});
+    //dubai notary 
+    Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
+    Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
+    Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
+    Route::get('/dubai-notary/power-of-attorney-notarization', [DubaiNotaryServiceController::class, 'powerOfAttorney'])->name('front.dubai-notary.attorney');
+    //ded services
+    Route::prefix('ded-services')->name('front.dedservices.')->group(function () {
+        Route::get('business-setup-licensing', [DedServiceController::class, 'businessSetup'])->name('business_setup');
+        Route::get('trade-name-reservation', [DedServiceController::class, 'tradeNameReservation'])->name('trade_name');
+        Route::get('initial-approval', [DedServiceController::class, 'initialApproval'])->name('initial_approval');
+        Route::get('license-renewal-amendments', [DedServiceController::class, 'licenseRenewal'])->name('license_renewal');
+        Route::get('company-deregistration', [DedServiceController::class, 'deregistration'])->name('deregistration');
+        Route::get('commercial-permits', [DedServiceController::class, 'commercialPermits'])->name('commercial_permits');
+    });
+    //investment plan 
+    Route::prefix('investment-plans')->name('front.investmentplans.')->group(function () {
+        Route::get('global-investment-solutions', [InvestmentPlanController::class, 'globalInvestment'])->name('global_investment');
+        Route::get('investment-planning-advisory', [InvestmentPlanController::class, 'investmentAdvisory'])->name('investment_advisory');
+        Route::get('property-investment-opportunities', [InvestmentPlanController::class, 'propertyInvestment'])->name('property_investment');
+        Route::get('business-investment-strategies', [InvestmentPlanController::class, 'businessStrategy'])->name('business_strategy');
+        Route::get('risk-management-diversification', [InvestmentPlanController::class, 'riskManagement'])->name('risk_management');
+    });
 
 
-//tasheel service
+    //tasheel service
 
-Route::prefix('tasheel-services')->group(function () {
+    Route::prefix('tasheel-services')->group(function () {
 
-    Route::get('/government-transactions', [TasheelServiceController::class, 'governmentTransactions'])->name('front.tasheel.government_transactions');
+        Route::get('/government-transactions', [TasheelServiceController::class, 'governmentTransactions'])->name('front.tasheel.government_transactions');
 
-    Route::get('/mohre-services', [TasheelServiceController::class, 'mohreServices'])->name('front.tasheel.mohre_services');
+        Route::get('/mohre-services', [TasheelServiceController::class, 'mohreServices'])->name('front.tasheel.mohre_services');
 
-    Route::get('/legal-translation', [TasheelServiceController::class, 'legalTranslation'])->name('front.tasheel.legal_translation');
-});
+        Route::get('/legal-translation', [TasheelServiceController::class, 'legalTranslation'])->name('front.tasheel.legal_translation');
+    });
 
-//pro servicess
+    //pro servicess
     Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('front.proservice.document_clearance');
     Route::get('/visa-applications-renewals', [ProServiceController::class, 'visaApplications'])->name('front.proservice.visa_applications');
     Route::get('/labor-immigration-services', [ProServiceController::class, 'laborImmigration'])->name('front.proservice.labor_immigration');
@@ -109,7 +109,7 @@ Route::prefix('tasheel-services')->group(function () {
     Route::get('/attestation-notarization-assistance', [ProServiceController::class, 'attestationNotarization'])->name('front.proservice.attestation_notarization');
     Route::get('/company-registration-setup', [ProServiceController::class, 'companyRegistration'])->name('front.proservice.company_registration');
     Route::get('/government-liaison-services', [ProServiceController::class, 'governmentLiaison'])->name('front.proservice.government_liaison');
-//  8. Bank Account Opening Services
+    //  8. Bank Account Opening Services
     Route::get('/corporate-bank-account-setup', [BankServiceController::class, 'corporate'])->name('front.bankservice.corporate');
     Route::get('/personal-bank-account-assistance', [BankServiceController::class, 'personal'])->name('front.bankservice.personal');
     Route::get('/business-banking-consultation', [BankServiceController::class, 'consultation'])->name('front.bankservice.consultation');
@@ -131,10 +131,10 @@ Route::prefix('tasheel-services')->group(function () {
     // VAT Registration for Businesses
     Route::prefix('vat')->group(function () {
         Route::get('/consultation-compliance', [VATRegController::class, 'vat_consultation_compliance'])->name('vat.consultation_compliance');
-        Route::get('/registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');
         Route::get('/deregistration', [VATRegController::class, 'vat_deregistration'])->name('vat.deregistration');
         Route::get('/return-filing', [VATRegController::class, 'vat_return_filing'])->name('vat.return_filing');
     });
+    Route::get('/vat-registration', [VATRegController::class, 'vat_registration_for_businesses'])->name('vat.registration');
 
     // Legal Services
     Route::prefix('legal')->group(function () {

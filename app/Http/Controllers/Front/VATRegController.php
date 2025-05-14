@@ -21,6 +21,8 @@ class VATRegController extends Controller
             'heroSections',
             'testimonials',
             'introductionSections',
+            'features',
+            'featureImages',
             'whyUsImages'
         ])->where('slug', $slug)->firstOrFail();
         return view('front.vat.vat-reg-business', ['page' => $page]);

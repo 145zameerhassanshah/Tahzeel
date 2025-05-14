@@ -12,6 +12,7 @@
 @if ($section)
 @include('front.partials._section_title', ['section' => $section])
 @endif
+
 @php($introSection = $page->introductionSections->first())
 @if ($introSection)
 @include('front.partials._intro_three_images', ['introSection' => $introSection])
