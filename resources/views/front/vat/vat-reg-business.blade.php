@@ -17,31 +17,50 @@
 @endif
 
 
+@if ($page->faqs->isNotEmpty())
+    @include('front.partials._faqs_1', ['faqs' => $page->faqs])
+@endif
+
+
+@if ($page->whyChooseUs->isNotEmpty())
+@include('front.partials._whyChoose', ['whyChooseUs' => $page->whyChooseUs])
+@endif
+
+
+
 @if ($page->elements->isNotEmpty())
 @include('front.partials._element-features-1', ['element' => $page->elements[0]])
 @include('front.partials._element-features-2', ['element' => $page->elements[0]])
 @endif
 
+
 @if ($page->blocks->isNotEmpty())
 @include('front.partials._block', ['block' => $page->blocks[0]])
 @endif
+
 
 @php($testimonials = $page->testimonials)
 @if ($testimonials->isNotEmpty())
 @include('front.partials.clients-2', ['testimonials' => $testimonials])
 @endif
 
+
+
 @if (isset($feature_images) && isset($feature_title->title))
 @include('front.partials._feature_image')
 @endif
 
-@if (isset($why_choose_us))
-@include('front.partials._whyChoose')
+
+@if ($page->featureImages->isNotEmpty())
+@include('front.partials._feature_image', ['featureImages' => $page->featureImages])
 @endif
 
-@if (isset($procedures) && isset($procedure_title))
-@include('front.partials._procedures')
+
+
+@if ($page->procedures->isNotEmpty())
+@include('front.partials._procedures', ['procedures' => $page->procedures])
 @endif
+
 
 {{-- Display Key Features --}}
 @if (isset($feature_title->title))

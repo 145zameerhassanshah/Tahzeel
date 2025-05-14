@@ -1,7 +1,6 @@
 @php
 $images = !empty($introSection->images) ? json_decode($introSection->images, true) : [];
 @endphp
-
 <section class="wrapper bg-light">
     <div class="container py-14 py-md-16">
         <div class="row gy-10 gy-sm-13 gx-md-8 gx-xl-12 align-items-center">
@@ -14,7 +13,6 @@ $images = !empty($introSection->images) ? json_decode($introSection->images, tru
                         </figure>
                     </div>
                     @endif
-
                     @if (isset($images[1]) && !empty($images[1]))
                     <div class="col-md-6">
                         <figure class="rounded d-none d-md-block">
@@ -22,7 +20,6 @@ $images = !empty($introSection->images) ? json_decode($introSection->images, tru
                         </figure>
                     </div>
                     @endif
-
                     @if (isset($images[2]) && !empty($images[2]))
                     <div class="col-md-6">
                         <figure class="rounded">
@@ -32,7 +29,6 @@ $images = !empty($introSection->images) ? json_decode($introSection->images, tru
                     @endif
                 </div>
             </div>
-
             <div class="col-lg-6">
                 <h2 class="fs-16 text-uppercase text-red mb-3">{!! $introSection->subtitle !!}</h2>
                 <h3 class="display-3 mb-8">{!! $introSection->title !!}</h3>

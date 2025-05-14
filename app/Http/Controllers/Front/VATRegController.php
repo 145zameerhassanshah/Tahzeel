@@ -18,6 +18,8 @@ class VATRegController extends Controller
             'callToActions',
             'sectionTitles',
             'faqs',
+            'procedures',
+            'whyChooseUs',
             'heroSections',
             'testimonials',
             'introductionSections',
