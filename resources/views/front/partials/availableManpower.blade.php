@@ -79,20 +79,20 @@
                     </div>
                     <div class="four col-md-6 col-sm-6 col-lg-3">
                         <div class="counter-box colored2">
-                            <i class="bi bi-wrench-adjustable"></i>
+                            <i class="bi bi-wrench-adjustable"></i> 
                             <p>Plumbers</p>
                         </div>
                     </div>
                     <div class="four col-md-6 col-sm-6 col-lg-3">
                         <div class="counter-box colored3">
-                            <i class="bi bi-hourglass-bottom"></i>
+                            <i class="bi bi-tools"></i>
                             <p>HVAC Technicians</p>
                         </div>
                     </div>
                     <div class="four col-md-6 col-sm-6 col-lg-3">
                         <div class="counter-box colored4">
-                            <i class="bi bi-building-fill-check"></i>
-                            <p>Welders</p>
+                        <i class="bi bi-nut-fill"></i>  
+                        <p>Welders</p>
                         </div>
                     </div>
                 </div>
