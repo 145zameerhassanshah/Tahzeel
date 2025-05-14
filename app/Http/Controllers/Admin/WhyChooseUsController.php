@@ -44,7 +44,6 @@ class WhyChooseUsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'page_id' => 'required|exists:groups,id',
             'title.en' => 'required',
             'title.ar' => 'required',
             'subtitle.en' => 'required',
