@@ -337,9 +337,9 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::resource('admin/faqs', FaqController::class);
     Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
     Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
+    Route::resource('admin/faqs', FaqController::class);
 
     // Testimonial routes start
     // Route::resource('admin/testimonials', TestimonialController::class);
@@ -370,12 +370,12 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::resource('admin/call-to-actions', CallToActionController::class);
 
 
-    Route::get('/page-section/{id}', [PageSectionController::class, 'index'])->name('admin.page.section.index');
-    Route::get('/page-section/add/{id}', [PageSectionController::class, 'add'])->name('admin.page.section.add');
-    Route::post('/page-section/store', [PageSectionController::class, 'store'])->name('admin.page.section.store');
-    Route::get('/page-section/edit/{id}', [PageSectionController::class, 'edit'])->name('admin.page.section.edit');
-    Route::post('/page-section/update/{id}', [PageSectionController::class, 'update'])->name('admin.page.section.update');
-    Route::delete('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
+Route::get('/page-section/{id}', [PageSectionController::class, 'index'])->name('admin.page.section.index');
+Route::get('/page-section/add/{id}', [PageSectionController::class, 'add'])->name('admin.page.section.add');
+Route::post('/page-section/store', [PageSectionController::class, 'store'])->name('admin.page.section.store');
+Route::get('/page-section/edit/{id}', [PageSectionController::class, 'edit'])->name('admin.page.section.edit');
+Route::post('/page-section/update/{id}', [PageSectionController::class, 'update'])->name('admin.page.section.update');
+Route::delete('/page-section/delete/{id}', [PageSectionController::class, 'delete'])->name('admin.page.section.delete');
     // Route::get('language/{locale}', function ($locale) {
     //     if (in_array($locale, config('app.available_locales'))) {
     //         session(['locale' => $locale]);

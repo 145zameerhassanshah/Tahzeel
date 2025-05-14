@@ -39,6 +39,10 @@
         @include('front.partials._element-features-1', ['element' => $page->elements[0]])
     @endif 
 
+        @include('front.partials.industriesWeServe')
+
+        @include('front.partials.availableManpower')
+
     @include('front.partials._cta3')
     {{-- Testimonials --}}
 @php($section = $page->sectionTitles->where('type', 'testimonial')->first())

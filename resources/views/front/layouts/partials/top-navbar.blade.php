@@ -43,7 +43,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('header.other_services') }}</a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('"Under Construction"') }}</a></li>
+                                        {{-- <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('"Under Construction"') }}</a></li> --}}
                                         <li><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">{{ __('DED License') }}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('front.dhaServices') }}">{{ __('DHA Services') }}</a></li>
                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Human Resources</a>
@@ -51,6 +51,70 @@
 
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower-recruitment') }}">Manpower Recruitment</a></li>
                                               <li class="nav-item"><a class="dropdown-item" href="{{ route('front.manpower.recruitment') }}">Manpower Recruitment2</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.hr.consultancy') }}">HR consultancy</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.employment.contracts') }}">Employment Contracts</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.work.permits') }}">Work Permits & Labour Cards</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.employee.onboarding') }}">Employee Onboarding & Compliance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.payroll.management') }}">Payroll Management</a></li>
+
+                                            </ul>
+                                          </li>
+                                        <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Real Estate Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.realestate.buying.selling') }}">Property Buying & Selling Assistance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.realestate.transactions') }}">Real Estate Transactions</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.realestate.management') }}">Property Management Solutions</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.realestate.rentals') }}">Rental Agreements and Renewals</a></li>
+                                             
+
+                                            </ul>
+                                          </li>
+                                        
+                                        <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">VAT Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('vat.registration') }}">VAT Registration for Businesses</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('vat.return_filing') }}">VAT Return Filing</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('vat.consultation_compliance') }}">  VAT Consultation & Compliance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('vat.deregistration') }}">VAT Deregistration</a></li>
+                                             
+
+                                            </ul>
+                                          </li>
+
+                                        <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Legal Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('legal.document_drafting') }}"> Document Drafting</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('legal.consultations') }}">Consultations</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('legal.representation') }}">Representation </a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('legal.dispute_resolution') }}">Dispute Resolution</a></li>
+                                             
+
+                                            </ul>
+                                          </li>
+
+                                        <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">DHA Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('dha.medical_fitness_tests') }}">Medical Fitness Tests</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('dha.health_insurance_approvals') }}">Health Insurance Approvals</a></li>
+                                             
+
+                                            </ul>
+                                          </li>
+                                        
+                                        <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Typing & Attestation Services </a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.police_clearance') }}">Police Clearance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.new_passport_request') }}">New Passport Request</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.passport_renewal') }}">Passport Renewal</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.passport_lost_report') }}">Passport Lost Report</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.mofa_attestation') }}"> MOFA Attestation (Ministry of Foreign Affairs)</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.power_of_attorney_drafting') }}">Power of Attorney (POA) Drafting</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('typing.document_typing_formatting') }}">Document Typing and Formatting</a></li>
 
                                             </ul>
                                           </li>

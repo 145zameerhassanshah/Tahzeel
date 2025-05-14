@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('hero_image')->nullable();
             $table->enum('status', ['draft', 'published'])->default('published');
-            $table->enum('type',['amer-service','visa','ded','real-estate-service','legal-service','dha-service','typing-attestation-service']);
+            $table->enum('type',['amer-service','tasheel-service','vat-service','notary-service','bank-service','hr','dcs','visa','ded-service','investment-plan','real-estate-service','pro-service','legal-service','dha-service','typing-attestation-service']);
             $table->string('route_name')->nullable();
             $table->enum('page_link_for', ['header', 'footer', 'services', 'none']);
             $table->integer('order_no')->default(0);
