@@ -18,7 +18,7 @@
 
 
 @if ($page->faqs->isNotEmpty())
-    @include('front.partials._faqs_1', ['faqs' => $page->faqs])
+@include('front.partials._faqs_1', ['faqs' => $page->faqs])
 @endif
 
 
@@ -59,6 +59,11 @@
 
 @if ($page->procedures->isNotEmpty())
 @include('front.partials._procedures', ['procedures' => $page->procedures])
+@endif
+
+
+@if ($page->documentRequireds->isNotEmpty())
+@include('front.partials._docs', ['documentRequireds' => $page->documentRequireds])
 @endif
 
 
@@ -127,27 +132,17 @@
 </div>
 @endif
 
-{{-- Display 'Why Choose Us' Section Again --}}
-@if (isset($why_choose_us))
-@include('front.partials.why-choose')
-@endif
 
-{{-- Display Call to Action (if any) --}}
 @php($callToActions = $page->callToActions)
 @if ($callToActions->isNotEmpty())
 @include('front.partials._cta')
 @endif
 
-{{-- Display Affiliations Section --}}
 @include('front.partials.affiliations')
 
-{{-- Display Additional Call to Action --}}
 @include('front.partials.cta-1')
 
-{{-- Display Contact Us Section --}}
 @include('front.partials.contact-us')
 
-{{-- Display AMR Services Cards --}}
 @include('front.partials.amr-services-cards')
-
 @endsection

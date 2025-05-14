@@ -21,6 +21,7 @@ class VATRegController extends Controller
             'procedures',
             'whyChooseUs',
             'heroSections',
+            'documentRequireds',
             'testimonials',
             'introductionSections',
             'features',
