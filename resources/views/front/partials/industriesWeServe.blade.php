@@ -76,7 +76,7 @@
             </div>
             <div>
               <h3 class="fs-21 mb-2">IT & Technology</h3>
-              <p class="mb-0">Delivering HR strategy, recruitment, and compliance support for tech companies, startups, and service-based businesses.</p>
+              <p class="mb-0">Delivering HR strategy, recruitment, and compliance support for small & large tech companies, startups, and service-based businesses.</p>
             </div>
           </div>
         </div>

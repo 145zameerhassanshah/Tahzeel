@@ -30,6 +30,7 @@ class HumanResourceController extends Controller
             'elements',
             'blocks',
             'sections',
+            'whyChooseUs',
             'callToActions',
             'sectionTitles',
             'faqs',
