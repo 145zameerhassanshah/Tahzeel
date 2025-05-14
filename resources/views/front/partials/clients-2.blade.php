@@ -3,8 +3,8 @@
   <div class="container py-14 py-md-16">
     <div class="row gx-xl-12 gy-10 align-items-center">
       <div class="col-xl-4">
-        {!!  __('testimonials.testimonial_title') !!}
-        <p class="lead fs-lg mb-6">{!!  __('testimonials.testimonial_sub_title') !!}</p>
+        {!! __('testimonials.testimonial_title') !!}
+        <p class="lead fs-lg mb-6">{!! __('testimonials.testimonial_sub_title') !!}</p>
         <a href="{{ route('front.contact.us') }}" class="btn btn-red rounded-pill text-white">{{ __('buttons.apply_now') }}</a>
       </div>
       <!-- /column -->
