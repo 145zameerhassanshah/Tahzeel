@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row gx-md-5 mb-5 mb-md-5">
-        @foreach ($whyChooseUs as $whyChoose)
+        @php
+            $colors = [' border-soft-yellow'];
+        @endphp
+        @foreach ($why_choose_us as $whyChoose)
         <div class="col-md-6 col-xl-3">
             <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card">
                 <div class="card-body">
