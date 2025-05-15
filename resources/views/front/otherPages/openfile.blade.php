@@ -290,7 +290,7 @@
         <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>  
+</section>
 @include('front.partials.clients')
 @include('front.partials.affiliations')
 @include('front.partials.cta-1')

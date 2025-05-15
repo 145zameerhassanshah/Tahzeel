@@ -277,7 +277,7 @@
         </div>
     </div>
   </section>
-  
+
 
 
   <section class="wrapper bg-light">
@@ -349,7 +349,7 @@
         </div>
     </div>
   </section>
-  
+
 
 
 @include('front.partials.clients')

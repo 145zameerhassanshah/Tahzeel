@@ -34,10 +34,10 @@
 
      @if ($page->elements->isNotEmpty())
         @include('front.partials._element-features-6', ['element' => $page->elements[0]])
-    @endif 
+    @endif
          @if ($page->elements->isNotEmpty())
         @include('front.partials._element-features-1', ['element' => $page->elements[0]])
-    @endif 
+    @endif
 
     @include('front.partials._cta3')
     {{-- Testimonials --}}
@@ -59,7 +59,7 @@
 @include('front.partials._cta', ['item' => $callToActions])
 @endif
 
-        @include('front.partials.contact-Us')
+        @include('front.partials.contact-us')
 
 
     @include('front.partials.clients')

@@ -26,8 +26,8 @@
             </div>
             <!--/column -->
             <div class="col-lg-6">
-                {!! __('emirate_id.intro_title') !!} 
-                {!! __('emirate_id.intro_description') !!} 
+                {!! __('emirate_id.intro_title') !!}
+                {!! __('emirate_id.intro_description') !!}
                 <div class="row gx-xl-10 gy-6">
                     <div class="col-md-6">
                         <div class="d-flex flex-row">
@@ -79,7 +79,7 @@
                                 <h4 class="mb-1">{!! __('emirate_id.step4_title') !!} </h4>
                                 <p class="mb-0"> {!! __('emirate_id.step4_para') !!}</p>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!--/column -->
@@ -144,7 +144,7 @@
                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                     data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                     <p>   {!! __('emirate_id.faq_des1') !!}                  </p>                  
+                                     <p>   {!! __('emirate_id.faq_des1') !!}                  </p>
                                     </div>
                                     <!--/.card-body -->
                                 </div>
@@ -160,7 +160,7 @@
                                 <div id="collapseTwo" class="accordion-collapse collapse"
                                     aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                       <p> {!! __('emirate_id.faq_des2') !!}  </p>                                  
+                                       <p> {!! __('emirate_id.faq_des2') !!}  </p>
                                     </div>
                                     <!--/.card-body -->
                                 </div>
@@ -177,9 +177,9 @@
                                 <div id="collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                       <p> {!! __('emirate_id.faq_des3') !!}             </p>                       
+                                       <p> {!! __('emirate_id.faq_des3') !!}             </p>
                                     </div>
-                                
+
                                     <!--/.card-body -->
                                 </div>
                                 <!--/.accordion-collapse -->
@@ -195,7 +195,7 @@
                                 <div id="collapseFour" class="accordion-collapse collapse"
                                     aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                       <p> {!! __('emirate_id.faq_des4') !!}   </p>                                 
+                                       <p> {!! __('emirate_id.faq_des4') !!}   </p>
                                     </div>
                                     <!--/.card-body -->
                                 </div>
@@ -213,7 +213,7 @@
                                 <div id="collapseFive" class="accordion-collapse collapse"
                                     aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                      <p>   {!! __('emirate_id.faq_des5') !!}    </p>                                
+                                      <p>   {!! __('emirate_id.faq_des5') !!}    </p>
                                     </div>
                                     <!--/.card-body -->
                                 </div>
@@ -230,7 +230,7 @@
                                 <div id="collapseSix" class="accordion-collapse collapse"
                                     aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                       <p>  {!! __('emirate_id.faq_des6') !!}  </p>                                  
+                                       <p>  {!! __('emirate_id.faq_des6') !!}  </p>
                                     <!--/.card-body -->
                                 </div>
                                 <!--/.accordion-collapse -->

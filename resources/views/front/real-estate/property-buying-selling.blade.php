@@ -29,7 +29,7 @@
     @include('front.partials.clients')
 
     @include('front.partials.why-choose')
-    
+
     @php($callToActions = $page->callToActions)
     @if ($callToActions->isNotEmpty())
         @include('front.partials._cta', ['item' => $callToActions])

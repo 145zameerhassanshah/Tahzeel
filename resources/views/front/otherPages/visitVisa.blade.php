@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  
+
 </section>
 <section class="wrapper bg-light">
   <div class="container py-14 py-md-16">
@@ -118,29 +118,29 @@
         <div class="row text-center">
             <div class="col-lg-9 mx-auto">
                 <h2 class="fs-15 text-uppercase text-muted mb-3 mt-12">{{ __('visit-visa.seamless_visa_experience') }}</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">{{ __('visit-visa.how_to_apply') }} 
+                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">{{ __('visit-visa.how_to_apply') }}
                     <span class="text-gradient gradient-6 display-1">{{ __('visit-visa.tahzeel') }}</span></h3>
                 <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
                     <div class="col-md-3">
-                        <img src="{{ asset('assets/static/info-circle.svg') }}" 
+                        <img src="{{ asset('assets/static/info-circle.svg') }}"
                              class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                         <h4 class="mb-1">{{ __('visit-visa.consultation') }}</h4>
                         <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.consultation_desc') }}</p>
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('assets/static/file-text.svg') }}" 
+                        <img src="{{ asset('assets/static/file-text.svg') }}"
                              class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                         <h4 class="mb-1">{{ __('visit-visa.document_submission') }}</h4>
                         <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.document_submission_desc') }}</p>
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('assets/static/arrow-repeat.svg') }}" 
+                        <img src="{{ asset('assets/static/arrow-repeat.svg') }}"
                              class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                         <h4 class="mb-1">{{ __('visit-visa.application_processing') }}</h4>
                         <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.application_processing_desc') }}</p>
                     </div>
                     <div class="col-md-3">
-                        <img src="{{ asset('assets/static/check2-circle.svg') }}" 
+                        <img src="{{ asset('assets/static/check2-circle.svg') }}"
                              class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                         <h4 class="mb-1">{{ __('visit-visa.visa_approval') }}</h4>
                         <p class="mb-5 mb-md-0 text-justify">{{ __('visit-visa.visa_approval_desc') }}</p>
@@ -150,7 +150,7 @@
         </div>
     </div>
   </section>
-  
+
 
 @include('front.partials.cta-2')
 
@@ -300,7 +300,7 @@
     </div>
     <!-- /.container -->
   </section>
-  
+
 
 @include('front.partials.clients')
 

@@ -17,7 +17,7 @@
       </div>
       <!-- /.row -->
     </div>
-    
+
   </section>
   <!-- /section -->
 
@@ -117,7 +117,7 @@
         </div>
         <!-- /.container -->
     </section>
-    
+
     <div class="skill-area style-two">
         <div class="container">
             <div class="row align-items-center">
@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="consen-button mt-4">
                         <a href="#" data-toggle="modal" data-target="#staticBackdrop">Contact Us <i class="bi bi-plus"></i>
                         </a>
@@ -195,7 +195,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- /section -->
 
     {{-- Key Features --}}
@@ -209,7 +209,7 @@
             </div>
         </div>
         <div class="row gx-md-5 mb-5 mb-md-5">
-    
+
             <div class="col-md-6 col-xl-3 ">
                 <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
                     <div class="card-body">
@@ -217,7 +217,7 @@
                             class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                         <h4>{{__('Fast & Hassle-Free Processing')}}</h4>
                         <p class="mb-2">{{__("Get your VAT registration and filings completed quickly with our streamlined approach, minimizing delays and errors.")}}</p>
-                        
+
                     </div>
                     <!--/.card-body -->
                 </div>
@@ -231,7 +231,7 @@
                             class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                         <h4>FTA Compliance Assurance</h4>
                         <p class="mb-2">We ensure your VAT processes meet all Federal Tax Authority (FTA) regulations, reducing the risk of penalties or non-compliance.</p>
-                        
+
                     </div>
                     <!--/.card-body -->
                 </div>
@@ -245,7 +245,7 @@
                             class="svg-inject icon-svg icon-svg-md text-orange mb-3" alt="" />
                         <h4>Expert Guidance & Support</h4>
                         <p class="mb-2">Our VAT specialists provide step-by-step assistance, helping you understand your tax obligations and making compliance easier.</p>
-                        
+
                     </div>
                     <!--/.card-body -->
                 </div>
@@ -259,7 +259,7 @@
                             class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="" />
                         <h4>End-to-End VAT Solutions</h4>
                         <p class="mb-2">From registration and return filing to consultation and deregistration, we handle every aspect of VAT so you can focus on your business.</p>
-                       
+
                     </div>
                     <!--/.card-body -->
                 </div>
@@ -268,7 +268,7 @@
             <!--/column -->
         </div>
         <!--/.row -->
-        
+
     </div>
      {{-- end features  --}}
 
@@ -277,9 +277,9 @@
 
             <div class="row text-center">
                 <div class="col-lg-9 mx-auto">
-                    
+
                     <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mt-12">Simple & Efficient VAT Processing with <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span>
-                     
+
                     </h3>
                     <p class="lead fs-lg mb-8"><span class="underline green">Tah-zeel </span>simplifies VAT processing, ensuring fast registration and compliance with expert guidance. </p>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
@@ -319,7 +319,7 @@
     </section>
     <!-- /section -->
 
-    
+
     <div class="wrapper">
         <div class="container">
             <div class="row d-flex justify-content-center mb-10 mt-10">
@@ -328,7 +328,7 @@
                     <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">Documents Required for <span class="text-green">
                         VAT Registration & Compliance </span></h3>
                     <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process.  <span class="underline green">Tah-zeel</span> simplifies every step, ensuring FTA compliance for registration, filing, and deregistration.
-                        
+
                     </p>
                 </div>
             </div>
@@ -379,7 +379,7 @@
                             <div id="collapseIconThree" class="accordion-collapse collapse"
                                 aria-labelledby="headingIconThree" data-bs-parent="#accordionIconExample">
                                 <div class="card-body">
-                                    <p>Copies of Emirates IDs for the owner and any partners. 
+                                    <p>Copies of Emirates IDs for the owner and any partners.
                                     </p>
                                 </div>
                                 <!--/.card-body -->
@@ -487,7 +487,7 @@
     @include('front.partials.cta-2')
 
 
-    
+
 
 
     @include('front.partials.clients-2')

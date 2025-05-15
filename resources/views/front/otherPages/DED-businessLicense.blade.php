@@ -24,7 +24,7 @@
     </div>
     <!-- about amer centers  -->
 
-    
+
     <section class="wrapper bg-light">
         <div class="container py-14 py-md-16">
           <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col">
                     <div class="accordion accordion-wrapper" id="accordionIconExample">
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconOne">
                                 <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseIconOne"
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconTwo">
                                 <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconTwo"
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconThree">
                                 <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconThree"
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconFourth">
                                 <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconFourth"
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconFive">
                                 <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconFive"
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card accordion-item icon">
                             <div class="card-header" id="headingIconSix">
                                 <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseIconSix"
@@ -180,20 +180,20 @@
                                 </div>
                             </div>
                         </div>
-    
+
                     </div> <!--/.accordion -->
                 </div>
             </div>
         </div>
     </div>
-    
-    
-   
-    
+
+
+
+
     <!-- /section -->
     <section class="wrapper bg-light">
         <div class="container-fluid py-4 py-md-8">
-    
+
             <div class="row text-center">
                 <div class="col-lg-9 mx-auto">
                     <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{!! __('ded-businessLicense.how_it_works_title') !!}</h2>
@@ -202,28 +202,28 @@
                         {!! __('ded-businessLicense.how_it_works_description') !!}
                     </p>
                     <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
-                        <div class="col-md-3"> 
+                        <div class="col-md-3">
                             <img src="{{ asset('assets/static') }}/file-text.svg"
                                 class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                             <h4 class="mb-1">{!! __('ded-businessLicense.process_step1_title') !!}</h4>
                             <p class="mb-5 mb-md-0 text-justify">{!! __('ded-businessLicense.process_step1_description') !!}</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> 
+                        <div class="col-md-3">
                             <img src="{{ asset('assets/static') }}/box-arrow-in-right.svg"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="" />
                             <h4 class="mb-1">{!! __('ded-businessLicense.process_step2_title') !!}</h4>
                             <p class="mb-5 mb-md-0 text-justify">{!! __('ded-businessLicense.process_step2_description') !!}</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> 
+                        <div class="col-md-3">
                             <img src="{{ asset('assets/static') }}/arrow-repeat.svg"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
                             <h4 class="mb-1">{!! __('ded-businessLicense.process_step3_title') !!}</h4>
                             <p class="mb-5 mb-md-0 text-justify">{!! __('ded-businessLicense.process_step3_description') !!}</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-3"> 
+                        <div class="col-md-3">
                             <img src="{{ asset('assets/static') }}/check2-circle.svg"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="" />
                             <h4 class="mb-1">{!! __('ded-businessLicense.process_step4_title') !!}</h4>
@@ -239,7 +239,7 @@
         </div>
         <!-- /.container -->
     </section>
-    
+
     {{-- Key Features --}}
     <div class="container">
         <div class="row text-center mt-10 mb-12">
@@ -294,14 +294,14 @@
             </div>
         </div>
     </div>
-    
+
      {{-- end features  --}}
 
-     
+
     <!-- /section -->
 
-    
-    
+
+
 
     <section class="wrapper">
         <div class="container py-14 py-md-16">
@@ -314,13 +314,13 @@
             <!-- /column -->
             <div class="col-lg-6 ms-auto">
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
-                    <div class="card bg-soft-green mb-6 shadow-sm" 
+                    <div class="card bg-soft-green mb-6 shadow-sm"
                          style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
                          onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 20px rgba(0, 0, 0, 0.15)';"
                          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                       <div class="card-body d-flex flex-row align-items-center">
                         <div>
-                          <img src="{{ asset('assets/static') }}/search-2.svg" 
+                          <img src="{{ asset('assets/static') }}/search-2.svg"
                                class="svg-inject icon-svg icon-svg-md text-green me-4" alt="" />
                         </div>
                         <div>
@@ -331,7 +331,7 @@
                     </div>
                   </a>
                 <!-- /.card -->
-                
+
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
                   <div class="card bg-soft-red mb-6"
                   style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -350,7 +350,7 @@
                   </div>
                   </a>
                 <!-- /.card -->
-      
+
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
                   <div class="card bg-soft-blue mb-6"
                          style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -369,7 +369,7 @@
                   <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-      
+
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
                   <div class="card bg-soft-red mb-6"
                        style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -388,7 +388,7 @@
                     </div>
                   </a>
                 <!-- /.card -->
-      
+
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
                   <div class="card bg-soft-green mb-6"
                                style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -407,7 +407,7 @@
                     </div>
                 </a>
                 <!-- /.card -->
-      
+
                 <a href="{{ route('front.vat.business') }}" class="text-decoration-none">
                   <div class="card bg-soft-blue"
                                style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -433,7 +433,7 @@
         </div>
         <!-- /.container -->
       </section>
-      
+
       <!-- /section -->
 
     @include('front.partials.cta-2')
@@ -446,7 +446,7 @@
 
     @include('front.partials.contact-us')
 
-   
+
 
 
 @endsection

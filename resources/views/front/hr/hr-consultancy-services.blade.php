@@ -16,7 +16,7 @@
         @include('front.partials._section_title', ['section' => $section])
     @endif
 
-    
+
     @if ($page->whyChooseUs->isNotEmpty())
     @include('front.partials._whyChoose', ['whyChooseUs' => $page->whyChooseUs])
     @endif
@@ -64,7 +64,7 @@
     @include('front.partials.cta-2')
 
 
-    @include('front.partials.contact-Us')
+    @include('front.partials.contact-us')
 
 
     @include('front.partials.clients')

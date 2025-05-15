@@ -19,7 +19,7 @@
             <p class="lead text-muted">This Page is under construction. It'll be Finished soon!</p>
             <div class="spinner-border text-success" role="status" style="width: 50px; height: 50px; margin-top: 20px;">
             </div>
-            <p class="lead text-muted mt-5">Meanwhile you can check the design of another page below..</p>  
+            <p class="lead text-muted mt-5">Meanwhile you can check the design of another page below..</p>
 
         </div>
     </section>
@@ -439,7 +439,7 @@
             <p class="lead text-muted">This Page is under construction. It'll be Finished soon!</p>
             <div class="spinner-border text-success" role="status" style="width: 50px; height: 50px; margin-top: 20px;">
             </div>
-            <p class="lead text-muted mt-5">Meanwhile you can check the design of another page below..</p>  
+            <p class="lead text-muted mt-5">Meanwhile you can check the design of another page below..</p>
 
         </div>
     </section>

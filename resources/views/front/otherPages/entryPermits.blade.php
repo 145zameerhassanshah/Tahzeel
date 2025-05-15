@@ -18,7 +18,7 @@
         </div>
         <!-- /.row -->
       </div>
-      
+
     </section>
     <!-- /section -->
     </div>
@@ -205,7 +205,7 @@
        </div>
 
 
-        
+
 
 
        <!-- end eligibility section  -->
@@ -213,7 +213,7 @@
 
 
       @include('front.partials.cta-2')
-          
+
 
       <section class="wrapper bg-light">
         <div class="container-fluid py-4 py-md-8">
@@ -260,25 +260,25 @@
         </div>
         <!-- /.container -->
     </section>
-    
 
-      
 
-    
+
+
+
 
     @include('front.partials.clients')
 
 
     @include('front.partials.affiliations')
-     
+
     @include('front.partials.cta-1')
 
     @include('front.partials.contact-us')
 
     @include('front.partials.amr-services-cards')
 
-    
-    
+
+
 
 =======
 @extends('front.layouts.master')
@@ -300,7 +300,7 @@
         </div>
         <!-- /.row -->
       </div>
-      
+
     </section>
     <!-- /section -->
     </div>
@@ -487,7 +487,7 @@
        </div>
 
 
-        
+
 
 
        <!-- end eligibility section  -->
@@ -495,16 +495,16 @@
 
 
       @include('front.partials.cta-2')
-          
+
 
       <section class="wrapper bg-light">
         <div class="container-fluid py-4 py-md-8">
-          
+
           <div class="row text-center">
             <div class="col-lg-9 mx-auto">
               <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">"Step-by-Step Entry Permit Support</h2>
               <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How to Apply for an Entry Permit with <span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support</h3>
-              <p class="lead fs-lg mb-8">  <span class="underline green">Tah-zeel </span> makes the entry permit application process straightforward, offering guidance at each stage for a smooth experience.</p> 
+              <p class="lead fs-lg mb-8">  <span class="underline green">Tah-zeel </span> makes the entry permit application process straightforward, offering guidance at each stage for a smooth experience.</p>
               <div class="row gx-lg-8 gx-xl-12 process-wrapper text-center mt-10">
                 <div class="col-md-3"> <img src="{{ asset('assets/static') }}/file-text.svg" class="svg-inject icon-svg icon-svg-md text-primary mb-3" alt="" />
                   <h4 class="mb-1">1. Document Preparation</h4>
@@ -538,23 +538,23 @@
       </section>
       <!-- /section -->
 
-      
 
-    
+
+
 
     @include('front.partials.clients')
 
 
     @include('front.partials.affiliations')
-     
+
     @include('front.partials.cta-1')
 
     @include('front.partials.contact-us')
 
     @include('front.partials.amr-services-cards')
 
-    
-    
+
+
 
 >>>>>>> 81b627cee35d89665615b4dd0362c5f617d135b7
 @endsection

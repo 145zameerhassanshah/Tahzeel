@@ -23,5 +23,5 @@ data-image-src="{{ asset('front/dev/assets/img/personal/amer-center-bg.png') }}"
 @include('front.partials.affiliations')
 
 @include('front.partials.contact-us')
-    
+
 @endsection
