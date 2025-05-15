@@ -17,7 +17,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="tableContent">
-                            <table class="table table-striped table-bordered table-sm text-center">
+                            <table class="table table-striped table-bordered table-sm text-center data_table">
                                 <thead>
                                     <tr>
                                         <th>{{ __('#') }}</th>

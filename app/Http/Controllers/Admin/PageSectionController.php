@@ -32,7 +32,7 @@ class PageSectionController extends Controller
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
             'page_id' => 'required|integer',
-            'image' => 'required|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
             'description.en' => 'required',
@@ -40,23 +40,20 @@ class PageSectionController extends Controller
         ]);
 
         $pageSection = new PageSection();
-
-        $pageSection->title = $request->title;
-        $pageSection->subtitle = $request->subtitle;
         $pageSection->page_id = $request->page_id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
-        $pageSection->description = $request->description;
 
-    // Handle Image Upload
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('assets/admin/uploads/PageSection/thumb/'), $imageName);
-        $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
-    }
+        // Handle Image Upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/admin/uploads/PageSection/thumb/'), $imageName);
+            $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
 
-        // Set translations for title, subtitle, description
+        }
+
+        // Set translations
         $pageSection->setTranslations('title', [
             'en' => $request->input('title.en'),
             'ar' => $request->input('title.ar')
@@ -72,12 +69,11 @@ class PageSectionController extends Controller
 
         $pageSection->save();
 
-        $notification = [
-            'message' => 'Page Section Added Successfully!',
-            'alert' => 'success',
-        ];
-
-        return redirect()->route('admin.page.section.index', $pageSection->page_id)->with('notification', $notification);
+        return redirect()->route('admin.page.section.index', $pageSection->page_id)
+                         ->with('notification', [
+                             'message' => 'Page Section Added Successfully!',
+                             'alert' => 'success',
+                         ]);
     }
 
     public function edit($id)
@@ -101,49 +97,69 @@ class PageSectionController extends Controller
         ]);
 
         $pageSection = PageSection::findOrFail($id);
-
-        $pageSection->title = $request->title;
-        $pageSection->subtitle = $request->subtitle;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
-        $pageSection->description = $request->description;
 
-if ($request->hasFile('image')) {
-    // Delete the old image if it exists
-    if ($pageSection->image && file_exists(public_path($pageSection->image))) {
-        unlink(public_path($pageSection->image));
-    }
+        // Handle new image upload
+        if ($request->hasFile('image')) {
+            if ($pageSection->image && file_exists(public_path($pageSection->image))) {
+                unlink(public_path($pageSection->image));
+            }
 
-    // Upload new image
-    $file = $request->file('image');
-    $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
-    $file->move(public_path('assets/admin/uploads/PageSection/thumb/'), $imageName);
-    $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
-}
+            $file = $request->file('image');
+            $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/admin/uploads/PageSection/thumb/'), $imageName);
+            $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
+
+            // Optional: use Intervention Image (uncomment if needed)
+            /*
+            $manager = ImageManager::withDriver(Driver::class);
+            $image = $manager->read($file);
+            $image->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image->save(public_path('assets/admin/uploads/PageSection/thumb/' . $imageName));
+            $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
+            */
+        }
+
+        // Update translations
+        $pageSection->setTranslations('title', [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar')
+        ]);
+        $pageSection->setTranslations('subtitle', [
+            'en' => $request->input('subtitle.en'),
+            'ar' => $request->input('subtitle.ar')
+        ]);
+        $pageSection->setTranslations('description', [
+            'en' => $request->input('description.en'),
+            'ar' => $request->input('description.ar')
+        ]);
+
         $pageSection->save();
 
-        $notification = [
-            'message' => 'Page Section Updated Successfully!',
-            'alert' => 'success',
-        ];
-
-        return redirect()->route('admin.page.section.index', $pageSection->page_id)->with('notification', $notification);
+        return redirect()->route('admin.page.section.index', $pageSection->page_id)
+                         ->with('notification', [
+                             'message' => 'Page Section Updated Successfully!',
+                             'alert' => 'success',
+                         ]);
     }
 
     public function delete($id)
     {
         $pageSection = PageSection::findOrFail($id);
 
-        // Delete the image from storage
-        @unlink($pageSection->image);
+        // Delete the image file
+        if ($pageSection->image && file_exists(public_path($pageSection->image))) {
+            unlink(public_path($pageSection->image));
+        }
 
         $pageSection->delete();
 
-        $notification = [
+        return back()->with('notification', [
             'message' => 'Page Section Deleted Successfully!',
             'alert' => 'success',
-        ];
-
-        return back()->with('notification', $notification);
+        ]);
     }
 }
