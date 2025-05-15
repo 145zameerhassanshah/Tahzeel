@@ -35,18 +35,23 @@
         @include('front.partials._cta', ['item' => $callToActions])
     @endif
 
-    @if ($page->elements->isNotEmpty())
+
+    @if ($page->elements->has(0))
         @include('front.partials._element-features-6', ['element' => $page->elements[0]])
     @endif
-    @if ($page->elements->isNotEmpty())
-        @include('front.partials._element-features-1', ['element' => $page->elements[0]])
+
+    @if ($page->elements->has(1))
+        @include('front.partials._element-features-1', ['element' => $page->elements[1]])
     @endif
+
 
     @include('front.partials.industriesWeServe')
 
     @include('front.partials.availableManpower')
 
     @include('front.partials._cta3')
+
+
     {{-- Testimonials --}}
     @php($section = $page->sectionTitles->where('type', 'testimonial')->first())
     @if ($section)
@@ -57,6 +62,8 @@
     @if ($testimonials->isNotEmpty())
         @include('front.partials.clients-2', ['testimonials' => $testimonials])
     @endif
+
+
     @include('front.partials.counter')
 
     @include('front.partials._faqs')
