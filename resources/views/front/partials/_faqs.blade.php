@@ -10,62 +10,35 @@
             <!--/column -->
             <div class="col-lg-6">
               <div class="accordion accordion-wrapper" id="accordionExample">
+                @foreach ($faqs as $index => $faq)
+                @php
+                  $collapseId = 'collapse' . $index;
+                  $headingId = 'heading' . $index;
+                @endphp
                 <div class="card plain accordion-item">
-                  <div class="card-header" id="headingOne">
-                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How do I get my subscription receipt?</button>
+                  <div class="card-header" id="{{ $headingId }}">
+                    <button class="collapsed" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#{{ $collapseId }}" 
+                            aria-expanded="false" 
+                            aria-controls="{{ $collapseId }}">
+                      {!! $faq->question !!}
+                    </button>
                   </div>
                   <!--/.card-header -->
-                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="{{ $collapseId }}" 
+                       class="accordion-collapse collapse" 
+                       aria-labelledby="{{ $headingId }}" 
+                       data-bs-parent="#accordionExample">
                     <div class="card-body">
-                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                      <p>{!! $faq->answer !!}</p>
                     </div>
                     <!--/.card-body -->
                   </div>
                   <!--/.accordion-collapse -->
                 </div>
                 <!--/.accordion-item -->
-                <div class="card plain accordion-item">
-                  <div class="card-header" id="headingTwo">
-                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Are there any discounts for people in need?</button>
-                  </div>
-                  <!--/.card-header -->
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="card-body">
-                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    </div>
-                    <!--/.card-body -->
-                  </div>
-                  <!--/.accordion-collapse -->
-                </div>
-                <!--/.accordion-item -->
-                <div class="card plain accordion-item">
-                  <div class="card-header" id="headingThree">
-                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Do you offer a free trial edit?</button>
-                  </div>
-                  <!--/.card-header -->
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="card-body">
-                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    </div>
-                    <!--/.card-body -->
-                  </div>
-                  <!--/.accordion-collapse -->
-                </div>
-                <!--/.accordion-item -->
-                <div class="card plain accordion-item">
-                  <div class="card-header" id="headingFour">
-                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">How do I reset my Account password?</button>
-                  </div>
-                  <!--/.card-header -->
-                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                    <div class="card-body">
-                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    </div>
-                    <!--/.card-body -->
-                  </div>
-                  <!--/.accordion-collapse -->
-                </div>
-                <!--/.accordion-item -->
+                @endforeach
               </div>
               <!--/.accordion -->
             </div>
@@ -79,4 +52,3 @@
     </div>
     <!-- /.container -->
   </section>
-  <!-- /section -->
