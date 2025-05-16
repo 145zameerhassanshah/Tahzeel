@@ -5,10 +5,17 @@
 
     {{-- Hero Section --}}
     @include('front.partials._hero_section')
+
+
     @if ($page->blocks->isNotEmpty())
+        <div class="py-2"></div>
         @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
+
+
     @include('front.partials.cta-1')
+
+
 
     {{-- Why Choose Us --}}
     @php($section = $page->sectionTitles->where('type', 'why_choose_us')->first())
@@ -16,21 +23,12 @@
         @include('front.partials._section_title', ['section' => $section])
     @endif
 
+    @php($why_choose_us = $page->whyChooseUs)
 
-    @if ($page->whyChooseUs->isNotEmpty())
-    @include('front.partials._whyChoose', ['whyChooseUs' => $page->whyChooseUs])
+    @if ($why_choose_us->isNotEmpty())
+        @include('front.partials._whyChoose', ['why_choose_us' => $why_choose_us])
     @endif
 
-    {{-- industries we serve section --}}
-    @if ($page->elements->isNotEmpty() && isset($page->elements[2]))
-        {{-- industries we serve section --}}
-        <h2 class="text-center">Industries we serve</h2>
-        @include('front.partials._element-features-2', ['element' => $page->elements[2]])
-    @endif
-
-    @include('front.partials.industriesWeServe')
-
-    @include('front.partials.availableManpower')
 
     @php($callToActions = $page->callToActions)
     @if ($callToActions->isNotEmpty())
@@ -38,15 +36,22 @@
     @endif
 
 
-
-    @if ($page->elements->isNotEmpty())
+    @if ($page->elements->has(0))
         @include('front.partials._element-features-6', ['element' => $page->elements[0]])
     @endif
-    @if ($page->elements->isNotEmpty())
+
+    @if ($page->elements->has(1))
         @include('front.partials._element-features-1', ['element' => $page->elements[1]])
     @endif
 
+
+    @include('front.partials.industriesWeServe')
+
+    @include('front.partials.availableManpower')
+
     @include('front.partials._cta3')
+
+
     {{-- Testimonials --}}
     @php($section = $page->sectionTitles->where('type', 'testimonial')->first())
     @if ($section)
@@ -57,12 +62,16 @@
     @if ($testimonials->isNotEmpty())
         @include('front.partials.clients-2', ['testimonials' => $testimonials])
     @endif
+
+
     @include('front.partials.counter')
 
     @include('front.partials._faqs')
 
-    @include('front.partials.cta-2')
-
+    @php($callToActions = $page->callToActions)
+    @if ($callToActions->isNotEmpty())
+        @include('front.partials._cta', ['item' => $callToActions])
+    @endif
 
     @include('front.partials.contact-us')
 
