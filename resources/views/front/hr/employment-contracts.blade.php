@@ -66,7 +66,7 @@
 
     @include('front.partials.counter')
 
-    @include('front.partials._faqs')
+  @include('front.partials._faqs', ['faqs' => $page->faqs])
 
     @php($callToActions = $page->callToActions)
     @if ($callToActions->isNotEmpty())
