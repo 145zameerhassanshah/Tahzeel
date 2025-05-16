@@ -38,7 +38,7 @@ class PageSectionController extends Controller
             'description.en' => 'required',
             'description.ar' => 'required',
         ]);
-
+        // dd('ss');
         $pageSection = new PageSection();
         $pageSection->page_id = $request->page_id;
         $pageSection->order_no = $request->order_no;
@@ -150,7 +150,6 @@ class PageSectionController extends Controller
     {
         $pageSection = PageSection::findOrFail($id);
 
-        // Delete the image file
         if ($pageSection->image && file_exists(public_path($pageSection->image))) {
             unlink(public_path($pageSection->image));
         }

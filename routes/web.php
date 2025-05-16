@@ -113,7 +113,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Route::post('/page/store', [PageController::class, 'store'])->middleware(['auth', 'can:create-page']);
         Route::get('/page/edit/{id}', [PageController::class, 'edit'])->name('admin.page.edit');
         Route::put('/page/update/{id}', [PageController::class, 'update'])->name('admin.page.update');
-        Route::get('/page/delete/{id}', action: [PageController::class, 'delete'])->name('admin.page.delete');
+        Route::post('/page/delete/{id}', [PageController::class, 'delete'])->name('admin.page.delete');
 
 
         Route::resource('admin/pages', PageController::class)->except(['show']);

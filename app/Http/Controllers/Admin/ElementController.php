@@ -31,8 +31,8 @@ class ElementController extends Controller
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'nullable|string|max:255',
             'subtitle.ar' => 'nullable|string|max:255',
-            'description.en' => 'nullable|string',
-            'description.ar' => 'nullable|string',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
             'page_id' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
@@ -90,7 +90,7 @@ class ElementController extends Controller
                 $elementFeature->save();
             }
         }
-        return redirect()->back()->with('notification', [
+        return redirect()->route('admin.element.index', $request->page_id)->with('notification', [
             'message' => 'Page Element Added Successfully!',
             'alert' => 'success',
         ]);
@@ -134,7 +134,7 @@ class ElementController extends Controller
         }
         $this->updateFeatures($request->input('features'), $element);
         $element->save();
-        return redirect()->back()->with('notification', [
+        return redirect()->route('admin.element.index', $element->page_id)->with('notification', [
             'message' => 'Page Element Updated Successfully!',
             'alert' => 'success',
         ]);

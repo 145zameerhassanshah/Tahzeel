@@ -1,30 +1,15 @@
 @extends('admin.layouts.master')
 @section('title', 'Blocks')
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Blocks</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li class="breadcrumb-item">Block</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-primary card-outline">
+                <div class="mt-2 card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title mt-1">Block</h3>
                         <div class="card-tools d-flex">
-                            <a class="dropdown-item" href="{{ route('admin.block.add', $page->id) }}">Add Block</a>
+                            <a class="btn btn-sm btn-primary" href="{{ route('admin.block.add', $page->id) }}"><i class="fas fa-plus"></i> Add Block</a>
 
                             {{-- <a href="{{ route('admin.element.add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>Add New Element</a> --}}
                         </div>

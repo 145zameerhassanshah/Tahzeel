@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-primary card-outline mt-3">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Page</h3>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('admin.page.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf

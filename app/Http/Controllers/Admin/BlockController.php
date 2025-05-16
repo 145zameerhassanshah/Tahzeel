@@ -83,7 +83,7 @@ public function store(Request $request)
             $blockFeature->save();
         }
     }        
-    return redirect()->back()->with('notification', [
+    return redirect()->route('admin.block.index', $block->page_id)->with('notification', [
         'message' => 'Page Block Added Successfully!',
         'alert' => 'success',
     ]);
@@ -165,7 +165,7 @@ if ($request->hasFile('icon')) {
         }
     }
 
-    return redirect()->back()->with('notification', [
+    return redirect()->route('admin.block.index', $block->page_id)->with('notification', [
         'message' => 'Page Block Updated Successfully!',
         'alert' => 'success',
     ]);
@@ -190,7 +190,7 @@ public function delete($id)
     // Delete element
     $block->delete();
 
-    return redirect()->back()->with('notification', [
+    return redirect()->route('admin.block.index', $block->page_id)->with('notification', [
         'message' => 'Page Block Deleted Successfully!',
         'alert' => 'success',
     ]);
