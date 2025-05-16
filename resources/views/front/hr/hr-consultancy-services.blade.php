@@ -16,16 +16,14 @@
         @include('front.partials._section_title', ['section' => $section])
     @endif
 
+    @php($why_choose_us = $page->whyChooseUs)
 
+    @if ($why_choose_us->isNotEmpty())
+        @include('front.partials._whyChoose', ['why_choose_us' => $why_choose_us])
+    @endif
+{{-- why choose --}}
     @if ($page->whyChooseUs->isNotEmpty())
     @include('front.partials._whyChoose', ['whyChooseUs' => $page->whyChooseUs])
-    @endif
-
-    {{-- industries we serve section --}}
-    @if ($page->elements->isNotEmpty() && isset($page->elements[2]))
-        {{-- industries we serve section --}}
-        <h2 class="text-center">Industries we serve</h2>
-        @include('front.partials._element-features-2', ['element' => $page->elements[2]])
     @endif
 
     @include('front.partials.industriesWeServe')
@@ -39,13 +37,13 @@
 
 
 
-    @if ($page->elements->isNotEmpty())
-        @include('front.partials._element-features-6', ['element' => $page->elements[0]])
-    @endif
-    @if ($page->elements->isNotEmpty())
-        @include('front.partials._element-features-1', ['element' => $page->elements[1]])
-    @endif
+@if ($page->elements->has(0))
+    @include('front.partials._element-features-6', ['element' => $page->elements[0]])
+@endif
 
+@if ($page->elements->has(1))
+    @include('front.partials._element-features-1', ['element' => $page->elements[1]])
+@endif
     @include('front.partials._cta3')
     {{-- Testimonials --}}
     @php($section = $page->sectionTitles->where('type', 'testimonial')->first())
@@ -58,8 +56,8 @@
         @include('front.partials.clients-2', ['testimonials' => $testimonials])
     @endif
     @include('front.partials.counter')
-
-    @include('front.partials._faqs')
+{{-- faq question --}}
+  @include('front.partials._faqs', ['faqs' => $page->faqs])
 
     @include('front.partials.cta-2')
 
