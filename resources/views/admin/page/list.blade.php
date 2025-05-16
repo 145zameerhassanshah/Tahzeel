@@ -60,14 +60,14 @@
                                                 <!-- Edit Button -->
                                                 <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
                                                 <!-- Details Button -->
-                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-info btn-sm mx-1 px-2"><i class="fas fa-info"></i></a>
+                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-warning btn-sm mx-1 px-2"><i class="fas fa-info"></i></a>
                                                 <!-- Delete Button -->
-                                                <form id="deleteform" class="d-inline-block mx-1" action="#" method="post">
+                                                {{-- <form id="deleteform" class="d-inline-block mx-1" action="{{ route('admin.page.delete', $page->id) }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" id="delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                         </td>
                                     </tr>

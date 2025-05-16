@@ -105,7 +105,13 @@ class PageController extends Controller
             'ar' => $request->input('hero_description.ar')
         ]);
         $page->save();
-        return redirect()->route('admin.page.index')->with('success', 'Page created successfully.');
+
+        $notification = array(
+            'message' => 'Page Added Successfully!',
+            'alert' => 'success',
+        );
+        
+        return redirect()->route('admin.page.index')->with('notification', $notification);
     }
 
     // Page Delete
@@ -114,7 +120,11 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         @unlink(public_path('assets/admin/img/' . $page->hero_image));
         $page->delete();
-        return redirect()->route('admin.page.index')->with('success', 'Page deleted successfully!');
+        $notification = array(
+            'message' => 'Page Deleted Successfully!',
+            'alert' => 'success',
+        );
+        return redirect()->route('admin.page.index')->with('notification', $notification);
     }
 
     // Page Edit
@@ -136,6 +146,10 @@ class PageController extends Controller
             $data['hero_image'] = $filename;
         }
         $page->update($data);
-        return redirect()->route('admin.page.index')->with('success', 'Page updated successfully.');
+        $notification = array(
+            'message' => 'Page Upldated Successfully!',
+            'alert' => 'success',
+        );
+        return redirect()->route('admin.page.index')->with('notification', $notification);
     }
 }

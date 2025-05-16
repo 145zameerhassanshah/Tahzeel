@@ -52,16 +52,18 @@
                                             @enderror
                                         </div>
 
-                                        <!-- Image -->
                                         <div class="col-md-6">
                                             <label for="image">{{ __('Image') }}</label>
                                             <div class="form-group">
-                                                @if($block->image)
-                                                    <img src="{{ asset('storage/'.$block->image) }}" alt="Current Image" class="mb-2" style="max-width: 150px;">
-                                                @endif
                                                 <div class="col-sm-12">
-                                                    <label class="custom-file-label" for="image">{{ __('Choose New Image') }}</label>
-                                                    <input type="file" class="custom-file-input up-img form-control" name="image" id="image">
+                                                    <label class="custom-file-label"
+                                                        for="image">{{ __('Choose New Image') }}</label>
+                                                    <input type="file"
+                                                        class="custom-file-input up-img form-control" name="image"
+                                                        id="image">
+                                                    <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                        src="{{ asset($block->image) }}"
+                                                        alt="">
                                                     @error('image')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -69,16 +71,20 @@
                                             </div>
                                         </div>
 
-                                        <!-- Icon -->
-                                        <div class="col-md-6">
+
+                                         <!-- Icon -->
+                                         <div class="col-md-6">
                                             <label for="icon">{{ __('Icon') }}</label>
                                             <div class="form-group">
-                                                @if($block->icon)
-                                                    <img src="{{ asset('storage/'.$block->icon) }}" alt="Current Icon" class="mb-2" style="max-width: 150px;">
-                                                @endif
                                                 <div class="col-sm-12">
-                                                    <label class="custom-file-label" for="icon">{{ __('Choose New Icon') }}</label>
-                                                    <input type="file" class="custom-file-input up-img form-control" name="icon" id="icon">
+                                                    <label class="custom-file-label"
+                                                        for="icon">{{ __('Choose New Icon') }}</label>
+                                                    <input type="file"
+                                                        class="custom-file-input up-img form-control" name="icon"
+                                                        id="icon">
+                                                    <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                        src="{{ asset($block->icon) }}"
+                                                        alt="">
                                                     @error('icon')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror

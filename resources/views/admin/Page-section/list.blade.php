@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+
 <h2>Sections for Page: {{ $page->title }}</h2>
 
-<table class="table">
+<table class="table table-borderd table-sm table-striped">
     <thead>
         <tr>
             <th>#</th>
@@ -31,5 +31,3 @@
         @endforeach
     </tbody>
 </table>
-=======
->>>>>>> 0730ec98cb9351dc07fc243f22569b5b0446a0a2
