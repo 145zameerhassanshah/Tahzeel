@@ -1,5 +1,5 @@
 <?php
-// tahzeel\resources\lang\en\home.php
+// tahzeel\resources\lang\en\visa-cancellation.php
 return [
     'support_intro' => 'Step-by-Step Cancellation Support',
     'support_title' => '<h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15">How Visa Cancellation Process Works with<span class="text-gradient gradient-6 display-1">Tah-zeel’s </span> Expert Support </h3>.',
