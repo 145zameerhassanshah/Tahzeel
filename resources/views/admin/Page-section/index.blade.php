@@ -8,11 +8,14 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline mt-2">
                         <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Page Section') }}</h3>
+                        <h3 class="card-title mt-1"><strong>Section List</strong></h3>
                             <div class="card-tools d-flex">
+                         <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.page.index') }}"><i class=""></i> All Pages</a>
+
                                 <a href="{{ route('admin.page.section.add', $page->id) }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i> {{ __('Add Page Section') }}
+                                    <i class="fas fa-plus"></i> {{ __('Add Section') }}
                                 </a>
+                                
                             </div>
                         </div>
                         <!-- /.card-header -->

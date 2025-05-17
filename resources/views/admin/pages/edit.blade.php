@@ -7,6 +7,19 @@
                 <div class="card card-primary card-outline mt-3">
                     <div class="card-header">
                         <h3 class="card-title">Edit Page</h3>
+                            <div class="card-tools d-flex ">
+
+    <div class="btn-group ms-auto" role="group" aria-label="Button Group" style="gap: 8px;">
+        <a href="{{ route('admin.element.index', $page->id) }}" class="btn btn-sm btn-primary">Element List</a>
+        <a href="{{ route('admin.element.add', $page->id) }}" class="btn btn-sm btn-secondary">Add Element</a>
+        <a href="{{ route('admin.block.index', $page->id) }}" class="btn btn-sm btn-success">Block List</a>
+        <a href="{{ route('admin.block.add', $page->id) }}" class="btn btn-sm btn-danger">Add Block</a>
+        <a href="{{ route('admin.page.section.index', $page->id) }}" class="btn btn-sm btn-warning">Section List</a>
+        <a href="{{ route('admin.page.section.add', $page->id) }}" class="btn btn-sm btn-info">Add Section</a>
+    </div>
+
+                        </div>
+
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.page.update', $page->id) }}" method="POST" enctype="multipart/form-data">
@@ -16,7 +29,7 @@
                             <!-- Slug -->
                             <div class="form-group">
                                 <label for="slug">Slug <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="slug" name="slug" value="{{ $page->slug }}" required>
+                                <input type="text" class="form-control" id="slug" name="slug" value="{{ $page->slug }}" readonly required>
                             </div>
 
                             <!-- Title -->

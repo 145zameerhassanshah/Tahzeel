@@ -143,10 +143,16 @@ class FrontController extends Controller
         return view('front.otherPages.entryPermits');
     }
 
-    public function visaCancellation()
-    {
-        return view('front.otherPages.visaCancellation');
-    }
+public function visaCancellation()
+{
+    $page = (object)[
+        'hero_image' => 'visa-cancellation.jpg',
+        'hero_title' => 'Visa Cancellation <span class="underline-3 style-2 yellow">Services</span>',
+        'hero_sub_title' => 'Ending Your Residency Status with Ease',
+    ];
+
+    return view('front.otherPages.visaCancellation', compact('page'));
+}
 
     public function DEDbusinessLicense()
     {

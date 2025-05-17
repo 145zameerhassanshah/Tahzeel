@@ -1,3 +1,4 @@
+
 @extends('front.layouts.master')
 @section('title', 'Emirate Id')
 @section('content')

@@ -7,6 +7,24 @@ use App\Models\Page;
 
 class DedServiceController extends Controller
 {
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+
+
     protected function getPageBySlug($slug)
     {
         return Page::with([

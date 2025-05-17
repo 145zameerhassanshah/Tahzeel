@@ -7,41 +7,59 @@ use App\Models\Page;
 
 class BankServiceController extends Controller
 {
-    protected function loadPage($slug)
+
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
     {
         return Page::with([
+            'introductionSections',
+            'whyUsImages',
             'elements',
             'blocks',
             'sections',
             'callToActions',
             'sectionTitles',
             'faqs',
-            'testimonials',
-            'whyUsImages'
+            'testimonials'
         ])->where('slug', $slug)->firstOrFail();
     }
 
     public function corporate()
     {
-        $page = $this->loadPage('corporate-bank-account-setup');
+        $page = $this->getPageBySlug('corporate-bank-account-setup');
         return view('front.bank-services.corporate', compact('page'));
     }
 
     public function personal()
     {
-        $page = $this->loadPage('personal-bank-account-assistance');
+        $page = $this->getPageBySlug('personal-bank-account-assistance');
         return view('front.bank-services.personal', compact('page'));
     }
 
     public function consultation()
     {
-        $page = $this->loadPage('business-banking-consultation');
+        $page = $this->getPageBySlug('business-banking-consultation');
         return view('front.bank-services.consultation', compact('page'));
     }
 
     public function online()
     {
-        $page = $this->loadPage('online-banking-solutions');
+        $page = $this->getPageBySlug('online-banking-solutions');
         return view('front.bank-services.online', compact('page'));
     }
 }
