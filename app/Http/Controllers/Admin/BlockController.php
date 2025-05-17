@@ -147,6 +147,7 @@ if ($request->hasFile('icon')) {
 
     // Update or Add Features
     if ($request->has('features')) {
+        $block->features()->delete();
         foreach ($request->input('features') as $featureData) {
             if (isset($featureData['id'])) {
                 $feature = BlockFeature::find($featureData['id']);
