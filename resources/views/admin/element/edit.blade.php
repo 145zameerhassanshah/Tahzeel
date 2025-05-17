@@ -208,9 +208,9 @@
                     <div class="col-md-4">
                         <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
                     </div>
-                    <d  <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
-                    </iv class="col-md-4">
-                      div>
+                    <div class="col-md-4">  <input type="text" name="features[${featureIndex}][ar]" class="form-control" placeholder="Title in Arabic" required>
+                    
+                      </div>
                     <div class="col-md-4">
                         <input type="number" name="features[${featureIndex}][order]" class="form-control" placeholder="Order No" required>
                     </div>
