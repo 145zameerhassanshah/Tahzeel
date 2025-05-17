@@ -8,98 +8,69 @@ use Illuminate\Http\Request;
 
 class HumanResourceController extends Controller
 {
-    public function manpowerRecruitment()
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
     {
-        $slug = 'manpower-recruitment';
-        $page = Page::with([
+        return Page::with([
+            'introductionSections',
+            'whyUsImages',
             'elements',
             'blocks',
             'sections',
             'callToActions',
             'sectionTitles',
             'faqs',
-            'testimonials',
-            'whyUsImages'
+            'testimonials'
         ])->where('slug', $slug)->firstOrFail();
+    }
+
+
+    public function manpowerRecruitment()
+    {
+        $page = $this->getPageBySlug('manpower-recruitment');
         return view('front.hr.manpower-recruitment', ['page' => $page]);
     }
     public function hrConsultancyServices()
     {
-        $slug = 'hr-consultancy-services';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'whyChooseUs',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+         $page = $this->getPageBySlug('hr-consultancy-services');
         return view('front.hr.hr-consultancy-services', ['page' => $page]);
     }
 
     public function employmentContracts()
     {
-        $slug = 'employment-contracts';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('employment-contracts');
         return view('front.hr.employment-contracts', ['page' => $page]);
     }
 
     public function workPermitsLaborCards()
     {
-        $slug = 'work-permits-labor-cards';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('work-permits-labor-cards');
         return view('front.hr.workPermits_LaborCards', ['page' => $page]);
     }
 
     public function employeeOnboardingCompliance()
     {
-        $slug = 'employee-onboarding-compliance';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+     $page = $this->getPageBySlug('employee-onboarding-compliance');
         return view('front.hr.employee-onboarding', ['page' => $page]);
     }
     public function payrollManagement()
     {
-        $slug = 'payroll-management';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('payroll-management');
         return view('front.hr.payroll-management', ['page' => $page]);
     }
 }

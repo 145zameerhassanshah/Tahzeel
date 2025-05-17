@@ -8,7 +8,24 @@ use Illuminate\Http\Request;
 
 class ProServiceController extends Controller
 {
-    protected function loadPage($slug)
+                    // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+
+    protected function getPageBySlug($slug)
     {
         return Page::with([
             'elements',
@@ -24,43 +41,43 @@ class ProServiceController extends Controller
 
     public function documentClearance()
     {
-        $page = $this->loadPage('document-clearance-submission');
+        $page = $this->getPageBySlug('document-clearance-submission');
         return view('front.pro-services.document-clearance', compact('page'));
     }
 
     public function visaApplications()
     {
-        $page = $this->loadPage('visa-applications-renewals');
+        $page = $this->getPageBySlug('visa-applications-renewals');
         return view('front.pro-services.visa-applications', compact('page'));
     }
 
     public function laborImmigration()
     {
-        $page = $this->loadPage('labor-immigration-services');
+        $page = $this->getPageBySlug('labor-immigration-services');
         return view('front.pro-services.labor_and_immigration', compact('page'));
     }
 
     public function tradeLicense()
     {
-        $page = $this->loadPage('trade-license-processing');
+        $page = $this->getPageBySlug('trade-license-processing');
         return view('front.pro-services.trade_license', compact('page'));
     }
 
     public function attestationNotarization()
     {
-        $page = $this->loadPage('attestation-notarization-assistance');
+        $page = $this->getPageBySlug('attestation-notarization-assistance');
         return view('front.pro-services.attestation_and_notarization', compact('page'));
     }
 
     public function companyRegistration()
     {
-        $page = $this->loadPage('company-registration-setup');
+        $page = $this->getPageBySlug('company-registration-setup');
         return view('front.pro-services.company_registration', compact('page'));
     }
 
     public function governmentLiaison()
     {
-        $page = $this->loadPage('government-liaison-services');
+        $page = $this->getPageBySlug('government-liaison-services');
         return view('front.pro-services.government_liaison', compact('page'));
     }
 }

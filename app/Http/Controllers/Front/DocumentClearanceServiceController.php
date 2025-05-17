@@ -49,69 +49,25 @@ class DocumentClearanceServiceController extends Controller
 
     public function clearanceForVisaResidency()
     {
-        $slug = 'clearance-for-visa-residency';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-
+        $page = $this->getPageBySlug('clearance-for-visa-residency');
         return view('front.document-clearance.visa-residency', ['page' => $page]);
     }
 
     public function laborImmigrationDocuments()
     {
-        $slug = 'labor-immigration-documents';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-
+        $page = $this->getPageBySlug('labor-immigration-documents');
         return view('front.document-clearance.labor-immigration-document', ['page' => $page]);
     }
 
     public function corporateDocumentClearance()
     {
-        $slug = 'corporate-document-clearance';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-
+        $page = $this->getPageBySlug('corporate-document-clearance');
         return view('front.document-clearance.corporate-document', ['page' => $page]);
     }
 
     public function legalDocumentProcessing()
     {
-        $slug = 'legal-document-processing';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-
+        $page = $this->getPageBySlug('legal-document-processing');
         return view('front.document-clearance.legal-document', ['page' => $page]);
     }
 }

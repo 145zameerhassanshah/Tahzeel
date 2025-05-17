@@ -7,7 +7,24 @@ use App\Models\Page;
 
 class TypingAttestationController extends Controller
 {
-    protected function renderPage(string $slug, string $view)
+                    // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+
+    protected function getPageBySlug(string $slug, string $view)
     {
         $page = Page::with([
             'elements',
@@ -27,36 +44,36 @@ class TypingAttestationController extends Controller
 
     public function policeClearance()
     {
-        return $this->renderPage('police-clearance', 'police-clearance');
+        return $this->getPageBySlug('police-clearance', 'police-clearance');
     }
 
     public function newPassportRequest()
     {
-        return $this->renderPage('new-passport-request', 'new-passport-request');
+        return $this->getPageBySlug('new-passport-request', 'new-passport-request');
     }
 
     public function passportRenewal()
     {
-        return $this->renderPage('passport-renewal', 'passport-renewal');
+        return $this->getPageBySlug('passport-renewal', 'passport-renewal');
     }
 
     public function passportLostReport()
     {
-        return $this->renderPage('passport-lost-report', 'passport-lost-report');
+        return $this->getPageBySlug('passport-lost-report', 'passport-lost-report');
     }
 
     public function mofaAttestation()
     {
-        return $this->renderPage('mofa-attestation', 'mofa-attestation');
+        return $this->getPageBySlug('mofa-attestation', 'mofa-attestation');
     }
 
     public function powerOfAttorneyDrafting()
     {
-        return $this->renderPage('power-of-attorney-drafting', 'power-of-attorney-drafting');
+        return $this->getPageBySlug('power-of-attorney-drafting', 'power-of-attorney-drafting');
     }
 
     public function documentTypingFormatting()
     {
-        return $this->renderPage('document-typing-formatting', 'document-typing-formatting');
+        return $this->getPageBySlug('document-typing-formatting', 'document-typing-formatting');
     }
 }

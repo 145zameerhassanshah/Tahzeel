@@ -7,7 +7,24 @@ use Illuminate\Http\Request;
 
 class LegalServicesController extends Controller
 {
-    protected function renderPage(string $slug, string $view)
+                // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+
+    protected function getPageBySlug(string $slug, string $view)
     {
         $page = Page::with([
             'elements',
@@ -27,21 +44,21 @@ class LegalServicesController extends Controller
 
     public function document_drafting()
     {
-        return $this->renderPage('document-drafting', 'document-drafting');
+        return $this->getPageBySlug('document-drafting', 'document-drafting');
     }
 
     public function consultations()
     {
-        return $this->renderPage('consultations', 'consultations');
+        return $this->getPageBySlug('consultations', 'consultations');
     }
 
     public function representation()
     {
-        return $this->renderPage('representation', 'representation');
+        return $this->getPageBySlug('representation', 'representation');
     }
 
     public function dispute_resolution()
     {
-        return $this->renderPage('dispute-resolution', 'dispute-resolution');
+        return $this->getPageBySlug('dispute-resolution', 'dispute-resolution');
     }
 }
