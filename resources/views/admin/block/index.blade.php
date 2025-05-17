@@ -7,11 +7,12 @@
             <div class="col-md-12">
                 <div class="mt-2 card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1">Block</h3>
-                        <div class="card-tools d-flex">
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.block.add', $page->id) }}"><i class="fas fa-plus"></i> Add Block</a>
+                        <h3 class="card-title mt-1"><strong>Block List</strong></h3>
+                        <div class="card-tools d-flex ">
 
-                            {{-- <a href="{{ route('admin.element.add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>Add New Element</a> --}}
+                            <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.page.index') }}"><i class=""></i> All Pages</a>
+                            <a class="btn btn-sm btn-primary"  href="{{ route('admin.block.add', $page->id) }}"><i class="fas fa-plus"></i>  Add Block </a>
+
                         </div>
                     </div>
                     <!-- /.card-header -->

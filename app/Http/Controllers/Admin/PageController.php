@@ -111,7 +111,7 @@ class PageController extends Controller
             'alert' => 'success',
         );
         
-        return redirect()->route('admin.page.index')->with('notification', $notification);
+        return redirect()->route('admin.page.section.edit',$page->id)->with('notification', $notification);
     }
 
     // Page Delete
@@ -150,6 +150,6 @@ class PageController extends Controller
             'message' => 'Page Upldated Successfully!',
             'alert' => 'success',
         );
-        return redirect()->route('admin.page.index')->with('notification', $notification);
+return back()->with('notification', $notification);
     }
 }
