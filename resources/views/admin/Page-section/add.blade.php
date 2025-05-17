@@ -15,7 +15,9 @@
                                 <div class="card-header">
                                     <h3 class="">{{ __('Add Page Section') }}</h3>
                                     <div class="card-tools d-flex">
-                                        <a href="" class="btn btn-primary btn-sm ">
+                                      <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.page.index') }}"><i class=""></i> All Pages</a>
+
+                                        <a href="{{ route('admin.page.section.index', $page->id) }}" class="btn btn-primary btn-sm ">
                                             {{ __('Section List ') }}
                                         </a>
                                     </div>

@@ -13,11 +13,12 @@
                             <div class="flex-grow-1">
                                 <h5 class="mb-0">{{ $page->title }} - Add New Element</h5>
                             </div>
-                            <div>
-                                <a href="{{ route('admin.element.index', $page->id) }}" class="btn btn-primary btn-sm">
-                                    {{ __('Element List') }}
-                                </a>
-                            </div>
+                        <div class="card-tools d-flex ">
+
+                            <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.page.index') }}"><i class=""></i> All Pages</a>
+                            <a class="btn btn-sm btn-primary"  href="{{ route('admin.element.index', $page->id) }}">  Element List</a>
+
+                        </div>
                         </div>
 
                         <div class="card-body">
