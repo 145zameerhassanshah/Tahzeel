@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div class="accordion accordion-wrapper" id="accordionIconExample">
-                    @foreach($documentRequireds as $index => $doc)
+                    @foreach($document_requireds as $index => $doc)
                     <div class="card accordion-item icon">
                         <div class="card-header" id="headingIcon{{ $index }}">
                             <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" data-bs-toggle="collapse" data-bs-target="#collapseIcon{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapseIcon{{ $index }}">

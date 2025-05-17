@@ -7,67 +7,58 @@ use Illuminate\Http\Request;
 
 class RealEstateController extends Controller
 {
-    public function propertyBuyingSelling()
+      // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
     {
-        $slug = 'property-buying-selling-assistance';
-        $page = Page::with([
+        return Page::with([
+            'introductionSections',
+            'whyUsImages',
             'elements',
             'blocks',
             'sections',
             'callToActions',
             'sectionTitles',
             'faqs',
-            'testimonials',
-            'whyUsImages'
+            'testimonials'
         ])->where('slug', $slug)->firstOrFail();
+    }
+
+    public function propertyBuyingSelling()
+    {
+        $page = $this->getPageBySlug('property-buying-selling-assistance');
         return view('front.real-estate.property-buying-selling', ['page' => $page]);
     }
 
     public function realEstateTransactions()
     {
-        $slug = 'real-estate-transactions';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('real-estate-transactions');
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 
     public function propertyManagement()
     {
-        $slug = 'property-management-solutions';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('property-management-solutions');
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 
     public function rentalAgreements()
     {
-        $slug = 'rental-agreements-renewals';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
+        $page = $this->getPageBySlug('rental-agreements-renewals');
         return view('front.real-estate.real-estate-transactions', ['page' => $page]);
     }
 }

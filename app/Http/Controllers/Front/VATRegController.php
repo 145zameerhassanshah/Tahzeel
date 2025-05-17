@@ -7,75 +7,62 @@ use App\Models\{Page, SectionTitle, IntroductionSection, HeroSection, Testimonia
 use Illuminate\Http\Request;
 
 class VATRegController extends Controller
+
 {
+
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
+    {
+        return Page::with([
+            'introductionSections',
+            'whyUsImages',
+            'elements',
+            'blocks',
+            'sections',
+            'callToActions',
+            'sectionTitles',
+            'faqs',
+            'testimonials'
+        ])->where('slug', $slug)->firstOrFail();
+    }
+
     public function vat_registration_for_businesses()
     {
-        $slug = 'vat-registration';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'procedures',
-            'whyChooseUs',
-            'heroSections',
-            'documentRequireds',
-            'testimonials',
-            'introductionSections',
-            'features',
-            'featureImages',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-        return view('front.vat.vat-reg-business', ['page' => $page]);
+        $page = $this->getPageBySlug('vat-registration');
+        return view('front.vat.vat-reg-business', compact('page'));
     }
 
-    public function vat_return_filing()
+     public function vat_return_filing()
     {
-        $slug = 'vat-return-filing';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-        return view('front.vat.vat-return-filling', ['page' => $page]);
+        $page = $this->getPageBySlug('vat-return-filing');
+        return view('front.vat.vat-return-filling', compact('page'));
     }
 
-    public function vat_consultation_compliance()
+     public function vat_consultation_compliance()
     {
-        $slug = 'vat-consultation-compliance';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-        return view('front.vat.vat_consultation', ['page' => $page]);
+        $page = $this->getPageBySlug('vat-consultation-compliance');
+        return view('front.vat.vat_consultation', compact('page'));
     }
 
-    public function vat_deregistration()
+     public function vat_deregistration()
     {
-        $slug = 'vat-deregistration';
-        $page = Page::with([
-            'elements',
-            'blocks',
-            'sections',
-            'callToActions',
-            'sectionTitles',
-            'faqs',
-            'testimonials',
-            'whyUsImages'
-        ])->where('slug', $slug)->firstOrFail();
-        return view('front.vat.vat_deregistration', ['page' => $page]);
+        $page = $this->getPageBySlug('vat-deregistration');
+        return view('front.vat.vat_deregistration', compact('page'));
     }
+
 }

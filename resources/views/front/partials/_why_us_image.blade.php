@@ -1,6 +1,6 @@
 
-<div class="container">
-    <div class="row gx-md-5 mb-5 mb-md-5">
+<div class="container-fluid px-5">
+    <div class="row gx-md-2 mb-5 mb-md-5">
         @foreach ($why_us_images as $why_us)
 
         <div class="col-md-6 col-xl-3 ">
