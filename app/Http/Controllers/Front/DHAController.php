@@ -8,30 +8,47 @@ use Illuminate\Http\Request;
 
 class DHAController extends Controller
 {
-    protected function renderPage(string $slug, string $view)
+
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
     {
-        $page = Page::with([
+        return Page::with([
+            'introductionSections',
+            'whyUsImages',
             'elements',
             'blocks',
             'sections',
             'callToActions',
             'sectionTitles',
             'faqs',
-            'heroSections',
-            'testimonials',
-            'introductionSections',
-            'whyUsImages'
+            'testimonials'
         ])->where('slug', $slug)->firstOrFail();
-        return view("front.dha-services.$view", compact('page'));
     }
 
     public function medicalFitnessTests()
     {
-        return $this->renderPage('medical-fitness-tests', 'medical-fitness-tests');
+        $page = $this->getPageBySlug('medical-fitness-tests');
+        return view('front.dha-services.medical-fitness-tests', compact('page'));
     }
 
-    public function healthInsuranceApprovals()
+     public function healthInsuranceApprovals()
     {
-        return $this->renderPage('health-insurance-approvals', 'health-insurance-approvals');
+        $page = $this->getPageBySlug('health-insurance-approvals');
+        return view('front.dha-services.health-insurance-approvals', compact('page'));
     }
 }

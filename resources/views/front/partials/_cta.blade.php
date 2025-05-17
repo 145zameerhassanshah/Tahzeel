@@ -1,4 +1,4 @@
-@foreach ($callToActions as $item)
+@foreach ($call_to_actions as $item)
 <section class="wrapper bg-dark bg-lines mt-12">
     <div class="container py-15 py-md-17 text-center ">
         <div class="row">

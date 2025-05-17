@@ -1,147 +1,80 @@
 @extends('front.layouts.master')
-
 @section('title', $page->title)
 @section('content')
 
-@if (isset($hero_sections))
-@foreach ($hero_sections as $hero_section)
-@include('front.partials._hero_section')
-@endforeach
-@endif
-
-{{-- @if (isset($intro_sections))
-@foreach ($intro_sections as $intro_section)
-@include('front.partials._intro_three_images')
-@endforeach
-@endif --}}
-
-{{-- @php
-$document_title = $section_titles->where('type', 'document')->first();
-@endphp
-@if (isset($document_requireds) && isset($document_title->title))
-@include('front.partials._docs')
-@endif --}}
-
-{{-- @php
-$feature_title = $section_titles->where('type', 'feature')->first();
-@endphp --}}
+    @include('front.partials._hero_section')
 
 
-@if (isset($feature_images) && isset($feature_title->title))
-@include('front.partials._feature_image')
-@endif
+    @php($introSection = $page->introductionSections->first())
+    @if ($introSection)
+        @include('front.partials._intro_three_images', ['introSection' => $introSection])
+    @endif
 
 
-@if (isset($why_choose_us))
-@include('front.partials._whyChoose')
-@endif
+    {{-- Why Us Image --}}
+    @php($section = $page->sectionTitles->where('type', 'why_us_image')->first())
+    @if ($section)
+        @include('front.partials._section_title', ['section' => $section])
+    @endif
 
-{{-- @php
-$procedure_title = $section_titles->where('type', 'procedure')->first();
-@endphp --}}
-
-@if (isset($procedures) && isset($procedure_title))
-@include('front.partials._procedures')
-@endif
-
-{{-- Key Features --}}
-@if (isset($feature_title->title))
-<div class="container">
-    <div class="row text-center mt-10 mb-12">
-        <div class="col">
-            <h2 class="display-5">{!! $feature_title->title !!}</h2>
-            <p class="mx-5">
-                {!! $feature_title->subtitle !!}
-            </p>
-        </div>
-    </div>
-    <div class="row gx-md-5 mb-5 mb-md-5">
-        @foreach ($features as $feature)
-        <div class="col-md-6 col-xl-3 ">
-            <div class="card shadow-lg card-border-bottom border-soft-yellow h-100 hover-card ">
-                <div class="card-body">
-                    <i class="{{ $feature->icon }}"></i>
-                    <h4>{{ $feature->title }}</h4>
-                    <p class="mb-2">{{ $feature->description }}</p>
-                </div>
-                <!--/.card-body -->
-            </div>
-            <!--/.card -->
-        </div>
-        @endforeach
-        <!--/column -->
-    </div>
-    <!--/.row -->
-</div>
-@endif
-{{-- end features  --}}
+    @php($why_us_images = $page->whyUsImages)
+    @if ($why_us_images->isNotEmpty())
+        @include('front.partials._why_us_image', ['why_us_images' => $why_us_images])
+    @endif
 
 
-{{--
-@php
-$faq_title = $section_titles->where('type', 'faq')->first();
-@endphp --}}
+    {{-- Call To Action --}}
+    @php($call_to_actions = $page->callToActions)
+    @if ($call_to_actions->isNotEmpty())
+        @include('front.partials._cta', ['call_to_actions' => $call_to_actions])
+    @endif
 
-@if (isset($faq_title))
-<div class="wrapper">
-    <div class="container">
-        <div class="row d-flex justify-content-center mb-10 mt-10">
-            <div class="col-md-8 text-center">
-                <h2 class="fs-15 text-uppercase text-red mb-3 mt-12">{{ $faq_title->subtitle }}</h2>
-                <h3 class="display-4 mb-0 text-center px-xl-10 px-xxl-15 mb-5">{{ $faq_title->title }}</h3>
-                <p class="lead fs-lg mb-8"> Having the right documents is key to a smooth VAT process. <span
-                        class="underline green">Tah-zeel</span>simplifies every step, ensuring FTA compliance for
-                    registration, filing, and deregistration.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="accordion accordion-wrapper" id="accordionIconExample">
-                    @foreach ($faqs as $faq)
-                    <div class="card accordion-item icon">
-                        <div class="card-header" id="headingIconOne">
-                            <button class="accordion-button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseIconOne" aria-expanded="true"
-                                aria-controls="collapseIconOne"><span><i
-                                        class="bi bi-passport"></i></span>{{ $faq->question }}</button>
-                        </div>
-                        <!--/.card-header -->
-                        <div id="collapseIconOne" class="accordion-collapse collapse show"
-                            aria-labelledby="headingIconOne" data-bs-parent="#accordionIconExample">
-                            <div class="card-body">
-                                <p>{{ $faq->answer }}</p>
-                            </div>
-                            <!--/.card-body -->
-                        </div>
-                        <!--/.accordion-collapse -->
-                    </div>
-                    @endforeach
-                </div>
-                <!--/.accordion -->
-            </div>
-        </div>
-    </div>
-</div>
-@endif
 
-@if (isset($why_choose_us))
-@include('front.partials.why-choose')
-@endif
+    @if ($page->blocks->has(0))
+        @include('front.partials._block2', ['block' => $page->blocks[0]])
+    @endif
 
-@if (isset($call_to_actions))
-@include('front.partials._cta')
-@endif
 
-@if (isset($testimonials))
-@include('front.partials._clients')
-@endif
+    {{-- Document Required Section --}}
+    @php($section = $page->sectionTitles->where('type', 'document')->first())
+    @if ($section)
+        @include('front.partials._section_title', ['section' => $section])
+    @endif
+    @if ($page->documentRequireds->isNotEmpty())
+        @include('front.partials._docs', [
+            'document_requireds' => $page->documentRequireds,
+        ])
+    @endif
 
-@include('front.partials.affiliations')
 
-@include('front.partials.cta-1')
+    @if ($page->elements->has(0))
+        @include('front.partials._element-features-2', ['element' => $page->elements[0]])
+    @endif
 
-@include('front.partials.contact-us')
+    @include('front.partials._cta3')
 
-@include('front.partials.amr-services-cards')
 
+    {{-- Testimonials --}}
+    @php($section = $page->sectionTitles->where('type', 'testimonial')->first())
+    @if ($section)
+        @include('front.partials._section_title', ['section' => $section])
+    @endif
+
+    @php($testimonials = $page->testimonials)
+    @if ($testimonials->isNotEmpty())
+        @include('front.partials.clients-2', ['testimonials' => $testimonials])
+    @endif
+
+
+    @include('front.partials.counter')
+
+    @include('front.partials._faqs', ['faqs' => $page->faqs])
+
+
+    @include('front.partials.contact-us')
+
+
+
+
+    @include('front.partials.affiliations')
 @endsection

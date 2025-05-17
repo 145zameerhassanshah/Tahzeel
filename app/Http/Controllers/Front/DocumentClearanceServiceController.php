@@ -8,20 +8,42 @@ use Illuminate\Http\Request;
 
 class DocumentClearanceServiceController extends Controller
 {
-    public function governmentDocumentSubmission()
+
+            // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
+    protected function getPageBySlug($slug)
     {
-        $slug = 'government-document-submission';
-        $page = Page::with([
+        return Page::with([
+            'introductionSections',
+            'whyUsImages',
             'elements',
             'blocks',
             'sections',
             'callToActions',
             'sectionTitles',
             'faqs',
-            'testimonials',
-            'whyUsImages'
+            'testimonials'
         ])->where('slug', $slug)->firstOrFail();
+    }
 
+
+    public function governmentDocumentSubmission()
+    {
+        $page = $this->getPageBySlug('government-document-submission');
         return view('front.document-clearance.government-document', ['page' => $page]);
     }
 
