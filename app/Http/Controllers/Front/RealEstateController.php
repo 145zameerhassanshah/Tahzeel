@@ -26,7 +26,6 @@ class RealEstateController extends Controller
     protected function getPageBySlug($slug)
     {
         return Page::with([
-            'introductionSections',
             'whyUsImages',
             'elements',
             'blocks',
@@ -53,12 +52,12 @@ class RealEstateController extends Controller
     public function propertyManagement()
     {
         $page = $this->getPageBySlug('property-management-solutions');
-        return view('front.real-estate.real-estate-transactions', ['page' => $page]);
+        return view('front.real-estate.property-management', ['page' => $page]);
     }
 
     public function rentalAgreements()
     {
         $page = $this->getPageBySlug('rental-agreements-renewals');
-        return view('front.real-estate.real-estate-transactions', ['page' => $page]);
+        return view('front.real-estate.rental-agreements', ['page' => $page]);
     }
 }

@@ -5,10 +5,17 @@
     @include('front.partials._hero_section')
 
 
-    @php($introSection = $page->introductionSections->first())
-    @if ($introSection)
-        @include('front.partials._intro_three_images', ['introSection' => $introSection])
+    @php($section = $page->sections->where('type', 'ltr')->first())
+    @if ($section)
+        @include('front.partials._left_section', ['section' => $section]);
     @endif
+
+
+    @php($section = $page->sections->where('type', 'rtl')->first())
+    @if ($section)
+        @include('front.partials._right_section', ['section' => $section]);
+    @endif
+
 
 
     {{-- Why Us Image --}}
