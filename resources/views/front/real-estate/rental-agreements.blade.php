@@ -5,13 +5,13 @@
     @include('front.partials._hero_section')
 
 
-    @php($section = $page->sections->where('type', 'ltr')->first())
+    @php($section = $page->sections->where('type', 'L-2-R')->first())
     @if ($section)
         @include('front.partials._left_section', ['section' => $section]);
     @endif
 
 
-    @php($section = $page->sections->where('type', 'rtl')->first())
+    @php($section = $page->sections->where('type', 'R-2-L')->first())
     @if ($section)
         @include('front.partials._right_section', ['section' => $section]);
     @endif
