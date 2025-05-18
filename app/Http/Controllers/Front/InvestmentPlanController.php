@@ -7,6 +7,22 @@ use App\Models\Page;
 
 class InvestmentPlanController extends Controller
 {
+                // 'procedures',
+            // 'callToActions',
+            // 'sectionTitles',
+            // 'introductionSections',
+            // 'heroSections',
+            // 'faqs',
+            // 'testimonials',
+            // 'whyChooseUs',
+            // 'documentRequireds',
+            // 'whyUsImages',
+            // 'features',
+            // 'featureImages',
+            // 'sections'
+            // 'elements',
+            // 'blocks',
+
     protected function getPageBySlug($slug)
     {
         return Page::with([
