@@ -27,7 +27,6 @@ class BankServiceController extends Controller
     protected function getPageBySlug($slug)
     {
         return Page::with([
-            'introductionSections',
             'whyUsImages',
             'elements',
             'blocks',
