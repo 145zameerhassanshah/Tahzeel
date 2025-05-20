@@ -721,7 +721,286 @@ class PagesTableSeeder extends Seeder
                 'page_link_for' => 'header',
                 'order_no' => 7,
             ],
+                            // 12. Dubai Notary Services
+[
+    'slug' => 'document-authentication',
+    'title' => [
+        'en' => 'Document Authentication',
+        'ar' => 'توثيق المستندات'
+    ],
+    'description' => [
+        'en' => 'We authenticate your documents with full legal validity in Dubai.',
+        'ar' => 'نقوم بتوثيق مستنداتك بصلاحية قانونية كاملة في دبي.'
+    ],
+    'hero_title' => [
+        'en' => 'Trusted Document Authentication',
+        'ar' => 'توثيق مستندات موثوق'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Certified and compliant authentication.',
+        'ar' => 'توثيق معتمد ومتوافق مع القوانين.'
+    ],
+    'hero_description' => [
+        'en' => 'Ensure your documents are legally recognized in the UAE.',
+        'ar' => 'تأكد من أن مستنداتك معترف بها قانونياً في الإمارات.'
+    ],
+    'meta_title' => 'Dubai Document Authentication Services',
+    'meta_description' => 'Professional document authentication services in Dubai for legal use.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.dubai-notary.authentication', 
+    'page_link_for' => 'header',
+    'order_no' => 1,
+],
+[
+    'slug' => 'real-estate-transactions',
+    'title' => [
+        'en' => 'Real Estate Transactions',
+        'ar' => 'المعاملات العقارية'
+    ],
+    'description' => [
+        'en' => 'We notarize all your property and real estate documents in Dubai.',
+        'ar' => 'نقوم بتوثيق جميع مستندات العقارات الخاصة بك في دبي.'
+    ],
+    'hero_title' => [
+        'en' => 'Real Estate Notarization',
+        'ar' => 'توثيق العقارات'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Reliable property documentation services.',
+        'ar' => 'خدمات توثيق الممتلكات الموثوقة.'
+    ],
+    'hero_description' => [
+        'en' => 'Complete support for buying, selling, or leasing property in Dubai.',
+        'ar' => 'دعم كامل للبيع أو الشراء أو التأجير في دبي.'
+    ],
+    'meta_title' => 'Real Estate Notary Dubai',
+    'meta_description' => 'Legal notarization for all types of real estate transactions in Dubai.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.dubai-notary.transactions', 
+    'page_link_for' => 'header',
+    'order_no' => 2,
+],
+[
+    'slug' => 'affidavits-declarations',
+    'title' => [
+        'en' => 'Affidavits and Declarations',
+        'ar' => 'الإقرارات والتصريحات'
+    ],
+    'description' => [
+        'en' => 'Create and notarize affidavits and statutory declarations quickly and legally.',
+        'ar' => 'إعداد وتوثيق الإقرارات القانونية بسرعة وبشكل قانوني.'
+    ],
+    'hero_title' => [
+        'en' => 'Legal Affidavits',
+        'ar' => 'إقرارات قانونية'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Personal and business declarations notarized.',
+        'ar' => 'توثيق الإقرارات الشخصية والتجارية.'
+    ],
+    'hero_description' => [
+        'en' => 'We provide certified notarization for various affidavit types.',
+        'ar' => 'نوفر توثيقاً معتمداً لأنواع مختلفة من الإقرارات.'
+    ],
+    'meta_title' => 'Affidavit Notary Dubai',
+    'meta_description' => 'Dubai notary services for personal and official affidavits and declarations.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.dubai-notary.affidavits-declarations', 
+    'page_link_for' => 'header',
+    'order_no' => 3,
+],
+[
+    'slug' => 'power-of-attorney-notarization',
+    'title' => [
+        'en' => 'Power of Attorney (POA) Notarization',
+        'ar' => 'توثيق الوكالة القانونية'
+    ],
+    'description' => [
+        'en' => 'Draft and notarize your Power of Attorney documents quickly and securely.',
+        'ar' => 'إعداد وتوثيق مستندات الوكالة القانونية بسرعة وأمان.'
+    ],
+    'hero_title' => [
+        'en' => 'POA Notarization',
+        'ar' => 'توثيق الوكالة'
+    ],
+    'hero_sub_title' => [
+        'en' => 'Legally valid POA services in Dubai.',
+        'ar' => 'خدمات وكالة قانونية صالحة في دبي.'
+    ],
+    'hero_description' => [
+        'en' => 'We handle all types of Power of Attorney notarizations.',
+        'ar' => 'نتولى جميع أنواع توثيق الوكالات القانونية.'
+    ],
+    'meta_title' => 'POA Notary Services Dubai',
+    'meta_description' => 'Certified POA notarization services in Dubai for legal and business use.',
+    'type' => 'notary-service',
+    'status' => 'published',
+    'route_name' => 'front.dubai-notary.attorney', 
+    'page_link_for' => 'header',
+    'order_no' => 4,
+],
+                // Dubai Notary Services end
 
+
+    // 14. Investment Plans
+
+    [
+        'slug' => 'global-investment-solutions',
+        'title' => [
+            'en' => 'Global Investment Solutions',
+            'ar' => 'حلول الاستثمار العالمية'
+        ],
+        'description' => [
+            'en' => 'Comprehensive investment solutions tailored for global markets.',
+            'ar' => 'حلول استثمارية شاملة مصممة للأسواق العالمية.'
+        ],
+        'hero_title' => [
+            'en' => 'Trusted Global Investment',
+            'ar' => 'الاستثمار العالمي الموثوق'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Expert strategies for international growth.',
+            'ar' => 'استراتيجيات خبراء للنمو الدولي.'
+        ],
+        'hero_description' => [
+            'en' => 'Expand your portfolio with our global investment expertise.',
+            'ar' => 'وسع محفظتك الاستثمارية مع خبرتنا العالمية.'
+        ],
+        'meta_title' => 'Global Investment Solutions',
+        'meta_description' => 'Expert global investment planning and solutions for diverse portfolios.',
+        'type' => 'investment-plan',
+        'status' => 'published',
+        'route_name' => 'front.investmentplans.global_investment',
+        'page_link_for' => 'header',
+        'order_no' => 1,
+    ],
+    [
+        'slug' => 'investment-planning-advisory',
+        'title' => [
+            'en' => 'Investment Planning and Advisory',
+            'ar' => 'تخطيط الاستثمار والاستشارات'
+        ],
+        'description' => [
+            'en' => 'Personalized investment planning and advisory services.',
+            'ar' => 'خدمات تخطيط واستشارات استثمارية مخصصة.'
+        ],
+        'hero_title' => [
+            'en' => 'Strategic Investment Advice',
+            'ar' => 'نصائح استثمارية استراتيجية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Plan your future with expert guidance.',
+            'ar' => 'خطط مستقبلك مع التوجيه الخبير.'
+        ],
+        'hero_description' => [
+            'en' => 'Get tailored advice to maximize your investment returns.',
+            'ar' => 'احصل على نصائح مخصصة لتعظيم عوائد استثماراتك.'
+        ],
+        'meta_title' => 'Investment Planning and Advisory',
+        'meta_description' => 'Professional investment planning and advisory services to help you succeed.',
+        'type' => 'investment-plan',
+        'status' => 'published',
+        'route_name' => 'front.investmentplans.investment_advisory',
+        'page_link_for' => 'header',
+        'order_no' => 2,
+    ],
+    [
+        'slug' => 'property-investment-opportunities',
+        'title' => [
+            'en' => 'Property Investment Opportunities',
+            'ar' => 'فرص الاستثمار العقاري'
+        ],
+        'description' => [
+            'en' => 'Discover lucrative property investment options worldwide.',
+            'ar' => 'اكتشف فرص استثمار عقاري مربحة حول العالم.'
+        ],
+        'hero_title' => [
+            'en' => 'Real Estate Investment',
+            'ar' => 'الاستثمار العقاري'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Unlock your wealth through property investment.',
+            'ar' => 'افتح ثروتك عبر الاستثمار العقاري.'
+        ],
+        'hero_description' => [
+            'en' => 'Explore diverse real estate projects with high returns.',
+            'ar' => 'استكشف مشاريع عقارية متنوعة ذات عوائد مرتفعة.'
+        ],
+        'meta_title' => 'Property Investment Opportunities',
+        'meta_description' => 'Best property investment opportunities with professional guidance.',
+        'type' => 'investment-plan',
+        'status' => 'published',
+        'route_name' => 'front.investmentplans.property_investment',
+        'page_link_for' => 'header',
+        'order_no' => 3,
+    ],
+    [
+        'slug' => 'business-investment-strategies',
+        'title' => [
+            'en' => 'Business Investment Strategies',
+            'ar' => 'استراتيجيات الاستثمار في الأعمال'
+        ],
+        'description' => [
+            'en' => 'Effective strategies for investing in businesses and startups.',
+            'ar' => 'استراتيجيات فعالة للاستثمار في الأعمال والشركات الناشئة.'
+        ],
+        'hero_title' => [
+            'en' => 'Smart Business Investments',
+            'ar' => 'استثمارات الأعمال الذكية'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Maximize growth through strategic investments.',
+            'ar' => 'زيادة النمو من خلال الاستثمارات الاستراتيجية.'
+        ],
+        'hero_description' => [
+            'en' => 'We help you choose the right business investment options.',
+            'ar' => 'نساعدك على اختيار خيارات الاستثمار الصحيحة في الأعمال.'
+        ],
+        'meta_title' => 'Business Investment Strategies',
+        'meta_description' => 'Strategic guidance for successful business investments.',
+        'type' => 'investment-plan',
+        'status' => 'published',
+        'route_name' => 'front.investmentplans.business_strategy',
+        'page_link_for' => 'header',
+        'order_no' => 4,
+    ],
+    [
+        'slug' => 'risk-management-diversification',
+        'title' => [
+            'en' => 'Risk Management and Diversification',
+            'ar' => 'إدارة المخاطر والتنويع'
+        ],
+        'description' => [
+            'en' => 'Protect your investments with risk management and diversification techniques.',
+            'ar' => 'حماية استثماراتك من خلال تقنيات إدارة المخاطر والتنويع.'
+        ],
+        'hero_title' => [
+            'en' => 'Secure Investment Portfolio',
+            'ar' => 'محفظة استثمارية آمنة'
+        ],
+        'hero_sub_title' => [
+            'en' => 'Balance risk and reward effectively.',
+            'ar' => 'وازن بين المخاطر والمكافآت بفعالية.'
+        ],
+        'hero_description' => [
+            'en' => 'Achieve long-term stability with diversified investments.',
+            'ar' => 'حقق استقراراً طويل الأمد مع استثمارات متنوعة.'
+        ],
+        'meta_title' => 'Risk Management and Diversification',
+        'meta_description' => 'Comprehensive risk management and diversification strategies for investments.',
+        'type' => 'investment-plan',
+        'status' => 'published',
+        'route_name' => 'front.investmentplans.risk_management
+
+',
+        'page_link_for' => 'header',
+        'order_no' => 5,
+    ],
+
+//investment plan end
             [
                 'slug' => 'property-buying-selling-assistance',
                 'title' => [

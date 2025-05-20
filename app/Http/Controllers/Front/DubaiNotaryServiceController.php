@@ -47,19 +47,19 @@ class DubaiNotaryServiceController extends Controller
 
     public function realEstateTransactions()
     {
-        $page = $this->getPageBySlug('real-estate-transaction');
+        $page = $this->getPageBySlug('real-estate-transactions');
         return view('front.dubai-notary.transactions', compact('page'));
     }
 
     public function affidavitsDeclarations()
     {
-        $page = $this->getPageBySlug('affidavits-and-declarations');
+        $page = $this->getPageBySlug('affidavits-declarations');
         return view('front.dubai-notary.affidavits-declarations', compact('page'));
     }
 
     public function powerOfAttorney()
     {
-        $page = $this->getPageBySlug('power-of-attorney-poa-notarization');
+        $page = $this->getPageBySlug('power-of-attorney-notarization');
         return view('front.dubai-notary.attorney', compact('page'));
     }
 }

@@ -44,8 +44,81 @@
                                     <ul class="dropdown-menu">
 
                                         {{-- <li><a class="dropdown-item" href="{{ route('front.vat.business') }}">{{ __('"Under Construction"') }}</a></li> --}}
-                                        <li><a class="dropdown-item" href="{{ route('front.ded.businessLicense') }}">{{ __('DED License') }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('front.dhaServices') }}">{{ __('DHA Services') }}</a></li>
+                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">DED Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.business_setup') }}">Business Setup and Licensing</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.trade_name') }}">Trade Name Reservation</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.initial_approval') }}">  Initial Approval</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.license_renewal') }}">License Renewal and Amendments</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.deregistration') }}">  Company Deregistration</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dedservices.commercial_permits') }}">Commercial Permits</a></li>
+      
+
+                                            </ul>
+                                          </li>
+                                          {{-- pro services --}}
+                                           <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">PRO Services</a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.document_clearance') }}">Document Clearance and Submission</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.visa_applications') }}">Visa Applications and Renewals</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.labor_immigration') }}">  Labor and Immigration Services</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.trade_license') }}">Trade License Processing</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.attestation_notarization') }}">  Attestation and Notarization Assistance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.company_registration') }}">Company Registration and Setup</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.proservice.government_liaison') }}">Government Liaison Services</a></li>
+      
+
+                                            </ul>
+                                          </li>
+                                          {{-- Bank Account Opening Services  --}}
+                                           <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Bank Account Opening Services </a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.bankservice.corporate') }}">Corporate Bank Account Setup</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.bankservice.personal') }}">Personal Bank Account Assistance</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.bankservice.consultation') }}">  Business Banking Consultation</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.bankservice.online') }}">Online Banking Solutions</a></li>
+      
+
+                                            </ul>
+                                          </li>
+
+                                          {{-- Document Clearance Services  --}}
+                                           <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Document Clearance Services </a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.document-clearance.government-document') }}">Government Document Submission</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.document-clearance.visa-residency') }}">Clearance for Visa and Residency</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.document-clearance.labor-immigration-document') }}">  Labor and Immigration Documents</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.document-clearance.corporate-document') }}">Corporate Document Clearance</a></li>
+                                                    <li class="nav-item"><a class="dropdown-item" href="{{ route('front.document-clearance.legal-document') }}">Legal Document Processing</a></li>
+                                            </ul>
+                                          </li>
+                                          {{-- Dubai Notary Services  --}}
+                                           <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Dubai Notary Services </a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dubai-notary.authentication') }}">Document Authentication</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dubai-notary.transactions') }}">Real Estate Transactions</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dubai-notary.affidavits-declarations') }}">  Affidavits and Declarations</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.dubai-notary.attorney') }}">Power of Attorney (POA) Notarization</a></li>
+                                            </ul>
+                                          </li>
+                                          {{-- investment plan  --}}
+                                           <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Investment Plans </a>
+                                            <ul class="dropdown-menu">
+
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.investmentplans.global_investment') }}">Global Investment Solutions</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.investmentplans.investment_advisory') }}">Investment Planning and Advisory</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.investmentplans.property_investment') }}">  Property Investment Opportunities</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.investmentplans.business_strategy') }}">Business Investment Strategies</a></li>
+                                              <li class="nav-item"><a class="dropdown-item" href="{{ route('front.investmentplans.risk_management') }}">Risk Management and Diversification</a></li>
+
+                                            </ul>
+                                          </li>
+
                                         <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Human Resources</a>
                                             <ul class="dropdown-menu">
 

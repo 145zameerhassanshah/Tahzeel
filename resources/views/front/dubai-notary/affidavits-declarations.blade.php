@@ -2,54 +2,52 @@
 @section('title', $page->title)
 @section('content')
 
+
+    {{-- Hero Section --}}
     @include('front.partials._hero_section')
 
 
-    @php($introSection = $page->introductionSections->first())
-    @if ($introSection)
-        @include('front.partials._intro_three_images', ['introSection' => $introSection])
-    @endif
-
-
-    {{-- Why Us Image --}}
-    @php($section = $page->sectionTitles->where('type', 'why_us_image')->first())
-    @if ($section)
-        @include('front.partials._section_title', ['section' => $section])
-    @endif
-
-    @php($why_us_images = $page->whyUsImages)
-    @if ($why_us_images->isNotEmpty())
-        @include('front.partials._why_us_image', ['why_us_images' => $why_us_images])
-    @endif
-
-
-    {{-- Call To Action --}}
-    @php($call_to_actions = $page->callToActions)
-    @if ($call_to_actions->isNotEmpty())
-        @include('front.partials._cta', ['call_to_actions' => $call_to_actions])
-    @endif
-
-
     @if ($page->blocks->has(0))
-        @include('front.partials._block2', ['block' => $page->blocks[0]])
+        <div class="py-2"></div>
+        @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
 
 
-    {{-- Document Required Section --}}
-    @php($section = $page->sectionTitles->where('type', 'document')->first())
+    @include('front.partials.cta-1')
+
+
+
+    {{-- Why Choose Us --}}
+    @php($section = $page->sectionTitles->where('type', 'why_choose_us')->first())
     @if ($section)
         @include('front.partials._section_title', ['section' => $section])
     @endif
-    @if ($page->documentRequireds->isNotEmpty())
-        @include('front.partials._docs', [
-            'document_requireds' => $page->documentRequireds,
-        ])
+
+    @php($why_choose_us = $page->whyChooseUs)
+
+    @if ($why_choose_us->isNotEmpty())
+        @include('front.partials._whyChoose', ['why_choose_us' => $why_choose_us])
+    @endif
+
+
+    @php($callToActions = $page->callToActions)
+    @if ($callToActions->isNotEmpty())
+        @include('front.partials._cta', ['item' => $callToActions])
     @endif
 
 
     @if ($page->elements->has(0))
-        @include('front.partials._element-features-2', ['element' => $page->elements[0]])
+        @include('front.partials._element-features-6', ['element' => $page->elements[0]])
     @endif
+
+    @if ($page->elements->has(1))
+        @include('front.partials._element-features-1', ['element' => $page->elements[1]])
+    @endif
+
+
+    @include('front.partials.industriesWeServe')
+
+    @include('front.partials.availableManpower')
 
     @include('front.partials._cta3')
 
@@ -68,13 +66,18 @@
 
     @include('front.partials.counter')
 
-    @include('front.partials._faqs', ['faqs' => $page->faqs])
+  @include('front.partials._faqs', ['faqs' => $page->faqs])
 
+    @php($callToActions = $page->callToActions)
+    @if ($callToActions->isNotEmpty())
+        @include('front.partials._cta', ['item' => $callToActions])
+    @endif
 
     @include('front.partials.contact-us')
 
 
+    @include('front.partials.clients')
 
+    @include('front.partials.why-choose')
 
-    @include('front.partials.affiliations')
 @endsection
