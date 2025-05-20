@@ -27,16 +27,15 @@ class PageSectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title.en' => 'required|string|max:255',
-            'title.ar' => 'required|string|max:255',
-            'subtitle.en' => 'required|string|max:255',
-            'subtitle.ar' => 'required|string|max:255',
-            'page_id' => 'required|integer',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'order_no' => 'required|integer',
-            'type' => 'required',
-            'description.en' => 'required',
-            'description.ar' => 'required',
+        'title.en' => 'required|string|max:255',
+        'title.ar' => 'required|string|max:255',
+        'subtitle.en' => 'required|string|max:255',
+        'subtitle.ar' => 'required|string|max:255',
+        'order_no' => 'required|integer',
+        'type' => 'required|in:L-2-R,R-2-L',
+        'description.en' => 'required|string',
+        'description.ar' => 'required|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
         // dd('ss');
         $pageSection = new PageSection();
@@ -89,7 +88,7 @@ class PageSectionController extends Controller
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
+           'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
             'description.en' => 'string',
