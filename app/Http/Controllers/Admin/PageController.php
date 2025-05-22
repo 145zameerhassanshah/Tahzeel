@@ -15,7 +15,7 @@ class PageController extends Controller
         return view('admin.page.list', compact('pages'));
     }
 
-    public function detail($id, $slug)
+    public function oldDetail($slug)
     {
         $page = Page::where('slug', $slug)->first();
         $testimonials = Testimonial::where('page_id', $page->id)->get();
@@ -36,6 +36,11 @@ class PageController extends Controller
         return view('admin.page.detail', compact('page', 'testimonials', 'intro_types', 'section_types'));
     }
 
+    public function detail($slug)
+    {
+        $page = Page::where('slug', $slug)->first();
+        return view('admin.page.detail', compact('page', 'slug'));
+    }
 
     // Page Crud Functions:-
     public function add()
@@ -110,8 +115,8 @@ class PageController extends Controller
             'message' => 'Page Added Successfully!',
             'alert' => 'success',
         );
-        
-        return redirect()->route('admin.page.section.edit',$page->id)->with('notification', $notification);
+
+        return redirect()->route('admin.page.section.edit', $page->id)->with('notification', $notification);
     }
 
     // Page Delete
@@ -150,6 +155,6 @@ class PageController extends Controller
             'message' => 'Page Upldated Successfully!',
             'alert' => 'success',
         );
-return back()->with('notification', $notification);
+        return back()->with('notification', $notification);
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class TestimonialController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $testimonials = Testimonial::orderBy('order_no')->get();
-        return response()->json([
-            'data' => $testimonials
-        ]);
+        $page = Page::where('slug', $slug)->first();
+        $testimonials = Testimonial::where('page_id', $page->id)->orderBy('order_no')->get();
+        return view('admin.page.partials.testimonial_list', compact('testimonials', 'slug'));
     }
     public function getByPageId($pageId)
     {
@@ -37,27 +36,28 @@ class TestimonialController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function add($slug)
     {
-        $group = Group::find($request->id);
-        return view('admin.testimonial.add', compact("group"));
+        return view('admin.page.partials.testimonial_add', compact("slug"));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
-        $request->validate([
-            'name.en' => 'required|string',
-            'name.ar' => 'required|string',
-            'feedback.en' => 'required|string',
-            'feedback.ar' => 'required|string',
-            'designation.en' => 'required|string',
-            'designation.ar' => 'required|string',
-            'order_no' => 'nullable|integer|min:0',
-            'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|max:2048',
-        ]);
+        // dd($request->all());
+        // $request->validate([
+        //     'name.en' => 'required|string',
+        //     'name.ar' => 'required|string',
+        //     'feedback.en' => 'required|string',
+        //     'feedback.ar' => 'required|string',
+        //     'designation.en' => 'required|string',
+        //     'designation.ar' => 'required|string',
+        //     'order_no' => 'nullable|integer|min:0',
+        //     'status' => 'required|in:active,inactive',
+        //     'image' => 'nullable|image|max:2048',
+        // ]);
+        $page = Page::where('slug', $slug)->first();
         $testimonial = new Testimonial();
-        $testimonial->page_id = $request->page_id;
+        $testimonial->page_id = $page->id;
         $testimonial->setTranslations('name', [
             'en' => $request->name['en'],
             'ar' => $request->name['ar'],
@@ -80,32 +80,15 @@ class TestimonialController extends Controller
         $testimonial->order_no = $request->order_no ?? 0;
         $testimonial->status = $request->status;
         $testimonial->save();
-        return response()->json([
-            'success' => true,
-            'testimonial' => $testimonial
-        ]);
+        
+        return redirect()->route('admin.testimonial.index', ['slug' => $page->slug])->with('notification', ['alert' => 'success', 'message' => 'Testimonial added Successfully!']);
     }
 
     public function edit($id)
     {
         $testimonial = Testimonial::findOrFail($id);
-        return response()->json([
-            'name' => [
-                'en' => $testimonial->getTranslation('name', 'en'),
-                'ar' => $testimonial->getTranslation('name', 'ar'),
-            ],
-            'designation' => [
-                'en' => $testimonial->getTranslation('designation', 'en'),
-                'ar' => $testimonial->getTranslation('designation', 'ar'),
-            ],
-            'feedback' => [
-                'en' => $testimonial->getTranslation('feedback', 'en'),
-                'ar' => $testimonial->getTranslation('feedback', 'ar'),
-            ],
-            'order_no' => $testimonial->order_no,
-            'status' => $testimonial->status,
-            'image' => $testimonial->image,
-        ]);
+        $slug = $testimonial->page->slug;
+        return view('admin.page.partials.testimonial_edit', compact('testimonial', 'slug'));
     }
 
     public function update(Request $request, $id)
@@ -139,9 +122,8 @@ class TestimonialController extends Controller
         $testimonial->order_no = $request->order_no;
         $testimonial->status = $request->status;
         $testimonial->save();
-        return response()->json([
-            'data' => $testimonial,
-        ]);
+        
+        return redirect()->route('admin.testimonial.index', ['slug' => $testimonial->page->slug])->with('notification', ['alert' => 'success', 'message' => 'Testimonial updated Successfully!']);
     }
 
     // Delete the specified testimonial
@@ -150,9 +132,7 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::findOrFail($id);
         @unlink('assets/admin/uploads/testimonial/' . $testimonial->image);
         $testimonial->delete();
-        return response()->json([
-            'success' => true
-        ]);
+        return redirect()->back()->with('notification', ['alert' => 'success', 'message' => 'Testimonial deleted Successfully!']);
     }
 
     // public function index()

@@ -11,21 +11,21 @@ use Intervention\Image\Drivers\GD\Driver;
 
 class PageSectionController extends Controller
 {
-    public function index($id)
+    public function index($slug)
     {
-        $page = Page::findOrFail($id);
-        $pageSections = PageSection::where('page_id', $id)->get();
-        return view('admin.page-section.index', compact('pageSections', 'page'));
+        $page = Page::where('slug', $slug)->first();
+        $pageSections = PageSection::where('page_id', $page->id)->get();
+        return view('admin.page.partials.page_section_list', compact('pageSections', 'slug'));
     }
 
-    public function add($id)
+    public function add($slug)
     {
-        $page = Page::findOrFail($id);
-        return view('admin.page-section.add', compact('page'));
+        return view('admin.page.partials.page_section_add', compact('slug'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
+        // dd($request->all());
         $request->validate([
         'title.en' => 'required|string|max:255',
         'title.ar' => 'required|string|max:255',
@@ -35,11 +35,12 @@ class PageSectionController extends Controller
         'type' => 'required|in:L-2-R,R-2-L',
         'description.en' => 'required|string',
         'description.ar' => 'required|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        'image' => 'required|mimes:jpeg,png,jpg|max:2048',
         ]);
         // dd('ss');
+        $page = Page::where('slug', $slug)->first();
         $pageSection = new PageSection();
-        $pageSection->page_id = $request->page_id;
+        $pageSection->page_id = $page->id;
         $pageSection->order_no = $request->order_no;
         $pageSection->type = $request->type;
 
@@ -68,7 +69,7 @@ class PageSectionController extends Controller
 
         $pageSection->save();
 
-        return redirect()->route('admin.page.section.index', $pageSection->page_id)
+        return redirect()->route('admin.page.section.index', $slug)
                          ->with('notification', [
                              'message' => 'Page Section Added Successfully!',
                              'alert' => 'success',
@@ -78,7 +79,8 @@ class PageSectionController extends Controller
     public function edit($id)
     {
         $pageSection = PageSection::findOrFail($id);
-        return view('admin.page-section.edit', compact('pageSection'));
+        $slug = $pageSection->page->slug;
+        return view('admin.page.partials.page_section_edit', compact('pageSection', 'slug'));
     }
 
     public function update(Request $request, $id)
@@ -138,7 +140,7 @@ class PageSectionController extends Controller
 
         $pageSection->save();
 
-        return redirect()->route('admin.page.section.index', $pageSection->page_id)
+        return redirect()->route('admin.page.section.index', $pageSection->page->slug)
                          ->with('notification', [
                              'message' => 'Page Section Updated Successfully!',
                              'alert' => 'success',

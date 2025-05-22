@@ -10,21 +10,20 @@ use App\Models\ElementFeature;
 
 class ElementController extends Controller
 {
-    public function index($page_id)
+    public function index($slug)
     {
-        $elements = Element::where('page_id', $page_id)->get();
-        $page = Page::findOrFail($page_id); // fetch page info
+        $page = Page::where('slug', $slug)->first();
+        $elements = Element::where('page_id', $page->id)->get();
 
-        return view('admin.element.index', compact('elements', 'page'));
+        return view('admin.page.partials.element_list', compact('elements', 'slug'));
     }
 
-    public function add($page_id)
+    public function add($slug)
     {
-        $page = Page::findorfail($page_id);
-        return view('admin.element.add', compact('page'));
+        return view('admin.page.partials.element_add', compact('slug'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
             'title.en' => 'required|string|max:255',
@@ -33,7 +32,6 @@ class ElementController extends Controller
             'subtitle.ar' => 'nullable|string|max:255',
             'description.en' => 'required|string',
             'description.ar' => 'required|string',
-            'page_id' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'features.*.en' => 'nullable|string',
@@ -45,6 +43,7 @@ class ElementController extends Controller
         // dd($request->all());
 
         // Create the element
+        $page = Page::where('slug', $slug)->first();
         $element = new Element();
         $element->element_name = "test"; // You may want to make this dynamic or remove
 
@@ -52,7 +51,7 @@ class ElementController extends Controller
         $element->setTranslations('title', $request->input('title'));
         $element->setTranslations('subtitle', $request->input('subtitle'));
         $element->setTranslations('description', $request->input('description'));
-        $element->page_id = $request->page_id;
+        $element->page_id = $page->id;
 
         // Handle Image Upload
         if ($request->hasFile('image')) {
@@ -90,7 +89,7 @@ class ElementController extends Controller
                 $elementFeature->save();
             }
         }
-        return redirect()->route('admin.element.index', $request->page_id)->with('notification', [
+        return redirect()->route('admin.element.index', $slug)->with('notification', [
             'message' => 'Page Element Added Successfully!',
             'alert' => 'success',
         ]);
@@ -99,8 +98,8 @@ class ElementController extends Controller
     public function edit($id)
     {
         $element = Element::with('features')->findOrFail($id);
-        $page = $element->page;
-        return view('admin.element.edit', compact('element', 'page'));
+        $slug = $element->page->slug;
+        return view('admin.page.partials.element_edit', compact('element', 'slug'));
     }
     public function update(Request $request, $id)
     {
@@ -134,7 +133,7 @@ class ElementController extends Controller
         }
         $this->updateFeatures($request->input('features'), $element);
         $element->save();
-        return redirect()->route('admin.element.index', $element->page_id)->with('notification', [
+        return redirect()->route('admin.element.index', $element->page->slug)->with('notification', [
             'message' => 'Page Element Updated Successfully!',
             'alert' => 'success',
         ]);

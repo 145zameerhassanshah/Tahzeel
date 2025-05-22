@@ -3,24 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use App\Models\SectionTitle;
 use Illuminate\Http\Request;
 
 class SectionTitleController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $types = [
-            'testimonial',
-            'faq',
-            'feature',
-            'procedure',
-            'why_choose_us',
-            'document',
-            'call_to_action'
-        ];
-        return view('admin.section_title.index', compact('types'));
+        $page = Page::where('slug', $slug)->first();
+        $section_titles = SectionTitle::where('page_id', $page->id)->get();
+        return view('admin.page.partials.section_title_list', compact('section_titles', 'slug'));
+    }
+
+    public function add($slug)
+    {
+        $page = Page::where('slug', $slug)->first();
+        $section_types = ['testimonial',
+                'faq',
+                'feature',
+                'procedure',
+                'why_choose_us',
+                'document',
+                'feature_image',
+                'hero_section',
+                'intro_section',
+                'why_us_image',
+                'call_to_action',
+                'residency-visa'];
+        return view('admin.page.partials.section_title_add', compact('slug', 'section_types'));
     }
 
     public function getByPageId($pageId)
@@ -29,10 +40,10 @@ class SectionTitleController extends Controller
         return response()->json(['data' => $sectionTitles]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required|exists:pages,id',
+            // 'page_id' => 'required|exists:pages,id',
             'section_title.en' => 'required|string|max:250',
             'section_title.ar' => 'required|string|max:250',
             'section_subtitle.en' => 'nullable|string|max:250',
@@ -42,8 +53,9 @@ class SectionTitleController extends Controller
             'section_status' => 'required|in:active,inactive',
             'section_type' => 'required|string'
         ]);
+        $page = Page::where('slug', $slug)->first();
         $sectionTitle = new SectionTitle();
-        $sectionTitle->page_id = $request->page_id;
+        $sectionTitle->page_id = $page->id;
         $sectionTitle->setTranslations('title', [
             'en' => $request->section_title['en'],
             'ar' => $request->section_title['ar'],
@@ -66,30 +78,33 @@ class SectionTitleController extends Controller
         $sectionTitle->status = $request->section_status;
         $sectionTitle->type = $request->section_type;
         $sectionTitle->save();
-        return response()->json(['success' => true, 'section_title' => $sectionTitle]);
+
+        $notification = [
+            'alert' => 'success',
+            'message' => 'Section Title added Successfully!'
+        ];
+        return redirect()->route('admin.section_title.index', $slug)->with('notification', $notification);
     }
 
 
     public function edit($id)
     {
-        $sectionTitle = SectionTitle::findOrFail($id);
-        return response()->json([
-            'title' => [
-                'en' => $sectionTitle->getTranslation('title', 'en'),
-                'ar' => $sectionTitle->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $sectionTitle->getTranslation('subtitle', 'en'),
-                'ar' => $sectionTitle->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $sectionTitle->getTranslation('description', 'en'),
-                'ar' => $sectionTitle->getTranslation('description', 'ar'),
-            ],
-            'status' => $sectionTitle->status,
-            'type' => $sectionTitle->type,
-            'id' => $sectionTitle->id
-        ]);
+        $section_title = SectionTitle::find($id);
+        $slug = $section_title->page->slug;
+        $section_types = ['testimonial',
+                'faq',
+                'feature',
+                'procedure',
+                'why_choose_us',
+                'document',
+                'feature_image',
+                'hero_section',
+                'intro_section',
+                'why_us_image',
+                'call_to_action',
+                'residency-visa'];
+                // dd($section_title);
+        return view('admin.page.partials.section_title_edit', compact('section_title', 'slug', 'section_types'));
     }
 
 
@@ -120,7 +135,11 @@ class SectionTitleController extends Controller
         $sectionTitle->type = $request->section_type;
         $sectionTitle->save();
 
-        return response()->json(['success' => true, 'section_title' => $sectionTitle]);
+        $notification = [
+            'alert' => 'success',
+            'message' => 'Section Title updated Successfully!'
+        ];
+        return redirect()->route('admin.section_title.index', $sectionTitle->page->slug)->with('notification', $notification);
     }
 
     public function delete($id)
@@ -128,6 +147,11 @@ class SectionTitleController extends Controller
         $sectionTitle = SectionTitle::findOrFail($id);
         $sectionTitle->delete();
 
-        return response()->json(['success' => true]);
+        $notification = [
+            'alert' => 'success',
+            'message' => 'Section Title deleted Successfully!'
+        ];
+
+        return redirect()->back()->with('notification', $notification);
     }
 }

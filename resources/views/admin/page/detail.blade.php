@@ -1,131 +1,197 @@
 @extends('admin.layouts.master')
 @section('title', 'Page Detail')
 @section('content')
-<section class="content">
-    <div class="container-fluid">
+
+@include('admin.page.top-nav')
+  
+    <section class="content">
+        @include('admin.page.side-nav')
         <div class="row">
+
+            
+
             <div class="col-md-12">
-                <div class="card card-tabs mt-2">
-                    <div class="card-header p-0 pt-1 border-bottom-0">
-                        <ul class="nav nav-tabs mx-3 my-1" id="custom-tabs-three-tab" role="tablist">
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white active" id="custom-tabs-testimonial-tab" data-toggle="pill"
-                                    href="#custom-tabs-testimonial" role="tab" aria-controls="custom-tabs-testimonial" aria-selected="true">Testimonials</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-hero-section-tab" data-toggle="pill"
-                                    href="#custom-tabs-hero-section" role="tab"
-                                    aria-controls="custom-tabs-hero-section" aria-selected="false">Hero Section</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-intro-section-tab" data-toggle="pill"
-                                    href="#custom-tabs-intro-section" role="tab"
-                                    aria-controls="custom-tabs-intro-section" aria-selected="false">Intro Section</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-section-title-tab" data-toggle="pill" href="#custom-tabs-section-title" role="tab" aria-controls="custom-tabs-section-title" aria-selected="false">Section Title</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-feature-image-tab" data-toggle="pill"
-                                    href="#custom-tabs-feature-image" role="tab"
-                                    aria-controls="custom-tabs-feature-image" aria-selected="false">Feature Image</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-procedure-tab" data-toggle="pill"
-                                    href="#custom-tabs-procedure" role="tab"
-                                    aria-controls="custom-tabs-procedure" aria-selected="false">Procedure</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-cta-tab" data-toggle="pill"
-                                    href="#custom-tabs-cta" role="tab"
-                                    aria-controls="custom-tabs-cta" aria-selected="false">CallToAction</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-faq-tab" data-toggle="pill"
-                                    href="#custom-tabs-faq" role="tab"
-                                    aria-controls="custom-tabs-faq" aria-selected="false">FAQs</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-document-required-tab" data-toggle="pill"
-                                    href="#custom-tabs-document-required" role="tab"
-                                    aria-controls="custom-tabs-document-required" aria-selected="false">Document Required</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whychooseus-tab" data-toggle="pill"
-                                    href="#custom-tabs-whychooseus" role="tab"
-                                    aria-controls="custom-tabs-whychooseus" aria-selected="false">WhyChooseUs</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-features-tab" data-toggle="pill"
-                                    href="#custom-tabs-features" role="tab"
-                                    aria-controls="custom-tabs-features" aria-selected="false">Features</a>
-                            </li>
-                            <li class="nav-item mx-1 my-1">
-                                <a class="nav-link btn btn-success btn-sm text-white" id="custom-tabs-whyusimage-tab" data-toggle="pill"
-                                    href="#custom-tabs-whyusimage" role="tab"
-                                    aria-controls="custom-tabs-whyusimage" aria-selected="false">WhyUsImage</a>
-                            </li>
-                        </ul>
+                {{-- content --}}
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Page</h4>
                     </div>
                     <div class="card-body">
-                        <div class="tab-content" id="custom-tabs-tabContent">
-                            <div class="tab-pane fade active show" id="custom-tabs-testimonial" role="tabpanel"
-                                aria-labelledby="custom-tabs-testimonial-tab">
-                                @include('admin.page.partials.testimonial')
+                        
+                        <form action="{{ route('admin.page.update', $page->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+
+                            <!-- Slug -->
+                            <div class="form-group">
+                                <label for="slug">Slug <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                    value="{{ $page->slug }}" readonly required>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-hero-section" role="tabpanel"
-                                aria-labelledby="custom-tabs-hero-section-tab">
-                                @include('admin.page.partials.hero-section')
+
+                            <!-- Title -->
+                            <div class="form-group">
+                                <label for="title_en">Title (EN) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="title_en" name="title[en]"
+                                    value="{{ $page->getTranslation('title', 'en') }}" required>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-intro-section" role="tabpanel"
-                                aria-labelledby="custom-tabs-intro-section-tab">
-                                @include('admin.page.partials.intro-section')
+                            <div class="form-group">
+                                <label for="title_ar">Title (AR) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="title_ar" name="title[ar]"
+                                    value="{{ $page->getTranslation('title', 'ar') }}" required>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-section-title" role="tabpanel"
-                                aria-labelledby="custom-tabs-section-title-tab">
-                                @include('admin.page.partials.section-title')
+
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="description_en">Description (EN)</label>
+                                <textarea class="form-control" id="description_en" name="description[en]" rows="3">{{ $page->getTranslation('description', 'en') }}</textarea>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-feature-image" role="tabpanel"
-                                aria-labelledby="custom-tabs-feature-image-tab">
-                                @include('admin.page.partials.feature-image')
+                            <div class="form-group">
+                                <label for="description_ar">Description (AR)</label>
+                                <textarea class="form-control" id="description_ar" name="description[ar]" rows="3">{{ $page->getTranslation('description', 'ar') }}</textarea>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-procedure" role="tabpanel"
-                                aria-labelledby="custom-tabs-procedure-tab">
-                                @include('admin.page.partials.procedure')
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="order_no">Order Number</label>
+                                        <input type="number" class="form-control" id="order_no" name="order_no"
+                                            value="{{ $page->order_no ?? 0 }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="status">Status <span class="text-danger">*</span></label>
+                                        <select id="status" name="status" class="form-control" required>
+                                            <option value="draft" {{ $page->status == 'draft' ? 'selected' : '' }}>
+                                                Draft</option>
+                                            <option value="published"
+                                                {{ $page->status == 'published' ? 'selected' : '' }}>Published</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="page_link_for">Page Link For <span
+                                                class="text-danger">*</span></label>
+                                        <select id="page_link_for" name="page_link_for" class="form-control" required>
+                                            <option value="header"
+                                                {{ $page->page_link_for == 'header' ? 'selected' : '' }}>Header
+                                            </option>
+                                            <option value="footer"
+                                                {{ $page->page_link_for == 'footer' ? 'selected' : '' }}>Footer
+                                            </option>
+                                            <option value="services"
+                                                {{ $page->page_link_for == 'services' ? 'selected' : '' }}>Services
+                                            </option>
+                                            <option value="none"
+                                                {{ $page->page_link_for == 'none' ? 'selected' : '' }}>None</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-cta" role="tabpanel"
-                                aria-labelledby="custom-tabs-cta-tab">
-                                @include('admin.page.partials.call-to-action')
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="route_name">Route Name</label>
+                                        <input type="text" class="form-control" id="route_name" name="route_name"
+                                            value="{{ $page->route_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="type">Category Type</label>
+                                        <select id="type" name="type" class="form-control" required>
+                                            <option value="amer-service"
+                                                {{ $page->type == 'amer-service' ? 'selected' : '' }}>Amer Service
+                                            </option>
+                                            <option value="visa" {{ $page->type == 'visa' ? 'selected' : '' }}>Visa
+                                            </option>
+                                            <option value="ded" {{ $page->type == 'ded' ? 'selected' : '' }}>DED
+                                            </option>
+                                            <option value="real-estate"
+                                                {{ $page->type == 'real-estate' ? 'selected' : '' }}>Real Estate
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-faq" role="tabpanel"
-                                aria-labelledby="custom-tabs-faq-tab">
-                                @include('admin.page.partials.faqs')
+
+                            <!-- Hero Image -->
+                            <div class="form-group">
+                                <label for="hero_image">Hero Image</label>
+                                <input type="file" class="form-control" id="hero_image" name="hero_image">
+                                @if ($page->hero_image)
+                                    <img src="{{ asset('assets/admin/img/' . $page->hero_image) }}" width="120"
+                                        class="mt-2">
+                                @endif
+                                <small class="text-muted">Recommended size: 730x455 px. Formats: jpg, jpeg,
+                                    png.</small>
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-document-required" role="tabpanel"
-                                aria-labelledby="custom-tabs-document-required-tab">
-                                @include('admin.page.partials.document-required')
+
+                            <!-- Hero Title -->
+                            <div class="form-group">
+                                <label for="hero_title_en">Hero Title (EN)</label>
+                                <input type="text" class="form-control" id="hero_title_en" name="hero_title[en]"
+                                    value="{{ $page->getTranslation('hero_title', 'en') }}">
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-whychooseus" role="tabpanel"
-                                aria-labelledby="custom-tabs-whychooseus-tab">
-                                @include('admin.page.partials.why-choose-us')
+                            <div class="form-group">
+                                <label for="hero_title_ar">Hero Title (AR)</label>
+                                <input type="text" class="form-control" id="hero_title_ar" name="hero_title[ar]"
+                                    value="{{ $page->getTranslation('hero_title', 'ar') }}">
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-features" role="tabpanel"
-                                aria-labelledby="custom-tabs-features-tab">
-                                @include('admin.page.partials.feature')
+
+                            <!-- Hero Subtitle -->
+                            <div class="form-group">
+                                <label for="hero_sub_title_en">Hero Subtitle (EN)</label>
+                                <input type="text" class="form-control" id="hero_sub_title_en"
+                                    name="hero_sub_title[en]"
+                                    value="{{ $page->getTranslation('hero_sub_title', 'en') }}">
                             </div>
-                            <div class="tab-pane fade" id="custom-tabs-whyusimage" role="tabpanel"
-                                aria-labelledby="custom-tabs-whyusimage-tab">
-                                @include('admin.page.partials.why-us-image')
+                            <div class="form-group">
+                                <label for="hero_sub_title_ar">Hero Subtitle (AR)</label>
+                                <input type="text" class="form-control" id="hero_sub_title_ar"
+                                    name="hero_sub_title[ar]"
+                                    value="{{ $page->getTranslation('hero_sub_title', 'ar') }}">
                             </div>
-                        </div>
+
+                            <!-- Hero Description -->
+                            <div class="form-group">
+                                <label for="hero_description_en">Hero Description (EN)</label>
+                                <textarea class="form-control" id="hero_description_en" name="hero_description[en]" rows="3">{{ $page->getTranslation('hero_description', 'en') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="hero_description_ar">Hero Description (AR)</label>
+                                <textarea class="form-control" id="hero_description_ar" name="hero_description[ar]" rows="3">{{ $page->getTranslation('hero_description', 'ar') }}</textarea>
+                            </div>
+
+                            <!-- SEO & Extras -->
+                            <div class="form-group">
+                                <label for="meta_title">Meta Title</label>
+                                <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                    value="{{ $page->meta_title }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="meta_description">Meta Description</label>
+                                <textarea class="form-control" id="meta_description" name="meta_description" rows="3">{{ $page->meta_description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="meta_keywords">Meta Keywords</label>
+                                <input type="text" class="form-control" id="meta_keywords" name="meta_keywords"
+                                    value="{{ $page->meta_keywords }}">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update Page</button>
+                            </div>
+
+                        </form>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>
-</section>
-@endsection
+    </section>
 
-@section('js')
-@include('admin.page.partials.script')
 @endsection

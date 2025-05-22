@@ -22,11 +22,11 @@
                                     <tr>
                                         <th>{{ __('#') }}</th>
                                         <th>{{ __('Title') }}</th>
-                                        <th>{{ __('Route') }}</th>
+                                        {{-- <th>{{ __('Route') }}</th> --}}
                                         <th>{{ __('Type') }}</th>
                                         <th>{{ __('Slug') }}</th>
-                                        <th>{{ __('Link For') }}</th>
-                                        <th>{{ __('Order No') }}</th>
+                                        {{-- <th>{{ __('Link For') }}</th> --}}
+                                        {{-- <th>{{ __('Order No') }}</th> --}}
                                         <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
@@ -35,13 +35,13 @@
                                     <tr>
                                         <td class="text-center">{{ ++$id }}</td>
                                         <td>{{ __($page->title) }}</td>
-                                        <td>{{ $page->route_name ?? 'N/A' }}</td>
+                                        {{-- <td>{{ $page->route_name ?? 'N/A' }}</td> --}}
                                         <td>{{ ucfirst(str_replace('-', ' ', $page->type)) }}</td>
-                                        <td>{{ ucfirst(str_replace('-', ' ', $page->page_link_for)) }}</td>
+                                        {{-- <td>{{ ucfirst(str_replace('-', ' ', $page->page_link_for)) }}</td> --}}
                                         <td>{{ $page->slug }}</td>
-                                        <td>{{ $page->order_no }}</td>
+                                        {{-- <td>{{ $page->order_no }}</td> --}}
                                         <td>
-                                            <div class="btn-group">
+                                            {{-- <div class="btn-group">
                                                 <button type="button" class="btn btn-success mb-1">Action</button>
                                                 <button type="button"
                                                     class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon mb-1"
@@ -55,12 +55,12 @@
                                                     <a class="dropdown-item" href="{{ route('admin.block.index', $page->id) }}"> Block List</a>
                                                 </div>
 
-                                            </div>
+                                            </div> --}}
                                             <div class="d-flex justify-content-center">
                                                 <!-- Edit Button -->
-                                                <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a>
+                                                {{-- <a href="{{ route('admin.page.edit', ['id' => $page->id]) }}" class="btn btn-sm btn-primary mx-1"><i class="fas fa-edit"></i></a> --}}
                                                 <!-- Details Button -->
-                                                <a href="{{ route('admin.page.detail', ['id' => $page->id, 'slug' => $page->slug]) }}" class="btn btn-warning btn-sm mx-1 px-2"><i class="fas fa-info"></i></a>
+                                                <a href="{{ route('admin.page.detail', ['slug' => $page->slug]) }}" class="btn btn-warning btn-sm mx-1 px-2"><i class="fas fa-info"></i> Detail</a>
                                                 <!-- Delete Button -->
                                                 {{-- <form id="deleteform" class="d-inline-block mx-1" action="{{ route('admin.page.delete', $page->id) }}" method="post">
                                                     @csrf
