@@ -48,7 +48,9 @@ use App\Http\Controllers\Admin\{
     WhyChooseUsController,
     WhyUsImageController,
     PageSectionController,
-    ElementController
+    ElementController,
+    PackageController
+
 };
 use App\Http\Controllers\Front\DHAController;
 use App\Http\Controllers\Front\LegalServicesController;
@@ -292,6 +294,15 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/element/update/{id}', [ElementController::class, 'update'])->name('admin.element.update');
         Route::delete('/element/delete/{id}', [ElementController::class, 'delete'])->name('admin.element.delete');
         // End of Elements Routes
+
+        //start package route
+        Route::get('/package', [PackageController::class, 'index'])->name('admin.package.index');
+        Route::get('/package/add', [PackageController::class, 'add'])->name('admin.package.add');
+        Route::post('/package/store', [PackageController::class, 'store'])->name('admin.package.store');
+        Route::get('/package/edit/{id}', [PackageController::class, 'edit'])->name('admin.package.edit');
+        Route::put('/package/update/{id}', [PackageController::class, 'update'])->name('admin.package.update');
+        Route::delete('/package/delete/{id}', [PackageController::class, 'delete'])->name('admin.package.delete');
+        // End of package Routes
 
         // Blocks  Routes
         Route::get('/block/{id}', [BlockController::class, 'index'])->name('admin.block.index');

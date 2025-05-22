@@ -297,6 +297,39 @@
 
 
 
+                    {{-- Packages --}}
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.package.index' || Route::currentRouteName() == 'admin.package.add' ? 'menu-open' : '' }}">
+                    <a href="{{ route('admin.package.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            {{ __('Package') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.package.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.package.index' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('All Packages') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.package.add') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'admin.package.add' ? 'active' : '' }}">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>{{ __('Add Package') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                    {{-- package End --}}
+                </li>
+                {{-- package End --}}
+
+
+
 
                 {{-- Enquiry --}}
                 <li
