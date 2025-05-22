@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Package extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'title', 'subtitle', 'icon', 'amount','discount_percentage', 'discounted_amount',
+        'status', 'publish', 'order_no',
+    ];
+        public function details()
+    {
+        return $this->hasMany(PackageDetail::class)->orderBy('order_no');
+    }
+
+
+}

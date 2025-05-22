@@ -48,7 +48,9 @@ use App\Http\Controllers\Admin\{
     WhyChooseUsController,
     WhyUsImageController,
     PageSectionController,
-    ElementController
+    ElementController,
+    PackageController
+
 };
 use App\Http\Controllers\Front\DHAController;
 use App\Http\Controllers\Front\LegalServicesController;
@@ -318,6 +320,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         // End of Service Routes
 
 
+        //start package route
+        Route::get('/package', [PackageController::class, 'index'])->name('admin.package.index');
+        Route::get('/package/add', [PackageController::class, 'add'])->name('admin.package.add');
+        Route::post('/package/store', [PackageController::class, 'store'])->name('admin.package.store');
+        Route::get('/package/edit/{id}', [PackageController::class, 'edit'])->name('admin.package.edit');
+        Route::put('/package/update/{id}', [PackageController::class, 'update'])->name('admin.package.update');
+        Route::delete('/package/delete/{id}', [PackageController::class, 'delete'])->name('admin.package.delete');
+        // End of package Routes
 
         // Service Section Routes
         Route::get('/service-section/{id}', [ServiceSectionController::class, 'index'])->name('admin.service.section.index');
