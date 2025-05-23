@@ -46,7 +46,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.introduction_section.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.introduction_section.index' || Route::currentRouteName() == 'admin.introduction_section.add' || Route::currentRouteName() == 'admin.introduction_section.edit' ? 'active' : '' }}">
                 Intros
             </a>
         </li>
@@ -56,7 +56,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.procedures.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedures.index' || Route::currentRouteName() == 'admin.procedures.add' || Route::currentRouteName() == 'admin.procedures.edit' ? 'active' : '' }}">
                 Procedures
             </a>
         </li>
@@ -81,7 +81,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.feature.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' || Route::currentRouteName() == 'admin.feature.add' || Route::currentRouteName() == 'admin.feature.edit' ? 'active' : '' }}">
                 Features
             </a>
         </li>
