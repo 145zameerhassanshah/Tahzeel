@@ -192,21 +192,18 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
         Route::delete('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
-        // Feature Routes
-        // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
-        Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'getByPageId'])->name('admin.feature-image.index');
-        Route::get('/feature-images/{id}/list', [FeatureImageController::class, 'list'])->name('admin.feature-image.list');
-        Route::get('/feature-image/{id}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
-        Route::post('/feature-image/store', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
-        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
-        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
-        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
+        // Feature images Routes
+        Route::get('/feature-images/{slug}', [FeatureImageController::class, 'index'])->name('admin.feature_image.index');
+        Route::get('/feature-image/{slug}/add', [FeatureImageController::class, 'add'])->name('admin.feature_image.add');
+        Route::post('/feature-image/store/{slug}', [FeatureImageController::class, 'store'])->name('admin.feature_image.store');
+        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature_image.edit');
+        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature_image.update');
+        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature_image.delete');
 
         // Why Choose Us Routes
-        Route::get('/why-choose-us/{pageId}', [WhyChooseUsController::class, 'getByPageId'])->name('admin.why-choose-us');
-        Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
-        Route::get('/why-choose-us/{id}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
-        Route::post('/why-choose-us/store', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
+        Route::get('/why-choose-us/{slug}', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
+        Route::get('/why-choose-us/{slug}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
+        Route::post('/why-choose-us/store/{slug}', [WhyChooseUsController::class, 'store'])->name('admin.why-choose-us.store');
         Route::get('/why-choose-us/edit/{id}', [WhyChooseUsController::class, 'edit'])->name('admin.why-choose-us.edit');
         Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
@@ -282,10 +279,10 @@ Route::middleware(['auth', 'status'])->group(function () {
         // faqs Routes
         Route::get('/faqs/{slug}', [FaqController::class, 'index'])->name('admin.faq.index');
         Route::get('/faqs/{slug}/add', [FaqController::class, 'add'])->name('admin.faq.add');
-        Route::post('/why-us-image/store/{slug}', [FaqController::class, 'store'])->name('admin.faq.store');
+       Route::post('/faqs/store/{slug}', [FaqController::class, 'store'])->name('admin.faq.store');
         Route::get('/faqs/edit/{id}', [FaqController::class, 'edit'])->name('admin.faq.edit');
         Route::put('/faqs/update/{id}', [FaqController::class, 'update'])->name('admin.faq.update');
-        Route::post('/faqs/delete/{id}', [FaqController::class, 'delete'])->name('admin.faq.delete');
+        Route::delete('/faqs/delete/{id}', [FaqController::class, 'delete'])->name('admin.faq.delete');
 
 
 

@@ -38,13 +38,12 @@ class FaqController extends Controller
 
     public function add($slug)
     {
-        return view('admin.page.partials.faq_add.', compact('slug'));
+        return view('admin.page.partials.faq_add', compact('slug'));
     }
 
     public function store(Request $request, $slug)
     {
         $validated = $request->validate([
-            'page_id' => 'required|exists:pages,id',
             'question.en' => 'required|string',
             'question.ar' => 'required|string',
             'answer.en' => 'required|string',
@@ -55,7 +54,8 @@ class FaqController extends Controller
 
         // Create empty FAQ instance
         $faq = new Faq();
-        $faq->page_id = $validated['page_id'];
+        $page = Page::where('slug', $slug)->first();
+        $faq->page_id = $page->id;
         $faq->order_no = $validated['order_no'] ?? 0;
         $faq->status = $validated['status'];
 
@@ -116,7 +116,7 @@ class FaqController extends Controller
         return redirect()->route('admin.faq.index', ['slug' =>$faq->page->slug])->with('notification', $notification);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $faq = Faq::findOrFail($id);
         $faq->delete();

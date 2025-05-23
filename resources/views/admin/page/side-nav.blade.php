@@ -45,7 +45,7 @@ use Illuminate\Support\Facades\Route;
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.feature_image.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.feature_image.index' || Route::currentRouteName() == 'admin.feature_image.add' || Route::currentRouteName() == 'admin.feature_image.edit' ? 'active' : ''}}">
                 Feature Images
             </a>
         </li>
@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Route;
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.faq.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.faq.index' || Route::currentRouteName() == 'admin.faq.add' || Route::currentRouteName() == 'admin.faq.edit' ? 'active' : ''}}">
                 FAQs
             </a>
         </li>
@@ -70,7 +70,7 @@ use Illuminate\Support\Facades\Route;
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.why-choose-us.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' || Route::currentRouteName() == 'admin.why-choose-us.add' || Route::currentRouteName() == 'admin.why-choose-us.edit' ? 'active' : ''">
                 Why Choose Us'
             </a>
         </li>

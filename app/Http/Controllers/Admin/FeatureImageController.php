@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\FeatureImage;
+use App\Models\Page;
 use App\Models\Group;
+use App\Models\FeatureImage;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FeatureImageController extends Controller
 {
-    public function index(Request $request)
+    public function index( $slug)
     {
-        $feature_images = FeatureImage::all();
-        return response()->json([
-            'data' => $feature_images,
-        ]);
+        $page = Page::where('slug',$slug)->first();
+        $feature_image = FeatureImage::where('page_id', $page->id)->get();
+        return view('admin.page.partials.feature_image_list', compact('feature_image', 'slug'));
     }
     public function list($id)
     {
         $feature_images = FeatureImage::where('group_id', $id)->get();
-        return view('admin.feature-image.list', compact('feature_images', 'id'));
+        return view('admin.page.partials.feature_image_list', compact('feature_image', 'id'));
     }
 
 
@@ -42,17 +42,15 @@ class FeatureImageController extends Controller
         ]);
     }
 
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.feature-image.add', compact('group'));
+        return view('admin.page.partials.feature_image_add', compact('slug'));
     }
 
     // Store Feature
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required',
             'title' => 'required|max:250',
             'subtitle' => 'required|max:250',
             'description' => 'required',
@@ -62,8 +60,9 @@ class FeatureImageController extends Controller
         ]);
 
         $feature_image = new FeatureImage();
+        $page = Page::where('slug', $slug)->first();
 
-        $feature_image->page_id = $request->page_id;
+        $feature_image->page_id = $page->id;
         $feature_image->setTranslations('title', [
             'en' => $request->title['en'],
             'ar' => $request->title['ar'],
@@ -87,9 +86,11 @@ class FeatureImageController extends Controller
             $feature_image->image = $image;
         }
         $feature_image->save();
-        return response()->json([
-            'success' => true,
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Feature Image added Successfully!'
+        ];
+        return redirect()->route('admin.feature_image.index', ['slug' => $slug])->with('notification', $notification);
     }
 
     // Feature Delete
@@ -98,32 +99,19 @@ class FeatureImageController extends Controller
         $feature_image = FeatureImage::find($id);
         @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
         $feature_image->delete();
-        return response()->json([
-            'success' => true,
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Feature Image deleted Successfully!'
+        ];
+        return redirect()->back()->with('notification', $notification);
     }
 
     // Feature Edit
     public function edit($id)
     {
-        $feature_image = FeatureImage::find($id);
-        return response()->json([
-            'title' => [
-                'en' => $feature_image->getTranslation('title', 'en'),
-                'ar' => $feature_image->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $feature_image->getTranslation('subtitle', 'en'),
-                'ar' => $feature_image->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $feature_image->getTranslation('description', 'en'),
-                'ar' => $feature_image->getTranslation('description', 'ar'),
-            ],
-            'image' => $feature_image->image,
-            'order_no' => $feature_image->order_no,
-            'status' => $feature_image->status,
-        ]);
+        $feature_image = FeatureImage::findOrFail($id);
+        $slug = $feature_image->page->slug;
+        return view('admin.page.partials.feature_image_edit', compact('feature_image', 'slug'));
     }
 
     // Update Feature
@@ -161,8 +149,10 @@ class FeatureImageController extends Controller
             $feature_image->image = $image;
         }
         $feature_image->save();
-        return response()->json([
-            'data' => $feature_image
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Feature Image Updated Successfully!'
+        ];
+        return redirect()->route('admin.feature_image.index', ['slug' =>$feature_image->page->slug])->with('notification', $notification);
     }
 }

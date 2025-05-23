@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\Group;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class WhyChooseUsController extends Controller
 {
     public function list($id)
     {
         $whyUs = WhyChooseUs::where('group_id', $id)->get();
-        return view('admin.why-choose-us.list', compact('whyUs', 'id'));
+        return view('admin.page.partials.why_choose_us_list', compact('whyUs', 'id'));
     }
 
-    public function index()
+    public function index($slug)
     {
-        $whyChooseUs = WhyChooseUs::all();
-        return response()->json([
-            'data' => $whyChooseUs
-        ]);
+        $page = Page::where('slug', $slug)->first();
+        $whyUs = WhyChooseUs::where('page_id', $page->id)->get();
+        return view('admin.page.partials.why_choose_us_list', compact('whyUs', 'slug'));
     }
 
     public function getByPageId($pageId)
@@ -34,14 +34,13 @@ class WhyChooseUsController extends Controller
         ]);
     }
 
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.why-choose-us.add', compact('group'));
+        return view('admin.page.partials.why_choose_us_add', compact('slug'));
     }
 
     // Store Feature
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
             'title.en' => 'required',
@@ -55,7 +54,9 @@ class WhyChooseUsController extends Controller
             'status' => 'required',
         ]);
         $why_choose_us = new WhyChooseUs();
-        $why_choose_us->page_id = $request->page_id;
+        $page = Page::where('slug', $slug)->first();
+
+        $why_choose_us->page_id = $page->id;
         $why_choose_us->setTranslations('title', [
             'en' => $request->title['en'],
             'ar' => $request->title['ar'],
@@ -73,10 +74,11 @@ class WhyChooseUsController extends Controller
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
         $why_choose_us->save();
-        return response()->json([
-            'success' => true,
-            'whyus' => $why_choose_us,
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Why Choose Us  added Successfully!'
+        ];
+        return redirect()->route('admin.why-choose-us.index', ['slug' => $slug])->with('notification', $notification);
     }
 
     // Feature Delete
@@ -84,32 +86,21 @@ class WhyChooseUsController extends Controller
     {
         $why_choose_us = WhyChooseUs::find($id);
         $why_choose_us->delete();
-        return response()->json([
-            'success' => true,
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Why Choose Us  deleted Successfully!'
+        ];
+        return redirect()->back()->with('notification', $notification);
     }
 
     // Feature Edit
     public function edit($id)
     {
-        $whyUs = WhyChooseUs::find($id);
-        return response()->json([
-            'title' => [
-                'en' => $whyUs->getTranslation('title', 'en'),
-                'ar' => $whyUs->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $whyUs->getTranslation('subtitle', 'en'),
-                'ar' => $whyUs->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $whyUs->getTranslation('description', 'en'),
-                'ar' => $whyUs->getTranslation('description', 'ar'),
-            ],
-            'icon' => $whyUs->icon,
-            'order_no' => $whyUs->order_no,
-            'status' => $whyUs->status,
-        ]);
+        $whyUs = WhyChooseUs::findorfail($id);
+    $slug = $whyUs->page->slug;
+
+      return view('admin.page.partials.why_choose_us_edit', compact('slug','whyUs'));
+
     }
 
     // Update Feature
@@ -139,8 +130,10 @@ class WhyChooseUsController extends Controller
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
         $why_choose_us->save();
-        return response()->json([
-            'data' => $why_choose_us,
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Why Choose Us Updated Successfully!'
+        ];
+        return redirect()->route('admin.why-choose-us.index', ['slug' =>$why_choose_us->page->slug])->with('notification', $notification);
     }
 }
