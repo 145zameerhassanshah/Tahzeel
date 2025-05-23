@@ -181,6 +181,24 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/job-category/delete/{id}', action: [JcategoryController::class, 'delete'])->name('admin.jcategory.delete');
 
 
+        // Feature Routes:-
+        // Route::get('/features', [FeatureController::class, 'index'])->name('admin.feature.index');
+        Route::get('/feature/{pageId}', [FeatureController::class, 'getByPageId'])->name('admin.feature');
+        Route::get('/features/{id}/list', [FeatureController::class, 'list'])->name('admin.feature.list');
+        Route::get('/feature/{id}/add', [FeatureController::class, 'add'])->name('admin.feature.add');
+        Route::post('/feature/store', [FeatureController::class, 'store'])->name('admin.feature.store');
+        Route::get('/feature/edit/{id}', [FeatureController::class, 'edit'])->name('admin.feature.edit');
+        Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
+        Route::delete('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
+
+        // Feature images Routes
+        Route::get('/feature-images/{slug}', [FeatureImageController::class, 'index'])->name('admin.feature_image.index');
+        Route::get('/feature-image/{slug}/add', [FeatureImageController::class, 'add'])->name('admin.feature_image.add');
+        Route::post('/feature-image/store/{slug}', [FeatureImageController::class, 'store'])->name('admin.feature_image.store');
+        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature_image.edit');
+        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature_image.update');
+        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature_image.delete');
+
         // Why Choose Us Routes
         Route::get('/why-choose-us/{slug}', [WhyChooseUsController::class, 'index'])->name('admin.why-choose-us.index');
         Route::get('/why-choose-us/{slug}/add', [WhyChooseUsController::class, 'add'])->name('admin.why-choose-us.add');
@@ -266,6 +284,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
         Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
+        // faqs Routes
+        Route::get('/faqs/{slug}', [FaqController::class, 'index'])->name('admin.faq.index');
+        Route::get('/faqs/{slug}/add', [FaqController::class, 'add'])->name('admin.faq.add');
+       Route::post('/faqs/store/{slug}', [FaqController::class, 'store'])->name('admin.faq.store');
+        Route::get('/faqs/edit/{id}', [FaqController::class, 'edit'])->name('admin.faq.edit');
+        Route::put('/faqs/update/{id}', [FaqController::class, 'update'])->name('admin.faq.update');
+        Route::delete('/faqs/delete/{id}', [FaqController::class, 'delete'])->name('admin.faq.delete');
+
 
         // Route::get('/admin/procedures/{pageId}', [ProcedureController::class, 'getByPageId'])->name('admin.procedures');
         Route::get('/admin/procedures/{slug}', [ProcedureController::class, 'index'])->name('admin.procedures.index');
@@ -288,12 +314,12 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Feature Routes
         // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
         // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'getByPageId'])->name('admin.feature-image.index');
-        Route::get('/feature-images/{slug}', [FeatureImageController::class, 'index'])->name('admin.feature-image.list');
-        Route::get('/feature-image/{slug}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
-        Route::post('/feature-image/store/{slug}', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
-        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
-        Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
-        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
+        // Route::get('/feature-images/{slug}', [FeatureImageController::class, 'index'])->name('admin.feature-image.list');
+        // Route::get('/feature-image/{slug}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
+        // Route::post('/feature-image/store/{slug}', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
+        // Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
+        // Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
+        // Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
         // introduction Routes
         Route::get('/introduction-sections/{slug}', [IntroSectionController::class, 'index'])->name('admin.introduction_section.index');

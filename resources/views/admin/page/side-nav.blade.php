@@ -76,7 +76,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.why-choose-us.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' || Route::currentRouteName() == 'admin.why-choose-us.add' || Route::currentRouteName() == 'admin.why-choose-us.edit' ? 'active' : ''">
+            <a href="{{route('admin.why-choose-us.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' || Route::currentRouteName() == 'admin.why-choose-us.add' || Route::currentRouteName() == 'admin.why-choose-us.edit' ? 'active' : ''}}">
                 Why Choose Us'
             </a>
         </li>
