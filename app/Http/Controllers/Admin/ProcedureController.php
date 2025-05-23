@@ -3,39 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use App\Models\Procedure;
 use Illuminate\Http\Request;
 
 class ProcedureController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $procedures = Procedure::orderBy('order_no')->get();
-        return response()->json([
-            'data' => $procedures
-        ]);
+        $page = Page::where('slug', $slug)->first();
+        $procedures = Procedure::where('page_id', $page->id)->orderBy('order_no')->get();
+        return view('admin.page.partials.procedure_list', compact('slug', 'procedures'));
     }
 
-    public function list($id)
+    public function add($slug)
     {
-        $procedures = Procedure::where('group_id', $id)->orderBy('order_no', 'asc')->get();
-        $group = Group::find($id);
-        return view('admin.procedure.list', compact('procedures', 'id', 'group'));
+        return view('admin.page.partials.procedure_add', compact('slug'));
     }
 
-    public function getByPageId($pageId)
-    {
-        if (!is_numeric($pageId)) {
-            return response()->json(['error' => 'Invalid page ID'], 400);
-        }
-        $procedure = Procedure::where('page_id', $pageId)->orderBy('id', 'DESC')->get();
-        return response()->json([
-            'data' => $procedure
-        ]);
-    }
-
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
             'title.en' => 'required|string',
@@ -49,8 +35,9 @@ class ProcedureController extends Controller
             'image' => 'nullable',
         ]);
         // Create new Procedure
+        $page = Page::where('slug', $slug)->first();
         $procedure = new Procedure();
-        $procedure->page_id = $request->page_id;
+        $procedure->page_id = $page->id;
         // Store multilingual fields
         $procedure->setTranslation('title', 'en', $request['title']['en']);
         $procedure->setTranslation('title', 'ar', $request['title']['ar']);
@@ -68,31 +55,13 @@ class ProcedureController extends Controller
         $procedure->status = $request->status;
         $procedure->save();
         // Return JSON response
-        return response()->json([
-            'success' => true,
-            'procedure' => $procedure
-        ]);
+        return redirect()->route('admin.procedures.index', ['slug' => $slug])->with('notification', ['alert' => 'success', 'message' => 'Procedure added Successfully!']);
     }
     public function edit($id)
     {
         $procedure = Procedure::findOrFail($id);
-        return response()->json([
-            'title' => [
-                'en' => $procedure->getTranslation('title', 'en'),
-                'ar' => $procedure->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $procedure->getTranslation('subtitle', 'en'),
-                'ar' => $procedure->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $procedure->getTranslation('description', 'en'),
-                'ar' => $procedure->getTranslation('description', 'ar'),
-            ],
-            'order_no' => $procedure->order_no,
-            'status' => $procedure->status,
-            'image' => $procedure->image
-        ]);
+        $slug = $procedure->page->slug;
+        return view('admin.page.partials.procedure_edit', compact('procedure', 'slug'));
     }
 
 
@@ -109,6 +78,7 @@ class ProcedureController extends Controller
             'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
         $procedure = Procedure::findOrFail($id);
         $procedure->setTranslation('title', 'en', $request['title']['en']);
         $procedure->setTranslation('title', 'ar', $request['title']['ar']);
@@ -131,13 +101,12 @@ class ProcedureController extends Controller
         $procedure->order_no = $request->order_no ?? 0;
         $procedure->status = $request->status;
         $procedure->save();
-        return response()->json([
-            'success' => true,
-            'procedure' => $procedure
-        ]);
+        
+        
+        return redirect()->route('admin.procedures.index', ['slug' => $procedure->page->slug])->with('notification', ['alert' => 'success', 'message' => 'Procedure updated Successfully!']);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $procedure = Procedure::findOrFail($id);
         // Delete associated image
@@ -145,9 +114,6 @@ class ProcedureController extends Controller
             @unlink(public_path('assets/admin/uploads/procedure/' . $procedure->image));
         }
         $procedure->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Procedure deleted successfully'
-        ]);
+        return redirect()->back()->with('notification', ['alert' => 'success', 'message' => 'Procedure deleted Successfully!']);
     }
 }

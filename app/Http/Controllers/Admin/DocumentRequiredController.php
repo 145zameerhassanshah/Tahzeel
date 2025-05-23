@@ -4,18 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DocumentRequired;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use Illuminate\Http\Request;
 
 class DocumentRequiredController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $documents = DocumentRequired::orderBy('order_no')->get();
+        $page = Page::where('slug', $slug)->first();
+        $documents = DocumentRequired::where('page_id', $page->id)->orderBy('order_no')->get();
 
-        return response()->json([
-            'data' => $documents
-        ]);
+        return view('admin.page.partials.document_required_list', compact('documents', 'slug'));
     }
 
     public function getByPageId($pageId)
@@ -34,26 +33,25 @@ class DocumentRequiredController extends Controller
         $documentRequireds = DocumentRequired::where('group_id', $id)->get();
         return view('admin.document-required.list', compact('documentRequireds', 'id'));
     }
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.document-required.add', compact('group'));
+        return view('admin.page.partials.document_required_add', compact('slug'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required|exists:pages,id',
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
             'description.en' => 'nullable|string',
             'description.ar' => 'nullable|string',
             'order_no' => 'nullable|integer|min:0',
             'status' => 'required|in:active,inactive',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $page = Page::where('slug', $slug)->first();
         $document = new DocumentRequired();
-        $document->page_id = $request->page_id;
+        $document->page_id = $page->id;
         $document->setTranslations('title', [
             'en' => $request->title['en'],
             'ar' => $request->title['ar'],
@@ -70,28 +68,15 @@ class DocumentRequiredController extends Controller
         $document->order_no = $request->order_no ?? 0;
         $document->status = $request->status;
         $document->save();
-        return response()->json([
-            'success' => true,
-            'document' => $document
-        ]);
+        
+        return redirect()->route('admin.document-required.index', ['slug' => $slug])->with('notification', ['alert' => 'success', 'message' => 'Document Required added Successfully!']);
     }
 
     public function edit($id)
     {
         $document = DocumentRequired::findOrFail($id);
-        return response()->json([
-            'title' => [
-                'en' => $document->getTranslation('title', 'en'),
-                'ar' => $document->getTranslation('title', 'ar'),
-            ],
-            'description' => [
-                'en' => $document->getTranslation('description', 'en'),
-                'ar' => $document->getTranslation('description', 'ar'),
-            ],
-            'order_no' => $document->order_no,
-            'status' => $document->status,
-            'icon' => $document->icon
-        ]);
+        $slug = $document->page->slug;
+        return view('admin.page.partials.document_required_edit', compact('document', 'slug'));
     }
 
     public function update(Request $request, $id)
@@ -127,13 +112,11 @@ class DocumentRequiredController extends Controller
         $document->order_no = $request->order_no ?? 0;
         $document->status = $request->status;
         $document->save();
-        return response()->json([
-            'success' => true,
-            'document' => $document
-        ]);
+        
+        return redirect()->route('admin.document-required.index', ['slug' => $document->page->slug])->with('notification', ['alert' => 'success', 'message' => 'Document Required added Successfully!']);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $document = DocumentRequired::findOrFail($id);
 
@@ -144,10 +127,7 @@ class DocumentRequiredController extends Controller
 
         $document->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Document deleted successfully'
-        ]);
+        return redirect()->back()->with('notificaion', ['alert' => 'success', 'message' => 'Document Required deleted Successfully!']);
     }
 
 

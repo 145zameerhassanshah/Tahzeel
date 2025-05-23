@@ -42,7 +42,6 @@ class WhyUsImageController extends Controller
     public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required',
             'title.en' => 'required',
             'title.ar' => 'required',
             'subtitle.en' => 'required',
