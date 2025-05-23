@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use App\Models\WhyUsImage;
 use Illuminate\Http\Request;
 
@@ -15,12 +15,11 @@ class WhyUsImageController extends Controller
         return view('admin.why-us-image.list', compact('whyUs', 'id'));
     }
 
-    public function index(Request $request)
+    public function index($slug)
     {
-        $whyUs = WhyUsImage::all();
-        return response()->json([
-            'data' => $whyUs,
-        ]);
+        $page = Page::where('slug', $slug)->first();
+        $why_us_images = WhyUsImage::where('page_id', $page->id)->get();
+        return view('admin.page.partials.why_us_images_list', compact('why_us_images', 'slug'));
     }
 
     public function getByPageId($pageId)
@@ -34,14 +33,13 @@ class WhyUsImageController extends Controller
         ]);
     }
 
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.why-us-image.add', compact('group'));
+        return view('admin.page.partials.why_us_images_add', compact('slug'));
     }
 
     // Store Feature
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
             'page_id' => 'required',
@@ -55,8 +53,9 @@ class WhyUsImageController extends Controller
             'order_no' => 'required',
             'status' => 'required',
         ]);
+        $page = Page::where('slug', $slug)->first();
         $why_us_image = new WhyUsImage();
-        $why_us_image->page_id = $request->page_id;
+        $why_us_image->page_id = $page->id;
         $why_us_image->setTranslations('title', [
             'en' => $request->title['en'],
             'ar' => $request->title['ar'],
@@ -82,9 +81,12 @@ class WhyUsImageController extends Controller
             $why_us_image->image = $image;
         }
         $why_us_image->save();
-        return response()->json([
-            'success' => true,
-        ]);
+        
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'WhyUsImage added Successfully!'
+        ];
+        return redirect()->route('admin.why-us-image.index', ['slug' => $slug])->with('notification', $notification);
     }
 
     // public function delete($id)
@@ -111,10 +113,12 @@ class WhyUsImageController extends Controller
             @unlink($imagePath);
         }
         $why_us_image->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Image deleted successfully.'
-        ]);
+        
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'WhyUsImage added Successfully!'
+        ];
+        return redirect()->back()->with('notification', $notification);
     }
 
 
@@ -122,24 +126,8 @@ class WhyUsImageController extends Controller
     public function edit($id)
     {
         $whyUs = WhyUsImage::find($id);
-        return response()->json([
-            'title' => [
-                'en' => $whyUs->getTranslation('title', 'en'),
-                'ar' => $whyUs->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $whyUs->getTranslation('subtitle', 'en'),
-                'ar' => $whyUs->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $whyUs->getTranslation('description', 'en'),
-                'ar' => $whyUs->getTranslation('description', 'ar'),
-            ],
-            // 'title' => json_decode($whyUs->title, true),
-            'image' => $whyUs->image,
-            'order_no' => $whyUs->order_no,
-            'status' => $whyUs->status,
-        ]);
+        $slug = $whyUs->page->slug;
+        return view('admin.page.partials.why_us_images_edit', compact('whyUs', 'slug'));
     }
 
     // Update Feature
@@ -179,8 +167,12 @@ class WhyUsImageController extends Controller
             $why_us_image->image = $image;
         }
         $why_us_image->save();
-        return response()->json([
-            'data' => $why_us_image,
-        ]);
+        
+        
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'WhyUsImage updated Successfully!'
+        ];
+        return redirect()->route('admin.why-us-image.index', ['slug' => $why_us_image->page->slug])->with('notification', $notification);
     }
 }

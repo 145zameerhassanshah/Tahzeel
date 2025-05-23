@@ -3,19 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use App\Models\HeroSection;
 use Illuminate\Http\Request;
 
 class HeroSectionController extends Controller
 {
-    public function index()
-    {
-        $hero_sections = HeroSection::all();
-        return response()->json([
-            'data' => $hero_sections
-        ]);
-    }
 
     public function getByPageId($pageId)
     {
@@ -28,29 +21,29 @@ class HeroSectionController extends Controller
         ]);
     }
 
-    public function list($id)
+    public function index($slug)
     {
-        $hero_sections = HeroSection::where('group_id', $id)->get();
-        return view('admin.hero_section.list', compact('hero_sections', 'id'));
+        $page = Page::where('slug', $slug)->first();
+        $hero_sections = HeroSection::where('page_id', $page->id)->get();
+        return view('admin.page.partials.hero_section_list', compact('hero_sections', 'slug'));
     }
 
 
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.hero_section.add', compact('group'));
+        return view('admin.page.partials.hero_section_add', compact('slug'));
     }
 
     // Store Feature
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required|exists:groups,id',
             'title.en' => 'required|max:250',
             'status' => 'required',
         ]);
+        $page = Page::where('slug', $slug)->first();
         $hero_section = new HeroSection();
-        $hero_section->page_id = $request->page_id;
+        $hero_section->page_id = $page->id;
         // $hero_section->title = json_encode($request->title, JSON_UNESCAPED_UNICODE);
         $hero_section->setTranslations('title', [
             'en' => $request->title['en'],
@@ -71,36 +64,15 @@ class HeroSectionController extends Controller
             $hero_section->background_image = $imageName;
         }
         $hero_section->save();
-        return response()->json([
-            'success' => true,
-            'herosection' => $hero_section
-        ]);
+        return redirect()->route('admin.hero_section.index', ['slug' => $page->slug])->with('notification', ['alert' => 'success', 'message' => 'Hero Section added Successfully!']);
     }
 
     // HeroSection Edit
     public function edit($id)
     {
         $hero_section = HeroSection::find($id);
-
-        return response()->json([
-            'title' => [
-                'en' => $hero_section->getTranslation('title', 'en'),
-                'ar' => $hero_section->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $hero_section->getTranslation('subtitle', 'en'),
-                'ar' => $hero_section->getTranslation('subtitle', 'ar'),
-            ],
-            'description' => [
-                'en' => $hero_section->getTranslation('description', 'en'),
-                'ar' => $hero_section->getTranslation('description', 'ar'),
-            ],
-            // 'title' => json_decode($hero_section->title),
-            // 'subtitle' => json_decode($hero_section->subtitle),
-            // 'description' => json_decode($hero_section->description),
-            'status' => $hero_section->status,
-            'background_image' => $hero_section->background_image,
-        ]);
+        $slug = $hero_section->page->slug;
+        return view('admin.page.partials.hero_section_edit', compact('hero_section', 'slug'));
     }
 
     // Update HeroSection
@@ -135,9 +107,7 @@ class HeroSectionController extends Controller
             $hero_section->background_image = $filename;
         }
         $hero_section->save();
-        return response()->json([
-            'data' => $hero_section,
-        ]);
+        return redirect()->route('admin.hero_section.index', ['slug' => $hero_section->page->slug])->with('notification', ['alert' => 'success', 'message' => 'Hero Section updated Successfully!']);
     }
 
     // HeroSection Delete
@@ -149,8 +119,7 @@ class HeroSectionController extends Controller
             unlink($imagePath);
         }
         $hero_section->delete();
-        return response()->json([
-            'success' => true
-        ]);
+        
+        return redirect()->back()->with('notification', ['alert' => 'success', 'message' => 'Hero Section deleted Successfully!']);
     }
 }

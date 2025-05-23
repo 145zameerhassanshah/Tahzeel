@@ -19,7 +19,6 @@
                             <form class="form-horizontal" action="{{ route('admin.hero_section.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
-                                <input type="hidden" name="group_id" value="{{ $group->id }}">
                                 <div class="row">
 
                                     <div class="col-12 mt-2">

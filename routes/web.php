@@ -211,16 +211,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/why-choose-us/update/{id}', [WhyChooseUsController::class, 'update'])->name('admin.why-choose-us.update');
         Route::post('/why-choose-us/delete/{id}', [WhyChooseUsController::class, 'delete'])->name('admin.why-choose-us.delete');
 
-        // Why Us Images Routes
-        Route::get('/why-us-image/{pageId}', [WhyUsImageController::class, 'getByPageId'])->name('admin.why-us-image');
-        Route::get('/why-us-image', [WhyUsImageController::class, 'index'])->name('admin.why-us-image.index');
-        Route::get('/why-us-image/{id}/list', [WhyUsImageController::class, 'list'])->name('admin.why-us-image.list');
-        Route::get('/why-us-image/{id}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
-        Route::post('/why-us-image/store', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
-        Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
-        Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
-        Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
-
         // Documents Required Routes:-
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
         // Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
@@ -272,6 +262,25 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::post('/admin/testimonials/update/{id}', [TestimonialController::class, 'update'])->name('admin.testimonial.update');
         Route::post('/admin/testimonials/delete/{id}', [TestimonialController::class, 'destroy'])->name('admin.testimonial.destroy');
 
+        // Hero Sections Routes
+        // Route::get('/hero-sections/{pageId}', [HeroSectionController::class, 'getByPageId'])->name('admin.hero_section.index');
+        Route::get('/hero-sections/{slug}', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
+        Route::get('/hero-section/{slug}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
+        Route::post('/hero-section/store/{slug}', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
+        Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
+        Route::post('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
+        Route::post('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
+        // Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
+
+        // Why Us Images Routes
+        Route::get('/why-us-image/{slug}', [WhyUsImageController::class, 'index'])->name('admin.why-us-image.index');
+        Route::get('/why-us-image/{slug}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
+        Route::post('/why-us-image/store/{slug}', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
+        Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
+        Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
+        Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
+
+
         // introduction Routes
         Route::get('/introduction-sections', [IntroSectionController::class, 'index'])->name('admin.introduction_section.index');
         Route::get('/introduction-sections/{id}/list', [IntroSectionController::class, 'list'])->name('admin.introduction_section.list');
@@ -280,16 +289,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/introduction-section/edit/{id}', [IntroSectionController::class, 'edit'])->name('admin.introduction_section.edit');
         Route::post('/introduction-section/update/{id}', [IntroSectionController::class, 'update'])->name('admin.introduction_section.update');
         Route::post('/introduction-section/delete/{id}', [IntroSectionController::class, 'delete'])->name('admin.introduction_section.delete');
-
-        // Hero Sections Routes
-        Route::get('/hero-sections/{pageId}', [HeroSectionController::class, 'getByPageId'])->name('admin.hero_section.index');
-        Route::get('/hero-sections/{id}/list', [HeroSectionController::class, 'list'])->name('admin.hero_section.list');
-        Route::get('/hero-section/{id}/add', [HeroSectionController::class, 'add'])->name('admin.hero_section.add');
-        Route::post('/hero-section/store', [HeroSectionController::class, 'store'])->name('admin.hero_section.store');
-        Route::get('/hero-section/edit/{id}', [HeroSectionController::class, 'edit'])->name('admin.hero_section.edit');
-        Route::put('/hero-section/update/{id}', [HeroSectionController::class, 'update'])->name('admin.hero_section.update');
-        Route::delete('/hero-section/delete/{id}', [HeroSectionController::class, 'delete'])->name('admin.hero_section.delete');
-        // Route::get('/hero-sections', [HeroSectionController::class, 'index'])->name('admin.hero_section.index');
 
         // Intro Routes
         Route::get('/Intro-sections/{pageId}', [IntroSectionController::class, 'getByPageId'])->name('admin.intro_section.index');

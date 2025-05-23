@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.hero_section.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.hero_section.index' || Route::currentRouteName() == 'admin.hero_section.add' || Route::currentRouteName() == 'admin.hero_section.edit' ? 'active' : '' }}">
                 Heros
             </a>
         </li>
