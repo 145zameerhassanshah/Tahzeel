@@ -192,16 +192,6 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::put('/feature/update/{id}', [FeatureController::class, 'update'])->name('admin.feature.update');
         Route::delete('/feature/delete/{id}', [FeatureController::class, 'delete'])->name('admin.feature.delete');
 
-        // Feature Routes
-        // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
-        Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'getByPageId'])->name('admin.feature-image.index');
-        Route::get('/feature-images/{id}/list', [FeatureImageController::class, 'list'])->name('admin.feature-image.list');
-        Route::get('/feature-image/{id}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
-        Route::post('/feature-image/store', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
-        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
-        Route::put('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
-        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
-
         // Why Choose Us Routes
         Route::get('/why-choose-us/{pageId}', [WhyChooseUsController::class, 'getByPageId'])->name('admin.why-choose-us');
         Route::get('/why-choose-us/{id}/list', [WhyChooseUsController::class, 'list'])->name('admin.why-choose-us.list');
@@ -213,12 +203,21 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         // Documents Required Routes:-
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
-        // Route::get('/document-required/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-required.list');
-        // Route::get('/document-required/{id}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
-        // Route::post('/document-required/store', [DocumentRequiredController::class, 'store'])->name('admin.document-required.store');
-        // Route::get('/document-required/edit/{id}', [DocumentRequiredController::class, 'edit'])->name('admin.document-required.edit');
-        // Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
-        // Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
+        Route::get('/document-required/{slug}', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
+        Route::get('/document-required/{slug}/add', [DocumentRequiredController::class, 'add'])->name('admin.document-required.add');
+        Route::post('/document-required/store/{slug}', [DocumentRequiredController::class, 'store'])->name('admin.document-required.store');
+        Route::get('/document-required/edit/{id}', [DocumentRequiredController::class, 'edit'])->name('admin.document-required.edit');
+        Route::post('/document-required/update/{id}', [DocumentRequiredController::class, 'update'])->name('admin.document-required.update');
+        Route::post('/document-required/delete/{id}', [DocumentRequiredController::class, 'delete'])->name('admin.document-required.delete');
+
+        // Documents Required Routes:-
+        // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
+        Route::get('/call-to-action/{slug}', [CallToActionController::class, 'index'])->name('admin.call-to-action.index');
+        Route::get('/call-to-action/{slug}/add', [CallToActionController::class, 'add'])->name('admin.call-to-action.add');
+        Route::post('/document-required/store/{slug}', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
+        Route::get('/call-to-action/edit/{id}', [CallToActionController::class, 'edit'])->name('admin.call-to-action.edit');
+        Route::post('/call-to-action/update/{id}', [CallToActionController::class, 'update'])->name('admin.call-to-action.update');
+        Route::post('/call-to-action/delete/{id}', [CallToActionController::class, 'delete'])->name('admin.call-to-action.delete');
 
         // SectionTitle Routes
         Route::get('/section-titles/{slug}', [SectionTitleController::class, 'index'])->name('admin.section_title.index');
@@ -277,9 +276,19 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-us-image/{slug}/add', [WhyUsImageController::class, 'add'])->name('admin.why-us-image.add');
         Route::post('/why-us-image/store/{slug}', [WhyUsImageController::class, 'store'])->name('admin.why-us-image.store');
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
-        Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
+        Route::post('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
 
+
+        // Feature Routes
+        // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'index'])->name('admin.feature-image.index');
+        // Route::get('/feature-images/{pageId}', [FeatureImageController::class, 'getByPageId'])->name('admin.feature-image.index');
+        Route::get('/feature-images/{slug}', [FeatureImageController::class, 'index'])->name('admin.feature-image.list');
+        Route::get('/feature-image/{slug}/add', [FeatureImageController::class, 'add'])->name('admin.feature-image.add');
+        Route::post('/feature-image/store/{slug}', [FeatureImageController::class, 'store'])->name('admin.feature-image.store');
+        Route::get('/feature-image/edit/{id}', [FeatureImageController::class, 'edit'])->name('admin.feature-image.edit');
+        Route::post('/feature-image/update/{id}', [FeatureImageController::class, 'update'])->name('admin.feature-image.update');
+        Route::post('/feature-image/delete/{id}', [FeatureImageController::class, 'delete'])->name('admin.feature-image.delete');
 
         // introduction Routes
         Route::get('/introduction-sections', [IntroSectionController::class, 'index'])->name('admin.introduction_section.index');
@@ -385,12 +394,12 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::put('/admin/procedures/{id}', [ProcedureController::class, 'update'])->name('procedures.update');
     Route::delete('/admin/procedures/{id}', [ProcedureController::class, 'destroy'])->name('procedures.delete');
 
-    Route::get('/admin/document-requireds/{pageId}', [DocumentRequiredController::class, 'getByPageId'])->name('admin.document-requireds');
-    Route::get('/admin/document-requireds/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-requireds.list');
-    Route::post('/document-requireds/store', [DocumentRequiredController::class, 'store'])->name('document-requireds.store');
-    Route::get('/admin/document-requireds/{id}/edit', [DocumentRequiredController::class, 'edit'])->name('document-requireds.edit');
-    Route::put('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'update'])->name('document-requireds.update');
-    Route::delete('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'destroy'])->name('document-requireds.delete');
+    // Route::get('/admin/document-requireds/{pageId}', [DocumentRequiredController::class, 'getByPageId'])->name('admin.document-requireds');
+    // Route::get('/admin/document-requireds/{id}/list', [DocumentRequiredController::class, 'list'])->name('admin.document-requireds.list');
+    // Route::post('/document-requireds/store', [DocumentRequiredController::class, 'store'])->name('document-requireds.store');
+    // Route::get('/admin/document-requireds/{id}/edit', [DocumentRequiredController::class, 'edit'])->name('document-requireds.edit');
+    // Route::put('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'update'])->name('document-requireds.update');
+    // Route::delete('/admin/document-requireds/{id}', [DocumentRequiredController::class, 'destroy'])->name('document-requireds.delete');
 
     Route::get('/admin/call-to-actions/page/{pageId}', [CallToActionController::class, 'getByPageId'])->name('call-to-actions.byPage');
     Route::resource('admin/call-to-actions', CallToActionController::class);

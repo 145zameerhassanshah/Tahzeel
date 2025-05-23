@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CallToAction;
-use App\Models\Group;
+use App\Models\{Group, Page};
 use Illuminate\Http\Request;
 
 class CallToActionController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $ctas = CallToAction::orderBy('created_at', 'desc')->get();
-        return response()->json([
-            'data' => $ctas
-        ]);
+        $page = Page::where('slug', $slug)->first();
+        $ctas = CallToAction::where('page_id', $page->id)->orderBy('created_at', 'desc')->get();
+        return view('admin.page.partials.call_to_actions_list', compact('slug', 'ctas'));
     }
     public function getByPageId($pageId)
     {
@@ -29,17 +28,15 @@ class CallToActionController extends Controller
         $group = Group::find($id);
         return view('admin.call-to-action.list', compact('callToActions', 'id', 'group'));
     }
-    public function add($id)
+    public function add($slug)
     {
-        $group = Group::find($id);
-        return view('admin.call-to-action.add', compact('group'));
+        return view('admin.page.partials.call_to_action_add', compact('slug'));
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $request->validate([
-            'page_id' => 'required|exists:pages,id',
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
             'subtitle.en' => 'nullable|string',
@@ -51,8 +48,9 @@ class CallToActionController extends Controller
         ]);
 
         // Create new CTA
+        $page = Page::where('slug', $slug)->first();
         $cta = new CallToAction();
-        $cta->page_id = $request->page_id;
+        $cta->page_id = $page->id;
         
         $cta->setTranslations('title', [
             'en' => $request->title['en'],
@@ -88,36 +86,14 @@ class CallToActionController extends Controller
         $cta->save();
 
         // Return JSON response
-        return response()->json([
-            'success' => true,
-            'cta' => $cta
-        ]);
+        return redirect()->route('admin.call-to-action.index', ['slug' => $slug])->with('notification', ['alert' => 'success', 'message' => 'CallToAction added Successfully!']);
     }
 
     public function edit($id)
     {
         $cta = CallToAction::findOrFail($id);
-
-        return response()->json([
-            'title' => [
-                'en' => $cta->getTranslation('title', 'en'),
-                'ar' => $cta->getTranslation('title', 'ar'),
-            ],
-            'subtitle' => [
-                'en' => $cta->getTranslation('subtitle', 'en'),
-                'ar' => $cta->getTranslation('subtitle', 'ar'),
-            ],
-            'button_text' => [
-                'en' => $cta->getTranslation('button_text', 'en'),
-                'ar' => $cta->getTranslation('button_text', 'ar'),
-            ],
-            // 'title' => json_decode($cta->title),
-            // 'subtitle' => json_decode($cta->subtitle),
-            // 'button_text' => json_decode($cta->button_text),
-            'button_link' => $cta->button_link,
-            'status' => $cta->status,
-            'page_id' => $cta->page_id
-        ]);
+        $slug = $cta->page->slug;
+        return view('admin.page.partials.call_to_action_edit', compact('cta', 'slug'));
     }
 
     public function update(Request $request, $id)
@@ -170,21 +146,15 @@ class CallToActionController extends Controller
         $cta->status = $request->status;
         $cta->save();
 
-        return response()->json([
-            'success' => true,
-            'cta' => $cta
-        ]);
+        return redirect()->route('admin.call-to-action.index', ['slug' => $cta->page->slug])->with('notification', ['alert' => 'success', 'message' => 'CallToAction updated Successfully!']);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $cta = CallToAction::findOrFail($id);
         $cta->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Call To Action deleted successfully'
-        ]);
+        return redirect()->back()->with('notification', ['alert' => 'success', 'message' => 'CallToAction deleted Successfully!']);
     }
     // public function index(Request $request)
     // {
