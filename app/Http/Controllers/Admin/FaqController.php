@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
 use App\Models\Faq;
+use App\Models\Page;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Group;
-use DB;
 
 class FaqController extends Controller
 {
-    public function index()
+        public function list($id)
     {
-        $faqs = Faq::orderBy('order_no')->get();
-        return response()->json([
-            'data' => $faqs
-        ]);
+        $faqs = Faq::where('group_id', $id)->get();
+        return view('admin.faq.list', compact('faqs', 'id'));
+    }
+
+    public function index($slug)
+    {
+        $page = Page::where('slug',$slug)->first();
+        $faqs = Faq::where('page_id', $page->id)->get();
+        return view('admin.page.partials.faq_list', compact('faqs', 'slug'));
     }
 
     public function getByPageId($pageId)
@@ -29,20 +35,13 @@ class FaqController extends Controller
         ]);
     }
 
-    public function list($id)
+
+    public function add($slug)
     {
-        $faqs = Faq::where('group_id', $id)->get();
-        $group = Group::find($id);
-        return view('admin.faq.list', compact('faqs', 'id', 'group'));
+        return view('admin.page.partials.faq_add.', compact('slug'));
     }
 
-    public function create(Request $request)
-    {
-        $group = Group::find($request->id);
-        return view('admin.faq.add', compact("group"));
-    }
-
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
         $validated = $request->validate([
             'page_id' => 'required|exists:pages,id',
@@ -72,30 +71,19 @@ class FaqController extends Controller
 
         $faq->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'FAQ created successfully',
-            'data' => $faq
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'WhyUsImage added Successfully!'
+        ];
+        return redirect()->route('admin.faq.index', ['slug' => $slug])->with('notification', $notification);
     }
 
 
     public function edit($id)
     {
         $faq = Faq::findOrFail($id);
-        return response()->json([
-            'question' => [
-                'en' => $faq->getTranslation('question', 'en'),
-                'ar' => $faq->getTranslation('question', 'ar'),
-            ],
-            'answer' => [
-                'en' => $faq->getTranslation('answer', 'en'),
-                'ar' => $faq->getTranslation('answer', 'ar'),
-            ],
-            'order_no' => $faq->order_no,
-            'status' => $faq->status,
-            'page_id' => $faq->page_id
-        ]);
+        $slug = $faq->page->slug;
+        return view('admin.page.partials.faq_edit', compact('faq', 'slug'));
     }
 
     public function update(Request $request, $id)
@@ -121,19 +109,21 @@ class FaqController extends Controller
         $faq->order_no = $request->order_no ?? 0;
         $faq->status = $request->status;
         $faq->save();
-        return response()->json([
-            'success' => true,
-            'faq' => $faq
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'Faq Updated Successfully!'
+        ];
+        return redirect()->route('admin.faq.index', ['slug' =>$faq->page->slug])->with('notification', $notification);
     }
 
     public function destroy($id)
     {
         $faq = Faq::findOrFail($id);
         $faq->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'FAQ deleted successfully'
-        ]);
+        $notification = [
+            'alert' => 'success', 
+            'message' => 'FAQ deleted Successfully!'
+        ];
+        return redirect()->back()->with('notification', $notification);
     }
 }

@@ -279,6 +279,14 @@ Route::middleware(['auth', 'status'])->group(function () {
         Route::get('/why-us-image/edit/{id}', [WhyUsImageController::class, 'edit'])->name('admin.why-us-image.edit');
         Route::put('/why-us-image/update/{id}', [WhyUsImageController::class, 'update'])->name('admin.why-us-image.update');
         Route::post('/why-us-image/delete/{id}', [WhyUsImageController::class, 'delete'])->name('admin.why-us-image.delete');
+        // faqs Routes
+        Route::get('/faqs/{slug}', [FaqController::class, 'index'])->name('admin.faq.index');
+        Route::get('/faqs/{slug}/add', [FaqController::class, 'add'])->name('admin.faq.add');
+        Route::post('/why-us-image/store/{slug}', [FaqController::class, 'store'])->name('admin.faq.store');
+        Route::get('/faqs/edit/{id}', [FaqController::class, 'edit'])->name('admin.faq.edit');
+        Route::put('/faqs/update/{id}', [FaqController::class, 'update'])->name('admin.faq.update');
+        Route::post('/faqs/delete/{id}', [FaqController::class, 'delete'])->name('admin.faq.delete');
+
 
 
         // introduction Routes
@@ -363,9 +371,9 @@ Route::middleware(['auth', 'status'])->group(function () {
     Route::get('admin-notify/{id}', [NotificationController::class, 'adminNotifyDetail'])->name('admin.notify.detail');
     Route::post('admin-mark-as-read', [NotificationController::class, 'admin_Notify_MarkRead'])->name('admin.mark.read');
     Route::get('admin-all-read', [NotificationController::class, 'adminNotify_Mark_all_Read'])->name('admin.all.read');
-    Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
-    Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
-    Route::resource('admin/faqs', FaqController::class);
+    // Route::get('/admin/faqs/page/{pageId}', [FaqController::class, 'getByPageId'])->name('faqs.byPage');
+    // Route::get('/faqs/{id}/list', [FaqController::class, 'list'])->name('admin.faq.list');
+    // Route::resource('admin/faqs', FaqController::class);
 
     // Testimonial routes start
     // Route::resource('admin/testimonials', TestimonialController::class);
