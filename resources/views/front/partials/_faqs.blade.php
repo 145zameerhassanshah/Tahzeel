@@ -1,10 +1,10 @@
 <section class="wrapper bg-light">
-    <div class="container py-14 py-md-16">
+    <div class="container py-5 py-md-5">
       <div class="card bg-soft-success rounded-4">
         <div class="card-body p-md-10 p-xl-11">
           <div class="row gx-lg-8 gx-xl-12 gy-10">
             <div class="col-lg-6">
-              <h3 class="display-4 mb-4">Frequently Asked Questions</h3>
+              <h3 class="display-4 mb-4 text-green">Frequently Asked Questions</h3>
               <p class="lead fs-lg mb-0">If you don't see an answer to your question, you can send us an email from our contact form.</p>
             </div>
             <!--/column -->
@@ -17,18 +17,18 @@
                 @endphp
                 <div class="card plain accordion-item">
                   <div class="card-header" id="{{ $headingId }}">
-                    <button class="collapsed" 
-                            data-bs-toggle="collapse" 
-                            data-bs-target="#{{ $collapseId }}" 
-                            aria-expanded="false" 
+                    <button class="collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#{{ $collapseId }}"
+                            aria-expanded="false"
                             aria-controls="{{ $collapseId }}">
                       {!! $faq->question !!}
                     </button>
                   </div>
                   <!--/.card-header -->
-                  <div id="{{ $collapseId }}" 
-                       class="accordion-collapse collapse" 
-                       aria-labelledby="{{ $headingId }}" 
+                  <div id="{{ $collapseId }}"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="{{ $headingId }}"
                        data-bs-parent="#accordionExample">
                     <div class="card-body">
                       <p>{!! $faq->answer !!}</p>

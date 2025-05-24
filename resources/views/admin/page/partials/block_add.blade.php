@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Add Block')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,7 +14,7 @@
                 {{-- content --}}
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1">{{ __('Add Element') }}</h3>
+                        <h3 class="card-title mt-1">{{ __('Add Block') }}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -46,19 +46,17 @@
 
                                 <!-- SubTitle Fields -->
                                 <div class="col-md-6 mb-3">
-                                    <label for="subtitle_en">{{ __('Subtitle (English)') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_en">{{ __('Subtitle (English)') }}</label>
                                     <input type="text" id="subtitle_en" class="form-control" name="subtitle[en]"
-                                        placeholder="Enter Subtitle in English" value="{{ old('subtitle.en') }}" required>
+                                        placeholder="Enter Subtitle in English" value="{{ old('subtitle.en') }}">
                                     @error('subtitle.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="subtitle_ar">{{ __('Subtitle (Arabic)') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_ar">{{ __('Subtitle (Arabic)') }}</label>
                                     <input type="text" id="subtitle_ar" class="form-control" name="subtitle[ar]"
-                                        placeholder="Enter Subtitle in Arabic" value="{{ old('subtitle.ar') }}" required>
+                                        placeholder="Enter Subtitle in Arabic" value="{{ old('subtitle.ar') }}">
                                     @error('subtitle.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -73,7 +71,7 @@
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="image" id="image">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -92,7 +90,7 @@
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="icon" id="icon">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
                                             @error('icon')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror

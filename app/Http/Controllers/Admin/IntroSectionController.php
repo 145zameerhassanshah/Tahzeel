@@ -42,13 +42,13 @@ class IntroSectionController extends Controller
         $request->validate([
             'title.en' => 'required|max:250',
             'title.ar' => 'required|max:250',
-            'subtitle.en' => 'required|max:250',
-            'subtitle.ar' => 'required|max:250',
-            'description.en' => 'required|max:250',
-            'description.ar' => 'required|max:250',
+            'subtitle.en' => 'nullable|max:250',
+            'subtitle.ar' => 'nullable|max:250',
+            'description.en' => 'nullable|max:250',
+            'description.ar' => 'nullable|max:250',
             'status' => 'required|in:active,inactive',
-            'image' => 'required',
-            'icon' => 'required',
+            'image' => 'nullable',
+            'icon' => 'nullable',
         ]);
         $page = Page::where('slug', $slug)->first();
         $intro_section = new IntroductionSection();
@@ -115,13 +115,13 @@ class IntroSectionController extends Controller
         $request->validate([
             'title.en' => 'required|max:250',
             'title.ar' => 'required|max:250',
-            'subtitle.en' => 'required|max:250',
-            'subtitle.ar' => 'required|max:250',
-            'description.en' => 'required|max:250',
-            'description.ar' => 'required|max:250',
-            'status' => 'required|in:active,inactive',
-            'image' => 'required',
-            'icon' => 'required',
+            'subtitle.en' => 'nullable|max:250',
+            'subtitle.ar' => 'nullable|max:250',
+            'description.en' => 'nullable|max:250',
+            'description.ar' => 'nullable|max:250',
+            'status' => 'nullable|in:active,inactive',
+            'image' => 'nullable',
+            'icon' => 'nullable',
         ]);
         $intro_section = IntroductionSection::findOrFail($id);
         $intro_section->setTranslations('title', [

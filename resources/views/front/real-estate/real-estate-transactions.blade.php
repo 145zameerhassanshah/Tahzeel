@@ -6,7 +6,7 @@
 
 
      @if ($page->blocks->has(0))
-        @include('front.partials._block2', ['block' => $page->blocks[0]])
+        @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
 
 

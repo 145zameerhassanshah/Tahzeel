@@ -42,14 +42,14 @@
                                         <td>{{ ++$index }}</td>
                                         <td>
                                             @if ($element->icon)
-                                                <img src="{{ asset($element->icon) }}" width="70px" alt="Icon">
+                                                <img src="{{ asset($element->icon) }}" width="50px" alt="Icon">
                                             @else
                                                 N/A
                                             @endif
                                         </td>
                                         <td>
                                             @if ($element->image)
-                                                <img src="{{ asset($element->image) }}" width="70px" alt="Image">
+                                                <img src="{{ asset($element->image) }}" width="50px" alt="Image">
                                             @else
                                                 N/A
                                             @endif

@@ -62,34 +62,38 @@
                                     @enderror
                                 </div>
 
-                                <!-- Image -->
+                                <!-- image -->
                                 <div class="col-md-6">
                                     <label for="image">{{ __('Image') }}</label>
                                     <div class="form-group">
-                                        <label class="custom-file-label"
-                                            for="image">{{ __('Choose New Image') }}</label>
-                                        <input type="file" class="custom-file-input up-img form-control" name="image"
-                                            id="image">
-                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                        @error('image')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="image" id="image">
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-
-                                <!-- Icon -->
+                                <!-- icon -->
                                 <div class="col-md-6">
                                     <label for="icon">{{ __('Icon') }}</label>
                                     <div class="form-group">
-                                        <label class="custom-file-label" for="icon">{{ __('Choose New Icon') }}</label>
-                                        <input type="file" class="custom-file-input up-img form-control" name="icon"
-                                            id="icon">
-                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                        @error('icon')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="icon">{{ __('Choose New Icon') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="icon" id="icon" >
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('icon')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -154,21 +158,21 @@
                                 </div>
                             </div> <!-- /.row -->
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function() {
-            let featureIndex = 1;
+<script>
+    $(document).ready(function () {
+        let featureIndex = 1;
 
-            $('#add-feature').click(function() {
-                $('#features-container').append(`
+        $('#add-feature').click(function () {
+            $('#features-container').append(`
                 <div class="row mb-3 feature-group border rounded p-2">
                     <div class="col-md-4">
                         <input type="text" name="features[${featureIndex}][en]" class="form-control" placeholder="Title in English" required>
@@ -190,12 +194,12 @@
                     </div>
                 </div>
             `);
-                featureIndex++;
-            });
-
-            $(document).on('click', '.remove-feature', function() {
-                $(this).closest('.feature-group').remove();
-            });
+            featureIndex++;
         });
-    </script>
+
+        $(document).on('click', '.remove-feature', function () {
+            $(this).closest('.feature-group').remove();
+        });
+    });
+</script>
 @endsection
