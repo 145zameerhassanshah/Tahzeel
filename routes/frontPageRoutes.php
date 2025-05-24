@@ -138,6 +138,11 @@ Route::middleware([SetLocale::class])->group(function () {
         Route::get('/medical-fitness-tests', [DHAController::class, 'medicalFitnessTests'])->name('dha.medical_fitness_tests');
         Route::get('/health-insurance-approvals', [DHAController::class, 'healthInsuranceApprovals'])->name('dha.health_insurance_approvals');
     });
+    //tasheel 
+    Route::get('/government-transactions', [TasheelServiceController::class, 'governmentTransactions'])->name('front.tasheel.government');
+    Route::get('/mohre-services', [TasheelServiceController::class, 'mohreServices'])->name('front.tasheel.mohre');
+    Route::get('/legal-translation', [TasheelServiceController::class, 'legalTranslation'])->name('front.tasheel.translation');
+
 
     Route::prefix('typing-attestation')->group(function () {
         Route::get('/police-clearance', [TypingAttestationController::class, 'policeClearance'])->name('typing.police_clearance');
