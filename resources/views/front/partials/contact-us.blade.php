@@ -1,5 +1,5 @@
 <section class="wrapper bg-light">
-    <div class="container py-10 py-md-12 mb-15">
+    <div class="container py-5 py-md-5">
         <div class="row d-flex justify-content-center mt-5 mb-12">
             <div class="col-md-6 text-center">
                 {!! __('contact-us.contactus_title') !!}

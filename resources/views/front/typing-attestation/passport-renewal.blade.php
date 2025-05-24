@@ -5,9 +5,8 @@
     @include('front.partials._hero_section')
 
 
-    @php($introSection = $page->introductionSections->first())
-    @if ($introSection)
-        @include('front.partials._intro_three_images', ['introSection' => $introSection])
+     @if ($page->blocks->has(0))
+        @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
 
 
@@ -30,28 +29,9 @@
     @endif
 
 
-    @if ($page->blocks->has(0))
-        @include('front.partials._block2', ['block' => $page->blocks[0]])
-    @endif
-
-
-    {{-- Document Required Section --}}
-    @php($section = $page->sectionTitles->where('type', 'document')->first())
-    @if ($section)
-        @include('front.partials._section_title', ['section' => $section])
-    @endif
-    @if ($page->documentRequireds->isNotEmpty())
-        @include('front.partials._docs', [
-            'document_requireds' => $page->documentRequireds,
-        ])
-    @endif
-
-
     @if ($page->elements->has(0))
         @include('front.partials._element-features-2', ['element' => $page->elements[0]])
     @endif
-
-    @include('front.partials._cta3')
 
 
     {{-- Testimonials --}}
@@ -72,8 +52,6 @@
 
 
     @include('front.partials.contact-us')
-
-
 
 
     @include('front.partials.affiliations')

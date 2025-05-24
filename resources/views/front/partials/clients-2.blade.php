@@ -1,6 +1,6 @@
 <!--Start Testimonial-->
 <section class="wrapper bg-light">
-  <div class="container py-14 py-md-16">
+  <div class="container py-5 py-md-5">
     <div class="row gx-xl-12 gy-10 align-items-center">
       <div class="col-xl-4">
         {!! __('testimonials.testimonial_title') !!}
