@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Sections')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,7 +14,7 @@
                 {{-- content --}}
                 <div class="card card-primary card-outline mt-2">
                     <div class="card-header">
-                        <h3 class="card-title mt-1"><strong>Section List</strong></h3>
+                        <h3 class="card-title mt-1">Section List</h3>
                         <div class="card-tools d-flex">
                             <a href="{{ route('admin.page.section.add', ['slug' => $slug]) }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i> {{ __('Add Section') }}
@@ -29,8 +29,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Title</th>
-                                    <th>Subtitle</th>
-                                    <th>Description</th>
                                     <th>Image</th>
                                     <th>Type</th>
                                     <th>Order No</th>
@@ -42,8 +40,6 @@
                                     <tr>
                                         <td>{{ $section->id }}</td>
                                         <td>{{ $section->getTranslation('title', 'en') ?? 'N/A' }}</td>
-                                        <td>{{ $section->getTranslation('subtitle', 'en') ?? 'N/A' }}</td>
-                                        <td>{!! $section->getTranslation('description', 'en') ?? 'N/A' !!}</td>
                                         <td><img src="{{ asset($section->image) }}" alt="Image" width="50px"></td>
                                         <td>{{ $section->type }}</td>
                                         <td>{{ $section->order_no }}</td>

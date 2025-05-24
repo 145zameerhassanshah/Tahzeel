@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Edit Section')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -74,7 +74,7 @@
                                 <!-- Order Number -->
                                 <div class="col-md-6 mb-3">
                                     <label for="order_no">{{ __('Order No') }}<span class="text-danger">*</span></label>
-                                    <input type="number" id="order_no" class="form-control" name="order_no"
+                                    <input required type="number" id="order_no" class="form-control" name="order_no"
                                         value="{{ old('order_no', $pageSection->order_no) }}" placeholder="Enter Order No">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
@@ -83,7 +83,7 @@
                                 <!-- type -->
                                 <div class="col-md-6 mb-3">
                                     <label for="type">{{ __('Type') }}<span class="text-danger">*</span></label>
-                                    <select id="type" name="type" class="form-control">
+                                    <select id="type" name="type" class="form-control" required>
                                         <option selected disabled>Select Type</option>
                                         <option value="R-2-L" {{ $pageSection->type == 'R-2-L' ? 'selected' : '' }}>Right
                                             To Left</option>
@@ -99,7 +99,7 @@
                                     <label for="description_en">{{ __('Description (English)') }}<span
                                             class="text-danger">*</span></label>
                                     <textarea id="description_en" class="form-control summernote" name="description[en]"
-                                        placeholder="Enter Description in English" rows="6" required>{{ old('description.en', $pageSection->getTranslations('description')['en']) }}</textarea>
+                                        placeholder="Enter Description in English" rows="6" required>{!! old('description.en', $pageSection->getTranslations('description')['en']) !!}</textarea>
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -108,7 +108,7 @@
                                     <label for="description_ar">{{ __('Description (Arabic)') }}<span
                                             class="text-danger">*</span></label>
                                     <textarea id="description_ar" class="form-control summernote" name="description[ar]"
-                                        placeholder="Enter Description in Arabic" rows="6" required>{{ old('description.ar', $pageSection->getTranslations('description')['ar']) }}</textarea>
+                                        placeholder="Enter Description in Arabic" rows="6" required>{!! old('description.ar', $pageSection->getTranslations('description')['ar']) !!}</textarea>
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -124,7 +124,7 @@
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="image" id="image">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset($pageSection->image) }}" alt="">
+                                                src="{{ asset($pageSection->image) }}" alt="" width="50px">
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Section Titles')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -27,8 +27,6 @@
                                 <tr>
                                     <th>{{ __('#') }}</th>
                                     <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Subtitle') }}</th>
-                                    <th>{{ __('Description') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
@@ -42,12 +40,6 @@
                                         </td>
                                         <td>
                                             {{ $section_title->title }}
-                                        </td>
-                                        <td>
-                                            {{ $section_title->subtitle }}
-                                        </td>
-                                        <td>
-                                            {{ $section_title->description }}
                                         </td>
                                         <td>
                                             @if ($section_title->status == 'active')

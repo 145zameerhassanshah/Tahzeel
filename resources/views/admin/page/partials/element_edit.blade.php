@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
 @section('content')
 
     @include('admin.page.top-nav')

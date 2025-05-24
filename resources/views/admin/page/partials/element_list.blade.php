@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Elements')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,7 +14,7 @@
                 {{-- content --}}
                 <div class="card mt-2 card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1"><strong>Element List</strong></h3>
+                        <h3 class="card-title mt-1">Element List</h3>
                         <div class="card-tools d-flex ">
 
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.element.add', ['slug' => $slug]) }}"><i
@@ -32,8 +32,6 @@
                                     <th>Icon</th>
                                     <th>Image</th>
                                     <th>Title</th>
-                                    <th>Subtitle</th>
-                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,8 +55,6 @@
                                             @endif
                                         </td>
                                         <td>{{ $element->getTranslation('title', 'en') }}</td>
-                                        <td>{{ $element->getTranslation('subtitle', 'en') }}</td>
-                                        <td>{!! $element->getTranslation('description', 'en') !!}</td>
                                         <td>
                                             <!-- Edit Button -->
                                             <a href="{{ route('admin.element.edit', $element->id) }}"

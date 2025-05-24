@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Add Section')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -66,7 +66,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="order_no">{{ __('Order No') }}<span class="text-danger">*</span></label>
                                     <input type="number" id="order_no" class="form-control" name="order_no"
-                                        value="{{ old('order_no') }}" placeholder="Enter Order No">
+                                        value="{{ old('order_no') }}" placeholder="Enter Order No" required>
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -75,7 +75,7 @@
                                 <!-- type -->
                                 <div class="col-md-6 mb-3">
                                     <label for="type">{{ __('Type') }}<span class="text-danger">*</span></label>
-                                    <select id="type" name="type" class="form-control">
+                                    <select id="type" name="type" class="form-control" required>
                                         <option selected disabled>Select Type</option>
                                         <option value="R-2-L">Right To Left</option>
                                         <option value="L-2-R">Left To Right</option>
@@ -113,9 +113,9 @@
                                             <label class="custom-file-label"
                                                 for="image">{{ __('Choose New Image') }}</label>
                                             <input type="file" class="custom-file-input up-img form-control"
-                                                name="image" id="image">
+                                                name="image" id="image" required>
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror

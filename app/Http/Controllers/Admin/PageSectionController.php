@@ -27,15 +27,15 @@ class PageSectionController extends Controller
     {
         // dd($request->all());
         $request->validate([
-        'title.en' => 'required|string|max:255',
-        'title.ar' => 'required|string|max:255',
-        'subtitle.en' => 'required|string|max:255',
-        'subtitle.ar' => 'required|string|max:255',
-        'order_no' => 'required|integer',
-        'type' => 'required|in:L-2-R,R-2-L',
-        'description.en' => 'required|string',
-        'description.ar' => 'required|string',
-        'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'title.en' => 'required|string|max:255',
+            'title.ar' => 'required|string|max:255',
+            'subtitle.en' => 'required|string|max:255',
+            'subtitle.ar' => 'required|string|max:255',
+            'order_no' => 'required|integer',
+            'type' => 'required|in:L-2-R,R-2-L',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
         ]);
         // dd('ss');
         $page = Page::where('slug', $slug)->first();
@@ -50,7 +50,6 @@ class PageSectionController extends Controller
             $imageName = time() . rand() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('assets/admin/uploads/PageSection/thumb/'), $imageName);
             $pageSection->image = 'assets/admin/uploads/PageSection/thumb/' . $imageName;
-
         }
 
         // Set translations
@@ -70,10 +69,10 @@ class PageSectionController extends Controller
         $pageSection->save();
 
         return redirect()->route('admin.page.section.index', $slug)
-                         ->with('notification', [
-                             'message' => 'Page Section Added Successfully!',
-                             'alert' => 'success',
-                         ]);
+            ->with('notification', [
+                'message' => 'Page Section Added Successfully!',
+                'alert' => 'success',
+            ]);
     }
 
     public function edit($id)
@@ -90,11 +89,11 @@ class PageSectionController extends Controller
             'title.ar' => 'required|string|max:255',
             'subtitle.en' => 'required|string|max:255',
             'subtitle.ar' => 'required|string|max:255',
-           'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'order_no' => 'required|integer',
             'type' => 'required',
-            'description.en' => 'string',
-            'description.ar' => 'string',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
         ]);
 
         $pageSection = PageSection::findOrFail($id);
@@ -141,10 +140,10 @@ class PageSectionController extends Controller
         $pageSection->save();
 
         return redirect()->route('admin.page.section.index', $pageSection->page->slug)
-                         ->with('notification', [
-                             'message' => 'Page Section Updated Successfully!',
-                             'alert' => 'success',
-                         ]);
+            ->with('notification', [
+                'message' => 'Page Section Updated Successfully!',
+                'alert' => 'success',
+            ]);
     }
 
     public function delete($id)
