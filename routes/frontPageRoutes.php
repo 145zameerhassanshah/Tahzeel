@@ -90,17 +90,6 @@ Route::middleware([SetLocale::class])->group(function () {
     });
 
 
-    //tasheel service
-
-    Route::prefix('tasheel-services')->group(function () {
-
-        Route::get('/government-transactions', [TasheelServiceController::class, 'governmentTransactions'])->name('front.tasheel.government_transactions');
-
-        Route::get('/mohre-services', [TasheelServiceController::class, 'mohreServices'])->name('front.tasheel.mohre_services');
-
-        Route::get('/legal-translation', [TasheelServiceController::class, 'legalTranslation'])->name('front.tasheel.legal_translation');
-    });
-
     //pro servicess
     Route::get('/document-clearance-submission', [ProServiceController::class, 'documentClearance'])->name('front.proservice.document_clearance');
     Route::get('/visa-applications-renewals', [ProServiceController::class, 'visaApplications'])->name('front.proservice.visa_applications');
