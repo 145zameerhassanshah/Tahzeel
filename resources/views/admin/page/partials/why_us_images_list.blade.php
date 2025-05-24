@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Why Us Images')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,10 +14,10 @@
                 {{-- content --}}
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1">{{ __('WhyUs Image List') }}</h3>
+                        <h3 class="card-title mt-1">{{ __('Why Us Image List') }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('admin.why-us-image.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i
-                                    class="bi bi-plus-lg"></i> Add</a>
+                                    class="bi bi-plus-lg"></i> Add Why Us Image</a>
                         </div>
                     </div>
                     <!-- /.card-header -->

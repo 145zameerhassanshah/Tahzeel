@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Add Introduction Section')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -27,72 +27,100 @@
                                 <div class="col-md-6">
                                     <label for="title_en">{{ __('Title (English)') }} <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title_en" name="title[en]">
-                                    <span class="text-danger error" id="error_title_en"></span>
+                                    <input type="text" class="form-control" id="title_en" name="title[en]" required>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="title_ar">{{ __('Title (Arabic)') }} <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title_ar" name="title[ar]">
-                                    <span class="text-danger error" id="error_title_ar"></span>
+                                    <input type="text" class="form-control" id="title_ar" name="title[ar]" required>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="subtitle_en">{{ __('SubTitle (English)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_en">{{ __('SubTitle (English)') }} </label>
                                     <input type="text" class="form-control" id="subtitle_en" name="subtitle[en]">
-                                    <span class="text-danger error" id="error_subtitle_en"></span>
+                                    @error('subtitle.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="subtitle_ar">{{ __('SubTitle (Arabic)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="subtitle_ar" name="subtitle[ar]">
-                                    <span class="text-danger error" id="error_subtitle_ar"></span>
+                                    @error('subtitle.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (English)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="description">{{ __('Description (English)') }} </label>
                                     <input type="text" class="form-control" id="description_en" name="description[en]">
-                                    <span class="text-danger error" id="error_description_en"></span>
+                                    @error('description.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (Arabic)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="description">{{ __('Description (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="description_ar" name="description[ar]">
-                                    <span class="text-danger error" id="error_description_ar"></span>
+                                    @error('description.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mt-3">
 
                                 <div class="col-md-4">
-                                    <label for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                    <select class="form-control" id="status" name="status">
+                                    <label for="status">{{ __('Status') }}</label>
+                                    <select class="form-control" id="status" name="status" required>
                                         <option value="active">{{ __('Active') }}</option>
                                         <option value="inactive">{{ __('Inactive') }}</option>
                                     </select>
+                                    @error('status')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                <div class="col-md-4">
+                                 <!-- image -->
+                                 <div class="col-md-4">
+                                    <label for="image">{{ __('Image') }}</label>
                                     <div class="form-group">
-                                        <label for="image">{{ __('Image') }}</label>
-                                        <input type="file" class="form-control" id="image" name="image"
-                                            accept="background_image/*">
-                                        <span class="text-danger error" id="image"></span>
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="image" id="image">
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-
+                                <!-- icon -->
                                 <div class="col-md-4">
+                                    <label for="icon">{{ __('Icon') }}</label>
                                     <div class="form-group">
-                                        <label for="icon">{{ __('Icon') }}</label>
-                                        <input type="file" class="form-control" id="icon" name="icon"
-                                            accept="background_image/*">
-                                        <span class="text-danger error" id="icon"></span>
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="icon">{{ __('Choose New Icon') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="icon" id="icon" >
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('icon')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>

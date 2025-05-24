@@ -113,8 +113,10 @@ class SectionTitleController extends Controller
         $request->validate([
             'section_title.en' => 'required|string|max:250',
             'section_title.ar' => 'required|string|max:250',
-            'section_subtitle.en' => 'required|string|max:250',
-            'section_subtitle.ar' => 'required|string|max:250',
+            'section_subtitle.en' => 'nullable|string|max:250',
+            'section_subtitle.ar' => 'nullable|string|max:250',
+            'section_description.en' => 'nullable|string|max:250',
+            'section_description.ar' => 'nullable|string|max:250',
             'section_status' => 'required|in:active,inactive',
             'section_type' => 'required|string'
         ]);

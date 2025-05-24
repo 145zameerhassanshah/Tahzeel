@@ -44,17 +44,17 @@ class TestimonialController extends Controller
     public function store(Request $request, $slug)
     {
         // dd($request->all());
-        // $request->validate([
-        //     'name.en' => 'required|string',
-        //     'name.ar' => 'required|string',
-        //     'feedback.en' => 'required|string',
-        //     'feedback.ar' => 'required|string',
-        //     'designation.en' => 'required|string',
-        //     'designation.ar' => 'required|string',
-        //     'order_no' => 'nullable|integer|min:0',
-        //     'status' => 'required|in:active,inactive',
-        //     'image' => 'nullable|image|max:2048',
-        // ]);
+        $request->validate([
+            'name.en' => 'required|string',
+            'name.ar' => 'required|string',
+            'feedback.en' => 'required|string',
+            'feedback.ar' => 'required|string',
+            'designation.en' => 'nullable|string',
+            'designation.ar' => 'nullable|string',
+            'order_no' => 'required|integer|min:0',
+            'status' => 'required|in:active,inactive',
+            'image' => 'required|image|max:2048',
+        ]);
         $page = Page::where('slug', $slug)->first();
         $testimonial = new Testimonial();
         $testimonial->page_id = $page->id;
@@ -94,12 +94,14 @@ class TestimonialController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'name.en' => 'required|string',
+            'name.ar' => 'required|string',
             'feedback.en' => 'required|string',
             'feedback.ar' => 'required|string',
-            'designation.en' => 'required|string',
-            'designation.ar' => 'required|string',
-            'status' => 'required',
+            'designation.en' => 'nullable|string',
+            'designation.ar' => 'nullable|string',
+            'order_no' => 'required|integer|min:0',
+            'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|max:2048',
         ]);
 

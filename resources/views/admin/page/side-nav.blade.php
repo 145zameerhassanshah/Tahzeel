@@ -34,35 +34,25 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('admin.testimonial.index', ['slug' => $slug]) }}"
-                class="nav-link {{ Route::currentRouteName() == 'admin.testimonial.index' || Route::currentRouteName() == 'admin.testimonial.add' || Route::currentRouteName() == 'admin.testimonial.edit' ? 'active' : '' }}">
-                Testimonials
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.hero_section.index', ['slug' => $slug]) }}"
-                class="nav-link {{ Route::currentRouteName() == 'admin.hero_section.index' || Route::currentRouteName() == 'admin.hero_section.add' || Route::currentRouteName() == 'admin.hero_section.edit' ? 'active' : '' }}">
-                Heros
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{ route('admin.introduction_section.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.introduction_section.index' || Route::currentRouteName() == 'admin.introduction_section.add' || Route::currentRouteName() == 'admin.introduction_section.edit' ? 'active' : '' }}">
                 Intros
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.feature_image.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.feature_image.index' || Route::currentRouteName() == 'admin.feature_image.add' || Route::currentRouteName() == 'admin.feature_image.edit' ? 'active' : ''}}">
-                Feature Images
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.procedures.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedures.index' || Route::currentRouteName() == 'admin.procedures.add' || Route::currentRouteName() == 'admin.procedures.edit' ? 'active' : '' }}">
-                Procedures
+            <a href="{{ route('admin.why-us-image.index', ['slug' => $slug]) }}"
+                class="nav-link {{ Route::currentRouteName() == 'admin.why-us-image.index' || Route::currentRouteName() == 'admin.why-us-image.add' || Route::currentRouteName() == 'admin.why-us-image.edit' ? 'active' : '' }}">
+                Why Us Images
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('admin.call-to-action.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.call-to-action.index' || Route::currentRouteName() == 'admin.call-to-action.add' || Route::currentRouteName() == 'admin.call-to-action.edit' ? 'active' : '' }}">
                 Call to Actions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.testimonial.index', ['slug' => $slug]) }}"
+                class="nav-link {{ Route::currentRouteName() == 'admin.testimonial.index' || Route::currentRouteName() == 'admin.testimonial.add' || Route::currentRouteName() == 'admin.testimonial.edit' ? 'active' : '' }}">
+                Testimonials
             </a>
         </li>
         <li class="nav-item">
@@ -76,6 +66,22 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('admin.hero_section.index', ['slug' => $slug]) }}"
+                class="nav-link {{ Route::currentRouteName() == 'admin.hero_section.index' || Route::currentRouteName() == 'admin.hero_section.add' || Route::currentRouteName() == 'admin.hero_section.edit' ? 'active' : '' }}">
+                Heros
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('admin.feature_image.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.feature_image.index' || Route::currentRouteName() == 'admin.feature_image.add' || Route::currentRouteName() == 'admin.feature_image.edit' ? 'active' : ''}}">
+                Feature Images
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.procedures.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.procedures.index' || Route::currentRouteName() == 'admin.procedures.add' || Route::currentRouteName() == 'admin.procedures.edit' ? 'active' : '' }}">
+                Procedures
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{route('admin.why-choose-us.index',['slug' => $slug])}}" class="nav-link {{ Route::currentRouteName() == 'admin.why-choose-us.index' || Route::currentRouteName() == 'admin.why-choose-us.add' || Route::currentRouteName() == 'admin.why-choose-us.edit' ? 'active' : ''}}">
                 Why Choose Us'
             </a>
@@ -83,12 +89,6 @@
         <li class="nav-item">
             <a href="{{ route('admin.feature.index', ['slug' => $slug]) }}" class="nav-link {{ Route::currentRouteName() == 'admin.feature.index' || Route::currentRouteName() == 'admin.feature.add' || Route::currentRouteName() == 'admin.feature.edit' ? 'active' : '' }}">
                 Features
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.why-us-image.index', ['slug' => $slug]) }}"
-                class="nav-link {{ Route::currentRouteName() == 'admin.why-us-image.index' || Route::currentRouteName() == 'admin.why-us-image.add' || Route::currentRouteName() == 'admin.why-us-image.edit' ? 'active' : '' }}">
-                Why Us Images
             </a>
         </li>
     </ul>

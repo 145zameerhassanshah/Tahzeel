@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Blocks')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,7 +14,7 @@
                 {{-- content --}}
                 <div class="mt-2 card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1"><strong>Block List</strong></h3>
+                        <h3 class="card-title mt-1">Block List</h3>
                         <div class="card-tools d-flex ">
 
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.block.add', ['slug' => $slug]) }}"><i
@@ -28,11 +28,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Icon</th>
                                     <th>Image</th>
                                     <th>Title</th>
-                                    <th>Subtitle</th>
-                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,15 +38,16 @@
                                 @foreach ($blocks as $index => $block)
                                     <tr>
                                         <td>{{ ++$index }}</td>
-                                        <td><img src="{{ asset($block->icon) }}" width="70px" alt="Icon"></td>
-                                        <td><img src="{{ asset($block->image) }}" width="70px" alt="Image"></td>
+                                        <td>@if ($block->image)
+                                            <img src="{{ asset($block->image) }}" width="50px" alt="Image">
+                                            @else
+                                            N/A
+                                        @endif</td>
                                         <td>{{ $block->getTranslation('title', 'en') }}</td>
-                                        <td>{{ $block->getTranslation('subtitle', 'en') }}</td>
-                                        <td>{!! $block->getTranslation('description', 'en') !!}</td>
                                         <td>
                                             <!-- Edit Button -->
                                             <a href="{{ route('admin.block.edit', $block->id) }}"
-                                                class="btn btn-sm btn-info" title="Edit">
+                                                class="btn btn-sm btn-primary" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 

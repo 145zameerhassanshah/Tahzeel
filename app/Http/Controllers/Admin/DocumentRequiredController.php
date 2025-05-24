@@ -43,9 +43,9 @@ class DocumentRequiredController extends Controller
         $request->validate([
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
-            'description.en' => 'nullable|string',
-            'description.ar' => 'nullable|string',
-            'order_no' => 'nullable|integer|min:0',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'order_no' => 'required|integer|min:0',
             'status' => 'required|in:active,inactive',
             'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -84,9 +84,9 @@ class DocumentRequiredController extends Controller
         $request->validate([
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
-            'description.en' => 'nullable|string',
-            'description.ar' => 'nullable|string',
-            'order_no' => 'nullable|integer|min:0',
+            'description.en' => 'required|string',
+            'description.ar' => 'required|string',
+            'order_no' => 'required|integer|min:0',
             'status' => 'required|in:active,inactive',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

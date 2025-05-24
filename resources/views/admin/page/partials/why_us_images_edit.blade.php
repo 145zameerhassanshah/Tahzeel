@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Edit Why Us Image')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -18,82 +18,119 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('admin.why-us-image.update', $whyUs->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.why-us-image.update', $whyUs->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="update_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_title_en" name="title[en]" value="{{ $whyUs->getTranslation('title', 'en') }}">
-                                    <span class="text-danger error" id="error_title_en"></span>
+                                    <label for="update_title_en">{{ __('Title (English)') }} <span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_title_en" name="title[en]"
+                                        value="{{ $whyUs->getTranslation('title', 'en') }}">
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="update_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_title_ar" name="title[ar]" value="{{ $whyUs->getTranslation('title', 'ar') }}">
-                                    <span class="text-danger error" id="error_title_ar"></span>
+                                    <label for="update_title_ar">{{ __('Title (Arabic)') }} <span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_title_ar" name="title[ar]"
+                                        value="{{ $whyUs->getTranslation('title', 'ar') }}">
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6">
-                                    <label for="update_subtitle_en">{{ __('SubTitle (English)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_subtitle_en" name="subtitle[en]" value="{{ $whyUs->getTranslation('subtitle', 'en') }}">
-                                    <span class="text-danger error" id="error_subtitle_en"></span>
+                                    <label for="update_subtitle_en">{{ __('SubTitle (English)') }} </label>
+                                    <input type="text" class="form-control" id="update_subtitle_en" name="subtitle[en]"
+                                        value="{{ $whyUs->getTranslation('subtitle', 'en') }}">
+                                    @error('subtitle.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-    
                                 <div class="col-md-6">
-                                    <label for="update_subtitle_ar">{{ __('SubTitle (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_subtitle_ar" name="subtitle[ar]" value="{{ $whyUs->getTranslation('subtitle', 'ar') }}">
-                                    <span class="text-danger error" id="error_subtitle_ar"></span>
+                                    <label for="update_subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
+                                    <input type="text" class="form-control" id="update_subtitle_ar" name="subtitle[ar]"
+                                        value="{{ $whyUs->getTranslation('subtitle', 'ar') }}">
+                                    @error('subtitle.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                            </div>
-    
-                            <div class="row">
+
                                 <div class="col-md-6">
-                                    <label for="update_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_description_en" name="description[en]" value="{{ $whyUs->getTranslation('description', 'en') }}">
-                                    <span class="text-danger error" id="error_description_en"></span>
+                                    <label for="update_description">{{ __('Description (English)') }} <span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_description_en"
+                                        name="description[en]" value="{{ $whyUs->getTranslation('description', 'en') }}">
+                                    @error('description.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-    
+
                                 <div class="col-md-6">
-                                    <label for="update_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="update_description_ar" name="description[ar]" value="{{ $whyUs->getTranslation('description', 'ar') }}">
-                                    <span class="text-danger error" id="error_description_ar"></span>
+                                    <label for="update_description">{{ __('Description (Arabic)') }} <span
+                                            class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_description_ar"
+                                        name="description[ar]" value="{{ $whyUs->getTranslation('description', 'ar') }}">
+                                    @error('description.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                            </div>
-    
-                            <div class="row mt-3">
-    
+
+
                                 <div class="col-md-6">
-                                    <label for="update_status">{{ __('Status') }} <span class="text-danger">*</span></label>
-                                    <select class="form-control" id="update_status" name="status">
-                                        <option value="active" {{ $whyUs->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
-                                        <option value="inactive" {{ $whyUs->status == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
+                                    <label for="update_status">{{ __('Status') }} <span
+                                            class="text-danger">*</span></label>
+                                    <select required class="form-control" id="update_status" name="status">
+                                        <option value="active" {{ $whyUs->status == 'active' ? 'selected' : '' }}>
+                                            {{ __('Active') }}</option>
+                                        <option value="inactive" {{ $whyUs->status == 'inactive' ? 'selected' : '' }}>
+                                            {{ __('Inactive') }}</option>
                                     </select>
+                                    @error('status')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-    
+
                                 <div class="col-md-6">
                                     <label for="order_no">{{ __('Order No') }} <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="order_no" name="order_no" value="{{ $whyUs->order_no }}">
-                                    <span class="text-danger error" id="error_order_no"></span>
+                                    <input required type="number" class="form-control" id="order_no" name="order_no"
+                                        value="{{ $whyUs->order_no }}">
+                                    @error('order_no')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="image">{{ __('Image') }}</label>
-                                        <input type="file" class="form-control" id="image" name="image" accept="background_image/*">
-                                        <span class="text-danger error" id="image"></span>
-                                    </div>
-                                    
-                                    <img src="{{ asset('assets/admin/uploads/why_us_image/' . $whyUs->image) }}"
-                                    alt="" width="50px">
-                                </div>
-    
-                            </div>
-                            <div class="row">
 
-                                <div class="col-12 mt-2">
-                                    <button class="btn btn-primary btn-sm float-right">Submit</button>
+                                <!-- Image Upload -->
+                                <div class="col-md-12">
+                                    <label for="image">{{ __('Image') }}</label>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="image" id="image">
+                                            @if ($whyUs->image)
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                    src="{{ asset('assets/admin/uploads/why_us_image/' . $whyUs->image) }}"
+                                                    alt="Current Image" width="50px">
+                                            @else
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                    src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt=""
+                                                    width="50px">
+                                            @endif
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
+
+                                    <div class="col-12 mt-2">
+                                        <button class="btn btn-primary btn-sm float-right">Submit</button>
+                                    </div>
                         </form>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Add Element')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,7 +14,7 @@
                 {{-- content --}}
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1">{{ __('Element List') }}</h3>
+                        <h3 class="card-title mt-1">{{ __('Element Add') }}</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -46,52 +46,54 @@
 
                                 <!-- SubTitle Fields -->
                                 <div class="col-md-6 mb-3">
-                                    <label for="subtitle_en">{{ __('Subtitle (English)') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_en">{{ __('Subtitle (English)') }}</label>
                                     <input type="text" id="subtitle_en" class="form-control" name="subtitle[en]"
-                                        placeholder="Enter Subtitle in English" value="{{ old('subtitle.en') }}" required>
+                                        placeholder="Enter Subtitle in English" value="{{ old('subtitle.en') }}">
                                     @error('subtitle.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="subtitle_ar">{{ __('Subtitle (Arabic)') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="subtitle_ar">{{ __('Subtitle (Arabic)') }}</label>
                                     <input type="text" id="subtitle_ar" class="form-control" name="subtitle[ar]"
-                                        placeholder="Enter Subtitle in Arabic" value="{{ old('subtitle.ar') }}" required>
+                                        placeholder="Enter Subtitle in Arabic" value="{{ old('subtitle.ar') }}">
                                     @error('subtitle.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                <!-- Image -->
+                                <!-- image -->
                                 <div class="col-md-6">
                                     <label for="image">{{ __('Image') }}</label>
                                     <div class="form-group">
-                                        <label class="custom-file-label"
-                                            for="image">{{ __('Choose New Image') }}</label>
-                                        <input type="file" class="custom-file-input up-img form-control" name="image"
-                                            id="image">
-                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                        @error('image')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="image" id="image">
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-
-                                <!-- Icon -->
+                                <!-- icon -->
                                 <div class="col-md-6">
                                     <label for="icon">{{ __('Icon') }}</label>
                                     <div class="form-group">
-                                        <label class="custom-file-label" for="icon">{{ __('Choose New Icon') }}</label>
-                                        <input type="file" class="custom-file-input up-img form-control" name="icon"
-                                            id="icon">
-                                        <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                            src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="">
-                                        @error('icon')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+                                        <div class="col-sm-12">
+                                            <label class="custom-file-label"
+                                                for="icon">{{ __('Choose New Icon') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control"
+                                                name="icon" id="icon" >
+                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @error('icon')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -135,18 +137,16 @@
 
                                 <!-- Description Fields -->
                                 <div class="col-md-12 mb-3">
-                                    <label for="description_en">{{ __('Description (English)') }}<span
-                                            class="text-danger">*</span></label>
-                                    <textarea id="description_en" class="form-control summernote" required name="description[en]"
+                                    <label for="description_en">{{ __('Description (English)') }}</label>
+                                    <textarea id="description_en" class="form-control summernote" name="description[en]"
                                         placeholder="Enter Description in English" rows="6">{{ old('description.en') }}</textarea>
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="description_ar">{{ __('Description (Arabic)') }}<span
-                                            class="text-danger">*</span></label>
-                                    <textarea id="description_ar" class="form-control summernote" required name="description[ar]"
+                                    <label for="description_ar">{{ __('Description (Arabic)') }}</label>
+                                    <textarea id="description_ar" class="form-control summernote" name="description[ar]"
                                         placeholder="Enter Description in Arabic" rows="6">{{ old('description.ar') }}</textarea>
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
@@ -158,7 +158,6 @@
                                 </div>
                             </div> <!-- /.row -->
 
-                    </div>
                     </form>
                 </div>
             </div>

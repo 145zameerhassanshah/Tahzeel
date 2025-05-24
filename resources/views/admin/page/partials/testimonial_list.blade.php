@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Testimonials')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -12,7 +12,7 @@
 
             <div class="col-md-12">
                 {{-- content --}}
-                <div class="card">
+                <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('Testimonials List') }}</h3>
                         <a href="{{ route('admin.testimonial.add', ['slug' => $slug]) }}"
@@ -25,10 +25,6 @@
                                 <tr>
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Feedback (English)') }}</th>
-                                    <th>{{ __('Feedback (Arabic)') }}</th>
-                                    <th>{{ __('Designation (English)') }}</th>
-                                    <th>{{ __('Designation (Arabic)') }}</th>
                                     <th>{{ __('Image') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
@@ -38,10 +34,6 @@
                                     <tr>
                                         <td>{{ ++$id }}</td>
                                         <td>{{ $testimonial->getTranslation('name', 'en') }}</td>
-                                        <td>{{ $testimonial->getTranslation('feedback', 'en') }}</td>
-                                        <td>{{ $testimonial->getTranslation('feedback', 'ar') }}</td>
-                                        <td>{{ $testimonial->getTranslation('designation', 'en') }}</td>
-                                        <td>{{ $testimonial->getTranslation('designation', 'ar') }}</td>
                                         <td>
                                             @if ($testimonial->image)
                                                 <img src="{{ asset('assets/admin/uploads/testimonial/' . $testimonial->image) }}"

@@ -50,6 +50,9 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge([
+            'slug' => Str::slug($request->input('slug'))
+        ]);
         $request->validate([
             'title.en' => 'required|string|max:255',
             'title.ar' => 'required|string|max:255',
@@ -70,8 +73,9 @@ class PageController extends Controller
             'status' => 'required|in:draft,published',
             'type' => 'required',
             'page_link_for' => 'required|in:header,footer,services,none',
-            'hero_image' => 'nullable|image|max:2048'
+            'hero_image' => 'required|image|max:2048'
         ]);
+
         $page = new Page();
         if ($request->hasFile('hero_image')) {
             $file = $request->file('hero_image');
@@ -116,7 +120,7 @@ class PageController extends Controller
             'alert' => 'success',
         );
 
-        return redirect()->route('admin.page.section.edit', $page->id)->with('notification', $notification);
+        return redirect()->route('admin.page.detail', ['slug' => $page->slug])->with('notification', $notification);
     }
 
     // Page Delete

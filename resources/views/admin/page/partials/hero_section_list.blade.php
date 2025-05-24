@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Hero Sections')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,9 +14,9 @@
                 {{-- content --}}
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title mt-1">{{ __('Hero Sections List') }}</h3>
+                            <h3 class="card-title mt-1">{{ __('Hero Section List') }}</h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.hero_section.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add</a>
+                                <a href="{{ route('admin.hero_section.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Hero Section</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
