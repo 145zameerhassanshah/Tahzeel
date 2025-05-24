@@ -44,8 +44,8 @@ class WhyUsImageController extends Controller
         $request->validate([
             'title.en' => 'required',
             'title.ar' => 'required',
-            'subtitle.en' => 'required',
-            'subtitle.ar' => 'required',
+            'subtitle.en' => 'nullable',
+            'subtitle.ar' => 'nullable',
             'description.en' => 'required',
             'description.ar' => 'required',
             'image' => 'required',
@@ -133,9 +133,13 @@ class WhyUsImageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
+            'title.en' => 'required',
+            'title.ar' => 'required',
+            'subtitle.en' => 'nullable',
+            'subtitle.ar' => 'nullable',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'image' => 'nullable',
-            'description' => 'required',
             'order_no' => 'required',
             'status' => 'required',
         ]);

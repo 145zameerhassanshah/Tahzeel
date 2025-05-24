@@ -220,7 +220,7 @@ Route::middleware(['auth', 'status'])->group(function () {
         // Route::get('/document-required', [DocumentRequiredController::class, 'index'])->name('admin.document-required.index');
         Route::get('/call-to-action/{slug}', [CallToActionController::class, 'index'])->name('admin.call-to-action.index');
         Route::get('/call-to-action/{slug}/add', [CallToActionController::class, 'add'])->name('admin.call-to-action.add');
-        Route::post('/document-required/store/{slug}', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
+        Route::post('/call-to-action/store/{slug}', [CallToActionController::class, 'store'])->name('admin.call-to-action.store');
         Route::get('/call-to-action/edit/{id}', [CallToActionController::class, 'edit'])->name('admin.call-to-action.edit');
         Route::post('/call-to-action/update/{id}', [CallToActionController::class, 'update'])->name('admin.call-to-action.update');
         Route::post('/call-to-action/delete/{id}', [CallToActionController::class, 'delete'])->name('admin.call-to-action.delete');

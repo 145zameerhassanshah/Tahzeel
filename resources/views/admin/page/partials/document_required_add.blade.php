@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Add Document Required')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -22,19 +22,23 @@
                             enctype="multipart/form-data">
                             @csrf
                             <!-- Name Field -->
-                        
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="title_en">{{ __('Title (English)') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="title_en" name="title[en]">
-                                    <span class="text-danger error" id="error_title_en"></span>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="title_ar">{{ __('Title (Arabic)') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="title_ar" name="title[ar]">
-                                    <span class="text-danger error" id="error_title_ar"></span>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -43,14 +47,18 @@
                                     <label for="description">{{ __('Description (English)') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="description_en" name="description[en]">
-                                    <span class="text-danger error" id="error_description_en"></span>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="description">{{ __('Description (Arabic)') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="description_ar" name="description[ar]">
-                                    <span class="text-danger error" id="error_description_ar"></span>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -62,12 +70,17 @@
                                         <option value="active">{{ __('Active') }}</option>
                                         <option value="inactive">{{ __('Inactive') }}</option>
                                     </select>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="order_no">{{ __('Order No') }} <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" id="order_no" name="order_no">
-                                    <span class="text-danger error" id="error_order_no"></span>
+                                    @error('title.en')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-4">
@@ -75,7 +88,9 @@
                                         <label for="icon">{{ __('Icon') }}</label>
                                         <input type="file" class="form-control" id="icon" name="icon"
                                             accept="background_image/*">
-                                        <span class="text-danger error" id="icon"></span>
+                                        @error('title.en')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -145,8 +145,8 @@ class BlockController extends Controller
         $block->save();
 
         // Update or Add Features
-        if ($request->has('features')) {
             $block->features()->delete();
+        if ($request->has('features')) {
             foreach ($request->input('features') as $featureData) {
                 if (isset($featureData['id'])) {
                     $feature = BlockFeature::find($featureData['id']);
