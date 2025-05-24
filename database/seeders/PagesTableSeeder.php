@@ -10,1263 +10,339 @@ class PagesTableSeeder extends Seeder
     public function run()
     {
         $pages = [
-            // Typing and Attestation Services Start
-            [
-                'slug' => 'police-clearance',
-                'title' => [
-                    'en' => 'Police Clearance',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.police_clearance',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'new-passport-request',
-                'title' => [
-                    'en' => 'New Passport Request',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.new_passport_request',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'passport-renewal',
-                'title' => [
-                    'en' => 'Passport Renewal',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.passport_renewal',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'passport-lost-report',
-                'title' => [
-                    'en' => 'Passport Lost Report',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.passport_lost_report',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'mofa-attestation',
-                'title' => [
-                    'en' => 'MOFA Attestation (Ministry of Foreign Affairs)',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.mofa_attestation',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'power-of-attorney-drafting',
-                'title' => [
-                    'en' => 'Power of Attorney (POA) Drafting',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.power_of_attorney_drafting',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'document-typing-formatting',
-                'title' => [
-                    'en' => 'Document Typing and Formatting',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'typing-attestation-service',
-                'status' => 'published',
-                'route_name' => 'typing.document_typing_formatting',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            // Typing and Attestation Services End
-
-
-            // DHA Services Start
-            [
-                'slug' => 'medical-fitness-tests',
-                'title' => [
-                    'en' => 'Medical Fitness Tests',
-                    'ar' => 'اختبارات اللياقة الطبية'
-                ],
-                'description' => [
-                    'en' => 'Schedule your DHA medical fitness tests quickly and easily through our service center.',
-                    'ar' => 'احجز اختبارات اللياقة الطبية الخاصة بك بسرعة وسهولة من خلال مركز خدماتنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Medical Fitness',
-                    'ar' => 'اللياقة الطبية - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Efficient and certified testing for visa and employment purposes.',
-                    'ar' => 'اختبارات معتمدة وسريعة لأغراض التأشيرة والعمل.'
-                ],
-                'hero_description' => [
-                    'en' => 'Get your fitness certificates with minimal wait times and expert assistance.',
-                    'ar' => 'احصل على شهادات اللياقة بسرعة وبمساعدة فريقنا المختص.'
-                ],
-                'meta_title' => 'DHA Medical Fitness Test Services',
-                'meta_description' => 'We assist in scheduling and managing DHA-approved medical fitness tests in Dubai.',
-                'type' => 'dha-service',
-                'status' => 'published',
-                'route_name' => 'dha.medical_fitness_tests',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'health-insurance-approvals',
-                'title' => [
-                    'en' => 'Health Insurance Approvals',
-                    'ar' => 'موافقات التأمين الصحي'
-                ],
-                'description' => [
-                    'en' => 'Streamline your DHA health insurance approval process with our end-to-end service support.',
-                    'ar' => 'سهل عملية الحصول على موافقة التأمين الصحي من هيئة الصحة بدبي بمساعدتنا الكاملة.'
-                ],
-                'hero_title' => [
-                    'en' => 'DHA Insurance Approval',
-                    'ar' => 'موافقة التأمين الصحي - هيئة الصحة بدبي'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Fast-track your health coverage with expert approval handling.',
-                    'ar' => 'احصل على موافقة تأمينك الصحي بسرعة مع دعمنا المتخصص.'
-                ],
-                'hero_description' => [
-                    'en' => 'We coordinate with insurance providers and DHA to ensure smooth approvals.',
-                    'ar' => 'ننسق مع مزودي التأمين وهيئة الصحة لضمان الموافقة السلسة.'
-                ],
-                'meta_title' => 'DHA Health Insurance Approvals',
-                'meta_description' => 'Assisting individuals and companies in getting DHA health insurance approvals in Dubai.',
-                'type' => 'dha-service',
-                'status' => 'published',
-                'route_name' => 'dha.health_insurance_approvals',
-                'page_link_for' => 'header',
-                'order_no' => 2,
-            ],
-            // DHA Services End
-
-            // Legal Services Pages Start
-            [
-                'slug' => 'document-drafting',
-                'title' => [
-                    'en' => 'Document Drafting',
-                    'ar' => 'صياغة المستندات'
-                ],
-                'description' => [
-                    'en' => 'Professional legal drafting services to create accurate and enforceable documents.',
-                    'ar' => 'خدمات صياغة قانونية احترافية لإنشاء مستندات دقيقة وقابلة للتنفيذ.'
-                ],
-                'hero_title' => [
-                    'en' => 'Legal Document Drafting',
-                    'ar' => 'صياغة المستندات القانونية'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Clear, compliant, and customized documentation.',
-                    'ar' => 'مستندات واضحة ومطابقة ومخصصة.'
-                ],
-                'hero_description' => [
-                    'en' => 'From contracts to corporate agreements, we ensure your documents are legally sound.',
-                    'ar' => 'من العقود إلى الاتفاقيات، نضمن سلامة مستنداتك قانونياً.'
-                ],
-                'meta_title' => 'Legal Document Drafting UAE',
-                'meta_description' => 'Expert legal drafting services in the UAE for contracts, agreements, and more.',
-                'type' => 'legal-service',
-                'status' => 'published',
-                'route_name' => 'legal.document_drafting',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'consultations',
-                'title' => [
-                    'en' => 'Legal Consultations',
-                    'ar' => 'الاستشارات القانونية'
-                ],
-                'description' => [
-                    'en' => 'Receive expert legal advice tailored to your business or personal needs.',
-                    'ar' => 'احصل على استشارات قانونية متخصصة حسب احتياجاتك الشخصية أو التجارية.'
-                ],
-                'hero_title' => [
-                    'en' => 'Legal Consultation Services',
-                    'ar' => 'خدمات الاستشارات القانونية'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Clarity and confidence in every decision.',
-                    'ar' => 'وضوح وثقة في كل قرار.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our legal team is here to guide you through contracts, disputes, and compliance.',
-                    'ar' => 'فريقنا القانوني يرشدك خلال العقود والنزاعات والامتثال.'
-                ],
-                'meta_title' => 'Legal Consultation UAE',
-                'meta_description' => 'Talk to expert legal consultants in the UAE about contracts, disputes, and business matters.',
-                'type' => 'legal-service',
-                'status' => 'published',
-                'route_name' => 'legal.consultations',
-                'page_link_for' => 'header',
-                'order_no' => 2,
-            ],
-            [
-                'slug' => 'representation',
-                'title' => [
-                    'en' => 'Legal Representation',
-                    'ar' => 'التمثيل القانوني'
-                ],
-                'description' => [
-                    'en' => 'Representation in courts and legal matters from experienced legal professionals.',
-                    'ar' => 'تمثيل قانوني أمام المحاكم وفي المسائل القانونية من قبل محترفين متمرسين.'
-                ],
-                'hero_title' => [
-                    'en' => 'Professional Legal Representation',
-                    'ar' => 'التمثيل القانوني المهني'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Strong advocacy for your rights and interests.',
-                    'ar' => 'دفاع قوي عن حقوقك ومصالحك.'
-                ],
-                'hero_description' => [
-                    'en' => 'We represent individuals and businesses across a variety of legal matters.',
-                    'ar' => 'نُمثل الأفراد والشركات في مجموعة واسعة من القضايا القانونية.'
-                ],
-                'meta_title' => 'Legal Representation UAE',
-                'meta_description' => 'Qualified lawyers for court cases, legal disputes, and more in the UAE.',
-                'type' => 'legal-service',
-                'status' => 'published',
-                'route_name' => 'legal.representation',
-                'page_link_for' => 'header',
-                'order_no' => 3,
-            ],
-            [
-                'slug' => 'dispute-resolution',
-                'title' => [
-                    'en' => 'Dispute Resolution',
-                    'ar' => 'حل النزاعات'
-                ],
-                'description' => [
-                    'en' => 'Efficient dispute resolution services including arbitration, mediation, and negotiation.',
-                    'ar' => 'خدمات حل النزاعات بكفاءة، بما في ذلك التحكيم والوساطة والتفاوض.'
-                ],
-                'hero_title' => [
-                    'en' => 'Dispute Resolution Services',
-                    'ar' => 'خدمات حل النزاعات'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Resolve legal conflicts quickly and effectively.',
-                    'ar' => 'حل النزاعات القانونية بسرعة وفعالية.'
-                ],
-                'hero_description' => [
-                    'en' => 'Minimize risk and avoid lengthy court battles through our tailored legal solutions.',
-                    'ar' => 'قلل المخاطر وتجنب القضايا الطويلة من خلال حلولنا القانونية المخصصة.'
-                ],
-                'meta_title' => 'Dispute Resolution UAE',
-                'meta_description' => 'Legal services in mediation, arbitration, and litigation support in the UAE.',
-                'type' => 'legal-service',
-                'status' => 'published',
-                'route_name' => 'legal.dispute_resolution',
-                'page_link_for' => 'header',
-                'order_no' => 4,
-            ],
-            // Legal Services Pages End
-
-            // VAT Registration & Compliance Start
-            [
-                'slug' => 'vat-registration',
-                'title' => [
-                    'en' => 'VAT Registration for Businesses',
-                    'ar' => 'تسجيل ضريبة القيمة المضافة للشركات'
-                ],
-                'description' => [
-                    'en' => 'Get your business VAT-registered with ease. Our experts guide you through every step.',
-                    'ar' => 'سجّل شركتك في ضريبة القيمة المضافة بكل سهولة بمساعدة خبرائنا.'
-                ],
-                'hero_title' => [
-                    'en' => 'VAT Registration Services',
-                    'ar' => 'خدمات تسجيل ضريبة القيمة المضافة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'We simplify the VAT registration process.',
-                    'ar' => 'نُبَسِّط لك عملية تسجيل ضريبة القيمة المضافة.'
-                ],
-                'hero_description' => [
-                    'en' => 'Ensure compliance and avoid penalties with our expert VAT registration support.',
-                    'ar' => 'تأكد من الالتزام وتجنب الغرامات بمساعدة خبرائنا.'
-                ],
-                'meta_title' => 'VAT Registration Services in UAE',
-                'meta_description' => 'Professional assistance for VAT registration tailored to your business needs in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'vat.registration',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'vat-return-filing',
-                'title' => [
-                    'en' => 'VAT Return Filing',
-                    'ar' => 'تقديم إقرار ضريبة القيمة المضافة'
-                ],
-                'description' => [
-                    'en' => 'Timely and accurate VAT return submissions to keep your business compliant.',
-                    'ar' => 'تقديم إقرارات ضريبة القيمة المضافة بدقة وفي الوقت المحدد.'
-                ],
-                'hero_title' => [
-                    'en' => 'VAT Return Filing Services',
-                    'ar' => 'خدمات تقديم إقرار ضريبة القيمة المضافة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Stay compliant with timely VAT submissions.',
-                    'ar' => 'ابقَ ملتزمًا من خلال التقديم في الوقت المناسب.'
-                ],
-                'hero_description' => [
-                    'en' => 'Avoid fines with our expert VAT filing support.',
-                    'ar' => 'تجنب الغرامات بمساعدة خبرائنا في تقديم الإقرارات.'
-                ],
-                'meta_title' => 'VAT Return Filing in UAE',
-                'meta_description' => 'Submit your VAT returns correctly with help from our experienced consultants.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'vat.return_filing',
-                'page_link_for' => 'header',
-                'order_no' => 2,
-            ],
-            [
-                'slug' => 'vat-consultation-compliance',
-                'title' => [
-                    'en' => 'VAT Consultation & Compliance',
-                    'ar' => 'الاستشارات والامتثال لضريبة القيمة المضافة'
-                ],
-                'description' => [
-                    'en' => 'Expert VAT consultation services to ensure you stay on the right side of the law.',
-                    'ar' => 'خدمات استشارية متخصصة لضريبة القيمة المضافة لضمان الامتثال الكامل.'
-                ],
-                'hero_title' => [
-                    'en' => 'VAT Compliance Solutions',
-                    'ar' => 'حلول الامتثال لضريبة القيمة المضافة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Guiding your business through VAT challenges.',
-                    'ar' => 'نرشد عملك لتخطي تحديات ضريبة القيمة المضافة.'
-                ],
-                'hero_description' => [
-                    'en' => 'Comprehensive VAT compliance support tailored to your industry.',
-                    'ar' => 'دعم كامل للامتثال لضريبة القيمة المضافة حسب نشاطك.'
-                ],
-                'meta_title' => 'VAT Compliance Services in UAE',
-                'meta_description' => 'Receive VAT guidance and ensure your business meets FTA compliance standards.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'vat.consultation_compliance',
-                'page_link_for' => 'header',
-                'order_no' => 3,
-            ],
-            [
-                'slug' => 'vat-deregistration',
-                'title' => [
-                    'en' => 'VAT Deregistration',
-                    'ar' => 'إلغاء تسجيل ضريبة القيمة المضافة'
-                ],
-                'description' => [
-                    'en' => 'Assistance with smooth VAT deregistration in line with UAE laws.',
-                    'ar' => 'مساعدة في إلغاء تسجيل ضريبة القيمة المضافة بسلاسة وفقًا لقوانين الإمارات.'
-                ],
-                'hero_title' => [
-                    'en' => 'VAT Deregistration Services',
-                    'ar' => 'خدمات إلغاء تسجيل ضريبة القيمة المضافة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Proper closure of your VAT registration.',
-                    'ar' => 'إغلاق صحيح لتسجيل ضريبتك.'
-                ],
-                'hero_description' => [
-                    'en' => 'Ensure legal compliance when deregistering from VAT with our support.',
-                    'ar' => 'تأكد من الامتثال القانوني عند إلغاء تسجيلك في ضريبة القيمة المضافة.'
-                ],
-                'meta_title' => 'VAT Deregistration UAE',
-                'meta_description' => 'Guided VAT deregistration process for businesses winding down or no longer eligible.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'vat.deregistration',
-                'page_link_for' => 'header',
-                'order_no' => 4,
-            ],
-            // VAT Registration & Compliance End
-            [
-                'slug' => 'manpower-recruitment',
-                'title' => [
-                    'en' => 'Man Power Supply',
-                    'ar' => 'توفير الأيدي العاملة'
-                ],
-                'description' => [
-                    'en' => 'We provide reliable and skilled manpower supply services tailored to meet your business requirements.',
-                    'ar' => 'نحن نقدم خدمات توفير الأيدي العاملة الماهرة والموثوقة لتلبية احتياجات عملك.'
-                ],
-                'hero_title' => [
-                    'en' => 'Man Power Supply',
-                    'ar' => 'توفير الأيدي العاملة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Trusted workforce solutions for your business success.',
-                    'ar' => 'حلول موثوقة للقوى العاملة لنجاح عملك.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our expert team ensures you get the right talent for the right job – quickly and efficiently.',
-                    'ar' => 'يضمن فريقنا المختص حصولك على الكفاءات المناسبة بسرعة وكفاءة.'
-                ],
-                'meta_title' => 'Manpower Supply Services in UAE',
-                'meta_description' => 'We offer skilled manpower supply solutions across various industries in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 2,
-            ],
-
-
-            [
-                'slug' => 'hr-consultancy-services',
-                'title' => [
-                    'en' => 'HR Consultancy Services',
-                    'ar' => 'خدمات استشارات الموارد البشرية'
-                ],
-                'description' => [
-                    'en' => 'We offer strategic HR consultancy solutions to help your business manage talent effectively and grow sustainably.',
-                    'ar' => 'نقدم حلول استشارية استراتيجية في الموارد البشرية لمساعدتك على إدارة المواهب بفعالية وتحقيق نمو مستدام.'
-                ],
-                'hero_title' => [
-                    'en' => 'HR Consultancy Services',
-                    'ar' => 'خدمات استشارات الموارد البشرية'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Empowering your workforce with expert HR guidance.',
-                    'ar' => 'تمكين القوى العاملة لديك من خلال استشارات الموارد البشرية المتخصصة.'
-                ],
-                'hero_description' => [
-                    'en' => 'From recruitment strategies to compliance and performance management, our HR experts are here to support your business.',
-                    'ar' => 'من استراتيجيات التوظيف إلى الامتثال وإدارة الأداء، خبراؤنا في الموارد البشرية يدعمون عملك بكل احترافية.'
-                ],
-                'meta_title' => 'Professional HR Consultancy Services in UAE',
-                'meta_description' => 'Get expert HR advice and customized solutions to optimize your business operations and workforce management.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 3,
-            ],
-
-
-            [
-                'slug' => 'employment-contracts',
-                'title' => [
-                    'en' => 'Employment Contracts',
-                    'ar' => 'عقود التوظيف'
-                ],
-                'description' => [
-                    'en' => 'We assist businesses in drafting and managing employment contracts that comply with UAE labor laws and regulations.',
-                    'ar' => 'نساعد الشركات في إعداد وإدارة عقود التوظيف بما يتوافق مع قوانين وأنظمة العمل في دولة الإمارات.'
-                ],
-                'hero_title' => [
-                    'en' => 'Employment Contracts',
-                    'ar' => 'عقود التوظيف'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Legally compliant and customized contracts for your workforce.',
-                    'ar' => 'عقود قانونية ومخصصة تناسب القوى العاملة لديك.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our team ensures that your employment contracts are clear, fair, and aligned with labor standards to protect both employer and employee rights.',
-                    'ar' => 'يضمن فريقنا أن تكون عقود التوظيف واضحة وعادلة ومتوافقة مع معايير العمل لحماية حقوق صاحب العمل والموظف.'
-                ],
-                'meta_title' => 'Employment Contract Services in UAE',
-                'meta_description' => 'We provide professional support in drafting employment contracts that meet legal standards and business needs.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 4,
-            ],
-
-
-            [
-                'slug' => 'work-permits-labor-cards',
-                'title' => [
-                    'en' => 'Work Permits and Labor Cards',
-                    'ar' => 'تصاريح العمل وبطاقات العمل'
-                ],
-                'description' => [
-                    'en' => 'We help you obtain and renew work permits and labor cards in compliance with UAE labor laws.',
-                    'ar' => 'نساعدك في الحصول على تصاريح العمل وبطاقات العمل أو تجديدها وفقًا لقوانين العمل في دولة الإمارات.'
-                ],
-                'hero_title' => [
-                    'en' => 'Work Permits and Labor Cards',
-                    'ar' => 'تصاريح العمل وبطاقات العمل'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Fast and reliable processing of employee documentation.',
-                    'ar' => 'إجراءات سريعة وموثوقة لوثائق الموظفين.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our experts handle the entire process of issuing and renewing labor cards and work permits, ensuring full legal compliance.',
-                    'ar' => 'يتولى خبراؤنا عملية إصدار وتجديد بطاقات العمل وتصاريح العمل بالكامل، مع ضمان الامتثال الكامل للقانون.'
-                ],
-                'meta_title' => 'Work Permits and Labor Card Services in UAE',
-                'meta_description' => 'Get efficient and compliant services for issuing or renewing work permits and labor cards for your employees.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 5,
-            ],
-
-            [
-                'slug' => 'employee-onboarding-compliance',
-                'title' => [
-                    'en' => 'Employee Onboarding and Compliance',
-                    'ar' => 'الانضمام للموظفين والامتثال'
-                ],
-                'description' => [
-                    'en' => 'We streamline the onboarding process and ensure your company stays compliant with UAE labor laws and regulations.',
-                    'ar' => 'نقوم بتبسيط عملية انضمام الموظفين ونضمن امتثال شركتك لقوانين وأنظمة العمل في الإمارات.'
-                ],
-                'hero_title' => [
-                    'en' => 'Employee Onboarding and Compliance',
-                    'ar' => 'الانضمام للموظفين والامتثال'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Smooth onboarding and legal compliance from day one.',
-                    'ar' => 'انضمام سلس للموظفين وامتثال قانوني من اليوم الأول.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our tailored onboarding services help integrate new employees efficiently while meeting all legal obligations.',
-                    'ar' => 'خدماتنا المخصصة تساعد في دمج الموظفين الجدد بكفاءة مع الالتزام الكامل بالمتطلبات القانونية.'
-                ],
-                'meta_title' => 'Employee Onboarding and Compliance Services UAE',
-                'meta_description' => 'Ensure a seamless onboarding experience for your employees with full regulatory compliance in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 6,
-            ],
-
-
-            [
-                'slug' => 'payroll-management',
-                'title' => [
-                    'en' => 'Payroll Management',
-                    'ar' => 'إدارة الرواتب'
-                ],
-                'description' => [
-                    'en' => 'We provide accurate and timely payroll management services that ensure full compliance with UAE labor laws and WPS requirements.',
-                    'ar' => 'نقدم خدمات إدارة الرواتب بدقة وفي الوقت المناسب مع ضمان الامتثال الكامل لقوانين العمل ونظام حماية الأجور في الإمارات.'
-                ],
-                'hero_title' => [
-                    'en' => 'Payroll Management',
-                    'ar' => 'إدارة الرواتب'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Seamless payroll processing with legal accuracy.',
-                    'ar' => 'معالجة الرواتب بسلاسة وبدقة قانونية.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our payroll solutions cover salary calculations, WPS submissions, and all statutory deductions to keep your business fully compliant.',
-                    'ar' => 'تشمل حلول الرواتب لدينا حساب الرواتب، وتقديم نظام حماية الأجور، وجميع الاستقطاعات القانونية لضمان امتثال شركتك الكامل.'
-                ],
-                'meta_title' => 'Payroll Management Services in UAE',
-                'meta_description' => 'Reliable payroll services that ensure your workforce is paid correctly and your company meets all legal obligations.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 7,
-            ],
-                            // 12. Dubai Notary Services
+// Amer Services Start
 [
-    'slug' => 'document-authentication',
+    'slug' => 'residency-visa-issuance-renewal',
     'title' => [
-        'en' => 'Document Authentication',
-        'ar' => 'توثيق المستندات'
+        'en' => 'Residency Visa Issuance/Renewal',
+        'ar' => 'إصدار/تجديد تأشيرة الإقامة',
     ],
     'description' => [
-        'en' => 'We authenticate your documents with full legal validity in Dubai.',
-        'ar' => 'نقوم بتوثيق مستنداتك بصلاحية قانونية كاملة في دبي.'
+        'en' => 'Get assistance with issuing or renewing your UAE residency visa through Amer Services.',
+        'ar' => 'احصل على المساعدة في إصدار أو تجديد تأشيرة الإقامة في الإمارات من خلال خدمات آمر.',
     ],
     'hero_title' => [
-        'en' => 'Trusted Document Authentication',
-        'ar' => 'توثيق مستندات موثوق'
+        'en' => 'Residency Visa Services',
+        'ar' => 'خدمات تأشيرة الإقامة',
     ],
     'hero_sub_title' => [
-        'en' => 'Certified and compliant authentication.',
-        'ar' => 'توثيق معتمد ومتوافق مع القوانين.'
+        'en' => 'Secure and renew your UAE residency effortlessly.',
+        'ar' => 'أصدر وجدد تأشيرتك بسهولة.',
     ],
     'hero_description' => [
-        'en' => 'Ensure your documents are legally recognized in the UAE.',
-        'ar' => 'تأكد من أن مستنداتك معترف بها قانونياً في الإمارات.'
+        'en' => 'Professional visa processing for individuals and families.',
+        'ar' => 'إجراءات تأشيرة احترافية للأفراد والعائلات.',
     ],
-    'meta_title' => 'Dubai Document Authentication Services',
-    'meta_description' => 'Professional document authentication services in Dubai for legal use.',
-    'type' => 'notary-service',
+    'meta_title' => 'Residency Visa Issuance and Renewal',
+    'meta_description' => 'Apply or renew your UAE residency visa with expert support via Amer.',
+    'type' => 'amer-service',
     'status' => 'published',
-    'route_name' => 'front.dubai-notary.authentication', 
+    'route_name' => 'amer.residency_visa_issuance_renewal',
     'page_link_for' => 'header',
     'order_no' => 1,
 ],
 [
-    'slug' => 'real-estate-transactions',
+    'slug' => 'open-file',
     'title' => [
-        'en' => 'Real Estate Transactions',
-        'ar' => 'المعاملات العقارية'
+        'en' => 'Open File',
+        'ar' => 'فتح ملف',
     ],
     'description' => [
-        'en' => 'We notarize all your property and real estate documents in Dubai.',
-        'ar' => 'نقوم بتوثيق جميع مستندات العقارات الخاصة بك في دبي.'
+        'en' => 'Open a new immigration file required for residency processing.',
+        'ar' => 'افتح ملف الهجرة المطلوب لمعالجة الإقامة.',
     ],
     'hero_title' => [
-        'en' => 'Real Estate Notarization',
-        'ar' => 'توثيق العقارات'
+        'en' => 'Open Immigration File',
+        'ar' => 'فتح ملف هجرة',
     ],
     'hero_sub_title' => [
-        'en' => 'Reliable property documentation services.',
-        'ar' => 'خدمات توثيق الممتلكات الموثوقة.'
+        'en' => 'Step one for visa and residency services.',
+        'ar' => 'الخطوة الأولى لخدمات التأشيرات والإقامة.',
     ],
     'hero_description' => [
-        'en' => 'Complete support for buying, selling, or leasing property in Dubai.',
-        'ar' => 'دعم كامل للبيع أو الشراء أو التأجير في دبي.'
+        'en' => 'We assist in opening your immigration file quickly and easily.',
+        'ar' => 'نساعدك في فتح ملف الهجرة بسرعة وسهولة.',
     ],
-    'meta_title' => 'Real Estate Notary Dubai',
-    'meta_description' => 'Legal notarization for all types of real estate transactions in Dubai.',
-    'type' => 'notary-service',
+    'meta_title' => 'Open Immigration File',
+    'meta_description' => 'Initiate your immigration process by opening a file through Amer Services.',
+    'type' => 'amer-service',
     'status' => 'published',
-    'route_name' => 'front.dubai-notary.transactions', 
+    'route_name' => 'amer.open_file',
     'page_link_for' => 'header',
     'order_no' => 2,
 ],
 [
-    'slug' => 'affidavits-declarations',
+    'slug' => 'visa-cancellations',
     'title' => [
-        'en' => 'Affidavits and Declarations',
-        'ar' => 'الإقرارات والتصريحات'
+        'en' => 'Visa Cancellations',
+        'ar' => 'إلغاء التأشيرات',
     ],
     'description' => [
-        'en' => 'Create and notarize affidavits and statutory declarations quickly and legally.',
-        'ar' => 'إعداد وتوثيق الإقرارات القانونية بسرعة وبشكل قانوني.'
+        'en' => 'Cancel your UAE visa properly to avoid penalties.',
+        'ar' => 'ألغِ تأشيرتك الإماراتية بالشكل الصحيح لتجنب الغرامات.',
     ],
     'hero_title' => [
-        'en' => 'Legal Affidavits',
-        'ar' => 'إقرارات قانونية'
+        'en' => 'Visa Cancellation Services',
+        'ar' => 'خدمات إلغاء التأشيرات',
     ],
     'hero_sub_title' => [
-        'en' => 'Personal and business declarations notarized.',
-        'ar' => 'توثيق الإقرارات الشخصية والتجارية.'
+        'en' => 'Quick and compliant visa cancellation.',
+        'ar' => 'إلغاء التأشيرة بسرعة ووفق القوانين.',
     ],
     'hero_description' => [
-        'en' => 'We provide certified notarization for various affidavit types.',
-        'ar' => 'نوفر توثيقاً معتمداً لأنواع مختلفة من الإقرارات.'
+        'en' => 'Expert handling of visa cancellations with minimal hassle.',
+        'ar' => 'إلغاء تأشيرة احترافي وسهل.',
     ],
-    'meta_title' => 'Affidavit Notary Dubai',
-    'meta_description' => 'Dubai notary services for personal and official affidavits and declarations.',
-    'type' => 'notary-service',
+    'meta_title' => 'Visa Cancellation Service',
+    'meta_description' => 'Use Amer to process and manage visa cancellations in the UAE.',
+    'type' => 'amer-service',
     'status' => 'published',
-    'route_name' => 'front.dubai-notary.affidavits-declarations', 
+    'route_name' => 'amer.visa_cancellations',
     'page_link_for' => 'header',
     'order_no' => 3,
 ],
 [
-    'slug' => 'power-of-attorney-notarization',
+    'slug' => 'emirates-id-applications',
     'title' => [
-        'en' => 'Power of Attorney (POA) Notarization',
-        'ar' => 'توثيق الوكالة القانونية'
+        'en' => 'Emirates ID Applications',
+        'ar' => 'طلبات بطاقة الهوية الإماراتية',
     ],
     'description' => [
-        'en' => 'Draft and notarize your Power of Attorney documents quickly and securely.',
-        'ar' => 'إعداد وتوثيق مستندات الوكالة القانونية بسرعة وأمان.'
+        'en' => 'Apply or renew your Emirates ID with our help.',
+        'ar' => 'قدّم أو جدّد بطاقة الهوية الإماراتية بمساعدتنا.',
     ],
     'hero_title' => [
-        'en' => 'POA Notarization',
-        'ar' => 'توثيق الوكالة'
+        'en' => 'Emirates ID Services',
+        'ar' => 'خدمات بطاقة الهوية',
     ],
     'hero_sub_title' => [
-        'en' => 'Legally valid POA services in Dubai.',
-        'ar' => 'خدمات وكالة قانونية صالحة في دبي.'
+        'en' => 'We assist in every step of Emirates ID processing.',
+        'ar' => 'نساعدك في جميع مراحل الحصول على بطاقة الهوية.',
     ],
     'hero_description' => [
-        'en' => 'We handle all types of Power of Attorney notarizations.',
-        'ar' => 'نتولى جميع أنواع توثيق الوكالات القانونية.'
+        'en' => 'Fast and reliable Emirates ID support.',
+        'ar' => 'دعم سريع وموثوق لبطاقة الهوية.',
     ],
-    'meta_title' => 'POA Notary Services Dubai',
-    'meta_description' => 'Certified POA notarization services in Dubai for legal and business use.',
-    'type' => 'notary-service',
+    'meta_title' => 'Emirates ID Application',
+    'meta_description' => 'Get help with Emirates ID registration and renewal via Amer.',
+    'type' => 'amer-service',
     'status' => 'published',
-    'route_name' => 'front.dubai-notary.attorney', 
+    'route_name' => 'amer.emirates_id_applications',
     'page_link_for' => 'header',
     'order_no' => 4,
 ],
-                // Dubai Notary Services end
-
-
-    // 14. Investment Plans
-
-    [
-        'slug' => 'global-investment-solutions',
-        'title' => [
-            'en' => 'Global Investment Solutions',
-            'ar' => 'حلول الاستثمار العالمية'
-        ],
-        'description' => [
-            'en' => 'Comprehensive investment solutions tailored for global markets.',
-            'ar' => 'حلول استثمارية شاملة مصممة للأسواق العالمية.'
-        ],
-        'hero_title' => [
-            'en' => 'Trusted Global Investment',
-            'ar' => 'الاستثمار العالمي الموثوق'
-        ],
-        'hero_sub_title' => [
-            'en' => 'Expert strategies for international growth.',
-            'ar' => 'استراتيجيات خبراء للنمو الدولي.'
-        ],
-        'hero_description' => [
-            'en' => 'Expand your portfolio with our global investment expertise.',
-            'ar' => 'وسع محفظتك الاستثمارية مع خبرتنا العالمية.'
-        ],
-        'meta_title' => 'Global Investment Solutions',
-        'meta_description' => 'Expert global investment planning and solutions for diverse portfolios.',
-        'type' => 'investment-plan',
-        'status' => 'published',
-        'route_name' => 'front.investmentplans.global_investment',
-        'page_link_for' => 'header',
-        'order_no' => 1,
+[
+    'slug' => 'medical-fitness-tests',
+    'title' => [
+        'en' => 'Medical Fitness Tests',
+        'ar' => 'اختبارات اللياقة الطبية',
     ],
-    [
-        'slug' => 'investment-planning-advisory',
-        'title' => [
-            'en' => 'Investment Planning and Advisory',
-            'ar' => 'تخطيط الاستثمار والاستشارات'
-        ],
-        'description' => [
-            'en' => 'Personalized investment planning and advisory services.',
-            'ar' => 'خدمات تخطيط واستشارات استثمارية مخصصة.'
-        ],
-        'hero_title' => [
-            'en' => 'Strategic Investment Advice',
-            'ar' => 'نصائح استثمارية استراتيجية'
-        ],
-        'hero_sub_title' => [
-            'en' => 'Plan your future with expert guidance.',
-            'ar' => 'خطط مستقبلك مع التوجيه الخبير.'
-        ],
-        'hero_description' => [
-            'en' => 'Get tailored advice to maximize your investment returns.',
-            'ar' => 'احصل على نصائح مخصصة لتعظيم عوائد استثماراتك.'
-        ],
-        'meta_title' => 'Investment Planning and Advisory',
-        'meta_description' => 'Professional investment planning and advisory services to help you succeed.',
-        'type' => 'investment-plan',
-        'status' => 'published',
-        'route_name' => 'front.investmentplans.investment_advisory',
-        'page_link_for' => 'header',
-        'order_no' => 2,
+    'description' => [
+        'en' => 'We help schedule your DHA-approved medical fitness test.',
+        'ar' => 'نساعدك في حجز اختبار اللياقة الطبية المعتمد من هيئة الصحة بدبي.',
     ],
-    [
-        'slug' => 'property-investment-opportunities',
-        'title' => [
-            'en' => 'Property Investment Opportunities',
-            'ar' => 'فرص الاستثمار العقاري'
-        ],
-        'description' => [
-            'en' => 'Discover lucrative property investment options worldwide.',
-            'ar' => 'اكتشف فرص استثمار عقاري مربحة حول العالم.'
-        ],
-        'hero_title' => [
-            'en' => 'Real Estate Investment',
-            'ar' => 'الاستثمار العقاري'
-        ],
-        'hero_sub_title' => [
-            'en' => 'Unlock your wealth through property investment.',
-            'ar' => 'افتح ثروتك عبر الاستثمار العقاري.'
-        ],
-        'hero_description' => [
-            'en' => 'Explore diverse real estate projects with high returns.',
-            'ar' => 'استكشف مشاريع عقارية متنوعة ذات عوائد مرتفعة.'
-        ],
-        'meta_title' => 'Property Investment Opportunities',
-        'meta_description' => 'Best property investment opportunities with professional guidance.',
-        'type' => 'investment-plan',
-        'status' => 'published',
-        'route_name' => 'front.investmentplans.property_investment',
-        'page_link_for' => 'header',
-        'order_no' => 3,
+    'hero_title' => [
+        'en' => 'Medical Fitness Certification',
+        'ar' => 'شهادة اللياقة الطبية',
     ],
-    [
-        'slug' => 'business-investment-strategies',
-        'title' => [
-            'en' => 'Business Investment Strategies',
-            'ar' => 'استراتيجيات الاستثمار في الأعمال'
-        ],
-        'description' => [
-            'en' => 'Effective strategies for investing in businesses and startups.',
-            'ar' => 'استراتيجيات فعالة للاستثمار في الأعمال والشركات الناشئة.'
-        ],
-        'hero_title' => [
-            'en' => 'Smart Business Investments',
-            'ar' => 'استثمارات الأعمال الذكية'
-        ],
-        'hero_sub_title' => [
-            'en' => 'Maximize growth through strategic investments.',
-            'ar' => 'زيادة النمو من خلال الاستثمارات الاستراتيجية.'
-        ],
-        'hero_description' => [
-            'en' => 'We help you choose the right business investment options.',
-            'ar' => 'نساعدك على اختيار خيارات الاستثمار الصحيحة في الأعمال.'
-        ],
-        'meta_title' => 'Business Investment Strategies',
-        'meta_description' => 'Strategic guidance for successful business investments.',
-        'type' => 'investment-plan',
-        'status' => 'published',
-        'route_name' => 'front.investmentplans.business_strategy',
-        'page_link_for' => 'header',
-        'order_no' => 4,
+    'hero_sub_title' => [
+        'en' => 'Essential for all visa processing.',
+        'ar' => 'ضروري لجميع معاملات التأشيرة.',
     ],
-    [
-        'slug' => 'risk-management-diversification',
-        'title' => [
-            'en' => 'Risk Management and Diversification',
-            'ar' => 'إدارة المخاطر والتنويع'
-        ],
-        'description' => [
-            'en' => 'Protect your investments with risk management and diversification techniques.',
-            'ar' => 'حماية استثماراتك من خلال تقنيات إدارة المخاطر والتنويع.'
-        ],
-        'hero_title' => [
-            'en' => 'Secure Investment Portfolio',
-            'ar' => 'محفظة استثمارية آمنة'
-        ],
-        'hero_sub_title' => [
-            'en' => 'Balance risk and reward effectively.',
-            'ar' => 'وازن بين المخاطر والمكافآت بفعالية.'
-        ],
-        'hero_description' => [
-            'en' => 'Achieve long-term stability with diversified investments.',
-            'ar' => 'حقق استقراراً طويل الأمد مع استثمارات متنوعة.'
-        ],
-        'meta_title' => 'Risk Management and Diversification',
-        'meta_description' => 'Comprehensive risk management and diversification strategies for investments.',
-        'type' => 'investment-plan',
-        'status' => 'published',
-        'route_name' => 'front.investmentplans.risk_management
-
-',
-        'page_link_for' => 'header',
-        'order_no' => 5,
+    'hero_description' => [
+        'en' => 'Fast, accurate, and compliant fitness test scheduling.',
+        'ar' => 'حجز سريع ودقيق لاختبارات اللياقة.',
     ],
+    'meta_title' => 'DHA Medical Fitness Services',
+    'meta_description' => 'Get your visa-required medical fitness test scheduled through Amer.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.medical_fitness_tests',
+    'page_link_for' => 'header',
+    'order_no' => 5,
+],
+[
+    'slug' => 'entry-permits',
+    'title' => [
+        'en' => 'Entry Permits',
+        'ar' => 'تصاريح الدخول',
+    ],
+    'description' => [
+        'en' => 'Apply for UAE entry permits for employment, family, and more.',
+        'ar' => 'قدّم طلب تصريح دخول للإمارات للعمل أو العائلة وغير ذلك.',
+    ],
+    'hero_title' => [
+        'en' => 'UAE Entry Permits',
+        'ar' => 'تصاريح دخول الإمارات',
+    ],
+    'hero_sub_title' => [
+        'en' => 'Authorized and fast entry permit processing.',
+        'ar' => 'معالجة سريعة ومصرح بها لتصاريح الدخول.',
+    ],
+    'hero_description' => [
+        'en' => 'All types of entry permits handled professionally.',
+        'ar' => 'نقوم بإصدار جميع أنواع تصاريح الدخول باحترافية.',
+    ],
+    'meta_title' => 'UAE Entry Permit Application',
+    'meta_description' => 'Amer helps you apply for legal UAE entry permits smoothly.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.entry_permits',
+    'page_link_for' => 'header',
+    'order_no' => 6,
+],
+[
+    'slug' => 'change-status',
+    'title' => [
+        'en' => 'Change Status',
+        'ar' => 'تغيير الوضع القانوني',
+    ],
+    'description' => [
+        'en' => 'Change visa status without exiting the UAE.',
+        'ar' => 'غيّر حالة تأشيرتك دون مغادرة الإمارات.',
+    ],
+    'hero_title' => [
+        'en' => 'Visa Status Change',
+        'ar' => 'تغيير حالة التأشيرة',
+    ],
+    'hero_sub_title' => [
+        'en' => 'Quick in-country visa status change.',
+        'ar' => 'تغيير سريع لحالة التأشيرة داخل الدولة.',
+    ],
+    'hero_description' => [
+        'en' => 'Avoid travel and get your status updated legally.',
+        'ar' => 'تجنّب السفر وقم بتحديث حالتك بشكل قانوني.',
+    ],
+    'meta_title' => 'UAE Visa Change Status',
+    'meta_description' => 'Amer helps you change your visa status while staying in UAE.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.change_status',
+    'page_link_for' => 'header',
+    'order_no' => 7,
+],
+[
+    'slug' => 'visit-visas',
+    'title' => [
+        'en' => 'Visit Visas',
+        'ar' => 'تأشيرات الزيارة',
+    ],
+    'description' => [
+        'en' => 'Apply for short or long-term visit visas for your guests.',
+        'ar' => 'قدّم طلب تأشيرة زيارة قصيرة أو طويلة لضيوفك.',
+    ],
+    'hero_title' => [
+        'en' => 'Visitor Visa Services',
+        'ar' => 'خدمات تأشيرات الزيارة',
+    ],
+    'hero_sub_title' => [
+        'en' => 'Tourist and family visit visas made simple.',
+        'ar' => 'تأشيرات سياحية وزيارات عائلية بسهولة.',
+    ],
+    'hero_description' => [
+        'en' => 'Your complete solution for UAE visit visas.',
+        'ar' => 'الحل الكامل لتأشيرات زيارة الإمارات.',
+    ],
+    'meta_title' => 'UAE Visit Visa Services',
+    'meta_description' => 'Easily apply for visit visas with Amer support.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.visit_visas',
+    'page_link_for' => 'header',
+    'order_no' => 8,
+],
+[
+    'slug' => 'domestic-worker-visa',
+    'title' => [
+        'en' => 'Domestic Worker Visa',
+        'ar' => 'تأشيرة العمالة المنزلية',
+    ],
+    'description' => [
+        'en' => 'Apply for visa and legal formalities for hiring a housemaid or driver.',
+        'ar' => 'قدّم طلب التأشيرة والإجراءات القانونية لتوظيف عاملة منزلية أو سائق.',
+    ],
+    'hero_title' => [
+        'en' => 'Maid & Driver Visa',
+        'ar' => 'تأشيرة الخدم والسائقين',
+    ],
+    'hero_sub_title' => [
+        'en' => 'Legalize your domestic staff hiring.',
+        'ar' => 'شرّع توظيف العاملين في منزلك.',
+    ],
+    'hero_description' => [
+        'en' => 'We take care of domestic worker visa processing.',
+        'ar' => 'نقوم بجميع إجراءات تأشيرات العمالة المنزلية.',
+    ],
+    'meta_title' => 'Domestic Worker Visa UAE',
+    'meta_description' => 'Use Amer to apply for domestic helper visas quickly.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.domestic_worker_visa',
+    'page_link_for' => 'header',
+    'order_no' => 9,
+],
+[
+    'slug' => 'travel-history',
+    'title' => [
+        'en' => 'Travel History',
+        'ar' => 'سجل السفر',
+    ],
+    'description' => [
+        'en' => 'Get official reports of your UAE travel history.',
+        'ar' => 'احصل على تقارير رسمية عن سجل سفرك داخل الإمارات.',
+    ],
+    'hero_title' => [
+        'en' => 'UAE Travel History Report',
+        'ar' => 'تقرير سجل السفر',
+    ],
+    'hero_sub_title' => [
+        'en' => 'For visa, immigration, or legal purposes.',
+        'ar' => 'لأغراض التأشيرات والهجرة والقانونية.',
+    ],
+    'hero_description' => [
+        'en' => 'We generate travel history from official records.',
+        'ar' => 'نقوم بإصدار سجل السفر من الجهات الرسمية.',
+    ],
+    'meta_title' => 'UAE Travel History',
+    'meta_description' => 'Request your official UAE entry/exit travel history through Amer.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.travel_history',
+    'page_link_for' => 'header',
+    'order_no' => 10,
+],
+[
+    'slug' => 'absconding-overstay-removal',
+    'title' => [
+        'en' => 'Absconding Removal & Overstay Fines',
+        'ar' => 'إزالة بلاغ الهروب وغرامات تجاوز الإقامة',
+    ],
+    'description' => [
+        'en' => 'Clear absconding status and settle overstay fines legally.',
+        'ar' => 'قم بإزالة بلاغ الهروب وتسوية غرامات تجاوز الإقامة بشكل قانوني.',
+    ],
+    'hero_title' => [
+        'en' => 'Absconding & Overstay Solutions',
+        'ar' => 'حلول الهروب وتجاوز الإقامة',
+    ],
+    'hero_sub_title' => [
+        'en' => 'Legal support to remove immigration violations.',
+        'ar' => 'دعم قانوني لإزالة المخالفات المتعلقة بالتأشيرة.',
+    ],
+    'hero_description' => [
+        'en' => 'Resolve your visa issues through proper legal channels.',
+        'ar' => 'حل مشكلات التأشيرة الخاصة بك عبر القنوات القانونية المناسبة.',
+    ],
+    'meta_title' => 'Remove Absconding and Pay Fines',
+    'meta_description' => 'Clear UAE visa absconding cases and pay overstaying fines with Amer help.',
+    'type' => 'amer-service',
+    'status' => 'published',
+    'route_name' => 'amer.absconding_overstay_removal',
+    'page_link_for' => 'header',
+    'order_no' => 11,
+],
+// Amer Services End
 
-//investment plan end
-            [
-                'slug' => 'property-buying-selling-assistance',
-                'title' => [
-                    'en' => 'Property Buying and Selling Assistance',
-                    'ar' => 'مساعدة في شراء وبيع العقارات'
-                ],
-                'description' => [
-                    'en' => 'We guide you through every step of property buying and selling, ensuring legal compliance and smooth transactions.',
-                    'ar' => 'نرشدك في كل خطوة من خطوات شراء وبيع العقارات مع ضمان الامتثال القانوني وسلاسة المعاملات.'
-                ],
-                'hero_title' => [
-                    'en' => 'Property Buying & Selling',
-                    'ar' => 'شراء وبيع العقارات'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Expert guidance for real estate investments.',
-                    'ar' => 'إرشاد خبير للاستثمار العقاري.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our experienced team ensures you get the best deals while complying with all real estate regulations in the UAE.',
-                    'ar' => 'يضمن فريقنا ذو الخبرة حصولك على أفضل الصفقات مع الالتزام بجميع قوانين العقارات في الإمارات.'
-                ],
-                'meta_title' => 'Property Buying and Selling in UAE',
-                'meta_description' => 'Professional support for purchasing or selling property with complete transparency and legal assurance.',
-                'type' => 'real-estate-service',
-                'status' => 'published',
-                'route_name' => 'front.realestate.buying.selling',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-
-            [
-                'slug' => 'real-estate-transactions',
-                'title' => [
-                    'en' => 'Real Estate Transactions',
-                    'ar' => 'المعاملات العقارية'
-                ],
-                'description' => [
-                    'en' => 'We handle all types of real estate transactions with accuracy and full legal compliance.',
-                    'ar' => 'نتولى جميع أنواع المعاملات العقارية بدقة وامتثال قانوني كامل.'
-                ],
-                'hero_title' => [
-                    'en' => 'Real Estate Transactions',
-                    'ar' => 'المعاملات العقارية'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Transparent and secure real estate processes.',
-                    'ar' => 'عمليات عقارية شفافة وآمنة.'
-                ],
-                'hero_description' => [
-                    'en' => 'From documentation to final signatures, we manage all transaction steps to protect your property interests.',
-                    'ar' => 'من التوثيق إلى التوقيعات النهائية، ندير جميع خطوات المعاملة لحماية مصالحك العقارية.'
-                ],
-                'meta_title' => 'Real Estate Transactions in UAE',
-                'meta_description' => 'Comprehensive support for real estate deals including buying, selling, and property transfers.',
-                'type' => 'real-estate-service',
-                'status' => 'published',
-                'route_name' => 'front.realestate.transactions',
-                'page_link_for' => 'header',
-                'order_no' => 2,
-            ],
-
-            [
-                'slug' => 'property-management-solutions',
-                'title' => [
-                    'en' => 'Property Management Solutions',
-                    'ar' => 'حلول إدارة الممتلكات'
-                ],
-                'description' => [
-                    'en' => 'We offer comprehensive property management services to help you maintain and maximize the value of your real estate assets.',
-                    'ar' => 'نقدم خدمات إدارة ممتلكات شاملة لمساعدتك في الحفاظ على قيمة أصولك العقارية وزيادتها.'
-                ],
-                'hero_title' => [
-                    'en' => 'Property Management',
-                    'ar' => 'إدارة الممتلكات'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Reliable care for your property investments.',
-                    'ar' => 'رعاية موثوقة لاستثماراتك العقارية.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our solutions cover tenant management, maintenance, rent collection, and more — ensuring hassle-free ownership.',
-                    'ar' => 'تغطي حلولنا إدارة المستأجرين، الصيانة، تحصيل الإيجار والمزيد — لضمان امتلاك خالٍ من المتاعب.'
-                ],
-                'meta_title' => 'Property Management Services in UAE',
-                'meta_description' => 'Efficient and professional services for managing residential and commercial properties across the UAE.',
-                'type' => 'real-estate-service',
-                'status' => 'published',
-                'route_name' => 'front.realestate.management',
-                'page_link_for' => 'header',
-                'order_no' => 3,
-            ],
-
-            [
-                'slug' => 'rental-agreements-renewals',
-                'title' => [
-                    'en' => 'Rental Agreements and Renewals',
-                    'ar' => 'عقود الإيجار والتجديدات'
-                ],
-                'description' => [
-                    'en' => 'We prepare and renew rental agreements with full legal accuracy, ensuring protection for both tenants and landlords.',
-                    'ar' => 'نقوم بإعداد وتجديد عقود الإيجار بدقة قانونية كاملة لضمان الحماية للمستأجرين والمالكين.'
-                ],
-                'hero_title' => [
-                    'en' => 'Rental Agreements & Renewals',
-                    'ar' => 'عقود الإيجار والتجديدات'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Hassle-free rental documentation and renewals.',
-                    'ar' => 'توثيق وتجديد عقود الإيجار بسهولة وبدون عناء.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our team ensures all rental documents are compliant with UAE laws and registered properly to avoid future disputes.',
-                    'ar' => 'يضمن فريقنا التزام جميع وثائق الإيجار بالقوانين الإماراتية وتسجيلها بالشكل الصحيح لتجنب النزاعات مستقبلاً.'
-                ],
-                'meta_title' => 'Rental Contract Services in UAE',
-                'meta_description' => 'Trusted services for drafting, reviewing, and renewing rental contracts with complete legal compliance.',
-                'type' => 'real-estate-service',
-                'status' => 'published',
-                'route_name' => 'front.realestate.rentals',
-                'page_link_for' => 'header',
-                'order_no' => 4,
-            ],
-
-            [
-                'slug' => 'visa-cancellation',
-                'title' => [
-                    'en' => 'visa cancellation',
-                    'ar' => 'إلغاء التأشيرة'
-                ],
-                'description' => [
-                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                    'ar' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                ],
-                'hero_title' => [
-                    'en' => 'visa cancellation',
-                    'ar' => 'إلغاء التأشيرة'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Get your business banking set up with expert help.',
-                    'ar' => 'قم بإعداد حسابك المصرفي للأعمال بمساعدة الخبراء.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
-                    'ar' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
-                ],
-
-                'meta_title' => 'Corporate Bank Account Setup',
-                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'open-file',
-                'title' => [
-                    'en' => 'Open The Files Title',
-                    'ar' => 'Open The Files Title Arabic'
-                ],
-                'description' => [
-                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                    'ar' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs Arabic.',
-                ],
-                'hero_title' => [
-                    'en' => 'Open The Files',
-                    'ar' => 'Open The Files Arabic'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Get your business banking set up with expert help.',
-                    'ar' => 'Get your business banking set up with expert help Arabic.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
-                    'ar' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup Arabic.',
-                ],
-                'meta_title' => 'Corporate Bank Account Setup',
-                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.open.file',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'residency-visa',
-                'title' => [
-                    'en' => 'Residency Visa',
-                    'ar' => 'Residency Visa Arabic'
-                ],
-                'description' => [
-                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                    'ar' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs Arabic.',
-                ],
-                'hero_title' => [
-                    'en' => 'Hero Title Residency Visa',
-                    'ar' => 'Hero Title Residency Visa Arabic'
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Get your business banking set up with expert help.',
-                    'ar' => 'Get your business banking set up with expert help Arabic.'
-                ],
-                'hero_description' => [
-                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
-                    'ar' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup Arabic.',
-                ],
-                'meta_title' => 'Corporate Bank Account Setup',
-                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
-                'type' => 'amer-service',
-                'status' => 'published',
-                'route_name' => 'front.residency.visa',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'corporate-bank-account-setup',
-                'title' => [
-                    'en' => 'Corporate Bank Account Setup',
-                    'ar' => 'Corporate Bank Account Setup Arabic'
-                ],
-                'description' => [
-                    'en' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs.',
-                    'ar' => 'We offer professional assistance in setting up corporate bank accounts tailored to your business needs Arabic.'
-                ],
-                'hero_title' => [
-                    'en' => 'Corporate Banking Made Easy',
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Get your business banking set up with expert help.',
-                ],
-                'hero_description' => [
-                    'en' => 'Our experienced consultants ensure a smooth and hassle-free corporate account setup.',
-                ],
-                'meta_title' => 'Corporate Bank Account Setup',
-                'meta_description' => 'Professional support for opening corporate bank accounts in the UAE.',
-                'type' => 'visa',
-                'status' => 'published',
-                'route_name' => 'pages.show',
-                'page_link_for' => 'header',
-                'order_no' => 1,
-            ],
-            [
-                'slug' => 'personal-bank-account-assistance',
-                'title' => ['en' => 'Personal Bank Account Assistance'],
-                'description' => [
-                    'en' => 'Get expert guidance for personal bank account opening with ease and convenience.',
-                ],
-                'hero_title' => [
-                    'en' => 'Open Your Personal Bank Account',
-                ],
-                'hero_sub_title' => [
-                    'en' => 'Seamless personal banking experience.',
-                ],
-                'hero_description' => [
-                    'en' => 'Let us guide you through every step of opening a personal account.',
-                ],
-
-                'meta_title' => 'Personal Bank Account Help',
-                'meta_description' => 'Reliable help in personal banking and account setup.',
-                'type' => 'visa',
-                'status' => 'published',
-                'route_name' => 'pages.show',
-                'page_link_for' => 'footer',
-                'order_no' => 2,
-            ],
         ];
         foreach ($pages as $page) {
             Page::updateOrCreate(
