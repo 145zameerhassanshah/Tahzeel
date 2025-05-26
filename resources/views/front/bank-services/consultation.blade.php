@@ -4,9 +4,9 @@
 
     @include('front.partials._hero_section')
 
-    @php($section = $page->sections->where('type', 'L-2-R')->first())
-    @if ($section)
-        @include('front.partials._left_section', ['section' => $section]);
+
+     @if ($page->blocks->has(0))
+        @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
 
 
@@ -22,8 +22,6 @@
     @endif
 
 
-
-
     {{-- Call To Action --}}
     @php($call_to_actions = $page->callToActions)
     @if ($call_to_actions->isNotEmpty())
@@ -31,27 +29,9 @@
     @endif
 
 
-
     @if ($page->elements->has(0))
         @include('front.partials._element-features-2', ['element' => $page->elements[0]])
     @endif
-
-    @if ($page->blocks->has(0))
-        @include('front.partials._block2', ['block' => $page->blocks[0]])
-    @endif
-
-    {{-- Document Required Section --}}
-    @php($section = $page->sectionTitles->where('type', 'document')->first())
-    @if ($section)
-        @include('front.partials._section_title', ['section' => $section])
-    @endif
-    @if ($page->documentRequireds->isNotEmpty())
-        @include('front.partials._docs', [
-            'document_requireds' => $page->documentRequireds,
-        ])
-    @endif
-
-    @include('front.partials._cta3')
 
 
     {{-- Testimonials --}}
@@ -72,8 +52,6 @@
 
 
     @include('front.partials.contact-us')
-
-
 
 
     @include('front.partials.affiliations')

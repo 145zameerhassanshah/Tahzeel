@@ -5,12 +5,9 @@
     @include('front.partials._hero_section')
 
 
-    @php($section = $page->sections->where('type', 'L-2-R')->first())
-    @if ($section)
-        @include('front.partials._left_section', ['section' => $section]);
+     @if ($page->blocks->has(0))
+        @include('front.partials._block', ['block' => $page->blocks[0]])
     @endif
-
-
 
 
     {{-- Why Us Image --}}
@@ -25,16 +22,6 @@
     @endif
 
 
-    @if ($page->blocks->has(0))
-        @include('front.partials._block2', ['block' => $page->blocks[0]])
-    @endif
-
-
-    @if ($page->blocks->has(1))
-        @include('front.partials._block2', ['block' => $page->blocks[1]])
-    @endif
-
-
     {{-- Call To Action --}}
     @php($call_to_actions = $page->callToActions)
     @if ($call_to_actions->isNotEmpty())
@@ -44,11 +31,6 @@
 
     @if ($page->elements->has(0))
         @include('front.partials._element-features-2', ['element' => $page->elements[0]])
-    @endif
-
-
-    @if ($page->elements->has(1))
-        @include('front.partials._element-features-2', ['element' => $page->elements[1]])
     @endif
 
 
