@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Why Chosse Us\'')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -14,10 +14,10 @@
                 {{-- content --}}
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title mt-1">{{ __('WhyChooseUs List') }}</h3>
+                        <h3 class="card-title mt-1">{{ __('Why Choose Us List') }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('admin.why-choose-us.add', ['slug' => $slug]) }}"
-                                class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add</a>
+                                class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Why Choose Us</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -39,11 +39,9 @@
                                         <td>
                                             {{ ++$key }}
                                         </td>
-                                        <td>{{ $why->getTranslation('icon', 'en') }}</td>
-                                        <td>{{ $why->getTranslation('icon', 'ar') }}</td>
+                                        <td><i class="{!! $why->getTranslation('icon', 'en') !!}"></i></td>
 
                                         <td>{{ $why->getTranslation('title', 'en') }}</td>
-                                        <td>{{ $why->getTranslation('title', 'ar') }}</td>
 
                                         <td>
                                             @if ($why->status == 'active')

@@ -10,9 +10,9 @@ use App\Http\Controllers\Controller;
 
 class FeatureImageController extends Controller
 {
-    public function index( $slug)
+    public function index($slug)
     {
-        $page = Page::where('slug',$slug)->first();
+        $page = Page::where('slug', $slug)->first();
         $feature_image = FeatureImage::where('page_id', $page->id)->get();
         return view('admin.page.partials.feature_image_list', compact('feature_image', 'slug'));
     }
@@ -51,9 +51,12 @@ class FeatureImageController extends Controller
     public function store(Request $request, $slug)
     {
         $request->validate([
-            'title' => 'required|max:250',
-            'subtitle' => 'required|max:250',
-            'description' => 'required',
+            'title.en' => 'required|max:250',
+            'title.ar' => 'required|max:250',
+            'subtitle.en' => 'nullable|max:250',
+            'subtitle.ar' => 'nullable|max:250',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'image' => 'required',
             'order_no' => 'required|max:250',
             'status' => 'required',
@@ -87,7 +90,7 @@ class FeatureImageController extends Controller
         }
         $feature_image->save();
         $notification = [
-            'alert' => 'success', 
+            'alert' => 'success',
             'message' => 'Feature Image added Successfully!'
         ];
         return redirect()->route('admin.feature_image.index', ['slug' => $slug])->with('notification', $notification);
@@ -100,7 +103,7 @@ class FeatureImageController extends Controller
         @unlink('assets/admin/uploads/feature_image/' . $feature_image->image);
         $feature_image->delete();
         $notification = [
-            'alert' => 'success', 
+            'alert' => 'success',
             'message' => 'Feature Image deleted Successfully!'
         ];
         return redirect()->back()->with('notification', $notification);
@@ -118,11 +121,14 @@ class FeatureImageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|max:250',
-            'subtitle' => 'required|max:250',
-            'description' => 'required',
-            'order_no' => 'required|max:250',
+            'title.en' => 'required|max:250',
+            'title.ar' => 'required|max:250',
+            'subtitle.en' => 'nullable|max:250',
+            'subtitle.ar' => 'nullable|max:250',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'image' => 'nullable',
+            'order_no' => 'required|max:250',
             'status' => 'required',
         ]);
         $feature_image = FeatureImage::find($id);
@@ -150,9 +156,9 @@ class FeatureImageController extends Controller
         }
         $feature_image->save();
         $notification = [
-            'alert' => 'success', 
+            'alert' => 'success',
             'message' => 'Feature Image Updated Successfully!'
         ];
-        return redirect()->route('admin.feature_image.index', ['slug' =>$feature_image->page->slug])->with('notification', $notification);
+        return redirect()->route('admin.feature_image.index', ['slug' => $feature_image->page->slug])->with('notification', $notification);
     }
 }

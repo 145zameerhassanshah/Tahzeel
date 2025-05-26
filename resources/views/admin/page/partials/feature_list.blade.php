@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Features')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <h3 class="card-title mt-1">{{ __('Features List') }}</h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.feature.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add</a>
+                                <a href="{{ route('admin.feature.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Feature</a>
                             </div>
                         </div>
                         <!-- /.card-header -->

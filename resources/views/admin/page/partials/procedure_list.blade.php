@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Procedures')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -17,7 +17,7 @@
                         <h3 class="card-title mt-1">{{ __('Procedures List') }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('admin.procedures.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i
-                                    class="bi bi-plus-lg"></i> Add</a>
+                                    class="bi bi-plus-lg"></i> Add Procedure</a>
                         </div>
                     </div>
                     <!-- /.card-header -->

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Page Detail')
+@section('title', ucwords(str_replace('-', ' ', $slug)) . ' | Feature Images')
 @section('content')
 
     @include('admin.page.top-nav')
@@ -17,7 +17,7 @@
                         <h3 class="card-title mt-1">{{ __('Feature Images List') }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('admin.feature_image.add', ['slug' => $slug]) }}" class="btn btn-sm btn-primary"><i
-                                    class="bi bi-plus-lg"></i> Add</a>
+                                    class="bi bi-plus-lg"></i> Add Feature Image</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -41,10 +41,9 @@
                                         </td>
                                         <td class="text-center">
                                             <img src="{{ asset('assets/admin/uploads/feature_image/' . $feature->image) }}"
-                                                alt="" width="100px">
+                                                alt="" width="50px">
                                         </td>
                                         <td>{{ $feature->getTranslation('title', 'en') }}</td>
-                                        <td>{{ $feature->getTranslation('title', 'ar') }}</td>
                                         <td>
                                             @if ($feature->status == 'active')
                                                 <span class="badge bg-success">Active</span>

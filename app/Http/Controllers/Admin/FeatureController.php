@@ -38,11 +38,11 @@ class FeatureController extends Controller
         $request->validate([
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
-            'subtitle.en' => 'required|string',
-            'subtitle.ar' => 'required|string',
-            'description.en' => 'required|string',
-            'description.ar' => 'required|string',
-            'icon' => 'required',    
+            'subtitle.en' => 'nullable|string',
+            'subtitle.ar' => 'nullable|string',
+            'description.en' => 'nullable|string',
+            'description.ar' => 'nullable|string',
+            'icon' => 'nullable',    
             'order_no' => 'required|integer',
             'status' => 'required|in:active,inactive',
         ]);
@@ -76,11 +76,11 @@ class FeatureController extends Controller
         $request->validate([
             'title.en' => 'required|string',
             'title.ar' => 'required|string',
-            'subtitle.en' => 'required|string',
-            'subtitle.ar' => 'required|string',
-            'description.en' => 'required|string',
-            'description.ar' => 'required|string',
-            'icon' => 'required|string',
+            'subtitle.en' => 'nullable|string',
+            'subtitle.ar' => 'nullable|string',
+            'description.en' => 'nullable|string',
+            'description.ar' => 'nullable|string',
+            'icon' => 'nullable',    
             'order_no' => 'required|integer',
             'status' => 'required|in:active,inactive',
         ]);

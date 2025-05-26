@@ -109,7 +109,7 @@
                                         <div class="col-sm-12">
                                             <label class="custom-file-label"
                                                 for="image">{{ __('Choose New Image') }}</label>
-                                            <input required type="file" class="custom-file-input up-img form-control"
+                                            <input type="file" class="custom-file-input up-img form-control"
                                                 name="image" id="image">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
                                                 src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">

@@ -53,7 +53,7 @@ class TestimonialController extends Controller
             'designation.ar' => 'nullable|string',
             'order_no' => 'required|integer|min:0',
             'status' => 'required|in:active,inactive',
-            'image' => 'required|image|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
         $page = Page::where('slug', $slug)->first();
         $testimonial = new Testimonial();

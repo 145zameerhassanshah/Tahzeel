@@ -45,8 +45,8 @@ class WhyChooseUsController extends Controller
         $request->validate([
             'title.en' => 'required',
             'title.ar' => 'required',
-            'subtitle.en' => 'required',
-            'subtitle.ar' => 'required',
+            'subtitle.en' => 'nullable',
+            'subtitle.ar' => 'nullable',
             'description.en' => 'required',
             'description.ar' => 'required',
             'icon' => 'required',
@@ -107,9 +107,13 @@ class WhyChooseUsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
+            'title.en' => 'required',
+            'title.ar' => 'required',
+            'subtitle.en' => 'nullable',
+            'subtitle.ar' => 'nullable',
+            'description.en' => 'required',
+            'description.ar' => 'required',
             'icon' => 'required',
-            'description' => 'required',
             'order_no' => 'required',
             'status' => 'required',
         ]);
@@ -126,7 +130,7 @@ class WhyChooseUsController extends Controller
             'en' => $request->description['en'],
             'ar' => $request->description['ar'],
         ]);
-        $why_choose_us->icon = json_encode($request->icon);
+        $why_choose_us->icon = $request->icon;
         $why_choose_us->order_no = $request->order_no;
         $why_choose_us->status = $request->status;
         $why_choose_us->save();

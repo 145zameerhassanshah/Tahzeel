@@ -71,7 +71,8 @@
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="image" id="image">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt=""
+                                                width="50px">
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -90,7 +91,8 @@
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="icon" id="icon">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt=""
+                                                width="50px">
                                             @error('icon')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -143,36 +145,48 @@
         $(document).ready(function() {
             let featureIndex = 0;
 
-            function addFeatureRow(index) {
+            function addFeatureRow(index, oldData = {}) {
                 $('#features-container').append(`
-            <div class="row mb-3 feature-group border rounded p-2">
-                <div class="col-md-4">
-                    <input type="text" name="features[${index}][en]" class="form-control" placeholder="Title in English" required>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" name="features[${index}][ar]" class="form-control" placeholder="Title in Arabic" required>
-                </div>
-                <div class="col-md-2">
-                    <input type="number" name="features[${index}][order]" class="form-control" placeholder="Order No" required>
-                </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
-                </div>
+        <div class="row mb-3 feature-group border rounded p-2">
+            <div class="col-md-4">
+                <input type="text" name="features[${index}][en]" class="form-control" placeholder="Title in English" required
+                    value="${oldData.en || ''}">
             </div>
-        `);
+            <div class="col-md-4">
+                <input type="text" name="features[${index}][ar]" class="form-control" placeholder="Title in Arabic" required
+                    value="${oldData.ar || ''}">
+            </div>
+            <div class="col-md-2">
+                <input type="number" name="features[${index}][order]" class="form-control" placeholder="Order No" required
+                    value="${oldData.order || ''}">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-danger btn-sm remove-feature">Remove</button>
+            </div>
+        </div>
+    `);
             }
 
-            // Add initial feature row on page load
-            addFeatureRow(featureIndex);
-            featureIndex++;
 
-            // Add more feature rows
+            @if (old('features'))
+                @foreach (old('features') as $index => $feature)
+                    addFeatureRow({{ $index }}, {
+                        en: @json(old("features.{$index}.en")),
+                        ar: @json(old("features.{$index}.ar")),
+                        order: @json(old("features.{$index}.order")),
+                    });
+                    featureIndex = {{ $index + 1 }};
+                @endforeach
+            @else
+                addFeatureRow(featureIndex);
+                featureIndex++;
+            @endif
+
             $('#add-feature').click(function() {
                 addFeatureRow(featureIndex);
                 featureIndex++;
             });
 
-            // Remove feature row
             $(document).on('click', '.remove-feature', function() {
                 $(this).closest('.feature-group').remove();
             });

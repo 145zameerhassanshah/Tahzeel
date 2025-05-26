@@ -18,7 +18,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('admin.block.update', $block->id) }}" method="post">
+                        <form action="{{ route('admin.block.update', $block->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">

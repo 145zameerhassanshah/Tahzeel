@@ -30,7 +30,7 @@ class ProcedureController extends Controller
             'subtitle.ar' => 'nullable|string',
             'description.en' => 'nullable|string',
             'description.ar' => 'nullable|string',
-            'order_no' => 'nullable|integer|min:0',
+            'order_no' => 'required|integer|min:0',
             'status' => 'required|in:active,inactive',
             'image' => 'nullable',
         ]);
