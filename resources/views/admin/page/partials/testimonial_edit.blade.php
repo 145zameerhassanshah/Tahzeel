@@ -8,8 +8,6 @@
         @include('admin.page.side-nav')
         <div class="row">
 
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -18,7 +16,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('admin.testimonial.update', $testimonial->id) }}" method="post">
+                        <form action="{{ route('admin.testimonial.update', $testimonial->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -31,7 +29,7 @@
                                         <label for="name_en">{{ __('Name (English)') }}<span
                                                 class="text-danger">*</span></label>
                                         <input name="name[en]" id="name_en" class="form-control" required
-                                            value="{{ $testimonial->getTranslation('name', 'en') }}">
+                                            value="{{ old('name.en', $testimonial->getTranslation('name', 'en')) }}">
                                         @error('name.en')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -40,7 +38,7 @@
                                         <label for="name_ar">{{ __('Name (Arabic)') }}<span
                                                 class="text-danger">*</span></label>
                                         <input name="name[ar]" id="name_ar" class="form-control" required
-                                            value="{{ $testimonial->getTranslation('name', 'ar') }}">
+                                            value="{{ old('name.ar', $testimonial->getTranslation('name', 'ar')) }}">
                                         @error('name.ar')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -53,7 +51,7 @@
 
                                     <input type="number" class="form-control" name="order_no" id="order_no"
                                         placeholder="{{ __('Order') }}"
-                                        value="{{ old('order_no') ?? $testimonial->order_no }}">
+                                        value="{{ old('order_no', $testimonial->order_no) }}">
                                     @if ($errors->has('order_no'))
                                         <p class="text-danger"> {{ $errors->first('order_no') }} </p>
                                     @endif
@@ -65,7 +63,7 @@
                                     <div class="form-group">
                                         <label for="feedback_en">{{ __('Feedback (English)') }} <span
                                                 class="text-danger">*</span></label>
-                                        <textarea name="feedback[en]" id="feedback_en" class="form-control" rows="2" required>{{ $testimonial->getTranslation('feedback', 'en') }}</textarea>
+                                        <textarea name="feedback[en]" id="feedback_en" class="form-control" rows="2" required>{{ old('feedback.en', $testimonial->getTranslation('feedback', 'en')) }}</textarea>
                                         @error('feedback.en')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -73,7 +71,7 @@
                                     <div class="form-group">
                                         <label for="feedback_ar">{{ __('Feedback (Arabic)') }} <span
                                                 class="text-danger">*</span></label>
-                                        <textarea name="feedback[ar]" id="feedback_ar" class="form-control" rows="2" required>{{ $testimonial->getTranslation('feedback', 'ar') }}</textarea>
+                                        <textarea name="feedback[ar]" id="feedback_ar" class="form-control" rows="2" required>{{ old('feedback.ar', $testimonial->getTranslation('feedback', 'ar')) }}</textarea>
                                         @error('feedback.ar')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -84,7 +82,7 @@
                                         <label for="designation_en">{{ __('Designation (English)') }}</label>
                                         <input type="text" name="designation[en]" id="designation_en"
                                             class="form-control"
-                                            value="{{ $testimonial->getTranslation('designation', 'en') }}">
+                                            value="{{ old('designation.en', $testimonial->getTranslation('designation', 'en')) }}">
                                         @error('designation.en')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -93,7 +91,7 @@
                                         <label for="designation_ar">{{ __('Designation (Arabic)') }}</label>
                                         <input type="text" name="designation[ar]" id="designation_ar"
                                             class="form-control"
-                                            value="{{ $testimonial->getTranslation('designation', 'ar') }}">
+                                            value="{{ old('designation.ar', $testimonial->getTranslation('designation', 'ar')) }}">
                                         @error('designation.ar')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
@@ -105,11 +103,10 @@
                                     <label for="status" class="control-label">{{ __('Status') }}<span
                                             class="text-danger">*</span></label>
 
-                                    <select class="form-control" name="status" id="status">
-                                        <option value="inactive"
-                                            {{ $testimonial->status == 'inactive' ? 'selected' : '' }}>
+                                    <select class="form-control" name="status" id="status" required>
+                                        <option value="inactive" {{ old('status', $testimonial->status) == 'inactive' ? 'selected' : '' }}>
                                             {{ __('InActive') }}</option>
-                                        <option value="active" {{ $testimonial->status == 'active' ? 'selected' : '' }}>
+                                        <option value="active" {{ old('status', $testimonial->status) == 'active' ? 'selected' : '' }}>
                                             {{ __('Active') }}</option>
                                     </select>
                                     @if ($errors->has('status'))

@@ -23,14 +23,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="editFaqQuestionEn">{{ __('Question (English)') }} <span class="text-danger">*</span></label>
-                                    <textarea required class="form-control" id="editFaqQuestionEn" name="question[en]" rows="3">{{ $faq->getTranslation('question', 'en') }}</textarea>
+                                    <textarea required class="form-control" id="editFaqQuestionEn" name="question[en]" rows="3">{{ old('question.en', $faq->getTranslation('question', 'en')) }}</textarea>
                                     @error('question.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="editFaqQuestionAr">{{ __('Question (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <textarea required class="form-control" id="editFaqQuestionAr" name="question[ar]" rows="3">{{ $faq->getTranslation('question', 'ar') }}</textarea>
+                                    <textarea required class="form-control" id="editFaqQuestionAr" name="question[ar]" rows="3">{{ old('question.ar', $faq->getTranslation('question', 'ar')) }}</textarea>
                                     @error('question.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -40,14 +40,14 @@
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="editFaqAnswerEn">{{ __('Answer (English)') }} <span class="text-danger">*</span></label>
-                                    <textarea required class="form-control" id="editFaqAnswerEn" name="answer[en]" rows="5">{{ $faq->getTranslation('answer', 'en') }}</textarea>
+                                    <textarea required class="form-control" id="editFaqAnswerEn" name="answer[en]" rows="5">{{ old('answer.en', $faq->getTranslation('answer', 'en')) }}</textarea>
                                     @error('answer.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="editFaqAnswerAr">{{ __('Answer (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <textarea required class="form-control" id="editFaqAnswerAr" name="answer[ar]" rows="5">{{ $faq->getTranslation('answer', 'ar') }}</textarea>
+                                    <textarea required class="form-control" id="editFaqAnswerAr" name="answer[ar]" rows="5">{{ old('answer.ar', $faq->getTranslation('answer', 'ar')) }}</textarea>
                                     @error('answer.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -56,8 +56,8 @@
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
-                                    <label for="editFaqOrderNo">{{ __('Order Number') }}</label>
-                                    <input required type="number" class="form-control" id="editFaqOrderNo" name="order_no" value="{{ $faq->order_no ?? 0 }}">
+                                    <label for="editFaqOrderNo">{{ __('Order Number') }} <span class="text-danger">*</span></label>
+                                    <input required type="number" class="form-control" id="editFaqOrderNo" name="order_no" value="{{ old('order_no', $faq->order_no ?? 0) }}">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -66,8 +66,8 @@
                                 <div class="col-md-6">
                                     <label for="editFaqStatus">{{ __('Status') }} <span class="text-danger">*</span></label>
                                     <select required class="form-control" id="editFaqStatus" name="status">
-                                        <option value="active" {{ $faq->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
-                                        <option value="inactive" {{ $faq->status == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
+                                        <option value="active" {{ old('status', $faq->status) == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                        <option value="inactive" {{ old('status', $faq->status) == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
                                         <p class="text-danger">{{ $message }}</p>

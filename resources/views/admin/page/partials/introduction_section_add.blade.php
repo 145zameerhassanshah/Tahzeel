@@ -8,8 +8,6 @@
         @include('admin.page.side-nav')
         <div class="row">
 
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -27,7 +25,8 @@
                                 <div class="col-md-6">
                                     <label for="title_en">{{ __('Title (English)') }} <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title_en" name="title[en]" required>
+                                    <input type="text" class="form-control" id="title_en" name="title[en]" required
+                                        value="{{ old('title.en') }}">
                                     @error('title.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -35,8 +34,9 @@
                                 <div class="col-md-6">
                                     <label for="title_ar">{{ __('Title (Arabic)') }} <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title_ar" name="title[ar]" required>
-                                    @error('title.en')
+                                    <input type="text" class="form-control" id="title_ar" name="title[ar]" required
+                                        value="{{ old('title.ar') }}">
+                                    @error('title.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -44,7 +44,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="subtitle_en">{{ __('SubTitle (English)') }} </label>
-                                    <input type="text" class="form-control" id="subtitle_en" name="subtitle[en]">
+                                    <input type="text" class="form-control" id="subtitle_en" name="subtitle[en]"
+                                        value="{{ old('subtitle.en') }}">
                                     @error('subtitle.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -52,8 +53,9 @@
 
                                 <div class="col-md-6">
                                     <label for="subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
-                                    <input type="text" class="form-control" id="subtitle_ar" name="subtitle[ar]">
-                                    @error('subtitle.en')
+                                    <input type="text" class="form-control" id="subtitle_ar" name="subtitle[ar]"
+                                        value="{{ old('subtitle.ar') }}">
+                                    @error('subtitle.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -61,17 +63,19 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (English)') }} </label>
-                                    <input type="text" class="form-control" id="description_en" name="description[en]">
+                                    <label for="description_en">{{ __('Description (English)') }} </label>
+                                    <input type="text" class="form-control" id="description_en" name="description[en]"
+                                        value="{{ old('description.en') }}">
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (Arabic)') }} </label>
-                                    <input type="text" class="form-control" id="description_ar" name="description[ar]">
-                                    @error('description.en')
+                                    <label for="description_ar">{{ __('Description (Arabic)') }} </label>
+                                    <input type="text" class="form-control" id="description_ar" name="description[ar]"
+                                        value="{{ old('description.ar') }}">
+                                    @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -82,8 +86,8 @@
                                 <div class="col-md-4">
                                     <label for="status">{{ __('Status') }}</label>
                                     <select class="form-control" id="status" name="status" required>
-                                        <option value="active">{{ __('Active') }}</option>
-                                        <option value="inactive">{{ __('Inactive') }}</option>
+                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
                                         <p class="text-danger">{{ $message }}</p>

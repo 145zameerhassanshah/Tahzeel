@@ -26,7 +26,8 @@
                                     <label for="update_featureimg_title_en">{{ __('Title (English)') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_title_en"
-                                        name="title[en]" value="{{ $feature_image->getTranslation('title', 'en') }}">
+                                        name="title[en]"
+                                        value="{{ old('title.en', $feature_image->getTranslation('title', 'en')) }}">
                                     @error('title.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -35,7 +36,8 @@
                                     <label for="update_featureimg_title_ar">{{ __('Title (Arabic)') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_title_ar"
-                                        name="title[ar]" value="{{ $feature_image->getTranslation('title', 'ar') }}">
+                                        name="title[ar]"
+                                        value="{{ old('title.ar', $feature_image->getTranslation('title', 'ar')) }}">
                                     @error('title.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -46,7 +48,8 @@
                                 <div class="col-md-6">
                                     <label for="update_featureimg_subtitle_en">{{ __('SubTitle (English)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_subtitle_en"
-                                        name="subtitle[en]" value="{{ $feature_image->getTranslation('subtitle', 'en') }}">
+                                        name="subtitle[en]"
+                                        value="{{ old('subtitle.en', $feature_image->getTranslation('subtitle', 'en')) }}">
                                     @error('subtitle.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -55,7 +58,8 @@
                                 <div class="col-md-6">
                                     <label for="update_featureimg_subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_subtitle_ar"
-                                        name="subtitle[ar]" value="{{ $feature_image->getTranslation('subtitle', 'ar') }}">
+                                        name="subtitle[ar]"
+                                        value="{{ old('subtitle.ar', $feature_image->getTranslation('subtitle', 'ar')) }}">
                                     @error('subtitle.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -68,7 +72,7 @@
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_description_en"
                                         name="description[en]"
-                                        value="{{ $feature_image->getTranslation('description', 'en') }}">
+                                        value="{{ old('description.en', $feature_image->getTranslation('description', 'en')) }}">
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -79,7 +83,7 @@
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_description_ar"
                                         name="description[ar]"
-                                        value="{{ $feature_image->getTranslation('description', 'ar') }}">
+                                        value="{{ old('description.ar', $feature_image->getTranslation('description', 'ar')) }}">
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -91,10 +95,9 @@
                                     <label for="update_featureimg_status">{{ __('Status') }} <span
                                             class="text-danger">*</span></label>
                                     <select required class="form-control" id="update_featureimg_status" name="status">
-                                        <option value="active" {{ $feature_image->status == 'active' ? 'selected' : '' }}>
+                                        <option value="active" {{ old('status', $feature_image->status) == 'active' ? 'selected' : '' }}>
                                             {{ __('Active') }}</option>
-                                        <option value="inactive"
-                                            {{ $feature_image->status == 'inactive' ? 'selected' : '' }}>
+                                        <option value="inactive" {{ old('status', $feature_image->status) == 'inactive' ? 'selected' : '' }}>
                                             {{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
@@ -106,7 +109,8 @@
                                     <label for="update_featureimg_order_no">{{ __('Order No') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_order_no"
-                                        name="order_no" value="{{ $feature_image->order_no }}">
+                                        name="order_no"
+                                        value="{{ old('order_no', $feature_image->order_no) }}">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -125,8 +129,8 @@
                                                     src="{{ asset('assets/admin/uploads/feature_image/' . $feature_image->image) }}" alt="Current Image"
                                                     width="50px">
                                             @else
-                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                    src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
                                             @endif
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>

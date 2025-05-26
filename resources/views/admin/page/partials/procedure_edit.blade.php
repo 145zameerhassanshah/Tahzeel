@@ -8,8 +8,6 @@
         @include('admin.page.side-nav')
         <div class="row">
 
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -18,7 +16,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('admin.procedures.update', $procedure->id) }}" method="post">
+                        <form action="{{ route('admin.procedures.update', $procedure->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -26,7 +24,7 @@
                                     <label for="update_featureimg_title_en">{{ __('Title (English)') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_title_en"
-                                        name="title[en]" value="{{ $procedure->getTranslation('title', 'en') }}">
+                                        name="title[en]" value="{{ old('title.en', $procedure->getTranslation('title', 'en')) }}">
                                     @error('title.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -35,7 +33,7 @@
                                     <label for="update_featureimg_title_ar">{{ __('Title (Arabic)') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_title_ar"
-                                        name="title[ar]" value="{{ $procedure->getTranslation('title', 'ar') }}">
+                                        name="title[ar]" value="{{ old('title.ar', $procedure->getTranslation('title', 'ar')) }}">
                                     @error('title.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -46,7 +44,7 @@
                                 <div class="col-md-6">
                                     <label for="update_featureimg_subtitle_en">{{ __('SubTitle (English)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_subtitle_en"
-                                        name="subtitle[en]" value="{{ $procedure->getTranslation('subtitle', 'en') }}">
+                                        name="subtitle[en]" value="{{ old('subtitle.en', $procedure->getTranslation('subtitle', 'en')) }}">
                                     @error('subtitle.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -55,7 +53,7 @@
                                 <div class="col-md-6">
                                     <label for="update_featureimg_subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_subtitle_ar"
-                                        name="subtitle[ar]" value="{{ $procedure->getTranslation('subtitle', 'ar') }}">
+                                        name="subtitle[ar]" value="{{ old('subtitle.ar', $procedure->getTranslation('subtitle', 'ar')) }}">
                                     @error('subtitle.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -67,7 +65,7 @@
                                     <label for="update_featureimg_description_en">{{ __('Description (English)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_description_en"
                                         name="description[en]"
-                                        value="{{ $procedure->getTranslation('description', 'en') }}">
+                                        value="{{ old('description.en', $procedure->getTranslation('description', 'en')) }}">
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -77,7 +75,7 @@
                                     <label for="update_featureimg_description_ar">{{ __('Description (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="update_featureimg_description_ar"
                                         name="description[ar]"
-                                        value="{{ $procedure->getTranslation('description', 'ar') }}">
+                                        value="{{ old('description.ar', $procedure->getTranslation('description', 'ar')) }}">
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -89,10 +87,9 @@
                                     <label for="update_featureimg_status">{{ __('Status') }} <span
                                             class="text-danger">*</span></label>
                                     <select required class="form-control" id="update_featureimg_status" name="status">
-                                        <option value="active" {{ $procedure->status == 'active' ? 'selected' : '' }}>
+                                        <option value="active" {{ old('status', $procedure->status) == 'active' ? 'selected' : '' }}>
                                             {{ __('Active') }}</option>
-                                        <option value="inactive"
-                                            {{ $procedure->status == 'inactive' ? 'selected' : '' }}>
+                                        <option value="inactive" {{ old('status', $procedure->status) == 'inactive' ? 'selected' : '' }}>
                                             {{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
@@ -104,27 +101,28 @@
                                     <label for="update_featureimg_order_no">{{ __('Order No') }} <span
                                             class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="update_featureimg_order_no"
-                                        name="order_no" value="{{ $procedure->order_no }}">
+                                        name="order_no" value="{{ old('order_no', $procedure->order_no) }}">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+
                                 <!-- Image Upload -->
                                 <div class="col-md-4">
                                     <label for="image">{{ __('Image') }}</label>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <label class="custom-file-label"
-                                                for="image">{{ __('Choose New Image') }}</label>
+                                            <label class="custom-file-label" for="image">{{ __('Choose New Image') }}</label>
                                             <input type="file" class="custom-file-input up-img form-control"
                                                 name="image" id="image">
                                             @if ($procedure->image)
                                                 <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                    src="{{ asset('assets/admin/uploads/procedure/' . $procedure->image) }}" alt="Current Image"
-                                                    width="50px">
+                                                    src="{{ asset('assets/admin/uploads/procedure/' . $procedure->image) }}"
+                                                    alt="Current Image" width="50px">
                                             @else
-                                            <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2"
+                                                    src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt=""
+                                                    width="50px">
                                             @endif
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -133,7 +131,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="row mt-3">
                                 <div class="col-12">

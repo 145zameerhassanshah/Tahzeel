@@ -7,9 +7,6 @@
     <section class="content">
         @include('admin.page.side-nav')
         <div class="row">
-
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -25,17 +22,17 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="title_en">{{ __('Title (English)') }} <span
-                                            class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="title_en" name="title[en]">
+                                    <label for="title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="title_en" name="title[en]"
+                                           value="{{ old('title.en') }}">
                                     @error('title.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="title_ar">{{ __('Title (Arabic)') }} <span
-                                            class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="title_ar" name="title[ar]">
+                                    <label for="title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="title_ar" name="title[ar]"
+                                           value="{{ old('title.ar') }}">
                                     @error('title.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -44,18 +41,18 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (English)') }} <span
-                                            class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="description_en" name="description[en]">
+                                    <label for="description_en">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="description_en" name="description[en]"
+                                           value="{{ old('description.en') }}">
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="description">{{ __('Description (Arabic)') }} <span
-                                            class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="description_ar" name="description[ar]">
+                                    <label for="description_ar">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="description_ar" name="description[ar]"
+                                           value="{{ old('description.ar') }}">
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -63,12 +60,11 @@
                             </div>
 
                             <div class="row mt-3">
-
                                 <div class="col-md-4">
                                     <label for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                     <select required class="form-control" id="status" name="status">
-                                        <option value="active">{{ __('Active') }}</option>
-                                        <option value="inactive">{{ __('Inactive') }}</option>
+                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
                                         <p class="text-danger">{{ $message }}</p>
@@ -77,7 +73,8 @@
 
                                 <div class="col-md-4">
                                     <label for="order_no">{{ __('Order No') }} <span class="text-danger">*</span></label>
-                                    <input required value="1" type="number" class="form-control" id="order_no" name="order_no">
+                                    <input required type="number" class="form-control" id="order_no" name="order_no"
+                                           value="{{ old('order_no', 1) }}">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -88,12 +85,10 @@
                                     <label for="icon">{{ __('Icon') }}</label>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <label class="custom-file-label"
-                                                for="icon">{{ __('Choose New Icon') }}</label>
-                                            <input type="file" class="custom-file-input up-img form-control"
-                                                name="icon" id="icon" >
+                                            <label class="custom-file-label" for="icon">{{ __('Choose New Icon') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control" name="icon" id="icon">
                                             <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                                 src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
                                             @error('icon')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -101,15 +96,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
 
+                            <div class="row">
                                 <div class="col-12 mt-2">
                                     <button class="btn btn-primary btn-sm float-right">Submit</button>
                                 </div>
                             </div>
-
-
-
                         </form>
                     </div>
                 </div>

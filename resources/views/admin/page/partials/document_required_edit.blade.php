@@ -7,9 +7,6 @@
     <section class="content">
         @include('admin.page.side-nav')
         <div class="row">
-
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -20,88 +17,84 @@
                     <div class="card-body">
                         <form action="{{ route('admin.document-required.update', $document->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="update_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="update_title_en" name="title[en]" value="{{ $document->getTranslation('title', 'en') }}">
+                                    <input required type="text" class="form-control" id="update_title_en" name="title[en]" value="{{ old('title.en', $document->getTranslation('title', 'en')) }}">
                                     @error('title.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="update_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="update_title_ar" name="title[ar]" value="{{ $document->getTranslation('title', 'ar') }}">
+                                    <input required type="text" class="form-control" id="update_title_ar" name="title[ar]" value="{{ old('title.ar', $document->getTranslation('title', 'ar')) }}">
                                     @error('title.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="update_description">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="update_description_en" name="description[en]" value="{{ $document->getTranslation('description', 'en') }}">
+                                    <label for="update_description_en">{{ __('Description (English)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_description_en" name="description[en]" value="{{ old('description.en', $document->getTranslation('description', 'en')) }}">
                                     @error('description.en')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-    
+
                                 <div class="col-md-6">
-                                    <label for="update_description">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" id="update_description_ar" name="description[ar]" value="{{ $document->getTranslation('description', 'ar') }}">
+                                    <label for="update_description_ar">{{ __('Description (Arabic)') }} <span class="text-danger">*</span></label>
+                                    <input required type="text" class="form-control" id="update_description_ar" name="description[ar]" value="{{ old('description.ar', $document->getTranslation('description', 'ar')) }}">
                                     @error('description.ar')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
-    
+
                             <div class="row mt-3">
-    
                                 <div class="col-md-4">
                                     <label for="update_status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                     <select required class="form-control" id="update_status" name="status">
-                                        <option value="active" {{ $document->status == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
-                                        <option value="inactive" {{ $document->status == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
+                                        <option value="active" {{ old('status', $document->status) == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                        <option value="inactive" {{ old('status', $document->status) == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                                     </select>
                                     @error('status')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-    
+
                                 <div class="col-md-4">
                                     <label for="order_no">{{ __('Order No') }} <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="order_no" name="order_no" value="{{ $document->order_no }}">
+                                    <input type="number" class="form-control" id="order_no" name="order_no" value="{{ old('order_no', $document->order_no) }}">
                                     @error('order_no')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+
                                 <!-- Icon Upload -->
                                 <div class="col-md-4">
                                     <label for="icon">{{ __('Icon') }}</label>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <label class="custom-file-label"
-                                                for="icon">{{ __('Choose New Icon') }}</label>
-                                            <input type="file" class="custom-file-input up-img form-control"
-                                                name="icon" id="icon">
-                                                @if ($document->icon)
-                                                    <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                        src="{{ asset('assets/admin/uploads/document/' . $document->icon) }}" alt="Current Image"
-                                                        width="50px">
-                                                @else
-                                                <img class="mw-400 mb-3 show-img img-demo mt-2"
-                                                src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
-                                                @endif
+                                            <label class="custom-file-label" for="icon">{{ __('Choose New Icon') }}</label>
+                                            <input type="file" class="custom-file-input up-img form-control" name="icon" id="icon">
+                                            @if ($document->icon)
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2" src="{{ asset('assets/admin/uploads/document/' . $document->icon) }}" alt="Current Image" width="50px">
+                                            @else
+                                                <img class="mw-400 mb-3 show-img img-demo mt-2" src="{{ asset('assets/admin/img/img-demo.jpg') }}" alt="" width="50px">
+                                            @endif
                                             @error('icon')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-    
                             </div>
-                            <div class="row">
 
+                            <div class="row">
                                 <div class="col-12 mt-2">
                                     <button class="btn btn-primary btn-sm float-right">Submit</button>
                                 </div>

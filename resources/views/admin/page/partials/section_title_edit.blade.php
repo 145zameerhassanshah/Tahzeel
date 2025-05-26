@@ -8,8 +8,6 @@
         @include('admin.page.side-nav')
         <div class="row">
 
-
-
             <div class="col-md-12">
                 {{-- content --}}
                 <div class="card card-primary card-outline">
@@ -22,21 +20,19 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="section_title_en">{{ __('Title (English)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="section_title_en">{{ __('Title (English)') }} <span class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="section_title_en"
                                         name="section_title[en]"
-                                        value="{{ $section_title->getTranslation('title', 'en') }}">
+                                        value="{{ old('section_title.en', $section_title->getTranslation('title', 'en')) }}">
                                     @if ($errors->has('section_title.en'))
                                         <p class="text-danger"> {{ $errors->first('section_title.en') }} </p>
                                     @endif
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="section_title_ar">{{ __('Title (Arabic)') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="section_title_ar">{{ __('Title (Arabic)') }} <span class="text-danger">*</span></label>
                                     <input required type="text" class="form-control" id="section_title_ar"
                                         name="section_title[ar]"
-                                        value="{{ $section_title->getTranslation('title', 'ar') }}">
+                                        value="{{ old('section_title.ar', $section_title->getTranslation('title', 'ar')) }}">
                                     @if ($errors->has('section_title.ar'))
                                         <p class="text-danger"> {{ $errors->first('section_title.ar') }} </p>
                                     @endif
@@ -48,7 +44,7 @@
                                     <label for="section_subtitle_en">{{ __('SubTitle (English)') }} </label>
                                     <input type="text" class="form-control" id="section_subtitle_en"
                                         name="section_subtitle[en]"
-                                        value="{{ $section_title->getTranslation('subtitle', 'en') }}">
+                                        value="{{ old('section_subtitle.en', $section_title->getTranslation('subtitle', 'en')) }}">
                                     @if ($errors->has('section_subtitle.en'))
                                         <p class="text-danger"> {{ $errors->first('section_subtitle.en') }} </p>
                                     @endif
@@ -58,7 +54,7 @@
                                     <label for="section_subtitle_ar">{{ __('SubTitle (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="section_subtitle_ar"
                                         name="section_subtitle[ar]"
-                                        value="{{ $section_title->getTranslation('subtitle', 'ar') }}">
+                                        value="{{ old('section_subtitle.ar', $section_title->getTranslation('subtitle', 'ar')) }}">
                                     @if ($errors->has('section_subtitle.ar'))
                                         <p class="text-danger"> {{ $errors->first('section_subtitle.ar') }} </p>
                                     @endif
@@ -70,7 +66,7 @@
                                     <label for="section_description_en">{{ __('Description (English)') }} </label>
                                     <input type="text" class="form-control" id="section_description_en"
                                         name="section_description[en]"
-                                        value="{{ $section_title->getTranslation('description', 'en') }}">
+                                        value="{{ old('section_description.en', $section_title->getTranslation('description', 'en')) }}">
                                     @if ($errors->has('section_description.en'))
                                         <p class="text-danger"> {{ $errors->first('section_description.en') }} </p>
                                     @endif
@@ -80,7 +76,7 @@
                                     <label for="section_description_ar">{{ __('Description (Arabic)') }} </label>
                                     <input type="text" class="form-control" id="section_description_ar"
                                         name="section_description[ar]"
-                                        value="{{ $section_title->getTranslation('description', 'ar') }}">
+                                        value="{{ old('section_description.ar', $section_title->getTranslation('description', 'ar')) }}">
                                     @if ($errors->has('section_description.ar'))
                                         <p class="text-danger"> {{ $errors->first('section_description.ar') }} </p>
                                     @endif
@@ -89,14 +85,14 @@
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
-                                    <label for="section_status">{{ __('Status') }} <span
-                                            class="text-danger">*</span></label>
+                                    <label for="section_status">{{ __('Status') }} <span class="text-danger">*</span></label>
                                     <select class="form-control" id="section_status" name="section_status" required>
-                                        <option value="active" {{ $section_title->status == 'active' ? 'selected' : '' }}>
-                                            {{ __('Active') }}</option>
-                                        <option value="inactive"
-                                            {{ $section_title->status == 'inactive' ? 'selected' : '' }}>
-                                            {{ __('Inactive') }}</option>
+                                        <option value="active" {{ old('section_status', $section_title->status) == 'active' ? 'selected' : '' }}>
+                                            {{ __('Active') }}
+                                        </option>
+                                        <option value="inactive" {{ old('section_status', $section_title->status) == 'inactive' ? 'selected' : '' }}>
+                                            {{ __('Inactive') }}
+                                        </option>
                                     </select>
                                     @if ($errors->has('status'))
                                         <p class="text-danger"> {{ $errors->first('status') }} </p>
@@ -104,14 +100,13 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="section_type" class="control-label">{{ __('Type') }}<span
-                                            class="text-danger">*</span></label>
+                                    <label for="section_type" class="control-label">{{ __('Type') }}<span class="text-danger">*</span></label>
                                     <select class="form-control" name="section_type" id="section_type" required>
-                                        <option disabled selected>Select Type</option>
+                                        <option disabled {{ old('section_type', $section_title->type) ? '' : 'selected' }}>Select Type</option>
                                         @foreach ($section_types as $type)
-                                            <option value="{{ $type }}"
-                                                {{ $type == $section_title->type ? 'selected' : '' }}>
-                                                {{ ucfirst(str_replace('_', ' ', $type)) }}</option>
+                                            <option value="{{ $type }}" {{ old('section_type', $section_title->type) == $type ? 'selected' : '' }}>
+                                                {{ ucfirst(str_replace('_', ' ', $type)) }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('section_type'))
