@@ -4,7 +4,7 @@
             <div class="col-md-8 col-lg-6 position-relative">
                 <a href="@@webRoot/assets/media/movie.mp4" class="btn btn-circle btn-primary btn-play ripple mx-auto mb-5 position-absolute" style="top:50%; left: 50%; transform: translate(-50%,-50%); z-index:3;" data-glightbox><i class="icn-caret-right"></i></a>
                 <div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0" style="bottom: -1.8rem; right: -1.5rem; width: 85%; height: 90%; "></div>
-                <figure><img class="w-auto" src="{{ $block->image }}" alt="" /></figure>
+                <figure><img class="w-auto" src="{{ asset($block->image) }}" alt="" /></figure>
             </div>
             <!--/column -->
             <div class="col-lg-5 offset-lg-1">

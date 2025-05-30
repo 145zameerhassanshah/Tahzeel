@@ -66,7 +66,7 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('labor-immigration-document', [DocumentClearanceServiceController::class, 'laborImmigrationDocuments'])->name('front.document-clearance.labor-immigration-document');
     Route::get('corporate-document', [DocumentClearanceServiceController::class, 'corporateDocumentClearance'])->name('front.document-clearance.corporate-document');
     Route::get('legal-document', [DocumentClearanceServiceController::class, 'legalDocumentProcessing'])->name('front.document-clearance.legal-document');
-    //dubai notary 
+    //dubai notary
     Route::get('/dubai-notary/document-authentication', [DubaiNotaryServiceController::class, 'documentAuthentication'])->name('front.dubai-notary.authentication');
     Route::get('/dubai-notary/real-estate-transactions', [DubaiNotaryServiceController::class, 'realEstateTransactions'])->name('front.dubai-notary.transactions');
     Route::get('/dubai-notary/affidavits-declarations', [DubaiNotaryServiceController::class, 'affidavitsDeclarations'])->name('front.dubai-notary.affidavits-declarations');
@@ -80,7 +80,7 @@ Route::middleware([SetLocale::class])->group(function () {
         Route::get('company-deregistration', [DedServiceController::class, 'deregistration'])->name('deregistration');
         Route::get('commercial-permits', [DedServiceController::class, 'commercialPermits'])->name('commercial_permits');
     });
-    //investment plan 
+    //investment plan
     Route::prefix('investment-plans')->name('front.investmentplans.')->group(function () {
         Route::get('global-investment-solutions', [InvestmentPlanController::class, 'globalInvestment'])->name('global_investment');
         Route::get('investment-planning-advisory', [InvestmentPlanController::class, 'investmentAdvisory'])->name('investment_advisory');
@@ -138,7 +138,8 @@ Route::middleware([SetLocale::class])->group(function () {
         Route::get('/medical-fitness-tests', [DHAController::class, 'medicalFitnessTests'])->name('dha.medical_fitness_tests');
         Route::get('/health-insurance-approvals', [DHAController::class, 'healthInsuranceApprovals'])->name('dha.health_insurance_approvals');
     });
-    //tasheel 
+    
+    //tasheel
     Route::get('/government-transactions', [TasheelServiceController::class, 'governmentTransactions'])->name('front.tasheel.government');
     Route::get('/mohre-services', [TasheelServiceController::class, 'mohreServices'])->name('front.tasheel.mohre');
     Route::get('/legal-translation', [TasheelServiceController::class, 'legalTranslation'])->name('front.tasheel.translation');
